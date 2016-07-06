@@ -1,7 +1,0 @@
-logs
-*.log
-.idea/
-.DS_Store
-coverage
-public
-node_modules
