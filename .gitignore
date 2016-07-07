@@ -1,0 +1,10 @@
+node_modules
+public
+coverage
+.dockerignore
+.editorconfig
+.eslintrc
+.istanbul.yml
+.jscsrc
+.npmignore
+.travis.yml
