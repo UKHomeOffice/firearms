@@ -4,7 +4,7 @@ coverage
 .dockerignore
 .editorconfig
 .eslintrc
-.istanbul.yml
+.eslintignore
 .jscsrc
 .npmignore
 .travis.yml
