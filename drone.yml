@@ -1,0 +1,46 @@
+pipeline:
+  build_4:
+    image: node:4.4.2
+    commands:
+      - npm --loglevel warn install -g npm@3
+      - npm --loglevel warn install
+      - npm run test:ci
+
+  build_5:
+    image: node:5
+    commands:
+      - npm --loglevel warn install
+      - npm run test:ci
+
+  build_app:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker build -t firearms .
+    when:
+      event: pull_request
+
+  build_acceptance:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker build -f Dockerfile-acceptance -t acceptance .
+    when:
+      event: pull_request
+
+  test_acceptance:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker run -e NODE_ENV=ci -d --net host firearms
+      - docker run --rm --net host acceptance
+    when:
+      event: pull_request
+
+services:
+  dind:
+    image: docker:1.11-dind
+    privileged: true

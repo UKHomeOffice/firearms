@@ -1,0 +1,16 @@
+FROM node:5
+
+WORKDIR /test
+
+ENV PHANTOM_JS phantomjs-2.1.1-linux-x86_64
+
+RUN wget https://github.com/Medium/phantomjs/releases/download/v2.1.1/${PHANTOM_JS}.tar.bz2 && \
+    tar xjf ${PHANTOM_JS}.tar.bz2
+
+COPY package.json package.json
+COPY acceptance_tests acceptance_tests/
+COPY test.sh test.sh
+
+RUN npm --loglevel warn install --only=development --ignore-scripts
+
+CMD /test/test.sh
