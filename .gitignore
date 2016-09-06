@@ -7,4 +7,3 @@ coverage
 .eslintignore
 .jscsrc
 .npmignore
-.travis.yml

@@ -1,0 +1,117 @@
+pipeline:
+  build_4:
+    image: node:4.4.2
+    commands:
+      - npm --loglevel warn install -g npm@3
+      - npm --loglevel warn install
+      - npm run test:ci
+    when:
+      event: [push, pull_request]
+
+  build_5:
+    image: node:5
+    commands:
+      - npm --loglevel warn install
+      - npm run test:ci
+    when:
+      event: [push, pull_request]
+
+  build_app:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker build -t firearms .
+    when:
+      event: pull_request
+
+  build_app:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker build -t firearms .
+    when:
+      branch: master
+      event: push
+
+  # build_acceptance:
+  #   image: docker:1.11
+  #   environment:
+  #     - DOCKER_HOST=tcp://127.0.0.1:2375
+  #   commands:
+  #     - docker build -f Dockerfile-acceptance -t acceptance .
+  #   when:
+  #     event: pull_request
+
+  # build_acceptance:
+  #   image: docker:1.11
+  #   environment:
+  #     - DOCKER_HOST=tcp://127.0.0.1:2375
+  #   commands:
+  #     - docker build -f Dockerfile-acceptance -t acceptance .
+  #   when:
+  #     branch: master
+  #     event: push
+
+  # test_acceptance:
+  #   image: docker:1.11
+  #   environment:
+  #     - DOCKER_HOST=tcp://127.0.0.1:2375
+  #   commands:
+  #     - docker run -e NODE_ENV=ci -d --net host firearms
+  #     - docker run --rm --net host acceptance
+  #   when:
+  #     event: pull_request
+
+  # test_acceptance:
+  #   image: docker:1.11
+  #   environment:
+  #     - DOCKER_HOST=tcp://127.0.0.1:2375
+  #   commands:
+  #     - docker run -e NODE_ENV=ci -d --net host firearms
+  #     - docker run --rm --net host acceptance
+  #   when:
+  #     branch: master
+  #     event: push
+
+  image_to_quay:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker login -u="ukhomeofficedigital+drone" -p=${DOCKER_PASSWORD} quay.io
+      - docker tag firearms quay.io/ukhomeofficedigital/firearms:${DRONE_COMMIT_SHA}
+      - docker push quay.io/ukhomeofficedigital/firearms:${DRONE_COMMIT_SHA}
+    when:
+      branch: master
+      event: push
+
+  trigger_deploy_to_dev:
+    image: quay.io/ukhomeofficedigital/drone-trigger:latest
+    drone_server: https://drone.digital.homeoffice.gov.uk
+    repo: UKHomeOffice/kube-firearms
+    branch: master
+    deploy_to: firearms-dev
+    params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms-dev
+    when:
+      branch: master
+      event: push
+
+  trigger_deploy_to_preprod:
+    image: quay.io/ukhomeofficedigital/drone-trigger:latest
+    drone_server: https://drone.digital.homeoffice.gov.uk
+    repo: UKHomeOffice/kube-firearms
+    branch: master
+    deploy_to: firearms-preprod
+    params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms-preprod
+    when:
+      event: tag
+
+services:
+  dind:
+    image: docker:1.11-dind
+    privileged: true
+    command:
+      - "-s"
+      - "overlay"
