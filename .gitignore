@@ -1,9 +1,7 @@
+.DS_Store
+apps/*/translations/en
 node_modules
 public
-coverage
+.idea
 .dockerignore
-.editorconfig
-.eslintrc
-.eslintignore
-.jscsrc
 .npmignore

@@ -6,7 +6,7 @@ RUN yum clean all && \
   yum install -y -q git && \
   yum clean all && \
   rpm --rebuilddb && \
-  npm --loglevel warn install -g npm@3
+  npm --loglevel warn install -g npm@3.10.8
 
 COPY package.json /app/package.json
 RUN npm --loglevel warn install --production --no-optional
