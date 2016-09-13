@@ -1,16 +1,31 @@
 'use strict';
 
+const controllers = require('hof').controllers;
+
 module.exports = {
   name: 'new-dealer',
   steps: {
     '/': {
-      template: 'step',
-      fields: ['name-text'],
-      next: '/hi'
+      controller: controllers.start,
+      next: '/handle'
     },
-    '/hi': {
-      template: 'step',
-      fields: ['name-text']
+    '/handle': {
+      fields: [
+        'handle-weapons',
+        'handle-ammunition'
+      ],
+      next: '/obtain',
+      locals: {
+        section: 'handle',
+        subsection: 'all-that-apply'
+      }
+    },
+    '/obtain': {
+      fields: ['obtain'],
+      next: '/storage',
+      locals: {
+        section: 'obtain'
+      }
     }
   }
 };

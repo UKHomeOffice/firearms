@@ -12,6 +12,7 @@
   "readme": "./README.md",
   "scripts": {
     "start": "node .",
+    "codecept": "codeceptjs run ./node_modules/so-acceptance --steps",
     "dev": "npm-run-all --parallel watch:app watch:scss watch:js watch:translations",
     "watch:app": "NODE_ENV=development nodemon .",
     "watch:scss": "nodemon -e scss -x 'npm run sass'",
@@ -19,36 +20,40 @@
     "watch:translations": "nodemon --watch apps/**/translations/src -x 'npm run hof-transpile'",
     "test": "NODE_ENV=test mocha",
     "test:ci": "npm run lint && npm run style && npm run test",
-    "lint": "eslint .",
+    "test:acceptance": "npm run codecept",
+    "phantom": "phantomjs --webdriver=4444",
+    "lint": "npm-run-all --parallel lint:app lint:acceptance",
+    "lint:app": "eslint .",
+    "lint:acceptance": "eslint --no-ignore -c ./node_modules/so-acceptance/.eslintrc ./apps/*/features/**/*.js",
     "style": "jscs **/*.js --config=./.jscsrc",
     "copy:images": "cp -r ./assets/images ./public/",
     "browserify": "browserify ./assets/js/index.js > ./public/js/bundle.js",
     "create:public": "mkdir -p ./public/js ./public/css ./public/images",
     "sass": "node-sass ./assets/scss/app.scss ./public/css/app.css --include-path ./node_modules",
-    "hof-transpile": "hof-transpiler ./apps/**/translations/src -w --shared ./apps/common/translations/src",
-    "postinstall": "npm run create:public; npm run sass; npm run browserify; npm run copy:images; npm run hof-transpile"
+    "hof-transpile": "hof-transpiler ./apps/**/translations/src -w --shared ./apps/common/translations/src/en --shared ./node_modules/hof-template-partials/translations",
+    "prepareapp": "npm run create:public; npm run sass; npm run browserify; npm run copy:images; npm run hof-transpile",
+    "postinstall": "bash -c 'if [[ ${NODE_ENV} != production ]]; then npm run prepareapp; fi;'"
   },
   "dependencies": {
     "browserify": "^12.0.1",
-    "hof-bootstrap": "^3.0.0",
-    "hof-dotfiles": "^2.0.0",
-    "node-sass": "^3.7.0",
-    "hof-transpiler": "0.1.0"
+    "hof-bootstrap": "UKHomeOffice/hof-bootstrap#development",
+    "hof-transpiler": "^0.1.0",
+    "node-sass": "^3.7.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
-    "debug": "^2.2.0",
     "jscs": "^3.0.6",
     "mocha": "^2.2.5",
     "mocha-junit-reporter": "^1.4.0",
-    "mocha-multi": "^0.9.0",
+    "mocha-multi": "^0.7.1",
     "nodemon": "^1.9.2",
-    "npm-run-all": "^2.3.0",
+    "npm-run-all": "^1.7.0",
     "pre-commit": "^1.0.10",
     "proxyquire": "^1.5.0",
     "sinomocha": "^0.2.4",
     "sinon": "^1.15.3",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "so-acceptance": "^3.0.2"
   },
   "pre-commit": [
     "lint",

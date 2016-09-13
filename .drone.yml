@@ -2,7 +2,7 @@ pipeline:
   build_4:
     image: node:4.4.2
     commands:
-      - npm --loglevel warn install -g npm@3
+      - npm --loglevel warn install -g npm@3.10.8
       - npm --loglevel warn install
       - npm run test:ci
     when:
@@ -35,45 +35,45 @@ pipeline:
       branch: master
       event: push
 
-  # build_acceptance:
-  #   image: docker:1.11
-  #   environment:
-  #     - DOCKER_HOST=tcp://127.0.0.1:2375
-  #   commands:
-  #     - docker build -f Dockerfile-acceptance -t acceptance .
-  #   when:
-  #     event: pull_request
+  build_acceptance:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker build -f Dockerfile-acceptance -t acceptance .
+    when:
+      event: pull_request
 
-  # build_acceptance:
-  #   image: docker:1.11
-  #   environment:
-  #     - DOCKER_HOST=tcp://127.0.0.1:2375
-  #   commands:
-  #     - docker build -f Dockerfile-acceptance -t acceptance .
-  #   when:
-  #     branch: master
-  #     event: push
+  build_acceptance:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker build -f Dockerfile-acceptance -t acceptance .
+    when:
+      branch: master
+      event: push
 
-  # test_acceptance:
-  #   image: docker:1.11
-  #   environment:
-  #     - DOCKER_HOST=tcp://127.0.0.1:2375
-  #   commands:
-  #     - docker run -e NODE_ENV=ci -d --net host firearms
-  #     - docker run --rm --net host acceptance
-  #   when:
-  #     event: pull_request
+  test_acceptance:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker run -e NODE_ENV=ci -d --net host firearms
+      - docker run --rm --net host acceptance
+    when:
+      event: pull_request
 
-  # test_acceptance:
-  #   image: docker:1.11
-  #   environment:
-  #     - DOCKER_HOST=tcp://127.0.0.1:2375
-  #   commands:
-  #     - docker run -e NODE_ENV=ci -d --net host firearms
-  #     - docker run --rm --net host acceptance
-  #   when:
-  #     branch: master
-  #     event: push
+  test_acceptance:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker run -e NODE_ENV=ci -d --net host firearms
+      - docker run --rm --net host acceptance
+    when:
+      branch: master
+      event: push
 
   image_to_quay:
     image: docker:1.11
@@ -109,6 +109,8 @@ pipeline:
       event: tag
 
 services:
+  redis:
+    image: redis
   dind:
     image: docker:1.11-dind
     privileged: true
