@@ -3,7 +3,7 @@
 const bootstrap = require('hof-bootstrap');
 
 bootstrap({
-  views: './apps/new-dealer/views/',
+  views: false,
   fields: false,
   routes: [
     require('./apps/new-dealer')
