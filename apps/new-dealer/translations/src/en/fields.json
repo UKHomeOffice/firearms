@@ -1,4 +1,20 @@
 {
+  "company": {
+    "legend": " ",
+    "options": {
+      "true": "Company",
+      "false": "Sole trader"
+    }
+  },
+  "company-name": {
+    "label": "Company name"
+  },
+  "company-house-number": {
+    "label": "Companies House number"
+  },
+  "sole-trader-name": {
+    "label": "Sole trader name"
+  },
   "handle-weapons": {
     "label": "Weapons and/or component parts"
   },

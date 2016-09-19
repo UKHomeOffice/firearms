@@ -9,6 +9,7 @@ module.exports = {
   name: 'hmpo-enquiries',
   features: './**/acceptance/features/**/*.js',
   include: {
+    companyNamePage: pagesPath('company-name.js'),
     handlePage: pagesPath('handle.js'),
     obtainPage: pagesPath('obtain.js')
   }
