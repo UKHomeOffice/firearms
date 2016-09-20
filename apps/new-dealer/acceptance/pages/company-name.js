@@ -17,7 +17,7 @@ module.exports = {
   'sole-trader-name': '#sole-trader-name',
 
   content: {
-    name: 'Home Office',
+    name: 'Four-Five-Six Laundry',
     number: '123'
   },
 
