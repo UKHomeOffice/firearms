@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  'company': {
+  company: {
     mixin: 'radio-group',
     validate: ['required'],
     className: ['form-group'],
