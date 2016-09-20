@@ -1,5 +1,17 @@
 {
+  "company": {
+    "required": "Select whether you're applying on behalf of a company or a sole trader"
+  },
+  "company-name": {
+    "required": "Enter the company name"
+  },
+  "company-house-number": {
+    "required": "Enter the company house number"
+  },
+  "sole-trader-name": {
+    "required": "Enter the sole trader name"
+  },
   "handle-weapons": {
-    "required": "Please select what the company will handle"
+    "required": "Select what the company will handle"
   }
 }

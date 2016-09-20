@@ -7,7 +7,19 @@ module.exports = {
   steps: {
     '/': {
       controller: controllers.start,
-      next: '/handle'
+      next: '/company-name'
+    },
+    '/company-name': {
+      fields: [
+        'company',
+        'company-name',
+        'company-house-number',
+        'sole-trader-name'
+      ],
+      next: '/handle',
+      locals: {
+        section: 'company-name'
+      }
     },
     '/handle': {
       fields: [
