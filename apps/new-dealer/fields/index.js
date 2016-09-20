@@ -25,6 +25,7 @@ module.exports = {
     }
   },
   'company-name': {
+    mixin: 'input-text',
     validate: ['required'],
     dependent: {
       field: 'company',
@@ -32,6 +33,7 @@ module.exports = {
     }
   },
   'company-house-number': {
+    mixin: 'input-text',
     validate: ['required'],
     dependent: {
       field: 'company',
