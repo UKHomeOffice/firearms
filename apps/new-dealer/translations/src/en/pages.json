@@ -16,5 +16,8 @@
         "ammunition": "How will the prohibited ammunition be obtained?"
       }
     }
+  },
+  "storage": {
+    "header": "Will the prohibited [weapons/component parts/ammunition] be stored on the [company | sole] trader's premises?"
   }
 }

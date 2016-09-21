@@ -98,5 +98,15 @@
   },
   "wont-take-details": {
     "label": "Please provide further details"
+  },
+  "stored-on-premises": {
+    "legend": " ",
+    "options": {
+      "true": "Yes",
+      "false": "No"
+    }
+  },
+  "no-storage-details": {
+    "label": "Please provide further details, including whether or not third parties will be storing the [weapons/component parts/ammunition] on other sites"
   }
 }
