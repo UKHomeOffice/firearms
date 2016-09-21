@@ -7,5 +7,14 @@
   },
   "all-that-apply": {
     "header": "Select all that apply"
+  },
+  "obtain": {
+    "header": {
+      "weapons-ammunition": {
+        "weapons": "How will the prohibited weapons/component parts be obtained?",
+        "weapons,ammunition": "How will the prohibited weapons/component parts and ammunition be obtained?",
+        "ammunition": "How will the prohibited ammunition be obtained?"
+      }
+    }
   }
 }

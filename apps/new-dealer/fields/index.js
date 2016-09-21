@@ -3,7 +3,7 @@
 module.exports = {
   company: {
     mixin: 'radio-group',
-    validate: ['required'],
+    validate: 'required',
     className: ['form-group'],
     legend: {
       className: 'visuallyhidden'
@@ -19,21 +19,21 @@ module.exports = {
     }]
   },
   'sole-trader-name': {
-    validate: ['required'],
+    validate: 'required',
     dependent: {
       field: 'company',
       value: 'false'
     }
   },
   'company-name': {
-    validate: ['required'],
+    validate: 'required',
     dependent: {
       field: 'company',
       value: 'true'
     }
   },
   'company-house-number': {
-    validate: ['required'],
+    validate: 'required',
     dependent: {
       field: 'company',
       value: 'true'
@@ -46,5 +46,64 @@ module.exports = {
       'weapons',
       'ammunition'
     ]
+  },
+  obtain: {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    options: [{
+      label: 'fields.obtain.options.buy',
+      value: 'buy',
+      toggle: 'buy-details',
+      child: 'partials/obtain-buy'
+    }, {
+      label: 'fields.obtain.options.temporary-possession',
+      value: 'temporary-possession',
+      toggle: 'temporary-details',
+      child: 'textarea'
+    }, {
+      label: 'fields.obtain.options.manufacture',
+      value: 'manufacture'
+    }, {
+      label: 'fields.obtain.options.other-means',
+      value: 'other-means',
+      toggle: 'other-means-details',
+      child: 'textarea'
+    }, {
+      label: 'fields.obtain.options.wont-take-possession',
+      value: 'wont-take-possession',
+      toggle: 'wont-take-details',
+      child: 'textarea'
+    }]
+  },
+  'buy-details': {
+    validate: 'required',
+    dependent: {
+      field: 'obtain',
+      value: 'buy'
+    }
+  },
+  'buy-import': {
+    className: 'form-checkbox'
+  },
+  'temporary-details': {
+    validate: 'required',
+    dependent: {
+      field: 'obtain',
+      value: 'temporary-possession'
+    }
+  },
+  'other-means-details': {
+    validate: 'required',
+    dependent: {
+      field: 'obtain',
+      value: 'other-means'
+    }
+  },
+  'wont-take-details': {
+    validate: 'required',
+    dependent: {
+      field: 'obtain',
+      value: 'wont-take-possession'
+    }
   }
 };
