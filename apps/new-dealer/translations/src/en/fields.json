@@ -15,10 +15,11 @@
   "sole-trader-name": {
     "label": "Sole trader name"
   },
-  "handle-weapons": {
-    "label": "Weapons and/or component parts"
-  },
-  "handle-ammunition": {
-    "label": "Ammunition"
+  "weapons-ammunition": {
+    "legend": "Select all that apply",
+    "options": {
+      "weapons": "Weapons and/or component parts",
+      "ammunition": "Ammunition"
+    }
   }
 }

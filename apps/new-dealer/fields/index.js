@@ -38,20 +38,15 @@ module.exports = {
       value: 'true'
     }
   },
-  'handle-weapons': {
-    mixin: 'checkbox',
-    validate: ['required'],
-    dependent: {
-      field: 'handle-ammunition',
-      value: ''
-    }
-  },
-  'handle-ammunition': {
-    mixin: 'checkbox',
-    validate: ['required'],
-    dependent: {
-      field: 'handle-weapons',
-      value: ''
-    }
+  'weapons-ammunition': {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    options: [{
+      label: 'fields.weapons-ammunition.options.weapons',
+      value: 'weapons'
+    }, {
+      label: 'fields.weapons-ammunition.options.ammunition',
+      value: 'ammunition'
+    }]
   }
 };
