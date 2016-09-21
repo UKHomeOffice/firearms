@@ -13,5 +13,11 @@
   },
   "handle-weapons": {
     "required": "Select what the company will handle"
+  },
+  "stored-on-premises": {
+    "required": "Select an option"
+  },
+  "no-storage-details": {
+    "required": "Provide further details"
   }
 }
