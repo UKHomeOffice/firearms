@@ -26,7 +26,7 @@ Scenario('An error is shown if handle step is not completed', (
   handlePage
 ) => {
   I.submitForm();
-  I.seeErrors(handlePage['handle-weapons']);
+  I.seeErrors(handlePage['weapons-ammunition-group']);
 });
 
 Scenario('Im taken to the obtain step', (
