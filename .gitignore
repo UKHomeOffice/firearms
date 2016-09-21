@@ -3,5 +3,3 @@ apps/*/translations/en
 node_modules
 public
 .idea
-.dockerignore
-.npmignore
