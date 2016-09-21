@@ -11,6 +11,8 @@ module.exports = {
   include: {
     companyNamePage: pagesPath('company-name.js'),
     handlePage: pagesPath('handle.js'),
-    obtainPage: pagesPath('obtain.js')
+    obtainPage: pagesPath('obtain.js'),
+    storagePage: pagesPath('storage.js'),
+    usagePage: pagesPath('usage.js')
   }
 };

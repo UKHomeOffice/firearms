@@ -38,6 +38,21 @@ module.exports = {
       locals: {
         section: 'obtain'
       }
+    },
+    '/storage': {
+      fields: [
+        'stored-on-premises',
+        'no-storage-details'
+      ],
+      next: '/usage',
+      locals: {
+        section: 'storage'
+      }
+    },
+    '/usage': {
+      next: '/supporting-docs'
+    },
+    '/supporting-docs': {
     }
   }
 };
