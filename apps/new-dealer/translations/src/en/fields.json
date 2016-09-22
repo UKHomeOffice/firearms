@@ -32,24 +32,34 @@
   "obtain": {
     "legend": "Select all that apply",
     "options": {
-      "buy": "Buy",
-      "temporary-possession": "Take temporary possession",
-      "manufacture": "Manufacture ",
-      "other-means": "Acquire through other means",
+      "buy": {
+        "label": "Buy"
+      },
+      "temporary-possession": {
+        "label": "Take temporary possession"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      },
+      "other-means": {
+        "label": "Acquire through other means"
+      },
       "wont-take-possession": {
-        "company": {
-          "true": {
-            "weapons-ammunition": {
-              "weapons": "The company won't take possession of the weapons/component parts",
-              "weapons,ammunition": "The company won't take possession of the weapons/component parts and ammunition",
-              "ammunition": "The company won't take possession of the ammunition"
-            }
-          },
-          "false": {
-            "weapons-ammunition": {
-              "weapons": "The sole trader won't take possession of the weapons/component parts",
-              "weapons,ammunition": "The sole trader won't take possession of the weapons/component parts and ammunition",
-              "ammunition": "The sole trader won't take possession of the ammunition"
+        "label": {
+          "company": {
+            "true": {
+              "weapons-ammunition": {
+                "weapons": "The company won't take possession of the weapons/component parts",
+                "weapons,ammunition": "The company won't take possession of the weapons/component parts and ammunition",
+                "ammunition": "The company won't take possession of the ammunition"
+              }
+            },
+            "false": {
+              "weapons-ammunition": {
+                "weapons": "The sole trader won't take possession of the weapons/component parts",
+                "weapons,ammunition": "The sole trader won't take possession of the weapons/component parts and ammunition",
+                "ammunition": "The sole trader won't take possession of the ammunition"
+              }
             }
           }
         }

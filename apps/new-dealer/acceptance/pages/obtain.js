@@ -36,14 +36,14 @@ module.exports = {
   labels: {
     obtain: {
       company: {
-        weapons: FIELDS.obtain.options['wont-take-possession'].company.true['weapons-ammunition'].weapons,
-        ammunition: FIELDS.obtain.options['wont-take-possession'].company.true['weapons-ammunition'].ammunition,
-        'weapons-ammunition': FIELDS.obtain.options['wont-take-possession'].company.true['weapons-ammunition']['weapons,ammunition']
+        weapons: FIELDS.obtain.options['wont-take-possession'].label.company.true['weapons-ammunition'].weapons,
+        ammunition: FIELDS.obtain.options['wont-take-possession'].label.company.true['weapons-ammunition'].ammunition,
+        'weapons-ammunition': FIELDS.obtain.options['wont-take-possession'].label.company.true['weapons-ammunition']['weapons,ammunition']
       },
       'sole-trader': {
-        weapons: FIELDS.obtain.options['wont-take-possession'].company.false['weapons-ammunition'].weapons,
-        ammunition: FIELDS.obtain.options['wont-take-possession'].company.false['weapons-ammunition'].ammunition,
-        'weapons-ammunition': FIELDS.obtain.options['wont-take-possession'].company.false['weapons-ammunition']['weapons,ammunition']
+        weapons: FIELDS.obtain.options['wont-take-possession'].label.company.false['weapons-ammunition'].weapons,
+        ammunition: FIELDS.obtain.options['wont-take-possession'].label.company.false['weapons-ammunition'].ammunition,
+        'weapons-ammunition': FIELDS.obtain.options['wont-take-possession'].label.company.false['weapons-ammunition']['weapons,ammunition']
       }
     },
     'buy-details': {
