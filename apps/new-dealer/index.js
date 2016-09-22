@@ -23,13 +23,11 @@ module.exports = {
     },
     '/handle': {
       fields: [
-        'handle-weapons',
-        'handle-ammunition'
+        'weapons-ammunition'
       ],
       next: '/obtain',
       locals: {
-        section: 'handle',
-        subsection: 'all-that-apply'
+        section: 'handle'
       }
     },
     '/obtain': {

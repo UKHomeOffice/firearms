@@ -11,7 +11,7 @@
   "sole-trader-name": {
     "required": "Enter the sole trader name"
   },
-  "handle-weapons": {
+  "weapons-ammunition": {
     "required": "Select what the company will handle"
   }
 }

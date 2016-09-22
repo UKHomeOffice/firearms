@@ -1,9 +1,12 @@
 {
   "company": {
-    "legend": " ",
     "options": {
-      "true": "Company",
-      "false": "Sole trader"
+      "true": {
+        "label": "Company"
+      },
+      "false": {
+        "label": "Sole trader"
+      }
     }
   },
   "company-name": {
@@ -15,10 +18,15 @@
   "sole-trader-name": {
     "label": "Sole trader name"
   },
-  "handle-weapons": {
-    "label": "Weapons and/or component parts"
-  },
-  "handle-ammunition": {
-    "label": "Ammunition"
+  "weapons-ammunition": {
+    "legend": "Select all that apply",
+    "options": {
+      "weapons": {
+        "label": "Weapons and/or component parts"
+      },
+      "ammunition": {
+        "label": "Ammunition"
+      }
+    }
   }
 }
