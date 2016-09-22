@@ -79,13 +79,15 @@ module.exports = {
   },
 
   pageShowsCorrectHandleType(handleType){
-    I.see(this.header[handleType]);
-    I.see(this.labels.obtain.company[handleType]);
     I.click(this.buy);
-    I.see(this.labels['buy-details'][handleType]);
-    I.see(this.labels['buy-import'][handleType]);
     I.click(this['other-means']);
-    I.see(this.labels['other-means-details'][handleType]);
+    I.seeEach([
+      this.header[handleType],
+      this.labels.obtain.company[handleType],
+      this.labels['buy-details'][handleType],
+      this.labels['buy-import'][handleType],
+      this.labels['other-means-details'][handleType]
+    ]);
   },
 
   pageShowsCompanyOrTrader(companyOrTrader) {
