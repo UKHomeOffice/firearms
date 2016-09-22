@@ -88,7 +88,7 @@ Scenario('When I select Ammunition on the handle step, all headers and field lab
     company: 'true',
     'weapons-ammunition': 'ammunition'
   });
-  I.refreshPage();
+  yield I.refreshPage();
   obtainPage.pageShowsCorrectHandleType('ammunition');
 });
 
@@ -100,7 +100,7 @@ Scenario('When I select Weapons on the handle step, all headers and field labels
     company: 'true',
     'weapons-ammunition': 'weapons'
   });
-  I.refreshPage();
+  yield I.refreshPage();
   obtainPage.pageShowsCorrectHandleType('weapons');
 });
 
@@ -112,7 +112,7 @@ Scenario('When I select Weapons and Ammunition on the handle step, all headers a
     company: 'true',
     'weapons-ammunition': 'weapons,ammunition'
   });
-  I.refreshPage();
+  yield I.refreshPage();
   obtainPage.pageShowsCorrectHandleType('weapons,ammunition');
 });
 
@@ -124,7 +124,7 @@ Scenario('When I select Company on the company step, all headers and field label
     company: 'true',
     'weapons-ammunition': 'weapons'
   });
-  I.refreshPage();
+  yield I.refreshPage();
   obtainPage.pageShowsCompanyOrTrader('true');
 });
 
@@ -136,7 +136,7 @@ Scenario('When I select Sole-trader on the company step, all headers and field l
     company: 'false',
     'weapons-ammunition': 'weapons'
   });
-  I.refreshPage();
+  yield I.refreshPage();
   obtainPage.pageShowsCompanyOrTrader('false');
 });
 
