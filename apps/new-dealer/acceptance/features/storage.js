@@ -22,7 +22,7 @@ Scenario('The correct form elements are present', (
   ]);
 });
 
-Scenario('An error is shown if handle step is not completed', (
+Scenario('An error is shown if storage step is not completed', (
   I,
   storagePage
 ) => {
@@ -38,13 +38,73 @@ Scenario('Selecting no toggles no-storage-details field', (
   I.seeElements(storagePage['no-details']);
 });
 
-Scenario('Selecting no toggles no-storage-details field', (
+Scenario('An error is shown if storage step is not completed after selecting No', (
   I,
   storagePage
 ) => {
   I.checkOption(storagePage.no)
   I.submitForm();
   I.seeErrors(storagePage['no-details']);
+});
+
+Scenario('When I select Weapons on the handle step, all headers and field labels use Weapons translations', function *(
+  I,
+  storagePage
+) {
+  yield I.setSessionData(steps.name, {
+    company: 'true',
+    'weapons-ammunition': 'weapons'
+  });
+  yield I.refreshPage();
+  storagePage.pageShowsCorrectHandleType('weapons');
+});
+
+Scenario('When I select Ammunition on the handle step, all headers and field labels use Ammunition translations', function *(
+  I,
+  storagePage
+) {
+  yield I.setSessionData(steps.name, {
+    company: 'true',
+    'weapons-ammunition': 'ammunition'
+  });
+  yield I.refreshPage();
+  storagePage.pageShowsCorrectHandleType('ammunition');
+});
+
+Scenario('When I select Weapons and Ammunition on the handle step, all headers and field labels use Weapons and Ammunition translations', function *(
+  I,
+  storagePage
+) {
+  yield I.setSessionData(steps.name, {
+    company: 'true',
+    'weapons-ammunition': 'weapons,ammunition'
+  });
+  yield I.refreshPage();
+  storagePage.pageShowsCorrectHandleType('weapons,ammunition');
+});
+
+Scenario('When I select Company on the company step, all headers and field labels use Company translations', function *(
+  I,
+  storagePage
+) {
+  yield I.setSessionData(steps.name, {
+    company: 'true',
+    'weapons-ammunition': 'weapons'
+  });
+  yield I.refreshPage();
+  storagePage.pageShowsCompanyOrTrader('true');
+});
+
+Scenario('When I select Sole-trader on the company step, all headers and field labels use Sole-trader translations', function *(
+  I,
+  storagePage
+) {
+  yield I.setSessionData(steps.name, {
+    company: 'false',
+    'weapons-ammunition': 'weapons'
+  });
+  yield I.refreshPage();
+  storagePage.pageShowsCompanyOrTrader('false');
 });
 
 Scenario('Im taken to the usage step', (

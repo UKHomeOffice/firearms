@@ -18,6 +18,23 @@
     }
   },
   "storage": {
-    "header": "Will the prohibited [weapons/component parts/ammunition] be stored on the [company | sole] trader's premises?"
+    "header": {
+      "company": {
+        "true": {
+          "weapons-ammunition": {
+            "weapons": "Will the prohibited weapons/component parts be stored on the company's premises?",
+            "weapons,ammunition": "Will the prohibited weapons/component parts and ammunition be stored on the company's premises?",
+            "ammunition": "Will the prohibited ammunition be stored on the company's premises?"
+          }
+        },
+        "false": {
+          "weapons-ammunition": {
+            "weapons": "Will the prohibited weapons/component parts be stored on the sole trader's premises?",
+            "weapons,ammunition": "Will the prohibited weapons/component parts and ammunition be stored on the sole trader's premises?",
+            "ammunition": "Will the prohibited ammunition be stored on the sole trader's premises?"
+          }
+        }
+      }
+    }
   }
 }

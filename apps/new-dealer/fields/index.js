@@ -104,12 +104,13 @@ module.exports = {
   'stored-on-premises': {
     mixin: 'radio-group',
     validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
     options: [{
       value: 'true',
-      label: 'fields.stored-on-premises.options.true'
     }, {
       value: 'false',
-      label: 'fields.stored-on-premises.options.false',
       toggle: 'no-storage-details',
       child: 'textarea'
     }]
