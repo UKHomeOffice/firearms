@@ -5,14 +5,15 @@ module.exports = {
     mixin: 'radio-group',
     validate: ['required'],
     className: ['form-group'],
+    legend: {
+      className: 'visuallyhidden'
+    },
     options: [{
       value: 'true',
-      label: 'fields.company.options.true',
       toggle: 'company-name',
       child: 'partials/company'
     }, {
       value: 'false',
-      label: 'fields.company.options.false',
       toggle: 'sole-trader-name',
       child: 'input-text'
     }]
@@ -41,12 +42,9 @@ module.exports = {
   'weapons-ammunition': {
     mixin: 'checkbox-group',
     validate: 'required',
-    options: [{
-      label: 'fields.weapons-ammunition.options.weapons',
-      value: 'weapons'
-    }, {
-      label: 'fields.weapons-ammunition.options.ammunition',
-      value: 'ammunition'
-    }]
+    options: [
+      'weapons',
+      'ammunition'
+    ]
   }
 };
