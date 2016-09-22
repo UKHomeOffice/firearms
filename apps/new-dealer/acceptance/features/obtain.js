@@ -113,7 +113,7 @@ Scenario('When I select Weapons and Ammunition on the handle step, all headers a
     'weapons-ammunition': 'weapons,ammunition'
   });
   I.refreshPage();
-  obtainPage.pageShowsCorrectHandleType('weapons-ammunition');
+  obtainPage.pageShowsCorrectHandleType('weapons,ammunition');
 });
 
 Scenario('When I select Company on the company step, all headers and field labels use Company translations', function *(
@@ -125,7 +125,7 @@ Scenario('When I select Company on the company step, all headers and field label
     'weapons-ammunition': 'weapons'
   });
   I.refreshPage();
-  obtainPage.pageShowsCompanyOrTrader('company');
+  obtainPage.pageShowsCompanyOrTrader('true');
 });
 
 Scenario('When I select Sole-trader on the company step, all headers and field labels use Sole-trader translations', function *(
@@ -137,7 +137,7 @@ Scenario('When I select Sole-trader on the company step, all headers and field l
     'weapons-ammunition': 'weapons'
   });
   I.refreshPage();
-  obtainPage.pageShowsCompanyOrTrader('sole-trader');
+  obtainPage.pageShowsCompanyOrTrader('false');
 });
 
 Scenario('Im taken to the storage step', (
