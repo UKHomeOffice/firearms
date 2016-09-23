@@ -28,5 +28,11 @@
   },
   "wont-take-details": {
     "required": "Provide further details"
+  },
+  "stored-on-premises": {
+    "required": "Select an option"
+  },
+  "no-storage-details": {
+    "required": "Provide further details"
   }
 }

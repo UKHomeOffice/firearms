@@ -100,5 +100,26 @@ module.exports = {
       field: 'obtain',
       value: 'wont-take-possession'
     }
+  },
+  'stored-on-premises': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'true',
+    }, {
+      value: 'false',
+      toggle: 'no-storage-details',
+      child: 'textarea'
+    }]
+  },
+  'no-storage-details': {
+    validate: ['required'],
+    dependent: {
+      field: 'stored-on-premises',
+      value: 'false'
+    }
   }
 };
