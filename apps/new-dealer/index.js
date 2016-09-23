@@ -31,7 +31,14 @@ module.exports = {
       }
     },
     '/obtain': {
-      fields: ['obtain'],
+      fields: [
+        'obtain',
+        'buy-details',
+        'buy-import',
+        'temporary-details',
+        'other-means-details',
+        'wont-take-details'
+      ],
       next: '/storage',
       locals: {
         section: 'obtain'

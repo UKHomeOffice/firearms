@@ -28,5 +28,75 @@
         "label": "Ammunition"
       }
     }
+  },
+  "obtain": {
+    "legend": "Select all that apply",
+    "options": {
+      "buy": {
+        "label": "Buy"
+      },
+      "temporary-possession": {
+        "label": "Take temporary possession"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      },
+      "other-means": {
+        "label": "Acquire through other means"
+      },
+      "wont-take-possession": {
+        "label": {
+          "company": {
+            "true": {
+              "weapons-ammunition": {
+                "weapons": "The company won't take possession of the weapons/component parts",
+                "weapons,ammunition": "The company won't take possession of the weapons/component parts and ammunition",
+                "ammunition": "The company won't take possession of the ammunition"
+              }
+            },
+            "false": {
+              "weapons-ammunition": {
+                "weapons": "The sole trader won't take possession of the weapons/component parts",
+                "weapons,ammunition": "The sole trader won't take possession of the weapons/component parts and ammunition",
+                "ammunition": "The sole trader won't take possession of the ammunition"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "buy-details": {
+    "label": {
+      "weapons-ammunition": {
+        "weapons": "Please provide further details, including which companies will the weapons/component parts be bought from",
+        "weapons,ammunition": "Please provide further details, including which companies will the weapons/component parts and ammunition be bought from",
+        "ammunition": "Please provide further details, including which companies will the ammunition be bought from"
+      }
+    }
+  },
+  "buy-import": {
+    "label": {
+      "weapons-ammunition": {
+        "weapons": "Tick this box if weapons/component parts will be imported",
+        "weapons,ammunition": "Tick this box if weapons/component parts and ammunition will be imported",
+        "ammunition": "Tick this box if ammunition will be imported"
+      }
+    }
+  },
+  "temporary-details": {
+    "label": "Please provide further details"
+  },
+  "other-means-details": {
+    "label": {
+      "weapons-ammunition": {
+        "weapons": "How will the weapons/component parts be acquired?",
+        "weapons,ammunition": "How will the weapons/component parts and ammunition be acquired?",
+        "ammunition": "How will the ammunition be acquired?"
+      }
+    }
+  },
+  "wont-take-details": {
+    "label": "Please provide further details"
   }
 }
