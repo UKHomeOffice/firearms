@@ -55,7 +55,19 @@ module.exports = {
       }
     },
     '/usage': {
-      next: '/supporting-docs'
+      fields: [
+        'usage',
+        'sell-details',
+        'transport-details',
+        'transfer-details',
+        'training-details',
+        'research-details',
+        'other-details'
+      ],
+      next: '/supporting-docs',
+      locals: {
+        section: 'usage'
+      }
     },
     '/supporting-docs': {
     }

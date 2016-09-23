@@ -4,7 +4,7 @@ module.exports = {
   company: {
     mixin: 'radio-group',
     validate: 'required',
-    className: ['form-group'],
+    className: 'form-group',
     legend: {
       className: 'visuallyhidden'
     },
@@ -103,7 +103,7 @@ module.exports = {
   },
   'stored-on-premises': {
     mixin: 'radio-group',
-    validate: ['required'],
+    validate: 'required',
     legend: {
       className: 'visuallyhidden'
     },
@@ -116,10 +116,83 @@ module.exports = {
     }]
   },
   'no-storage-details': {
-    validate: ['required'],
+    validate: 'required',
     dependent: {
       field: 'stored-on-premises',
       value: 'false'
+    }
+  },
+  usage: {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    options: [{
+      value: 'sell',
+      toggle: 'sell-details',
+      child: 'textarea'
+    }, {
+      value: 'transport',
+      toggle: 'transport-details',
+      child: 'textarea'
+    }, {
+      value: 'transfer',
+      toggle: 'transfer-details',
+      child: 'textarea'
+    }, {
+      value: 'arm-guards'
+    }, {
+      value: 'training',
+      toggle: 'training-details',
+      child: 'textarea'
+    }, {
+      value: 'research',
+      toggle: 'research-details',
+      child: 'textarea'
+    }, {
+      value: 'other',
+      toggle: 'other-details',
+      child: 'textarea'
+    }]
+  },
+  'sell-details': {
+    validate: 'required',
+    dependent: {
+      field: 'usage',
+      value: 'sell'
+    }
+  },
+  'transport-details': {
+    validate: 'required',
+    dependent: {
+      field: 'usage',
+      value: 'transport'
+    }
+  },
+  'transfer-details': {
+    validate: 'required',
+    dependent: {
+      field: 'usage',
+      value: 'transfer'
+    }
+  },
+  'training-details': {
+    validate: 'required',
+    dependent: {
+      field: 'usage',
+      value: 'training'
+    }
+  },
+  'research-details': {
+    validate: 'required',
+    dependent: {
+      field: 'usage',
+      value: 'research'
+    }
+  },
+  'other-details': {
+    validate: 'required',
+    dependent: {
+      field: 'usage',
+      value: 'other'
     }
   }
 };

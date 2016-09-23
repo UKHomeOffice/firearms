@@ -36,5 +36,14 @@
         }
       }
     }
+  },
+  "usage": {
+    "header": {
+      "weapons-ammunition": {
+        "weapons": "What will be done with the prohibited weapons/component parts?",
+        "weapons,ammunition": "What will be done with the prohibited weapons/component parts and ammunition?",
+        "ammunition": "What will be done with the prohibited ammunition?"
+      }
+    }
   }
 }

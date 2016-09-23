@@ -117,5 +117,67 @@
         "ammunition": "Please provide further details, including whether or not third parties will be storing the ammunition on other sites"
       }
     }
+  },
+  "usage": {
+    "legend": "Select all that apply. You will be asked to prove the business need for these activities later.",
+    "options": {
+      "sell": {
+        "label": "Sell"
+      },
+      "transport": {
+        "label": "Transport"
+      },
+      "transfer": {
+        "label": "Transfer"
+      },
+      "arm-guards": {
+        "label": "Arm guards to protect ships"
+      },
+      "training": {
+        "label": "Training and demonstration "
+      },
+      "research": {
+        "label": "Research, forensics and testing"
+      },
+      "other": {
+        "label": "Other"
+      }
+    }
+  },
+  "sell-details": {
+    "label": {
+      "weapons-ammunition": {
+        "weapons": "Please provide further details, including who the weapons/component parts will be sold to",
+        "weapons,ammunition": "Please provide further details, including who the weapons/component parts and ammunition will be sold to",
+        "ammunition": "Please provide further details, including who the ammunition will be sold to"
+      }
+    }
+  },
+  "transport-details": {
+    "label": {
+      "weapons-ammunition": {
+        "weapons": "Please provide further details, including where the weapons/component parts will be transported from and to, and on whose behalf will they be transported",
+        "weapons,ammunition": "Please provide further details, including where the weapons/component parts and ammunition will be transported from and to, and on whose behalf will they be transported",
+        "ammunition": "Please provide further details, including where the ammunition will be transported from and to, and on whose behalf will they be transported"
+      }
+    }
+  },
+  "transfer-details": {
+    "label": {
+      "weapons-ammunition": {
+        "weapons": "Transferring is to manage movement of weapons/component parts through a third party. Please provide details of how the weapons/component parts will be transferred including third party company names.",
+        "weapons,ammunition": "Transferring is to manage movement of weapons/component parts and ammunition through a third party. Please provide details of how the weapons/component parts and ammunition will be transferred including third party company names.",
+        "ammunition": "Transferring is to manage movement of ammunition through a third party. Please provide details of how the ammunition will be transferred including third party company names."
+      }
+    }
+  },
+  "training-details": {
+    "label": "Please provide further details"
+  },
+  "research-details": {
+    "label": "Please provide further details"
+  },
+  "other-details": {
+    "label": "Please provide further details. This can include TV film or theatrical productions, deactivation, humane dispatch of animals, slaughterhouse, protection of humans from animals, for example."
   }
 }

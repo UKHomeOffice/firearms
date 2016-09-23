@@ -34,5 +34,26 @@
   },
   "no-storage-details": {
     "required": "Provide further details"
+  },
+  "usage": {
+    "required": "Select at least one option"
+  },
+  "sell-details": {
+    "required": "Provide further details"
+  },
+  "transport-details": {
+    "required": "Provide further details"
+  },
+  "transfer-details": {
+    "required": "Provide further details"
+  },
+  "training-details": {
+    "required": "Provide further details"
+  },
+  "research-details": {
+    "required": "Provide further details"
+  },
+  "other-details": {
+    "required": "Provide further details"
   }
 }
