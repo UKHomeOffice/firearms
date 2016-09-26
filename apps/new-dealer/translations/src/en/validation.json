@@ -3,10 +3,10 @@
     "required": "Select whether you're applying on behalf of a company or a sole trader"
   },
   "company-name": {
-    "required": "Enter the company name"
+    "required": "Enter the Company name"
   },
   "company-house-number": {
-    "required": "Enter the company house number"
+    "required": "Enter the Companies House number"
   },
   "sole-trader-name": {
     "required": "Enter the sole trader name"
