@@ -13,6 +13,7 @@ module.exports = {
     handlePage: pagesPath('handle.js'),
     obtainPage: pagesPath('obtain.js'),
     storagePage: pagesPath('storage.js'),
-    usagePage: pagesPath('usage.js')
+    usagePage: pagesPath('usage.js'),
+    supportingDocsPage: pagesPath('supporting-docs.js')
   }
 };
