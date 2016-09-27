@@ -1,5 +1,10 @@
 'use strict';
 
+function notBothOptions(values) {
+  values = !Array.isArray(values) ? [values] : values;
+  return !(values.length > 1 && values.indexOf('unspecified') > -1);
+}
+
 module.exports = {
   company: {
     mixin: 'radio-group',
@@ -193,6 +198,143 @@ module.exports = {
     dependent: {
       field: 'usage',
       value: 'other'
+    }
+  },
+  'weapon-types': {
+    mixin: 'checkbox-group',
+    validate: ['required', notBothOptions],
+    options: [{
+      value: 'unspecified',
+      toggle: 'weapons-unspecified-details',
+      child: 'partials/weapons-unspecified'
+    }, {
+      value: 'fully-automatic',
+      toggle: 'fully-automatic-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'self-loading',
+      toggle: 'self-loading-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'short-pistols',
+      toggle: 'short-pistols-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'short-self-loading',
+      toggle: 'short-self-loading-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'large-revolvers',
+      toggle: 'large-revolvers-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'rocket-launchers',
+      toggle: 'rocket-launchers-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'air-rifles',
+      toggle: 'air-rifles-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'fire-noxious-substance',
+      toggle: 'fire-noxious-substance-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'disguised-firearms',
+      toggle: 'disguised-firearms-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'military-use-rockets',
+      toggle: 'military-use-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'projecting-launchers',
+      toggle: 'projecting-launchers-quantity',
+      child: 'partials/details-summary'
+    }]
+  },
+  'weapons-unspecified-details': {
+    validate: 'required',
+    dependent: {
+      field: 'weapon-types',
+      value: 'unspecified'
+    }
+  },
+  'fully-automatic-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'fully-automatic'
+    }
+  },
+  'self-loading-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'self-loading'
+    }
+  },
+  'short-pistols-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'short-pistols'
+    }
+  },
+  'short-self-loading-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'short-self-loading'
+    }
+  },
+  'large-revolvers-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'large-revolvers'
+    }
+  },
+  'rocket-launchers-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'rocket-launchers'
+    }
+  },
+  'air-rifles-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'air-rifles'
+    }
+  },
+  'fire-noxious-substance-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'fire-noxious-substance'
+    }
+  },
+  'disguised-firearms-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'disguised-firearms'
+    }
+  },
+  'military-use-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'military-use-rockets'
+    }
+  },
+  'projecting-launchers-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'weapon-types',
+      value: 'projecting-launchers'
     }
   }
 };
