@@ -187,59 +187,37 @@
         "label": "Unspecified sections and quantities"
       },
       "fully-automatic": {
-        "label": "Fully automatic or burst-fire weapons - Section 5(1)(a)",
-        "header": "Help with section 5(1)(a)",
-        "summary-details": "This includes all weapons which are so designed or adapted that two or more missiles can be successively discharged without repeated pressure on the trigger."
+        "label": "Fully automatic or burst-fire weapons - Section 5(1)(a)"
       },
       "self-loading": {
-        "label": "Self-loading or pump-action rifles and carbines but not pistols - Section 5(1)(ab)",
-        "header": "Help with section 5(1)(ab)",
-        "summary-details": "This includes any self-loading or pump-action rifled gun other than one which is chambered for a .22 rimfire cartridges."
+        "label": "Self-loading or pump-action rifles and carbines but not pistols - Section 5(1)(ab)"
       },
       "short-pistols": {
-        "label": "Short firearms pistols and revolvers - Section 5(1)(aba)",
-        "header": "Help with section 5(1)(aba)",
-        "summary-details": "This includes any firearm which either has a barrel less than 30cm in length or is less than 60cm in length overall, other than an air weapon, a muzzle-loading gun or a firearm designed as a signalling apparatus."
+        "label": "Short firearms pistols and revolvers - Section 5(1)(aba)"
       },
       "short-self-loading": {
-        "label": "Short self-loading or pump-action shotguns - Section 5(1)(ac)",
-        "header": "Help with section 5(1)(ac)",
-        "summary-details": "This includes any self-loading or pump-action smooth-bore gun which is not an air weapon or chambered for .22 rimfire cartridges and either has a barrel less than 24 inches in length or is less than 40 inches in length overall."
+        "label": "Short self-loading or pump-action shotguns - Section 5(1)(ac)"
       },
       "large-revolvers": {
-        "label": "Large smooth-bore revolvers - Section 5(1)(ad)",
-        "header": "Help with section 5(1)(ad)",
-        "summary-details": "This includes any smooth-bore revolver gun other than one which is chambered for 9mm rimfire cartridges or a muzzle-loading gun."
+        "label": "Large smooth-bore revolvers - Section 5(1)(ad)"
       },
       "rocket-launchers": {
-        "label": "Rocket launchers and mortars - Section 5(1)(ae)",
-        "header": "Help with section 5(1)(ae)",
-        "summary-details": "This includes any rocket launcher, or any mortar, for projecting a stabilised missile, other than a launcher or mortar designed for line-throwing or pyrotechnic purposes or as a signalling apparatus."
+        "label": "Rocket launchers and mortars - Section 5(1)(ae)"
       },
       "air-rifles": {
-        "label": "Air rifle, air gun or air pistol for use with self-contained gas cartridge - Section 5(1)(af)",
-        "header": "Help with section 5(1)(af)",
-        "summary-details": "This includes any air rifle, air gun or air pistol which uses, or is designed or adapted for use with a self-contained gas cartridge system."
+        "label": "Air rifle, air gun or air pistol for use with self-contained gas cartridge - Section 5(1)(af)"
       },
       "fire-noxious-substance": {
-        "label": "Weapons which fire noxious substances - Section 5(1)(b)",
-        "header": "Help with section 5(1)(b)",
-        "summary-details": "This includes any weapon of whatever description designed or adapted for the discharge of any noxious liquid, gas or other thing."
+        "label": "Weapons which fire noxious substances - Section 5(1)(b)"
       },
       "disguised-firearms": {
-        "label": "Firearms disguised as other objects - Section 5(1A)(a)",
-        "header": "Help with section 5(1A)(a)",
-        "summary-details": "This includes any firearm which is disguised as another object."
+        "label": "Firearms disguised as other objects - Section 5(1A)(a)"
       },
       "military-use-rockets": {
-        "label": "Rockets/ammunition with exploding missiles for military use - Section 5(1A)(b)",
-        "header": "Help with section 5(1A)(b)",
-        "summary-details": "This includes any rocket or ammunition not falling within section 5(1)(c) which consists in or incorporates a missile designed to explode on or immediately before impact and is for military use."
+        "label": "Rockets/ammunition with exploding missiles for military use - Section 5(1A)(b)"
       },
       "projecting-launchers": {
-        "label": "Launchers or projecting apparatus for use with the rockets or ammunition detailed above - Section 5(1A)(c)",
-        "header": "Help with section 5(1A)(c)",
-        "summary-details": "This includes any launcher or other projecting apparatus that's not included in section 5(1)(ae) and is designed to be used with a 5(1A)(b) rocket or ammunition, or with section 5(1)(c) ammunition."
+        "label": "Launchers or projecting apparatus for use with the rockets or ammunition detailed above - Section 5(1A)(c)"
       }
     }
   },
@@ -247,42 +225,109 @@
     "label": "Please provide further details explaining why you can't specify the section and quantities of weapons/component parts being handled."
   },
   "fully-automatic-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1)(a)",
+    "summary-details": "This includes all weapons which are so designed or adapted that two or more missiles can be successively discharged without repeated pressure on the trigger."
   },
   "self-loading-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
-  },
-  "fully-automatic-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
-  },
-  "self-loading-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1)(ab)",
+    "summary-details": "This includes any self-loading or pump-action rifled gun other than one which is chambered for a .22 rimfire cartridges."
   },
   "short-pistols-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1)(aba)",
+    "summary-details": "This includes any firearm which either has a barrel less than 30cm in length or is less than 60cm in length overall, other than an air weapon, a muzzle-loading gun or a firearm designed as a signalling apparatus."
   },
   "short-self-loading-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1)(ac)",
+    "summary-details": "This includes any self-loading or pump-action smooth-bore gun which is not an air weapon or chambered for .22 rimfire cartridges and either has a barrel less than 24 inches in length or is less than 40 inches in length overall."
   },
   "large-revolvers-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1)(ad)",
+    "summary-details": "This includes any smooth-bore revolver gun other than one which is chambered for 9mm rimfire cartridges or a muzzle-loading gun."
   },
   "rocket-launchers-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1)(ae)",
+    "summary-details": "This includes any rocket launcher, or any mortar, for projecting a stabilised missile, other than a launcher or mortar designed for line-throwing or pyrotechnic purposes or as a signalling apparatus."
   },
   "air-rifles-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1)(af)",
+    "summary-details": "This includes any air rifle, air gun or air pistol which uses, or is designed or adapted for use with a self-contained gas cartridge system."
   },
   "fire-noxious-substance-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1)(b)",
+    "summary-details": "This includes any weapon of whatever description designed or adapted for the discharge of any noxious liquid, gas or other thing."
   },
   "disguised-firearms-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1A)(a)",
+    "summary-details": "This includes any firearm which is disguised as another object."
   },
   "military-use-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1A)(b)",
+    "summary-details": "This includes any rocket or ammunition not falling within section 5(1)(c) which consists in or incorporates a missile designed to explode on or immediately before impact and is for military use."
   },
   "projecting-launchers-quantity": {
-    "label": "Maximum quantity (leave blank if unspecified)"
+    "label": "Maximum quantity (leave blank if unspecified)",
+    "header": "Help with section 5(1A)(c)",
+    "summary-details": "This includes any launcher or other projecting apparatus that's not included in section 5(1)(ae) and is designed to be used with a 5(1A)(b) rocket or ammunition, or with section 5(1)(c) ammunition."
+  },
+  "ammunition-types": {
+    "legend": "In only exceptional circumstances, such as transporting ammunition under seal, should you select the unspecified option or leave the maximum quantity in rounds questions blank.",
+    "options": {
+      "unspecified": {
+        "label": "Unspecified sections and quantities"
+      },
+      "explosive-cartridges": {
+        "label": "Cartridges designed to explode, noxious ammunition, grenades, bombs or rockets fired from firearms - Section 5(1)(c)"
+      },
+      "incendiary-missile": {
+        "label": "Ammunition for military use which has an incendiary missile - Section 5(1A)(d)"
+      },
+      "armour-piercing": {
+        "label": "Ammunition for military use which has an armour-piercing missile - Section 5(1A)(e)"
+      },
+      "expanding-missile": {
+        "label": "Ammunition which has an expanding missile - Section 5(1A)(f)"
+      },
+      "missiles-for-above": {
+        "label": "Actual missiles (projectiles) for all the above ammunition - Section 5(1A)(g)"
+      }
+    }
+  },
+  "ammunition-unspecified-details": {
+    "label": "Please provide further details explaining why you can't specify the section and quantities of ammunition being handled."
+  },
+  "explosive-cartridges-quantity": {
+    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "header": "Help with section 5(1)(c)",
+    "summary-details": "This includes any cartridge with a bullet designed to explode on or immediately before impact, any ammunition containing or designed or adapted to contain any such noxious thing as is mentioned in section 5(1)(b) and, if capable of being used with a firearm of any description, any grenade, bomb (or other missile), or rocket or shell designed to explode as aforesaid."
+  },
+  "incendiary-missile-quantity": {
+    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "header": "Help with section 5(1A)(d)",
+    "summary-details": "This includes any ammunition for military use which consists in or incorporates a missile designed so that a substance contained in the missile will ignite on or immediately before impact."
+  },
+  "armour-piercing-quantity": {
+    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "header": "Help with section 5(1A)(e)",
+    "summary-details": "This includes any ammunition for military use which consists in or incorporates a missile designed, on account of its having a jacket and hard-core to penetrate armour plating, armour screening or body armour."
+  },
+  "expanding-missile-quantity": {
+    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "header": "Help with section 5(1A)(f)",
+    "summary-details": "This includes any ammunition which incorporates a missile designed or adapted to expand on impact."
+  },
+  "missiles-for-above-quantity": {
+    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "header": "Help with section 5(1A)(g)",
+    "summary-details": "This includes anything designed to be projected as a missile from any weapon and is designed to be, or has been, incorporated in section 5(1A) ammunition, or any ammunition which would fall within section 5(1A) if it weren't specified in any part of section 5(1)."
   }
 }
