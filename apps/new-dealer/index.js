@@ -106,7 +106,20 @@ module.exports = {
       }
     },
     '/ammunition': {
+      fields: [
+        'ammunition-types',
+        'ammunition-unspecified-details',
+        'explosive-cartridges-quantity',
+        'incendiary-missile-quantity',
+        'armour-piercing-quantity',
+        'expanding-missile-quantity',
+        'missiles-for-above-quantity'
+      ],
       next: '/authority-holders',
+      locals: {
+        section: 'ammunition',
+        subsection: 'ammunition-all-that-apply'
+      }
     },
     '/authority-holders': {
 

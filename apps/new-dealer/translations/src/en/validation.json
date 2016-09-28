@@ -95,5 +95,27 @@
   },
   "projecting-launchers-quantity": {
     "numeric": "Value must be numeric"
+  },
+  "ammunition-types": {
+    "required": "Select at least one option",
+    "notBothOptions": "You can't choose unspecified categories and choose a category. You must deselect the unspecified category option, or the selected categories to continue"
+  },
+  "ammunition-unspecified-details": {
+    "required": "Explain why you can't specify the section and quantities of ammunition being handled"
+  },
+  "explosive-cartridges-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "incendiary-missile-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "armour-piercing-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "expanding-missile-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "missiles-for-above-quantity": {
+    "numeric": "Value must be numeric"
   }
 }

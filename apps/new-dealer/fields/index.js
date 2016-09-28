@@ -206,7 +206,7 @@ module.exports = {
     options: [{
       value: 'unspecified',
       toggle: 'weapons-unspecified-details',
-      child: 'partials/weapons-unspecified'
+      child: 'partials/weapons-ammo-unspecified'
     }, {
       value: 'fully-automatic',
       toggle: 'fully-automatic-quantity',
@@ -335,6 +335,77 @@ module.exports = {
     dependent: {
       field: 'weapon-types',
       value: 'projecting-launchers'
+    }
+  },
+  'ammunition-types': {
+    mixin: 'checkbox-group',
+    validate: ['required', notBothOptions],
+    options: [{
+      value: 'unspecified',
+      toggle: 'ammunition-unspecified-details',
+      child: 'partials/weapons-ammo-unspecified'
+    }, {
+      value: 'explosive-cartridges',
+      toggle: 'explosive-cartridges-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'incendiary-missile',
+      toggle: 'incendiary-missile-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'armour-piercing',
+      toggle: 'armour-piercing-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'expanding-missile',
+      toggle: 'expanding-missile-quantity',
+      child: 'partials/details-summary'
+    }, {
+      value: 'missiles-for-above',
+      toggle: 'missiles-for-above-quantity',
+      child: 'partials/details-summary'
+    }]
+  },
+  'ammunition-unspecified-details': {
+    validate: 'required',
+    dependent: {
+      field: 'ammunition-types',
+      value: 'unspecified'
+    }
+  },
+  'explosive-cartridges-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'ammunition-types',
+      value: 'explosive-cartridges'
+    }
+  },
+  'incendiary-missile-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'ammunition-types',
+      value: 'incendiary-missile'
+    }
+  },
+  'armour-piercing-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'ammunition-types',
+      value: 'armour-piercing'
+    }
+  },
+  'expanding-missile-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'ammunition-types',
+      value: 'expanding-missile'
+    }
+  },
+  'missiles-for-above-quantity': {
+    validate: 'numeric',
+    dependent: {
+      field: 'ammunition-types',
+      value: 'missiles-for-above'
     }
   }
 };
