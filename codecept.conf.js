@@ -14,6 +14,9 @@ module.exports = {
     obtainPage: pagesPath('obtain.js'),
     storagePage: pagesPath('storage.js'),
     usagePage: pagesPath('usage.js'),
-    supportingDocsPage: pagesPath('supporting-docs.js')
+    supportingDocsPage: pagesPath('supporting-docs.js'),
+    weaponsPage: pagesPath('weapons.js'),
+    ammunitionsPage: pagesPath('ammunition.js'),
+    authorityHoldersPage: pagesPath('authority-holders.js')
   }
 };

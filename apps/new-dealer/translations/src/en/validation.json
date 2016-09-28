@@ -55,5 +55,45 @@
   },
   "other-details": {
     "required": "Provide further details"
+  },
+  "weapon-types": {
+    "required": "Select at least one option",
+    "notBothOptions": "You can't choose unspecified categories and choose a category. You must deselect the unspecified category option, or the selected categories to continue"
+  },
+  "weapons-unspecified-details": {
+    "required": "Explain why you can't specify the section and quantities of weapons/component parts being handled"
+  },
+  "fully-automatic-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "self-loading-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "short-pistols-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "short-self-loading-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "large-revolvers-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "rocket-launchers-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "air-rifles-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "fire-noxious-substance-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "disguised-firearms-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "military-use-quantity": {
+    "numeric": "Value must be numeric"
+  },
+  "projecting-launchers-quantity": {
+    "numeric": "Value must be numeric"
   }
 }
