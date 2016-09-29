@@ -122,7 +122,15 @@ module.exports = {
       }
     },
     '/authority-holders': {
-
+      fields: [
+        'authority-holders'
+      ],
+      next: '/first-authority-holders-name',
+      locals: {
+        section: 'authority-holders'
+      }
+    },
+    '/first-authority-holders-name': {
     }
   }
 };
