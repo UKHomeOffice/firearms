@@ -415,5 +415,13 @@ module.exports = {
       'one',
       'two'
     ]
+  },
+  'first-authority-holders-name': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'second-authority-holders-name': {
+    mixin: 'input-text',
+    validate: 'required'
   }
 };
