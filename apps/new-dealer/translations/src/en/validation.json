@@ -117,5 +117,8 @@
   },
   "missiles-for-above-quantity": {
     "numeric": "Value must be numeric"
+  },
+  "authority-holders": {
+    "required": "Select an option"
   }
 }

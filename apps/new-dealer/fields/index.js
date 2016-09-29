@@ -407,5 +407,13 @@ module.exports = {
       field: 'ammunition-types',
       value: 'missiles-for-above'
     }
+  },
+  'authority-holders': {
+    mixin: 'radio-group',
+    validate: 'required',
+    options: [
+      'one',
+      'two'
+    ]
   }
 };

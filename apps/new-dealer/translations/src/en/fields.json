@@ -329,5 +329,16 @@
     "label": "Maximum quantity in rounds (leave blank if unspecified)",
     "header": "Help with section 5(1A)(g)",
     "summary-details": "This includes anything designed to be projected as a missile from any weapon and is designed to be, or has been, incorporated in section 5(1A) ammunition, or any ammunition which would fall within section 5(1A) if it weren't specified in any part of section 5(1)."
+  },
+  "authority-holders": {
+    "legend": "You can have up to two authority holders. They must be senior members of staff and will be responsible for ensuring the business operates within the strict limitations of the authority.",
+    "options": {
+      "one": {
+        "label": "One"
+      },
+      "two": {
+        "label": "Two"
+      }
+    }
   }
 }
