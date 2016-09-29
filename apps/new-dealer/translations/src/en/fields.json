@@ -340,5 +340,16 @@
         "label": "Two"
       }
     }
+  },
+  "first-authority-holders-name": {
+    "label": {
+      "authority-holders": {
+        "one": "Authority holder",
+        "two": "First authority holder"
+      }
+    }
+  },
+  "second-authority-holders-name": {
+    "label": "Second authority holder"
   }
 }

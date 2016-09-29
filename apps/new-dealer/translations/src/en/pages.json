@@ -60,5 +60,16 @@
   },
   "authority-holders": {
     "header": "How many individuals will be named on the authority?"
+  },
+  "first-authority-holders-name": {
+    "header": {
+      "authority-holders": {
+        "one": "What's the full name of the authority holder?",
+        "two": "What's the full name of the first authority holder?"
+      }
+    }
+  },
+  "second-authority-holders-name": {
+    "header": "What's the full name of the second authority holder?"
   }
 }

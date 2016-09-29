@@ -120,5 +120,16 @@
   },
   "authority-holders": {
     "required": "Select an option"
+  },
+  "first-authority-holders-name": {
+    "required": {
+      "authority-holders": {
+        "one": "Enter the full name of the authority holder",
+        "two": "Enter the full name of the first authority holder"
+      }
+    }
+  },
+  "second-authority-holders-name": {
+    "required": "Enter the full name of the second authority holder"
   }
 }

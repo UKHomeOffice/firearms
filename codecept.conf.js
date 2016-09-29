@@ -18,6 +18,9 @@ module.exports = {
     weaponsPage: pagesPath('weapons.js'),
     ammunitionsPage: pagesPath('ammunition.js'),
     authorityHoldersPage: pagesPath('authority-holders.js'),
-    firstAuthorityHoldersNamePage: pagesPath('first-authority-holders-name.js')
+    firstAuthorityHoldersNamePage: pagesPath('first-authority-holders-name.js'),
+    firstAuthorityHoldersBirthPage: pagesPath('first-authority-holders-birth.js'),
+    secondAuthorityHoldersNamePage: pagesPath('second-authority-holders-name.js'),
+    secondAuthorityHoldersBirthPage: pagesPath('second-authority-holders-birth.js')
   }
 };

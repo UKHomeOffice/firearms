@@ -131,6 +131,49 @@ module.exports = {
       }
     },
     '/first-authority-holders-name': {
+      fields: [
+        'first-authority-holders-name'
+      ],
+      next: '/first-authority-holders-birth',
+      locals: {
+        section: 'first-authority-holders-name'
+      }
+    },
+    '/first-authority-holders-birth': {
+      next: '/first-authority-holders-nationality'
+    },
+    '/first-authority-holders-nationality': {
+      next: '/first-authority-holders-address'
+    },
+    '/first-authority-holders-address': {
+      next: '/contact',
+      forks: [{
+        target: '/second-authority-holders-name',
+        condition(req) {
+          return req.sessionModel.get('authority-holders') === 'two';
+        }
+      }]
+    },
+    '/second-authority-holders-name': {
+      fields: [
+        'second-authority-holders-name'
+      ],
+      next: '/second-authority-holders-birth',
+      locals: {
+        section: 'second-authority-holders-name'
+      }
+    },
+    '/second-authority-holders-birth': {
+      next: '/second-authority-holders-nationality'
+    },
+    '/second-authority-holders-nationality': {
+      next: '/second-authority-holders-address'
+    },
+    '/second-authority-holders-address': {
+      next: '/contact'
+    },
+    '/contact': {
+
     }
   }
 };
