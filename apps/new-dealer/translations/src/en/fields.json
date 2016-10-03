@@ -351,5 +351,41 @@
   },
   "second-authority-holders-name": {
     "label": "Second authority holder"
+  },
+  "first-authority-dob": {
+    "hint": "For example, 31 3 1980"
+  },
+  "first-authority-dob-day": {
+    "label": "Day"
+  },
+  "first-authority-dob-month": {
+    "label": "Month"
+  },
+  "first-authority-dob-year": {
+    "label": "Year"
+  },
+  "first-authority-town-birth": {
+    "label": "Town/city of birth"
+  },
+  "first-authority-country-birth": {
+    "label": "Country of birth"
+  },
+  "second-authority-dob": {
+    "hint": "For example, 31 3 1980"
+  },
+  "second-authority-dob-day": {
+    "label": "Day"
+  },
+  "second-authority-dob-month": {
+    "label": "Month"
+  },
+  "second-authority-dob-year": {
+    "label": "Year"
+  },
+  "second-authority-town-birth": {
+    "label": "Town/city of birth"
+  },
+  "second-authority-country-birth": {
+    "label": "Country of birth"
   }
 }

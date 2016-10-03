@@ -423,5 +423,43 @@ module.exports = {
   'second-authority-holders-name': {
     mixin: 'input-text',
     validate: 'required'
+  },
+  'first-authority-dob': {
+  },
+  'first-authority-dob-day': {
+    validate: ['required', 'numeric']
+  },
+  'first-authority-dob-month': {
+    validate: ['required', 'numeric']
+  },
+  'first-authority-dob-year': {
+    validate: ['required', 'numeric']
+  },
+  'first-authority-town-birth': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'first-authority-country-birth': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'second-authority-dob': {
+  },
+  'second-authority-dob-day': {
+    validate: ['required', 'numeric']
+  },
+  'second-authority-dob-month': {
+    validate: ['required', 'numeric']
+  },
+  'second-authority-dob-year': {
+    validate: ['required', 'numeric']
+  },
+  'second-authority-town-birth': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'second-authority-country-birth': {
+    mixin: 'input-text',
+    validate: 'required'
   }
 };
