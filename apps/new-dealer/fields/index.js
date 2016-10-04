@@ -461,5 +461,31 @@ module.exports = {
   'second-authority-country-birth': {
     mixin: 'input-text',
     validate: 'required'
+  },
+  'first-authority-holders-nationality': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'first-authority-holders-nationality-multi': {
+    mixin: 'checkbox',
+    value: 'first-authority-holders-nationality-multi',
+    toggle: 'first-authority-holders-nationality-multi',
+  },
+  'first-authority-holders-nationality-second': {
+  },
+  'first-authority-holders-nationality-third': {
+  },
+  'second-authority-holders-nationality': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'second-authority-holders-nationality-multi': {
+    mixin: 'checkbox',
+    value: 'second-authority-holders-nationality-multi',
+    toggle: 'second-authority-holders-nationality-multi',
+  },
+  'second-authority-holders-nationality-second': {
+  },
+  'second-authority-holders-nationality-third': {
   }
 };
