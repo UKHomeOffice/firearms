@@ -1,0 +1,23 @@
+{{<partials-page}}
+  {{$page-content}}
+    <fieldset id="second-authority-dob-group" class="{{#errors.second-authority-dob}}validation-error{{/errors.second-authority-dob}}">
+
+      {{#errors.second-authority-dob}}
+        <span id="second-authority-dob-error" class="error-message">
+            {{errors.second-authority-dob.message}}
+        </span>
+      {{/errors.second-authority-dob}}
+
+      <p class="form-hint">{{#t}}fields.second-authority-dob.hint{{/t}}</p>
+      <div class="form-group form-date">
+        {{#input-date}}second-authority-dob{{/input-date}}
+      </div>
+
+    </fieldset>
+
+    {{#input-text}}second-authority-town-birth{{/input-text}}
+    {{#input-text}}second-authority-country-birth{{/input-text}}
+    
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

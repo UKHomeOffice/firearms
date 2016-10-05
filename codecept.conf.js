@@ -20,7 +20,9 @@ module.exports = {
     authorityHoldersPage: pagesPath('authority-holders.js'),
     firstAuthorityHoldersNamePage: pagesPath('first-authority-holders-name.js'),
     firstAuthorityHoldersBirthPage: pagesPath('first-authority-holders-birth.js'),
+    firstAuthorityHoldersNationalityPage: pagesPath('first-authority-holders-nationality.js'),
     secondAuthorityHoldersNamePage: pagesPath('second-authority-holders-name.js'),
-    secondAuthorityHoldersBirthPage: pagesPath('second-authority-holders-birth.js')
+    secondAuthorityHoldersBirthPage: pagesPath('second-authority-holders-birth.js'),
+    secondAuthorityHoldersNationalityPage: pagesPath('second-authority-holders-nationality.js')
   }
 };

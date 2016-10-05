@@ -140,7 +140,19 @@ module.exports = {
       }
     },
     '/first-authority-holders-birth': {
-      next: '/first-authority-holders-nationality'
+      controller: require('./controllers/first-authority-holders-birth'),
+      fields: [
+        'first-authority-dob',
+        'first-authority-dob-day',
+        'first-authority-dob-month',
+        'first-authority-dob-year',
+        'first-authority-town-birth',
+        'first-authority-country-birth'
+      ],
+      next: '/first-authority-holders-nationality',
+      locals: {
+        section: 'first-authority-holders-birth'
+      }
     },
     '/first-authority-holders-nationality': {
       next: '/first-authority-holders-address'
@@ -164,7 +176,19 @@ module.exports = {
       }
     },
     '/second-authority-holders-birth': {
-      next: '/second-authority-holders-nationality'
+      controller: require('./controllers/second-authority-holders-birth'),
+      fields: [
+        'second-authority-dob',
+        'second-authority-dob-day',
+        'second-authority-dob-month',
+        'second-authority-dob-year',
+        'second-authority-town-birth',
+        'second-authority-country-birth'
+      ],
+      next: '/second-authority-holders-nationality',
+      locals: {
+        section: 'second-authority-holders-birth'
+      }
     },
     '/second-authority-holders-nationality': {
       next: '/second-authority-holders-address'

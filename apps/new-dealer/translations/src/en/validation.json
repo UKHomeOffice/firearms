@@ -131,5 +131,27 @@
   },
   "second-authority-holders-name": {
     "required": "Enter the full name of the second authority holder"
+  },
+  "first-authority-dob": {
+    "required": "Enter a date of birth",
+    "numeric": "Enter a valid date",
+    "future": "Date cannot be in the future"
+  },
+  "first-authority-town-birth": {
+    "required": "Enter a Town/City of birth"
+  },
+  "first-authority-country-birth": {
+    "required": "Enter a Country of birth"
+  },
+  "second-authority-dob": {
+    "required": "Enter a date of birth",
+    "numeric": "Enter a valid date",
+    "future": "Date cannot be in the future"
+  },
+  "second-authority-town-birth": {
+    "required": "Enter a Town/City of birth"
+  },
+  "second-authority-country-birth": {
+    "required": "Enter a Country of birth"
   }
 }
