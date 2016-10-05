@@ -58,6 +58,17 @@
   "ammunition-all-that-apply": {
     "header": "Select all that apply and state the maximum quantities held at any one time. The quantities should reflect the supporting evidence provided, and be as accurate as possible. If the sections and quantities aren't backed up by the evidence you have provided, it may delay the application or result in the authority not being approved."
   },
+  "postcode": {
+    "manual": "Enter address manually"
+  },
+  "address": {
+    "edit": "Change",
+    "cantfind": "I can't find the address on the list",
+    "postcode-api": {
+      "not-found": "Sorry – we couldn’t find any addresses for that postcode, enter your address manually",
+      "cant-connect": "Sorry – we couldn’t connect to the postcode lookup service at this time, enter your address manually"
+    }
+  },
   "authority-holders": {
     "header": "How many individuals will be named on the authority?"
   },
@@ -75,6 +86,9 @@
   "first-authority-holders-nationality": {
     "header": "What is {{values.first-authority-holders-name}}'s nationality?"
   },
+  "first-authority-holders-address": {
+    "header": "What is {{values.first-authority-holders-name}}'s home address?"
+  },
   "second-authority-holders-name": {
     "header": "What's the full name of the second authority holder?"
   },
@@ -83,5 +97,8 @@
   },
   "second-authority-holders-nationality": {
     "header": "What is {{values.second-authority-holders-name}}'s nationality?"
+  },
+  "second-authority-holders-address": {
+    "header": "What is {{values.second-authority-holders-name}}'s home address?"
   }
 }

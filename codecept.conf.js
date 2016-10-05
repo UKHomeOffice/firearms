@@ -26,5 +26,6 @@ module.exports = {
     secondAuthorityHoldersBirthPage: pagesPath('second-authority-holders-birth.js'),
     secondAuthorityHoldersNationalityPage: pagesPath('second-authority-holders-nationality.js'),
     secondAuthorityHoldersAddressPage: pagesPath('second-authority-holders-address.js'),
+    contactPage: pagesPath('contact.js')
   }
 };

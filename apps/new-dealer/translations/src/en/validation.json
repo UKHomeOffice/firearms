@@ -153,6 +153,16 @@
     "same-first-nationality": "Third nationality cannot be the same as the first nationality",
     "same-multi-nationality": "Third nationality cannot be the same as the second nationality"
   },
+  "first-authority-holders-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a valid postcode"
+  },
+  "first-authority-holders-address-manual": {
+    "required": "Enter an address"
+  },
+  "first-authority-holders-address-lookup": {
+    "required": "Select an address"
+  },
   "second-authority-dob": {
     "required": "Enter a date of birth",
     "numeric": "Enter a valid date",
@@ -173,5 +183,15 @@
   "second-authority-holders-nationality-third": {
     "same-first-nationality": "Third nationality cannot be the same as the first nationality",
     "same-multi-nationality": "Third nationality cannot be the same as the second nationality"
+  },
+  "second-authority-holders-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a valid postcode"
+  },
+  "second-authority-holders-address-manual": {
+    "required": "Enter an address"
+  },
+  "second-authority-holders-address-lookup": {
+    "required": "Select an address"
   }
 }

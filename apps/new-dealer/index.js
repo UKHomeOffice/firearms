@@ -7,6 +7,7 @@ const ammunition = req => _.includes(req.sessionModel.get('weapons-ammunition'),
 
 module.exports = {
   name: 'new-dealer',
+  params: '/:action?',
   steps: {
     '/': {
       controller: controllers.start,
@@ -162,19 +163,67 @@ module.exports = {
         'first-authority-holders-nationality-second',
         'first-authority-holders-nationality-third',
       ],
-      next: '/first-authority-holders-address',
+      next: '/first-authority-holders-postcode',
       locals: {
         section: 'first-authority-holders-nationality'
       }
     },
-    '/first-authority-holders-address': {
+    '/first-authority-holders-postcode': {
+      template: 'postcode.html',
+      controller: require('./controllers/postcode'),
+      fields: [
+        'first-authority-holders-postcode'
+      ],
+      next: '/first-authority-holders-address',
+      forks: [{
+        target: '/first-authority-holders-address-lookup',
+        condition(req) {
+          const addresses = req.sessionModel.get('addresses');
+          return addresses && addresses.length;
+        }
+      }],
+      locals: {
+        section: 'first-authority-holders-address',
+        field: 'first-authority-holders'
+      }
+    },
+    '/first-authority-holders-address-lookup': {
+      template: 'address-lookup.html',
+      controller: require('./controllers/address-lookup'),
+      fields: [
+        'first-authority-holders-address-lookup'
+      ],
       next: '/contact',
       forks: [{
         target: '/second-authority-holders-name',
         condition(req) {
           return req.sessionModel.get('authority-holders') === 'two';
         }
-      }]
+      }],
+      locals: {
+        section: 'first-authority-holders-address',
+        field: 'first-authority-holders'
+      }
+    },
+    '/first-authority-holders-address': {
+      template: 'address.html',
+      controller: require('./controllers/address'),
+      fields: [
+        'first-authority-holders-address-manual'
+      ],
+      next: '/contact',
+      prereqs: ['/first-authority-holders-postcode', '/first-authority-holders-nationality'],
+      backLink: 'first-authority-holders-postcode',
+      forks: [{
+        target: '/second-authority-holders-name',
+        condition(req) {
+          return req.sessionModel.get('authority-holders') === 'two';
+        }
+      }],
+      locals: {
+        section: 'first-authority-holders-address',
+        field: 'first-authority-holders'
+      }
     },
     '/second-authority-holders-name': {
       fields: [
@@ -208,13 +257,55 @@ module.exports = {
         'second-authority-holders-nationality-second',
         'second-authority-holders-nationality-third',
       ],
-      next: '/second-authority-holders-address',
+      next: '/second-authority-holders-postcode',
       locals: {
         section: 'second-authority-holders-nationality'
       }
     },
+    '/second-authority-holders-postcode': {
+      template: 'postcode.html',
+      controller: require('./controllers/postcode'),
+      fields: [
+        'second-authority-holders-postcode'
+      ],
+      next: '/second-authority-holders-address',
+      forks: [{
+        target: '/second-authority-holders-address-lookup',
+        condition(req) {
+          const addresses = req.sessionModel.get('addresses');
+          return addresses && addresses.length;
+        }
+      }],
+      locals: {
+        section: 'second-authority-holders-address',
+        field: 'second-authority-holders'
+      }
+    },
+    '/second-authority-holders-address-lookup': {
+      template: 'address-lookup.html',
+      controller: require('./controllers/address-lookup'),
+      fields: [
+        'second-authority-holders-address-lookup'
+      ],
+      next: '/contact',
+      locals: {
+        section: 'second-authority-holders-address',
+        field: 'second-authority-holders'
+      }
+    },
     '/second-authority-holders-address': {
-      next: '/contact'
+      template: 'address.html',
+      controller: require('./controllers/address'),
+      fields: [
+        'second-authority-holders-address-manual'
+      ],
+      next: '/contact',
+      prereqs: ['/second-authority-holders-postcode', '/second-authority-holders-nationality'],
+      backLink: 'second-authority-holders-postcode',
+      locals: {
+        section: 'second-authority-holders-address',
+        field: 'second-authority-holders'
+      }
     },
     '/contact': {
 
