@@ -370,6 +370,18 @@
   "first-authority-country-birth": {
     "label": "Country of birth"
   },
+  "first-authority-holders-nationality": {
+    "label": "Nationality"
+  },
+  "first-authority-holders-nationality-multi": {
+    "label": "Add another nationality"
+  },
+  "first-authority-holders-nationality-second": {
+    "label": "Second nationality (optional)"
+  },
+  "first-authority-holders-nationality-third": {
+    "label": "Third nationality (optional)"
+  },
   "second-authority-dob": {
     "hint": "For example, 31 3 1980"
   },
@@ -387,5 +399,17 @@
   },
   "second-authority-country-birth": {
     "label": "Country of birth"
+  },
+  "second-authority-holders-nationality": {
+    "label": "Nationality"
+  },
+  "second-authority-holders-nationality-multi": {
+    "label": "Add another nationality"
+  },
+  "second-authority-holders-nationality-second": {
+    "label": "Second nationality (optional)"
+  },
+  "second-authority-holders-nationality-third": {
+    "label": "Third nationality (optional)"
   }
 }

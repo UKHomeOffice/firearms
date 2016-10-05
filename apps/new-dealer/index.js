@@ -155,7 +155,17 @@ module.exports = {
       }
     },
     '/first-authority-holders-nationality': {
-      next: '/first-authority-holders-address'
+      controller: require('./controllers/authority-holders-nationality'),
+      fields: [
+        'first-authority-holders-nationality',
+        'first-authority-holders-nationality-multi',
+        'first-authority-holders-nationality-second',
+        'first-authority-holders-nationality-third',
+      ],
+      next: '/first-authority-holders-address',
+      locals: {
+        section: 'first-authority-holders-nationality'
+      }
     },
     '/first-authority-holders-address': {
       next: '/contact',
@@ -191,7 +201,17 @@ module.exports = {
       }
     },
     '/second-authority-holders-nationality': {
-      next: '/second-authority-holders-address'
+      controller: require('./controllers/authority-holders-nationality'),
+      fields: [
+        'second-authority-holders-nationality',
+        'second-authority-holders-nationality-multi',
+        'second-authority-holders-nationality-second',
+        'second-authority-holders-nationality-third',
+      ],
+      next: '/second-authority-holders-address',
+      locals: {
+        section: 'second-authority-holders-nationality'
+      }
     },
     '/second-authority-holders-address': {
       next: '/contact'

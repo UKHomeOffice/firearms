@@ -1,0 +1,14 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#input-text}}second-authority-holders-nationality{{/input-text}}
+    {{#checkbox}}second-authority-holders-nationality-multi{{/checkbox}}
+    {{<partials-multi-nationality}}
+      {{$panel}}second-authority-holders-nationality-multi{{/panel}}
+      {{$panel-content}}
+        {{#input-text}}second-authority-holders-nationality-second{{/input-text}}
+        {{#input-text}}second-authority-holders-nationality-third{{/input-text}}
+      {{/panel-content}}
+    {{/partials-multi-nationality}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

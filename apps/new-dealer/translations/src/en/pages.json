@@ -72,10 +72,16 @@
   "first-authority-holders-birth": {
     "header": "What is {{values.first-authority-holders-name}}'s birth details?"
   },
+  "first-authority-holders-nationality": {
+    "header": "What is {{values.first-authority-holders-name}}'s nationality?"
+  },
   "second-authority-holders-name": {
     "header": "What's the full name of the second authority holder?"
   },
   "second-authority-holders-birth": {
     "header": "What is {{values.second-authority-holders-name}}'s birth details?"
+  },
+  "second-authority-holders-nationality": {
+    "header": "What is {{values.second-authority-holders-name}}'s nationality?"
   }
 }

@@ -143,6 +143,16 @@
   "first-authority-country-birth": {
     "required": "Enter a Country of birth"
   },
+  "first-authority-holders-nationality": {
+    "required": "Enter nationality"
+  },
+  "first-authority-holders-nationality-second": {
+    "same-first-nationality": "Second nationality cannot be the same as the first nationality"
+  },
+  "first-authority-holders-nationality-third": {
+    "same-first-nationality": "Third nationality cannot be the same as the first nationality",
+    "same-multi-nationality": "Third nationality cannot be the same as the second nationality"
+  },
   "second-authority-dob": {
     "required": "Enter a date of birth",
     "numeric": "Enter a valid date",
@@ -153,5 +163,15 @@
   },
   "second-authority-country-birth": {
     "required": "Enter a Country of birth"
+  },
+  "second-authority-holders-nationality": {
+    "required": "Enter nationality"
+  },
+  "second-authority-holders-nationality-second": {
+    "same-first-nationality": "Second nationality cannot be the same as the first nationality"
+  },
+  "second-authority-holders-nationality-third": {
+    "same-first-nationality": "Third nationality cannot be the same as the first nationality",
+    "same-multi-nationality": "Third nationality cannot be the same as the second nationality"
   }
 }
