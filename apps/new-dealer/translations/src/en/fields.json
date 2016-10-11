@@ -429,5 +429,21 @@
   },
   "second-authority-holders-address-lookup": {
     "label": "Select your address"
+  },
+  "contact-holder": {
+    "options": {
+      "first": {
+        "label": "{{values.first-authority-holders-name}}"
+      },
+      "second": {
+        "label": "{{values.second-authority-holders-name}}"
+      },
+      "other": {
+        "label": "Someone else"
+      }
+    }
+  },
+  "someone-else-name": {
+    "label": "What is that person's full name?"
   }
 }

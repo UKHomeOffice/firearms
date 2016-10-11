@@ -193,5 +193,11 @@
   },
   "second-authority-holders-address-lookup": {
     "required": "Select an address"
+  },
+  "contact-holder": {
+    "required": "Select at least one option"
+  },
+  "someone-else-name": {
+    "required": "Enter contacts' full name"
   }
 }
