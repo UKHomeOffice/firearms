@@ -103,5 +103,8 @@
   },
   "contact": {
     "header": "Who do we contact about this application?"
+  },
+  "storage-weapons-ammo": {
+    "header": "What will be stored on the premises?"
   }
 }

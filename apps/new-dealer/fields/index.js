@@ -538,5 +538,13 @@ module.exports = {
       field: 'contact-holder',
       value: 'other'
     }
+  },
+  'storage-weapons-ammo': {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    options: [
+      'weapons',
+      'ammunition'
+    ]
   }
 };

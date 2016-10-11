@@ -4,6 +4,8 @@ const _ = require('lodash');
 const controllers = require('hof').controllers;
 
 const ammunition = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'ammunition');
+const weapons = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'weapons');
+const storedOnPremises = (req, stored) => req.sessionModel.get('stored-on-premises') === stored;
 
 module.exports = {
   name: 'new-dealer',
@@ -74,11 +76,39 @@ module.exports = {
       }
     },
     '/supporting-docs': {
-      next: 'weapons',
+      next: '/ammunition',
       forks: [{
-        target: '/ammunition',
-        condition: ammunition
+        target: '/storage-weapons-ammo',
+        condition(req) {
+          const stored = storedOnPremises(req, 'true');
+          const weaponsAndAmmo = weapons(req) && ammunition(req);
+          return stored && weaponsAndAmmo;
+        }
+      }, {
+        target: '/storage-address',
+        condition(req) {
+          const stored = storedOnPremises(req, 'true');
+          const weaponsAndAmmo = weapons(req) && ammunition(req);
+          return stored && !weaponsAndAmmo;
+        }
+      }, {
+        target: '/weapons',
+        condition(req) {
+          const stored = storedOnPremises(req, 'false');
+          return stored && weapons(req);
+        }
       }]
+    },
+    '/storage-weapons-ammo': {
+      fields: [
+        'storage-weapons-ammo'
+      ],
+      next: '/storage-address',
+      locals: {
+        section: 'storage-weapons-ammo'
+      }
+    },
+    '/storage-address': {
     },
     '/weapons': {
       fields: [
