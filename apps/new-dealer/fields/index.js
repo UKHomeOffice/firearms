@@ -475,6 +475,24 @@ module.exports = {
   },
   'first-authority-holders-nationality-third': {
   },
+  'first-authority-holders-postcode': {
+    mixin: 'input-text-code',
+    validate: ['required', 'postcode'],
+    formatter: 'uppercase'
+  },
+  'first-authority-holders-address-lookup': {
+    className: 'address'
+  },
+  'first-authority-holders-address-manual': {
+    mixin: 'textarea',
+    validate: 'required',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    attributes: [{
+      attribute: 'height',
+      value: 6
+    }]
+  },
   'second-authority-holders-nationality': {
     mixin: 'input-text',
     validate: 'required'
@@ -487,5 +505,23 @@ module.exports = {
   'second-authority-holders-nationality-second': {
   },
   'second-authority-holders-nationality-third': {
+  },
+  'second-authority-holders-postcode': {
+    mixin: 'input-text-code',
+    validate: ['required', 'postcode'],
+    formatter: 'uppercase'
+  },
+  'second-authority-holders-address-lookup': {
+    className: 'address'
+  },
+  'second-authority-holders-address-manual': {
+    mixin: 'textarea',
+    validate: 'required',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    attributes: [{
+      attribute: 'height',
+      value: 6
+    }]
   }
 };

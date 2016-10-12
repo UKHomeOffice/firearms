@@ -1,0 +1,24 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#postcode}}
+      <label>
+        {{#t}}fields.{{field}}-postcode.label{{/t}}
+      </label>
+      <p>
+        <span class="postcode">{{postcode}}</span>
+        <span class="link"><a href="{{baseUrl}}/{{field}}-postcode">{{#t}}pages.address.edit{{/t}}</a></span>
+      </p>
+    {{/postcode}}
+    {{#postcodeApiMessageKey}}
+      <div class="alert-info">
+        <span class="info-message">
+          {{#t}}pages.address.postcode-api.{{postcodeApiMessageKey}}{{/t}}
+        </span>
+      </div>
+    {{/postcodeApiMessageKey}}
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
