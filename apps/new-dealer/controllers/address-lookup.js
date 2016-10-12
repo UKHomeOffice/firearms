@@ -44,6 +44,5 @@ module.exports = class AddressLookup extends BaseController {
         redirect: undefined
       });
     }
-    return;
   }
 };
