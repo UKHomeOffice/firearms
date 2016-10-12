@@ -7,7 +7,9 @@ module.exports = class ContactController extends BaseController {
   getValues(req, res, callback) {
     if (req.sessionModel.get('authority-holders') === 'one') {
       this.options.fields['contact-holder'].options =
-        _.without(this.options.fields['contact-holder'].options, 'second');
+        _.without(_.clone(require('../fields')['contact-holder'].options), 'second');
+    } else {
+      this.options.fields['contact-holder'].options = require('../fields')['contact-holder'].options;
     }
     super.getValues(req, res, callback);
   }
