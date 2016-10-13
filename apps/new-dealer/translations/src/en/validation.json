@@ -202,5 +202,15 @@
   },
   "storage-weapons-ammo": {
     "required": "Select at least one option"
+  },
+  "storage-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a valid postcode"
+  },
+  "storage-address-manual": {
+    "required": "Enter an address"
+  },
+  "storage-address-lookup": {
+    "required": "Select an address"
   }
 }

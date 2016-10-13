@@ -106,5 +106,23 @@
   },
   "storage-weapons-ammo": {
     "header": "What will be stored on the premises?"
+  },
+  "storage-address": {
+    "header": {
+      "weapons-ammunition": {
+        "weapons": "Where will the prohibited weapons/component parts be stored?",
+        "weapons,ammunition": {
+          "storage-weapons-ammo": {
+            "weapons": "Where will the prohibited weapons/component parts be stored?",
+            "weapons,ammunition": "Where will the prohibited weapons/component parts and ammunition be stored?",
+            "ammunition": "Where will the prohibited ammunition be stored?"
+          }
+        },
+        "ammunition": "Where will the prohibited ammunition be stored?"
+      }
+    }
+  },
+  "add-more-addresses": {
+    "header": "You can add further addresses later if required."
   }
 }

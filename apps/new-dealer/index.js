@@ -85,7 +85,7 @@ module.exports = {
           return stored && weaponsAndAmmo;
         }
       }, {
-        target: '/storage-address',
+        target: '/storage-postcode',
         condition(req) {
           const stored = storedOnPremises(req);
           const weaponsAndAmmo = weapons(req) && ammunition(req);
@@ -103,12 +103,59 @@ module.exports = {
       fields: [
         'storage-weapons-ammo'
       ],
-      next: '/storage-address',
+      next: '/storage-postcode',
       locals: {
         section: 'storage-weapons-ammo'
       }
     },
+    '/storage-postcode': {
+      template: 'postcode.html',
+      controller: require('./controllers/postcode'),
+      fields: [
+        'storage-postcode'
+      ],
+      next: '/storage-address',
+      forks: [{
+        target: '/storage-address-lookup',
+        condition(req) {
+          const addresses = req.sessionModel.get('addresses');
+          return addresses && addresses.length;
+        }
+      }],
+      locals: {
+        section: 'storage-address',
+        subsection: 'add-more-addresses',
+        field: 'storage'
+      }
+    },
+    '/storage-address-lookup': {
+      template: 'address-lookup.html',
+      controller: require('./controllers/address-lookup'),
+      fields: [
+        'storage-address-lookup'
+      ],
+      next: '/storage-add-another-address',
+      locals: {
+        section: 'storage-address',
+        field: 'storage'
+      }
+    },
     '/storage-address': {
+      template: 'address.html',
+      controller: require('./controllers/address'),
+      fields: [
+        'storage-address-manual'
+      ],
+      prereqs: ['/storage-postcode', '/storage-weapons-ammo', '/supporting-docs'],
+      backLink: 'storage-postcode',
+      next: '/storage-add-another-address',
+      locals: {
+        section: 'storage-address',
+        field: 'storage'
+      }
+    },
+    'storage-add-another-address': {
+
     },
     '/weapons': {
       fields: [
