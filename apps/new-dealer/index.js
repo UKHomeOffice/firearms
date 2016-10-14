@@ -394,6 +394,19 @@ module.exports = {
         section: 'contact'
       },
       next: '/contact-details'
+    },
+    '/contact-details': {
+      fields: [
+        'contact-email',
+        'contact-phone'
+      ],
+      next: '/contact-address',
+      locals: {
+        section: 'contact-details',
+        subsection: 'contact-details-confirmation'
+      }
+    },
+    '/contact-address': {
     }
   }
 };

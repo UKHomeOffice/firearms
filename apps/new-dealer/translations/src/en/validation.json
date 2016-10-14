@@ -212,5 +212,12 @@
   },
   "storage-address-lookup": {
     "required": "Select an address"
+  },
+  "contact-email": {
+    "required": "Enter contact's email address",
+    "email": "Enter a valid email address"
+  },
+  "contact-phone": {
+    "required": "Enter contact's phone number"
   }
 }

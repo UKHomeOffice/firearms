@@ -124,5 +124,17 @@
   },
   "add-more-addresses": {
     "header": "You can add further addresses later if required."
+  },
+  "contact-details": {
+    "header": {
+      "contact-holder": {
+        "first": "What are {{values.first-authority-holders-name}}'s contact details?",
+        "second": "What are {{values.second-authority-holders-name}}'s contact details?",
+        "other": "What are {{values.someone-else-name}}'s contact details?"
+      }
+    }
+  },
+  "contact-details-confirmation": {
+    "header": "A confirmation email of this application will be sent to this address."
   }
 }
