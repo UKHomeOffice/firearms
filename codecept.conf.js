@@ -6,7 +6,7 @@ const pagesPath = page => path.resolve(__dirname,
   `./apps/new-dealer/acceptance/pages/${page}`);
 
 module.exports = {
-  name: 'hmpo-enquiries',
+  name: 'firearms',
   features: './**/acceptance/features/**/*.js',
   include: {
     companyNamePage: pagesPath('company-name.js'),
