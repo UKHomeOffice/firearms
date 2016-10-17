@@ -100,5 +100,8 @@
   },
   "second-authority-holders-address": {
     "header": "What is {{values.second-authority-holders-name}}'s home address?"
+  },
+  "contact": {
+    "header": "Who do we contact about this application?"
   }
 }

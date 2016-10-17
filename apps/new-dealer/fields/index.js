@@ -523,5 +523,20 @@ module.exports = {
       attribute: 'height',
       value: 6
     }]
+  },
+  'contact-holder': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: ['first', 'second', {value: 'other', toggle: 'someone-else-name', child: 'input-text'}]
+  },
+  'someone-else-name': {
+    validate: 'required',
+    dependent: {
+      field: 'contact-holder',
+      value: 'other'
+    }
   }
 };

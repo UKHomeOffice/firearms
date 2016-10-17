@@ -308,7 +308,15 @@ module.exports = {
       }
     },
     '/contact': {
-
+      fields: [
+        'contact-holder',
+        'someone-else-name'
+      ],
+      controller: require('./controllers/contact'),
+      locals: {
+        section: 'contact'
+      },
+      next: '/contact-details'
     }
   }
 };

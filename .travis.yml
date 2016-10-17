@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "6"
+  - "5"
+  - "4.4.2"
+
+services:
+  - docker
+  - redis
+
+before_install:
+  - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
+  - npm cache clean
+  - docker build --tag travis .
+  - docker run -d --net=host -e NODE_ENV=ci travis
+
+before_script:
+  - phantomjs --webdriver=4444&
+
+script:
+  - npm run test:ci && npm run test:acceptance
