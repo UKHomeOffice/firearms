@@ -136,5 +136,13 @@
   },
   "contact-details-confirmation": {
     "header": "A confirmation email of this application will be sent to this address."
+  },
+  "contact-address-authority-holder": {
+    "header": {
+      "contact-holder": {
+        "first": "Which address should we use to contact {{values.first-authority-holders-name}}?",
+        "second": "Which address should we use to contact {{values.second-authority-holders-name}}?"
+      }
+    }
   }
 }

@@ -77,11 +77,28 @@ Scenario('Other contact holder name is in the page header', function *(
 });
 
 
-Scenario('Im taken to the contact-address step', (
+Scenario('When I select someone-else on contact-holder step, I am taken to the contact-postcode step', function *(
   I,
   contactDetailsPage,
   contactAddressPage
-) => {
+) {
+  yield I.setSessionData(steps.name, {
+    'contact-holder': 'other'
+  });
+  yield I.refreshPage();
   contactDetailsPage.fillFormAndSubmit(contactDetailsPage.content['valid-email']);
   I.seeInCurrentUrl(contactAddressPage.url);
+});
+
+Scenario('When I select an authority holder on contact-holder step, I am taken to the contact-address-authority-holder step', function *(
+  I,
+  contactDetailsPage,
+  contactAddressAuthorityHolderPage
+) {
+  yield I.setSessionData(steps.name, {
+    'contact-holder': 'one'
+  });
+  yield I.refreshPage();
+  contactDetailsPage.fillFormAndSubmit(contactDetailsPage.content['valid-email']);
+  I.seeInCurrentUrl(contactAddressAuthorityHolderPage.url);
 });

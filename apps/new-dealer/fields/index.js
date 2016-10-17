@@ -572,5 +572,24 @@ module.exports = {
   'contact-phone': {
     mixin: 'input-text',
     validate: 'required'
+  },
+  'use-different-address': {
+    mixin: 'radio-group',
+    validate: 'required',
+    options: [{
+     value: 'false'
+    }, {
+      value: 'true',
+      toggle: 'contact-postcode',
+      child: 'partials/postcode-manual-link'
+    }]
+  },
+  'contact-postcode': {
+    validate: ['required', 'postcode'],
+    formatter: 'uppercase',
+    dependent: {
+      field: 'use-different-address',
+      value: 'true'
+    }
   }
 };

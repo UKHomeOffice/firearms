@@ -219,5 +219,12 @@
   },
   "contact-phone": {
     "required": "Enter contact's phone number"
+  },
+  "use-different-address": {
+    "required": "Select an option"
+  },
+  "contact-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a valid postcode"
   }
 }

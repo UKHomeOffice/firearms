@@ -400,13 +400,54 @@ module.exports = {
         'contact-email',
         'contact-phone'
       ],
-      next: '/contact-address',
+      next: '/contact-address-authority-holder',
+      forks: [{
+        target: '/contact-postcode',
+        condition(req) {
+          return req.sessionModel.get('contact-holder') === 'other';
+        }
+      }],
       locals: {
         section: 'contact-details',
         subsection: 'contact-details-confirmation'
       }
     },
+    '/contact-address-authority-holder': {
+      controller: require('./controllers/postcode'),
+      fields: [
+        'use-different-address',
+        'contact-postcode'
+      ],
+      next: '/contact-address',
+      forks: [{
+        target: '/summary',
+        condition: {
+          field: 'use-different-address',
+          value: 'false'
+        }
+      }, {
+        target: '/contact-address-lookup',
+        condition(req) {
+          const addresses = req.sessionModel.get('addresses');
+          return addresses && addresses.length;
+        }
+      }],
+      locals: {
+        section: 'contact-address-authority-holder',
+        field: 'contact'
+      }
+    },
+    '/contact-postcode': {
+      next: '/contact-address-lookup'
+    },
+    '/contact-address-lookup': {
+      next: '/summary'
+    },
     '/contact-address': {
+      next: '/summary'
+    },
+    '/summary': {
+
     }
   }
 };

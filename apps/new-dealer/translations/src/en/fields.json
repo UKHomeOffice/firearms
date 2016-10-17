@@ -471,5 +471,19 @@
   },
   "contact-phone": {
     "label": "Phone number"
+  },
+  "use-different-address": {
+    "legend": "You should only use a home address if it's the business' registered address.",
+    "options": {
+      "false": {
+        "label": "Use the home address already provided"
+      },
+      "true": {
+        "label": "Use a different address"
+      }
+    }
+  },
+  "contact-postcode": {
+    "label": "Postcode"
   }
 }
