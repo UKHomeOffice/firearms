@@ -546,5 +546,23 @@ module.exports = {
       'weapons',
       'ammunition'
     ]
+  },
+  'storage-postcode': {
+    mixin: 'input-text-code',
+    validate: ['required', 'postcode'],
+    formatter: 'uppercase'
+  },
+  'storage-address-lookup': {
+    className: 'address'
+  },
+  'storage-address-manual': {
+    mixin: 'textarea',
+    validate: 'required',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    attributes: [{
+      attribute: 'height',
+      value: 6
+    }]
   }
 };

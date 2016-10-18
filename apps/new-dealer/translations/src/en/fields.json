@@ -456,5 +456,14 @@
         "label": "Ammunition"
       }
     }
+  },
+  "storage-postcode": {
+    "label": "Postcode"
+  },
+  "storage-address-manual": {
+    "label": "Address"
+  },
+  "storage-address-lookup": {
+    "label": "Select your address"
   }
 }

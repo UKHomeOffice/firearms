@@ -28,6 +28,7 @@ module.exports = {
     secondAuthorityHoldersAddressPage: pagesPath('second-authority-holders-address.js'),
     storageWeaponsAndAmmoPage: pagesPath('storage-weapons-ammo.js'),
     storageAddressPage: pagesPath('storage-address.js'),
+    storageAnotherAddressPage: pagesPath('storage-add-another-address.js'),
     contactPage: pagesPath('contact.js'),
     contactDetailsPage: pagesPath('contact-details.js')
   }
