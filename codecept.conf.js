@@ -30,6 +30,7 @@ module.exports = {
     storageAddressPage: pagesPath('storage-address.js'),
     storageAnotherAddressPage: pagesPath('storage-add-another-address.js'),
     contactPage: pagesPath('contact.js'),
-    contactDetailsPage: pagesPath('contact-details.js')
+    contactDetailsPage: pagesPath('contact-details.js'),
+    contactAddressPage: pagesPath('contact-address.js')
   }
 };

@@ -564,5 +564,13 @@ module.exports = {
       attribute: 'height',
       value: 6
     }]
+  },
+  'contact-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email']
+  },
+  'contact-phone': {
+    mixin: 'input-text',
+    validate: 'required'
   }
 };

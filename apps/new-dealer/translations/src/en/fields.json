@@ -465,5 +465,11 @@
   },
   "storage-address-lookup": {
     "label": "Select your address"
+  },
+  "contact-email": {
+    "label": "Email address"
+  },
+  "contact-phone": {
+    "label": "Phone number"
   }
 }
