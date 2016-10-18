@@ -5,7 +5,7 @@ const controllers = require('hof').controllers;
 
 const ammunition = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'ammunition');
 const weapons = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'weapons');
-const storedOnPremises = (req, stored) => req.sessionModel.get('stored-on-premises') === stored;
+const storedOnPremises = req=> req.sessionModel.get('stored-on-premises') === 'true';
 
 module.exports = {
   name: 'new-dealer',
@@ -80,22 +80,22 @@ module.exports = {
       forks: [{
         target: '/storage-weapons-ammo',
         condition(req) {
-          const stored = storedOnPremises(req, 'true');
+          const stored = storedOnPremises(req);
           const weaponsAndAmmo = weapons(req) && ammunition(req);
           return stored && weaponsAndAmmo;
         }
       }, {
         target: '/storage-address',
         condition(req) {
-          const stored = storedOnPremises(req, 'true');
+          const stored = storedOnPremises(req);
           const weaponsAndAmmo = weapons(req) && ammunition(req);
           return stored && !weaponsAndAmmo;
         }
       }, {
         target: '/weapons',
         condition(req) {
-          const stored = storedOnPremises(req, 'false');
-          return stored && weapons(req);
+          const stored = storedOnPremises(req);
+          return !stored && weapons(req);
         }
       }]
     },
