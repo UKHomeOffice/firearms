@@ -22,6 +22,13 @@ module.exports = {
     'address-lookup': '#authority-holder-contact-address-lookup'
   },
 
+  sessionData: {
+    archer: 'Sterling Archer',
+    barry: 'Barry Dylan',
+    first: 'first',
+    second: 'second'
+  },
+
 
   links: {
     'manual-entry': '#manual-entry',

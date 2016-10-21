@@ -52,8 +52,8 @@ Scenario('First-authority-holder\'s name is in the header', function *(
   contactAddressAuthorityHolderPage
 ) {
   yield I.setSessionData(steps.name, {
-    'contact-holder': 'first',
-    'first-authority-holders-name': 'Sterling Archer',
+    'contact-holder': contactAddressAuthorityHolderPage.sessionData.first,
+    'first-authority-holders-name': contactAddressAuthorityHolderPage.sessionData.archer,
   });
   yield I.refreshPage();
   I.see(contactAddressAuthorityHolderPage.content['first-contact']);
@@ -64,8 +64,8 @@ Scenario('Second-authority-holder\'s name is in the header', function *(
   contactAddressAuthorityHolderPage
 ) {
   yield I.setSessionData(steps.name, {
-    'contact-holder': 'second',
-    'second-authority-holders-name': 'Barry Dylan',
+    'contact-holder': contactAddressAuthorityHolderPage.sessionData.second,
+    'second-authority-holders-name': contactAddressAuthorityHolderPage.sessionData.barry,
   });
   yield I.refreshPage();
   I.see(contactAddressAuthorityHolderPage.content['second-contact']);
@@ -118,8 +118,8 @@ Scenario('First-authority-holders name is in the page header of the manual-addre
   I.click(contactAddressAuthorityHolderPage.fields['different-address']);
   I.click(contactAddressAuthorityHolderPage.links['manual-entry']);
   yield I.setSessionData(steps.name, {
-    'contact-holder': 'first',
-    'first-authority-holders-name': 'Sterling Archer',
+    'contact-holder': contactAddressAuthorityHolderPage.sessionData.first,
+    'first-authority-holders-name': contactAddressAuthorityHolderPage.sessionData.archer,
   });
   yield I.refreshPage();
   I.see(contactAddressAuthorityHolderPage.content['first-contact']);
@@ -132,8 +132,8 @@ Scenario('Second-authority-holders name is in the page header of the manual-addr
   I.click(contactAddressAuthorityHolderPage.fields['different-address']);
   I.click(contactAddressAuthorityHolderPage.links['manual-entry']);
   yield I.setSessionData(steps.name, {
-    'contact-holder': 'second',
-    'second-authority-holders-name': 'Barry Dylan',
+    'contact-holder': contactAddressAuthorityHolderPage.sessionData.second,
+    'second-authority-holders-name': contactAddressAuthorityHolderPage.sessionData.barry,
   });
   yield I.refreshPage();
   I.see(contactAddressAuthorityHolderPage.content['second-contact']);
@@ -166,8 +166,8 @@ Scenario('First-authority-holders name is in the page header of the address-look
   I.click(contactAddressAuthorityHolderPage.fields['different-address'])
   contactAddressAuthorityHolderPage.fillFormAndSubmit(contactAddressAuthorityHolderPage.fields.postcode);
   yield I.setSessionData(steps.name, {
-    'contact-holder': 'first',
-    'first-authority-holders-name': 'Sterling Archer'
+    'contact-holder': contactAddressAuthorityHolderPage.sessionData.first,
+    'first-authority-holders-name': contactAddressAuthorityHolderPage.sessionData.archer
   });
   yield I.refreshPage();
   I.see(contactAddressAuthorityHolderPage.content['first-contact']);
@@ -180,8 +180,8 @@ Scenario('Second-authority-holders name is in the page header of the address-loo
   I.click(contactAddressAuthorityHolderPage.fields['different-address'])
   contactAddressAuthorityHolderPage.fillFormAndSubmit(contactAddressAuthorityHolderPage.fields.postcode);
   yield I.setSessionData(steps.name, {
-    'contact-holder': 'second',
-    'second-authority-holders-name': 'Barry Dylan'
+    'contact-holder': contactAddressAuthorityHolderPage.sessionData.second,
+    'second-authority-holders-name': contactAddressAuthorityHolderPage.sessionData.barry
   });
   yield I.refreshPage();
   I.see(contactAddressAuthorityHolderPage.content['second-contact']);
