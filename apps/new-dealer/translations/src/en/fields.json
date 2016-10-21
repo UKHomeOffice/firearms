@@ -483,7 +483,13 @@
       }
     }
   },
-  "contact-postcode": {
+  "authority-holder-contact-postcode": {
     "label": "Postcode"
+  },
+  "authority-holder-contact-address-lookup": {
+    "label": "Select your address"
+  },
+  "authority-holder-contact-address-manual": {
+    "label": "Address"
   }
 }

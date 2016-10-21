@@ -223,8 +223,14 @@
   "use-different-address": {
     "required": "Select an option"
   },
-  "contact-postcode": {
+  "authority-holder-contact-postcode": {
     "required": "Enter a postcode",
     "postcode": "Enter a valid postcode"
+  },
+  "authority-holder-contact-address-lookup": {
+    "required": "Select an address"
+  },
+  "authority-holder-contact-address-manual": {
+    "required": "Enter an address"
   }
 }

@@ -580,16 +580,29 @@ module.exports = {
      value: 'false'
     }, {
       value: 'true',
-      toggle: 'contact-postcode',
+      toggle: 'authority-holder-contact-postcode',
       child: 'partials/postcode-manual-link'
     }]
   },
-  'contact-postcode': {
+  'authority-holder-contact-postcode': {
     validate: ['required', 'postcode'],
     formatter: 'uppercase',
     dependent: {
       field: 'use-different-address',
       value: 'true'
     }
+  },
+  'authority-holder-contact-address-lookup': {
+    className: 'address'
+  },
+  'authority-holder-contact-address-manual': {
+    mixin: 'textarea',
+    validate: 'required',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    attributes: [{
+      attribute: 'height',
+      value: 6
+    }]
   }
 };
