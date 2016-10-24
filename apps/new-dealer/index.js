@@ -464,13 +464,49 @@ module.exports = {
       }
     },
     '/contact-postcode': {
-      next: '/contact-address-lookup'
+      template: 'postcode.html',
+      controller: require('./controllers/postcode'),
+      fields: [
+        'contact-postcode'
+      ],
+      next: '/contact-address',
+      forks: [{
+        target: '/contact-address-lookup',
+        condition(req) {
+          const addresses = req.sessionModel.get('addresses');
+          return addresses && addresses.length;
+        }
+      }],
+      locals: {
+        section: 'contact-address',
+        field: 'contact'
+      }
     },
     '/contact-address-lookup': {
-      next: '/summary'
+      template: 'address-lookup.html',
+      controller: require('./controllers/address-lookup'),
+      fields: [
+        'contact-address-lookup'
+      ],
+      next: '/summary',
+      locals: {
+        section: 'contact-address',
+        field: 'contact'
+      }
     },
     '/contact-address': {
-      next: '/summary'
+      template: 'address.html',
+      controller: require('./controllers/address'),
+      fields: [
+        'contact-address-manual'
+      ],
+      next: '/summary',
+      prereqs: ['/contact-postcode', '/contact-details'],
+      backLink: 'contact-postcode',
+      locals: {
+        section: 'contact-address',
+        field: 'contact'
+      }
     },
     '/summary': {
     }

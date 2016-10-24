@@ -604,5 +604,23 @@ module.exports = {
       attribute: 'height',
       value: 6
     }]
+  },
+  'contact-postcode': {
+    mixin: 'input-text-code',
+    validate: ['required', 'postcode'],
+    formatter: 'uppercase'
+  },
+  'contact-address-lookup': {
+    className: 'address'
+  },
+  'contact-address-manual': {
+    mixin: 'textarea',
+    validate: 'required',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    attributes: [{
+      attribute: 'height',
+      value: 6
+    }]
   }
 };
