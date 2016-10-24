@@ -21,7 +21,7 @@ module.exports = {
   country: '#first-authority-country-birth',
 
   content: {
-    header: 'What is Sterling Archer\'s birth details?',
+    header: 'What are Sterling Archer\'s birth details?',
     'future-dob': {
       day: '1',
       month: '1',

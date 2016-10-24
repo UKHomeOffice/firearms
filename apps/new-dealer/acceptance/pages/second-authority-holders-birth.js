@@ -21,7 +21,7 @@ module.exports = {
   country: '#second-authority-country-birth',
 
   content: {
-    header: 'What is Barry Dylan\'s birth details?',
+    header: 'What are Barry Dylan\'s birth details?',
     'future-dob': {
       day: '1',
       month: '1',
