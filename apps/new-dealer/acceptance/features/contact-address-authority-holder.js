@@ -38,7 +38,7 @@ Scenario('Postcode field is toggled when use a different address is selected', (
     I.seeElement(contactAddressAuthorityHolderPage.fields.postcode);
 });
 
-Scenario('An error is shown if ammunition step is not completed after selecting use a different address', (
+Scenario('An error is shown if the step is not completed after selecting use a different address', (
   I,
   contactAddressAuthorityHolderPage
 ) => {

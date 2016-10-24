@@ -144,5 +144,8 @@
         "second": "Which address should we use to contact {{values.second-authority-holders-name}}?"
       }
     }
+  },
+  "contact-address": {
+    "header": "What is {{values.someone-else-name}}'s address?"
   }
 }

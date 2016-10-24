@@ -232,5 +232,15 @@
   },
   "authority-holder-contact-address-manual": {
     "required": "Enter an address"
+  },
+  "contact-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a valid postcode"
+  },
+  "contact-address-manual": {
+    "required": "Enter an address"
+  },
+  "contact-address-lookup": {
+    "required": "Select an address"
   }
 }

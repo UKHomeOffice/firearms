@@ -491,5 +491,14 @@
   },
   "authority-holder-contact-address-manual": {
     "label": "Address"
+  },
+  "contact-postcode": {
+    "label": "Postcode"
+  },
+  "contact-address-manual": {
+    "label": "Address"
+  },
+  "contact-address-lookup": {
+    "label": "Select your address"
   }
 }
