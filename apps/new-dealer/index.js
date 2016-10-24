@@ -400,7 +400,7 @@ module.exports = {
         'contact-email',
         'contact-phone'
       ],
-      next: '/contact-address-authority-holder',
+      next: '/authority-holder-contact-postcode',
       forks: [{
         target: '/contact-postcode',
         condition(req) {
@@ -412,13 +412,13 @@ module.exports = {
         subsection: 'contact-details-confirmation'
       }
     },
-    '/contact-address-authority-holder': {
+    '/authority-holder-contact-postcode': {
       controller: require('./controllers/postcode'),
       fields: [
         'use-different-address',
-        'contact-postcode'
+        'authority-holder-contact-postcode'
       ],
-      next: '/contact-address',
+      next: '/authority-holder-contact-address',
       forks: [{
         target: '/summary',
         condition: {
@@ -426,7 +426,7 @@ module.exports = {
           value: 'false'
         }
       }, {
-        target: '/contact-address-lookup',
+        target: '/authority-holder-contact-address-lookup',
         condition(req) {
           const addresses = req.sessionModel.get('addresses');
           return addresses && addresses.length;
@@ -434,7 +434,33 @@ module.exports = {
       }],
       locals: {
         section: 'contact-address-authority-holder',
-        field: 'contact'
+        field: 'authority-holder-contact'
+      }
+    },
+    '/authority-holder-contact-address-lookup': {
+      template: 'address-lookup.html',
+      controller: require('./controllers/address-lookup'),
+      fields: [
+        'authority-holder-contact-address-lookup'
+      ],
+      next: '/summary',
+      locals: {
+        section: 'contact-address-authority-holder',
+        field: 'authority-holder-contact'
+      }
+    },
+    '/authority-holder-contact-address': {
+      template: 'address.html',
+      controller: require('./controllers/address'),
+      fields: [
+        'authority-holder-contact-address-manual'
+      ],
+      next: '/summary',
+      prereqs: ['/authority-holder-contact-postcode', '/contact-details'],
+      backLink: 'authority-holder-contact-postcode',
+      locals: {
+        section: 'contact-address-authority-holder',
+        field: 'authority-holder-contact'
       }
     },
     '/contact-postcode': {
@@ -447,7 +473,6 @@ module.exports = {
       next: '/summary'
     },
     '/summary': {
-
     }
   }
 };
