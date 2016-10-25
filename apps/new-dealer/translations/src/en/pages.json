@@ -81,7 +81,7 @@
     }
   },
   "first-authority-holders-birth": {
-    "header": "What is {{values.first-authority-holders-name}}'s birth details?"
+    "header": "What are {{values.first-authority-holders-name}}'s birth details?"
   },
   "first-authority-holders-nationality": {
     "header": "What is {{values.first-authority-holders-name}}'s nationality?"
@@ -93,7 +93,7 @@
     "header": "What's the full name of the second authority holder?"
   },
   "second-authority-holders-birth": {
-    "header": "What is {{values.second-authority-holders-name}}'s birth details?"
+    "header": "What are {{values.second-authority-holders-name}}'s birth details?"
   },
   "second-authority-holders-nationality": {
     "header": "What is {{values.second-authority-holders-name}}'s nationality?"
