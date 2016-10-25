@@ -13,6 +13,28 @@ module.exports = {
   steps: {
     '/': {
       controller: controllers.start,
+      next: '/activity'
+    },
+    '/activity': {
+      fields: [
+        'activity'
+      ],
+      next: '/company-name',
+      forks: [{
+        target: '/authority-number-renew-vary',
+        condition: {
+          field: 'activity',
+          value: 'renew'
+        }
+      }],
+      locals: {
+        section: 'activity'
+      }
+    },
+    '/authority-number-renew-vary': {
+      next: '/expiration-renew-vary'
+    },
+    '/expiration-renew-vary': {
       next: '/company-name'
     },
     '/company-name': {

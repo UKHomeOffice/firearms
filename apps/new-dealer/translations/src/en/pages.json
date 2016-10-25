@@ -1,4 +1,7 @@
 {
+  "activity": {
+    "header": "What do you want to do with the S5 authority?"
+  },
   "company-name": {
     "header": "Are you applying on behalf of a company or as a sole trader?"
   },

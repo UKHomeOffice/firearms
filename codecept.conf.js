@@ -9,6 +9,8 @@ module.exports = {
   name: 'firearms',
   features: './**/acceptance/features/**/*.js',
   include: {
+    activityPage: pagesPath('activity.js'),
+    authorityNumberRenewPage: pagesPath('authority-holder-renew-vary.js'),
     companyNamePage: pagesPath('company-name.js'),
     handlePage: pagesPath('handle.js'),
     obtainPage: pagesPath('obtain.js'),
