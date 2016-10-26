@@ -11,6 +11,13 @@
       }
     }
   },
+  "authority-number": {
+    "hint": "For example, 16/B/D/001",
+    "label": "Current authority number"
+  },
+  "reference-number": {
+    "label": "Reference number"
+  },
   "company": {
     "options": {
       "true": {

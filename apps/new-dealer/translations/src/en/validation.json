@@ -2,6 +2,12 @@
   "activity": {
     "required": "Select an option"
   },
+  "authority-number": {
+    "required": "Enter reference number of authority you are renewing/varying"
+  },
+  "reference-number": {
+    "required": "Enter your customer reference number"
+  },
   "company": {
     "required": "Select whether you're applying on behalf of a company or a sole trader"
   },

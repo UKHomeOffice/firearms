@@ -2,6 +2,11 @@
   "activity": {
     "header": "What do you want to do with the S5 authority?"
   },
+  "authority-number-renew-vary": {
+    "header": "What's the current authority and reference numbers?",
+    "summary-header": "Help with authority and reference numbers",
+    "details": "The current authority number will be replaced with a new number once the renewal or variation is approved. <br> The reference number is a unique number for the company or individual that never changes."
+  },
   "company-name": {
     "header": "Are you applying on behalf of a company or as a sole trader?"
   },

@@ -17,6 +17,14 @@ module.exports = {
       'renew'
     ]
   },
+  'authority-number': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'reference-number': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
   company: {
     mixin: 'radio-group',
     validate: 'required',
