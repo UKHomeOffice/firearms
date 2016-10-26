@@ -6,6 +6,17 @@ function notBothOptions(values) {
 }
 
 module.exports = {
+  activity: {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [
+      'new',
+      'renew'
+    ]
+  },
   company: {
     mixin: 'radio-group',
     validate: 'required',

@@ -1,4 +1,7 @@
 {
+  "activity": {
+    "required": "Select an option"
+  },
   "company": {
     "required": "Select whether you're applying on behalf of a company or a sole trader"
   },
