@@ -531,6 +531,7 @@ module.exports = {
       }
     },
     '/summary': {
+      clearSession: false
     }
   }
 };
