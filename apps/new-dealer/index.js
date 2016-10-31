@@ -32,7 +32,14 @@ module.exports = {
       }
     },
     '/authority-number-renew-vary': {
-      next: '/expiration-renew-vary'
+      fields: [
+        'authority-number',
+        'reference-number'
+      ],
+      next: '/expiration-renew-vary',
+      locals: {
+        section: 'authority-number-renew-vary'
+      }
     },
     '/expiration-renew-vary': {
       next: '/company-name'
