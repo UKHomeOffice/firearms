@@ -161,7 +161,7 @@ Scenario('I am taken to the storage-add-another-address step from the manual-add
   storageAddressPage
 ) => {
   I.click(storageAddressPage.links['manual-entry']);
-  storageAddressPage.fillFormAndSubmit(storageAddressPage.fields['address-manual']);
+  storageAddressPage.fillFormAndSubmit(storageAddressPage.fields['address-manual'], storageAddressPage.content.address);
   I.seeInCurrentUrl(storageAddressPage['another-address-url']);
 });
 

@@ -48,7 +48,7 @@ module.exports = {
   correctTranslationsShown(handleType, storageType) {
     const translation = this.getHeaderTranslations(handleType, storageType);
     I.see(translation);
-    this.fillFormAndSubmit(this.fields.postcode);
+    this.fillFormAndSubmit(this.fields.postcode, this.content.postcode);
     I.see(translation);
     I.click(this.links['cant-find-address']);
     I.see(translation);

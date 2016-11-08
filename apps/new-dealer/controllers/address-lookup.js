@@ -12,7 +12,8 @@ module.exports = class AddressLookup extends BaseController {
   }
 
   getValues(req, res, callback) {
-    const addresses = req.sessionModel.get('addresses');
+    const field = this.options.locals.field;
+    const addresses = req.sessionModel.get(`${field}-addresses`);
     const formattedlist = _.map(_.map(addresses, 'formatted_address'), address => {
       address = address.split('\n').join(', ');
       return {
@@ -21,7 +22,7 @@ module.exports = class AddressLookup extends BaseController {
       };
     });
 
-    const field = this.options.locals.field;
+    // const field = this.options.locals.field;
     const count = `${formattedlist.length} addresses`;
     this.options.fields[`${field}-address-lookup`].options = [{value: count, label: count}].concat(formattedlist);
     super.getValues(req, res, callback);
