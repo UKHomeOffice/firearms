@@ -6,11 +6,11 @@ const _ = require('lodash');
 module.exports = class StorageAddressLookup extends BaseController {
   locals(req, res) {
     const locals = super.locals(req, res);
-    let postcode;
-    let id;
     const addresses = req.sessionModel.get('storageAddresses');
     const hasStorageAddresses = req.sessionModel.get('storageAddresses') ? true : false;
     const storageAddresses = [];
+    let postcode;
+    let id;
     _.forEach(addresses, (value, key) => {
       const address = {
         id: key,
@@ -57,10 +57,9 @@ module.exports = class StorageAddressLookup extends BaseController {
   }
 
   saveValues(req, res, callback) {
-    let storageAddresses = req.sessionModel.get('storageAddresses') || {};
     const address = req.form.values['storage-address-lookup'];
     const postcode = req.sessionModel.get('storage-postcode');
-
+    let storageAddresses = req.sessionModel.get('storageAddresses') || {};
     let id = req.params.id;
 
     if (id === undefined) {

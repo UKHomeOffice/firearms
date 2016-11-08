@@ -22,7 +22,6 @@ module.exports = class AddressLookup extends BaseController {
       };
     });
 
-    // const field = this.options.locals.field;
     const count = `${formattedlist.length} addresses`;
     this.options.fields[`${field}-address-lookup`].options = [{value: count, label: count}].concat(formattedlist);
     super.getValues(req, res, callback);

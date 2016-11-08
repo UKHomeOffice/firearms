@@ -62,9 +62,9 @@ module.exports = class AddressController extends BaseController {
   }
 
   saveValues(req, res, callback) {
-    let storageAddresses = req.sessionModel.get('storageAddresses') || {};
     const address = req.form.values['storage-address-manual'];
     const postcode = req.sessionModel.get('storage-postcode');
+    let storageAddresses = req.sessionModel.get('storageAddresses') || {};
     let id = req.params.id;
     if (id === undefined) {
       const currentIndex = req.sessionModel.get('currentIndex') || 0;

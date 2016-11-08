@@ -59,6 +59,7 @@ module.exports = class StoragePostcodeController extends BaseController {
   }
 
   process(req, res, callback) {
+    const postcodesModel = new PostcodesModel();
     const postcode = req.form.values['storage-postcode'];
     const previousPostcode = req.sessionModel.get('storage-postcode');
     if (!postcode
@@ -72,7 +73,6 @@ module.exports = class StoragePostcodeController extends BaseController {
       return callback();
     }
 
-    const postcodesModel = new PostcodesModel();
     postcodesModel.fetch(postcode)
       .then(data => {
         if (data.length) {
