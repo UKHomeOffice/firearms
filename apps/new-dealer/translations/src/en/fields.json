@@ -18,13 +18,25 @@
   "reference-number": {
     "label": "Reference number"
   },
-  "company": {
+  "organisation": {
     "options": {
-      "true": {
+      "company": {
         "label": "Company"
       },
-      "false": {
+      "sole-trader": {
         "label": "Sole trader"
+      },
+      "shooting-club": {
+        "label": "Shooting club (Section 7(3))"
+      },
+      "charity": {
+        "label": "Charity"
+      },
+      "museum": {
+        "label": "Museum"
+      },
+      "other": {
+        "label": "Other"
       }
     }
   },
@@ -36,6 +48,21 @@
   },
   "sole-trader-name": {
     "label": "Sole trader name"
+  },
+  "shooting-club-name": {
+    "label": "Shooting club name"
+  },
+  "charity-name": {
+    "label": "Charity name"
+  },
+  "charity-number": {
+    "label": "Registered charity number"
+  },
+  "museum-name": {
+    "label": "Museum name"
+  },
+  "other-specify": {
+    "label": "Other specify"
   },
   "weapons-ammunition": {
     "legend": "Select all that apply",

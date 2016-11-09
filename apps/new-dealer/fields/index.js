@@ -25,7 +25,7 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
-  company: {
+  organisation: {
     mixin: 'radio-group',
     validate: 'required',
     className: 'form-group',
@@ -33,34 +33,85 @@ module.exports = {
       className: 'visuallyhidden'
     },
     options: [{
-      value: 'true',
+      value: 'company',
       toggle: 'company-name',
       child: 'partials/company'
     }, {
-      value: 'false',
+      value: 'sole-trader',
       toggle: 'sole-trader-name',
+      child: 'input-text'
+    }, {
+      value: 'shooting-club',
+      toggle: 'shooting-club-name',
+      child: 'input-text'
+    }, {
+      value: 'charity',
+      toggle: 'charity-name',
+      child: 'partials/charity'
+    }, {
+      value: 'museum',
+      toggle: 'museum-name',
+      child: 'input-text'
+    }, {
+      value: 'other',
+      toggle: 'other-specify',
       child: 'input-text'
     }]
   },
   'sole-trader-name': {
     validate: 'required',
     dependent: {
-      field: 'company',
-      value: 'false'
+      field: 'organisation',
+      value: 'sole-trader'
     }
   },
   'company-name': {
     validate: 'required',
     dependent: {
-      field: 'company',
-      value: 'true'
+      field: 'organisation',
+      value: 'company'
     }
   },
   'company-house-number': {
     validate: 'required',
     dependent: {
-      field: 'company',
-      value: 'true'
+      field: 'organisation',
+      value: 'company'
+    }
+  },
+  'shooting-club-name': {
+    validate: 'required',
+    dependent: {
+      field: 'organisation',
+      value: 'shooting-club'
+    }
+  },
+  'charity-name': {
+    validate: 'required',
+    dependent: {
+      field: 'organisation',
+      value: 'charity'
+    }
+  },
+  'charity-number': {
+    validate: 'required',
+    dependent: {
+      field: 'organisation',
+      value: 'charity'
+    }
+  },
+  'museum-name': {
+    validate: 'required',
+    dependent: {
+      field: 'organisation',
+      value: 'museum'
+    }
+  },
+  'other-specify': {
+    validate: 'required',
+    dependent: {
+      field: 'organisation',
+      value: 'other'
     }
   },
   'weapons-ammunition': {

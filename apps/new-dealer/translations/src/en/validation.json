@@ -8,8 +8,8 @@
   "reference-number": {
     "required": "Enter your customer reference number"
   },
-  "company": {
-    "required": "Select whether you're applying on behalf of a company or a sole trader"
+  "organisation": {
+    "required": "Select the type of organisation the authority is for"
   },
   "company-name": {
     "required": "Enter the Company name"
@@ -19,6 +19,21 @@
   },
   "sole-trader-name": {
     "required": "Enter the sole trader name"
+  },
+  "shooting-club-name": {
+    "required": "Enter the shooting club name"
+  },
+  "charity-name": {
+    "required": "Enter the charity name"
+  },
+  "charity-number": {
+    "required": "Enter the registered charity number"
+  },
+  "museum-name": {
+    "required": "Enter the museum name"
+  },
+  "other-specify": {
+    "required": "Specify the type of organisation"
   },
   "weapons-ammunition": {
     "required": "Select what the company will handle"
