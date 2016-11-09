@@ -40,7 +40,7 @@ module.exports = class AddressController extends BaseController {
     super.getValues(req, res, (err, values) => {
       if (err) {
         // eslint-disable-next-line no-console
-        console.error(err);
+        callback(err);
         return callback(null, values);
       }
       if (req.params.action === 'manual') {
@@ -48,7 +48,7 @@ module.exports = class AddressController extends BaseController {
               'storage-postcode',
               'postcodeApiMeta'
             ]);
-        if (req.params.id && req.params.id !== undefined) {
+        if (req.params.id !== undefined) {
           const storageAddresses = req.sessionModel.get('storageAddresses');
           const addresses = storageAddresses[req.params.id].address;
           const addressLines = addresses.split(', ').join('\n');

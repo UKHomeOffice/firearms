@@ -29,7 +29,7 @@ module.exports = class StoragePostcodeController extends BaseController {
     super.getValues(req, res, (err, values) => {
       if (err) {
         // eslint-disable-next-line no-console
-        console.error(err);
+        callback(err);
         return callback(null, values);
       }
       if (req.params.action === 'edit') {
