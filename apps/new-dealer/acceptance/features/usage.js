@@ -106,42 +106,6 @@ Scenario('An error is shown if usage step is not completed after selecting Other
   usagePage.toggledFieldShowsError(usagePage.other, usagePage['further-details'].other);
 });
 
-Scenario('When I select Ammunition on the handle step, all headers and field labels use ammunition translations', function *(
-  I,
-  usagePage
-) {
-  yield I.setSessionData(steps.name, {
-    company: 'true',
-    'weapons-ammunition': 'ammunition'
-  });
-  yield I.refreshPage();
-  usagePage.pageShowsCorrectHandleType('ammunition');
-});
-
-Scenario('When I select Weapons on the handle step, all headers and field labels use Weapons translations', function *(
-  I,
-  usagePage
-) {
-  yield I.setSessionData(steps.name, {
-    company: 'true',
-    'weapons-ammunition': 'weapons'
-  });
-  yield I.refreshPage();
-  usagePage.pageShowsCorrectHandleType('weapons');
-});
-
-Scenario('When I select Weapons and Ammunition on the handle step, all headers and field labels use Weapons and Ammunition translations', function *(
-  I,
-  usagePage
-) {
-  yield I.setSessionData(steps.name, {
-    company: 'true',
-    'weapons-ammunition': 'weapons,ammunition'
-  });
-  yield I.refreshPage();
-  usagePage.pageShowsCorrectHandleType('weapons,ammunition');
-});
-
 Scenario('Im taken to the upload supporting documents step', (
   I,
   usagePage,

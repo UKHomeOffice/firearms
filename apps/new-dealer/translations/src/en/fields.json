@@ -91,56 +91,21 @@
         "label": "Acquire through other means"
       },
       "wont-take-possession": {
-        "label": {
-          "company": {
-            "true": {
-              "weapons-ammunition": {
-                "weapons": "The company won't take possession of the weapons/component parts",
-                "weapons,ammunition": "The company won't take possession of the weapons/component parts and ammunition",
-                "ammunition": "The company won't take possession of the ammunition"
-              }
-            },
-            "false": {
-              "weapons-ammunition": {
-                "weapons": "The sole trader won't take possession of the weapons/component parts",
-                "weapons,ammunition": "The sole trader won't take possession of the weapons/component parts and ammunition",
-                "ammunition": "The sole trader won't take possession of the ammunition"
-              }
-            }
-          }
-        }
+        "label": "The prohibited items won't be taken into possession"
       }
     }
   },
   "buy-details": {
-    "label": {
-      "weapons-ammunition": {
-        "weapons": "Please provide further details, including which companies will the weapons/component parts be bought from",
-        "weapons,ammunition": "Please provide further details, including which companies will the weapons/component parts and ammunition be bought from",
-        "ammunition": "Please provide further details, including which companies will the ammunition be bought from"
-      }
-    }
+    "label": "Please provide further details, including which companies will the prohibited items be bought from"
   },
   "buy-import": {
-    "label": {
-      "weapons-ammunition": {
-        "weapons": "Tick this box if weapons/component parts will be imported",
-        "weapons,ammunition": "Tick this box if weapons/component parts and ammunition will be imported",
-        "ammunition": "Tick this box if ammunition will be imported"
-      }
-    }
+    "label": "Tick this box if the prohibited items will be imported"
   },
   "temporary-details": {
     "label": "Please provide further details"
   },
   "other-means-details": {
-    "label": {
-      "weapons-ammunition": {
-        "weapons": "How will the weapons/component parts be acquired?",
-        "weapons,ammunition": "How will the weapons/component parts and ammunition be acquired?",
-        "ammunition": "How will the ammunition be acquired?"
-      }
-    }
+    "label": "How will the prohibited items be acquired?"
   },
   "wont-take-details": {
     "label": "Please provide further details"
@@ -156,13 +121,7 @@
     }
   },
   "no-storage-details": {
-    "label": {
-      "weapons-ammunition": {
-        "weapons": "Please provide further details, including whether or not third parties will be storing the weapons/component parts on other sites",
-        "weapons,ammunition": "Please provide further details, including whether or not third parties will be storing the weapons/component parts and ammunition on other sites",
-        "ammunition": "Please provide further details, including whether or not third parties will be storing the ammunition on other sites"
-      }
-    }
+    "label": "Please provide further details, including whether or not third parties will be storing the prohibited items on other sites"
   },
   "usage": {
     "legend": "Select all that apply. You will be asked to prove the business need for these activities later.",
@@ -191,31 +150,13 @@
     }
   },
   "sell-details": {
-    "label": {
-      "weapons-ammunition": {
-        "weapons": "Please provide further details, including who the weapons/component parts will be sold to",
-        "weapons,ammunition": "Please provide further details, including who the weapons/component parts and ammunition will be sold to",
-        "ammunition": "Please provide further details, including who the ammunition will be sold to"
-      }
-    }
+    "label": "Please provide further details, including who the prohibited items will be sold to"
   },
   "transport-details": {
-    "label": {
-      "weapons-ammunition": {
-        "weapons": "Please provide further details, including where the weapons/component parts will be transported from and to, and on whose behalf will they be transported",
-        "weapons,ammunition": "Please provide further details, including where the weapons/component parts and ammunition will be transported from and to, and on whose behalf will they be transported",
-        "ammunition": "Please provide further details, including where the ammunition will be transported from and to, and on whose behalf will they be transported"
-      }
-    }
+    "label": "Please provide further details, including where the prohibited items will be transported from and to, and on whose behalf will they be transported"
   },
   "transfer-details": {
-    "label": {
-      "weapons-ammunition": {
-        "weapons": "Transferring is to manage movement of weapons/component parts through a third party. Please provide details of how the weapons/component parts will be transferred including third party company names.",
-        "weapons,ammunition": "Transferring is to manage movement of weapons/component parts and ammunition through a third party. Please provide details of how the weapons/component parts and ammunition will be transferred including third party company names.",
-        "ammunition": "Transferring is to manage movement of ammunition through a third party. Please provide details of how the ammunition will be transferred including third party company names."
-      }
-    }
+    "label": "Transferring is to manage movement of the prohibited items through a third party. Please provide details of how the prohibited items will be transferred including third party company names."
   },
   "training-details": {
     "label": "Please provide further details"

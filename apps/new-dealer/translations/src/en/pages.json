@@ -17,42 +17,13 @@
     "header": "Select all that apply"
   },
   "obtain": {
-    "header": {
-      "weapons-ammunition": {
-        "weapons": "How will the prohibited weapons/component parts be obtained?",
-        "weapons,ammunition": "How will the prohibited weapons/component parts and ammunition be obtained?",
-        "ammunition": "How will the prohibited ammunition be obtained?"
-      }
-    }
+    "header": "How will the prohibited items be obtained?"
   },
   "storage": {
-    "header": {
-      "company": {
-        "true": {
-          "weapons-ammunition": {
-            "weapons": "Will the prohibited weapons/component parts be stored on the company's premises?",
-            "weapons,ammunition": "Will the prohibited weapons/component parts and ammunition be stored on the company's premises?",
-            "ammunition": "Will the prohibited ammunition be stored on the company's premises?"
-          }
-        },
-        "false": {
-          "weapons-ammunition": {
-            "weapons": "Will the prohibited weapons/component parts be stored on the sole trader's premises?",
-            "weapons,ammunition": "Will the prohibited weapons/component parts and ammunition be stored on the sole trader's premises?",
-            "ammunition": "Will the prohibited ammunition be stored on the sole trader's premises?"
-          }
-        }
-      }
-    }
+    "header": "Will the prohibited items be stored on the premises?"
   },
   "usage": {
-    "header": {
-      "weapons-ammunition": {
-        "weapons": "What will be done with the prohibited weapons/component parts?",
-        "weapons,ammunition": "What will be done with the prohibited weapons/component parts and ammunition?",
-        "ammunition": "What will be done with the prohibited ammunition?"
-      }
-    }
+    "header": "What will be done with the prohibited items?"
   },
   "weapons": {
     "header": "Which categories do the weapons/component parts fall under?"
@@ -116,19 +87,7 @@
     "header": "What will be stored on the premises?"
   },
   "storage-address": {
-    "header": {
-      "weapons-ammunition": {
-        "weapons": "Where will the prohibited weapons/component parts be stored?",
-        "weapons,ammunition": {
-          "storage-weapons-ammo": {
-            "weapons": "Where will the prohibited weapons/component parts be stored?",
-            "weapons,ammunition": "Where will the prohibited weapons/component parts and ammunition be stored?",
-            "ammunition": "Where will the prohibited ammunition be stored?"
-          }
-        },
-        "ammunition": "Where will the prohibited ammunition be stored?"
-      }
-    }
+    "header": "Where will the prohibited items be stored?"
   },
   "add-more-addresses": {
     "header": "You can add further addresses later if required."

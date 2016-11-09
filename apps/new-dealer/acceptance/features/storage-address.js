@@ -90,64 +90,6 @@ Scenario('When I click cant find my address link, I will see the postcode I ente
   I.see(storageAddressPage.content.postcode);
 });
 
-Scenario('When I select weapons and ammunition on the handle step and then weapons on the storage step, all headers use weapons translations', function *(
-  I,
-  storageAddressPage
-) {
-  yield I.setSessionData(steps.name, {
-    'weapons-ammunition': 'weapons,ammunition',
-    'storage-weapons-ammo': 'weapons'
-  });
-  yield I.refreshPage();
-  storageAddressPage.correctTranslationsShown('weapons,ammunition', 'weapons');
-});
-
-Scenario('When I select weapons and ammunition on the handle step and then ammunition on the storage step, all headers use ammunition translations', function *(
-  I,
-  storageAddressPage
-) {
-  yield I.setSessionData(steps.name, {
-    'weapons-ammunition': 'weapons,ammunition',
-    'storage-weapons-ammo': 'ammunition'
-  });
-  yield I.refreshPage();
-  storageAddressPage.correctTranslationsShown('weapons,ammunition', 'ammunition');
-});
-
-Scenario('When I select weapons and ammunition on the handle step and then weapons and ammunition on the storage step, all headers use weapons and ammunition translations', function *(
-  I,
-  storageAddressPage
-) {
-  yield I.setSessionData(steps.name, {
-    'weapons-ammunition': 'weapons,ammunition',
-    'storage-weapons-ammo': 'weapons,ammunition'
-  });
-  yield I.refreshPage();
-  storageAddressPage.correctTranslationsShown('weapons,ammunition', 'weapons,ammunition');
-});
-
-Scenario('When I select weapons on the handle step then all headers use weapons translations', function *(
-  I,
-  storageAddressPage
-) {
-  yield I.setSessionData(steps.name, {
-    'weapons-ammunition': 'weapons'
-  });
-  yield I.refreshPage();
-  storageAddressPage.correctTranslationsShown('weapons', 'weapons');
-});
-
-Scenario('When I select ammunition on the handle step then all headers use ammunition translations', function *(
-  I,
-  storageAddressPage
-) {
-  yield I.setSessionData(steps.name, {
-    'weapons-ammunition': 'ammunition'
-  });
-  yield I.refreshPage();
-  storageAddressPage.correctTranslationsShown('ammunition', 'ammunition');
-});
-
 Scenario('I am taken to the storage-add-another-address step from the address-lookup step', (
   I,
   storageAddressPage
