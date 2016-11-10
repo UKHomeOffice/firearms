@@ -63,6 +63,13 @@ module.exports = {
         'obtain',
         'other-means-details'
       ],
+      next: '/import'
+    },
+    '/import': {
+      fields: [
+        'import',
+        'import-country'
+      ],
       next: '/storage'
     },
     '/storage': {

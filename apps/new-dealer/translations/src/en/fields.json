@@ -96,6 +96,22 @@
   "other-means-details": {
     "label": "How will the prohibited items be obtained?"
   },
+  "wont-take-details": {
+    "label": "Please provide further details"
+  },
+  "import": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "import-country": {
+    "label": "Which countries will the prohibited items be imported from?"
+  },
   "stored-on-premises": {
     "options": {
       "true": {

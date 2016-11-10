@@ -50,6 +50,12 @@
   "no-storage-details": {
     "required": "Provide further details"
   },
+  "import": {
+    "required": "Select an option"
+  },
+  "import-country": {
+    "required": "Tell us where the prohibited items will be imported from"
+  },
   "usage": {
     "required": "Select at least one option"
   },

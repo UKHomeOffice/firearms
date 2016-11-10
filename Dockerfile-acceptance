@@ -10,6 +10,7 @@ RUN wget https://github.com/Medium/phantomjs/releases/download/v2.1.1/${PHANTOM_
 COPY package.json package.json
 COPY codecept.conf.js codecept.conf.js
 COPY config.js config.js
+COPY assets/countries/index.js assets/countries/index.js
 COPY mock-postcode.js mock-postcode.js
 COPY apps apps/
 COPY test.sh test.sh

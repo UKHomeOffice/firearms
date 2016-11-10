@@ -144,6 +144,36 @@ module.exports = {
       value: 'other-means'
     }
   },
+  'wont-take-details': {
+    validate: 'required',
+    dependent: {
+      field: 'obtain',
+      value: 'wont-take-possession'
+    }
+  },
+  'import': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'import-country',
+      child: 'select'
+    }, {
+      value: 'no'
+    }]
+  },
+  'import-country': {
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(require('../../../assets/countries').nonUKcountries),
+    dependent: {
+      field: 'import',
+      value: 'yes'
+    }
+  },
   'stored-on-premises': {
     mixin: 'radio-group',
     validate: 'required',
