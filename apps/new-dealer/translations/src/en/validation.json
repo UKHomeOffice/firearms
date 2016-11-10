@@ -41,16 +41,7 @@
   "obtain": {
     "required": "Select at least one option"
   },
-  "buy-details": {
-    "required": "Provide further details"
-  },
-  "temporary-details": {
-    "required": "Provide further details"
-  },
   "other-means-details": {
-    "required": "Provide further details"
-  },
-  "wont-take-details": {
     "required": "Provide further details"
   },
   "stored-on-premises": {
