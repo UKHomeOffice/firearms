@@ -39,9 +39,7 @@ module.exports = class AddressController extends BaseController {
   getValues(req, res, callback) {
     super.getValues(req, res, (err, values) => {
       if (err) {
-        // eslint-disable-next-line no-console
-        callback(err);
-        return callback(null, values);
+        return callback(err);
       }
       if (req.params.action === 'manual') {
             req.sessionModel.unset([
