@@ -1,9 +1,5 @@
 'use strict';
 
-const TRANSLATIONS = require('../../translations/en/default');
-const FIELDS = TRANSLATIONS.fields;
-const PAGES = TRANSLATIONS.pages;
-
 let I;
 
 module.exports = {
@@ -31,22 +27,6 @@ module.exports = {
     other: '#other-details'
   },
 
-  getHeaderTranslations(handleType) {
-    return PAGES.usage.header['weapons-ammunition'][handleType];
-  },
-
-  getSellDetailsTranslations(handleType) {
-    return FIELDS['sell-details'].label['weapons-ammunition'][handleType];
-  },
-
-  getTransportDetailsTranslations(handleType) {
-    return FIELDS['transport-details'].label['weapons-ammunition'][handleType];
-  },
-
-  getTransferDetailsTranslations(handleType) {
-    return FIELDS['transfer-details'].label['weapons-ammunition'][handleType];
-  },
-
   checkboxTogglesField(checkbox, field) {
     I.click(checkbox);
     I.seeElements(field);
@@ -56,18 +36,6 @@ module.exports = {
     I.click(checkbox);
     I.submitForm();
     I.seeErrors(field);
-  },
-
-  pageShowsCorrectHandleType(handleType){
-    I.click(this.sell);
-    I.click(this.transport);
-    I.click(this.transfer);
-    I.seeEach([
-      this.getHeaderTranslations(handleType),
-      this.getSellDetailsTranslations(handleType),
-      this.getTransportDetailsTranslations(handleType),
-      this.getTransferDetailsTranslations(handleType)
-    ]);
   },
 
   fillFormAndSubmit() {
