@@ -8,6 +8,7 @@ const _ = require('lodash');
 
 module.exports = class PostcodeController extends BaseController {
   process(req, res, callback) {
+    const postcodesModel = new PostcodesModel();
     const field = this.options.locals.field;
     const postcode = req.form.values[`${field}-postcode`];
     const previousPostcode = req.sessionModel.get(`${field}-postcode`);
@@ -22,7 +23,6 @@ module.exports = class PostcodeController extends BaseController {
       return callback();
     }
 
-    const postcodesModel = new PostcodesModel();
     postcodesModel.fetch(postcode)
       .then(data => {
         if (data.length) {
