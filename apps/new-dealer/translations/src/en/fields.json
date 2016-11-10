@@ -1,13 +1,11 @@
 {
   "activity": {
-    "header": "Help with understanding what you'd want to do with the S5 authority",
-    "summary-details": "Applying for a new S5 authority is a new application. <br> Renewing an existing authority is to renew an authority previously held without making any changes. <br> Varying one is to make variations or changes to a previously held authority.",
     "options": {
       "new": {
-        "label": "Apply for a new one "
+        "label": "Apply for an authority"
       },
       "renew": {
-        "label": "Renew or vary an existing one"
+        "label": "Renew or amend an existing authority"
       }
     }
   },
