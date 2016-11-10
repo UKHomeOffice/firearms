@@ -9,7 +9,7 @@ const storedOnPremises = req=> req.sessionModel.get('stored-on-premises') === 't
 
 module.exports = {
   name: 'new-dealer',
-  params: '/:action?',
+  params: '/:action?/:id?',
   steps: {
     '/': {
       controller: controllers.start,
@@ -138,16 +138,16 @@ module.exports = {
       }
     },
     '/storage-postcode': {
-      template: 'postcode.html',
-      controller: require('./controllers/postcode'),
+      controller: require('./controllers/storage-postcode'),
       fields: [
         'storage-postcode'
       ],
       next: '/storage-address',
+      continueOnEdit: true,
       forks: [{
         target: '/storage-address-lookup',
         condition(req) {
-          const addresses = req.sessionModel.get('addresses');
+          const addresses = req.sessionModel.get('storage-addresses');
           return addresses && addresses.length;
         }
       }],
@@ -158,33 +158,53 @@ module.exports = {
       }
     },
     '/storage-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('./controllers/address-lookup'),
+      controller: require('./controllers/storage-address-lookup'),
       fields: [
         'storage-address-lookup'
       ],
       next: '/storage-add-another-address',
+      continueOnEdit: true,
       locals: {
         section: 'storage-address',
         field: 'storage'
       }
     },
     '/storage-address': {
-      template: 'address.html',
-      controller: require('./controllers/address'),
+      controller: require('./controllers/storage-address'),
       fields: [
         'storage-address-manual'
       ],
       prereqs: ['/storage-postcode', '/storage-weapons-ammo', '/supporting-docs'],
       backLink: 'storage-postcode',
       next: '/storage-add-another-address',
+      continueOnEdit: true,
       locals: {
         section: 'storage-address',
         field: 'storage'
       }
     },
-    'storage-add-another-address': {
-
+    '/storage-add-another-address': {
+      controller: require('./controllers/storage-add-another-address'),
+      fields: [
+        'storage-add-another-address'
+      ],
+      next: '/ammunition',
+      forks: [{
+        target: '/storage-postcode',
+        condition: {
+          field: 'storage-add-another-address',
+          value: 'yes'
+        }
+      }, {
+        target: '/weapons',
+        condition(req) {
+          const noMoreAddresses = req.form.values['storage-add-another-address'] === 'no';
+          return noMoreAddresses && weapons(req);
+        }
+      }],
+      locals: {
+        section: 'storage-add-another-address'
+      }
     },
     '/weapons': {
       fields: [
@@ -284,7 +304,7 @@ module.exports = {
       forks: [{
         target: '/first-authority-holders-address-lookup',
         condition(req) {
-          const addresses = req.sessionModel.get('addresses');
+          const addresses = req.sessionModel.get('first-authority-holders-addresses');
           return addresses && addresses.length;
         }
       }],
@@ -378,7 +398,7 @@ module.exports = {
       forks: [{
         target: '/second-authority-holders-address-lookup',
         condition(req) {
-          const addresses = req.sessionModel.get('addresses');
+          const addresses = req.sessionModel.get('second-authority-holders-addresses');
           return addresses && addresses.length;
         }
       }],
@@ -457,7 +477,7 @@ module.exports = {
       }, {
         target: '/authority-holder-contact-address-lookup',
         condition(req) {
-          const addresses = req.sessionModel.get('addresses');
+          const addresses = req.sessionModel.get('authority-holder-contact-addresses');
           return addresses && addresses.length;
         }
       }],
@@ -502,7 +522,7 @@ module.exports = {
       forks: [{
         target: '/contact-address-lookup',
         condition(req) {
-          const addresses = req.sessionModel.get('addresses');
+          const addresses = req.sessionModel.get('contact-addresses');
           return addresses && addresses.length;
         }
       }],

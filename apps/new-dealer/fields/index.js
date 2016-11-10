@@ -641,5 +641,13 @@ module.exports = {
       attribute: 'height',
       value: 6
     }]
+  },
+  'storage-add-another-address': {
+    mixin: 'radio-group',
+    validate: 'required',
+    options: [
+      'yes',
+      'no'
+    ]
   }
 };

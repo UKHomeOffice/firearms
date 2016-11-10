@@ -222,6 +222,9 @@
   "storage-address-lookup": {
     "required": "Select an address"
   },
+  "storage-add-another-address": {
+    "required": "Select an option"
+  },
   "contact-email": {
     "required": "Enter contact's email address",
     "email": "Enter a valid email address"

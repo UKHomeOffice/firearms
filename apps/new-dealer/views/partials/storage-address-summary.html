@@ -1,0 +1,8 @@
+{{#hasStorageAddresses}}
+  <div id="storage-address-summary">
+    <h2>Addresses added</h2>
+    {{#storageAddresses}}
+      <p class="address-summary">{{address}} <span class="link"><a href="{{baseUrl}}/storage-postcode/edit/{{id}}">Change</a></span></p>
+    {{/storageAddresses}}
+  </div>
+{{/hasStorageAddresses}}

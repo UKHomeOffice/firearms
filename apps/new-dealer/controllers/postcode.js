@@ -8,6 +8,7 @@ const _ = require('lodash');
 
 module.exports = class PostcodeController extends BaseController {
   process(req, res, callback) {
+    const postcodesModel = new PostcodesModel();
     const field = this.options.locals.field;
     const postcode = req.form.values[`${field}-postcode`];
     const previousPostcode = req.sessionModel.get(`${field}-postcode`);
@@ -18,17 +19,16 @@ module.exports = class PostcodeController extends BaseController {
 
     if (_.startsWith(postcode, 'BT')) {
       req.sessionModel.unset('postcodeApiMeta');
-      req.sessionModel.unset('addresses');
+      req.sessionModel.unset(`${field}-addresses`);
       return callback();
     }
 
-    const postcodesModel = new PostcodesModel();
     postcodesModel.fetch(postcode)
       .then(data => {
         if (data.length) {
-          req.sessionModel.set('addresses', data);
+          req.sessionModel.set(`${field}-addresses`, data);
         } else {
-          req.sessionModel.unset('addresses');
+          req.sessionModel.unset(`${field}-addresses`);
           req.sessionModel.set('postcodeApiMeta', {
             messageKey: 'not-found'
           });

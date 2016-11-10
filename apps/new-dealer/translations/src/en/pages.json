@@ -155,5 +155,20 @@
   },
   "contact-address": {
     "header": "What is {{values.someone-else-name}}'s address?"
+  },
+  "storage-add-another-address": {
+    "header": {
+      "weapons-ammunition": {
+        "weapons": "Is there another address where the prohibited weapons/component parts be stored?",
+        "weapons,ammunition": {
+          "storage-weapons-ammo": {
+            "weapons": "Is there another address where the prohibited weapons/component parts be stored?",
+            "weapons,ammunition": "Is there another address where the prohibited weapons/component parts and ammunition be stored?",
+            "ammunition": "Is there another address where the prohibited ammunition be stored?"
+          }
+        },
+        "ammunition": "Is there another address where the prohibited ammunition be stored?"
+      }
+    }
   }
 }

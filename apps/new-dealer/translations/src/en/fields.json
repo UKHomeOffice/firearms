@@ -519,5 +519,16 @@
   },
   "contact-address-lookup": {
     "label": "Select your address"
+  },
+  "storage-add-another-address": {
+    "legend": "The police will inspect each address used for storage",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
