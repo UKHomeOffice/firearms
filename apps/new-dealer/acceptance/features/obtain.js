@@ -80,66 +80,6 @@ Scenario('An error is shown if obtain step is not completed after selecting Won\
   obtainPage.toggledFieldShowsError(obtainPage['wont-take-possession'], obtainPage['further-details']['wont-take-possession']);
 });
 
-Scenario('When I select Ammunition on the handle step, all headers and field labels use ammunition translations', function *(
-  I,
-  obtainPage
-) {
-  yield I.setSessionData(steps.name, {
-    company: 'true',
-    'weapons-ammunition': 'ammunition'
-  });
-  yield I.refreshPage();
-  obtainPage.pageShowsCorrectHandleType('ammunition');
-});
-
-Scenario('When I select Weapons on the handle step, all headers and field labels use Weapons translations', function *(
-  I,
-  obtainPage
-) {
-  yield I.setSessionData(steps.name, {
-    company: 'true',
-    'weapons-ammunition': 'weapons'
-  });
-  yield I.refreshPage();
-  obtainPage.pageShowsCorrectHandleType('weapons');
-});
-
-Scenario('When I select Weapons and Ammunition on the handle step, all headers and field labels use Weapons and Ammunition translations', function *(
-  I,
-  obtainPage
-) {
-  yield I.setSessionData(steps.name, {
-    company: 'true',
-    'weapons-ammunition': 'weapons,ammunition'
-  });
-  yield I.refreshPage();
-  obtainPage.pageShowsCorrectHandleType('weapons,ammunition');
-});
-
-Scenario('When I select Company on the company step, all headers and field labels use Company translations', function *(
-  I,
-  obtainPage
-) {
-  yield I.setSessionData(steps.name, {
-    company: 'true',
-    'weapons-ammunition': 'weapons'
-  });
-  yield I.refreshPage();
-  obtainPage.pageShowsCompanyOrTrader('true');
-});
-
-Scenario('When I select Sole-trader on the company step, all headers and field labels use Sole-trader translations', function *(
-  I,
-  obtainPage
-) {
-  yield I.setSessionData(steps.name, {
-    company: 'false',
-    'weapons-ammunition': 'weapons'
-  });
-  yield I.refreshPage();
-  obtainPage.pageShowsCompanyOrTrader('false');
-});
-
 Scenario('Im taken to the storage step', (
   I,
   obtainPage,

@@ -46,10 +46,15 @@ module.exports = {
     },
     '/company-name': {
       fields: [
-        'company',
+        'organisation',
         'company-name',
         'company-house-number',
-        'sole-trader-name'
+        'sole-trader-name',
+        'shooting-club-name',
+        'charity-name',
+        'charity-number',
+        'museum-name',
+        'other-specify'
       ],
       next: '/handle',
       locals: {
