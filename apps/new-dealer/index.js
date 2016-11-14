@@ -227,7 +227,8 @@ module.exports = {
       next: '/first-authority-holders-birth'
     },
     '/first-authority-holders-birth': {
-      controller: require('./controllers/first-authority-holders-birth'),
+      controller: controllers.date,
+      dateKey: 'first-authority-dob',
       fields: [
         'first-authority-dob',
         'first-authority-dob-day',
@@ -312,7 +313,8 @@ module.exports = {
       next: '/second-authority-holders-birth'
     },
     '/second-authority-holders-birth': {
-      controller: require('./controllers/second-authority-holders-birth'),
+      controller: controllers.date,
+      dateKey: 'second-authority-dob',
       fields: [
         'second-authority-dob',
         'second-authority-dob-day',
