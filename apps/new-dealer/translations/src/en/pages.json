@@ -26,16 +26,12 @@
     "header": "What will be done with the prohibited items?"
   },
   "weapons": {
-    "header": "Which categories do the weapons/component parts fall under?"
-  },
-  "weapons-all-that-apply": {
-    "header": "Select all that apply and state the maximum quantities held at any one time. The quantities should reflect the supporting evidence provided, and be as accurate as possible. If the sections and quantities aren't backed up by the evidence you have provided, it may delay the application or result in the authority not being approved."
+    "header": "Which categories do the weapons/component parts fall under?",
+    "intro": "Select all that apply and state the maximum quantities held at any one time. The quantities should reflect the supporting evidence provided, and be as accurate as possible. If the sections and quantities aren't backed up by the evidence you have provided, it may delay the application or result in the authority not being approved."
   },
   "ammunition": {
-    "header": "Which categories does the prohibited ammunition fall under?"
-  },
-  "ammunition-all-that-apply": {
-    "header": "Select all that apply and state the maximum quantities held at any one time. The quantities should reflect the supporting evidence provided, and be as accurate as possible. If the sections and quantities aren't backed up by the evidence you have provided, it may delay the application or result in the authority not being approved."
+    "header": "Which categories does the prohibited ammunition fall under?",
+    "intro": "Select all that apply and state the maximum quantities held at any one time. The quantities should reflect the supporting evidence provided, and be as accurate as possible. If the sections and quantities aren't backed up by the evidence you have provided, it may delay the application or result in the authority not being approved."
   },
   "postcode": {
     "manual": "Enter address manually"
@@ -65,6 +61,12 @@
   "first-authority-holders-nationality": {
     "header": "What is {{values.first-authority-holders-name}}'s nationality?"
   },
+  "first-authority-holders-postcode": {
+    "header": "What is {{values.first-authority-holders-name}}'s home address?"
+  },
+  "first-authority-holders-address-lookup": {
+    "header": "What is {{values.first-authority-holders-name}}'s home address?"
+  },
   "first-authority-holders-address": {
     "header": "What is {{values.first-authority-holders-name}}'s home address?"
   },
@@ -77,6 +79,12 @@
   "second-authority-holders-nationality": {
     "header": "What is {{values.second-authority-holders-name}}'s nationality?"
   },
+  "second-authority-holders-postcode": {
+    "header": "What is {{values.second-authority-holders-name}}'s home address?"
+  },
+  "second-authority-holders-address-lookup": {
+    "header": "What is {{values.second-authority-holders-name}}'s home address?"
+  },
   "second-authority-holders-address": {
     "header": "What is {{values.second-authority-holders-name}}'s home address?"
   },
@@ -86,11 +94,17 @@
   "storage-weapons-ammo": {
     "header": "What will be stored on the premises?"
   },
-  "storage-address": {
-    "header": "Where will the prohibited items be stored?"
+  "storage-postcode": {
+    "header": "Where will the prohibited items be stored?",
+    "intro": "You can add further addresses later, if required. The police will inspect the storage arrangements at each location."
   },
-  "add-more-addresses": {
-    "header": "You can add further addresses later if required."
+  "storage-address-lookup": {
+    "header": "Where will the prohibited items be stored?",
+    "intro": "You can add further addresses later, if required. The police will inspect the storage arrangements at each location."
+  },
+  "storage-address": {
+    "header": "Where will the prohibited items be stored?",
+    "intro": "You can add further addresses later, if required. The police will inspect the storage arrangements at each location."
   },
   "contact-details": {
     "header": {
@@ -99,18 +113,38 @@
         "second": "What are {{values.second-authority-holders-name}}'s contact details?",
         "other": "What are {{values.someone-else-name}}'s contact details?"
       }
-    }
+    },
+    "intro": "A confirmation email of this application will be sent to this address."
   },
-  "contact-details-confirmation": {
-    "header": "A confirmation email of this application will be sent to this address."
-  },
-  "contact-address-authority-holder": {
+  "authority-holder-contact-postcode": {
     "header": {
       "contact-holder": {
         "first": "Which address should we use to contact {{values.first-authority-holders-name}}?",
         "second": "Which address should we use to contact {{values.second-authority-holders-name}}?"
       }
     }
+  },
+  "authority-holder-contact-address-lookup": {
+    "header": {
+      "contact-holder": {
+        "first": "Which address should we use to contact {{values.first-authority-holders-name}}?",
+        "second": "Which address should we use to contact {{values.second-authority-holders-name}}?"
+      }
+    }
+  },
+  "authority-holder-contact-address": {
+    "header": {
+      "contact-holder": {
+        "first": "Which address should we use to contact {{values.first-authority-holders-name}}?",
+        "second": "Which address should we use to contact {{values.second-authority-holders-name}}?"
+      }
+    }
+  },
+  "contact-postcode": {
+    "header": "What is {{values.someone-else-name}}'s address?"
+  },
+  "contact-address-lookup": {
+    "header": "What is {{values.someone-else-name}}'s address?"
   },
   "contact-address": {
     "header": "What is {{values.someone-else-name}}'s address?"

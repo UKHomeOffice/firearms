@@ -6,7 +6,7 @@ const ErrorController = require('hof').controllers.error;
 module.exports = class AuthorityHolderNationalityController extends BaseController {
 
   validateField(key, req) {
-    if (key === this.options.locals.section) {
+    if (key === this.options.locals.key) {
 
       const firstNationality = req.form.values[key].toLowerCase();
       const secondNationality = req.form.values[`${key}-second`].toLowerCase();

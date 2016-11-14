@@ -26,20 +26,14 @@ module.exports = {
           field: 'activity',
           value: 'renew'
         }
-      }],
-      locals: {
-        section: 'activity'
-      }
+      }]
     },
     '/authority-number-renew-vary': {
       fields: [
         'authority-number',
         'reference-number'
       ],
-      next: '/expiration-renew-vary',
-      locals: {
-        section: 'authority-number-renew-vary'
-      }
+      next: '/expiration-renew-vary'
     },
     '/expiration-renew-vary': {
       next: '/company-name'
@@ -56,19 +50,13 @@ module.exports = {
         'museum-name',
         'other-specify'
       ],
-      next: '/handle',
-      locals: {
-        section: 'company-name'
-      }
+      next: '/handle'
     },
     '/handle': {
       fields: [
         'weapons-ammunition'
       ],
-      next: '/obtain',
-      locals: {
-        section: 'handle'
-      }
+      next: '/obtain'
     },
     '/obtain': {
       fields: [
@@ -79,20 +67,14 @@ module.exports = {
         'other-means-details',
         'wont-take-details'
       ],
-      next: '/storage',
-      locals: {
-        section: 'obtain'
-      }
+      next: '/storage'
     },
     '/storage': {
       fields: [
         'stored-on-premises',
         'no-storage-details'
       ],
-      next: '/usage',
-      locals: {
-        section: 'storage'
-      }
+      next: '/usage'
     },
     '/usage': {
       fields: [
@@ -104,10 +86,7 @@ module.exports = {
         'research-details',
         'other-details'
       ],
-      next: '/supporting-docs',
-      locals: {
-        section: 'usage'
-      }
+      next: '/supporting-docs'
     },
     '/supporting-docs': {
       next: '/ammunition',
@@ -137,10 +116,7 @@ module.exports = {
       fields: [
         'storage-weapons-ammo'
       ],
-      next: '/storage-postcode',
-      locals: {
-        section: 'storage-weapons-ammo'
-      }
+      next: '/storage-postcode'
     },
     '/storage-postcode': {
       controller: require('./controllers/storage-postcode'),
@@ -157,8 +133,6 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'storage-address',
-        subsection: 'add-more-addresses',
         field: 'storage'
       }
     },
@@ -170,7 +144,6 @@ module.exports = {
       next: '/storage-add-another-address',
       continueOnEdit: true,
       locals: {
-        section: 'storage-address',
         field: 'storage'
       }
     },
@@ -184,7 +157,6 @@ module.exports = {
       next: '/storage-add-another-address',
       continueOnEdit: true,
       locals: {
-        section: 'storage-address',
         field: 'storage'
       }
     },
@@ -206,10 +178,7 @@ module.exports = {
           const noMoreAddresses = req.form.values['storage-add-another-address'] === 'no';
           return noMoreAddresses && weapons(req);
         }
-      }],
-      locals: {
-        section: 'storage-add-another-address'
-      }
+      }]
     },
     '/weapons': {
       fields: [
@@ -231,11 +200,7 @@ module.exports = {
       forks: [{
         target: '/ammunition',
         condition: ammunition
-      }],
-      locals: {
-        section: 'weapons',
-        subsection: 'weapons-all-that-apply'
-      }
+      }]
     },
     '/ammunition': {
       fields: [
@@ -247,32 +212,23 @@ module.exports = {
         'expanding-missile-quantity',
         'missiles-for-above-quantity'
       ],
-      next: '/authority-holders',
-      locals: {
-        section: 'ammunition',
-        subsection: 'ammunition-all-that-apply'
-      }
+      next: '/authority-holders'
     },
     '/authority-holders': {
       fields: [
         'authority-holders'
       ],
-      next: '/first-authority-holders-name',
-      locals: {
-        section: 'authority-holders'
-      }
+      next: '/first-authority-holders-name'
     },
     '/first-authority-holders-name': {
       fields: [
         'first-authority-holders-name'
       ],
-      next: '/first-authority-holders-birth',
-      locals: {
-        section: 'first-authority-holders-name'
-      }
+      next: '/first-authority-holders-birth'
     },
     '/first-authority-holders-birth': {
-      controller: require('./controllers/first-authority-holders-birth'),
+      controller: controllers.date,
+      dateKey: 'first-authority-dob',
       fields: [
         'first-authority-dob',
         'first-authority-dob-day',
@@ -281,10 +237,7 @@ module.exports = {
         'first-authority-town-birth',
         'first-authority-country-birth'
       ],
-      next: '/first-authority-holders-nationality',
-      locals: {
-        section: 'first-authority-holders-birth'
-      }
+      next: '/first-authority-holders-nationality'
     },
     '/first-authority-holders-nationality': {
       controller: require('./controllers/authority-holders-nationality'),
@@ -296,7 +249,7 @@ module.exports = {
       ],
       next: '/first-authority-holders-postcode',
       locals: {
-        section: 'first-authority-holders-nationality'
+        key: 'first-authority-holders-nationality'
       }
     },
     '/first-authority-holders-postcode': {
@@ -314,7 +267,6 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'first-authority-holders-address',
         field: 'first-authority-holders'
       }
     },
@@ -332,7 +284,6 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'first-authority-holders-address',
         field: 'first-authority-holders'
       }
     },
@@ -352,7 +303,6 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'first-authority-holders-address',
         field: 'first-authority-holders'
       }
     },
@@ -360,13 +310,11 @@ module.exports = {
       fields: [
         'second-authority-holders-name'
       ],
-      next: '/second-authority-holders-birth',
-      locals: {
-        section: 'second-authority-holders-name'
-      }
+      next: '/second-authority-holders-birth'
     },
     '/second-authority-holders-birth': {
-      controller: require('./controllers/second-authority-holders-birth'),
+      controller: controllers.date,
+      dateKey: 'second-authority-dob',
       fields: [
         'second-authority-dob',
         'second-authority-dob-day',
@@ -375,10 +323,7 @@ module.exports = {
         'second-authority-town-birth',
         'second-authority-country-birth'
       ],
-      next: '/second-authority-holders-nationality',
-      locals: {
-        section: 'second-authority-holders-birth'
-      }
+      next: '/second-authority-holders-nationality'
     },
     '/second-authority-holders-nationality': {
       controller: require('./controllers/authority-holders-nationality'),
@@ -390,7 +335,7 @@ module.exports = {
       ],
       next: '/second-authority-holders-postcode',
       locals: {
-        section: 'second-authority-holders-nationality'
+        key: 'second-authority-holders-nationality'
       }
     },
     '/second-authority-holders-postcode': {
@@ -408,7 +353,6 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'second-authority-holders-address',
         field: 'second-authority-holders'
       }
     },
@@ -420,7 +364,6 @@ module.exports = {
       ],
       next: '/contact',
       locals: {
-        section: 'second-authority-holders-address',
         field: 'second-authority-holders'
       }
     },
@@ -434,7 +377,6 @@ module.exports = {
       prereqs: ['/second-authority-holders-postcode', '/second-authority-holders-nationality'],
       backLink: 'second-authority-holders-postcode',
       locals: {
-        section: 'second-authority-holders-address',
         field: 'second-authority-holders'
       }
     },
@@ -444,9 +386,6 @@ module.exports = {
         'someone-else-name'
       ],
       controller: require('./controllers/contact'),
-      locals: {
-        section: 'contact'
-      },
       next: '/contact-details'
     },
     '/contact-details': {
@@ -460,11 +399,7 @@ module.exports = {
         condition(req) {
           return req.sessionModel.get('contact-holder') === 'other';
         }
-      }],
-      locals: {
-        section: 'contact-details',
-        subsection: 'contact-details-confirmation'
-      }
+      }]
     },
     '/authority-holder-contact-postcode': {
       controller: require('./controllers/postcode'),
@@ -487,7 +422,6 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'contact-address-authority-holder',
         field: 'authority-holder-contact'
       }
     },
@@ -499,7 +433,6 @@ module.exports = {
       ],
       next: '/summary',
       locals: {
-        section: 'contact-address-authority-holder',
         field: 'authority-holder-contact'
       }
     },
@@ -513,7 +446,6 @@ module.exports = {
       prereqs: ['/authority-holder-contact-postcode', '/contact-details'],
       backLink: 'authority-holder-contact-postcode',
       locals: {
-        section: 'contact-address-authority-holder',
         field: 'authority-holder-contact'
       }
     },
@@ -532,7 +464,6 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'contact-address',
         field: 'contact'
       }
     },
@@ -544,7 +475,6 @@ module.exports = {
       ],
       next: '/summary',
       locals: {
-        section: 'contact-address',
         field: 'contact'
       }
     },
@@ -558,7 +488,6 @@ module.exports = {
       prereqs: ['/contact-postcode', '/contact-details'],
       backLink: 'contact-postcode',
       locals: {
-        section: 'contact-address',
         field: 'contact'
       }
     },
