@@ -95,20 +95,8 @@
       }
     }
   },
-  "buy-details": {
-    "label": "Please provide further details, including which companies will the prohibited items be bought from"
-  },
-  "buy-import": {
-    "label": "Tick this box if the prohibited items will be imported"
-  },
-  "temporary-details": {
-    "label": "Please provide further details"
-  },
   "other-means-details": {
     "label": "How will the prohibited items be acquired?"
-  },
-  "wont-take-details": {
-    "label": "Please provide further details"
   },
   "stored-on-premises": {
     "options": {

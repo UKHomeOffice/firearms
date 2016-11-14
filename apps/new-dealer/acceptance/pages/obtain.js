@@ -40,7 +40,6 @@ module.exports = {
 
   fillFormAndSubmit() {
     I.click(this.buy);
-    I.fillField(this['further-details'].buy, this.content.buy);
     I.submitForm();
   }
 };

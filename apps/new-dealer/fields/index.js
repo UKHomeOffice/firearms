@@ -125,55 +125,23 @@ module.exports = {
   obtain: {
     mixin: 'checkbox-group',
     validate: 'required',
-    options: [{
-      value: 'buy',
-      toggle: 'buy-details',
-      child: 'partials/obtain-buy'
-    }, {
-      value: 'temporary-possession',
-      toggle: 'temporary-details',
-      child: 'textarea'
-    }, {
-      value: 'manufacture'
-    }, {
-      value: 'other-means',
-      toggle: 'other-means-details',
-      child: 'textarea'
-    }, {
-      value: 'wont-take-possession',
-      toggle: 'wont-take-details',
-      child: 'textarea'
-    }]
-  },
-  'buy-details': {
-    validate: 'required',
-    dependent: {
-      field: 'obtain',
-      value: 'buy'
-    }
-  },
-  'buy-import': {
-    className: 'form-checkbox'
-  },
-  'temporary-details': {
-    validate: 'required',
-    dependent: {
-      field: 'obtain',
-      value: 'temporary-possession'
-    }
+    options: [
+      'buy',
+      'temporary-possession',
+      'manufacture',
+      'wont-take-possession',
+      {
+        value: 'other-means',
+        toggle: 'other-means-details',
+        child: 'textarea'
+      }
+    ]
   },
   'other-means-details': {
     validate: 'required',
     dependent: {
       field: 'obtain',
       value: 'other-means'
-    }
-  },
-  'wont-take-details': {
-    validate: 'required',
-    dependent: {
-      field: 'obtain',
-      value: 'wont-take-possession'
     }
   },
   'stored-on-premises': {
