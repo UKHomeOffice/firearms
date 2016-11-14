@@ -44,12 +44,6 @@ Scenario('An error is shown if obtain step is not completed after selecting Acqu
   obtainPage.toggledFieldShowsError(obtainPage['other-means'], obtainPage['further-details']['other-means']);
 });
 
-Scenario('An error is shown if obtain step is not completed after selecting Won\'t take possession', (
-  obtainPage
-) => {
-  obtainPage.toggledFieldShowsError(obtainPage['wont-take-possession'], obtainPage['further-details']['wont-take-possession']);
-});
-
 Scenario('Im taken to the import step', (
   I,
   obtainPage,
