@@ -125,19 +125,17 @@ module.exports = {
   obtain: {
     mixin: 'checkbox-group',
     validate: 'required',
-    options: [{
-      value: 'buy'
-    }, {
-      value: 'temporary-possession'
-    }, {
-      value: 'manufacture'
-    }, {
-      value: 'wont-take-possession'
-    }, {
-      value: 'other-means',
-      toggle: 'other-means-details',
-      child: 'textarea'
-    }]
+    options: [
+      'buy',
+      'temporary-possession',
+      'manufacture',
+      'wont-take-possession',
+      {
+        value: 'other-means',
+        toggle: 'other-means-details',
+        child: 'textarea'
+      }
+    ]
   },
   'other-means-details': {
     validate: 'required',
