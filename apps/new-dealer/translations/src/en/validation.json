@@ -215,9 +215,6 @@
   "someone-else-name": {
     "required": "Enter contacts' full name"
   },
-  "storage-weapons-ammo": {
-    "required": "Select at least one option"
-  },
   "storage-postcode": {
     "required": "Enter a postcode",
     "postcode": "Enter a valid postcode"
