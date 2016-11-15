@@ -28,3 +28,13 @@
   background-image: url("../images/icons/icon-complete.png");
   display: block;
 }
+
+.icon-important {
+  float: left;
+  background: url("../images/icons/icon-important.png") no-repeat;
+  height: 35px;
+  width:35px;
+  position: absolute;
+  top: 50%;
+  margin-top: -17.5px;
+}

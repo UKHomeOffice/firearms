@@ -117,3 +117,15 @@ summary.summary-details {
 .twitter-typeahead {
   width: 100%;
 }
+
+// icon-important
+.notice {
+  clear: both;
+  position: relative;
+  margin-bottom: 20px;
+
+  .important-text {
+    padding-left: 50px;
+    display: block;
+  }
+}

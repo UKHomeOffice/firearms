@@ -187,7 +187,10 @@ module.exports = {
       forks: [{
         target: '/ammunition',
         condition: ammunition
-      }]
+      }],
+      locals: {
+        section: 'weapons'
+      }
     },
     '/ammunition': {
       fields: [
