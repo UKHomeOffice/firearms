@@ -16,27 +16,9 @@ module.exports = {
   'arm-guards': '#usage-arm-guards',
   training: '#usage-training',
   research: '#usage-research',
+  deactivation: '#usage-deactivation',
   other: '#usage-other',
-
-  'further-details': {
-    sell: '#sell-details',
-    transport: '#transport-details',
-    transfer: '#transfer-details',
-    training: '#training-details',
-    research: '#research-details',
-    other: '#other-details'
-  },
-
-  checkboxTogglesField(checkbox, field) {
-    I.click(checkbox);
-    I.seeElements(field);
-  },
-
-  toggledFieldShowsError(checkbox, field) {
-    I.click(checkbox);
-    I.submitForm();
-    I.seeErrors(field);
-  },
+  'other-details': '#other-details',
 
   fillFormAndSubmit() {
     I.click(this['arm-guards']);

@@ -126,7 +126,7 @@
     "label": "Please provide further details, including whether or not third parties will be storing the prohibited items on other sites"
   },
   "usage": {
-    "legend": "Select all that apply. You will be asked to prove the business need for these activities later.",
+    "legend": "Select all that apply",
     "options": {
       "sell": {
         "label": "Sell"
@@ -146,28 +146,16 @@
       "research": {
         "label": "Research, forensics and testing"
       },
+      "deactivation": {
+        "label": "Deactivation"
+      },
       "other": {
         "label": "Other"
       }
     }
   },
-  "sell-details": {
-    "label": "Please provide further details, including who the prohibited items will be sold to"
-  },
-  "transport-details": {
-    "label": "Please provide further details, including where the prohibited items will be transported from and to, and on whose behalf will they be transported"
-  },
-  "transfer-details": {
-    "label": "Transferring is to manage movement of the prohibited items through a third party. Please provide details of how the prohibited items will be transferred including third party company names."
-  },
-  "training-details": {
-    "label": "Please provide further details"
-  },
-  "research-details": {
-    "label": "Please provide further details"
-  },
   "other-details": {
-    "label": "Please provide further details. This can include TV film or theatrical productions, deactivation, humane dispatch of animals, slaughterhouse, protection of humans from animals, for example."
+    "label": "Please provide further details. This can include TV film or theatrical productions, humane dispatch of animals, protection of humans from animals, for example."
   },
   "weapon-types": {
     "legend": "In only exceptional circumstances, such as transporting weapons/component parts under seal, should you select the unspecified option or leave the maximum quantity questions blank.",
