@@ -22,6 +22,7 @@ Scenario('The correct form elements are present', (
     usagePage['arm-guards'],
     usagePage.training,
     usagePage.research,
+    usagePage.deactivation,
     usagePage.other
   ]);
 });
@@ -34,76 +35,21 @@ Scenario('An error is shown if usage step is not completed', (
   I.seeErrors(usagePage['usage-group']);
 });
 
-Scenario('Selecting Sell toggles further details field', (
-  usagePage
-) => {
-  usagePage.checkboxTogglesField(usagePage.sell, usagePage['further-details'].sell);
-});
-
-Scenario('Selecting Transport toggles further details field', (
-  usagePage
-) => {
-  usagePage.checkboxTogglesField(usagePage.transport, usagePage['further-details'].transport);
-});
-
-Scenario('Selecting Transfer toggles further details field', (
-  usagePage
-) => {
-  usagePage.checkboxTogglesField(usagePage.transfer, usagePage['further-details'].transfer);
-});
-
-Scenario('Selecting Training and demonstration toggles further details field', (
-  usagePage
-) => {
-  usagePage.checkboxTogglesField(usagePage.training, usagePage['further-details'].training);
-});
-
-Scenario('Selecting Research,forensics and testing toggles further details field', (
-  usagePage
-) => {
-  usagePage.checkboxTogglesField(usagePage.research, usagePage['further-details'].research);
-});
-
 Scenario('Selecting Other toggles further details field', (
+  I,
   usagePage
 ) => {
-  usagePage.checkboxTogglesField(usagePage.other, usagePage['further-details'].other);
-});
-
-Scenario('An error is shown if usage step is not completed after selecting Sell', (
-  usagePage
-) => {
-  usagePage.toggledFieldShowsError(usagePage.sell, usagePage['further-details'].sell);
-});
-
-Scenario('An error is shown if usage step is not completed after selecting Transport', (
-  usagePage
-) => {
-  usagePage.toggledFieldShowsError(usagePage.transport, usagePage['further-details'].transport);
-});
-
-Scenario('An error is shown if usage step is not completed after selecting Transfer', (
-  usagePage
-) => {
-  usagePage.toggledFieldShowsError(usagePage.transfer, usagePage['further-details'].transfer);
-});
-
-Scenario('An error is shown if usage step is not completed after selecting Training', (
-  usagePage
-) => {
-  usagePage.toggledFieldShowsError(usagePage.training, usagePage['further-details'].training);
-});
-
-Scenario('An error is shown if usage step is not completed after selecting Research', (
-  usagePage
-) => {
-  usagePage.toggledFieldShowsError(usagePage.research, usagePage['further-details'].research);
+  I.click(usagePage.other);
+  I.seeElement(usagePage['other-details']);
 });
 
 Scenario('An error is shown if usage step is not completed after selecting Other', (
+  I,
   usagePage
 ) => {
-  usagePage.toggledFieldShowsError(usagePage.other, usagePage['further-details'].other);
+  I.click(usagePage.other);
+  I.submitForm();
+  I.seeErrors(usagePage['other-details']);
 });
 
 Scenario('Im taken to the upload supporting documents step', (
