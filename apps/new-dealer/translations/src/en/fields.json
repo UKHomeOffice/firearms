@@ -419,17 +419,6 @@
   "someone-else-name": {
     "label": "What is that person's full name?"
   },
-  "storage-weapons-ammo": {
-    "legend": "Select all that apply",
-    "options": {
-      "weapons": {
-        "label": "Weapons and/or component parts"
-      },
-      "ammunition": {
-        "label": "Ammunition"
-      }
-    }
-  },
   "storage-postcode": {
     "label": "Postcode"
   },

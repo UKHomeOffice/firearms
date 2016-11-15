@@ -87,13 +87,6 @@ module.exports = {
     '/supporting-docs': {
       next: '/ammunition',
       forks: [{
-        target: '/storage-weapons-ammo',
-        condition(req) {
-          const stored = storedOnPremises(req);
-          const weaponsAndAmmo = weapons(req) && ammunition(req);
-          return stored && weaponsAndAmmo;
-        }
-      }, {
         target: '/storage-postcode',
         condition(req) {
           const stored = storedOnPremises(req);
@@ -107,12 +100,6 @@ module.exports = {
           return !stored && weapons(req);
         }
       }]
-    },
-    '/storage-weapons-ammo': {
-      fields: [
-        'storage-weapons-ammo'
-      ],
-      next: '/storage-postcode'
     },
     '/storage-postcode': {
       controller: require('./controllers/storage-postcode'),
@@ -148,7 +135,7 @@ module.exports = {
       fields: [
         'storage-address-manual'
       ],
-      prereqs: ['/storage-postcode', '/storage-weapons-ammo', '/supporting-docs'],
+      prereqs: ['/storage-postcode', '/supporting-docs'],
       backLink: 'storage-postcode',
       next: '/storage-add-another-address',
       continueOnEdit: true,

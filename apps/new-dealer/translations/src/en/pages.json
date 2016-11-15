@@ -91,9 +91,6 @@
   "contact": {
     "header": "Who do we contact about this application?"
   },
-  "storage-weapons-ammo": {
-    "header": "What will be stored on the premises?"
-  },
   "storage-postcode": {
     "header": "Where will the prohibited items be stored?",
     "intro": "You can add further addresses later, if required. The police will inspect the storage arrangements at each location."
@@ -153,13 +150,6 @@
     "header": {
       "weapons-ammunition": {
         "weapons": "Is there another address where the prohibited weapons/component parts be stored?",
-        "weapons,ammunition": {
-          "storage-weapons-ammo": {
-            "weapons": "Is there another address where the prohibited weapons/component parts be stored?",
-            "weapons,ammunition": "Is there another address where the prohibited weapons/component parts and ammunition be stored?",
-            "ammunition": "Is there another address where the prohibited ammunition be stored?"
-          }
-        },
         "ammunition": "Is there another address where the prohibited ammunition be stored?"
       }
     }

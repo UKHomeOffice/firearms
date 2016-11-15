@@ -577,14 +577,6 @@ module.exports = {
       value: 'other'
     }
   },
-  'storage-weapons-ammo': {
-    mixin: 'checkbox-group',
-    validate: 'required',
-    options: [
-      'weapons',
-      'ammunition'
-    ]
-  },
   'storage-postcode': {
     mixin: 'input-text-code',
     validate: ['required', 'postcode'],
