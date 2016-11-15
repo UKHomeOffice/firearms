@@ -47,7 +47,7 @@ Scenario('An error is shown if import step is not completed after selecting yes'
   I.seeErrors(importPage.country);
 });
 
-Scenario('Im taken to the import step', (
+Scenario('I\'m taken to the import step', (
   I,
   importPage,
   storagePage

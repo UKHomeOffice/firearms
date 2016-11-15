@@ -8,7 +8,7 @@ var countriesDomestic = [
   'United Kingdom'
 ];
 
-var countriesOtherEU = [
+var countriesEU = [
   'Austria',
   'Belgium',
   'Bulgaria',
@@ -38,7 +38,7 @@ var countriesOtherEU = [
   'Sweden'
 ];
 
-var countriesNonEU = [
+var countriesOther = [
   'Afghanistan',
   'Aland Islands',
   'Albania',
@@ -268,8 +268,8 @@ var countriesNonEU = [
   'Zimbabwe',
 ];
 
-var euCountries = [].concat(countriesDomestic, countriesOtherEU);
-
-module.exports.nonEuCountries = countriesNonEU.sort();
-module.exports.nonUKcountries = [].concat(module.exports.nonEuCountries, countriesOtherEU).sort();
-module.exports.allCountries = [].concat(module.exports.nonEuCountries, euCountries).sort();
+module.exports = {
+  nonUKcountries: countriesOther.concat(countriesEU).sort(),
+  countriesOther: countriesOther.sort(),
+  allCountries: countriesOther.concat(countriesDomestic, countriesEU).sort()
+};
