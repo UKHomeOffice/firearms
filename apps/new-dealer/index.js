@@ -89,15 +89,12 @@ module.exports = {
       forks: [{
         target: '/storage-postcode',
         condition(req) {
-          const stored = storedOnPremises(req);
-          const weaponsAndAmmo = weapons(req) && ammunition(req);
-          return stored && !weaponsAndAmmo;
+          return storedOnPremises(req);
         }
       }, {
         target: '/weapons',
         condition(req) {
-          const stored = storedOnPremises(req);
-          return !stored && weapons(req);
+          return !storedOnPremises(req) && weapons(req);
         }
       }]
     },
