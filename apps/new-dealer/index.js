@@ -168,6 +168,7 @@ module.exports = {
       }]
     },
     '/weapons': {
+      template: 'weapons-ammunition.html',
       fields: [
         'weapon-types',
         'weapons-unspecified-details',
@@ -193,6 +194,7 @@ module.exports = {
       }
     },
     '/ammunition': {
+      template: 'weapons-ammunition.html',
       fields: [
         'ammunition-types',
         'ammunition-unspecified-details',
@@ -202,7 +204,10 @@ module.exports = {
         'expanding-missile-quantity',
         'missiles-for-above-quantity'
       ],
-      next: '/authority-holders'
+      next: '/authority-holders',
+      locals: {
+        section: 'ammunition'
+      }
     },
     '/authority-holders': {
       fields: [

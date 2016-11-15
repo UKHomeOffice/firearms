@@ -257,7 +257,7 @@
     "summary-details": "This includes any launcher or other projecting apparatus that's not included in section 5(1)(ae) and is designed to be used with a 5(1A)(b) rocket or ammunition, or with section 5(1)(c) ammunition."
   },
   "ammunition-types": {
-    "legend": "In only exceptional circumstances, such as transporting ammunition under seal, should you select the unspecified option or leave the maximum quantity in rounds questions blank.",
+    "legend": "Select all that apply",
     "options": {
       "unspecified": {
         "label": "Unspecified sections and quantities"
@@ -280,30 +280,30 @@
     }
   },
   "ammunition-unspecified-details": {
-    "label": "Please provide further details explaining why you can't specify the section and quantities of ammunition being handled."
+    "label": "Please explain why you can't specify the section and quantities of prohibited items being handled."
   },
   "explosive-cartridges-quantity": {
-    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "label": "Maximum quantity (leave blank if unspecified)",
     "header": "Help with section 5(1)(c)",
     "summary-details": "This includes any cartridge with a bullet designed to explode on or immediately before impact, any ammunition containing or designed or adapted to contain any such noxious thing as is mentioned in section 5(1)(b) and, if capable of being used with a firearm of any description, any grenade, bomb (or other missile), or rocket or shell designed to explode as aforesaid."
   },
   "incendiary-missile-quantity": {
-    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "label": "Maximum quantity (leave blank if unspecified)",
     "header": "Help with section 5(1A)(d)",
     "summary-details": "This includes any ammunition for military use which consists in or incorporates a missile designed so that a substance contained in the missile will ignite on or immediately before impact."
   },
   "armour-piercing-quantity": {
-    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "label": "Maximum quantity (leave blank if unspecified)",
     "header": "Help with section 5(1A)(e)",
     "summary-details": "This includes any ammunition for military use which consists in or incorporates a missile designed, on account of its having a jacket and hard-core to penetrate armour plating, armour screening or body armour."
   },
   "expanding-missile-quantity": {
-    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "label": "Maximum quantity (leave blank if unspecified)",
     "header": "Help with section 5(1A)(f)",
     "summary-details": "This includes any ammunition which incorporates a missile designed or adapted to expand on impact."
   },
   "missiles-for-above-quantity": {
-    "label": "Maximum quantity in rounds (leave blank if unspecified)",
+    "label": "Maximum quantity (leave blank if unspecified)",
     "header": "Help with section 5(1A)(g)",
     "summary-details": "This includes anything designed to be projected as a missile from any weapon and is designed to be, or has been, incorporated in section 5(1A) ammunition, or any ammunition which would fall within section 5(1A) if it weren't specified in any part of section 5(1)."
   },
