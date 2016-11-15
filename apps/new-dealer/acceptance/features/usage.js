@@ -49,7 +49,7 @@ Scenario('An error is shown if usage step is not completed after selecting Other
 ) => {
   I.click(usagePage.other);
   I.submitForm();
-  I.seeErrors(usagePage['other-details'])
+  I.seeErrors(usagePage['other-details']);
 });
 
 Scenario('Im taken to the upload supporting documents step', (
