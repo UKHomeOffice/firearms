@@ -14,7 +14,7 @@
     "label": "Current authority number"
   },
   "reference-number": {
-    "label": "Reference number"
+    "label": "Customer reference number"
   },
   "organisation": {
     "options": {

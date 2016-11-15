@@ -3,9 +3,9 @@
     "header": "What do you want to do?"
   },
   "authority-number-renew-vary": {
-    "header": "What's the current authority and reference numbers?",
-    "summary-header": "Help with authority and reference numbers",
-    "details": "The current authority number will be replaced with a new number once the renewal or variation is approved. <br> The reference number is a unique number for the company or individual that never changes."
+    "header": "What are your customer reference and current authority numbers?",
+    "summary-header": "How can I find the customer reference and authority numbers?",
+    "details": "Your customer reference number can be found beneath the address on your authority letter. The authority number can be found at the bottom left of the letter."
   },
   "company-name": {
     "header": "What type of organisation is the authority for?"
