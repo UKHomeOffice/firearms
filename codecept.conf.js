@@ -15,6 +15,7 @@ module.exports = {
     companyNamePage: pagesPath('company-name.js'),
     handlePage: pagesPath('handle.js'),
     obtainPage: pagesPath('obtain.js'),
+    importPage: pagesPath('import.js'),
     storagePage: pagesPath('storage.js'),
     usagePage: pagesPath('usage.js'),
     supportingDocsPage: pagesPath('supporting-docs.js'),

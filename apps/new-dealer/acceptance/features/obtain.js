@@ -44,11 +44,11 @@ Scenario('An error is shown if obtain step is not completed after selecting Acqu
   obtainPage.toggledFieldShowsError(obtainPage['other-means'], obtainPage['further-details']['other-means']);
 });
 
-Scenario('Im taken to the storage step', (
+Scenario('Im taken to the import step', (
   I,
   obtainPage,
-  storagePage
+  importPage
 ) => {
   obtainPage.fillFormAndSubmit();
-  I.seeInCurrentUrl(storagePage.url);
+  I.seeInCurrentUrl(importPage.url);
 });

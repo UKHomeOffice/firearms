@@ -19,6 +19,9 @@
   "obtain": {
     "header": "How will the prohibited items be obtained?"
   },
+  "import": {
+    "header": "Will any of the prohibited items be imported?"
+  },
   "storage": {
     "header": "Will the prohibited items be stored on the business's premises in the UK?"
   },
