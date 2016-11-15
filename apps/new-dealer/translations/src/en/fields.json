@@ -158,7 +158,7 @@
     "label": "Please provide further details. This can include TV film or theatrical productions, humane dispatch of animals, protection of humans from animals, for example."
   },
   "weapon-types": {
-    "legend": "In only exceptional circumstances, such as transporting weapons/component parts under seal, should you select the unspecified option or leave the maximum quantity questions blank.",
+    "legend": "Select all that apply",
     "options": {
       "unspecified": {
         "label": "Unspecified sections and quantities"
@@ -199,7 +199,7 @@
     }
   },
   "weapons-unspecified-details": {
-    "label": "Please provide further details explaining why you can't specify the section and quantities of weapons/component parts being handled."
+    "label": "Please explain why you can't specify the section and quantities of prohibited items being handled."
   },
   "fully-automatic-quantity": {
     "label": "Maximum quantity (leave blank if unspecified)",

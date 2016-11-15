@@ -1,0 +1,15 @@
+{{<partials-page}}
+  {{$page-content}}
+
+    <div class="notice">
+      <span class="icon-important"></span>
+      <strong class="intro-text">{{#t}}pages.{{section}}.important{{/t}}</strong>
+    </div>
+
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
