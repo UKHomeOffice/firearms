@@ -20,6 +20,17 @@ Scenario('The correct form elements are present on storage-postcode step', (
   ]);
 });
 
+Scenario('When I select renew on the activity, I see the renew message icon on the storage-postcode step', function *(
+  I,
+  storageAddressPage
+) {
+  yield I.setSessionData(steps.name, {
+    'activity': 'renew'
+  });
+  yield I.refreshPage();
+  I.seeElement(storageAddressPage['important-icon']);
+});
+
 Scenario('An error is shown if address-postcode is not completed', (
   I,
   storageAddressPage
@@ -54,6 +65,18 @@ Scenario('The correct form elements are present for storage-manual address step'
   ]);
 });
 
+Scenario('When I select renew on the activity, I see the renew message icon on the storage-address step', function *(
+  I,
+  storageAddressPage
+) {
+  I.click(storageAddressPage.links['manual-entry']);
+  yield I.setSessionData(steps.name, {
+    'activity': 'renew'
+  });
+  yield I.refreshPage();
+  I.seeElement(storageAddressPage['important-icon']);
+});
+
 Scenario('An error is shown if storage-manual-address is not completed', (
   I,
   storageAddressPage
@@ -70,6 +93,18 @@ Scenario('An error is shown if storage-address-lookup is not completed', (
   storageAddressPage.fillFormAndSubmit(storageAddressPage.fields.postcode, storageAddressPage.content.postcode);
   I.submitForm();
   I.seeErrors(storageAddressPage.fields['address-lookup']);
+});
+
+Scenario('When I select renew on the activity, I see the renew message icon on the storage-address-lookup step', function *(
+  I,
+  storageAddressPage
+) {
+  storageAddressPage.fillFormAndSubmit(storageAddressPage.fields.postcode, storageAddressPage.content.postcode);
+  yield I.setSessionData(steps.name, {
+    'activity': 'renew'
+  });
+  yield I.refreshPage();
+  I.seeElement(storageAddressPage['important-icon']);
 });
 
 Scenario('I am taken to the storage-manual-address step if I cant find my address', (
@@ -117,6 +152,18 @@ Scenario('The correct form elements are present on storage-add-another-address s
     storageAddressPage.fields.yes,
     storageAddressPage.fields.no
   ]);
+});
+
+Scenario('When I select renew on the activity, I see the renew message icon on the storage-add-another-address step', function *(
+  I,
+  storageAddressPage
+) {
+  storageAddressPage.selectAddressAndSubmit();
+  yield I.setSessionData(steps.name, {
+    'activity': 'renew'
+  });
+  yield I.refreshPage();
+  I.seeElement(storageAddressPage['important-icon']);
 });
 
 Scenario('An error is shown if storage-add-another-address step is not completed', (

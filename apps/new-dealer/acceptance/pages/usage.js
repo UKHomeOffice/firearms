@@ -19,6 +19,7 @@ module.exports = {
   deactivation: '#usage-deactivation',
   other: '#usage-other',
   'other-details': '#other-details',
+  'important-icon': {css: '.icon-important'},
 
   fillFormAndSubmit() {
     I.click(this['arm-guards']);

@@ -1,7 +1,6 @@
 'use strict';
 
-const controllers = require('hof').controllers;
-const BaseController = controllers.base;
+const BaseController = require('./base');
 const PostcodesModel = require('../models/postcodes');
 const logger = require('../../../node_modules/hof-bootstrap/lib/logger');
 const _ = require('lodash');

@@ -33,9 +33,6 @@ module.exports = {
         'reference-number',
         'authority-number'
       ],
-      next: '/expiration-renew-vary'
-    },
-    '/expiration-renew-vary': {
       next: '/company-name'
     },
     '/company-name': {
@@ -56,21 +53,33 @@ module.exports = {
       fields: [
         'weapons-ammunition'
       ],
-      next: '/obtain'
+      next: '/obtain',
+      locals: {
+        section: 'handle',
+        renew: true,
+      }
     },
     '/obtain': {
       fields: [
         'obtain',
         'other-means-details'
       ],
-      next: '/import'
+      next: '/import',
+      locals: {
+        section: 'obtain',
+        renew: true
+      }
     },
     '/import': {
       fields: [
         'import',
         'import-country'
       ],
-      next: '/storage'
+      next: '/storage',
+      locals: {
+        section: 'import',
+        renew: true
+      }
     },
     '/storage': {
       fields: [
@@ -83,7 +92,11 @@ module.exports = {
         condition(req) {
           return storedOnPremises(req);
         }
-      }]
+      }],
+      locals: {
+        section: 'usage',
+        renew: true
+      }
     },
     '/storage-postcode': {
       controller: require('./controllers/storage-postcode'),
@@ -100,7 +113,9 @@ module.exports = {
         }
       }],
       locals: {
-        field: 'storage'
+        section: 'storage-postcode',
+        field: 'storage',
+        renew: true
       }
     },
     '/storage-address-lookup': {
@@ -111,7 +126,9 @@ module.exports = {
       next: '/storage-add-another-address',
       continueOnEdit: true,
       locals: {
-        field: 'storage'
+        section: 'storage-address-lookup',
+        field: 'storage',
+        renew: true
       }
     },
     '/storage-address': {
@@ -124,7 +141,9 @@ module.exports = {
       next: '/storage-add-another-address',
       continueOnEdit: true,
       locals: {
-        field: 'storage'
+        section: 'storage-address',
+        field: 'storage',
+        renew: true
       }
     },
     '/storage-add-another-address': {
@@ -139,7 +158,11 @@ module.exports = {
           field: 'storage-add-another-address',
           value: 'yes'
         }
-      }]
+      }],
+      locals: {
+        section: 'storage-add-another-address',
+        renew: true
+      }
     },
     '/usage': {
       fields: [
@@ -157,7 +180,11 @@ module.exports = {
         condition(req) {
           return weapons(req);
         }
-      }]
+      }],
+      locals: {
+        section: 'usage',
+        renew: true
+      }
     },
     '/weapons': {
       template: 'weapons-ammunition.html',
@@ -205,7 +232,11 @@ module.exports = {
       fields: [
         'authority-holders'
       ],
-      next: '/first-authority-holders-name'
+      next: '/first-authority-holders-name',
+      locals: {
+        section: 'authority-holders',
+        renew: true
+      }
     },
     '/first-authority-holders-name': {
       fields: [
@@ -378,7 +409,11 @@ module.exports = {
         'someone-else-name'
       ],
       controller: require('./controllers/contact'),
-      next: '/contact-details'
+      next: '/contact-details',
+      locals: {
+        section: 'contact',
+        renew: true
+      }
     },
     '/contact-details': {
       fields: [

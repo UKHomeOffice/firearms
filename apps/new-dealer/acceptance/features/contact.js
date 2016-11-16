@@ -21,6 +21,17 @@ Scenario('The correct form elements are present', (
   ]);
 });
 
+Scenario('When I select renew on the activity, I see the renew message icon', function *(
+  I,
+  contactPage
+) {
+  yield I.setSessionData(steps.name, {
+    'activity': 'renew'
+  });
+  yield I.refreshPage();
+  I.seeElement(contactPage['important-icon']);
+});
+
 Scenario('An error is shown if contact step is not completed', (
   I,
   contactPage

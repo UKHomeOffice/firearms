@@ -32,13 +32,13 @@ Scenario('An error is shown if authority-number-renew-vary step is not completed
   ]);
 });
 
-Scenario('I am taken to the expiration-renew-vary step', (
+Scenario('I am taken to the company-name step', (
   I,
   authorityNumberRenewPage,
-  expirationRenewVaryPage
+  companyNamePage
 ) => {
   I.fillField(authorityNumberRenewPage['authority-number'], authorityNumberRenewPage.content.number);
   I.fillField(authorityNumberRenewPage['reference-number'], authorityNumberRenewPage.content.number);
   I.submitForm();
-  I.seeInCurrentUrl(expirationRenewVaryPage.url);
+  I.seeInCurrentUrl(companyNamePage.url);
 });

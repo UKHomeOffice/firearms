@@ -15,6 +15,7 @@ module.exports = {
   'contact-other': '#contact-holder-other',
   'other-name': '#someone-else-name',
   'other-name-group': '#someone-else-name-group',
+  'important-icon': {css: '.icon-important'},
 
   content: {
     'first-contact-name': 'Sterling Archer',

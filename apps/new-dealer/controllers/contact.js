@@ -1,6 +1,6 @@
 'use strict';
 
-const BaseController = require('hof').controllers.base;
+const BaseController = require('./base');
 const _ = require('lodash');
 const fields = _.cloneDeep(require('../fields'));
 

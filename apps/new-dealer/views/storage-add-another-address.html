@@ -1,5 +1,8 @@
 {{<partials-page}}
   {{$page-content}}
+    {{#renew}}
+      {{<partials-important-message}}{{/partials-important-message}}
+    {{/renew}}
     {{#fields}}
       {{#renderField}}{{/renderField}}
     {{/fields}}
