@@ -193,33 +193,3 @@ Scenario('When I select No on add-another-address I am taken to the usage page',
   I.submitForm();
   I.seeInCurrentUrl(usagePage.url);
 });
-
-// Scenario('When I select ammunition on the handle step, when I select No I am taken to the ammunition page', function *(
-//   I,
-//   storageAddressPage,
-//   ammunitionsPage
-// ) {
-//   yield I.setSessionData(steps.name, {
-//     'weapons-ammunition': 'ammunition'
-//   });
-//   yield I.refreshPage();
-//   storageAddressPage.selectAddressAndSubmit();
-//   I.click(storageAddressPage.fields.no);
-//   I.submitForm();
-//   I.seeInCurrentUrl(ammunitionsPage.url);
-// });
-//
-// Scenario('When I select weapons and ammunition on the handle step, when I select No I am taken to the ammunition page', function *(
-//   I,
-//   storageAddressPage,
-//   weaponsPage
-// ) {
-//   yield I.setSessionData(steps.name, {
-//     'weapons-ammunition': 'weapons,ammunition'
-//   });
-//   yield I.refreshPage();
-//   storageAddressPage.selectAddressAndSubmit();
-//   I.click(storageAddressPage.fields.no);
-//   I.submitForm();
-//   I.seeInCurrentUrl(weaponsPage.url);
-// });
