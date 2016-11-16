@@ -34,8 +34,9 @@
     "important": "Only in exceptional circumstances, such as transporting prohibited items under seal, should you select the unspecified option or leave the maximum quantity questions blank."
   },
   "ammunition": {
-    "header": "Which categories does the prohibited ammunition fall under?",
-    "intro": "Select all that apply and state the maximum quantities held at any one time. The quantities should reflect the supporting evidence provided, and be as accurate as possible. If the sections and quantities aren't backed up by the evidence you have provided, it may delay the application or result in the authority not being approved."
+    "header": "Which sections does the ammunition fall under?",
+    "intro": "Select all that apply and state the maximum quantities held at any one time. If the sections and quantities aren't backed up by the evidence provided, it may delay the application or result in the authority not being approved.",
+    "important": "Only in exceptional circumstances, such as transporting prohibited items under seal, should you select the unspecified option or leave the maximum quantity questions blank."
   },
   "postcode": {
     "manual": "Enter address manually"

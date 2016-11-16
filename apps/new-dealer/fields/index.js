@@ -361,6 +361,9 @@ module.exports = {
   },
   'ammunition-types': {
     mixin: 'checkbox-group',
+    legend: {
+      className: 'visuallyhidden'
+    },
     validate: ['required', notBothOptions],
     options: [{
       value: 'unspecified',
