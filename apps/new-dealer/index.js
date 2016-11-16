@@ -30,8 +30,8 @@ module.exports = {
     },
     '/authority-number-renew-vary': {
       fields: [
-        'authority-number',
-        'reference-number'
+        'reference-number',
+        'authority-number'
       ],
       next: '/expiration-renew-vary'
     },
