@@ -125,10 +125,10 @@ Scenario('When I click cant find my address link, I will see the postcode I ente
   I.see(firstAuthorityHoldersAddressPage.content.postcode);
 });
 
-Scenario('I am taken to the contact step from the manual-address step when one authority-holder is selected', function *(
+Scenario('I am taken to the supporting-docs step from the manual-address step when one authority-holder is selected', function *(
   I,
   firstAuthorityHoldersAddressPage,
-  contactPage
+  supportingDocsPage
 ) {
   yield I.setSessionData(steps.name, {
     'authority-holders': 'one'
@@ -136,7 +136,7 @@ Scenario('I am taken to the contact step from the manual-address step when one a
   yield I.refreshPage();
   I.click(firstAuthorityHoldersAddressPage.links['manual-entry']);
   firstAuthorityHoldersAddressPage.fillFormAndSubmit(firstAuthorityHoldersAddressPage.fields['address-manual']);
-  I.seeInCurrentUrl(contactPage.url);
+  I.seeInCurrentUrl(supportingDocsPage.url);
 });
 
 Scenario('I am taken to the second-authority-holders-name step from the manual-address step when two authority-holder is selected', function *(
@@ -153,17 +153,17 @@ Scenario('I am taken to the second-authority-holders-name step from the manual-a
   I.seeInCurrentUrl(secondAuthorityHoldersNamePage.url);
 });
 
-Scenario('When an address is selected I am taken to the contact step when one authority-holders is selected', function *(
+Scenario('When an address is selected I am taken to the supporting-docs step when one authority-holders is selected', function *(
   I,
   firstAuthorityHoldersAddressPage,
-  contactPage
+  supportingDocsPage
 ) {
   yield I.setSessionData(steps.name, {
     'authority-holders': 'one'
   });
   yield I.refreshPage();
   firstAuthorityHoldersAddressPage.selectAddressAndSubmit();
-  I.seeInCurrentUrl(contactPage.url);
+  I.seeInCurrentUrl(supportingDocsPage.url);
 });
 
 Scenario('When an address is selected I am taken to the second-authority-holders-name step when two authority-holders is selected', function *(

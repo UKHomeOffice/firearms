@@ -77,31 +77,11 @@ module.exports = {
         'stored-on-premises',
         'no-storage-details'
       ],
-      next: '/usage'
-    },
-    '/usage': {
-      fields: [
-        'usage',
-        'sell-details',
-        'transport-details',
-        'transfer-details',
-        'training-details',
-        'research-details',
-        'other-details'
-      ],
-      next: '/supporting-docs'
-    },
-    '/supporting-docs': {
-      next: '/ammunition',
+      next: '/usage',
       forks: [{
         target: '/storage-postcode',
         condition(req) {
           return storedOnPremises(req);
-        }
-      }, {
-        target: '/weapons',
-        condition(req) {
-          return !storedOnPremises(req) && weapons(req);
         }
       }]
     },
@@ -139,7 +119,7 @@ module.exports = {
       fields: [
         'storage-address-manual'
       ],
-      prereqs: ['/storage-postcode', '/supporting-docs'],
+      prereqs: ['/storage-postcode', '/storage'],
       backLink: 'storage-postcode',
       next: '/storage-add-another-address',
       continueOnEdit: true,
@@ -152,18 +132,30 @@ module.exports = {
       fields: [
         'storage-add-another-address'
       ],
-      next: '/ammunition',
+      next: '/usage',
       forks: [{
         target: '/storage-postcode',
         condition: {
           field: 'storage-add-another-address',
           value: 'yes'
         }
-      }, {
+      }]
+    },
+    '/usage': {
+      fields: [
+        'usage',
+        'sell-details',
+        'transport-details',
+        'transfer-details',
+        'training-details',
+        'research-details',
+        'other-details'
+      ],
+      next: '/ammunition',
+      forks: [{
         target: '/weapons',
         condition(req) {
-          const noMoreAddresses = req.form.values['storage-add-another-address'] === 'no';
-          return noMoreAddresses && weapons(req);
+          return weapons(req);
         }
       }]
     },
@@ -271,7 +263,7 @@ module.exports = {
       fields: [
         'first-authority-holders-address-lookup'
       ],
-      next: '/contact',
+      next: '/supporting-docs',
       forks: [{
         target: '/second-authority-holders-name',
         condition(req) {
@@ -288,7 +280,7 @@ module.exports = {
       fields: [
         'first-authority-holders-address-manual'
       ],
-      next: '/contact',
+      next: '/supporting-docs',
       prereqs: ['/first-authority-holders-postcode', '/first-authority-holders-nationality'],
       backLink: 'first-authority-holders-postcode',
       forks: [{
@@ -368,12 +360,15 @@ module.exports = {
       fields: [
         'second-authority-holders-address-manual'
       ],
-      next: '/contact',
+      next: '/supporting-docs',
       prereqs: ['/second-authority-holders-postcode', '/second-authority-holders-nationality'],
       backLink: 'second-authority-holders-postcode',
       locals: {
         field: 'second-authority-holders'
       }
+    },
+    '/supporting-docs': {
+      next: '/contact'
     },
     '/contact': {
       fields: [
