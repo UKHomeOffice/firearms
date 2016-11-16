@@ -47,12 +47,12 @@ Scenario('An error is shown if storage step is not completed after selecting No'
   I.seeErrors(storagePage['no-details']);
 });
 
-Scenario('Im taken to the usage step', (
+Scenario('Im taken to the storage-postcode step', (
   I,
   storagePage,
-  usagePage
+  storageAddressPage
 ) => {
   I.click(storagePage.yes);
   I.submitForm();
-  I.seeInCurrentUrl(usagePage.url);
+  I.seeInCurrentUrl(storageAddressPage.url);
 });

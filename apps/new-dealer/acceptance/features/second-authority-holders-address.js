@@ -128,11 +128,11 @@ Scenario('When I click cant find my address link, I will see the postcode I ente
 Scenario('I am taken to the contact step from the manual-address step', (
   I,
   secondAuthorityHoldersAddressPage,
-  contactPage
+  supportingDocsPage
 ) => {
   I.click(secondAuthorityHoldersAddressPage.links['manual-entry']);
   secondAuthorityHoldersAddressPage.fillFormAndSubmit(secondAuthorityHoldersAddressPage.fields['address-manual']);
-  I.seeInCurrentUrl(contactPage.url);
+  I.seeInCurrentUrl(supportingDocsPage.url);
 });
 
 Scenario('When an address is selected I am taken to the contact step', (

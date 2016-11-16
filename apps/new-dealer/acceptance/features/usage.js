@@ -52,11 +52,41 @@ Scenario('An error is shown if usage step is not completed after selecting Other
   I.seeErrors(usagePage['other-details']);
 });
 
-Scenario('Im taken to the upload supporting documents step', (
+Scenario('When I select weapons on the handle step, I am taken to the weapons page', function *(
   I,
   usagePage,
-  supportingDocsPage
-) => {
+  weaponsPage
+) {
+  yield I.setSessionData(steps.name, {
+    'weapons-ammunition': 'weapons'
+  });
+  yield I.refreshPage();
   usagePage.fillFormAndSubmit();
-  I.seeInCurrentUrl(supportingDocsPage.url);
+  I.seeInCurrentUrl(weaponsPage.url);
+});
+
+Scenario('When I select ammunition on the handle step, I am taken to the ammunition page', function *(
+  I,
+  usagePage,
+  ammunitionsPage
+) {
+  yield I.setSessionData(steps.name, {
+    'weapons-ammunition': 'ammunition'
+  });
+  yield I.refreshPage();
+  usagePage.fillFormAndSubmit();
+  I.seeInCurrentUrl(ammunitionsPage.url);
+});
+
+Scenario('When I select weapons and ammunition on the handle step, I am taken to the weapons page', function *(
+  I,
+  usagePage,
+  weaponsPage
+) {
+  yield I.setSessionData(steps.name, {
+    'weapons-ammunition': 'weapons,ammunition'
+  });
+  yield I.refreshPage();
+  usagePage.fillFormAndSubmit();
+  I.seeInCurrentUrl(weaponsPage.url);
 });
