@@ -1,0 +1,14 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#select}}{{key}}{{/select}}
+    {{#checkbox}}{{key}}-multi{{/checkbox}}
+    {{<partials-multi-nationality}}
+      {{$panel}}{{key}}-multi{{/panel}}
+      {{$panel-content}}
+        {{#select}}{{key}}-second{{/select}}
+        {{#select}}{{key}}-third{{/select}}
+      {{/panel-content}}
+    {{/partials-multi-nationality}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

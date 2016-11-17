@@ -227,6 +227,7 @@ module.exports = {
       next: '/first-authority-holders-nationality'
     },
     '/first-authority-holders-nationality': {
+      template: 'authority-holders-nationality.html',
       controller: require('./controllers/authority-holders-nationality'),
       fields: [
         'first-authority-holders-nationality',
@@ -313,6 +314,7 @@ module.exports = {
       next: '/second-authority-holders-nationality'
     },
     '/second-authority-holders-nationality': {
+      template: 'authority-holders-nationality.html',
       controller: require('./controllers/authority-holders-nationality'),
       fields: [
         'second-authority-holders-nationality',

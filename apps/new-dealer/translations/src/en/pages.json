@@ -64,7 +64,7 @@
     "header": "What are {{values.first-authority-holders-name}}'s birth details?"
   },
   "first-authority-holders-nationality": {
-    "header": "What is {{values.first-authority-holders-name}}'s nationality?"
+    "header": "What is {{values.first-authority-holders-name}}'s country of nationality?"
   },
   "first-authority-holders-postcode": {
     "header": "What is {{values.first-authority-holders-name}}'s home address?"
@@ -82,7 +82,7 @@
     "header": "What are {{values.second-authority-holders-name}}'s birth details?"
   },
   "second-authority-holders-nationality": {
-    "header": "What is {{values.second-authority-holders-name}}'s nationality?"
+    "header": "What is {{values.second-authority-holders-name}}'s country of nationality?"
   },
   "second-authority-holders-postcode": {
     "header": "What is {{values.second-authority-holders-name}}'s home address?"

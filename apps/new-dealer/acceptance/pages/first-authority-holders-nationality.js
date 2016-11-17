@@ -16,9 +16,9 @@ module.exports =  {
   'third-nationality': '#first-authority-holders-nationality-third',
 
   content: {
-    header: 'What is Sterling Archer\'s nationality?',
-    'nationality-one': 'British',
-    'nationality-two': 'American'
+    header: 'What is Sterling Archer\'s country of nationality?',
+    'nationality-one': 'United Kingdom',
+    'nationality-two': 'Spain'
   },
 
   sameValueInFields(fieldOne, fieldTwo) {

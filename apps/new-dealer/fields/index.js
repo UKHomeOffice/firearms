@@ -488,8 +488,10 @@ module.exports = {
     validate: 'required'
   },
   'first-authority-holders-nationality': {
-    mixin: 'input-text',
-    validate: 'required'
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(require('../../../assets/countries').allCountries)
   },
   'first-authority-holders-nationality-multi': {
     mixin: 'checkbox',
@@ -497,8 +499,12 @@ module.exports = {
     toggle: 'first-authority-holders-nationality-multi',
   },
   'first-authority-holders-nationality-second': {
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(require('../../../assets/countries').allCountries)
   },
   'first-authority-holders-nationality-third': {
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(require('../../../assets/countries').allCountries)
   },
   'first-authority-holders-postcode': {
     mixin: 'input-text-code',
@@ -519,8 +525,10 @@ module.exports = {
     }]
   },
   'second-authority-holders-nationality': {
-    mixin: 'input-text',
-    validate: 'required'
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(require('../../../assets/countries').allCountries)
   },
   'second-authority-holders-nationality-multi': {
     mixin: 'checkbox',
@@ -528,8 +536,12 @@ module.exports = {
     toggle: 'second-authority-holders-nationality-multi',
   },
   'second-authority-holders-nationality-second': {
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(require('../../../assets/countries').allCountries)
   },
   'second-authority-holders-nationality-third': {
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(require('../../../assets/countries').allCountries)
   },
   'second-authority-holders-postcode': {
     mixin: 'input-text-code',
