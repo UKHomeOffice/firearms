@@ -20,7 +20,7 @@ module.exports = class StorageAddressLookup extends BaseController {
     });
     if (req.params.action === 'edit') {
       id = req.params.id;
-      postcode = addresses[id].postcode || req.sessionModel.get('storage-postcode');
+      postcode = req.sessionModel.get('storage-postcode') || addresses[id].postcode;
     } else {
       postcode = req.sessionModel.get('storage-postcode');
     }
@@ -58,7 +58,7 @@ module.exports = class StorageAddressLookup extends BaseController {
 
   saveValues(req, res, callback) {
     const address = req.form.values['storage-address-lookup'];
-    const postcode = req.sessionModel.get('storage-postcode');
+    let postcode;
     let storageAddresses = req.sessionModel.get('storageAddresses') || {};
     let id = req.params.id;
 
@@ -67,6 +67,7 @@ module.exports = class StorageAddressLookup extends BaseController {
       id = parseInt(currentIndex, 10);
       req.sessionModel.set('currentIndex', id + 1);
     }
+    postcode = req.sessionModel.get('storage-postcode') || storageAddresses[id].postcode;
     storageAddresses[id] = {
       address,
       postcode
