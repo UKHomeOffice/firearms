@@ -16,9 +16,9 @@ module.exports =  {
   'third-nationality': '#second-authority-holders-nationality-third',
 
   content: {
-    header: 'What is Barry Dylan\'s nationality?',
-    'nationality-one': 'British',
-    'nationality-two': 'American'
+    header: 'What is Barry Dylan\'s country of nationality?',
+    'nationality-one': 'United Kingdom',
+    'nationality-two': 'Spain'
   },
 
   sameValueInFields(fieldOne, fieldTwo) {
