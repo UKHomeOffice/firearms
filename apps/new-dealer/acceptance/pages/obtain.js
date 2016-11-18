@@ -15,6 +15,7 @@ module.exports = {
   manufacture: '#obtain-manufacture',
   'other-means': '#obtain-other-means',
   'wont-take-possession': '#obtain-wont-take-possession',
+  'important-icon': {css: '.icon-important'},
 
   'further-details': {
     buy: '#buy-details',

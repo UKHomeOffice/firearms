@@ -1,5 +1,5 @@
 'use strict';
-const BaseController = require('hof').controllers.base;
+const BaseController = require('./base');
 const ErrorController = require('hof').controllers.error;
 const _ = require('lodash');
 

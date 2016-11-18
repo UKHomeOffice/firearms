@@ -12,6 +12,7 @@ module.exports = {
   'address-url': 'storage-address',
   'address-lookup-url': 'storage-address-lookup',
   'another-address-url': 'storage-add-another-address',
+  'important-icon': {css: '.icon-important'},
 
   fields: {
     postcode: '#storage-postcode',

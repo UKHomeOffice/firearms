@@ -1,6 +1,6 @@
 'use strict';
 
-const BaseController = require('hof').controllers.base;
+const BaseController = require('./base');
 const ErrorController = require('hof').controllers.error;
 
 module.exports = class AuthorityHolderNationalityController extends BaseController {
