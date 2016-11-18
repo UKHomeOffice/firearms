@@ -129,13 +129,13 @@
     "legend": "Select all that apply",
     "options": {
       "sell": {
-        "label": "Sell"
+        "label": "Selling"
       },
       "transport": {
-        "label": "Transport"
+        "label": "Transporting"
       },
       "transfer": {
-        "label": "Transfer"
+        "label": "Transferring"
       },
       "arm-guards": {
         "label": "Arm guards to protect ships"
