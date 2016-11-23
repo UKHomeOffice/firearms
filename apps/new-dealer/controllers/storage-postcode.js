@@ -1,8 +1,8 @@
 'use strict';
 
+const _ = require('lodash');
 const BaseController = require('./base');
 const PostcodesModel = require('../models/postcodes');
-const _ = require('lodash');
 
 module.exports = class StoragePostcodeController extends BaseController {
   locals(req, res, callback) {

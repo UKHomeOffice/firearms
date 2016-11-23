@@ -1,9 +1,9 @@
 'use strict';
 
+const _ = require('lodash');
+const logger = require('hof-bootstrap/lib/logger');
 const BaseController = require('./base');
 const PostcodesModel = require('../models/postcodes');
-const logger = require('../../../node_modules/hof-bootstrap/lib/logger');
-const _ = require('lodash');
 
 module.exports = class PostcodeController extends BaseController {
   process(req, res, callback) {

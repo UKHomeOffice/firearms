@@ -1,8 +1,8 @@
 'use strict';
 
-const Model = require('hof').Model;
-const config = require('../../../config');
 const url = require('url');
+const Model = require('hmpo-model');
+const config = require('../../../config');
 
 module.exports = class PostcodesModel extends Model {
   fetch(postcode) {

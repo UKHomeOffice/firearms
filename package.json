@@ -37,9 +37,10 @@
   "dependencies": {
     "browserify": "^12.0.1",
     "hof-bootstrap": "UKHomeOffice/hof-bootstrap#development",
+    "hof-frontend-toolkit": "^1.0.0",
     "hof-transpiler": "^0.1.0",
-    "node-sass": "^3.7.0",
     "jquery": "^2.1.4",
+    "node-sass": "^3.7.0",
     "typeahead-aria": "^1.0.1"
   },
   "devDependencies": {
@@ -55,7 +56,7 @@
     "sinomocha": "^0.2.4",
     "sinon": "^1.15.3",
     "sinon-chai": "^2.8.0",
-    "so-acceptance": "^3.1.0"
+    "so-acceptance": "^4.0.0"
   },
   "pre-commit": [
     "lint",
