@@ -94,7 +94,7 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'usage',
+        section: 'storage',
         renew: true
       }
     },
