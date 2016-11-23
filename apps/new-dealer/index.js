@@ -47,7 +47,10 @@ module.exports = {
         'museum-name',
         'other-specify'
       ],
-      next: '/handle'
+      next: '/handle',
+      locals: {
+        section: 'business-details'
+      }
     },
     '/handle': {
       fields: [
@@ -55,8 +58,9 @@ module.exports = {
       ],
       next: '/obtain',
       locals: {
-        section: 'handle',
         renew: true,
+        section: 'authority-details',
+        step: 'handle'
       }
     },
     '/obtain': {
@@ -66,8 +70,9 @@ module.exports = {
       ],
       next: '/import',
       locals: {
-        section: 'obtain',
-        renew: true
+        renew: true,
+        section: 'authority-details',
+        step: 'obtain'
       }
     },
     '/import': {
@@ -77,8 +82,9 @@ module.exports = {
       ],
       next: '/storage',
       locals: {
-        section: 'import',
-        renew: true
+        renew: true,
+        section: 'authority-details',
+        step: 'import'
       }
     },
     '/storage': {
@@ -94,8 +100,8 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'storage',
-        renew: true
+        renew: true,
+        step: 'storage'
       }
     },
     '/storage-postcode': {
@@ -115,7 +121,8 @@ module.exports = {
       locals: {
         section: 'storage-postcode',
         field: 'storage',
-        renew: true
+        renew: true,
+        step: 'storage-postcode'
       }
     },
     '/storage-address-lookup': {
@@ -126,9 +133,9 @@ module.exports = {
       next: '/storage-add-another-address',
       continueOnEdit: true,
       locals: {
-        section: 'storage-address-lookup',
+        renew: true,
         field: 'storage',
-        renew: true
+        step: 'storage-address-lookup'
       }
     },
     '/storage-address': {
@@ -141,9 +148,9 @@ module.exports = {
       next: '/storage-add-another-address',
       continueOnEdit: true,
       locals: {
-        section: 'storage-address',
         field: 'storage',
-        renew: true
+        renew: true,
+        step: 'storage-address'
       }
     },
     '/storage-add-another-address': {
@@ -161,7 +168,8 @@ module.exports = {
       }],
       locals: {
         section: 'storage-add-another-address',
-        renew: true
+        renew: true,
+        step: 'storage-add-another-address'
       }
     },
     '/usage': {
@@ -182,14 +190,15 @@ module.exports = {
         }
       }],
       locals: {
-        section: 'usage',
-        renew: true
+        renew: true,
+        section: 'authority-details',
+        step: 'usage'
       }
     },
     '/weapons': {
       template: 'weapons-ammunition.html',
       fields: [
-        'weapon-types',
+        'weapons-types',
         'weapons-unspecified-details',
         'fully-automatic-quantity',
         'self-loading-quantity',
@@ -200,7 +209,7 @@ module.exports = {
         'air-rifles-quantity',
         'fire-noxious-substance-quantity',
         'disguised-firearms-quantity',
-        'military-use-quantity',
+        'military-use-rockets-quantity',
         'projecting-launchers-quantity'
       ],
       next: '/authority-holders',
@@ -209,7 +218,7 @@ module.exports = {
         condition: ammunition
       }],
       locals: {
-        section: 'weapons'
+        weaponsOrAmmunition: 'weapons'
       }
     },
     '/ammunition': {
@@ -225,7 +234,7 @@ module.exports = {
       ],
       next: '/authority-holders',
       locals: {
-        section: 'ammunition'
+        weaponsOrAmmunition: 'ammunition'
       }
     },
     '/authority-holders': {
@@ -234,15 +243,18 @@ module.exports = {
       ],
       next: '/first-authority-holders-name',
       locals: {
-        section: 'authority-holders',
-        renew: true
+        renew: true,
+        step: 'authority-holders'
       }
     },
     '/first-authority-holders-name': {
       fields: [
         'first-authority-holders-name'
       ],
-      next: '/first-authority-holders-birth'
+      next: '/first-authority-holders-birth',
+      locals: {
+        section: 'first-authority-holder'
+      }
     },
     '/first-authority-holders-birth': {
       controller: controllers.date,
@@ -255,7 +267,10 @@ module.exports = {
         'first-authority-town-birth',
         'first-authority-country-birth'
       ],
-      next: '/first-authority-holders-nationality'
+      next: '/first-authority-holders-nationality',
+      locals: {
+        section: 'first-authority-holder'
+      }
     },
     '/first-authority-holders-nationality': {
       template: 'authority-holders-nationality.html',
@@ -268,7 +283,8 @@ module.exports = {
       ],
       next: '/first-authority-holders-postcode',
       locals: {
-        key: 'first-authority-holders-nationality'
+        key: 'first-authority-holders-nationality',
+        section: 'first-authority-holder'
       }
     },
     '/first-authority-holders-postcode': {
@@ -303,7 +319,8 @@ module.exports = {
         }
       }],
       locals: {
-        field: 'first-authority-holders'
+        field: 'first-authority-holders',
+        section: 'first-authority-holder'
       }
     },
     '/first-authority-holders-address': {
@@ -322,14 +339,18 @@ module.exports = {
         }
       }],
       locals: {
-        field: 'first-authority-holders'
+        field: 'first-authority-holders',
+        section: 'first-authority-holder'
       }
     },
     '/second-authority-holders-name': {
       fields: [
         'second-authority-holders-name'
       ],
-      next: '/second-authority-holders-birth'
+      next: '/second-authority-holders-birth',
+      locals: {
+        section: 'second-authority-holder'
+      }
     },
     '/second-authority-holders-birth': {
       controller: controllers.date,
@@ -342,7 +363,10 @@ module.exports = {
         'second-authority-town-birth',
         'second-authority-country-birth'
       ],
-      next: '/second-authority-holders-nationality'
+      next: '/second-authority-holders-nationality',
+      locals: {
+        section: 'second-authority-holder'
+      }
     },
     '/second-authority-holders-nationality': {
       template: 'authority-holders-nationality.html',
@@ -355,7 +379,8 @@ module.exports = {
       ],
       next: '/second-authority-holders-postcode',
       locals: {
-        key: 'second-authority-holders-nationality'
+        key: 'second-authority-holders-nationality',
+        section: 'second-authority-holder'
       }
     },
     '/second-authority-holders-postcode': {
@@ -384,7 +409,8 @@ module.exports = {
       ],
       next: '/contact',
       locals: {
-        field: 'second-authority-holders'
+        field: 'second-authority-holders',
+        section: 'second-authority-holder'
       }
     },
     '/second-authority-holders-address': {
@@ -397,7 +423,8 @@ module.exports = {
       prereqs: ['/second-authority-holders-postcode', '/second-authority-holders-nationality'],
       backLink: 'second-authority-holders-postcode',
       locals: {
-        field: 'second-authority-holders'
+        field: 'second-authority-holders',
+        section: 'second-authority-holder'
       }
     },
     '/supporting-docs': {
@@ -411,8 +438,9 @@ module.exports = {
       controller: require('./controllers/contact'),
       next: '/contact-details',
       locals: {
-        section: 'contact',
-        renew: true
+        renew: true,
+        section: 'contacts-details',
+        step: 'contact'
       }
     },
     '/contact-details': {
@@ -426,7 +454,10 @@ module.exports = {
         condition(req) {
           return req.sessionModel.get('contact-holder') === 'other';
         }
-      }]
+      }],
+      locals: {
+        section: 'contacts-details'
+      }
     },
     '/authority-holder-contact-postcode': {
       controller: require('./controllers/postcode'),
@@ -436,7 +467,7 @@ module.exports = {
       ],
       next: '/authority-holder-contact-address',
       forks: [{
-        target: '/summary',
+        target: '/confirm',
         condition: {
           field: 'use-different-address',
           value: 'false'
@@ -449,7 +480,8 @@ module.exports = {
         }
       }],
       locals: {
-        field: 'authority-holder-contact'
+        field: 'authority-holder-contact',
+        section: 'contacts-details'
       }
     },
     '/authority-holder-contact-address-lookup': {
@@ -458,9 +490,10 @@ module.exports = {
       fields: [
         'authority-holder-contact-address-lookup'
       ],
-      next: '/summary',
+      next: '/confirm',
       locals: {
-        field: 'authority-holder-contact'
+        field: 'authority-holder-contact',
+        section: 'contacts-details'
       }
     },
     '/authority-holder-contact-address': {
@@ -469,11 +502,12 @@ module.exports = {
       fields: [
         'authority-holder-contact-address-manual'
       ],
-      next: '/summary',
+      next: '/confirm',
       prereqs: ['/authority-holder-contact-postcode', '/contact-details'],
       backLink: 'authority-holder-contact-postcode',
       locals: {
-        field: 'authority-holder-contact'
+        field: 'authority-holder-contact',
+        section: 'contacts-details'
       }
     },
     '/contact-postcode': {
@@ -491,7 +525,8 @@ module.exports = {
         }
       }],
       locals: {
-        field: 'contact'
+        field: 'contact',
+        section: 'contacts-details'
       }
     },
     '/contact-address-lookup': {
@@ -500,9 +535,10 @@ module.exports = {
       fields: [
         'contact-address-lookup'
       ],
-      next: '/summary',
+      next: '/confirm',
       locals: {
-        field: 'contact'
+        field: 'contact',
+        section: 'contacts-details'
       }
     },
     '/contact-address': {
@@ -511,15 +547,23 @@ module.exports = {
       fields: [
         'contact-address-manual'
       ],
-      next: '/summary',
+      next: '/confirm',
       prereqs: ['/contact-postcode', '/contact-details'],
       backLink: 'contact-postcode',
       locals: {
-        field: 'contact'
+        field: 'contact',
+        section: 'contacts-details'
       }
     },
-    '/summary': {
-      clearSession: false
+    '/confirm': {
+      controller: require('./controllers/confirm'),
+      fields: [
+        'declaration'
+      ],
+      fieldsConfig: require('./fields'),
+      next: '/confirmation'
+    },
+    '/confirmation': {
     }
   }
 };

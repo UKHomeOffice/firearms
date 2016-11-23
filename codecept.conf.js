@@ -34,6 +34,7 @@ module.exports = {
     contactDetailsPage: pagesPath('contact-details.js'),
     contactAddressPage: pagesPath('contact-address.js'),
     contactAddressAuthorityHolderPage: pagesPath('contact-address-authority-holder.js'),
-    summaryPage: pagesPath('summary.js')
+    confirmPage: pagesPath('confirm.js'),
+    confirmationPage: pagesPath('confirmation.js')
   }
 };
