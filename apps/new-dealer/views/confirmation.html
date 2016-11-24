@@ -1,0 +1,31 @@
+{{<partials-page}}
+  {{$page-content}}
+    <div class="alert-complete" role="alert">
+      <div class="alert-message">
+        <h1>{{#t}}pages.confirmation.alert{{/t}}</h1>
+      </div>
+    </div>
+    <div>
+      {{#t}}pages.confirmation.email{{/t}}
+    </div>
+    <div>
+      <h2>{{#t}}pages.confirmation.evidence-subheader{{/t}}</h2>
+      <p>{{#t}}pages.confirmation.evidence{{/t}}</p>
+      {{#content}}
+        {{> partials-bullet-list}}
+      {{/content}}
+      {{#isArmedGuards}}
+        <p>{{#t}}pages.confirmation.register{{/t}}</p>
+        {{#armedGuardsContent}}
+          {{> partials-bullet-list}}
+        {{/armedGuardsContent}}
+      {{/isArmedGuards}}
+      <p>{{#t}}pages.confirmation.evidence-send{{/t}}</p>
+    </div>
+    <div>
+      <h2>{{#t}}pages.confirmation.next-subheader{{/t}}</h2>
+      <p>{{#t}}pages.confirmation.next{{/t}}</p>
+      <p>{{#t}}pages.confirmation.feedback{{/t}}</p>
+    </div>
+  {{/page-content}}
+{{/partials-page}}

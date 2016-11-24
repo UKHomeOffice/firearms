@@ -208,5 +208,36 @@
       "caseworker": "test",
       "customer": "test"
     }
+  },
+  "confirmation": {
+    "alert": "Application complete",
+    "email": "<p>We have sent an email to {{values.contact-email}} to confirm receipt of your application.</p><a href=#>Print or save the completed application</a>",
+    "evidence-subheader": "Supporting evidence",
+    "evidence": "A proven business need is required for an authority to be granted. You must provide evidence that backs up the business activities and types and quantities of weapons requested to be covered by the authority.</p><p>You must send the evidence to us by post or email, clearly referencing your business name and customer reference number if you have one.</p><p>Your evidence should include:",
+    "evidence-list": {
+      "items": [
+        "current or future contracts",
+        "invoices from within the last 6 months",
+        "letters of sponsorship from within the last 6 months",
+        "a valid import licence, if relevant",
+        "details of any third party storage arrangements, if relevant"
+      ]
+    },
+    "register": "You also need to supply us with a register of the guards employed by the company and their personal details, including:",
+    "armed-guards-list": {
+      "items": [
+        "You also need to supply us with a register of the guards employed by the company and their personal details, including:",
+        "Full names (and any previous names)",
+        "Date and place of birth",
+        "Nationalities",
+        "Residential addresses covering the last 5 years",
+        "Scanned copies of passports",
+        "DBS certificate (optional) - must be no more than 4 months old"
+      ]
+    },
+    "evidence-send": "Email: firearms.applications@homeoffice.gsi.gov.uk<p><p>Or post copies to:</p><p>Firearms licensing unitHome Office<br>Fry Building, 5th floor, SE<br>2 Marsham Street<br>London<br>SW1P 4DF",
+    "next-subheader": "What happens next?",
+    "next": "<p>We will review your application and if more information is required, we shall email the contact address provided.</p><p>If sufficient information and suitable evidence has been provided, we’ll instruct the local police force to make enquiries on behalf of the Secretary of State. In this case, the police will contact you regarding security inspections and interviews.</p>",
+    "feedback": "<a href='https://eforms.homeoffice.gov.uk/outreach/feedback.ofml?FormName=Firearms-licencing-S5'>What did you think of this service?</a>  (takes 30 seconds)"
   }
 }
