@@ -1,8 +1,8 @@
 'use strict';
 
-const BaseController = require('./base');
-const ErrorController = require('hof').controllers.error;
 const _ = require('lodash');
+const ErrorController = require('hof-controllers').error;
+const BaseController = require('./base');
 
 module.exports = class StorageAddressLookup extends BaseController {
   locals(req, res) {
