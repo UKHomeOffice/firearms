@@ -35,22 +35,22 @@
     "postinstall": "bash -c 'if [[ ${NODE_ENV} != production ]]; then npm run prepareapp; fi;'"
   },
   "dependencies": {
-    "browserify": "^12.0.1",
+    "browserify": "^13.1.1",
     "hof-bootstrap": "UKHomeOffice/hof-bootstrap#development",
     "hof-frontend-toolkit": "^1.0.0",
-    "hof-transpiler": "^0.1.0",
-    "jquery": "^2.1.4",
+    "hof-transpiler": "^0.2.0",
+    "jquery": "^3.1.1",
     "node-sass": "^3.7.0",
     "typeahead-aria": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^3.0.0",
     "jscs": "^3.0.6",
-    "mocha": "^2.2.5",
+    "mocha": "^3.1.2",
     "mocha-junit-reporter": "^1.4.0",
-    "mocha-multi": "^0.7.1",
+    "mocha-multi": "^0.9.1",
     "nodemon": "^1.9.2",
-    "npm-run-all": "^1.7.0",
+    "npm-run-all": "^3.1.1",
     "pre-commit": "^1.0.10",
     "proxyquire": "^1.5.0",
     "sinomocha": "^0.2.4",
