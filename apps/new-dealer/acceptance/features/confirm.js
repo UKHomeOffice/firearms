@@ -50,12 +50,13 @@ Scenario('I see a list of storage address in table', function *(
   ]);
 });
 
-Scenario('I am taken to the confirmation page when I agree to the declaration', (
+Scenario.only('I am taken to the confirmation page when I agree to the declaration', function *(
   I,
   confirmPage,
   confirmationPage
-) => {
-  I.click(confirmPage.declaration),
+) {
+  yield confirmPage.setSessionData(steps.name);
+  I.click(confirmPage.declaration);
   I.submitForm();
   I.seeInCurrentUrl(confirmationPage.url);
 });
