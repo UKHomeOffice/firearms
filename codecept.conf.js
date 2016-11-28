@@ -2,41 +2,46 @@
 
 const path = require('path');
 
-const pagesPath = page => path.resolve(__dirname,
-  `./apps/new-dealer/acceptance/pages/${page}`);
-
 const commonPagesPath = page => path.resolve(__dirname,
   `./apps/common/acceptance/pages/${page}`);
+
+const dealerPagesPath = page => path.resolve(__dirname,
+  `./apps/new-dealer/acceptance/pages/${page}`);
+
+const shootingClubPagesPath = page => path.resolve(__dirname,
+  `./apps/shooting-clubs/acceptance/pages/${page}`);
 
 module.exports = {
   name: 'firearms',
   features: './**/acceptance/features/**/*.js',
   include: {
     activityPage: commonPagesPath('activity.js'),
-    authorityNumberRenewPage: pagesPath('authority-holder-renew-vary.js'),
-    companyNamePage: pagesPath('company-name.js'),
-    handlePage: pagesPath('handle.js'),
-    obtainPage: pagesPath('obtain.js'),
-    importPage: pagesPath('import.js'),
-    storagePage: pagesPath('storage.js'),
-    usagePage: pagesPath('usage.js'),
-    weaponsPage: pagesPath('weapons.js'),
-    ammunitionsPage: pagesPath('ammunition.js'),
-    authorityHoldersPage: pagesPath('authority-holders.js'),
-    firstAuthorityHoldersNamePage: pagesPath('first-authority-holders-name.js'),
-    firstAuthorityHoldersBirthPage: pagesPath('first-authority-holders-birth.js'),
-    firstAuthorityHoldersNationalityPage: pagesPath('first-authority-holders-nationality.js'),
-    firstAuthorityHoldersAddressPage: pagesPath('first-authority-holders-address.js'),
-    secondAuthorityHoldersNamePage: pagesPath('second-authority-holders-name.js'),
-    secondAuthorityHoldersBirthPage: pagesPath('second-authority-holders-birth.js'),
-    secondAuthorityHoldersNationalityPage: pagesPath('second-authority-holders-nationality.js'),
-    secondAuthorityHoldersAddressPage: pagesPath('second-authority-holders-address.js'),
-    storageAddressPage: pagesPath('storage-address.js'),
-    contactPage: pagesPath('contact.js'),
-    contactDetailsPage: pagesPath('contact-details.js'),
-    contactAddressPage: pagesPath('contact-address.js'),
-    contactAddressAuthorityHolderPage: pagesPath('contact-address-authority-holder.js'),
-    confirmPage: pagesPath('confirm.js'),
-    confirmationPage: pagesPath('confirmation.js')
+    authorityNumberRenewPage: dealerPagesPath('authority-holder-renew-vary.js'),
+    companyNamePage: dealerPagesPath('company-name.js'),
+    handlePage: dealerPagesPath('handle.js'),
+    obtainPage: dealerPagesPath('obtain.js'),
+    importPage: dealerPagesPath('import.js'),
+    storagePage: dealerPagesPath('storage.js'),
+    usagePage: dealerPagesPath('usage.js'),
+    weaponsPage: dealerPagesPath('weapons.js'),
+    ammunitionsPage: dealerPagesPath('ammunition.js'),
+    authorityHoldersPage: dealerPagesPath('authority-holders.js'),
+    firstAuthorityHoldersNamePage: dealerPagesPath('first-authority-holders-name.js'),
+    firstAuthorityHoldersBirthPage: dealerPagesPath('first-authority-holders-birth.js'),
+    firstAuthorityHoldersNationalityPage: dealerPagesPath('first-authority-holders-nationality.js'),
+    firstAuthorityHoldersAddressPage: dealerPagesPath('first-authority-holders-address.js'),
+    secondAuthorityHoldersNamePage: dealerPagesPath('second-authority-holders-name.js'),
+    secondAuthorityHoldersBirthPage: dealerPagesPath('second-authority-holders-birth.js'),
+    secondAuthorityHoldersNationalityPage: dealerPagesPath('second-authority-holders-nationality.js'),
+    secondAuthorityHoldersAddressPage: dealerPagesPath('second-authority-holders-address.js'),
+    storageAddressPage: dealerPagesPath('storage-address.js'),
+    contactPage: dealerPagesPath('contact.js'),
+    contactDetailsPage: dealerPagesPath('contact-details.js'),
+    contactAddressPage: dealerPagesPath('contact-address.js'),
+    contactAddressAuthorityHolderPage: dealerPagesPath('contact-address-authority-holder.js'),
+    confirmPage: dealerPagesPath('confirm.js'),
+    confirmationPage: dealerPagesPath('confirmation.js'),
+    clubNamePage: shootingClubPagesPath('club-name.js'),
+    clubPostCodePage: shootingClubPagesPath('club-postcode.js')
   }
 };
