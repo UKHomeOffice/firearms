@@ -14,7 +14,7 @@ module.exports = {
     '/activity': {
       fields: [
         'activity'
-      ]
+      ],
     }
   }
 };
