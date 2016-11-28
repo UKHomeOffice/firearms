@@ -1,7 +1,4 @@
 {
-  "activity": {
-    "header": "What do you want to do?"
-  },
   "authority-number-renew-vary": {
     "header": "What are your customer reference and current authority numbers?",
     "summary-header": "How can I find the customer reference and authority numbers?",

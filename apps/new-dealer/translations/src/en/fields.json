@@ -1,14 +1,4 @@
 {
-  "activity": {
-    "options": {
-      "new": {
-        "label": "Apply for an authority"
-      },
-      "renew": {
-        "label": "Renew or amend an existing authority"
-      }
-    }
-  },
   "authority-number": {
     "hint": "For example, 16/B/D/001",
     "label": "Current authority number"

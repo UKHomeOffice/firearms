@@ -1,7 +1,4 @@
 {
-  "activity": {
-    "required": "Select an option"
-  },
   "authority-number": {
     "required": "Enter reference number of authority you are renewing/varying"
   },
