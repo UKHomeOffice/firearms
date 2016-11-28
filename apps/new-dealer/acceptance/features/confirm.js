@@ -50,7 +50,7 @@ Scenario('I see a list of storage address in table', function *(
   ]);
 });
 
-Scenario.only('I am taken to the confirmation page when I agree to the declaration', function *(
+Scenario('I am taken to the confirmation page when I agree to the declaration', function *(
   I,
   confirmPage,
   confirmationPage
