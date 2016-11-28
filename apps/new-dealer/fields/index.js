@@ -6,17 +6,6 @@ function notBothOptions(values) {
 }
 
 module.exports = {
-  activity: {
-    mixin: 'radio-group',
-    validate: 'required',
-    legend: {
-      className: 'visuallyhidden'
-    },
-    options: [
-      'new',
-      'renew'
-    ]
-  },
   'authority-number': {
     mixin: 'input-text',
     validate: 'required'

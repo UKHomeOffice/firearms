@@ -8,12 +8,12 @@ Scenario('I see the contact holders email address on the page', function *(
   I,
   confirmationPage
 ) {
-  I.amOnPage('/');
+  I.amOnPage('/s5/');
   yield I.setSessionData(steps.name, {
     'contact-email': confirmationPage.content.email
   });
   yield I.setSessionSteps(steps.name, ['/confirm']);
-  yield I.amOnPage('/' + confirmationPage.url);
+  yield I.amOnPage('/s5/' + confirmationPage.url);
   I.see(confirmationPage.content.email);
 });
 
@@ -21,12 +21,12 @@ Scenario('I see content relating to arm guards on the page when arm guards is se
   I,
   confirmationPage
 ) {
-  I.amOnPage('/');
+  I.amOnPage('/s5/');
   yield I.setSessionData(steps.name, {
     'usage': 'arm-guards'
   });
   yield I.setSessionSteps(steps.name, ['/confirm']);
-  yield I.amOnPage('/' + confirmationPage.url);
+  yield I.amOnPage('/s5/' + confirmationPage.url);
   confirmationPage.showsArmGuardsContent();
 });
 
@@ -34,12 +34,12 @@ Scenario('I don\'t see content relating to arm guards on the page when arm guard
   I,
   confirmationPage
 ) {
-  I.amOnPage('/');
+  I.amOnPage('/s5/');
   yield I.setSessionData(steps.name, {
     'usage': 'training'
   });
   yield I.setSessionSteps(steps.name, ['/confirm']);
-  yield I.amOnPage('/' + confirmationPage.url);
+  yield I.amOnPage('/s5/' + confirmationPage.url);
   confirmationPage.doesntShowArmGuardsContent();
 });
 
