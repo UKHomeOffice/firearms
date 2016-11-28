@@ -561,6 +561,7 @@ module.exports = {
         'declaration'
       ],
       fieldsConfig: require('./fields'),
+      emailConfig: require('../../config').email,
       next: '/confirmation'
     },
     '/confirmation': {

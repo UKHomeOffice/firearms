@@ -202,5 +202,11 @@
   },
   "contacts-details": {
     "header": "Contact details"
+  },
+  "email": {
+    "subject": {
+      "caseworker": "test",
+      "customer": "test"
+    }
   }
 }
