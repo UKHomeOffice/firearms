@@ -125,18 +125,18 @@ Scenario('When I click cant find my address link, I will see the postcode I ente
 Scenario('I am taken to the summary step from the manual-address step', (
   I,
   contactAddressPage,
-  summaryPage
+  confirmPage
 ) => {
   I.click(contactAddressPage.links['manual-entry']);
   contactAddressPage.fillFormAndSubmit(contactAddressPage.fields['address-manual']);
-  I.seeInCurrentUrl(summaryPage.url);
+  I.seeInCurrentUrl(confirmPage.url);
 });
 
 Scenario('When an address is selected I am taken to the summary step', (
   I,
   contactAddressPage,
-  summaryPage
+  confirmPage
 ) => {
   contactAddressPage.selectAddressAndSubmit();
-  I.seeInCurrentUrl(summaryPage.url);
+  I.seeInCurrentUrl(confirmPage.url);
 });

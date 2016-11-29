@@ -58,7 +58,7 @@ module.exports = class StorageAddressLookup extends BaseController {
   }
 
   saveValues(req, res, callback) {
-    const address = req.form.values['storage-address-lookup'];
+    const address = req.form.values['storage-address-lookup'].split(', ').join('\n');
     let postcode;
     let storageAddresses = req.sessionModel.get('storageAddresses') || {};
     let id = req.params.id;

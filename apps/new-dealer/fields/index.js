@@ -27,6 +27,7 @@ module.exports = {
   },
   organisation: {
     mixin: 'radio-group',
+    includeInSummary: false,
     validate: 'required',
     className: 'form-group',
     legend: {
@@ -163,7 +164,8 @@ module.exports = {
       child: 'select'
     }, {
       value: 'no'
-    }]
+    }],
+    includeInSummary: false
   },
   'import-country': {
     validate: 'required',
@@ -186,14 +188,16 @@ module.exports = {
       value: 'false',
       toggle: 'no-storage-details',
       child: 'textarea'
-    }]
+    }],
+    includeInSummary: false
   },
   'no-storage-details': {
     validate: 'required',
     dependent: {
       field: 'stored-on-premises',
       value: 'false'
-    }
+    },
+    includeInSummary: false
   },
   usage: {
     mixin: 'checkbox-group',
@@ -217,10 +221,12 @@ module.exports = {
     dependent: {
       field: 'usage',
       value: 'other'
-    }
+    },
+    includeInSummary: false
   },
-  'weapon-types': {
+  'weapons-types': {
     mixin: 'checkbox-group',
+    includeInSummary: false,
     legend: {
       className: 'visuallyhidden'
     },
@@ -267,7 +273,7 @@ module.exports = {
       child: 'partials/details-summary'
     }, {
       value: 'military-use-rockets',
-      toggle: 'military-use-quantity',
+      toggle: 'military-use-rockets-quantity',
       child: 'partials/details-summary'
     }, {
       value: 'projecting-launchers',
@@ -278,89 +284,102 @@ module.exports = {
   'weapons-unspecified-details': {
     validate: 'required',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'unspecified'
-    }
+    },
+    includeInSummary: false
   },
   'fully-automatic-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'fully-automatic'
-    }
+    },
+    includeInSummary: false
   },
   'self-loading-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'self-loading'
-    }
+    },
+    includeInSummary: false
   },
   'short-pistols-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'short-pistols'
-    }
+    },
+    includeInSummary: false
   },
   'short-self-loading-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'short-self-loading'
-    }
+    },
+    includeInSummary: false
   },
   'large-revolvers-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'large-revolvers'
-    }
+    },
+    includeInSummary: false
   },
   'rocket-launchers-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'rocket-launchers'
-    }
+    },
+    includeInSummary: false
   },
   'air-rifles-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'air-rifles'
-    }
+    },
+    includeInSummary: false
   },
   'fire-noxious-substance-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'fire-noxious-substance'
-    }
+    },
+    includeInSummary: false
   },
   'disguised-firearms-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'disguised-firearms'
-    }
+    },
+    includeInSummary: false
   },
-  'military-use-quantity': {
+  'military-use-rockets-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'military-use-rockets'
-    }
+    },
+    includeInSummary: false
   },
   'projecting-launchers-quantity': {
     validate: 'numeric',
     dependent: {
-      field: 'weapon-types',
+      field: 'weapons-types',
       value: 'projecting-launchers'
-    }
+    },
+    includeInSummary: false
   },
   'ammunition-types': {
     mixin: 'checkbox-group',
+    includeInSummary: false,
     legend: {
       className: 'visuallyhidden'
     },
@@ -396,42 +415,48 @@ module.exports = {
     dependent: {
       field: 'ammunition-types',
       value: 'unspecified'
-    }
+    },
+    includeInSummary: false
   },
   'explosive-cartridges-quantity': {
     validate: 'numeric',
     dependent: {
       field: 'ammunition-types',
       value: 'explosive-cartridges'
-    }
+    },
+    includeInSummary: false
   },
   'incendiary-missile-quantity': {
     validate: 'numeric',
     dependent: {
       field: 'ammunition-types',
       value: 'incendiary-missile'
-    }
+    },
+    includeInSummary: false
   },
   'armour-piercing-quantity': {
     validate: 'numeric',
     dependent: {
       field: 'ammunition-types',
       value: 'armour-piercing'
-    }
+    },
+    includeInSummary: false
   },
   'expanding-missile-quantity': {
     validate: 'numeric',
     dependent: {
       field: 'ammunition-types',
       value: 'expanding-missile'
-    }
+    },
+    includeInSummary: false
   },
   'missiles-for-above-quantity': {
     validate: 'numeric',
     dependent: {
       field: 'ammunition-types',
       value: 'missiles-for-above'
-    }
+    },
+    includeInSummary: false
   },
   'authority-holders': {
     mixin: 'radio-group',
@@ -439,7 +464,8 @@ module.exports = {
     options: [
       'one',
       'two'
-    ]
+    ],
+    includeInSummary: false
   },
   'first-authority-holders-name': {
     mixin: 'input-text',
@@ -452,13 +478,16 @@ module.exports = {
   'first-authority-dob': {
   },
   'first-authority-dob-day': {
-    validate: ['required', 'numeric']
+    validate: ['required', 'numeric'],
+    includeInSummary: false
   },
   'first-authority-dob-month': {
-    validate: ['required', 'numeric']
+    validate: ['required', 'numeric'],
+    includeInSummary: false
   },
   'first-authority-dob-year': {
-    validate: ['required', 'numeric']
+    validate: ['required', 'numeric'],
+    includeInSummary: false
   },
   'first-authority-town-birth': {
     mixin: 'input-text',
@@ -471,13 +500,16 @@ module.exports = {
   'second-authority-dob': {
   },
   'second-authority-dob-day': {
-    validate: ['required', 'numeric']
+    validate: ['required', 'numeric'],
+    includeInSummary: false
   },
   'second-authority-dob-month': {
-    validate: ['required', 'numeric']
+    validate: ['required', 'numeric'],
+    includeInSummary: false
   },
   'second-authority-dob-year': {
-    validate: ['required', 'numeric']
+    validate: ['required', 'numeric'],
+    includeInSummary: false
   },
   'second-authority-town-birth': {
     mixin: 'input-text',
@@ -497,6 +529,7 @@ module.exports = {
     mixin: 'checkbox',
     value: 'first-authority-holders-nationality-multi',
     toggle: 'first-authority-holders-nationality-multi',
+    includeInSummary: false
   },
   'first-authority-holders-nationality-second': {
     className: ['typeahead', 'js-hidden'],
@@ -509,10 +542,12 @@ module.exports = {
   'first-authority-holders-postcode': {
     mixin: 'input-text-code',
     validate: ['required', 'postcode'],
-    formatter: 'uppercase'
+    formatter: 'uppercase',
+    includeInSummary: false
   },
   'first-authority-holders-address-lookup': {
-    className: 'address'
+    className: 'address',
+    includeInSummary: false
   },
   'first-authority-holders-address-manual': {
     mixin: 'textarea',
@@ -534,6 +569,7 @@ module.exports = {
     mixin: 'checkbox',
     value: 'second-authority-holders-nationality-multi',
     toggle: 'second-authority-holders-nationality-multi',
+    includeInSummary: false
   },
   'second-authority-holders-nationality-second': {
     className: ['typeahead', 'js-hidden'],
@@ -546,10 +582,12 @@ module.exports = {
   'second-authority-holders-postcode': {
     mixin: 'input-text-code',
     validate: ['required', 'postcode'],
-    formatter: 'uppercase'
+    formatter: 'uppercase',
+    includeInSummary: false
   },
   'second-authority-holders-address-lookup': {
-    className: 'address'
+    className: 'address',
+    includeInSummary: false
   },
   'second-authority-holders-address-manual': {
     mixin: 'textarea',
@@ -574,15 +612,18 @@ module.exports = {
     dependent: {
       field: 'contact-holder',
       value: 'other'
-    }
+    },
+    includeInSummary: false
   },
   'storage-postcode': {
     mixin: 'input-text-code',
     validate: ['required', 'postcode'],
-    formatter: 'uppercase'
+    formatter: 'uppercase',
+    includeInSummary: false
   },
   'storage-address-lookup': {
-    className: 'address'
+    className: 'address',
+    includeInSummary: false
   },
   'storage-address-manual': {
     mixin: 'textarea',
@@ -592,7 +633,8 @@ module.exports = {
     attributes: [{
       attribute: 'height',
       value: 6
-    }]
+    }],
+    includeInSummary: false
   },
   'contact-email': {
     mixin: 'input-text',
@@ -619,10 +661,12 @@ module.exports = {
     dependent: {
       field: 'use-different-address',
       value: 'true'
-    }
+    },
+    includeInSummary: false
   },
   'authority-holder-contact-address-lookup': {
-    className: 'address'
+    className: 'address',
+    includeInSummary: false
   },
   'authority-holder-contact-address-manual': {
     mixin: 'textarea',
@@ -637,10 +681,12 @@ module.exports = {
   'contact-postcode': {
     mixin: 'input-text-code',
     validate: ['required', 'postcode'],
-    formatter: 'uppercase'
+    formatter: 'uppercase',
+    includeInSummary: false
   },
   'contact-address-lookup': {
-    className: 'address'
+    className: 'address',
+    includeInSummary: false
   },
   'contact-address-manual': {
     mixin: 'textarea',
@@ -659,5 +705,9 @@ module.exports = {
       'yes',
       'no'
     ]
+  },
+  'declaration': {
+    mixin: 'checkbox',
+    validate: 'required'
   }
 };

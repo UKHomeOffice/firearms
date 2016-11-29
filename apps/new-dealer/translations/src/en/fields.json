@@ -64,6 +64,7 @@
   },
   "weapons-ammunition": {
     "legend": "Select all that apply",
+    "summary": "What will be handled?",
     "options": {
       "weapons": {
         "label": "Weapons and/or component parts"
@@ -75,6 +76,7 @@
   },
   "obtain": {
     "legend": "Select all that apply",
+    "summary": "How will they be obtained?",
     "options": {
       "buy": {
         "label": "Buy"
@@ -100,6 +102,7 @@
     "label": "Please provide further details"
   },
   "import": {
+    "summary": "Will the prohibited items be imported?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -110,6 +113,7 @@
     }
   },
   "import-country": {
+    "summary": "Will the prohibited items be imported?",
     "label": "Which countries will the prohibited items be imported from?"
   },
   "stored-on-premises": {
@@ -127,6 +131,7 @@
   },
   "usage": {
     "legend": "Select all that apply",
+    "summary": "Business activities",
     "options": {
       "sell": {
         "label": "Selling"
@@ -141,7 +146,7 @@
         "label": "Arm guards to protect ships"
       },
       "training": {
-        "label": "Training and demonstration "
+        "label": "Training and demonstration"
       },
       "research": {
         "label": "Research, forensics and testing"
@@ -157,8 +162,9 @@
   "other-details": {
     "label": "Please provide further details. This can include TV film or theatrical productions, humane dispatch of animals, protection of humans from animals, for example."
   },
-  "weapon-types": {
+  "weapons-types": {
     "legend": "Select all that apply",
+    "summary": "Sections, weapon type(s)",
     "options": {
       "unspecified": {
         "label": "Unspecified sections and quantities"
@@ -206,6 +212,12 @@
     "header": "Help with section 5(1)(a)",
     "summary-details": "This includes all weapons which are so designed or adapted that two or more missiles can be successively discharged without repeated pressure on the trigger."
   },
+  "quantity-base": {
+    "summary": "Quantity"
+  },
+  "further-details": {
+    "summary": "Further details"
+  },
   "self-loading-quantity": {
     "label": "Maximum quantity (leave blank if unspecified)",
     "header": "Help with section 5(1)(ab)",
@@ -246,7 +258,7 @@
     "header": "Help with section 5(1A)(a)",
     "summary-details": "This includes any firearm which is disguised as another object."
   },
-  "military-use-quantity": {
+  "military-use-rockets-quantity": {
     "label": "Maximum quantity (leave blank if unspecified)",
     "header": "Help with section 5(1A)(b)",
     "summary-details": "This includes any rocket or ammunition not falling within section 5(1)(c) which consists in or incorporates a missile designed to explode on or immediately before impact and is for military use."
@@ -258,6 +270,7 @@
   },
   "ammunition-types": {
     "legend": "Select all that apply",
+    "summary": "Sections, ammunition type(s)",
     "options": {
       "unspecified": {
         "label": "Unspecified sections and quantities"
@@ -324,12 +337,14 @@
         "one": "Authority holder",
         "two": "First authority holder"
       }
-    }
+    },
+    "summary": "Name"
   },
   "second-authority-holders-name": {
     "label": "Second authority holder"
   },
   "first-authority-dob": {
+    "summary": "Date of birth",
     "hint": "For example, 31 3 1980"
   },
   "first-authority-dob-day": {
@@ -354,21 +369,25 @@
     "label": "Add another nationality"
   },
   "first-authority-holders-nationality-second": {
+    "summary": "Second nationality",
     "label": "Second nationality (optional)"
   },
   "first-authority-holders-nationality-third": {
+    "summary": "Third nationality",
     "label": "Third nationality (optional)"
   },
   "first-authority-holders-postcode": {
     "label": "Postcode"
   },
   "first-authority-holders-address-manual": {
+    "summary": "Home address",
     "label": "Address"
   },
   "first-authority-holders-address-lookup": {
     "label": "Select your address"
   },
   "second-authority-dob": {
+    "summary": "Date of birth",
     "hint": "For example, 31 3 1980"
   },
   "second-authority-dob-day": {
@@ -393,21 +412,25 @@
     "label": "Add another nationality"
   },
   "second-authority-holders-nationality-second": {
+    "summary": "Second nationality",
     "label": "Second nationality (optional)"
   },
   "second-authority-holders-nationality-third": {
+    "summary": "Third nationality",
     "label": "Third nationality (optional)"
   },
   "second-authority-holders-postcode": {
     "label": "Postcode"
   },
   "second-authority-holders-address-manual": {
+    "summary": "Address",
     "label": "Address"
   },
   "second-authority-holders-address-lookup": {
     "label": "Select your address"
   },
   "contact-holder": {
+    "summary": "Name",
     "options": {
       "first": {
         "label": "{{values.first-authority-holders-name}}"
@@ -456,12 +479,14 @@
     "label": "Select your address"
   },
   "authority-holder-contact-address-manual": {
+    "summary": "Home address",
     "label": "Address"
   },
   "contact-postcode": {
     "label": "Postcode"
   },
   "contact-address-manual": {
+    "summary": "Home address",
     "label": "Address"
   },
   "contact-address-lookup": {
@@ -477,5 +502,8 @@
         "label": "No"
       }
     }
+  },
+  "declaration": {
+    "label": "I agree"
   }
 }

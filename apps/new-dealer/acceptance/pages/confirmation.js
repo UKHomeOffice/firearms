@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  url: 'summary'
+  url: 'confirmation'
 };

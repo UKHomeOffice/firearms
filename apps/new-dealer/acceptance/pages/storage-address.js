@@ -32,7 +32,8 @@ module.exports = {
   content: {
     postcode: 'CR0 2EU',
     address: '49 Sydenham Road, Croydon, CR0 2EU',
-    'another-address': '2 Marsham Street, London'
+    'another-address': '2 Marsham Street, London',
+    'display-address': '49 Sydenham Road Croydon CR0 2EU'
   },
 
   fillFormAndSubmit(field, content) {

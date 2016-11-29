@@ -180,7 +180,7 @@ Scenario('I see the storage-address that was added previously', (
   storageAddressPage
 ) => {
   storageAddressPage.selectAddressAndSubmit();
-  I.see(storageAddressPage.content.address);
+  I.see(storageAddressPage.content['display-address']);
 });
 
 Scenario('When I select yes on the add-another-address page, I am taken to the storage-postcode step', (
@@ -203,7 +203,7 @@ Scenario('When I add another address, I can see both addresses on the add-anothe
   I.click(storageAddressPage.links['manual-entry']);
   storageAddressPage.fillFormAndSubmit(storageAddressPage.fields['address-manual'], storageAddressPage.content['another-address']);
   I.seeEach([
-    storageAddressPage.content.address,
+    storageAddressPage.content['display-address'],
     storageAddressPage.content['another-address']
   ])
 });
@@ -222,7 +222,6 @@ Scenario('When I change the address, I can see the new address on the storage-ad
   storageAddressPage
 ) => {
   storageAddressPage.selectAddressAndSubmit();
-  I.see(storageAddressPage.content.address);
   I.click(storageAddressPage.links.change);
   I.click(storageAddressPage.links['manual-entry']);
   storageAddressPage.fillFormAndSubmit(storageAddressPage.fields['address-manual'], storageAddressPage.content['another-address']);

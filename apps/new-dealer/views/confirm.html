@@ -1,0 +1,22 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#rows}}
+      {{#something}}
+        {{> partials-multiple-fields-summary-table}}
+      {{/something}}
+      {{^something}}
+        {{> partials-summary-table}}
+      {{/something}}
+    {{/rows}}
+    <p>{{#t}}pages.confirm.footer{{/t}}</p>
+    <h3>Declaration</h3>
+    <p>{{#t}}pages.confirm.declaration{{/t}}</p>
+    {{#content}}
+      {{> partials-bullet-list}}
+    {{/content}}
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}confirm{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

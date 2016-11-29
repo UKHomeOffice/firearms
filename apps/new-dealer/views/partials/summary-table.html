@@ -1,0 +1,14 @@
+<div>
+  <h3>{{section}}</h3>
+</div>
+<table class="table-details">
+  <tbody>
+  {{#fields}}
+  <tr>
+    <td>{{label}}</td>
+    <td data-value="{{value}}">{{value}}</td>
+    <td><span class="link"><a href="{{baseUrl}}{{step}}/edit#{{field}}" id="{{field}}-change">{{#t}}buttons.change{{/t}}</a></span></td>
+  </tr>
+  {{/fields}}
+  </tbody>
+</table>

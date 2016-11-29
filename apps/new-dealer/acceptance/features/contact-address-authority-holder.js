@@ -95,11 +95,11 @@ Scenario('I am taken to the contact-address-lookup step when use-different-addre
 Scenario('I am taken to the summary step when use-same-address is selected', (
   I,
   contactAddressAuthorityHolderPage,
-  summaryPage
+  confirmPage
 ) => {
   I.click(contactAddressAuthorityHolderPage.fields['same-address']);
   I.submitForm();
-  I.seeInCurrentUrl(summaryPage.url)
+  I.seeInCurrentUrl(confirmPage.url)
 });
 
 Scenario('The correct form elements are present for authority holders contact manual address step', (
@@ -210,20 +210,20 @@ Scenario('When I click cant find my address link, I will see the postcode I ente
 Scenario('I am taken to the summary step from the manual-address step', (
   I,
   contactAddressAuthorityHolderPage,
-  summaryPage
+  confirmPage
 ) => {
   I.click(contactAddressAuthorityHolderPage.fields['different-address']);
   I.click(contactAddressAuthorityHolderPage.links['manual-entry']);
   contactAddressAuthorityHolderPage.fillFormAndSubmit(contactAddressAuthorityHolderPage.fields['address-manual']);
-  I.seeInCurrentUrl(summaryPage.url);
+  I.seeInCurrentUrl(confirmPage.url);
 });
 
 Scenario('When an address is selected I am taken to the summary step', (
   I,
   contactAddressAuthorityHolderPage,
-  summaryPage
+  confirmPage
 ) => {
   I.click(contactAddressAuthorityHolderPage.fields['different-address']);
   contactAddressAuthorityHolderPage.selectAddressAndSubmit();
-  I.seeInCurrentUrl(summaryPage.url);
+  I.seeInCurrentUrl(confirmPage.url);
 });
