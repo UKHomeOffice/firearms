@@ -1,0 +1,5 @@
+@media print {
+  #step, #declaration-section, .phase-banner, .link, .button {
+    display: none;
+  }
+}
