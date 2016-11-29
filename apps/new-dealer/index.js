@@ -311,7 +311,7 @@ module.exports = {
       fields: [
         'first-authority-holders-address-lookup'
       ],
-      next: '/supporting-docs',
+      next: '/contact',
       forks: [{
         target: '/second-authority-holders-name',
         condition(req) {
@@ -329,7 +329,7 @@ module.exports = {
       fields: [
         'first-authority-holders-address-manual'
       ],
-      next: '/supporting-docs',
+      next: '/contact',
       prereqs: ['/first-authority-holders-postcode', '/first-authority-holders-nationality'],
       backLink: 'first-authority-holders-postcode',
       forks: [{
@@ -419,16 +419,13 @@ module.exports = {
       fields: [
         'second-authority-holders-address-manual'
       ],
-      next: '/supporting-docs',
+      next: '/contact',
       prereqs: ['/second-authority-holders-postcode', '/second-authority-holders-nationality'],
       backLink: 'second-authority-holders-postcode',
       locals: {
         field: 'second-authority-holders',
         section: 'second-authority-holder'
       }
-    },
-    '/supporting-docs': {
-      next: '/contact'
     },
     '/contact': {
       fields: [
