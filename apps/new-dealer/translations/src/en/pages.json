@@ -211,7 +211,7 @@
   },
   "confirmation": {
     "alert": "Application complete",
-    "email": "<p>We have sent an email to {{values.contact-email}} to confirm receipt of your application.</p><a href=#>Print or save the completed application</a>",
+    "email": "We have sent an email to {{values.contact-email}} to confirm receipt of your application.",
     "evidence-subheader": "Supporting evidence",
     "evidence": "A proven business need is required for an authority to be granted. You must provide evidence that backs up the business activities and types and quantities of weapons requested to be covered by the authority.</p><p>You must send the evidence to us by post or email, clearly referencing your business name and customer reference number if you have one.</p><p>Your evidence should include:",
     "evidence-list": {
