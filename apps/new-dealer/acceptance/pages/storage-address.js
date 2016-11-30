@@ -26,7 +26,7 @@ module.exports = {
   links: {
     'manual-entry': '#manual-entry',
     'cant-find-address': '#cant-find',
-    change: 'Change'
+    delete: 'Delete'
   },
 
   content: {
@@ -45,5 +45,13 @@ module.exports = {
     this.fillFormAndSubmit(this.fields.postcode, this.content.postcode);
     I.selectOption(this.fields['address-lookup'], this.content.address);
     I.submitForm();
+  },
+
+  addMultipleAddresses() {
+    this.selectAddressAndSubmit();
+    I.click(this.fields.yes);
+    I.submitForm();
+    I.click(this.links['manual-entry']);
+    this.fillFormAndSubmit(this.fields['address-manual'], this.content['another-address']);
   }
 };

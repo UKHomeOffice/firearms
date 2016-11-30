@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const BaseController = require('./base');
 
-module.exports = class AddNewAddress extends BaseController {
+module.exports = class StorageAddAnotherAddress extends BaseController {
   locals(req, res, callback) {
     const locals = super.locals(req, res, callback);
     const addresses = req.sessionModel.get('storageAddresses');
@@ -22,9 +22,23 @@ module.exports = class AddNewAddress extends BaseController {
     });
   }
 
-  getBackLink(req, res, callback) {
+  get(req, res, callback) {
+    if (req.params.action === 'delete' && req.params.id) {
+      return this.removeItem(req, res);
+    }
+    return super.get(req, res, callback);
+  }
+
+  removeItem(req, res) {
+    const items = req.sessionModel.get('storageAddresses');
+    req.sessionModel.set('storageAddresses', _.omit(items, req.params.id));
+    const step = _.size(items) > 1 ? '/storage-add-another-address' : '/storage-postcode';
+    return res.redirect(`${req.baseUrl}${step}`);
+  }
+
+  getBackLink(req) {
     const addresses = req.sessionModel.get('storageAddresses');
     const id = _.last(Object.keys(addresses));
-    return `${super.getBackLink(req, res, callback)}/edit/${id}`;
+    return `/storage-postcode/edit/${id}`;
   }
 };

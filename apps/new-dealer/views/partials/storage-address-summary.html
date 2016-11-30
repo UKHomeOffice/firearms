@@ -1,8 +1,15 @@
 {{#hasStorageAddresses}}
   <div id="storage-address-summary">
     <h2>Addresses added</h2>
-    {{#storageAddresses}}
-      <p class="address-summary">{{address}} <span class="link"><a href="{{baseUrl}}/storage-postcode/edit/{{id}}">Change</a></span></p>
-    {{/storageAddresses}}
+    <table>
+      <tbody>
+        {{#storageAddresses}}
+          <tr class="address-summary">
+            <td>{{address}}</td>
+            <td><a href="{{baseUrl}}/{{route}}/delete/{{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a></td>
+          </tr>
+        {{/storageAddresses}}
+      </tbody>
+    </table>
   </div>
 {{/hasStorageAddresses}}
