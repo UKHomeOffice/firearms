@@ -49,8 +49,8 @@
   "museum-name": {
     "label": "Museum name"
   },
-  "other-specify": {
-    "label": "Other specify"
+  "other-name": {
+    "label": "Organisation name"
   },
   "weapons-ammunition": {
     "legend": "Select all that apply",

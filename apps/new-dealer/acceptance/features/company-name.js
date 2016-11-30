@@ -124,21 +124,21 @@ Scenario('An error is shown if company-name step is not completed after selectin
   I.seeErrors(companyNamePage['museum-name']);
 });
 
-Scenario('Selecting other toggles other-specify field', (
+Scenario('Selecting other toggles other-name field', (
   I,
   companyNamePage
 ) => {
-  I.checkOption(companyNamePage['other']);
-  I.seeElements(companyNamePage['other-specify']);
+  I.checkOption(companyNamePage.other);
+  I.seeElements(companyNamePage['other-name']);
 });
 
 Scenario('An error is shown if company-name step is not completed after selecting other', (
   I,
   companyNamePage
 ) => {
-  I.checkOption(companyNamePage['other']);
+  I.checkOption(companyNamePage.other);
   I.submitForm();
-  I.seeErrors(companyNamePage['other-specify']);
+  I.seeErrors(companyNamePage['other-name']);
 });
 
 Scenario('Im taken to the handle step', (

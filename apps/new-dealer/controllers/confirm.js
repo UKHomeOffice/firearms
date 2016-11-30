@@ -1,7 +1,8 @@
 'use strict';
 
-const controllers = require('hof-controllers').confirm;
 const _ = require('lodash');
+const path = require('path');
+const controllers = require('hof-controllers').confirm;
 
 module.exports = class ConfirmController extends controllers {
 
@@ -103,11 +104,17 @@ module.exports = class ConfirmController extends controllers {
     }
   }
 
-  addContactDetailsSection(req) {
+  getContactHoldersName(req) {
     const contactHolder = req.sessionModel.get('contact-holder');
     const contactName = contactHolder === 'first' || contactHolder === 'second' ?
       req.sessionModel.get(`${contactHolder}-authority-holders-name`) :
       req.sessionModel.get('someone-else-name');
+    return contactName;
+  }
+
+  addContactDetailsSection(req) {
+    const contactHolder = req.sessionModel.get('contact-holder');
+    const contactName = this.getContactHoldersName(req);
     const contactAddress = req.sessionModel.get(`${contactHolder}-authority-holders-address-manual`);
     this.formattedData = this.formattedData.map(section => {
       if (section.fields !== undefined) {
@@ -122,6 +129,29 @@ module.exports = class ConfirmController extends controllers {
         });
       }
       return section;
+    });
+  }
+
+  getEmailerConfig(req) {
+    const config = super.getEmailerConfig(req);
+    const organisation = req.sessionModel.get('organisation');
+    const customViews = path.resolve(__dirname, '../views/email/');
+    const greeting = `${req.translate('pages.email.greeting')} ${this.getContactHoldersName(req)}`;
+    config.customerIntro = [greeting].concat(config.customerIntro);
+    const data = {
+      organisation: req.sessionModel.get(`${organisation}-name`),
+      date: (new Date()).toUTCString()
+    };
+    if (req.sessionModel.get('activity') === 'renew') {
+      data.reference = req.sessionModel.get('reference-number');
+    }
+    const emailData = _.map(data, (value, index) => ({
+      subheader: req.translate(`pages.email.data.${index}`),
+      value
+    }));
+    config.data.push({emailData});
+    return Object.assign({}, config, {
+      customViews
     });
   }
 };

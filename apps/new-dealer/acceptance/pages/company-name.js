@@ -23,7 +23,7 @@ module.exports = {
   museum: '#organisation-museum',
   'museum-name': '#museum-name',
   other: '#organisation-other',
-  'other-specify': '#other-specify',
+  'other-name': '#other-name',
 
   content: {
     name: 'Four-Five-Six Laundry',

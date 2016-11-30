@@ -3,11 +3,18 @@ services:
   app:
     build: .
     environment:
-      - NODE_ENV=docker-compose
+      - NODE_ENV=development
+      - EMAIL_TRANSPORT=smtp
+      - EMAIL_HOST=maildev
+      - CASEWORKER_EMAIL=caseworker@gov.uk.test
+      - IGNORE_TLS=true
+      - EMAIL_SECURE=false
+      - EMAIL_PORT=25
       - REDIS_HOST=redis
       - REDIS_PORT=6379
     links:
       - redis
+      - maildev
     ports:
       - "8080:8080"
     volumes:
@@ -30,3 +37,9 @@ services:
       - app
     volumes_from:
       - app
+
+  maildev:
+    image: djfarrelly/maildev
+    ports:
+      - "8000:80"
+      - "25"

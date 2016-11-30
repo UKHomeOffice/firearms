@@ -44,7 +44,7 @@ module.exports = {
       child: 'input-text'
     }, {
       value: 'other',
-      toggle: 'other-specify',
+      toggle: 'other-name',
       child: 'input-text'
     }]
   },
@@ -97,7 +97,7 @@ module.exports = {
       value: 'museum'
     }
   },
-  'other-specify': {
+  'other-name': {
     validate: 'required',
     dependent: {
       field: 'organisation',
