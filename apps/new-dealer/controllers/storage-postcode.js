@@ -8,7 +8,7 @@ module.exports = class StoragePostcodeController extends BaseController {
   locals(req, res, callback) {
     const locals = super.locals(req, res, callback);
     const addresses = req.sessionModel.get('storageAddresses');
-    const hasStorageAddresses = _.size(addresses) > 0 ? true : false;
+    const hasStorageAddresses = _.size(addresses);
     const storageAddresses = [];
     _.forEach(addresses, (value, key) => {
       const address = {

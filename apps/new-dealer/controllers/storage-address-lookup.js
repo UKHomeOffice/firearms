@@ -8,7 +8,7 @@ module.exports = class StorageAddressLookup extends BaseController {
   locals(req, res) {
     const locals = super.locals(req, res);
     const addresses = req.sessionModel.get('storageAddresses');
-    const hasStorageAddresses = _.size(addresses) > 0 ? true : false;
+    const hasStorageAddresses = _.size(addresses);
     const storageAddresses = [];
     let postcode;
     let id;
