@@ -197,36 +197,29 @@ Scenario('When I add another address, I can see both addresses on the add-anothe
   I,
   storageAddressPage
 ) => {
-  storageAddressPage.selectAddressAndSubmit();
-  I.click(storageAddressPage.fields.yes);
-  I.submitForm();
-  I.click(storageAddressPage.links['manual-entry']);
-  storageAddressPage.fillFormAndSubmit(storageAddressPage.fields['address-manual'], storageAddressPage.content['another-address']);
+  storageAddressPage.addMultipleAddresses();
   I.seeEach([
     storageAddressPage.content['display-address'],
     storageAddressPage.content['another-address']
   ])
 });
 
-Scenario('When I click Change, I am taken back to the storage-postcode page', (
+Scenario('When I click Delete and there are no addresses to display, I am taken back to the storage-postcode page', (
   I,
   storageAddressPage
 ) => {
   storageAddressPage.selectAddressAndSubmit();
-  I.click(storageAddressPage.links.change);
-  I.seeInCurrentUrl(`${storageAddressPage.url}/edit/0`);
+  I.click(storageAddressPage.links.delete);
+  I.seeInCurrentUrl(storageAddressPage.url);
 });
 
-Scenario('When I change the address, I can see the new address on the storage-add-another-address page', (
+Scenario('When I click Delete, the address is removed from the storage-addresses table', (
   I,
   storageAddressPage
 ) => {
-  storageAddressPage.selectAddressAndSubmit();
-  I.click(storageAddressPage.links.change);
-  I.click(storageAddressPage.links['manual-entry']);
-  storageAddressPage.fillFormAndSubmit(storageAddressPage.fields['address-manual'], storageAddressPage.content['another-address']);
-  I.dontSee(storageAddressPage.content.address);
-  I.see(storageAddressPage.content['another-address']);
+  storageAddressPage.addMultipleAddresses();
+  I.click(storageAddressPage.links.delete);
+  I.dontSee(storageAddressPage.content['display-address']);
 });
 
 Scenario('When I select No on add-another-address I am taken to the usage page', function *(

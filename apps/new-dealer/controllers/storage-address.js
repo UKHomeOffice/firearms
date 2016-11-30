@@ -9,7 +9,7 @@ module.exports = class AddressController extends BaseController {
     const locals = super.locals(req, res, callback);
     const postcode = req.sessionModel.get('storage-postcode');
     const addresses = req.sessionModel.get('storageAddresses');
-    const hasStorageAddresses = req.sessionModel.get('storageAddresses') ? true : false;
+    const hasStorageAddresses = _.size(addresses);
     const storageAddresses = [];
     _.forEach(addresses, (value, key) => {
       const address = {
@@ -57,6 +57,20 @@ module.exports = class AddressController extends BaseController {
       }
       return callback(null, values);
     });
+  }
+
+  get(req, res, callback) {
+    if (req.params.action === 'delete' && req.params.id) {
+      return this.removeItem(req, res);
+    }
+    return super.get(req, res, callback);
+  }
+
+  removeItem(req, res) {
+    const items = req.sessionModel.get('storageAddresses');
+    req.sessionModel.set('storageAddresses', _.omit(items, req.params.id));
+    const step = _.size(items) > 1 ? '/storage-add-another-address' : '/storage-postcode';
+    return res.redirect(`${req.baseUrl}${step}`);
   }
 
   saveValues(req, res, callback) {

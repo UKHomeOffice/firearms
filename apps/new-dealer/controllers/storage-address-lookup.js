@@ -8,7 +8,7 @@ module.exports = class StorageAddressLookup extends BaseController {
   locals(req, res) {
     const locals = super.locals(req, res);
     const addresses = req.sessionModel.get('storageAddresses');
-    const hasStorageAddresses = req.sessionModel.get('storageAddresses') ? true : false;
+    const hasStorageAddresses = _.size(addresses);
     const storageAddresses = [];
     let postcode;
     let id;
@@ -55,6 +55,20 @@ module.exports = class StorageAddressLookup extends BaseController {
     const count = `${formattedlist.length} addresses`;
     this.options.fields[`${field}-address-lookup`].options = [{value: count, label: count}].concat(formattedlist);
     super.getValues(req, res, callback);
+  }
+
+  get(req, res, callback) {
+    if (req.params.action === 'delete' && req.params.id) {
+      return this.removeItem(req, res);
+    }
+    return super.get(req, res, callback);
+  }
+
+  removeItem(req, res) {
+    const items = req.sessionModel.get('storageAddresses');
+    req.sessionModel.set('storageAddresses', _.omit(items, req.params.id));
+    const step = _.size(items) > 1 ? '/storage-add-another-address' : '/storage-postcode';
+    return res.redirect(`${req.baseUrl}${step}`);
   }
 
   saveValues(req, res, callback) {

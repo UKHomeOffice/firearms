@@ -109,6 +109,7 @@ module.exports = {
       fields: [
         'storage-postcode'
       ],
+      backLinks: '/storage',
       next: '/storage-address',
       continueOnEdit: true,
       forks: [{
@@ -158,6 +159,7 @@ module.exports = {
       fields: [
         'storage-add-another-address'
       ],
+      prereqs: ['/storage'],
       next: '/usage',
       forks: [{
         target: '/storage-postcode',
@@ -185,9 +187,7 @@ module.exports = {
       next: '/ammunition',
       forks: [{
         target: '/weapons',
-        condition(req) {
-          return weapons(req);
-        }
+        condition: weapons
       }],
       locals: {
         renew: true,
