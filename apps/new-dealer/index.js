@@ -562,6 +562,9 @@ module.exports = {
       next: '/confirmation'
     },
     '/confirmation': {
+      controller: require('./controllers/confirmation'),
+      clearSession: true,
+      backLink: false
     }
   }
 };
