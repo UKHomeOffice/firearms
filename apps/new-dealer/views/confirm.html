@@ -1,12 +1,12 @@
 {{<partials-page}}
   {{$page-content}}
     {{#rows}}
-      {{#something}}
+      {{#hasMultipleFields}}
         {{> partials-multiple-fields-summary-table}}
-      {{/something}}
-      {{^something}}
+      {{/hasMultipleFields}}
+      {{^hasMultipleFields}}
         {{> partials-summary-table}}
-      {{/something}}
+      {{/hasMultipleFields}}
     {{/rows}}
     <p>{{#t}}pages.confirm.footer{{/t}}</p>
     <h3>Declaration</h3>
