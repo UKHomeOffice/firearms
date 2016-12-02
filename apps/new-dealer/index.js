@@ -9,6 +9,7 @@ const storedOnPremises = req=> req.sessionModel.get('stored-on-premises') === 't
 
 module.exports = {
   name: 'new-dealer',
+  baseUrl: '/s5',
   params: '/:action?/:id?',
   steps: {
     '/': {
