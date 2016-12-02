@@ -40,6 +40,9 @@ module.exports = {
       next: '/club-secretary-name'
     },
     '/club-secretary-name': {
+      fields: [
+        'club-secretary-name'
+      ],
       next: '/club-secretary-postcode'
     },
     '/club-secretary-postcode': {
