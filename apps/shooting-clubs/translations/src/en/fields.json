@@ -1,5 +1,8 @@
 {
   "club-name": {
     "label": "Club name"
+  },
+  "second-person-name": {
+    "label": "Full name"
   }
 }

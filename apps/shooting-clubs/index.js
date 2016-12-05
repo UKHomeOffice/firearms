@@ -59,9 +59,12 @@ module.exports = {
       next: '/club-secretary-email'
     },
     '/club-secretary-email': {
-      next: '/second-contact-name'
+      next: '/second-person-name'
     },
-    '/second-contact-name': {
+    '/second-person-name': {
+      fields: [
+        'second-person-name'
+      ],
       next: '/second-contact-postcode'
     },
     '/second-contact-postcode': {
