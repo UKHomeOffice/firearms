@@ -41,7 +41,7 @@
     "hof-transpiler": "^0.1.0",
     "jquery": "^2.1.4",
     "node-sass": "^3.7.0",
-    "typeahead-aria": "1.0.1"
+    "typeahead-aria": "^1.0.4"
   },
   "devDependencies": {
     "chai": "^3.0.0",
