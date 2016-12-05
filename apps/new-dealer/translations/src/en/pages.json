@@ -223,7 +223,6 @@
     "register": "You also need to supply us with a register of the guards employed by the company and their personal details, including:",
     "armed-guards-list": {
       "items": [
-        "You also need to supply us with a register of the guards employed by the company and their personal details, including:",
         "Full names (and any previous names)",
         "Date and place of birth",
         "Nationalities",
@@ -232,7 +231,7 @@
         "DBS certificate (optional) - must be no more than 4 months old"
       ]
     },
-    "evidence-send": "Email: firearms.applications@homeoffice.gsi.gov.uk<p><p>Or post copies to:</p><p>Firearms licensing unitHome Office<br>Fry Building, 5th floor, SE<br>2 Marsham Street<br>London<br>SW1P 4DF",
+    "evidence-send": "Email: firearms.applications@homeoffice.gsi.gov.uk<p><p>Or post copies to:</p><p>Firearms licensing unit<br>Home Office<br>Fry Building, 5th floor, SE<br>2 Marsham Street<br>London<br>SW1P 4DF",
     "next-subheader": "What happens next?",
     "next": "<p>We will review your application and if more information is required, we shall email the contact address provided.</p><p>If sufficient information and suitable evidence has been provided, we’ll instruct the local police force to make enquiries on behalf of the Secretary of State. In this case, the police will contact you regarding security inspections and interviews.</p>",
     "feedback": "<a href='https://eforms.homeoffice.gov.uk/outreach/feedback.ofml?FormName=Firearms-licencing-S5'>What did you think of this service?</a>  (takes 30 seconds)"
