@@ -44,7 +44,8 @@ module.exports = class ConfirmController extends controllers {
       const section = {
         items,
         section: req.translate('pages.storage-address.summary'),
-        something: true
+        hasMultipleFields: true,
+        step: 'storage-add-another-address'
       };
       this.formattedData.splice(2, 0, section);
     }
@@ -72,7 +73,8 @@ module.exports = class ConfirmController extends controllers {
         items,
         headers,
         section: req.translate(`pages.${weaponsOrAmmunition}.summary`),
-        something: true,
+        hasMultipleFields: true,
+        step: weaponsOrAmmunition,
         moreThanOneField: items[0].fields.length > 1
       };
       this.formattedData.splice(order, 0, section);
@@ -93,7 +95,8 @@ module.exports = class ConfirmController extends controllers {
         items,
         headers,
         section: req.translate(`pages.${weaponsOrAmmunition}.summary`),
-        something: true,
+        hasMultipleFields: true,
+        step: weaponsOrAmmunition,
         moreThanOneField: items.fields.length > 1
       };
       this.formattedData.splice(order, 0, section);
