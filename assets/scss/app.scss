@@ -172,8 +172,19 @@ div.add-remove-section {
       text-align: right;
       padding-right: 0;
     }
-    td:not(.no-white-space){
+    td:not(.no-white-space) {
       white-space: pre-wrap;
     }
   }
+}
+
+// confirmation
+.alert-complete {
+  padding: 4.65263em;
+  padding-left: 2em;
+}
+
+.alert-message h1:first-child {
+  padding-left:2.5em;
+  font-size: 35px;
 }

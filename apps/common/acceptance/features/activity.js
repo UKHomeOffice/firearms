@@ -1,6 +1,9 @@
 'use strict';
 
-const steps = require('../../');
+const steps = {
+  name: 'common',
+  steps: require('../../')
+};
 
 Feature('Activity step');
 
