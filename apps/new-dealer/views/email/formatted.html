@@ -1,0 +1,14 @@
+{{<layout}}
+  {{$email-content}}
+    {{#data}}
+      {{#emailData}}
+      <tr style="border-top: 1px solid #009390;">
+        <td width="100%" colspan="2"><p style="font-size: 16px; font-weight: bold; color: #000; margin: 10px 0;">{{subheader}}</p></td>
+      </tr>
+      <tr style="border-top: 1px solid #009390;">
+        <td width="75%"><p style="font-size: 16px; color: #000; margin: 10px 0; white-space: pre-wrap;">{{value}}</p></td>
+      </tr>
+      {{/emailData}}
+    {{/data}}
+  {{/email-content}}
+{{/layout}}

@@ -29,8 +29,8 @@
   "museum-name": {
     "required": "Enter the museum name"
   },
-  "other-specify": {
-    "required": "Specify the type of organisation"
+  "other-name": {
+    "required": "Specify the name of the organisation"
   },
   "weapons-ammunition": {
     "required": "Select what the company will handle"

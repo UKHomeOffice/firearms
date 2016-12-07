@@ -202,8 +202,32 @@
   },
   "email": {
     "subject": {
-      "caseworker": "test",
-      "customer": "test"
+      "customer": "Your email confirmation - application to handle prohibited weapons, component parts or ammunition"
+    },
+    "greeting": "Dear",
+    "data": {
+      "organisation": "Business name",
+      "date": "Date of application",
+      "reference": "Customer reference number"
+    },
+    "intro": {
+      "customer": [
+        "This email confirms receipt of your application to handle prohibited weapons, component parts or ammunition. We will review the application, and get back to you at this email address if we require further information.",
+        "If sufficient information and suitable evidence has been provided, we’ll instruct the local police force to make enquiries on behalf of the Secretary of State. In this case, the police will contact you regarding security inspections and interviews.",
+        "The decision on your application is pending. This email is not a certificate of authority."
+      ]
+    },
+    "outro": {
+      "customer": [
+        "If you need to contact us about this application, or believe you have received this email by mistake, contact the Home Office's firearms licensing unit using the details below.",
+        "Firearms Licensing Unit",
+        "Home Office",
+        "2 Marsham Street",
+        "London",
+        "SW1P 4DF",
+        "Email: firearms.applications@homeoffice.gsi.gov.uk",
+        "Tel: 020 7035 3538"
+      ]
     }
   },
   "confirmation": {

@@ -46,7 +46,7 @@ module.exports = {
         'charity-name',
         'charity-number',
         'museum-name',
-        'other-specify'
+        'other-name'
       ],
       next: '/handle',
       locals: {
@@ -558,8 +558,9 @@ module.exports = {
       fields: [
         'declaration'
       ],
-      fieldsConfig: require('./fields'),
+      customerEmailField: 'contact-email',
       emailConfig: require('../../config').email,
+      fieldsConfig: require('./fields'),
       next: '/confirmation'
     },
     '/confirmation': {

@@ -14,12 +14,15 @@ module.exports = {
     }
   },
   email: {
-    caseworker: process.env.CASEWORKER_EMAIL || '',
     from: process.env.FROM_ADDRESS || '',
     replyTo: process.env.REPLY_TO || '',
     accessKeyId: process.env.AWS_USER || '',
     secretAccessKey: process.env.AWS_PASSWORD || '',
-    transportType: 'ses',
-    region: process.env.EMAIL_REGION || ''
+    transportType: process.env.EMAIL_TRANSPORT,
+    region: process.env.EMAIL_REGION || '',
+    ignoreTLS: process.env.IGNORE_TLS === 'true',
+    secure: process.env.EMAIL_SECURE === 'true',
+    port: process.env.EMAIL_PORT || '',
+    host: process.env.EMAIL_HOST || '',
   }
 };
