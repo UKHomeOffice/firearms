@@ -14,7 +14,16 @@ module.exports = {
     '/activity': {
       fields: [
         'activity'
-      ]
+      ],
+      next: '/club-name'
+    },
+    '/club-name': {
+      fields: [
+        'club-name'
+      ],
+      next: '/club-postcode'
+    },
+    '/club-postcode': {
     }
   }
 };
