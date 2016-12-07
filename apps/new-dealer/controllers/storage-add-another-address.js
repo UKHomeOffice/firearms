@@ -39,6 +39,6 @@ module.exports = class StorageAddAnotherAddress extends BaseController {
   getBackLink(req) {
     const addresses = req.sessionModel.get('storageAddresses');
     const id = _.last(Object.keys(addresses));
-    return `/storage-postcode/edit/${id}`;
+    return `/s5/storage-postcode/edit/${id}`;
   }
 };
