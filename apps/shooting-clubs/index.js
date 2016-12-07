@@ -14,7 +14,16 @@ module.exports = {
     '/activity': {
       fields: [
         'activity'
-      ]
+      ],
+      next: '/second-person-name'
+    },
+    '/second-person-name': {
+      fields: [
+          'second-person-name'
+      ],
+      next: '/second-person-address'
+    },
+    '/second-person-address': {
     }
   }
 };

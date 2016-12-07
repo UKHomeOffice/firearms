@@ -1,0 +1,5 @@
+{
+  "second-person-name" : {
+    "required": "Please enter the second person's name"
+  }
+}

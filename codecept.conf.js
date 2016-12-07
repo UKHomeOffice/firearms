@@ -8,6 +8,9 @@ const pagesPath = page => path.resolve(__dirname,
 const commonPagesPath = page => path.resolve(__dirname,
   `./apps/common/acceptance/pages/${page}`);
 
+const shootingPagesPath = page => path.resolve(__dirname,
+  `./apps/shooting-clubs/acceptance/pages/${page}`);
+
 module.exports = {
   name: 'firearms',
   features: './**/acceptance/features/**/*.js',
@@ -37,6 +40,7 @@ module.exports = {
     contactAddressPage: pagesPath('contact-address.js'),
     contactAddressAuthorityHolderPage: pagesPath('contact-address-authority-holder.js'),
     confirmPage: pagesPath('confirm.js'),
-    confirmationPage: pagesPath('confirmation.js')
+    confirmationPage: pagesPath('confirmation.js'),
+    secondPersonNamePage: shootingPagesPath('second-person-name')
   }
 };
