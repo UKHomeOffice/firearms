@@ -35,7 +35,7 @@ Scenario('I see a list of storage address in table', function *(
   ]);
 });
 
-Scenario('I am taken to the confirmation page when I click dubmit', function *(
+Scenario('I am taken to the confirmation page when I click submit', function *(
   I,
   confirmPage,
   confirmationPage
