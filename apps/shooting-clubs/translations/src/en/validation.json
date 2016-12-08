@@ -2,7 +2,7 @@
   "club-name": {
     "required": "Enter the club name"
   },
-  "second-person-name" : {
+  "second-contact-name" : {
     "required": "Please enter the second person's name"
   }
 }

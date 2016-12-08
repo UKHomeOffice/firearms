@@ -59,11 +59,11 @@ module.exports = {
       next: '/club-secretary-email'
     },
     '/club-secretary-email': {
-      next: '/second-person-name'
+      next: '/second-contact-name'
     },
-    '/second-person-name': {
+    '/second-contact-name': {
       fields: [
-        'second-person-name'
+        'second-contact-name'
       ],
       next: '/second-contact-postcode'
     },

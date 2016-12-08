@@ -6,11 +6,11 @@ module.exports = {
     I = require('so-acceptance/steps.js')()
   },
 
-  url: 'second-person-name',
-  'second-person-name-id': '#second-person-name',
+  url: 'second-contact-name',
+  'second-contact-name-id': '#second-contact-name',
 
   fillFormAndSubmit(){
-    I.fillField('#second-person-name', 'David Hasselhoff');
+    I.fillField('#second-contact-name', 'David Hasselhoff');
     I.submitForm();
   }
 };

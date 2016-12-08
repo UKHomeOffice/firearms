@@ -5,7 +5,7 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
-  'second-person-name': {
+  'second-contact-name': {
     mixin: 'input-text',
     validate: 'required'
   }
