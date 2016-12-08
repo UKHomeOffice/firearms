@@ -26,7 +26,7 @@ Scenario('an error message appears if I submit an empty input field', (
   I.seeErrors(clubSecretaryPage['club-secretary-name-id']);
 });
 
-Scenario.only('I am taken to the appropriate next page', (
+Scenario('I am taken to the next page, club secretary postcode', (
   I,
   clubSecretaryPage,
   clubSecretaryPostcode
