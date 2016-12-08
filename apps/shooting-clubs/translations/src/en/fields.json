@@ -4,5 +4,8 @@
   },
   "second-contact-name": {
     "label": "Full name"
+  },
+  "club-secretary-name": {
+    "label": "Full name"
   }
 }

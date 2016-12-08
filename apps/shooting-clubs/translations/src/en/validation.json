@@ -4,5 +4,8 @@
   },
   "second-contact-name" : {
     "required": "Please enter the second person's name"
+  },
+  "club-secretary-name": {
+    "required": "Enter the name of the club secretary"
   }
 }

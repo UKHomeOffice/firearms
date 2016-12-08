@@ -8,5 +8,9 @@ module.exports = {
   'second-contact-name': {
     mixin: 'input-text',
     validate: 'required'
+  },
+  'club-secretary-name': {
+    mixin: 'input-text',
+    validate: 'required'
   }
 };
