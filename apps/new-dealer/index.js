@@ -555,9 +555,6 @@ module.exports = {
     },
     '/confirm': {
       controller: require('./controllers/confirm'),
-      fields: [
-        'declaration'
-      ],
       customerEmailField: 'contact-email',
       emailConfig: require('../../config').email,
       fieldsConfig: require('./fields'),

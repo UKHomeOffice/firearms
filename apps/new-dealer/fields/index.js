@@ -153,8 +153,7 @@ module.exports = {
       child: 'select'
     }, {
       value: 'no'
-    }],
-    includeInSummary: false
+    }]
   },
   'import-country': {
     validate: 'required',
@@ -694,9 +693,5 @@ module.exports = {
       'yes',
       'no'
     ]
-  },
-  'declaration': {
-    mixin: 'checkbox',
-    validate: 'required'
   }
 };

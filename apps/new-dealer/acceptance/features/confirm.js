@@ -12,21 +12,6 @@ Before((
   I.visitPage(confirmPage, steps);
 });
 
-Scenario('I see the declaration field', (
-  I,
-  confirmPage
-) => {
-  I.seeElement(confirmPage.declaration);
-});
-
-Scenario('I see an error if I submit the form without accepting the declaration', (
-  I,
-  confirmPage
-) => {
-  I.submitForm();
-  I.seeErrors(confirmPage.declaration);
-});
-
 Scenario('I see the correct table information', function *(
   I,
   confirmPage
@@ -50,13 +35,12 @@ Scenario('I see a list of storage address in table', function *(
   ]);
 });
 
-Scenario('I am taken to the confirmation page when I agree to the declaration', function *(
+Scenario('I am taken to the confirmation page when I click submit', function *(
   I,
   confirmPage,
   confirmationPage
 ) {
   yield confirmPage.setSessionData(steps.name);
-  I.click(confirmPage.declaration);
   I.submitForm();
   I.seeInCurrentUrl(confirmationPage.url);
 });

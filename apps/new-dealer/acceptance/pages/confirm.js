@@ -10,7 +10,6 @@ module.exports = {
   },
 
   url: 'confirm',
-  declaration: '#declaration',
   data: {
     'company-name': 'International Secret Intelligence Service',
     'company-house-number': '123',
