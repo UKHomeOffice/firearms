@@ -15,7 +15,7 @@ Scenario('The correct form element are present', (
   I,
   secondPersonNamePage
 ) => {
-  I.seeElement('#second-person-name');
+  I.seeElement(secondPersonNamePage['second-person-name-id']);
 });
 
 Scenario('there is an error if I submit an empty form element', (
@@ -23,11 +23,10 @@ Scenario('there is an error if I submit an empty form element', (
   secondPersonNamePage
 ) => {
   I.submitForm();
-  I.seeErrors('#second-person-name');
+  I.seeErrors(secondPersonNamePage['second-person-name-id']);
 });
 
 Scenario('I am taken to the appropriate next page', (
-  I,
   secondPersonNamePage
 ) => {
   secondPersonNamePage.fillFormAndSubmit();

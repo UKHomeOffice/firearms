@@ -7,6 +7,7 @@ module.exports = {
   },
 
   url: 'second-person-name',
+  'second-person-name-id': '#second-person-name',
 
   fillFormAndSubmit(){
     I.fillField('#second-person-name', 'David Hasselhoff');
