@@ -10,7 +10,7 @@ module.exports = {
   'second-contact-name-id': '#second-contact-name',
 
   fillFormAndSubmit(){
-    I.fillField('#second-contact-name', 'David Hasselhoff');
+    I.fillField(this['second-contact-name-id'], 'David Hasselhoff');
     I.submitForm();
   }
 };
