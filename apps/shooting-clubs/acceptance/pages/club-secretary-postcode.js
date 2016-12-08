@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  url: 'club-secretary-add-address'
+  url: 'club-secretary-postcode'
 };

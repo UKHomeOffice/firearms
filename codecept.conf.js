@@ -44,7 +44,7 @@ module.exports = {
     clubNamePage: shootingClubPagesPath('club-name.js'),
     clubPostCodePage: shootingClubPagesPath('club-postcode.js'),
     secondContactNamePage: shootingClubPagesPath('second-contact-name'),
-    clubSecretaryPage: shootingPagesPath('club-secretary-name'),
-    clubSecretaryAddAddress: shootingPagesPath('club-secretary-add-address')
+    clubSecretaryPage: shootingClubPagesPath('club-secretary-name'),
+    clubSecretaryPostcode: shootingClubPagesPath('club-secretary-postcode')
   }
 };

@@ -26,11 +26,11 @@ Scenario('an error message appears if I submit an empty input field', (
   I.seeErrors(clubSecretaryPage['club-secretary-name-id']);
 });
 
-Scenario('I am taken to the appropriate next page', (
+Scenario.only('I am taken to the appropriate next page', (
   I,
   clubSecretaryPage,
-  clubSecretaryAddAddress
+  clubSecretaryPostcode
 ) => {
   clubSecretaryPage.fillFormAndSubmit();
-  I.seeInCurrentUrl(clubSecretaryAddAddress.url);
+  I.seeInCurrentUrl(clubSecretaryPostcode.url);
 });
