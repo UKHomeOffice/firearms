@@ -62,6 +62,9 @@ module.exports = {
       next: '/second-contact-name'
     },
     '/second-contact-name': {
+      fields: [
+        'second-contact-name'
+      ],
       next: '/second-contact-postcode'
     },
     '/second-contact-postcode': {
