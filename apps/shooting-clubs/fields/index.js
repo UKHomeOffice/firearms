@@ -60,5 +60,25 @@ module.exports = {
   'club-secretary-phone': {
     mixin: 'input-text',
     validate: 'required'
+  },
+  'second-contact-postcode': {
+    mixin: 'input-text-code',
+    validate: ['required', 'postcode'],
+    formatter: 'uppercase',
+    includeInSummary: false
+  },
+  'second-contact-address-lookup': {
+    className: 'address',
+    includeInSummary: false
+  },
+  'second-contact-address-manual': {
+    mixin: 'textarea',
+    validate: 'required',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    attributes: [{
+      attribute: 'height',
+      value: 6
+    }]
   }
 };

@@ -31,5 +31,14 @@
   },
   "club-secretary-phone": {
     "label": "Phone number"
+  },
+  "second-contact-postcode": {
+    "label": "Postcode"
+  },
+  "second-contact-address-lookup": {
+    "label": "Select the address"
+  },
+  "second-contact-address-manual": {
+    "label": "Address"
   }
 }

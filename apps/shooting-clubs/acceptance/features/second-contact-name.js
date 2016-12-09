@@ -26,8 +26,11 @@ Scenario('there is an error if I submit an empty form element', (
   I.seeErrors(secondContactNamePage['second-contact-name-id']);
 });
 
-Scenario('I am taken to the appropriate next page', (
-  secondContactNamePage
+Scenario('I am taken to the second-contact-postcode step', (
+  I,
+  secondContactNamePage,
+  secondContactAddressPage
 ) => {
   secondContactNamePage.fillFormAndSubmit();
+  I.seeInCurrentUrl(secondContactAddressPage.url);
 });
