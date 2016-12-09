@@ -2,7 +2,7 @@
 
 const _ = require('lodash');
 const ErrorController = require('hof-controllers').error;
-const BaseController = require('./base');
+const BaseController = require('../../common/controllers/base');
 
 module.exports = class StorageAddressLookup extends BaseController {
   locals(req, res) {

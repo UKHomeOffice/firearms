@@ -8,5 +8,14 @@
   },
   "club-secretary-name": {
     "header": "What is the club secretary's name?"
+  },
+  "club-postcode": {
+    "header": "What is the club's address?"
+  },
+  "club-address-lookup": {
+    "header": "Select the club's address"
+  },
+  "club-address": {
+    "header": "What is the club's address?"
   }
 }

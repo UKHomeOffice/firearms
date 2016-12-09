@@ -44,17 +44,6 @@
     "summary": "Sections and quantities of ammunition",
     "add-remove": "ammunition and/or quantities"
   },
-  "postcode": {
-    "manual": "Enter address manually"
-  },
-  "address": {
-    "edit": "Change",
-    "cantfind": "I can't find the address on the list",
-    "postcode-api": {
-      "not-found": "Sorry – we couldn’t find any addresses for that postcode, enter your address manually",
-      "cant-connect": "Sorry – we couldn’t connect to the postcode lookup service at this time, enter your address manually"
-    }
-  },
   "authority-holders": {
     "header": "How many individuals will be named on the authority?",
     "important": "If the details you provide here are different to those on your existing authority, the details on your existing authority will be replaced."

@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const BaseController = require('./base');
+const BaseController = require('../../common/controllers/base');
 const fields = _.cloneDeep(require('../fields'));
 
 module.exports = class ContactController extends BaseController {

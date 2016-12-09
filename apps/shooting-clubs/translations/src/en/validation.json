@@ -7,5 +7,15 @@
   },
   "club-secretary-name": {
     "required": "Enter the name of the club secretary"
+  },
+  "club-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a valid postcode"
+  },
+  "club-address-manual": {
+    "required": "Enter an address"
+  },
+  "club-address-lookup": {
+    "required": "Select an address"
   }
 }

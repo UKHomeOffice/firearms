@@ -5,10 +5,10 @@ const path = require('path');
 const bootstrap = require('hof-bootstrap');
 const config = require('./config.js');
 const mockPostcode = require('./mock-postcode.js');
-const BaseController = require('./apps/new-dealer/controllers/base');
+const BaseController = require('./apps/common/controllers/base');
 
 const options = {
-  views: false,
+  views: path.resolve(__dirname, './apps/common/views'),
   fields: path.resolve(__dirname, './apps/common/fields'),
   routes: [
     require('./apps/new-dealer'),
