@@ -86,7 +86,7 @@ Scenario('When I click cant find my address link, I will see the postcode I ente
   I.see(clubSecretaryAddressPage.content.postcode);
 });
 
-Scenario('I am taken to the contact step from the manual-address step', (
+Scenario('I am taken to the club-secretary-email step from the manual-address step', (
   I,
   clubSecretaryAddressPage,
   clubSecretaryEmailPage
@@ -96,7 +96,7 @@ Scenario('I am taken to the contact step from the manual-address step', (
   I.seeInCurrentUrl(clubSecretaryEmailPage.url);
 });
 
-Scenario('When an address is selected I am taken to the contact step', (
+Scenario('When an address is selected I am taken to the club-secretary-email step', (
   I,
   clubSecretaryAddressPage,
   clubSecretaryEmailPage
