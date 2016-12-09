@@ -29,8 +29,11 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
+    }, {
+      attribute: 'cols',
+      value: 10
     }]
   },
   'club-secretary-postcode': {
@@ -49,8 +52,11 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
+    }, {
+      attribute: 'cols',
+      value: 10
     }]
   },
   'club-secretary-email': {
@@ -77,8 +83,11 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
+    }, {
+      attribute: 'cols',
+      value: 10
     }]
   }
 };

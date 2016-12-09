@@ -543,8 +543,11 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
+    }, {
+      attribute: 'cols',
+      value: 10
     }]
   },
   'second-authority-holders-nationality': {
@@ -583,8 +586,11 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
+    }, {
+      attribute: 'cols',
+      value: 10
     }]
   },
   'contact-holder': {
@@ -619,8 +625,11 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
+    }, {
+      attribute: 'cols',
+      value: 10
     }],
     includeInSummary: false
   },
@@ -662,8 +671,11 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
+    }, {
+      attribute: 'cols',
+      value: 10
     }]
   },
   'contact-postcode': {
@@ -682,8 +694,11 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
+    }, {
+      attribute: 'cols',
+      value: 10
     }]
   },
   'storage-add-another-address': {
