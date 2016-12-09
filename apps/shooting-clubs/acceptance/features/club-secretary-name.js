@@ -29,8 +29,8 @@ Scenario('an error message appears if I submit an empty input field', (
 Scenario('I am taken to the next page, club secretary postcode', (
   I,
   clubSecretaryPage,
-  clubSecretaryPostcode
+  clubSecretaryAddressPage
 ) => {
   clubSecretaryPage.fillFormAndSubmit();
-  I.seeInCurrentUrl(clubSecretaryPostcode.url);
+  I.seeInCurrentUrl(clubSecretaryAddressPage.url);
 });

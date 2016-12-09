@@ -16,5 +16,14 @@
   },
   "club-address-manual": {
     "label": "Address"
+  },
+  "club-secretary-postcode": {
+    "label": "Postcode"
+  },
+  "club-secretary-address-lookup": {
+    "label": "Select the address"
+  },
+  "club-secretary-address-manual": {
+    "label": "Address"
   }
 }

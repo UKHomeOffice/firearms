@@ -17,5 +17,15 @@
   },
   "club-address": {
     "header": "What is the club's address?"
+  },
+  "club-secretary-postcode": {
+    "header": "What is the club secretary's contact address?",
+    "intro": "This is where the shooting club approval will be sent"
+  },
+  "club-secretary-address-lookup": {
+    "header": "Select the club secretary's contact address"
+  },
+  "club-secretary-address": {
+    "header": "What is the club secretary's contact address?"
   }
 }
