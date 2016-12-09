@@ -7,8 +7,11 @@ module.exports = {
   },
 
   url: 'club-secretary-email',
-  'club-secretary-email-id': '#club-secretary-email',
-  'club-secretary-phone-id': '#club-secretary-phone',
+
+  fields: {
+    'club-secretary-email-id': '#club-secretary-email',
+    'club-secretary-phone-id': '#club-secretary-phone',
+  },
 
   content: {
     'valid-email': 'smellydog@poodle.com',

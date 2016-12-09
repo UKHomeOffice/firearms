@@ -114,10 +114,10 @@ module.exports = {
       }
     },
     '/club-secretary-email': {
-        fields: [
-          'club-secretary-email',
-          'club-secretary-phone'
-        ],
+      fields: [
+        'club-secretary-email',
+        'club-secretary-phone'
+      ],
       next: '/second-contact-name'
     },
     '/second-contact-name': {
