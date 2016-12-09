@@ -33,4 +33,24 @@ module.exports = {
       value: 6
     }]
   },
+  'club-secretary-postcode': {
+    mixin: 'input-text-code',
+    validate: ['required', 'postcode'],
+    formatter: 'uppercase',
+    includeInSummary: false
+  },
+  'club-secretary-address-lookup': {
+    className: 'address',
+    includeInSummary: false
+  },
+  'club-secretary-address-manual': {
+    mixin: 'textarea',
+    validate: 'required',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    attributes: [{
+      attribute: 'height',
+      value: 6
+    }]
+  }
 };

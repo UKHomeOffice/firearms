@@ -17,5 +17,15 @@
   },
   "club-address-lookup": {
     "required": "Select an address"
+  },
+  "club-secretary-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a valid postcode"
+  },
+  "club-secretary-address-manual": {
+    "required": "Enter an address"
+  },
+  "club-secretary-address-lookup": {
+    "required": "Select an address"
   }
 }

@@ -72,20 +72,46 @@ module.exports = {
       next: '/club-secretary-postcode'
     },
     '/club-secretary-postcode': {
+      template: 'postcode.html',
+      controller: require('../common/controllers/postcode'),
+      fields: [
+        'club-secretary-postcode'
+      ],
       next: '/club-secretary-address',
       forks: [{
-        target: '/club-address-lookup',
+        target: '/club-secretary-address-lookup',
         condition(req) {
           const addresses = req.sessionModel.get('club-secretary-addresses');
           return addresses && addresses.length;
         }
-      }]
+      }],
+      locals: {
+        field: 'club-secretary'
+      }
     },
     '/club-secretary-address': {
-      next: '/club-secretary-email'
+      template: 'address.html',
+      controller: require('../common/controllers/address'),
+      fields: [
+        'club-secretary-address-manual'
+      ],
+      next: '/club-secretary-email',
+      prereqs: ['/club-secretary-postcode', '/club-secretary-name'],
+      backLink: 'club-secretary-postcode',
+      locals: {
+        field: 'club-secretary'
+      }
     },
     '/club-secretary-address-lookup': {
-      next: '/club-secretary-email'
+      template: 'address-lookup.html',
+      controller: require('../common/controllers/address-lookup'),
+      fields: [
+        'club-secretary-address-lookup'
+      ],
+      next: '/club-secretary-email',
+      locals: {
+        field: 'club-secretary'
+      }
     },
     '/club-secretary-email': {
       next: '/second-contact-name'
