@@ -27,5 +27,8 @@
   },
   "club-secretary-address": {
     "header": "What is the club secretary's contact address?"
+  },
+  "club-secretary-email": {
+    "header": "What are the club secretary's contact details?"
   }
 }

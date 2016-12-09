@@ -52,5 +52,13 @@ module.exports = {
       attribute: 'height',
       value: 6
     }]
+  },
+  'club-secretary-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email']
+  },
+  'club-secretary-phone': {
+    mixin: 'input-text',
+    validate: 'required'
   }
 };
