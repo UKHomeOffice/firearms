@@ -11,14 +11,14 @@ Before((
   I.visitPage(secondContactAddressPage, steps);
 });
 
-Scenario('The correct form elements are present on club-secretary-postcode step', (
+Scenario('The correct form elements are present on second-contact-postcode step', (
   I,
   secondContactAddressPage
 ) => {
   I.seeElement(secondContactAddressPage.fields.postcode);
 });
 
-Scenario('An error is shown if club-secretary-postcode is not completed', (
+Scenario('An error is shown if second-contact-postcode is not completed', (
   I,
   secondContactAddressPage
 ) => {
@@ -26,7 +26,7 @@ Scenario('An error is shown if club-secretary-postcode is not completed', (
   I.seeErrors(secondContactAddressPage.fields.postcode);
 });
 
-Scenario('I am taken to the club-secretary-address-lookup step from postcode', (
+Scenario('I am taken to the second-contact-address-lookup step from postcode', (
   I,
   secondContactAddressPage
 ) => {
@@ -34,7 +34,7 @@ Scenario('I am taken to the club-secretary-address-lookup step from postcode', (
   I.seeInCurrentUrl(secondContactAddressPage['address-lookup-url']);
 });
 
-Scenario('I am taken to the club-secretary-manual-address step when I click the link', (
+Scenario('I am taken to the second-contact-manual-address step when I click the link', (
   I,
   secondContactAddressPage
 ) => {
@@ -42,7 +42,7 @@ Scenario('I am taken to the club-secretary-manual-address step when I click the 
   I.seeInCurrentUrl(secondContactAddressPage['address-url']);
 });
 
-Scenario('The correct form elements are present for club secretary manual address step', (
+Scenario('The correct form elements are present for second contact manual address step', (
   I,
   secondContactAddressPage
 ) => {
@@ -50,7 +50,7 @@ Scenario('The correct form elements are present for club secretary manual addres
   I.seeElements(secondContactAddressPage.fields['address-manual']);
 });
 
-Scenario('An error is shown if club secretary manual address is not completed', (
+Scenario('An error is shown if second contact manual address is not completed', (
   I,
   secondContactAddressPage
 ) => {
@@ -59,7 +59,7 @@ Scenario('An error is shown if club secretary manual address is not completed', 
   I.seeErrors(secondContactAddressPage.fields['address-manual']);
 });
 
-Scenario('An error is shown if club-secretary-address-lookup is not completed', (
+Scenario('An error is shown if second-contact-address-lookup is not completed', (
   I,
   secondContactAddressPage
 ) => {
@@ -68,7 +68,7 @@ Scenario('An error is shown if club-secretary-address-lookup is not completed', 
   I.seeErrors(secondContactAddressPage.fields['address-lookup']);
 });
 
-Scenario('I am taken to the club secretary manual address step if I cant find my address', (
+Scenario('I am taken to the second contact manual address step if I cant find my address', (
   I,
   secondContactAddressPage
 ) => {
@@ -77,7 +77,7 @@ Scenario('I am taken to the club secretary manual address step if I cant find my
   I.seeInCurrentUrl(secondContactAddressPage['address-url']);
 });
 
-Scenario('When I click cant find my address link, I will see the postcode I entered in the club secretary manual address step', (
+Scenario('When I click cant find my address link, I will see the postcode I entered in the second contact manual address step', (
   I,
   secondContactAddressPage
 ) => {
@@ -86,7 +86,7 @@ Scenario('When I click cant find my address link, I will see the postcode I ente
   I.see(secondContactAddressPage.content.postcode);
 });
 
-Scenario('I am taken to the club-secretary-email step from the manual-address step', (
+Scenario('I am taken to the second-contact-email step from the manual-address step', (
   I,
   secondContactAddressPage,
   secondContactEmailPage
@@ -96,7 +96,7 @@ Scenario('I am taken to the club-secretary-email step from the manual-address st
   I.seeInCurrentUrl(secondContactEmailPage.url);
 });
 
-Scenario('When an address is selected I am taken to the club-secretary-email step', (
+Scenario('When an address is selected I am taken to the second-contact-email step', (
   I,
   secondContactAddressPage,
   secondContactEmailPage
