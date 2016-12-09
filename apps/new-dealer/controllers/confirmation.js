@@ -1,6 +1,6 @@
 'use strict';
 
-const BaseController = require('./base');
+const BaseController = require('../../common/controllers/base');
 
 module.exports = class ConfirmationController extends BaseController {
   locals(req, res, callback) {

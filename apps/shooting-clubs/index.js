@@ -24,6 +24,11 @@ module.exports = {
       next: '/club-postcode'
     },
     '/club-postcode': {
+      template: 'postcode.html',
+      controller: require('../common/controllers/postcode'),
+      fields: [
+        'club-postcode'
+      ],
       next: '/club-address',
       forks: [{
         target: '/club-address-lookup',
@@ -31,13 +36,34 @@ module.exports = {
           const addresses = req.sessionModel.get('club-addresses');
           return addresses && addresses.length;
         }
-      }]
+      }],
+      locals: {
+        field: 'club'
+      }
     },
     '/club-address': {
-      next: '/club-secretary-name'
+      template: 'address.html',
+      controller: require('../common/controllers/address'),
+      fields: [
+        'club-address-manual'
+      ],
+      next: '/club-secretary-name',
+      prereqs: ['/club-postcode', '/club-name'],
+      backLink: 'club-postcode',
+      locals: {
+        field: 'club'
+      }
     },
     '/club-address-lookup': {
-      next: '/club-secretary-name'
+      template: 'address-lookup.html',
+      controller: require('../common/controllers/address-lookup'),
+      fields: [
+        'club-address-lookup'
+      ],
+      next: '/club-secretary-name',
+      locals: {
+        field: 'club'
+      }
     },
     '/club-secretary-name': {
       fields: [

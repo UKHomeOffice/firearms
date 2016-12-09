@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const BaseController = require('./base');
+const BaseController = require('../../common/controllers/base');
 
 module.exports = class StorageAddAnotherAddress extends BaseController {
   locals(req, res, callback) {

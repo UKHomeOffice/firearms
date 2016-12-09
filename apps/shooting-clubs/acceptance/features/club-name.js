@@ -29,9 +29,9 @@ Scenario('I see an error when I submit an empty form', (
 Scenario('When I correctly submit the form I am taken to club-postcode step', (
   I,
   clubNamePage,
-  clubPostCodePage
+  clubAddressPage
 ) => {
   I.fillField(clubNamePage.clubName, clubNamePage.name)
   I.submitForm();
-  I.seeInCurrentUrl(clubPostCodePage.url);
+  I.seeInCurrentUrl(clubAddressPage.url);
 });

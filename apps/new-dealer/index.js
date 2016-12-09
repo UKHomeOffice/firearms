@@ -290,7 +290,7 @@ module.exports = {
     },
     '/first-authority-holders-postcode': {
       template: 'postcode.html',
-      controller: require('./controllers/postcode'),
+      controller: require('../common/controllers/postcode'),
       fields: [
         'first-authority-holders-postcode'
       ],
@@ -308,7 +308,7 @@ module.exports = {
     },
     '/first-authority-holders-address-lookup': {
       template: 'address-lookup.html',
-      controller: require('./controllers/address-lookup'),
+      controller: require('../common/controllers/address-lookup'),
       fields: [
         'first-authority-holders-address-lookup'
       ],
@@ -326,7 +326,7 @@ module.exports = {
     },
     '/first-authority-holders-address': {
       template: 'address.html',
-      controller: require('./controllers/address'),
+      controller: require('../common/controllers/address'),
       fields: [
         'first-authority-holders-address-manual'
       ],
@@ -386,7 +386,7 @@ module.exports = {
     },
     '/second-authority-holders-postcode': {
       template: 'postcode.html',
-      controller: require('./controllers/postcode'),
+      controller: require('../common/controllers/postcode'),
       fields: [
         'second-authority-holders-postcode'
       ],
@@ -404,7 +404,7 @@ module.exports = {
     },
     '/second-authority-holders-address-lookup': {
       template: 'address-lookup.html',
-      controller: require('./controllers/address-lookup'),
+      controller: require('../common/controllers/address-lookup'),
       fields: [
         'second-authority-holders-address-lookup'
       ],
@@ -416,7 +416,7 @@ module.exports = {
     },
     '/second-authority-holders-address': {
       template: 'address.html',
-      controller: require('./controllers/address'),
+      controller: require('../common/controllers/address'),
       fields: [
         'second-authority-holders-address-manual'
       ],
@@ -458,7 +458,7 @@ module.exports = {
       }
     },
     '/authority-holder-contact-postcode': {
-      controller: require('./controllers/postcode'),
+      controller: require('../common/controllers/postcode'),
       fields: [
         'use-different-address',
         'authority-holder-contact-postcode'
@@ -484,7 +484,7 @@ module.exports = {
     },
     '/authority-holder-contact-address-lookup': {
       template: 'address-lookup.html',
-      controller: require('./controllers/address-lookup'),
+      controller: require('../common/controllers/address-lookup'),
       fields: [
         'authority-holder-contact-address-lookup'
       ],
@@ -496,7 +496,7 @@ module.exports = {
     },
     '/authority-holder-contact-address': {
       template: 'address.html',
-      controller: require('./controllers/address'),
+      controller: require('../common/controllers/address'),
       fields: [
         'authority-holder-contact-address-manual'
       ],
@@ -510,7 +510,7 @@ module.exports = {
     },
     '/contact-postcode': {
       template: 'postcode.html',
-      controller: require('./controllers/postcode'),
+      controller: require('../common/controllers/postcode'),
       fields: [
         'contact-postcode'
       ],
@@ -529,7 +529,7 @@ module.exports = {
     },
     '/contact-address-lookup': {
       template: 'address-lookup.html',
-      controller: require('./controllers/address-lookup'),
+      controller: require('../common/controllers/address-lookup'),
       fields: [
         'contact-address-lookup'
       ],
@@ -541,7 +541,7 @@ module.exports = {
     },
     '/contact-address': {
       template: 'address.html',
-      controller: require('./controllers/address'),
+      controller: require('../common/controllers/address'),
       fields: [
         'contact-address-manual'
       ],

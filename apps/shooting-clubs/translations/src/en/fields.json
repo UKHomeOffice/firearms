@@ -7,5 +7,14 @@
   },
   "club-secretary-name": {
     "label": "Full name"
+  },
+  "club-postcode": {
+    "label": "Postcode"
+  },
+  "club-address-lookup": {
+    "label": "Select the address"
+  },
+  "club-address-manual": {
+    "label": "Address"
   }
 }
