@@ -545,9 +545,6 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }, {
-      attribute: 'cols',
-      value: 10
     }]
   },
   'second-authority-holders-nationality': {
@@ -588,9 +585,6 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }, {
-      attribute: 'cols',
-      value: 10
     }]
   },
   'contact-holder': {
@@ -627,9 +621,6 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }, {
-      attribute: 'cols',
-      value: 10
     }],
     includeInSummary: false
   },
@@ -673,9 +664,6 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }, {
-      attribute: 'cols',
-      value: 10
     }]
   },
   'contact-postcode': {
@@ -696,9 +684,6 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }, {
-      attribute: 'cols',
-      value: 10
     }]
   },
   'storage-add-another-address': {

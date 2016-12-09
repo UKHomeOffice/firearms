@@ -31,9 +31,6 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }, {
-      attribute: 'cols',
-      value: 10
     }]
   },
   'club-secretary-postcode': {
@@ -54,9 +51,6 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }, {
-      attribute: 'cols',
-      value: 10
     }]
   },
   'club-secretary-email': {
@@ -85,9 +79,6 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }, {
-      attribute: 'cols',
-      value: 10
     }]
   }
 };
