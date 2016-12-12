@@ -30,5 +30,14 @@
   },
   "club-secretary-email": {
     "header": "What are the club secretary's contact details?"
+  },
+  "second-contact-postcode": {
+    "header": "What is the second person's contact address?"
+  },
+  "second-contact-address-lookup": {
+    "header": "Select the second person's contact address"
+  },
+  "second-contact-address": {
+    "header": "What is the second person's contact address?"
   }
 }

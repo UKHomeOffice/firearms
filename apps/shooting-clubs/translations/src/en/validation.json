@@ -34,5 +34,15 @@
   },
   "club-secretary-phone": {
     "required": "Enter the club secretary's phone number"
+  },
+  "second-contact-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a valid postcode"
+  },
+  "second-contact-address-manual": {
+    "required": "Enter an address"
+  },
+  "second-contact-address-lookup": {
+    "required": "Select an address"
   }
 }

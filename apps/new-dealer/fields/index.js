@@ -543,8 +543,8 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
     }]
   },
   'second-authority-holders-nationality': {
@@ -583,8 +583,8 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
     }]
   },
   'contact-holder': {
@@ -619,8 +619,8 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
     }],
     includeInSummary: false
   },
@@ -662,8 +662,8 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
     }]
   },
   'contact-postcode': {
@@ -682,8 +682,8 @@ module.exports = {
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
-      attribute: 'height',
-      value: 6
+      attribute: 'rows',
+      value: 5
     }]
   },
   'storage-add-another-address': {

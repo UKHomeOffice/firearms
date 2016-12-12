@@ -127,6 +127,11 @@ module.exports = {
       next: '/second-contact-postcode'
     },
     '/second-contact-postcode': {
+      template: 'postcode.html',
+      controller: require('../common/controllers/postcode'),
+      fields: [
+        'second-contact-postcode'
+      ],
       next: '/second-contact-address',
       forks: [{
         target: '/second-contact-address-lookup',
@@ -134,13 +139,34 @@ module.exports = {
           const addresses = req.sessionModel.get('second-contact-addresses');
           return addresses && addresses.length;
         }
-      }]
+      }],
+      locals: {
+        field: 'second-contact'
+      }
     },
     '/second-contact-address': {
-      next: '/second-contact-email'
+      template: 'address.html',
+      controller: require('../common/controllers/address'),
+      fields: [
+        'second-contact-address-manual'
+      ],
+      next: '/second-contact-email',
+      prereqs: ['/second-contact-postcode', '/second-contact-name'],
+      backLink: 'second-contact-postcode',
+      locals: {
+        field: 'second-contact'
+      }
     },
     '/second-contact-address-lookup': {
-      next: '/second-contact-email'
+      template: 'address-lookup.html',
+      controller: require('../common/controllers/address-lookup'),
+      fields: [
+        'second-contact-address-lookup'
+      ],
+      next: '/second-contact-email',
+      locals: {
+        field: 'second-contact'
+      }
     },
     '/second-contact-email': {
       next: '/location-postcode'
