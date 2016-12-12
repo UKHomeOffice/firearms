@@ -25,5 +25,11 @@
   },
   "club-secretary-address-manual": {
     "label": "Address"
+  },
+  "club-secretary-email": {
+    "label": "Email address"
+  },
+  "club-secretary-phone": {
+    "label": "Phone number"
   }
 }

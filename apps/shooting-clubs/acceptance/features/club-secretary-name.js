@@ -2,7 +2,7 @@
 
 const steps = require('../../');
 
-Feature('Club secretary step');
+Feature('Club secretary name step');
 
 Before((
   I,
