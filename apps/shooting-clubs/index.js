@@ -232,6 +232,7 @@ module.exports = {
       }
     },
     '/location-address-category': {
+      next: '/location-add-another-address'
     },
     '/location-add-another-address': {
       template: 'add-another-address-loop.html',
@@ -253,8 +254,68 @@ module.exports = {
       }
     },
     '/storage-address-list': {
+      next: '/storage-postcode'
     },
     '/storage-add-another-address': {
+      template: 'add-another-address-loop.html',
+      controller: require('../common/controllers/add-another-address-loop'),
+      fields: [
+        'storage-add-another-address'
+      ],
+      prereqs: ['/second-contact-email'],
+      next: '/confirm',
+      forks: [{
+        target: '/storage-postcode',
+        condition: {
+          field: 'storage-add-another-address',
+          value: 'yes'
+        }
+      }],
+      locals: {
+        field: 'storage'
+      }
+    },
+    '/storage-postcode': {
+      template: 'postcode-loop.html',
+      controller: require('../common/controllers/postcode-loop'),
+      fields: [
+        'storage-postcode'
+      ],
+      next: '/storage-address',
+      forks: [{
+        target: '/storage-address-lookup',
+        condition(req) {
+          const addresses = req.sessionModel.get('storage-addresses');
+          return addresses && addresses.length;
+        }
+      }],
+      locals: {
+        field: 'storage'
+      }
+    },
+    '/storage-address': {
+      template: 'address-loop.html',
+      controller: require('../common/controllers/address-loop'),
+      fields: [
+        'storage-address-manual'
+      ],
+      next: '/storage-add-another-address',
+      prereqs: ['/storage-postcode', '/storage-address-list'],
+      backLink: 'storage-postcode',
+      locals: {
+        field: 'storage'
+      }
+    },
+    '/storage-address-lookup': {
+      template: 'address-lookup-loop.html',
+      controller: require('../common/controllers/address-lookup-loop'),
+      fields: [
+        'storage-address-lookup'
+      ],
+      next: '/storage-add-another-address',
+      locals: {
+        field: 'storage'
+      }
     },
     '/confirm': {
     },

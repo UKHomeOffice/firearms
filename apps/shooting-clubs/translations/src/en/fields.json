@@ -69,5 +69,24 @@
         "label": "No"
       }
     }
+  },
+  "storage-postcode": {
+    "label": "Postcode"
+  },
+  "storage-address-lookup": {
+    "label": "Select the address"
+  },
+  "storage-address-manual": {
+    "label": "Address"
+  },
+  "storage-add-another-address": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
