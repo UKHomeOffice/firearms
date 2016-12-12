@@ -10,7 +10,7 @@ module.exports = {
 
   fields: {
     'club-secretary-email-id': '#club-secretary-email',
-    'club-secretary-phone-id': '#club-secretary-phone',
+    'club-secretary-phone-id': '#club-secretary-phone'
   },
 
   content: {
@@ -20,8 +20,8 @@ module.exports = {
   },
 
   fillFormAndSubmit(email) {
-    I.fillField(this['club-secretary-email-id'], this.content[email]);
-    I.fillField(this['club-secretary-phone-id'], this.content.phone);
+    I.fillField(this.fields['club-secretary-email-id'], this.content[email]);
+    I.fillField(this.fields['club-secretary-phone-id'], this.content.phone);
     I.submitForm();
   }
 };

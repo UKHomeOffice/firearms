@@ -41,5 +41,5 @@ Scenario('An error is shown if an invalid email address is entered', (
   clubSecretaryEmailPage
 ) => {
   clubSecretaryEmailPage.fillFormAndSubmit('invalid-email');
-  I.seeErrors(clubSecretaryEmailPage['club-secretary-email-id']);
+  I.seeErrors(clubSecretaryEmailPage.fields['club-secretary-email-id']);
 });
