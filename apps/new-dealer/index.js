@@ -174,6 +174,7 @@ module.exports = {
         }
       }],
       locals: {
+        app: 's5',
         section: 'storage-add-another-address',
         field: 'storage',
         renew: true,

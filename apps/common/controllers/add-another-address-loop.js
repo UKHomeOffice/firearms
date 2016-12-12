@@ -40,8 +40,9 @@ module.exports = class AddAnotherAddressController extends BaseController {
 
   getBackLink(req) {
     const field = this.options.locals.field;
+    const app = this.options.locals.app;
     const addresses = req.sessionModel.get(`${field}Addresses`);
     const id = _.last(Object.keys(addresses));
-    return `/s5/${field}-postcode/edit/${id}`;
+    return `/${app}/${field}-postcode/edit/${id}`;
   }
 };
