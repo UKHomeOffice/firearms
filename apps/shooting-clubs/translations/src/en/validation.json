@@ -5,6 +5,13 @@
   "second-contact-name" : {
     "required": "Please enter the second person's name"
   },
+  "second-contact-email": {
+    "required": "Enter the club secretary's email",
+    "email": "Enter a valid email address"
+  },
+  "second-contact-phone": {
+    "required": "Enter the club secretary's phone number"
+  },
   "club-secretary-name": {
     "required": "Enter the name of the club secretary"
   },

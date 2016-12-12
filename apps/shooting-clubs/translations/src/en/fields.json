@@ -5,6 +5,12 @@
   "second-contact-name": {
     "label": "Full name"
   },
+  "second-contact-email": {
+    "label": "Email address"
+  },
+  "second-contact-phone": {
+    "label": "Phone number"
+  },
   "club-secretary-name": {
     "label": "Full name"
   },

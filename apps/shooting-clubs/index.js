@@ -169,6 +169,10 @@ module.exports = {
       }
     },
     '/second-contact-email': {
+      fields: [
+        'second-contact-email',
+        'second-contact-phone'
+      ],
       next: '/location-postcode'
     },
     '/location-postcode': {
