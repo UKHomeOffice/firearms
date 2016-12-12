@@ -1,12 +1,12 @@
 {{<partials-page}}
   {{$page-content}}
     {{#renew}}
-      {{<partials-important-message}}{{/partials-important-message}}
+      {{> partials-important-message}}
     {{/renew}}
     {{#fields}}
       {{#renderField}}{{/renderField}}
     {{/fields}}
     {{#input-submit}}continue{{/input-submit}}
-    {{<partials-storage-address-summary}}{{/partials-storage-address-summary}}
+    {{> partials-add-another-address-summary}}
   {{/page-content}}
 {{/partials-page}}

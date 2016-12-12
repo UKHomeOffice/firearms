@@ -1,18 +1,18 @@
 {{<partials-page}}
   {{$page-content}}
     {{#renew}}
-      {{<partials-important-message}}{{/partials-important-message}}
+      {{> partials-important-message}}
     {{/renew}}
     {{#fields}}
       {{#renderField}}{{/renderField}}
     {{/fields}}
       <p>
         <span class="link">
-          <a id='manual-entry' href="{{baseUrl}}/storage-address/manual{{#id}}/{{id}}{{/id}}">{{#t}}pages.postcode.manual{{/t}}</a>
+          <a id='manual-entry' href="{{baseUrl}}/{{field}}-address/manual{{#id}}/{{id}}{{/id}}">{{#t}}pages.postcode.manual{{/t}}</a>
         </span>
       </p>
     {{#input-submit}}continue{{/input-submit}}
 
-    {{<partials-storage-address-summary}}{{/partials-storage-address-summary}}
+    {{> partials-add-another-address-summary}}
   {{/page-content}}
 {{/partials-page}}

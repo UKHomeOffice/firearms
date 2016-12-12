@@ -1,40 +1,44 @@
 'use strict';
 
 const _ = require('lodash');
-const BaseController = require('../../common/controllers/base');
-const PostcodesModel = require('../../common/models/postcodes');
+const BaseController = require('./base');
+const PostcodesModel = require('../models/postcodes');
 
-module.exports = class StoragePostcodeController extends BaseController {
+module.exports = class PostcodeLoopController extends BaseController {
   locals(req, res, callback) {
     const locals = super.locals(req, res, callback);
-    const addresses = req.sessionModel.get('storageAddresses');
-    const hasStorageAddresses = _.size(addresses);
-    const storageAddresses = [];
+    const field = locals.field;
+    const addresses = req.sessionModel.get(`${field}Addresses`);
+    const hasAddresses = _.size(addresses);
+    const items = [];
     _.forEach(addresses, (value, key) => {
       const address = {
         id: key,
         address: value.address
       };
-      storageAddresses.push(address);
+      items.push(address);
     });
     let id = '';
     if (req.params.action === 'edit') {
       id = req.params.id;
     }
-    return Object.assign({}, locals, {storageAddresses, hasStorageAddresses, id});
+    return Object.assign({}, locals, {items, hasAddresses, id});
   }
 
   getValues(req, res, callback) {
+    const field = this.options.locals.field;
     super.getValues(req, res, (err, values) => {
       if (err) {
         return callback(err);
       }
       if (req.params.action === 'edit') {
-        const address = values.storageAddresses[req.params.id];
+        const address = values[`${field}Addresses`][req.params.id];
+        const postcode = {};
+        postcode[`${field}-postcode`] = address.postcode;
         this.addressId = req.params.id;
-        return callback(null, Object.assign({}, values, {
-          'storage-postcode': address.postcode
-        }));
+        return callback(null, Object.assign({}, values,
+          postcode
+        ));
       }
       this.addressId = '';
       return callback(null, values);
@@ -42,8 +46,9 @@ module.exports = class StoragePostcodeController extends BaseController {
   }
 
   saveValues(req, res, cb) {
+    const field = this.options.locals.field;
     const saveValues = super.saveValues(req, res, cb);
-    this.postcodeChanged = req.form.values['storage-postcode'] !== req.sessionModel.get('storage-postcode');
+    this.postcodeChanged = req.form.values[`${field}-postcode`] !== req.sessionModel.get(`${field}-postcode`);
     return saveValues;
   }
 
@@ -57,22 +62,24 @@ module.exports = class StoragePostcodeController extends BaseController {
 
   get(req, res, callback) {
     if (req.params.action === 'delete' && req.params.id) {
-      return this.removeItem(req, res);
+      const field = this.options.locals.field;
+      return this.removeItem(req, res, field);
     }
     return super.get(req, res, callback);
   }
 
-  removeItem(req, res) {
-    const items = req.sessionModel.get('storageAddresses');
-    req.sessionModel.set('storageAddresses', _.omit(items, req.params.id));
-    const step = _.size(items) > 1 ? '/storage-add-another-address' : '/storage-postcode';
+  removeItem(req, res, field) {
+    const items = req.sessionModel.get(`${field}Addresses`);
+    req.sessionModel.set(`${field}Addresses`, _.omit(items, req.params.id));
+    const step = _.size(items) > 1 ? `/${field}-add-another-address` : `/${field}-postcode`;
     return res.redirect(`${req.baseUrl}${step}`);
   }
 
   process(req, res, callback) {
+    const field = this.options.locals.field;
     const postcodesModel = new PostcodesModel();
-    const postcode = req.form.values['storage-postcode'];
-    const previousPostcode = req.sessionModel.get('storage-postcode');
+    const postcode = req.form.values[`${field}-postcode`];
+    const previousPostcode = req.sessionModel.get(`${field}-postcode`);
     if (!postcode
       || previousPostcode && previousPostcode === postcode) {
       return callback();
@@ -80,16 +87,16 @@ module.exports = class StoragePostcodeController extends BaseController {
 
     if (_.startsWith(postcode, 'BT')) {
       req.sessionModel.unset('postcodeApiMeta');
-      req.sessionModel.unset('storage-addresses');
+      req.sessionModel.unset(`${field}-addresses`);
       return callback();
     }
 
     postcodesModel.fetch(postcode)
       .then(data => {
         if (data.length) {
-          req.sessionModel.set('storage-addresses', data);
+          req.sessionModel.set(`${field}-addresses`, data);
         } else {
-          req.sessionModel.unset('storage-addresses');
+          req.sessionModel.unset(`${field}-addresses`);
           req.sessionModel.set('postcodeApiMeta', {
             messageKey: 'not-found'
           });

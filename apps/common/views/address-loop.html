@@ -1,15 +1,15 @@
 {{<partials-page}}
   {{$page-content}}
     {{#renew}}
-      {{<partials-important-message}}{{/partials-important-message}}
+      {{> partials-important-message}}
     {{/renew}}
     {{#postcode}}
       <label>
-        {{#t}}fields.storage-postcode.label{{/t}}
+        {{#t}}fields.{{field}}-postcode.label{{/t}}
       </label>
       <p>
         <span class="postcode">{{postcode}}</span>
-        <span class="link"><a href="{{baseUrl}}/storage-postcode">{{#t}}pages.address.edit{{/t}}</a></span>
+        <span class="link"><a href="{{baseUrl}}/{{field}}-postcode">{{#t}}pages.address.edit{{/t}}</a></span>
       </p>
     {{/postcode}}
     {{#postcodeApiMessageKey}}
@@ -24,7 +24,7 @@
     {{/fields}}
     {{#input-submit}}continue{{/input-submit}}
 
-    {{<partials-storage-address-summary}}{{/partials-storage-address-summary}}
+    {{> partials-add-another-address-summary}}
 
   {{/page-content}}
 {{/partials-page}}

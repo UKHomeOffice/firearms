@@ -2,14 +2,15 @@
 
 const _ = require('lodash');
 const ErrorController = require('hof-controllers').error;
-const BaseController = require('../../common/controllers/base');
+const BaseController = require('./base');
 
-module.exports = class StorageAddressLookup extends BaseController {
+module.exports = class AddressLookupLoopController extends BaseController {
   locals(req, res) {
     const locals = super.locals(req, res);
-    const addresses = req.sessionModel.get('storageAddresses');
-    const hasStorageAddresses = _.size(addresses);
-    const storageAddresses = [];
+    const field = locals.field;
+    const addresses = req.sessionModel.get(`${field}Addresses`);
+    const hasAddresses = _.size(addresses);
+    const items = [];
     let postcode;
     let id;
     _.forEach(addresses, (value, key) => {
@@ -17,15 +18,20 @@ module.exports = class StorageAddressLookup extends BaseController {
         id: key,
         address: value.address
       };
-      storageAddresses.push(address);
+      items.push(address);
     });
     if (req.params.action === 'edit') {
       id = req.params.id;
-      postcode = req.sessionModel.get('storage-postcode') || addresses[id].postcode;
+      postcode = req.sessionModel.get(`${field}-postcode`) || addresses[id].postcode;
     } else {
-      postcode = req.sessionModel.get('storage-postcode');
+      postcode = req.sessionModel.get(`${field}-postcode`);
     }
-    return Object.assign({}, locals, {storageAddresses, hasStorageAddresses, postcode, id});
+    return Object.assign({}, locals, {
+      items,
+      hasAddresses,
+      postcode,
+      id
+    });
   }
 
   getBackLink(req, res, callback) {
@@ -34,16 +40,16 @@ module.exports = class StorageAddressLookup extends BaseController {
   }
 
   getValues(req, res, callback) {
+    const field = this.options.locals.field;
     if (req.params.action === 'edit') {
       const steps = req.sessionModel.get('steps');
       _.remove(steps, step => {
-        return step === '/storage-add-another-address';
+        return step === `/${field}-add-another-address`;
       });
       req.sessionModel.set('steps', steps);
-      req.sessionModel.unset('storage-add-another-address');
+      req.sessionModel.unset(`${field}-add-another-address`);
     }
-    const field = this.options.locals.field;
-    const addresses = req.sessionModel.get('storage-addresses');
+    const addresses = req.sessionModel.get(`${field}-addresses`);
     const formattedlist = _.map(_.map(addresses, 'formatted_address'), address => {
       address = address.split('\n').join(', ');
       return {
@@ -59,36 +65,40 @@ module.exports = class StorageAddressLookup extends BaseController {
 
   get(req, res, callback) {
     if (req.params.action === 'delete' && req.params.id) {
-      return this.removeItem(req, res);
+      const field = this.options.locals.field;
+      return this.removeItem(req, res, field);
     }
     return super.get(req, res, callback);
   }
 
-  removeItem(req, res) {
-    const items = req.sessionModel.get('storageAddresses');
-    req.sessionModel.set('storageAddresses', _.omit(items, req.params.id));
-    const step = _.size(items) > 1 ? '/storage-add-another-address' : '/storage-postcode';
+  removeItem(req, res, field) {
+    const items = req.sessionModel.get(`${field}Addresses`);
+    req.sessionModel.set(`${field}Addresses`, _.omit(items, req.params.id));
+    const step = _.size(items) > 1 ? `/${field}-add-another-address` : `/${field}-postcode`;
     return res.redirect(`${req.baseUrl}${step}`);
   }
 
   saveValues(req, res, callback) {
-    const address = req.form.values['storage-address-lookup'].split(', ').join('\n');
+    const field = this.options.locals.field;
+    const address = req.form.values[`${field}-address-lookup`].split(', ').join('\n');
     let postcode;
-    let storageAddresses = req.sessionModel.get('storageAddresses') || {};
+    const addressIndex = `${field}Addresses`;
+    let addresses = req.sessionModel.get(addressIndex) || {};
     let id = req.params.id;
-
     if (id === undefined) {
       const currentIndex = req.sessionModel.get('currentIndex') || 0;
       id = parseInt(currentIndex, 10);
       req.sessionModel.set('currentIndex', id + 1);
     }
-    postcode = req.sessionModel.get('storage-postcode') || storageAddresses[id].postcode;
-    storageAddresses[id] = {
+    postcode = req.sessionModel.get(`${field}-postcode`) || addresses[id].postcode;
+    addresses[id] = {
       address,
       postcode
     };
-    req.sessionModel.set({storageAddresses});
-    req.sessionModel.unset('storage-postcode');
+    const items = {};
+    items[addressIndex] = addresses;
+    req.sessionModel.set(items);
+    req.sessionModel.unset(`${field}-postcode`);
     super.saveValues(req, res, callback);
   }
 
@@ -98,9 +108,10 @@ module.exports = class StorageAddressLookup extends BaseController {
   }
 
   validateField(key, req) {
-    if (req.form.values[key] === this.options.fields['storage-address-lookup'].options[0].value) {
-      return new ErrorController('storage-address-lookup', {
-        key: 'storage-address-lookup',
+    const field = this.options.locals.field;
+    if (req.form.values[key] === this.options.fields[`${field}-address-lookup`].options[0].value) {
+      return new ErrorController(`${field}-address-lookup`, {
+        key: `${field}-address-lookup`,
         type: 'required',
         redirect: undefined
       });

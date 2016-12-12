@@ -1,15 +1,15 @@
-{{#hasStorageAddresses}}
+{{#hasAddresses}}
   <div id="storage-address-summary">
     <h2>Addresses added</h2>
     <table>
       <tbody>
-        {{#storageAddresses}}
+        {{#items}}
           <tr class="address-summary">
             <td>{{address}}</td>
             <td><a href="{{baseUrl}}/{{route}}/delete/{{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a></td>
           </tr>
-        {{/storageAddresses}}
+        {{/items}}
       </tbody>
     </table>
   </div>
-{{/hasStorageAddresses}}
+{{/hasAddresses}}
