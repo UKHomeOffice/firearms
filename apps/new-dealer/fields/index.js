@@ -534,8 +534,7 @@ module.exports = {
     includeInSummary: false
   },
   'first-authority-holders-address-lookup': {
-    className: 'address',
-    includeInSummary: false
+    className: 'address'
   },
   'first-authority-holders-address-manual': {
     mixin: 'textarea',
@@ -574,8 +573,7 @@ module.exports = {
     includeInSummary: false
   },
   'second-authority-holders-address-lookup': {
-    className: 'address',
-    includeInSummary: false
+    className: 'address'
   },
   'second-authority-holders-address-manual': {
     mixin: 'textarea',
@@ -653,8 +651,7 @@ module.exports = {
     includeInSummary: false
   },
   'authority-holder-contact-address-lookup': {
-    className: 'address',
-    includeInSummary: false
+    className: 'address'
   },
   'authority-holder-contact-address-manual': {
     mixin: 'textarea',
@@ -673,8 +670,7 @@ module.exports = {
     includeInSummary: false
   },
   'contact-address-lookup': {
-    className: 'address',
-    includeInSummary: false
+    className: 'address'
   },
   'contact-address-manual': {
     mixin: 'textarea',

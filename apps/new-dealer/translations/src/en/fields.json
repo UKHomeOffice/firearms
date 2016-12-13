@@ -375,6 +375,7 @@
     "label": "Address"
   },
   "first-authority-holders-address-lookup": {
+    "summary": "Home address",
     "label": "Select your address"
   },
   "second-authority-dob": {
@@ -414,10 +415,11 @@
     "label": "Postcode"
   },
   "second-authority-holders-address-manual": {
-    "summary": "Address",
+    "summary": "Home Address",
     "label": "Address"
   },
   "second-authority-holders-address-lookup": {
+    "summary": "Home address",
     "label": "Select your address"
   },
   "contact-holder": {
@@ -467,6 +469,7 @@
     "label": "Postcode"
   },
   "authority-holder-contact-address-lookup": {
+    "summary": "Home address",
     "label": "Select your address"
   },
   "authority-holder-contact-address-manual": {
@@ -481,6 +484,7 @@
     "label": "Address"
   },
   "contact-address-lookup": {
+    "summary": "Home address",
     "label": "Select your address"
   },
   "storage-add-another-address": {

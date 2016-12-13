@@ -30,10 +30,8 @@ module.exports = class AddressLookup extends BaseController {
 
   saveValues(req, res, callback) {
     const field = this.options.locals.field;
-    const addressLines = req.form.values[`${field}-address-lookup`].split(', ').join('\n');
-    req.sessionModel.set(`${field}-address-manual`, addressLines);
+    req.form.values[`${field}-address-lookup`] = req.form.values[`${field}-address-lookup`].split(', ').join('\n');
     req.sessionModel.unset('addresses');
-
     super.saveValues(req, res, callback);
   }
 
