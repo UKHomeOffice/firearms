@@ -4,11 +4,20 @@ const _ = require('lodash');
 const BaseController = require('./base');
 
 module.exports = class AddAnotherAddressController extends BaseController {
-  locals(req, res, callback) {
-    const locals = super.locals(req, res, callback);
-    const field = locals.field;
-    const addresses = req.sessionModel.get(`${field}Addresses`);
-    const hasAddresses = req.sessionModel.get(`${field}Addresses`) ? true : false;
+  constructor(options) {
+    super(options);
+    if (options.locals.field) {
+      this.field = options.locals.field;
+    } else {
+      // eslint-disable-next-line no-console
+      console.error('No field set in locals');
+    }
+  }
+
+  locals(req, res) {
+    const locals = super.locals(req, res);
+    const addresses = req.sessionModel.get(`${this.field}Addresses`);
+    const hasAddresses = req.sessionModel.get(`${this.field}Addresses`) ? true : false;
     const items = [];
     _.forEach(addresses, (value, key) => {
       const address = {
@@ -25,8 +34,7 @@ module.exports = class AddAnotherAddressController extends BaseController {
 
   get(req, res, callback) {
     if (req.params.action === 'delete' && req.params.id) {
-      const field = this.options.locals.field;
-      return this.removeItem(req, res, field);
+      return this.removeItem(req, res, this.field);
     }
     return super.get(req, res, callback);
   }
@@ -39,10 +47,9 @@ module.exports = class AddAnotherAddressController extends BaseController {
   }
 
   getBackLink(req) {
-    const field = this.options.locals.field;
     const app = this.options.locals.app;
-    const addresses = req.sessionModel.get(`${field}Addresses`);
+    const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const id = _.last(Object.keys(addresses));
-    return `/${app}/${field}-postcode/edit/${id}`;
+    return `/${app}/${this.field}-postcode/edit/${id}`;
   }
 };

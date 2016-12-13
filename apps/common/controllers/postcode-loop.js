@@ -5,10 +5,19 @@ const BaseController = require('./base');
 const PostcodesModel = require('../models/postcodes');
 
 module.exports = class PostcodeLoopController extends BaseController {
-  locals(req, res, callback) {
-    const locals = super.locals(req, res, callback);
-    const field = locals.field;
-    const addresses = req.sessionModel.get(`${field}Addresses`);
+  constructor(options) {
+    super(options);
+    if (options.locals.field) {
+      this.field = options.locals.field;
+    } else {
+      // eslint-disable-next-line no-console
+      console.error('No field set in locals');
+    }
+  }
+
+  locals(req, res) {
+    const locals = super.locals(req, res);
+    const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const hasAddresses = _.size(addresses);
     const items = [];
     _.forEach(addresses, (value, key) => {
@@ -26,15 +35,14 @@ module.exports = class PostcodeLoopController extends BaseController {
   }
 
   getValues(req, res, callback) {
-    const field = this.options.locals.field;
     super.getValues(req, res, (err, values) => {
       if (err) {
         return callback(err);
       }
       if (req.params.action === 'edit') {
-        const address = values[`${field}Addresses`][req.params.id];
+        const address = values[`${this.field}Addresses`][req.params.id];
         const postcode = {};
-        postcode[`${field}-postcode`] = address.postcode;
+        postcode[`${this.field}-postcode`] = address.postcode;
         this.addressId = req.params.id;
         return callback(null, Object.assign({}, values,
           postcode
@@ -46,9 +54,8 @@ module.exports = class PostcodeLoopController extends BaseController {
   }
 
   saveValues(req, res, cb) {
-    const field = this.options.locals.field;
     const saveValues = super.saveValues(req, res, cb);
-    this.postcodeChanged = req.form.values[`${field}-postcode`] !== req.sessionModel.get(`${field}-postcode`);
+    this.postcodeChanged = req.form.values[`${this.field}-postcode`] !== req.sessionModel.get(`${this.field}-postcode`);
     return saveValues;
   }
 
@@ -62,8 +69,7 @@ module.exports = class PostcodeLoopController extends BaseController {
 
   get(req, res, callback) {
     if (req.params.action === 'delete' && req.params.id) {
-      const field = this.options.locals.field;
-      return this.removeItem(req, res, field);
+      return this.removeItem(req, res, this.field);
     }
     return super.get(req, res, callback);
   }
@@ -76,10 +82,9 @@ module.exports = class PostcodeLoopController extends BaseController {
   }
 
   process(req, res, callback) {
-    const field = this.options.locals.field;
     const postcodesModel = new PostcodesModel();
-    const postcode = req.form.values[`${field}-postcode`];
-    const previousPostcode = req.sessionModel.get(`${field}-postcode`);
+    const postcode = req.form.values[`${this.field}-postcode`];
+    const previousPostcode = req.sessionModel.get(`${this.field}-postcode`);
     if (!postcode
       || previousPostcode && previousPostcode === postcode) {
       return callback();
@@ -87,16 +92,16 @@ module.exports = class PostcodeLoopController extends BaseController {
 
     if (_.startsWith(postcode, 'BT')) {
       req.sessionModel.unset('postcodeApiMeta');
-      req.sessionModel.unset(`${field}-addresses`);
+      req.sessionModel.unset(`${this.field}-addresses`);
       return callback();
     }
 
     postcodesModel.fetch(postcode)
       .then(data => {
         if (data.length) {
-          req.sessionModel.set(`${field}-addresses`, data);
+          req.sessionModel.set(`${this.field}-addresses`, data);
         } else {
-          req.sessionModel.unset(`${field}-addresses`);
+          req.sessionModel.unset(`${this.field}-addresses`);
           req.sessionModel.set('postcodeApiMeta', {
             messageKey: 'not-found'
           });
