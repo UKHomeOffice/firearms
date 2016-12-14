@@ -70,15 +70,15 @@ module.exports = class AddressLoopController extends BaseController {
 
   get(req, res, callback) {
     if (req.params.action === 'delete' && req.params.id) {
-      return this.removeItem(req, res, this.field);
+      return this.removeItem(req, res);
     }
     return super.get(req, res, callback);
   }
 
-  removeItem(req, res, field) {
-    const items = req.sessionModel.get(`${field}Addresses`);
-    req.sessionModel.set(`${field}Addresses`, _.omit(items, req.params.id));
-    const step = _.size(items) > 1 ? `/${field}-add-another-address` : `/${field}-postcode`;
+  removeItem(req, res) {
+    const items = req.sessionModel.get(`${this.field}Addresses`);
+    req.sessionModel.set(`${this.field}Addresses`, _.omit(items, req.params.id));
+    const step = _.size(items) > 1 ? `/${this.field}-add-another-address` : `/${this.field}-postcode`;
     return res.redirect(`${req.baseUrl}${step}`);
   }
 
