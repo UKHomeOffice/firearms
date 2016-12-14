@@ -9,8 +9,7 @@ module.exports = class AddAnotherAddressController extends BaseController {
     if (options.locals.field) {
       this.field = options.locals.field;
     } else {
-      // eslint-disable-next-line no-console
-      console.error('No field set in locals');
+      throw new Error('Field need to be defined in locals');
     }
   }
 
