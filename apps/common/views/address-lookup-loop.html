@@ -1,0 +1,22 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#renew}}
+      {{> partials-important-message}}
+    {{/renew}}
+    <label>
+      {{#t}}fields.{{field}}-postcode.label{{/t}}
+    </label>
+    <p>
+      <span class="postcode">{{postcode}}</span>
+      <span class="link"><a href="{{baseUrl}}/{{field}}-postcode{{#id}}/edit/{{id}}{{/id}}">{{#t}}pages.address.edit{{/t}}</a></span>
+    </p>
+
+    {{#select}}{{field}}-address-lookup{{/select}}
+
+    <p><span id="cant-find" class="link"><a href="{{baseUrl}}/{{field}}-address{{#id}}/edit/{{id}}{{/id}}">{{#t}}pages.address.cantfind{{/t}}</a></span></p>
+
+    {{#input-submit}}continue{{/input-submit}}
+
+    {{> partials-add-another-address-summary}}
+  {{/page-content}}
+{{/partials-page}}
