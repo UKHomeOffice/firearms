@@ -18,14 +18,10 @@ module.exports = class AddAnotherAddressController extends BaseController {
     const locals = super.locals(req, res);
     const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const hasAddresses = req.sessionModel.get(`${this.field}Addresses`) ? true : false;
-    const items = [];
-    _.forEach(addresses, (value, key) => {
-      const address = {
-        id: key,
-        address: value.address
-      };
-      items.push(address);
-    });
+    const items = _.map(addresses, (value, key) => ({
+      id: key,
+      address: value.address
+    }));
     return Object.assign({}, locals, {
       items,
       hasAddresses
@@ -47,9 +43,9 @@ module.exports = class AddAnotherAddressController extends BaseController {
   }
 
   getBackLink(req) {
-    const app = this.options.locals.app;
     const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const id = _.last(Object.keys(addresses));
+    const app = req.app.mountpath;
     return `/${app}/${this.field}-postcode/edit/${id}`;
   }
 };
