@@ -27,7 +27,7 @@ Scenario('check that an error appears if I submit empty fields', (
   I.seeErrors(_.values(secondContactEmailPage.fields));
 });
 
-Scenario('I can go to the next page, second contact name page', (
+Scenario('I can go to the next page, location postcode page', (
   I,
   secondContactEmailPage,
   locationPostcodePage
