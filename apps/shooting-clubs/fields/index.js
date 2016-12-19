@@ -119,6 +119,15 @@ module.exports = {
       'no'
     ]
   },
+  'location-address-category': {
+    mixin: 'checkbox-group',
+    validate: 'required',
+    options: [
+      'full-bore-rifles',
+      'small-bore-rifles',
+      'muzzle-loading-pistols'
+    ]
+  },
   'storage-postcode': {
     mixin: 'input-text-code',
     validate: ['required', 'postcode'],

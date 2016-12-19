@@ -80,5 +80,8 @@
   },
   "storage-add-another-address": {
     "required": "Select an option"
+  },
+  "location-address-category": {
+    "required": "Select the categories of firearms that will be used at this range"
   }
 }

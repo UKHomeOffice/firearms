@@ -1,15 +1,34 @@
 {{#hasAddresses}}
   <div id="address-summary">
     <h2>Addresses added</h2>
-    <table>
-      <tbody>
-        {{#items}}
+    <table class="table-address-loop">
+      {{#hasCategories}}
+        <thead>
+          <tr class="address-summary">
+            <th>Location</th>
+            <th colspan="2">Categories of firearms</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#items}}
+            <tr class="address-summary">
+              <td>{{address}}<br><a href="#">edit</a></td>
+              <td>{{categories}}</td>
+              <td><a href="{{baseUrl}}/{{route}}/delete/{{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a></td>
+            </tr>
+          {{/items}}
+        </tbody>
+      {{/hasCategories}}
+      {{^hasCategories}}
+        <tbody>
+          {{#items}}
           <tr class="address-summary">
             <td>{{address}}</td>
             <td><a href="{{baseUrl}}/{{route}}/delete/{{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a></td>
           </tr>
-        {{/items}}
-      </tbody>
+          {{/items}}
+        </tbody>
+      {{/hasCategories}}
     </table>
   </div>
 {{/hasAddresses}}

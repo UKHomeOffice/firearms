@@ -70,6 +70,21 @@
       }
     }
   },
+  "location-address-category": {
+    "legend": "Select all that apply",
+    "options": {
+      "full-bore-rifles": {
+        "label": "Full-bore rifles"
+      },
+      "small-bore-rifles": {
+        "label": "Small-bore rifles"
+      },
+      "muzzle-loading-pistols": {
+        "label": "Muzzle-loading pistols"
+      }
+    }
+  },
+
   "storage-postcode": {
     "label": "Postcode"
   },

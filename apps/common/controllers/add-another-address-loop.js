@@ -19,12 +19,28 @@ module.exports = class AddAnotherAddressController extends BaseController {
     const hasAddresses = req.sessionModel.get(`${this.field}Addresses`) ? true : false;
     const items = _.map(addresses, (value, key) => ({
       id: key,
-      address: value.address
+      address: value.address,
+      categories: this.something(req, value.categories)
     }));
     return Object.assign({}, locals, {
       items,
-      hasAddresses
+      hasAddresses,
+      hasCategories: _.sample(addresses).categories !== undefined
     });
+  }
+
+  something(req, values) {
+    if (!Array.isArray(values)) {
+      values = [values];
+    }
+
+
+    const blah = values.map(value => {
+      let key = `fields.location-address-category.options.${value}.label`;
+      let result = req.translate(key);
+      return result === key ? value : result;
+    }).join('\n');
+    return blah;
   }
 
   get(req, res, callback) {

@@ -6,7 +6,7 @@
     "header": "What is the club's name?"
   },
   "second-contact-name": {
-    "header": "Who should we contact in the secretary’s absence?",
+    "header": "What are the second person's contact details?",
     "intro": "We need to collect the contact details of a second person, in case the secretary is unavailable"
   },
   "second-contact-email": {
