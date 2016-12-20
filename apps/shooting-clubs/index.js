@@ -220,6 +220,23 @@ module.exports = {
     '/location-address-category': {
     },
     '/location-add-another-address': {
+      template: 'add-another-address-loop.html',
+      controller: require('../common/controllers/add-another-address-loop'),
+      fields: [
+        'location-add-another-address'
+      ],
+      prereqs: ['/second-contact-email'],
+      next: '/confirm',
+      forks: [{
+        target: '/location-postcode',
+        condition: {
+          field: 'location-add-another-address',
+          value: 'yes'
+        }
+      }],
+      locals: {
+        field: 'location'
+      }
     },
     '/storage-address-list': {
     },

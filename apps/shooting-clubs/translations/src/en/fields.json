@@ -49,5 +49,21 @@
   },
   "location-postcode": {
     "label": "Postcode"
+  },
+  "location-address-lookup": {
+    "label": "Select the address"
+  },
+  "location-address-manual": {
+    "label": "Address"
+  },
+  "location-add-another-address": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
