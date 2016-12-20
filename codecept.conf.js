@@ -16,6 +16,7 @@ module.exports = {
   features: './**/acceptance/features/**/*.js',
   include: {
     activityPage: commonPagesPath('activity.js'),
+    locationAddressPage: commonPagesPath('location-address'),
     authorityNumberRenewPage: dealerPagesPath('authority-holder-renew-vary.js'),
     companyNamePage: dealerPagesPath('company-name.js'),
     handlePage: dealerPagesPath('handle.js'),
