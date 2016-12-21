@@ -212,7 +212,7 @@ module.exports = {
       fields: [
         'location-address-lookup'
       ],
-      next: 'location-add-another-address',
+      next: '/location-add-another-address',
       locals: {
         field: 'location'
       }

@@ -49,7 +49,7 @@ Scenario('postcode step: I go to the address look up page when I enter a valid p
   locationAddressPage
 ) => {
   locationAddressPage.fillFormAndSubmit(locationAddressPage.postcode.field.postcode, locationAddressPage.postcode.content.valid);
-  I.seeInCurrentUrl(locationAddressPage.lookUpAddress.url);
+  I.seeInCurrentUrl(locationAddressPage.addressLookUp.url);
 });
 
 Scenario('postcode step: I get an error when I enter an invalid postcode', (
@@ -141,17 +141,6 @@ Scenario('from manual entry step: I am taken to the location-add-another-address
 });
 
 // Add another address
-
-Scenario('add another address step: the correct form elements are present', (
-  I,
-  locationAddressPage
-) => {
-  locationAddressPage.selectAddressAndSubmit();
-  I.seeElements([
-    locationAddressPage.addAnotherAddress.field.yes,
-    locationAddressPage.addAnotherAddress.field.no
-  ])
-});
 
 Scenario('add another address step: the correct form elements are present', (
   I,
