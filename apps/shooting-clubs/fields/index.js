@@ -106,8 +106,7 @@ module.exports = {
     }]
   },
   'location-address-lookup': {
-    className: 'address',
-    includeInSummary: false
+    className: 'address'
   },
   'location-add-another-address': {
     mixin: 'radio-group',
