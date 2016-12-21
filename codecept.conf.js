@@ -16,7 +16,6 @@ module.exports = {
   features: './**/acceptance/features/**/*.js',
   include: {
     activityPage: commonPagesPath('activity.js'),
-    locationAddressPage: commonPagesPath('location-address'),
     authorityNumberRenewPage: dealerPagesPath('authority-holder-renew-vary.js'),
     companyNamePage: dealerPagesPath('company-name.js'),
     handlePage: dealerPagesPath('handle.js'),
@@ -50,6 +49,7 @@ module.exports = {
     clubSecretaryEmailPage: shootingClubPagesPath('club-secretary-email'),
     secondContactNamePage: shootingClubPagesPath('second-contact-name'),
     secondContactAddressPage: shootingClubPagesPath('second-contact-address'),
-    secondContactEmailPage: shootingClubPagesPath('second-contact-email')
+    secondContactEmailPage: shootingClubPagesPath('second-contact-email'),
+    locationAddressPage: shootingClubPagesPath('location-address')
   }
 };

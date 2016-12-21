@@ -1,6 +1,6 @@
 'use strict';
 
-const steps = require('../../../../apps/shooting-clubs/');
+const steps = require('../../index');
 
 Feature('Shooting club - location address');
 
