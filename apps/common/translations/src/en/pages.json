@@ -12,5 +12,19 @@
       "not-found": "Sorry – we couldn’t find any addresses for that postcode, enter your address manually",
       "cant-connect": "Sorry – we couldn’t connect to the postcode lookup service at this time, enter your address manually"
     }
+  },
+  "storage": {
+    "header": "Addresses added"
+  },
+  "location": {
+    "header": "Shooting location(s)",
+    "table": {
+      "location": "Location",
+      "categories": "Categories of firearms"
+    },
+    "edit": {
+      "location": "edit location",
+      "categories": "edit categories"
+    }
   }
 }

@@ -20,7 +20,7 @@ module.exports = class AddAnotherAddressController extends BaseController {
     const items = _.map(addresses, (value, key) => ({
       id: key,
       address: value.address,
-      categories: this.something(req, value.categories)
+      categories: this.translateCategories(req, value.categories)
     }));
     return Object.assign({}, locals, {
       items,
@@ -29,18 +29,16 @@ module.exports = class AddAnotherAddressController extends BaseController {
     });
   }
 
-  something(req, values) {
+  translateCategories(req, values) {
     if (!Array.isArray(values)) {
       values = [values];
     }
-
-
-    const blah = values.map(value => {
+    const categories = values.map(value => {
       let key = `fields.location-address-category.options.${value}.label`;
       let result = req.translate(key);
       return result === key ? value : result;
     }).join('\n');
-    return blah;
+    return categories;
   }
 
   get(req, res, callback) {
