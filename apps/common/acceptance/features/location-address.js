@@ -218,4 +218,3 @@ Scenario('add another address page: When I add two addresses I can see both addr
     locationAddressPage.manualEntry.content.address
   ])
 });
-
