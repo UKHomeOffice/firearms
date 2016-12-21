@@ -43,7 +43,6 @@ module.exports = {
     confirmationPage: dealerPagesPath('confirmation.js'),
     clubNamePage: shootingClubPagesPath('club-name.js'),
     clubAddressPage: shootingClubPagesPath('club-address.js'),
-    locationPostcodePage: shootingClubPagesPath('location-postcode'),
     clubSecretaryPage: shootingClubPagesPath('club-secretary-name'),
     clubSecretaryAddressPage: shootingClubPagesPath('club-secretary-address'),
     clubSecretaryEmailPage: shootingClubPagesPath('club-secretary-email'),

@@ -51,7 +51,7 @@ module.exports = {
       yes: '#location-add-another-address-yes',
       no: '#location-add-another-address-no',
       summary: '.address-summary',
-      delete: 'Delete'
+      delete: 'Remove'
     },
     content: {
       address: '49 Sydenham Road'

@@ -30,10 +30,10 @@ Scenario('check that an error appears if I submit empty fields', (
 Scenario('I can go to the next page, location postcode page', (
   I,
   secondContactEmailPage,
-  locationPostcodePage
+  locationAddressPage
 ) => {
   secondContactEmailPage.fillFormAndSubmit('valid-email');
-  I.seeInCurrentUrl(locationPostcodePage.url);
+  I.seeInCurrentUrl(locationAddressPage.url);
 });
 
 Scenario('An error is shown if an invalid email address is entered', (

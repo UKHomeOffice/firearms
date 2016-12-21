@@ -1,6 +1,6 @@
 'use strict';
 
-const steps = require('../../index');
+const steps = require('../../');
 
 Feature('Shooting club - location address');
 
@@ -10,8 +10,6 @@ Before((
 ) => {
   I.visitPage(locationAddressPage, steps)
 });
-
-// Location postcode step
 
 Scenario('postcode step: The correct form element is present', (
   I,
@@ -76,8 +74,6 @@ Scenario('postcode step: I\'m taken to the location manual address entry page wh
   I.seeInCurrentUrl(locationAddressPage.manualEntry.url)
 });
 
-// address Lookup step
-
 Scenario('address lookup step: when I click can\'t find my address link, I go to the location manual entry page', (
   I,
   locationAddressPage
@@ -112,8 +108,6 @@ Scenario('from address lookup step: I am taken to the next step, add another loc
   I.seeInCurrentUrl(locationAddressPage.addAnotherAddress.url);
 });
 
-// Enter address manually step
-
 Scenario('Manual entry step: The correct form elements are present for location-manual address step', (
   I,
   locationAddressPage
@@ -139,8 +133,6 @@ Scenario('from manual entry step: I am taken to the location-add-another-address
   locationAddressPage.fillFormAndSubmit(locationAddressPage.manualEntry.field.addressManual, locationAddressPage.manualEntry.content.address);
   I.seeInCurrentUrl(locationAddressPage.addAnotherAddress.url);
 });
-
-// Add another address
 
 Scenario('add another address step: the correct form elements are present', (
   I,
@@ -190,7 +182,7 @@ Scenario('add another address page: When I select No I am taken to the confirm p
   I.seeInCurrentUrl(confirmPage.url);
 });
 
-Scenario('add another address page: When I click Delete, I am taken back to the location-postcode page', (
+Scenario('add another address page: When I click Remove, I am taken back to the location-postcode page', (
   I,
   locationAddressPage
 ) => {
@@ -199,7 +191,7 @@ Scenario('add another address page: When I click Delete, I am taken back to the 
   I.seeInCurrentUrl(locationAddressPage.url);
 });
 
-Scenario('add another address page: When I click Delete, the address is removed from the summary table', (
+Scenario('add another address page: When I click Remove, the address is removed from the summary table', (
   I,
   locationAddressPage
 ) => {
