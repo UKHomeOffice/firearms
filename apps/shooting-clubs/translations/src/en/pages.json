@@ -1,4 +1,7 @@
 {
+  "authority-details": {
+    "header": "What is the existing shooting club reference number?"
+  },
   "club-name": {
     "header": "What is the club's name?"
   },

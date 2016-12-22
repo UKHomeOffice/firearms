@@ -41,6 +41,7 @@ module.exports = {
     contactAddressAuthorityHolderPage: dealerPagesPath('contact-address-authority-holder.js'),
     confirmPage: dealerPagesPath('confirm.js'),
     confirmationPage: dealerPagesPath('confirmation.js'),
+    authorityDetailsPage: shootingClubPagesPath('authority-details'),
     clubNamePage: shootingClubPagesPath('club-name.js'),
     clubAddressPage: shootingClubPagesPath('club-address.js'),
     clubSecretaryPage: shootingClubPagesPath('club-secretary-name'),

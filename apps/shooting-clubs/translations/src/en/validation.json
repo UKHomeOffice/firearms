@@ -1,4 +1,7 @@
 {
+  "reference-number": {
+    "required": "Enter the shooting club reference number"
+  },
   "club-name": {
     "required": "Enter the club name"
   },

@@ -15,6 +15,19 @@ module.exports = {
       fields: [
         'activity'
       ],
+      next: '/club-name',
+      forks: [{
+        target: '/authority-details',
+        condition: {
+          field: 'activity',
+          value: 'renew'
+        }
+      }]
+    },
+    '/authority-details': {
+      fields: [
+        'reference-number'
+      ],
       next: '/club-name'
     },
     '/club-name': {
