@@ -88,5 +88,35 @@ module.exports = {
       attribute: 'rows',
       value: 5
     }]
+  },
+  'location-postcode': {
+    mixin: 'input-text-code',
+    validate: ['required', 'postcode'],
+    formatter: 'uppercase',
+    includeInSummary: false
+  },
+  'location-address-manual': {
+    mixin: 'textarea',
+    validate: 'required',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    attributes: [{
+      attribute: 'rows',
+      value: 5
+    }]
+  },
+  'location-address-lookup': {
+    className: 'address'
+  },
+  'location-add-another-address': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    validate: 'required',
+    options: [
+      'yes',
+      'no'
+    ]
   }
 };

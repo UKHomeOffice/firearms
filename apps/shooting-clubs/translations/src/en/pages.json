@@ -42,5 +42,15 @@
   },
   "second-contact-address": {
     "header": "What is the second person's contact address?"
+  },
+  "location-postcode": {
+    "header": "Which shooting ranges will the club use?",
+    "intro": "You can add further addresses later, if required."
+  },
+  "location-address": {
+    "header": "What is the address of the shooting club?"
+  },
+  "location-add-another-address": {
+    "header": "Will the club use another shooting range?"
   }
 }

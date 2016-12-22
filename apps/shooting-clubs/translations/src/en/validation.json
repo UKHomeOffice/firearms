@@ -51,5 +51,18 @@
   },
   "second-contact-address-lookup": {
     "required": "Select an address"
+  },
+  "location-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a valid postcode"
+  },
+  "location-address-manual": {
+    "required": "Enter an address"
+  },
+  "location-address-lookup": {
+    "required": "Select an address"
+  },
+  "location-add-another-address": {
+    "required": "Select an option"
   }
 }

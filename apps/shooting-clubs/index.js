@@ -176,14 +176,68 @@ module.exports = {
       next: '/location-postcode'
     },
     '/location-postcode': {
+      template: 'postcode-loop.html',
+      controller: require('../common/controllers/postcode-loop'),
+      fields: [
+        'location-postcode'
+      ],
+      next: '/location-address',
+      backlink: 'second-contact-email',
+      forks: [{
+        target: '/location-address-lookup',
+        condition(req) {
+          const addresses = req.sessionModel.get('location-addresses');
+          return addresses && addresses.length;
+        }
+      }],
+      locals: {
+        field: 'location'
+      }
     },
     '/location-address': {
+      template: 'address-loop.html',
+      controller: require('../common/controllers/address-loop'),
+      fields: [
+        'location-address-manual'
+      ],
+      next: '/location-add-another-address',
+      prereqs: ['/location-postcode', '/second-contact-email'],
+      backlink: 'location-postcode',
+      locals: {
+        field: 'location'
+      }
     },
     '/location-address-lookup': {
+      template: 'address-lookup-loop.html',
+      controller: require('../common/controllers/address-lookup-loop'),
+      fields: [
+        'location-address-lookup'
+      ],
+      next: '/location-add-another-address',
+      locals: {
+        field: 'location'
+      }
     },
     '/location-address-category': {
     },
     '/location-add-another-address': {
+      template: 'add-another-address-loop.html',
+      controller: require('../common/controllers/add-another-address-loop'),
+      fields: [
+        'location-add-another-address'
+      ],
+      prereqs: ['/second-contact-email'],
+      next: '/confirm',
+      forks: [{
+        target: '/location-postcode',
+        condition: {
+          field: 'location-add-another-address',
+          value: 'yes'
+        }
+      }],
+      locals: {
+        field: 'location'
+      }
     },
     '/storage-address-list': {
     },
