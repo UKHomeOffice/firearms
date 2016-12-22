@@ -19,16 +19,31 @@ module.exports = class AddressLoopController extends BaseController {
     const postcode = req.sessionModel.get(`${this.field}-postcode`);
     const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const hasAddresses = _.size(addresses);
+    const hasCategories = hasAddresses ? _.sample(addresses).categories !== undefined : false;
     const items = _.map(addresses, (value, key) => ({
       id: key,
-      address: value.address
+      address: value.address,
+      categories: this.translateCategories(req, value.categories)
     }));
     return Object.assign({}, locals, {
       items,
       hasAddresses,
+      hasCategories,
       postcode,
       postcodeApiMessageKey: isManual ? '' : (req.sessionModel.get('postcodeApiMeta') || {}).messageKey
     });
+  }
+
+  translateCategories(req, values) {
+    if (!Array.isArray(values)) {
+      values = [values];
+    }
+    const categories = values.map(value => {
+      let key = `fields.location-address-category.options.${value}.label`;
+      let result = req.translate(key);
+      return result === key ? value : result;
+    }).join('\n');
+    return categories;
   }
 
   getBackLink(req, res, callback) {

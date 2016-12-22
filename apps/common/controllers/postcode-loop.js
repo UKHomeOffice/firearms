@@ -18,15 +18,34 @@ module.exports = class PostcodeLoopController extends BaseController {
     const locals = super.locals(req, res);
     const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const hasAddresses = _.size(addresses);
+    const hasCategories = hasAddresses ? _.sample(addresses).categories !== undefined : false;
     const items = _.map(addresses, (value, key) => ({
       id: key,
-      address: value.address
+      address: value.address,
+      categories: this.translateCategories(req, value.categories)
     }));
     let id = '';
     if (req.params.action === 'edit') {
       id = req.params.id;
     }
-    return Object.assign({}, locals, {items, hasAddresses, id});
+    return Object.assign({}, locals, {
+      items,
+      hasAddresses,
+      id,
+      hasCategories
+    });
+  }
+
+  translateCategories(req, values) {
+    if (!Array.isArray(values)) {
+      values = [values];
+    }
+    const categories = values.map(value => {
+      let key = `fields.location-address-category.options.${value}.label`;
+      let result = req.translate(key);
+      return result === key ? value : result;
+    }).join('\n');
+    return categories;
   }
 
   getValues(req, res, callback) {
