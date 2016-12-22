@@ -213,7 +213,7 @@ module.exports = {
       fields: [
         'location-address-manual'
       ],
-      next: '/location-add-another-address',
+      next: '/location-address-category',
       prereqs: ['/location-postcode', '/second-contact-email'],
       backlink: 'location-postcode',
       locals: {
@@ -226,13 +226,21 @@ module.exports = {
       fields: [
         'location-address-lookup'
       ],
-      next: '/location-add-another-address',
+      next: '/location-address-category',
       locals: {
         field: 'location'
       }
     },
     '/location-address-category': {
-      next: '/location-add-another-address'
+      controller: require('./controllers/location-address-category'),
+      fields: [
+       'location-address-category'
+      ],
+      continueOnEdit: true,
+      next: '/location-add-another-address',
+      locals: {
+       field: 'location'
+      }
     },
     '/location-add-another-address': {
       template: 'add-another-address-loop.html',
