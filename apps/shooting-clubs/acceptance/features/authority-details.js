@@ -1,8 +1,6 @@
 'use strict';
 const steps = require('../../');
 
-module.exports = {};
-
 Feature('Authority details step');
 
 Before((
@@ -32,6 +30,7 @@ Scenario('I can go to the next page if I correctly fill the form', (
   authorityDetailsPage,
   clubNamePage
 ) => {
-  authorityDetailsPage.fillFormAndSubmit();
+  I.fillField(authorityDetailsPage.field.referenceNumber, authorityDetailsPage.content);
+  I.submitForm();
   I.seeInCurrentUrl(clubNamePage.url);
 });
