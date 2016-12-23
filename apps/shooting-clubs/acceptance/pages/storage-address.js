@@ -19,13 +19,13 @@ module.exports = {
     'address-lookup': '#storage-address-lookup',
     add: '#storage-add-another-address-group',
     yes: '#storage-add-another-address-yes',
-    no: '#storage-add-another-address-no',
+    no: '#storage-add-another-address-no'
   },
 
   links: {
     'manual-entry': '#manual-entry',
     'cant-find-address': '#cant-find',
-    delete: 'Delete'
+    delete: 'Remove'
   },
 
   content: {
