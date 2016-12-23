@@ -10,10 +10,6 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
-  'reference-number': {
-    mixin: 'input-text',
-    validate: 'required'
-  },
   organisation: {
     mixin: 'radio-group',
     includeInSummary: false,

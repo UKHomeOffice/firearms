@@ -11,5 +11,9 @@ module.exports = {
       'new',
       'renew'
     ]
+  },
+  'reference-number': {
+    mixin: 'input-text',
+    validate: 'required'
   }
 };
