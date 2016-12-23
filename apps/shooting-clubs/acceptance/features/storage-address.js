@@ -15,9 +15,7 @@ Scenario('The correct form elements are present on storage-postcode step', (
   I,
   storageAddressPage
 ) => {
-  I.seeElements([
-    storageAddressPage.fields.postcode
-  ]);
+  I.seeElement(storageAddressPage.fields.postcode);
 });
 
 Scenario('An error is shown if address-postcode is not completed', (
@@ -49,9 +47,7 @@ Scenario('The correct form elements are present for storage-manual address step'
   storageAddressPage
 ) => {
   I.click(storageAddressPage.links['manual-entry']);
-  I.seeElements([
-    storageAddressPage.fields['address-manual']
-  ]);
+  I.seeElement(storageAddressPage.fields['address-manual']);
 });
 
 Scenario('An error is shown if storage-manual-address is not completed', (
