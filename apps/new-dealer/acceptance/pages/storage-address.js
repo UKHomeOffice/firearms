@@ -26,7 +26,7 @@ module.exports = {
   links: {
     'manual-entry': '#manual-entry',
     'cant-find-address': '#cant-find',
-    delete: 'Delete'
+    delete: 'Remove'
   },
 
   content: {
