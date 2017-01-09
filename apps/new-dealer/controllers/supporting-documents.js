@@ -9,8 +9,8 @@ module.exports = class UploadController extends BaseController {
     if (file && file.data && file.data.length) {
       const model = new UploadModel(file);
       model.save()
-        .then(() => {
-          req.form.values['supporting-document-upload'] = model.get('upload-url');
+        .then((result) => {
+          req.form.values['supporting-document-upload'] = result['upload-url'];
         })
         .then(() => next())
         .catch(e => next(e));
