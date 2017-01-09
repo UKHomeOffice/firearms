@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const path = require('path');
 const bootstrap = require('hof-bootstrap');
+const bodyParser = require('busboy-body-parser');
 const config = require('./config.js');
 const mockPostcode = require('./mock-postcode.js');
 const BaseController = require('./apps/common/controllers/base');
@@ -14,7 +15,8 @@ const options = {
     require('./apps/new-dealer'),
     require('./apps/shooting-clubs')
   ],
-  baseController: BaseController
+  baseController: BaseController,
+  start: false
 };
 
 if (config.env === 'ci') {
@@ -31,4 +33,6 @@ if (config.env === 'ci') {
   ];
 }
 
-bootstrap(options);
+const app = bootstrap(options);
+app.use(bodyParser());
+app.start();

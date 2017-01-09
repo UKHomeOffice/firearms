@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "browserify": "^12.0.1",
-    "hof-bootstrap": "^6.0.0",
+    "busboy-body-parser": "^0.3.0",
+    "hof-bootstrap": "^8.0.1",
     "hof-frontend-toolkit": "^1.0.0",
     "hof-transpiler": "^0.1.0",
     "jquery": "^2.1.4",

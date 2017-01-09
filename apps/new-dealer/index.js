@@ -470,7 +470,7 @@ module.exports = {
       ],
       next: '/authority-holder-contact-address',
       forks: [{
-        target: '/confirm',
+        target: '/supporting-documents',
         condition: {
           field: 'use-different-address',
           value: 'false'
@@ -493,7 +493,7 @@ module.exports = {
       fields: [
         'authority-holder-contact-address-lookup'
       ],
-      next: '/confirm',
+      next: '/supporting-documents',
       locals: {
         field: 'authority-holder-contact',
         section: 'contacts-details'
@@ -505,7 +505,7 @@ module.exports = {
       fields: [
         'authority-holder-contact-address-manual'
       ],
-      next: '/confirm',
+      next: '/supporting-documents',
       prereqs: ['/authority-holder-contact-postcode', '/contact-details'],
       backLink: 'authority-holder-contact-postcode',
       locals: {
@@ -538,7 +538,7 @@ module.exports = {
       fields: [
         'contact-address-lookup'
       ],
-      next: '/confirm',
+      next: '/supporting-documents',
       locals: {
         field: 'contact',
         section: 'contacts-details'
@@ -550,13 +550,34 @@ module.exports = {
       fields: [
         'contact-address-manual'
       ],
-      next: '/confirm',
+      next: '/supporting-documents',
       prereqs: ['/contact-postcode', '/contact-details'],
       backLink: 'contact-postcode',
       locals: {
         field: 'contact',
         section: 'contacts-details'
       }
+    },
+    '/supporting-documents': {
+      controller: require('./controllers/supporting-documents'),
+      fields: [
+        'supporting-document-upload',
+        'supporting-document-description'
+      ],
+      next: '/supporting-documents-add-another'
+    },
+    '/supporting-documents-add-another': {
+      fields: [
+        'supporting-document-add-another'
+      ],
+      forks: [{
+        target: '/supporting-documents',
+        condition: {
+          field: 'supporting-document-add-another',
+          value: 'yes'
+        }
+      }],
+      next: '/confirm'
     },
     '/confirm': {
       controller: require('./controllers/confirm'),
