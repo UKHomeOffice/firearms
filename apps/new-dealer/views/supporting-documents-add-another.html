@@ -1,0 +1,12 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#renew}}
+      {{> partials-important-message}}
+    {{/renew}}
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+    {{> partials-add-another-address-summary}}
+  {{/page-content}}
+{{/partials-page}}
