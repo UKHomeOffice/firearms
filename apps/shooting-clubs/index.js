@@ -232,6 +232,7 @@ module.exports = {
       }
     },
     '/location-address-category': {
+      template: '../common/views/add-another-address-loop.html',
       controller: require('./controllers/location-address-category'),
       fields: [
        'location-address-category'
