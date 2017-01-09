@@ -125,13 +125,13 @@ Scenario('manual entry step: an error appears for not entering anything and subm
   I.seeErrors(locationAddressPage.manualEntry.field.addressManual)
 });
 
-Scenario('from manual entry step: I am taken to the location-add-another-address step', (
+Scenario('from manual entry step: I am taken to the location-category step', (
   I,
   locationAddressPage
 ) => {
   I.click(locationAddressPage.postcode.manualEntryLink);
   locationAddressPage.fillFormAndSubmit(locationAddressPage.manualEntry.field.addressManual, locationAddressPage.manualEntry.content.address);
-  I.seeInCurrentUrl(locationAddressPage.addAnotherAddress.url);
+  I.seeInCurrentUrl(locationAddressPage.category.url);
 });
 
 
@@ -139,6 +139,7 @@ Scenario('category step: the correct form elements are present', (
   I,
   locationAddressPage
 ) => {
+  locationAddressPage.selectAddressAndSubmit();
   I.seeElements(
     [locationAddressPage.category.field.fullBoreRifles],
     [locationAddressPage.category.field.smallBoreRifles],
@@ -226,7 +227,7 @@ Scenario('add-another-address page step: I select yes I am taken to the location
   I.seeInCurrentUrl(locationAddressPage.url);
 });
 
-Scenario('add another address page: When I select No I am taken to the storage address list page', (
+Scenario.only('add another address page: When I select No I am taken to the storage address list page', (
   I,
   locationAddressPage,
   shootingClubStorageAddressListPage
