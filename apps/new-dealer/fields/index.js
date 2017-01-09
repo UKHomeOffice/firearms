@@ -167,7 +167,7 @@ module.exports = {
       className: 'visuallyhidden'
     },
     options: [{
-      value: 'true',
+      value: 'true'
     }, {
       value: 'false',
       toggle: 'no-storage-details',
@@ -630,7 +630,7 @@ module.exports = {
     mixin: 'radio-group',
     validate: 'required',
     options: [{
-     value: 'false'
+      value: 'false'
     }, {
       value: 'true',
       toggle: 'authority-holder-contact-postcode',
