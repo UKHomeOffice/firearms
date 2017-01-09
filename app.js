@@ -5,7 +5,7 @@ const path = require('path');
 const bootstrap = require('hof-bootstrap');
 const bodyParser = require('busboy-body-parser');
 const config = require('./config.js');
-const mockPostcode = require('./mock-postcode.js');
+const mockAPIs = require('./mock-apis.js');
 const BaseController = require('./apps/common/controllers/base');
 
 const options = {
@@ -28,12 +28,11 @@ if (config.env === 'ci') {
       '/empty': {}
     }), value => Object.assign(value, {next: '/blank'}))
   });
-
-  options.middleware = [
-    mockPostcode
-  ];
 }
 
 const app = bootstrap(options);
+if (config.env === 'ci' || config.env === 'development') {
+  app.use(mockAPIs);
+}
 app.use(bodyParser());
 app.start();
