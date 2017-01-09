@@ -19,13 +19,12 @@
     "watch:js": "nodemon --watch assets/js -e js -x 'npm run browserify'",
     "watch:translations": "nodemon --watch apps/**/translations/src -x 'npm run hof-transpile'",
     "test": "NODE_ENV=test mocha",
-    "test:ci": "npm run lint && npm run style && npm run test",
+    "test:ci": "npm run lint && npm run test",
     "test:acceptance": "npm run codecept",
     "phantom": "phantomjs --webdriver=4444",
     "lint": "npm-run-all --parallel lint:app lint:acceptance",
     "lint:app": "eslint .",
     "lint:acceptance": "eslint --no-ignore -c ./node_modules/so-acceptance/.eslintrc ./apps/*/features/**/*.js",
-    "style": "jscs **/*.js --config=./.jscsrc",
     "copy:images": "cp -r ./assets/images ./public/",
     "browserify": "browserify ./assets/js/index.js > ./public/js/bundle.js",
     "create:public": "mkdir -p ./public/js ./public/css ./public/images",
@@ -46,7 +45,6 @@
   "devDependencies": {
     "chai": "^3.0.0",
     "eslint-config-homeoffice": "^2.0.0",
-    "jscs": "^3.0.6",
     "mocha": "^2.2.5",
     "mocha-junit-reporter": "^1.4.0",
     "mocha-multi": "^0.7.1",
@@ -61,7 +59,6 @@
   },
   "pre-commit": [
     "lint",
-    "style",
     "test"
   ]
 }
