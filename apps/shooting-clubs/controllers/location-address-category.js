@@ -7,7 +7,7 @@ module.exports = class LocationAddressCategoryController extends BaseController 
   locals(req, res) {
     const locals = super.locals(req, res);
     const addresses = req.sessionModel.get('locationAddresses');
-    const hasAddresses = _.size(addresses) && addresses[0].categories !== undefined;
+    const hasAddresses = _.size(addresses) && addresses[req.sessionModel.get('currentIndex') - 1].categories !== undefined;
     const hasCategories = hasAddresses ? addresses[0].categories !== undefined : false;
     const items = _.map(_.filter(addresses, (value) => {
       return value.categories !== undefined;

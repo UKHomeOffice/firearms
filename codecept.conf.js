@@ -51,6 +51,7 @@ module.exports = {
     secondContactAddressPage: shootingClubPagesPath('second-contact-address'),
     secondContactEmailPage: shootingClubPagesPath('second-contact-email'),
     locationAddressPage: shootingClubPagesPath('location-address'),
-    shootingClubStorageAddressPage: shootingClubPagesPath('storage-address.js')
+    shootingClubStorageAddressPage: shootingClubPagesPath('storage-address.js'),
+    shootingClubStorageAddressListPage: shootingClubPagesPath('storage-address-list.js')
   }
 };
