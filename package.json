@@ -45,7 +45,8 @@
     "lodash": "^4.17.4",
     "npm-sass": "^2.0.0",
     "typeahead-aria": "^1.0.4",
-    "uuid": "^3.0.1"
+    "uuid": "^3.0.1",
+    "node-uuid": "^1.4.7",
   },
   "devDependencies": {
     "chai": "^3.0.0",
