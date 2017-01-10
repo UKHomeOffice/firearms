@@ -3,6 +3,8 @@
 const BaseController = require('../../common/controllers/base');
 const UploadModel = require('../../common/models/file-upload');
 
+const uuid = require('node-uuid');
+
 module.exports = class UploadController extends BaseController {
   process(req, res, next) {
     const file = req.files['supporting-document-upload'];
@@ -22,6 +24,7 @@ module.exports = class UploadController extends BaseController {
   saveValues(req, res, next) {
     const files = req.sessionModel.get('supporting-documents') || [];
     files.push({
+      id: uuid.v1(),
       url: req.form.values['supporting-document-upload'],
       description: req.form.values['supporting-document-description']
     });

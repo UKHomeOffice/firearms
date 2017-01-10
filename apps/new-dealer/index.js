@@ -567,6 +567,7 @@ module.exports = {
       next: '/supporting-documents-add-another'
     },
     '/supporting-documents-add-another': {
+      controller: require('./controllers/supporting-documents-add-another'),
       fields: [
         'supporting-document-add-another'
       ],
