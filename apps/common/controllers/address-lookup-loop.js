@@ -2,9 +2,9 @@
 
 const _ = require('lodash');
 const ErrorController = require('hof-controllers').error;
-const BaseController = require('./base');
+const BaseAddressController = require('./base-address');
 
-module.exports = class AddressLookupLoopController extends BaseController {
+module.exports = class AddressLookupLoopController extends BaseAddressController {
   constructor(options) {
     super(options);
     if (options.locals.field) {
@@ -39,18 +39,6 @@ module.exports = class AddressLookupLoopController extends BaseController {
       id,
       hasCategories
     });
-  }
-
-  translateCategories(req, values) {
-    if (!Array.isArray(values)) {
-      values = [values];
-    }
-    const categories = values.map(value => {
-      let key = `fields.location-address-category.options.${value}.label`;
-      let result = req.translate(key);
-      return result === key ? value : result;
-    }).join('\n');
-    return categories;
   }
 
   getBackLink(req, res, callback) {

@@ -1,7 +1,9 @@
 'use strict';
 
+const _ = require('lodash');
+
 function notBothOptions(values) {
-  values = !Array.isArray(values) ? [values] : values;
+  values = _.castArray(values);
   return !(values.length > 1 && values.indexOf('unspecified') > -1);
 }
 

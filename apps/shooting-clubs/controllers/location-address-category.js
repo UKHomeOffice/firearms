@@ -1,9 +1,9 @@
 'use strict';
 
 const _ = require('lodash');
-const BaseController = require('../../common/controllers/base');
+const BaseAddressController = require('../../common/controllers/base-address');
 
-module.exports = class LocationAddressCategoryController extends BaseController {
+module.exports = class LocationAddressCategoryController extends BaseAddressController {
   locals(req, res) {
     const locals = super.locals(req, res);
     const addresses = req.sessionModel.get('locationAddresses');
@@ -22,18 +22,6 @@ module.exports = class LocationAddressCategoryController extends BaseController 
       hasAddresses,
       hasCategories
     });
-  }
-
-  translateCategories(req, values) {
-    if (!Array.isArray(values)) {
-      values = [values];
-    }
-    const categories = values.map(value => {
-      let key = `fields.location-address-category.options.${value}.label`;
-      let result = req.translate(key);
-      return result === key ? value : result;
-    }).join('\n');
-    return categories;
   }
 
   getValues(req, res, callback) {

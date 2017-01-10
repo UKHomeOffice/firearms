@@ -55,9 +55,7 @@ module.exports = class ConfirmController extends controllers {
   getWeaponsAmmunitionQuantity(req, weaponsOrAmmunition, order) {
     let types = req.sessionModel.get(`${weaponsOrAmmunition}-types`);
     if (types !== undefined && types !== 'unspecified') {
-      if (!Array.isArray(types)) {
-        types = [types];
-      }
+      types = _.castArray(types);
       const items = types.map(value => ({
         fields: [{
           value: req.sessionModel.get(`${value}-quantity`),
