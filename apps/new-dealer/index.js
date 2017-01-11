@@ -474,7 +474,7 @@ module.exports = {
       ],
       next: '/authority-holder-contact-address',
       forks: [{
-        target: '/supporting-documents',
+        target: '/supporting-documents-add',
         condition: {
           field: 'use-different-address',
           value: 'false'
@@ -497,7 +497,7 @@ module.exports = {
       fields: [
         'authority-holder-contact-address-lookup'
       ],
-      next: '/supporting-documents',
+      next: '/supporting-documents-add',
       locals: {
         field: 'authority-holder-contact',
         section: 'contacts-details'
@@ -509,7 +509,7 @@ module.exports = {
       fields: [
         'authority-holder-contact-address-manual'
       ],
-      next: '/supporting-documents',
+      next: '/supporting-documents-add',
       prereqs: ['/authority-holder-contact-postcode', '/contact-details'],
       backLink: 'authority-holder-contact-postcode',
       locals: {
@@ -542,7 +542,7 @@ module.exports = {
       fields: [
         'contact-address-lookup'
       ],
-      next: '/supporting-documents',
+      next: '/supporting-documents-add',
       locals: {
         field: 'contact',
         section: 'contacts-details'
@@ -554,7 +554,7 @@ module.exports = {
       fields: [
         'contact-address-manual'
       ],
-      next: '/supporting-documents',
+      next: '/supporting-documents-add',
       prereqs: ['/contact-postcode', '/contact-details'],
       backLink: 'contact-postcode',
       locals: {
@@ -568,9 +568,9 @@ module.exports = {
         'supporting-document-upload',
         'supporting-document-description'
       ],
-      next: '/supporting-documents-add-another'
+      next: '/supporting-documents-add'
     },
-    '/supporting-documents-add-another': {
+    '/supporting-documents-add': {
       controller: require('./controllers/supporting-documents-add-another'),
       fields: [
         'supporting-document-add-another'
