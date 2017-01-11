@@ -14,7 +14,14 @@ module.exports = class UploadController extends BaseController {
   removeItem(req, res) {
     const items = req.sessionModel.get('supporting-documents');
     req.sessionModel.set('supporting-documents', items.filter((file) => file.id !== req.params.id));
-    const redirect = req.sessionModel.get('supporting-documents').length ? this.options.route : this.getBackLink(req, res);
-    res.redirect(path.join(req.baseUrl, redirect));
+    res.redirect(path.join(req.baseUrl, this.options.route));
+  }
+
+  locals(req, res) {
+    const locals = super.locals(req, res);
+    const docs = req.sessionModel.get('supporting-documents') || [];
+    const key = docs.length ? 'legend-additional' : 'legend-first';
+    locals.legend = req.translate(`fields.supporting-document-add-another.${key}`);
+    return locals;
   }
 };
