@@ -10,13 +10,9 @@ module.exports = class LocationAddressCategoryController extends BaseAddressCont
     const hasAddresses = _.size(addresses) &&
       addresses[req.sessionModel.get('currentIndex') - 1].categories !== undefined;
     const hasCategories = hasAddresses ? addresses[0].categories !== undefined : false;
-    const items = _.map(_.filter(addresses, (value) => {
+    const items = this.mapAddress(_.filter(addresses, (value) => {
       return value.categories !== undefined;
-    }), (value, key) => ({
-      id: key,
-      address: value.address,
-      categories: this.translateCategories(req, value.categories)
-    }));
+    }), req);
     return Object.assign({}, locals, {
       items,
       hasAddresses,
