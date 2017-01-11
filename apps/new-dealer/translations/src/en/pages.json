@@ -181,7 +181,8 @@
     "header": "Supporting documents"
   },
   "supporting-documents-add": {
-    "header": "Supporting documents"
+    "header": "Supporting documents",
+    "list-header": "Documents added"
   },
   "email": {
     "subject": {
