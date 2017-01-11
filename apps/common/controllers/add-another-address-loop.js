@@ -21,7 +21,7 @@ module.exports = class AddAnotherAddressController extends BaseAddressController
     return Object.assign({}, locals, {
       items,
       hasAddresses,
-      hasCategories: _.sample(addresses).categories !== undefined
+      hasCategories: this.hasCategories(hasAddresses, addresses)
     });
   }
 

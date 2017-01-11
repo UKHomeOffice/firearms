@@ -18,7 +18,7 @@ module.exports = class PostcodeLoopController extends BaseAddressController {
     const locals = super.locals(req, res);
     const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const hasAddresses = _.size(addresses);
-    const hasCategories = hasAddresses ? _.sample(addresses).categories !== undefined : false;
+    const hasCategories = this.hasCategories(hasAddresses, addresses);
     const items = this.mapAddress(addresses, req);
     let id = '';
     if (req.params.action === 'edit') {

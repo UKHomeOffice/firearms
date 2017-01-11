@@ -19,7 +19,7 @@ module.exports = class AddressLoopController extends BaseAddressController {
     const postcode = req.sessionModel.get(`${this.field}-postcode`);
     const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const hasAddresses = _.size(addresses);
-    const hasCategories = hasAddresses ? _.sample(addresses).categories !== undefined : false;
+    const hasCategories = this.hasCategories(hasAddresses, addresses);
     const items = this.mapAddress(addresses, req);
     return Object.assign({}, locals, {
       items,

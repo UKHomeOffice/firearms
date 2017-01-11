@@ -18,7 +18,7 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     const locals = super.locals(req, res);
     const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const hasAddresses = _.size(addresses);
-    const hasCategories = hasAddresses ? _.sample(addresses).categories !== undefined : false;
+    const hasCategories = this.hasCategories(hasAddresses, addresses);
     let postcode;
     let id;
     const items = this.mapAddress(addresses, req);

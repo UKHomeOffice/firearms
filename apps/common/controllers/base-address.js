@@ -19,4 +19,8 @@ module.exports = class BaseAddressController extends BaseController {
       categories: this.translateCategories(req, value.categories)
     }));
   }
+
+  hasCategories(hasAddresses, addresses) {
+    return hasAddresses ? _.sample(addresses).categories !== undefined : false;
+  }
 };
