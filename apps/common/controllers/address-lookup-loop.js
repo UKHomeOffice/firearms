@@ -21,11 +21,7 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     const hasCategories = hasAddresses ? _.sample(addresses).categories !== undefined : false;
     let postcode;
     let id;
-    const items = _.map(addresses, (value, key) => ({
-      id: key,
-      address: value.address,
-      categories: this.translateCategories(req, value.categories)
-    }));
+    const items = this.mapAddress(addresses, req);
     if (req.params.action === 'edit') {
       id = req.params.id;
       postcode = req.sessionModel.get(`${this.field}-postcode`) || addresses[id].postcode;

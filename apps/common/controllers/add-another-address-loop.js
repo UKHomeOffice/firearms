@@ -17,11 +17,7 @@ module.exports = class AddAnotherAddressController extends BaseAddressController
     const locals = super.locals(req, res);
     const addresses = req.sessionModel.get(`${this.field}Addresses`);
     const hasAddresses = req.sessionModel.get(`${this.field}Addresses`) ? true : false;
-    const items = _.map(addresses, (value, key) => ({
-      id: key,
-      address: value.address,
-      categories: this.translateCategories(req, value.categories)
-    }));
+    const items = this.mapAddress(addresses, req);
     return Object.assign({}, locals, {
       items,
       hasAddresses,
