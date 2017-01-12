@@ -189,6 +189,7 @@ module.exports = {
       next: '/location-postcode'
     },
     '/location-postcode': {
+      addressKey: 'locationAddresses',
       template: 'postcode-loop.html',
       controller: require('../common/controllers/postcode-loop'),
       fields: [
@@ -208,6 +209,7 @@ module.exports = {
       }
     },
     '/location-address': {
+      addressKey: 'locationAddresses',
       template: 'address-loop.html',
       controller: require('../common/controllers/address-loop'),
       fields: [
@@ -221,6 +223,7 @@ module.exports = {
       }
     },
     '/location-address-lookup': {
+      addressKey: 'locationAddresses',
       template: 'address-lookup-loop.html',
       controller: require('../common/controllers/address-lookup-loop'),
       fields: [
@@ -233,6 +236,7 @@ module.exports = {
     },
     '/location-address-category': {
       template: '../common/views/add-another-address-loop.html',
+      addressKey: 'locationAddresses',
       controller: require('./controllers/location-address-category'),
       fields: [
        'location-address-category'
@@ -244,6 +248,7 @@ module.exports = {
       }
     },
     '/location-add-another-address': {
+      addressKey: 'locationAddresses',
       template: 'add-another-address-loop.html',
       controller: require('../common/controllers/add-another-address-loop'),
       fields: [

@@ -4,22 +4,6 @@ const _ = require('lodash');
 const BaseAddressController = require('../../common/controllers/base-address');
 
 module.exports = class LocationAddressCategoryController extends BaseAddressController {
-  locals(req, res) {
-    const locals = super.locals(req, res);
-    const addresses = req.sessionModel.get('locationAddresses');
-    const hasAddresses = _.size(addresses) &&
-      addresses[req.sessionModel.get('currentIndex') - 1].categories !== undefined;
-    const hasCategories = this.hasCategories(hasAddresses, addresses);
-    const items = this.mapAddress(_.filter(addresses, (value) => {
-      return value.categories !== undefined;
-    }), req);
-    return Object.assign({}, locals, {
-      items,
-      hasAddresses,
-      hasCategories
-    });
-  }
-
   getValues(req, res, callback) {
     super.getValues(req, res, (err, values) => {
       if (err) {

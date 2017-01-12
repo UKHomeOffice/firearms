@@ -5,35 +5,16 @@ const ErrorController = require('hof-controllers').error;
 const BaseAddressController = require('./base-address');
 
 module.exports = class AddressLookupLoopController extends BaseAddressController {
-  constructor(options) {
-    super(options);
-    if (options.locals.field) {
-      this.field = options.locals.field;
-    } else {
-      throw new Error('Field need to be defined in locals');
-    }
-  }
-
   locals(req, res) {
-    const locals = super.locals(req, res);
-    const addresses = req.sessionModel.get(`${this.field}Addresses`);
-    const hasAddresses = _.size(addresses);
-    const hasCategories = this.hasCategories(hasAddresses, addresses);
-    let postcode;
-    let id;
-    const items = this.mapAddress(addresses, req);
+    const id = req.params.id;
+    const addresses = req.sessionModel.get(this.options.addressKey);
+    let postcode = req.sessionModel.get(`${this.options.locals.field}-postcode`);
     if (req.params.action === 'edit') {
-      id = req.params.id;
-      postcode = req.sessionModel.get(`${this.field}-postcode`) || addresses[id].postcode;
-    } else {
-      postcode = req.sessionModel.get(`${this.field}-postcode`);
+      postcode = postcode || addresses[id].postcode;
     }
-    return Object.assign({}, locals, {
-      items,
-      hasAddresses,
+    return Object.assign({}, super.locals(req, res), {
       postcode,
-      id,
-      hasCategories
+      id
     });
   }
 
@@ -46,12 +27,12 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     if (req.params.action === 'edit') {
       const steps = req.sessionModel.get('steps');
       _.remove(steps, step => {
-        return step === `/${this.field}-add-another-address`;
+        return step === `/${this.options.locals.field}-add-another-address`;
       });
       req.sessionModel.set('steps', steps);
-      req.sessionModel.unset(`${this.field}-add-another-address`);
+      req.sessionModel.unset(`${this.options.locals.field}-add-another-address`);
     }
-    const addresses = req.sessionModel.get(`${this.field}-addresses`);
+    const addresses = req.sessionModel.get(`${this.options.locals.field}-addresses`);
     const formattedlist = _.map(_.map(addresses, 'formatted_address'), address => {
       address = address.split('\n').join(', ');
       return {
@@ -61,7 +42,8 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     });
 
     const count = `${formattedlist.length} addresses`;
-    this.options.fields[`${this.field}-address-lookup`].options = [{value: count, label: count}].concat(formattedlist);
+    this.options.fields[`${this.options.locals.field}-address-lookup`].options =
+      [{value: count, label: count}].concat(formattedlist);
     super.getValues(req, res, callback);
   }
 
@@ -73,16 +55,18 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
   }
 
   removeItem(req, res) {
-    const items = req.sessionModel.get(`${this.field}Addresses`);
-    req.sessionModel.set(`${this.field}Addresses`, _.omit(items, req.params.id));
-    const step = _.size(items) > 1 ? `/${this.field}-add-another-address` : `/${this.field}-postcode`;
+    const items = req.sessionModel.get(`${this.options.locals.field}Addresses`);
+    req.sessionModel.set(`${this.options.locals.field}Addresses`,
+      _.omit(items, req.params.id));
+    const step = _.size(items) > 1 ?
+      `/${this.options.locals.field}-add-another-address` : `/${this.options.locals.field}-postcode`;
     return res.redirect(`${req.baseUrl}${step}`);
   }
 
   saveValues(req, res, callback) {
-    const address = req.form.values[`${this.field}-address-lookup`].split(', ').join('\n');
+    const address = req.form.values[`${this.options.locals.field}-address-lookup`].split(', ').join('\n');
     let postcode;
-    const addressIndex = `${this.field}Addresses`;
+    const addressIndex = `${this.options.locals.field}Addresses`;
     let addresses = req.sessionModel.get(addressIndex) || {};
     let id = req.params.id;
     if (id === undefined) {
@@ -90,7 +74,7 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
       id = parseInt(currentIndex, 10);
       req.sessionModel.set('currentIndex', id + 1);
     }
-    postcode = req.sessionModel.get(`${this.field}-postcode`) || addresses[id].postcode;
+    postcode = req.sessionModel.get(`${this.options.locals.field}-postcode`) || addresses[id].postcode;
     addresses[id] = {
       address,
       postcode
@@ -98,7 +82,7 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     const items = {};
     items[addressIndex] = addresses;
     req.sessionModel.set(items);
-    req.sessionModel.unset(`${this.field}-postcode`);
+    req.sessionModel.unset(`${this.options.locals.field}-postcode`);
     super.saveValues(req, res, callback);
   }
 
@@ -108,9 +92,9 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
   }
 
   validateField(key, req) {
-    if (req.form.values[key] === this.options.fields[`${this.field}-address-lookup`].options[0].value) {
-      return new ErrorController(`${this.field}-address-lookup`, {
-        key: `${this.field}-address-lookup`,
+    if (req.form.values[key] === this.options.fields[`${this.options.locals.field}-address-lookup`].options[0].value) {
+      return new ErrorController(`${this.options.locals.field}-address-lookup`, {
+        key: `${this.options.locals.field}-address-lookup`,
         type: 'required',
         redirect: undefined
       });

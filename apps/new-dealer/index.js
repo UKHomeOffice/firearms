@@ -106,6 +106,7 @@ module.exports = {
       }
     },
     '/storage-postcode': {
+      addressKey: 'storageAddresses',
       template: 'postcode-loop.html',
       controller: require('../common/controllers/postcode-loop'),
       fields: [
@@ -129,6 +130,7 @@ module.exports = {
       }
     },
     '/storage-address-lookup': {
+      addressKey: 'storageAddresses',
       template: 'address-lookup-loop.html',
       controller: require('../common/controllers/address-lookup-loop'),
       fields: [
@@ -143,6 +145,7 @@ module.exports = {
       }
     },
     '/storage-address': {
+      addressKey: 'storageAddresses',
       template: 'address-loop.html',
       controller: require('../common/controllers/address-loop'),
       fields: [
@@ -159,6 +162,7 @@ module.exports = {
       }
     },
     '/storage-add-another-address': {
+      addressKey: 'storageAddresses',
       template: 'add-another-address-loop.html',
       controller: require('../common/controllers/add-another-address-loop'),
       fields: [
