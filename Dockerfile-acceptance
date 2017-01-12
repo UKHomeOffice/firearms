@@ -10,6 +10,6 @@ COPY mock-postcode.js mock-postcode.js
 COPY apps apps/
 COPY test.sh test.sh
 
-RUN npm --loglevel warn install --ignore-scripts
+RUN npm --loglevel warn install
 
 CMD /test/test.sh
