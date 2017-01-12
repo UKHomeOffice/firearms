@@ -9,10 +9,10 @@ module.exports = class BaseAddressController extends BaseController {
     const locals = super.locals(req, res);
     let addresses = req.sessionModel.get(this.options.addressKey);
     const hasAddresses = !!_.size(addresses);
+    const hasCategories = this.hasCategories(hasAddresses, addresses);
     if (this.options.addressKey === 'locationAddresses') {
       addresses = _.filter(addresses, value => value.categories !== undefined);
     }
-    const hasCategories = this.hasCategories(hasAddresses, addresses);
     const items = this.mapAddress(addresses, req);
     return Object.assign({}, locals, {
       items,
