@@ -122,21 +122,19 @@ Scenario('When I click cant find my address link, I will see the postcode I ente
   I.see(contactAddressPage.content.postcode);
 });
 
-Scenario('I am taken to the summary step from the manual-address step', (
+Scenario('I am taken to the configured next step from the manual-address step', (
   I,
-  contactAddressPage,
-  confirmPage
+  contactAddressPage
 ) => {
   I.click(contactAddressPage.links['manual-entry']);
   contactAddressPage.fillFormAndSubmit(contactAddressPage.fields['address-manual']);
-  I.seeInCurrentUrl(confirmPage.url);
+  I.seeInCurrentUrl(contactAddressPage.next);
 });
 
-Scenario('When an address is selected I am taken to the summary step', (
+Scenario('When an address is selected I am taken to the configured next step', (
   I,
-  contactAddressPage,
-  confirmPage
+  contactAddressPage
 ) => {
   contactAddressPage.selectAddressAndSubmit();
-  I.seeInCurrentUrl(confirmPage.url);
+  I.seeInCurrentUrl(contactAddressPage.next);
 });

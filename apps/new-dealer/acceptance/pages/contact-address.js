@@ -1,5 +1,7 @@
 'use strict';
 
+let steps = require('../../').steps;
+
 let I;
 
 module.exports = {
@@ -11,6 +13,8 @@ module.exports = {
   url: 'contact-postcode',
   'address-url': 'contact-address',
   'address-lookup-url': 'contact-address-lookup',
+
+  next: steps['/contact-address'].next,
 
   fields: {
     postcode: '#contact-postcode',
