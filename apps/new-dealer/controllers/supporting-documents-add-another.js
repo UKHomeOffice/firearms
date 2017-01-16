@@ -12,7 +12,7 @@ module.exports = class UploadController extends BaseController {
   }
 
   removeItem(req, res) {
-    const items = req.sessionModel.get('supporting-documents');
+    const items = req.sessionModel.get('supporting-documents') || [];
     req.sessionModel.set('supporting-documents', items.filter((file) => file.id !== req.params.id));
     res.redirect(path.join(req.baseUrl, this.options.route));
   }
