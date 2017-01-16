@@ -2,7 +2,8 @@ instrumentation:
   root: ./apps
   extensions:
     - .js
-  default-excludes: true
+  excludes:
+    - "**/acceptance/**"
   include-all-sources: true
 check:
   global:
