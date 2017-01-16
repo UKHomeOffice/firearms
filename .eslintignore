@@ -5,3 +5,4 @@ apps/**/acceptance/**/*.js
 LICENSE
 README.md
 CONTRIBUTING.md
+coverage
