@@ -40,6 +40,4 @@ module.exports = class BaseAddressController extends BaseController {
   hasCategories(hasAddresses, addresses) {
     return !!(hasAddresses ? _.sample(addresses).categories !== undefined : false);
   }
-
-
 };
