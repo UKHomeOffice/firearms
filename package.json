@@ -17,7 +17,7 @@
     "watch:scss": "nodemon -e scss -x 'npm run sass'",
     "watch:js": "nodemon --watch assets/js -e js -x 'npm run browserify'",
     "watch:translations": "nodemon --watch apps/**/translations/src -x 'npm run hof-transpile'",
-    "test": "NODE_ENV=test istanbul cover _mocha",
+    "test": "NODE_ENV=ci istanbul cover _mocha",
     "test:ci": "npm run lint && npm run test",
     "test:acceptance": "funkie so-acceptance --steps",
     "lint": "npm-run-all --parallel lint:app lint:acceptance",
@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
+    "chai-as-promised": "^6.0.0",
     "eslint-config-homeoffice": "^2.0.0",
     "funkie": "0.0.4",
     "funkie-phantom": "0.0.1",

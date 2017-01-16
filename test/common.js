@@ -1,7 +1,9 @@
 'use strict';
 
-global.chai = require('chai').use(require('sinon-chai'));
-global.should = chai.should();
+global.chai = require('chai')
+  .use(require('sinon-chai'))
+  .use(require('chai-as-promised'));
+global.expect = chai.expect;
 global.sinon = require('sinon');
 require('sinomocha')();
 
