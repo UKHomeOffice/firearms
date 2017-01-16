@@ -9,5 +9,6 @@ module.exports = function request(opts) {
   req.form = req.form || {};
   req.form.values = req.form.values || {};
   req.sessionModel = new Model(opts.session);
+  req.translate = key => key;
   return req;
 };
