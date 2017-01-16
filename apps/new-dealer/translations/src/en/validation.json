@@ -9,7 +9,7 @@
     "required": "Select the type of organisation the authority is for"
   },
   "company-name": {
-    "required": "Enter the Company name"
+    "required": "Enter the company name"
   },
   "company-house-number": {
     "required": "Enter the Companies House number"
@@ -64,40 +64,40 @@
     "notBothOptions": "You can't choose unspecified categories and choose a category. You must deselect the unspecified category option, or the selected categories to continue"
   },
   "weapons-unspecified-details": {
-    "required": "Explain why you can't specify the section and quantities of weapons/component parts being handled"
+    "required": "Explain why you can't specify the section and quantities of weapons/components being handled"
   },
   "fully-automatic-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "self-loading-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "short-pistols-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "short-self-loading-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "large-revolvers-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "rocket-launchers-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "air-rifles-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "fire-noxious-substance-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "disguised-firearms-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "military-use-rockets-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "projecting-launchers-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "ammunition-types": {
     "required": "Select at least one option",
@@ -107,19 +107,19 @@
     "required": "Explain why you can't specify the section and quantities of ammunition being handled"
   },
   "explosive-cartridges-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "incendiary-missile-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "armour-piercing-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "expanding-missile-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "missiles-for-above-quantity": {
-    "numeric": "Value must be numeric"
+    "numeric": "Value must be a number"
   },
   "authority-holders": {
     "required": "Select an option"
@@ -141,10 +141,10 @@
     "future": "Date cannot be in the future"
   },
   "first-authority-town-birth": {
-    "required": "Enter a Town/City of birth"
+    "required": "Enter a town or city of birth"
   },
   "first-authority-country-birth": {
-    "required": "Enter a Country of birth"
+    "required": "Enter a country of birth"
   },
   "first-authority-holders-nationality": {
     "required": "Enter nationality"
@@ -172,10 +172,10 @@
     "future": "Date cannot be in the future"
   },
   "second-authority-town-birth": {
-    "required": "Enter a Town/City of birth"
+    "required": "Enter a town or city of birth"
   },
   "second-authority-country-birth": {
-    "required": "Enter a Country of birth"
+    "required": "Enter a country of birth"
   },
   "second-authority-holders-nationality": {
     "required": "Enter nationality"

@@ -2,7 +2,7 @@
   "activity": {
     "options": {
       "new": {
-        "label": "Apply for an authority"
+        "label": "Apply for a new authority"
       },
       "renew": {
         "label": "Renew or amend an existing authority"

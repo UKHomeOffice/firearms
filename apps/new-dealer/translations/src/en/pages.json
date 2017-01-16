@@ -31,18 +31,18 @@
     "important": "The information you provide here will replace the information we currently hold."
   },
   "weapons": {
-    "header": "Which sections do the weapons and/or component parts fall under?",
+    "header": "Which sections do the weapons or components fall under?",
     "intro": "Select all that apply and state the maximum quantities held at any one time. If the sections and quantities aren't backed up by the evidence provided, it may delay the application or result in the authority not being approved.",
-    "important": "Only in exceptional circumstances, such as transporting prohibited items under seal, should you select the unspecified option or leave the maximum quantity questions blank.",
+    "important": "Only in certain circumstances, such as transporting prohibited items under seal, should you select the unspecified option or leave the maximum quantity questions blank.",
     "summary": "Sections and quantities of weapons",
-    "add-remove": "weapons and/or quantities"
+    "add-remove": "weapons or quantities"
   },
   "ammunition": {
     "header": "Which sections does the ammunition fall under?",
     "intro": "Select all that apply and state the maximum quantities held at any one time. If the sections and quantities aren't backed up by the evidence provided, it may delay the application or result in the authority not being approved.",
-    "important": "Only in exceptional circumstances, such as transporting prohibited items under seal, should you select the unspecified option or leave the maximum quantity questions blank.",
+    "important": "Only in certain circumstances, such as transporting prohibited items under seal, should you select the unspecified option or leave the maximum quantity questions blank.",
     "summary": "Sections and quantities of ammunition",
-    "add-remove": "ammunition and/or quantities"
+    "add-remove": "ammunition or quantities"
   },
   "authority-holders": {
     "header": "How many individuals will be named on the authority?",
@@ -159,12 +159,12 @@
   },
   "confirm": {
     "header": "Check your answers page",
-    "intro": "Check the following information carefully and make any necessary changes before submitting this application",
+    "intro": "Check your answers and make any necessary changes before you submit this application",
     "footer": "You'll be able to print and save a copy of the information you've submitted on the next page",
     "declaration": "By submitting this application you agree that:",
     "items": [
       "there are no physical or mental health conditions that should prevent any employees and authority holders from handling the prohibited items",
-      "the submitted information is accurate",
+      "the information you've given is correct",
       "the Home Office can share relevant information with the police and HMRC",
       "HMRC can share relevant information with the Home Office"
     ]
@@ -191,7 +191,7 @@
   },
   "email": {
     "subject": {
-      "customer": "Your email confirmation - application to handle prohibited weapons, component parts or ammunition"
+      "customer": "Your email confirmation - application to handle prohibited weapons, components or ammunition"
     },
     "greeting": "Dear",
     "data": {
@@ -201,7 +201,7 @@
     },
     "intro": {
       "customer": [
-        "This email confirms receipt of your application to handle prohibited weapons, component parts or ammunition. We will review the application, and get back to you at this email address if we require further information.",
+        "This email confirms receipt of your application to handle prohibited weapons, components or ammunition. We will review the application, and get back to you at this email address if we require further information.",
         "If sufficient information and suitable evidence has been provided, we’ll instruct the local police force to make enquiries on behalf of the Secretary of State. In this case, the police will contact you regarding security inspections and interviews.",
         "The decision on your application is pending. This email is not a certificate of authority."
       ]
@@ -223,7 +223,7 @@
     "alert": "Application complete",
     "email": "We have sent an email to {{values.contact-email}} to confirm receipt of your application.",
     "evidence-subheader": "Supporting evidence",
-    "evidence": "A proven business need is required for an authority to be granted. You must provide evidence that backs up the business activities and types and quantities of weapons requested to be covered by the authority.</p><p>You must send the evidence to us by post or email, clearly referencing your business name and customer reference number if you have one.</p><p>Your evidence should include:",
+    "evidence": "You must provide evidence to support the business activities, types and quantities of weapons requested to be covered by the authority.</p><p>You must send the evidence to us by post or email, clearly referencing your business name and customer reference number if you have one.</p><p>Your evidence should include:",
     "evidence-list": {
       "items": [
         "current or future contracts",
@@ -246,7 +246,7 @@
     },
     "evidence-send": "Email: firearms.applications@homeoffice.gsi.gov.uk<p><p>Or post copies to:</p><p>Firearms licensing unit<br>Home Office<br>Fry Building, 5th floor, SE<br>2 Marsham Street<br>London<br>SW1P 4DF",
     "next-subheader": "What happens next?",
-    "next": "<p>We will review your application and if more information is required, we shall email the contact address provided.</p><p>If sufficient information and suitable evidence has been provided, we’ll instruct the local police force to make enquiries on behalf of the Secretary of State. In this case, the police will contact you regarding security inspections and interviews.</p>",
+    "next": "<p>We will review your application and if more information is required, we shall email the contact address provided.</p><p>If sufficient information and suitable evidence has been provided, we’ll instruct the local police force to arrange a visit.</p>",
     "feedback": "<a href='https://eforms.homeoffice.gov.uk/outreach/feedback.ofml?FormName=Firearms-licencing-S5'>What did you think of this service?</a>  (takes 30 seconds)"
   }
 }

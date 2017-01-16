@@ -15,7 +15,7 @@
         "label": "Sole trader"
       },
       "shooting-club": {
-        "label": "Shooting club (Section 7(3))"
+        "label": "Shooting club (section 7(3))"
       },
       "charity": {
         "label": "Charity"
@@ -57,7 +57,7 @@
     "summary": "What will be handled?",
     "options": {
       "weapons": {
-        "label": "Weapons and/or component parts"
+        "label": "Weapons or components"
       },
       "ammunition": {
         "label": "Ammunition"
@@ -90,7 +90,7 @@
     "label": "How will the prohibited items be obtained?"
   },
   "wont-take-details": {
-    "label": "Please provide further details"
+    "label": "Provide further details"
   },
   "import": {
     "summary": "Will the prohibited items be imported?",
@@ -118,7 +118,7 @@
     }
   },
   "no-storage-details": {
-    "label": "Please provide further details, including whether or not third parties will be storing the prohibited items on other sites"
+    "label": "Provide further details, including whether or not the prohibited items will be stored with third parties"
   },
   "usage": {
     "legend": "Select all that apply",
@@ -131,7 +131,7 @@
         "label": "Transporting"
       },
       "transfer": {
-        "label": "Transferring"
+        "label": "Transferring (directing the movement of items through third parties)"
       },
       "arm-guards": {
         "label": "Arm guards to protect ships"
@@ -151,7 +151,7 @@
     }
   },
   "other-details": {
-    "label": "Please provide further details. This can include TV film or theatrical productions, humane dispatch of animals, protection of humans from animals, for example."
+    "label": "Provide further details. This can include TV film or theatrical productions, humane dispatch of animals and protection against animals, for example."
   },
   "weapons-types": {
     "legend": "Select all that apply",
@@ -196,7 +196,7 @@
     }
   },
   "weapons-unspecified-details": {
-    "label": "Please explain why you can't specify the section and quantities of prohibited items being handled."
+    "label": "Explain why you can't specify the section and quantities of prohibited items being handled."
   },
   "fully-automatic-quantity": {
     "label": "Maximum quantity (leave blank if unspecified)",
@@ -284,7 +284,7 @@
     }
   },
   "ammunition-unspecified-details": {
-    "label": "Please explain why you can't specify the section and quantities of prohibited items being handled."
+    "label": "Explain why you can't specify the section and quantities of prohibited items being handled."
   },
   "explosive-cartridges-quantity": {
     "label": "Maximum quantity (leave blank if unspecified)",
@@ -312,7 +312,7 @@
     "summary-details": "This includes anything designed to be projected as a missile from any weapon and is designed to be, or has been, incorporated in section 5(1A) ammunition, or any ammunition which would fall within section 5(1A) if it weren't specified in any part of section 5(1)."
   },
   "authority-holders": {
-    "legend": "You can have up to two authority holders. They must be senior members of staff and will be responsible for ensuring the business operates within the strict limitations of the authority.",
+    "legend": "You can have up to two authority holders. They will be responsible for ensuring the business operates within the limitations of the authority.",
     "options": {
       "one": {
         "label": "One"
