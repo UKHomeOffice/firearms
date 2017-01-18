@@ -57,6 +57,22 @@ describe('Supporting Documents Controller', () => {
       });
     });
 
+    it('saves file name to form values', (done) => {
+      const controller = new Controller({});
+      const files = {
+        'supporting-document-upload': {
+          data: 'foobar',
+          name: 'myfile.png',
+          mimetype: 'image/png'
+        }
+      };
+      const req = request({files});
+      controller.process(req, {}, () => {
+        expect(req.form.values['supporting-document-filename']).to.equal('myfile.png');
+        done();
+      });
+    });
+
     it('calls next immediately without hitting file API if no file is uploaded - no file', () => {
       const controller = new Controller({});
       const next = sinon.stub();
@@ -117,9 +133,24 @@ describe('Supporting Documents Controller', () => {
       const req = request({session: null});
       req.form.values['supporting-document-upload'] = 'url';
       req.form.values['supporting-document-description'] = 'desc';
+      req.form.values['supporting-document-filename'] = 'file.png';
       controller.saveValues(req, {}, () => {
         expect(req.sessionModel.get('supporting-documents')).to.deep.equal([
           {id: 'abc123', url: 'url', description: 'desc'}
+        ]);
+        done();
+      });
+    });
+
+    it('uses the file name for the description if none is provided', (done) => {
+      const controller = new Controller({});
+      const req = request({session: null});
+      req.form.values['supporting-document-upload'] = 'url';
+      req.form.values['supporting-document-description'] = '';
+      req.form.values['supporting-document-filename'] = 'file.png';
+      controller.saveValues(req, {}, () => {
+        expect(req.sessionModel.get('supporting-documents')).to.deep.equal([
+          {id: 'abc123', url: 'url', description: 'file.png'}
         ]);
         done();
       });
@@ -160,16 +191,18 @@ describe('Supporting Documents Controller', () => {
       });
     });
 
-    it('does not save "description" and "upload" fields', (done) => {
+    it('does not save "description", "filename", or "upload" fields', (done) => {
       const controller = new Controller({});
       const req = request({
         session: null
       });
       req.form.values['supporting-document-upload'] = 'url';
       req.form.values['supporting-document-description'] = 'desc';
+      req.form.values['supporting-document-filename'] = 'name';
       controller.saveValues(req, {}, () => {
         expect(req.sessionModel.get('supporting-document-upload')).to.equal(undefined);
         expect(req.sessionModel.get('supporting-document-description')).to.equal(undefined);
+        expect(req.sessionModel.get('supporting-document-filename')).to.equal(undefined);
         done();
       });
     });

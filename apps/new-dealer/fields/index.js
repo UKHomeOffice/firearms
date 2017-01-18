@@ -698,8 +698,7 @@ module.exports = {
     validate: 'required'
   },
   'supporting-document-description': {
-    mixin: 'textarea',
-    validate: 'required'
+    mixin: 'textarea'
   },
   'supporting-document-add-another': {
     mixin: 'radio-group',
