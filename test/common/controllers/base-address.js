@@ -9,26 +9,26 @@ const BaseAddressController = proxyquire('../../../apps/common/controllers/base-
   './base': StubBaseController
 });
 
-describe('BaseAddressController', function() {
+describe('BaseAddressController', () => {
 
-  it('extends base-controller', ()=> {
+  it('extends base-controller', () => {
     BaseAddressController.prototype.should.be.an.instanceOf(StubBaseController);
   });
 
-  it('has a locals, translateCategories, mapAddresses & hasCategories methods', ()=> {
+  it('has a locals, translateCategories, mapAddresses & hasCategories methods', () => {
     BaseAddressController.prototype.should.have.property('locals').that.is.a('function');
     BaseAddressController.prototype.should.have.property('translateCategories').that.is.a('function');
     BaseAddressController.prototype.should.have.property('mapAddresses').that.is.a('function');
     BaseAddressController.prototype.should.have.property('hasCategories').that.is.a('function');
   });
 
-  describe('instance', ()=> {
+  describe('instance', () => {
     let baseAddressController;
     const options = {
       addressKey: 'foo'
     };
 
-    beforeEach(()=> {
+    beforeEach(() => {
       StubBaseController.prototype.locals = sinon.stub();
       baseAddressController = new BaseAddressController(options);
       baseAddressController.options = options;
