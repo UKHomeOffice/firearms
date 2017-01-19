@@ -24,7 +24,7 @@ module.exports = class UploadModel extends Model {
       reqConf.method = 'POST';
       this.request(reqConf, (err, data) => {
         if (err) {
-          reject(err);
+          return reject(err);
         }
         resolve(data);
       });
