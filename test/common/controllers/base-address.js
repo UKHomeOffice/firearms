@@ -88,26 +88,6 @@ describe('BaseAddressController', function() {
           result.hasCategories.should.equal(categories);
         });
       });
-      describe('getAddresses', () => {
-        const fooValue = 'London';
-        let req = {
-          sessionModel: {
-            foo: fooValue,
-            get: (id) => req.sessionModel[id]
-          }
-        };
-        it('returns an expected address from the sessionModel', ()=> {
-          baseAddressController.getAddresses(req).should.equal(fooValue);
-        });
-
-        it('returns undefined if the options cannot be found in the sessionModel', () => {
-          const otherOptions = {
-            addressKey: 'blah'
-          };
-          baseAddressController.options = otherOptions;
-          should.equal(baseAddressController.getAddresses(req), undefined);
-          });
-        });
       describe('translateCategories', () => {
         let translate;
         beforeEach(() => {

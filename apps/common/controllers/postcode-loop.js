@@ -18,7 +18,7 @@ module.exports = class PostcodeLoopController extends BaseAddressController {
         return callback(err);
       }
       if (req.params.action === 'edit') {
-        const address = values[`${this.options.locals.field}Addresses`][req.params.id];
+        const address = values[this.options.addressKey][req.params.id];
         const postcode = {};
         postcode[`${this.options.locals.field}-postcode`] = address.postcode;
         this.addressId = req.params.id;
@@ -54,8 +54,8 @@ module.exports = class PostcodeLoopController extends BaseAddressController {
   }
 
   removeItem(req, res) {
-    const items = req.sessionModel.get(`${this.options.locals.field}Addresses`);
-    req.sessionModel.set(`${this.options.locals.field}Addresses`,
+    const items = req.sessionModel.get(this.options.addressKey);
+    req.sessionModel.set(this.options.addressKey,
       _.omit(items, req.params.id));
     const step = _.size(items) > 1 ? `/${this.options.locals.field}-add-another-address` :
       `/${this.options.locals.field}-postcode`;

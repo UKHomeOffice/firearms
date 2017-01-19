@@ -22,7 +22,7 @@ module.exports = class LocationAddressCategoryController extends BaseAddressCont
   }
 
   saveValues(req, res, callback) {
-    const addresses = req.sessionModel.get('locationAddresses');
+    const addresses = req.sessionModel.get(this.options.addressKey);
     const categories = {categories: req.form.values['location-address-category']};
     const id = req.params.action === 'edit' ? req.params.id : _.last(Object.keys(addresses));
     const locationAddresses = Object.assign(addresses[id], categories);

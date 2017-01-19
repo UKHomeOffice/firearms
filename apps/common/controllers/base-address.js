@@ -7,7 +7,7 @@ module.exports = class BaseAddressController extends BaseController {
 
   locals(req, res) {
     const locals = super.locals(req, res);
-    let addresses = this.getAddresses(req);
+    let addresses = req.sessionModel.get(this.options.addressKey);
     const hasAddresses = !!_.size(addresses);
     const hasCategories = this.hasCategories(hasAddresses, addresses);
     if (this.options.addressKey === 'locationAddresses') {
@@ -20,10 +20,6 @@ module.exports = class BaseAddressController extends BaseController {
       hasAddresses,
       hasCategories
     });
-  }
-
-  getAddresses(req) {
-    return req.sessionModel.get(this.options.addressKey);
   }
 
   translateCategories(req, values) {

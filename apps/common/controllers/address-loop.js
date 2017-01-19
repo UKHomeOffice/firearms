@@ -34,7 +34,7 @@ module.exports = class AddressLoopController extends BaseAddressController {
               'postcodeApiMeta'
             ]);
         if (req.params.id !== undefined) {
-          const addresses = req.sessionModel.get(`${this.options.locals.field}Addresses`);
+          const addresses = req.sessionModel.get(this.options.addressKey);
           const value = addresses[req.params.id].address;
           const addressLines = value.split(', ').join('\n');
           const addressIndex = `${this.options.locals.field}-address-manual`;
@@ -57,8 +57,8 @@ module.exports = class AddressLoopController extends BaseAddressController {
   }
 
   removeItem(req, res) {
-    const items = req.sessionModel.get(`${this.options.locals.field}Addresses`);
-    req.sessionModel.set(`${this.options.locals.field}Addresses`, _.omit(items, req.params.id));
+    const items = req.sessionModel.get(this.options.addressKey);
+    req.sessionModel.set(this.options.addressKey, _.omit(items, req.params.id));
     const step = _.size(items) > 1 ? `/${this.options.locals.field}-add-another-address` :
       `/${this.options.locals.field}-postcode`;
     return res.redirect(`${req.baseUrl}${step}`);
@@ -67,8 +67,8 @@ module.exports = class AddressLoopController extends BaseAddressController {
   saveValues(req, res, callback) {
     const address = req.form.values[`${this.options.locals.field}-address-manual`];
     const postcode = req.sessionModel.get(`${this.options.locals.field}-postcode`) || '';
-    const addressIndex = `${this.options.locals.field}Addresses`;
-    let addresses = req.sessionModel.get(addressIndex) || {};
+    const addressKey = this.options.addressKey;
+    let addresses = req.sessionModel.get(addressKey) || {};
     let id = req.params.id;
     if (id === undefined) {
       const currentIndex = req.sessionModel.get('currentIndex') || 0;
@@ -80,7 +80,7 @@ module.exports = class AddressLoopController extends BaseAddressController {
       postcode
     };
     const items = {};
-    items[addressIndex] = addresses;
+    items[addressKey] = addresses;
     req.sessionModel.set(items);
     req.sessionModel.unset(`${this.options.locals.field}-postcode`);
     super.saveValues(req, res, callback);
