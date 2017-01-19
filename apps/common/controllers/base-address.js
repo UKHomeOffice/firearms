@@ -13,7 +13,7 @@ module.exports = class BaseAddressController extends BaseController {
     if (this.options.addressKey === 'locationAddresses') {
       addresses = _.filter(addresses, value => value.categories !== undefined);
     }
-    const items = this.mapAddress(addresses, req);
+    const items = this.mapAddresses(addresses, req);
 
     return Object.assign({}, locals, {
       items,
@@ -34,7 +34,7 @@ module.exports = class BaseAddressController extends BaseController {
     }).join('\n');
   }
 
-  mapAddress(addresses, req) {
+  mapAddresses(addresses, req) {
     return _.map(addresses, (value, key) => ({
       id: key,
       address: value.address,

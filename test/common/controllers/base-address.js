@@ -15,10 +15,10 @@ describe('BaseAddressController', function() {
     BaseAddressController.prototype.should.be.an.instanceOf(StubBaseController);
   });
 
-  it('has a locals, translateCategories, mapAddress & hasCategories methods', ()=> {
+  it('has a locals, translateCategories, mapAddresses & hasCategories methods', ()=> {
     BaseAddressController.prototype.should.have.property('locals').that.is.a('function');
     BaseAddressController.prototype.should.have.property('translateCategories').that.is.a('function');
-    BaseAddressController.prototype.should.have.property('mapAddress').that.is.a('function');
+    BaseAddressController.prototype.should.have.property('mapAddresses').that.is.a('function');
     BaseAddressController.prototype.should.have.property('hasCategories').that.is.a('function');
   });
 
@@ -43,7 +43,7 @@ describe('BaseAddressController', function() {
         let res = {};
 
         beforeEach(function() {
-          this.stub(BaseAddressController.prototype, 'mapAddress').returns([]);
+          this.stub(BaseAddressController.prototype, 'mapAddresses').returns([]);
           this.stub(BaseAddressController.prototype, 'hasCategories').returns(false);
         });
 
@@ -72,9 +72,9 @@ describe('BaseAddressController', function() {
               .and.equal('bar');
         });
 
-        it('includes the result of mapAddress as `items`', () => {
+        it('includes the result of mapAddresses as `items`', () => {
           const mapped = [{id: 'abc123', address: '1 Some Road'}];
-          baseAddressController.mapAddress.returns(mapped);
+          baseAddressController.mapAddresses.returns(mapped);
           const result = baseAddressController.locals(req, res);
           result.should.have.property('items');
           result.items.should.deep.equal(mapped);
@@ -133,7 +133,7 @@ describe('BaseAddressController', function() {
           should.equal(act, expected);
         });
       });
-      describe('mapAddress', () => {
+      describe('mapAddresses', () => {
         beforeEach(function() {
           this.stub(BaseAddressController.prototype, 'translateCategories').returns('NOT MATCHED');
         });
@@ -145,7 +145,7 @@ describe('BaseAddressController', function() {
             {address: 'Paris', postcode: '', categories: ['a', 'b', 'c']}];
           const expected = [{id: 0, address: 'London', categories: 'a\nb'},
             {id: 1, address: 'Paris', categories: 'a\nb\nc'}];
-          const act = baseAddressController.mapAddress(addresses, req);
+          const act = baseAddressController.mapAddresses(addresses, req);
           act.should.deep.equal(expected);
         });
       });
