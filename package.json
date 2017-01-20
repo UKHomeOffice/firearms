@@ -25,7 +25,7 @@
     "browserify": "browserify ./assets/js/index.js > ./public/js/bundle.js",
     "create:public": "mkdir -p ./public/js ./public/css ./public/images",
     "sass": "node-sass ./assets/scss/app.scss ./public/css/app.css --include-path ./node_modules",
-    "hof-transpile": "hof-transpiler ./apps/**/translations/src -w --shared ./apps/common/translations/src/en --shared ./node_modules/hof-template-partials/translations",
+    "hof-transpile": "hof-transpiler ./apps/**/translations/src -w --shared ./apps/common/translations/src --shared ./node_modules/hof-template-partials/translations",
     "prepareapp": "npm run create:public; npm run sass; npm run browserify; npm run copy:images; npm run hof-transpile",
     "postinstall": "bash -c 'if [[ ${NODE_ENV} != production ]]; then npm run prepareapp; fi;'"
   },
