@@ -1,0 +1,29 @@
+{
+  "name": {
+    "summary": "Museum details",
+    "header": "What is the museum's name?"
+  },
+  "address-loop": {
+    "header": "Placeholder pending address lookup refactor"
+  },
+  "contact-name": {
+    "header": "Who should we contact about this application?"
+  },
+  "contact-details": {
+    "summary": "Contact details",
+    "header": "What are their contact details?"
+  },
+  "contact-address": {
+    "header": "Is the contact address the same as an address previously given?"
+  },
+  "contact-address-postcode": {
+    "header": "Placeholder pending address lookup refactor"
+  },
+  "contact-address-select": {
+    "header": "Placeholder pending address lookup refactor"
+  },
+  "confirmation": {
+    "next": "We will review your application. We’ll instruct the local police force to make enquiries on behalf of the Secretary of State about matters related to this application. In this case, you should hear from the police within the next X weeks. If insufficient information has been provided for the Home Office to assess this application, we will be in touch with you within the next X days/weeks.",
+    "feedback": "<a href='https://eforms.homeoffice.gov.uk/outreach/feedback.ofml?FormName=Firearms-licencing-S5'>What did you think of this service?</a>  (takes 30 seconds)"
+  }
+}

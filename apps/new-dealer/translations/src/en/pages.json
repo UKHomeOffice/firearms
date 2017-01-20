@@ -157,18 +157,6 @@
     "important": "The information you provide here will replace the information we currently hold.",
     "add-remove": "storage addresses"
   },
-  "confirm": {
-    "header": "Check your answers page",
-    "intro": "Check your answers and make any necessary changes before you submit this application",
-    "footer": "You'll be able to print and save a copy of the information you've submitted on the next page",
-    "declaration": "By submitting this application you agree that:",
-    "items": [
-      "there are no physical or mental health conditions that should prevent any employees and authority holders from handling the prohibited items",
-      "the information you've given is correct",
-      "the Home Office can share relevant information with the police and HMRC",
-      "HMRC can share relevant information with the Home Office"
-    ]
-  },
   "business-details": {
     "header": "Business details"
   },
@@ -220,8 +208,6 @@
     }
   },
   "confirmation": {
-    "alert": "Application complete",
-    "email": "We have sent an email to {{values.contact-email}} to confirm receipt of your application.",
     "evidence-subheader": "Supporting evidence",
     "evidence": "You must provide evidence to support the business activities, types and quantities of weapons requested to be covered by the authority.</p><p>You must send the evidence to us by post or email, clearly referencing your business name and customer reference number if you have one.</p><p>Your evidence should include:",
     "evidence-list": {

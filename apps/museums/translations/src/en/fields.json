@@ -1,0 +1,25 @@
+{
+  "name": {
+    "label": "Museum name"
+  },
+  "contact-name": {
+    "label": "Full name"
+  },
+  "contact-email": {
+    "label": "Email address"
+  },
+  "contact-phone": {
+    "label": "Phone number"
+  },
+  "same-contact-address": {
+    "legend": "Is the contact address the same as an address previously given?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  }
+}
