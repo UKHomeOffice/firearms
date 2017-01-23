@@ -39,6 +39,12 @@ module.exports = class BaseAddressController extends BaseController {
   }
 
   hasCategories(hasAddresses, addresses) {
-    return !!(hasAddresses ? _.sample(addresses).categories !== undefined : false);
+    if (hasAddresses) {
+      const firstAddressItem = addresses[Object.keys(addresses)[0]];
+      return _.has(firstAddressItem, 'categories');
+    }
+    else {
+      return false;
+    }
   }
 };
