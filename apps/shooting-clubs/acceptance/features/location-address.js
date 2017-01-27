@@ -227,7 +227,7 @@ Scenario('add-another-address page step: I select yes I am taken to the location
   I.seeInCurrentUrl(locationAddressPage.url);
 });
 
-Scenario.only('add another address page: When I select No I am taken to the storage address list page', (
+Scenario('add another address page: When I select No I am taken to the storage address list page', (
   I,
   locationAddressPage,
   shootingClubStorageAddressListPage

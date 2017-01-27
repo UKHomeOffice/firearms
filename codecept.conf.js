@@ -13,7 +13,7 @@ const shootingClubPagesPath = page => path.resolve(__dirname,
 
 module.exports = {
   name: 'firearms',
-  features: './**/acceptance/features/**/*.js',
+  tests: './apps/**/acceptance/features/*.js',
   include: {
     activityPage: commonPagesPath('activity.js'),
     authorityNumberRenewPage: dealerPagesPath('authority-holder-renew-vary.js'),
