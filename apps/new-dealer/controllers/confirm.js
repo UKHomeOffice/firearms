@@ -16,24 +16,30 @@ module.exports = class ConfirmController extends controllers {
     });
   }
 
+  formatData(data, translate) {
+    const result = super.formatData(data, translate);
+    const address = this.addAddressLoopSection(data, translate);
+    result.splice(2, 0, address);
+
+    const weapons = this.getWeaponsAmmunitionQuantity(data, translate, 'weapons');
+    result.splice(3, 0, weapons);
+
+    const ammo = this.getWeaponsAmmunitionQuantity(data, translate, 'ammunition');
+    result.splice(4, 0, ammo);
+
+    return this.addContactDetailsSection(data, translate, result.filter(a => a));
+  }
+
   getValues(req, res, callback) {
-    this.addAddressLoopSection(req);
-    this.getWeaponsAmmunitionQuantity(req, 'weapons', 3);
-    this.getWeaponsAmmunitionQuantity(req, 'ammunition', 4);
-    this.addContactDetailsSection(req);
     return super.getValues(req, res, callback);
   }
 
   saveValues(req, res, callback) {
-    this.addAddressLoopSection(req);
-    this.getWeaponsAmmunitionQuantity(req, 'weapons', 3);
-    this.getWeaponsAmmunitionQuantity(req, 'ammunition', 4);
-    this.addContactDetailsSection(req);
     return super.saveValues(req, res, callback);
   }
 
-  addAddressLoopSection(req) {
-    let addresses = req.sessionModel.get('storageAddresses');
+  addAddressLoopSection(data, translate) {
+    let addresses = data.storageAddresses;
     if (addresses !== undefined) {
       addresses = _.map(_.values(addresses), 'address');
       const items = addresses.map(value => ({
@@ -44,83 +50,83 @@ module.exports = class ConfirmController extends controllers {
       }));
       const section = {
         items,
-        section: req.translate('pages.storage-address.summary'),
+        section: translate('pages.storage-address.summary'),
         hasMultipleFields: true,
         step: 'storage-add-another-address'
       };
-      this.formattedData.splice(2, 0, section);
+      return section;
     }
   }
 
-  getWeaponsAmmunitionQuantity(req, weaponsOrAmmunition, order) {
-    let types = req.sessionModel.get(`${weaponsOrAmmunition}-types`);
+  getWeaponsAmmunitionQuantity(data, translate, key) {
+    let types = data[`${key}-types`];
+    let section;
     if (types !== undefined && types !== 'unspecified') {
       types = _.castArray(types);
       const items = types.map(value => ({
         fields: [{
-          value: req.sessionModel.get(`${value}-quantity`),
+          value: data[`${value}-quantity`],
           field: 'quantity-base'
         }, {
-          value: req.translate(`fields.${weaponsOrAmmunition}-types.options.${value}.label`),
-          field: `${weaponsOrAmmunition}-types`
+          value: translate(`fields.${key}-types.options.${value}.label`),
+          field: `${key}-types`
         }]
       }));
       const headers = items[0].fields.map(item => {
-        return req.translate(`fields.${item.field}.summary`);
+        return translate(`fields.${item.field}.summary`);
       });
-      const section = {
+      section = {
         items,
         headers,
-        section: req.translate(`pages.${weaponsOrAmmunition}.summary`),
+        section: translate(`pages.${key}.summary`),
         hasMultipleFields: true,
-        step: weaponsOrAmmunition,
+        step: key,
         moreThanOneField: items[0].fields.length > 1
       };
-      this.formattedData.splice(order, 0, section);
     } else if (types === 'unspecified') {
       const items = {
         fields: [{
-          value: req.translate(`fields.${weaponsOrAmmunition}-types.options.${types}.label`),
-          field: `${weaponsOrAmmunition}-types`
+          value: translate(`fields.${key}-types.options.${types}.label`),
+          field: `${key}-types`
         }, {
-          value: req.sessionModel.get(`${weaponsOrAmmunition}-unspecified-details`),
+          value: data[`${key}-unspecified-details`],
           field: 'further-details'
         }]
       };
       const headers = items.fields.map(item => {
-        return req.translate(`fields.${item.field}.summary`);
+        return translate(`fields.${item.field}.summary`);
       });
-      const section = {
+      section = {
         items,
         headers,
-        section: req.translate(`pages.${weaponsOrAmmunition}.summary`),
+        section: translate(`pages.${key}.summary`),
         hasMultipleFields: true,
-        step: weaponsOrAmmunition,
+        step: key,
         moreThanOneField: items.fields.length > 1
       };
-      this.formattedData.splice(order, 0, section);
     }
+    return section;
   }
 
-  getContactHoldersName(req) {
-    const contactHolder = req.sessionModel.get('contact-holder');
+  getContactHoldersName(data) {
+    const contactHolder = data['contact-holder'];
     const contactName = contactHolder === 'first' || contactHolder === 'second' ?
-      req.sessionModel.get(`${contactHolder}-authority-holders-name`) :
-      req.sessionModel.get('someone-else-name');
+      data[`${contactHolder}-authority-holders-name`] :
+      data['someone-else-name'];
     return contactName;
   }
 
-  addContactDetailsSection(req) {
-    const contactHolder = req.sessionModel.get('contact-holder');
-    const contactName = this.getContactHoldersName(req);
-    const contactAddress = req.sessionModel.get(`${contactHolder}-authority-holders-address-manual`);
-    this.formattedData = this.formattedData.map(section => {
+  addContactDetailsSection(data, translate, result) {
+    const contactHolder = data['contact-holder'];
+    const contactName = this.getContactHoldersName(data);
+    const contactAddress = data[`${contactHolder}-authority-holders-address-manual`];
+    return result.map(section => {
       if (section.fields !== undefined) {
         section.fields = section.fields.map(field => {
           if (field.field === 'contact-holder') {
             field.value = contactName;
           } else if (field.field === 'use-different-address') {
-            field.label = req.translate('fields.authority-holder-contact-address-manual.summary');
+            field.label = translate('fields.authority-holder-contact-address-manual.summary');
             field.value = contactAddress;
           }
           return field;
