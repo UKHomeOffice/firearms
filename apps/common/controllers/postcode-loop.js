@@ -31,13 +31,6 @@ module.exports = class PostcodeLoopController extends BaseAddressController {
     });
   }
 
-  saveValues(req, res, cb) {
-    const saveValues = super.saveValues(req, res, cb);
-    this.postcodeChanged = req.form.values[`${this.options.locals.field}-postcode`]
-      !== req.sessionModel.get(`${this.options.locals.field}-postcode`);
-    return saveValues;
-  }
-
   getNextStep(req, res) {
     const nextStep = super.getNextStep(req, res);
     if (req.method === 'POST') {
