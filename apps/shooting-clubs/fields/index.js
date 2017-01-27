@@ -29,6 +29,7 @@ module.exports = {
   },
   'club-address-lookup': {
     className: 'address',
+    validate: 'required',
     includeInSummary: false
   },
   'club-address-manual': {
@@ -49,6 +50,7 @@ module.exports = {
   },
   'club-secretary-address-lookup': {
     className: 'address',
+    validate: 'required',
     includeInSummary: false
   },
   'club-secretary-address-manual': {
@@ -77,6 +79,7 @@ module.exports = {
   },
   'second-contact-address-lookup': {
     className: 'address',
+    validate: 'required',
     includeInSummary: false
   },
   'second-contact-address-manual': {
@@ -106,6 +109,7 @@ module.exports = {
     }]
   },
   'location-address-lookup': {
+    validate: 'required',
     className: 'address'
   },
   'location-add-another-address': {
@@ -136,6 +140,7 @@ module.exports = {
   },
   'storage-address-lookup': {
     className: 'address',
+    validate: 'required',
     includeInSummary: false
   },
   'storage-address-manual': {
