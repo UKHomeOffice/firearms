@@ -43,8 +43,6 @@ module.exports = class BaseAddressController extends BaseController {
       const firstAddressItem = addresses[Object.keys(addresses)[0]];
       return _.has(firstAddressItem, 'categories');
     }
-    else {
-      return false;
-    }
+    return false;
   }
 };
