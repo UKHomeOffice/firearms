@@ -21,12 +21,12 @@ module.exports = class PostcodeLoopController extends BaseAddressController {
         const address = values[this.options.addressKey][req.params.id];
         const postcode = {};
         postcode[`${this.options.locals.field}-postcode`] = address.postcode;
-        this.addressId = req.params.id;
+        req.sessionModel.set('addressId', req.params.id);
         return callback(null, Object.assign({}, values,
           postcode
         ));
       }
-      this.addressId = '';
+      req.sessionModel.set('addressId', '');
       return callback(null, values);
     });
   }
@@ -41,7 +41,8 @@ module.exports = class PostcodeLoopController extends BaseAddressController {
   getNextStep(req, res) {
     const nextStep = super.getNextStep(req, res);
     if (req.method === 'POST') {
-      return `${nextStep}/${this.addressId}`;
+      const addressId = req.sessionModel.get('addressId');
+      return `${nextStep}/${addressId}`;
     }
     return nextStep;
   }

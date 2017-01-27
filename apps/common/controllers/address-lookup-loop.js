@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const ErrorController = require('hof-controllers').error;
 const BaseAddressController = require('./base-address');
 
 module.exports = class AddressLookupLoopController extends BaseAddressController {
@@ -23,7 +22,7 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     return `${super.getBackLink(req, res, callback)}/${id}`;
   }
 
-  getValues(req, res, callback) {
+  configure(req, res, callback) {
     if (req.params.action === 'edit') {
       const steps = req.sessionModel.get('steps');
       _.remove(steps, step => {
@@ -42,9 +41,9 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     });
 
     const count = `${formattedlist.length} addresses`;
-    this.options.fields[`${this.options.locals.field}-address-lookup`].options =
-      [{value: count, label: count}].concat(formattedlist);
-    super.getValues(req, res, callback);
+    req.form.options.fields[`${this.options.locals.field}-address-lookup`].options =
+      [{value: '', label: count}].concat(formattedlist);
+    callback();
   }
 
   get(req, res, callback) {
@@ -86,18 +85,4 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     super.saveValues(req, res, callback);
   }
 
-  post(req, res, cb) {
-    this.getValues(req, res, () => {});
-    super.post(req, res, cb);
-  }
-
-  validateField(key, req) {
-    if (req.form.values[key] === this.options.fields[`${this.options.locals.field}-address-lookup`].options[0].value) {
-      return new ErrorController(`${this.options.locals.field}-address-lookup`, {
-        key: `${this.options.locals.field}-address-lookup`,
-        type: 'required',
-        redirect: undefined
-      });
-    }
-  }
 };
