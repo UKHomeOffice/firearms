@@ -6,10 +6,10 @@ RUN yum clean all && \
   yum install -y -q git && \
   yum clean all && \
   rpm --rebuilddb && \
-  npm --loglevel warn install -g npm@3.10.8
+  npm install -g yarn@0.16.1
 
 COPY package.json /app/package.json
-RUN npm --loglevel warn install --production --no-optional
+RUN yarn install
 COPY . /app
 RUN npm --loglevel warn run postinstall
 
