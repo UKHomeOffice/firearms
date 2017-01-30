@@ -51,10 +51,27 @@ module.exports = {
       yes: '#location-add-another-address-yes',
       no: '#location-add-another-address-no',
       summary: '.address-summary',
-      delete: 'Remove'
+      delete: 'Remove',
+      editLocationLink: 'a[href$="/shooting-clubs/location-postcode/edit/0"]',
+      editCategoriesLink: 'a[href$="/shooting-clubs/location-address-category/edit/0"]'
     },
     content: {
       address: '49 Sydenham Road'
+    }
+  },
+
+  category: {
+    url: 'location-address-category',
+    field: {
+      locationAddressCategory: '#location-address-category',
+      fullBoreRifles: '#location-address-category-full-bore-rifles',
+      smallBoreRifles: '#location-address-category-small-bore-rifles',
+      muzzleLoadingPistols: '#location-address-category-muzzle-loading-pistols'
+    },
+    content: {
+      fullBoreRifles: 'Full-bore rifles',
+      smallBoreRifles: 'Small-bore rifles',
+      muzzleLoadingPistols: 'Muzzle-loading pistols'
     }
   },
 
@@ -69,11 +86,21 @@ module.exports = {
     I.submitForm();
   },
 
-  addMultipleAddresses() {
+  selectAddressCategoryAndSubmit() {
     this.selectAddressAndSubmit();
+    I.click(this.category.field.fullBoreRifles);
+    I.submitForm();
+  },
+
+  addMultipleAddresses() {
+    this.selectAddressCategoryAndSubmit();
     I.click(this.addAnotherAddress.field.yes);
     I.submitForm();
     I.click(this.postcode.manualEntryLink);
     this.fillFormAndSubmit(this.manualEntry.field.addressManual, this.manualEntry.content.address);
+    // this is to untick the fullbore Rifles as it was ticked the first time
+    I.click(this.category.field.fullBoreRifles);
+    I.click(this.category.field.smallBoreRifles);
+    I.submitForm();
   }
 };

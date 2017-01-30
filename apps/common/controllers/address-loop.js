@@ -1,31 +1,13 @@
 'use strict';
 
 const _ = require('lodash');
-const BaseController = require('./base');
+const BaseAddressController = require('./base-address');
 
-module.exports = class AddressLoopController extends BaseController {
-  constructor(options) {
-    super(options);
-    if (options.locals.field) {
-      this.field = options.locals.field;
-    } else {
-      throw new Error('Field need to be defined in locals');
-    }
-  }
-
+module.exports = class AddressLoopController extends BaseAddressController {
   locals(req, res) {
     const isManual = req.params.action === 'manual';
-    const locals = super.locals(req, res);
-    const postcode = req.sessionModel.get(`${this.field}-postcode`);
-    const addresses = req.sessionModel.get(`${this.field}Addresses`);
-    const hasAddresses = _.size(addresses);
-    const items = _.map(addresses, (value, key) => ({
-      id: key,
-      address: value.address
-    }));
-    return Object.assign({}, locals, {
-      items,
-      hasAddresses,
+    const postcode = req.sessionModel.get(`${this.options.locals.field}-postcode`);
+    return Object.assign({}, super.locals(req, res), {
       postcode,
       postcodeApiMessageKey: isManual ? '' : (req.sessionModel.get('postcodeApiMeta') || {}).messageKey
     });
@@ -48,14 +30,14 @@ module.exports = class AddressLoopController extends BaseController {
       }
       if (req.params.action === 'manual') {
             req.sessionModel.unset([
-              `${this.field}-postcode`,
+              `${this.options.locals.field}-postcode`,
               'postcodeApiMeta'
             ]);
         if (req.params.id !== undefined) {
-          const addresses = req.sessionModel.get(`${this.field}Addresses`);
+          const addresses = req.sessionModel.get(this.options.addressKey);
           const value = addresses[req.params.id].address;
           const addressLines = value.split(', ').join('\n');
-          const addressIndex = `${this.field}-address-manual`;
+          const addressIndex = `${this.options.locals.field}-address-manual`;
           const addressItems = {};
           addressItems[addressIndex] = addressLines;
           return callback(null, Object.assign({}, values,
@@ -75,17 +57,18 @@ module.exports = class AddressLoopController extends BaseController {
   }
 
   removeItem(req, res) {
-    const items = req.sessionModel.get(`${this.field}Addresses`);
-    req.sessionModel.set(`${this.field}Addresses`, _.omit(items, req.params.id));
-    const step = _.size(items) > 1 ? `/${this.field}-add-another-address` : `/${this.field}-postcode`;
+    const items = req.sessionModel.get(this.options.addressKey);
+    req.sessionModel.set(this.options.addressKey, _.omit(items, req.params.id));
+    const step = _.size(items) > 1 ? `/${this.options.locals.field}-add-another-address` :
+      `/${this.options.locals.field}-postcode`;
     return res.redirect(`${req.baseUrl}${step}`);
   }
 
   saveValues(req, res, callback) {
-    const address = req.form.values[`${this.field}-address-manual`];
-    const postcode = req.sessionModel.get(`${this.field}-postcode`) || '';
-    const addressIndex = `${this.field}Addresses`;
-    let addresses = req.sessionModel.get(addressIndex) || {};
+    const address = req.form.values[`${this.options.locals.field}-address-manual`];
+    const postcode = req.sessionModel.get(`${this.options.locals.field}-postcode`) || '';
+    const addressKey = this.options.addressKey;
+    let addresses = req.sessionModel.get(addressKey) || {};
     let id = req.params.id;
     if (id === undefined) {
       const currentIndex = req.sessionModel.get('currentIndex') || 0;
@@ -97,9 +80,9 @@ module.exports = class AddressLoopController extends BaseController {
       postcode
     };
     const items = {};
-    items[addressIndex] = addresses;
+    items[addressKey] = addresses;
     req.sessionModel.set(items);
-    req.sessionModel.unset(`${this.field}-postcode`);
+    req.sessionModel.unset(`${this.options.locals.field}-postcode`);
     super.saveValues(req, res, callback);
   }
 };

@@ -20,7 +20,7 @@ module.exports = {
     'address-lookup': '#storage-address-lookup',
     add: '#storage-add-another-address-group',
     yes: '#storage-add-another-address-yes',
-    no: '#storage-add-another-address-no',
+    no: '#storage-add-another-address-no'
   },
 
   links: {
@@ -33,7 +33,7 @@ module.exports = {
     postcode: 'CR0 2EU',
     address: '49 Sydenham Road, Croydon, CR0 2EU',
     'another-address': '2 Marsham Street, London',
-    'display-address': '49 Sydenham Road Croydon CR0 2EU'
+    'display-address': '49 Sydenham Road'
   },
 
   fillFormAndSubmit(field, content) {

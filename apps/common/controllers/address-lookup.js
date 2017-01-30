@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const ErrorController = require('hof-controllers').error;
 const BaseController = require('./base');
 
 module.exports = class AddressLookup extends BaseController {
@@ -12,7 +11,7 @@ module.exports = class AddressLookup extends BaseController {
     return Object.assign({}, locals, {postcode});
   }
 
-  getValues(req, res, callback) {
+  configure(req, res, callback) {
     const field = this.options.locals.field;
     const addresses = req.sessionModel.get(`${field}-addresses`);
     const formattedlist = _.map(_.map(addresses, 'formatted_address'), address => {
@@ -24,8 +23,8 @@ module.exports = class AddressLookup extends BaseController {
     });
 
     const count = `${formattedlist.length} addresses`;
-    this.options.fields[`${field}-address-lookup`].options = [{value: count, label: count}].concat(formattedlist);
-    super.getValues(req, res, callback);
+    req.form.options.fields[`${field}-address-lookup`].options = [{value: '', label: count}].concat(formattedlist);
+    callback();
   }
 
   saveValues(req, res, callback) {
@@ -35,19 +34,4 @@ module.exports = class AddressLookup extends BaseController {
     super.saveValues(req, res, callback);
   }
 
-  post(req, res, cb) {
-    this.getValues(req, res, () => {});
-    super.post(req, res, cb);
-  }
-
-  validateField(key, req) {
-    const field = this.options.locals.field;
-    if (req.form.values[key] === this.options.fields[`${field}-address-lookup`].options[0].value) {
-      return new ErrorController(`${field}-address-lookup`, {
-        key: `${field}-address-lookup`,
-        type: 'required',
-        redirect: undefined
-      });
-    }
-  }
 };

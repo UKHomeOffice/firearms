@@ -1,32 +1,15 @@
 'use strict';
 
 const _ = require('lodash');
-const BaseController = require('./base');
+const BaseAddressController = require('./base-address');
 const PostcodesModel = require('../models/postcodes');
 
-module.exports = class PostcodeLoopController extends BaseController {
-  constructor(options) {
-    super(options);
-    if (options.locals.field) {
-      this.field = options.locals.field;
-    } else {
-      throw new Error('Field need to be defined in locals');
-    }
-  }
-
+module.exports = class PostcodeLoopController extends BaseAddressController {
   locals(req, res) {
-    const locals = super.locals(req, res);
-    const addresses = req.sessionModel.get(`${this.field}Addresses`);
-    const hasAddresses = _.size(addresses);
-    const items = _.map(addresses, (value, key) => ({
-      id: key,
-      address: value.address
-    }));
-    let id = '';
-    if (req.params.action === 'edit') {
-      id = req.params.id;
-    }
-    return Object.assign({}, locals, {items, hasAddresses, id});
+    const id = req.params.action === 'edit' ? req.params.id : '';
+    return Object.assign({}, super.locals(req, res), {
+      id
+    });
   }
 
   getValues(req, res, callback) {
@@ -35,29 +18,24 @@ module.exports = class PostcodeLoopController extends BaseController {
         return callback(err);
       }
       if (req.params.action === 'edit') {
-        const address = values[`${this.field}Addresses`][req.params.id];
+        const address = values[this.options.addressKey][req.params.id];
         const postcode = {};
-        postcode[`${this.field}-postcode`] = address.postcode;
-        this.addressId = req.params.id;
+        postcode[`${this.options.locals.field}-postcode`] = address.postcode;
+        req.sessionModel.set('addressId', req.params.id);
         return callback(null, Object.assign({}, values,
           postcode
         ));
       }
-      this.addressId = '';
+      req.sessionModel.set('addressId', '');
       return callback(null, values);
     });
-  }
-
-  saveValues(req, res, cb) {
-    const saveValues = super.saveValues(req, res, cb);
-    this.postcodeChanged = req.form.values[`${this.field}-postcode`] !== req.sessionModel.get(`${this.field}-postcode`);
-    return saveValues;
   }
 
   getNextStep(req, res) {
     const nextStep = super.getNextStep(req, res);
     if (req.method === 'POST') {
-      return `${nextStep}/${this.addressId}`;
+      const addressId = req.sessionModel.get('addressId');
+      return `${nextStep}/${addressId}`;
     }
     return nextStep;
   }
@@ -70,16 +48,18 @@ module.exports = class PostcodeLoopController extends BaseController {
   }
 
   removeItem(req, res) {
-    const items = req.sessionModel.get(`${this.field}Addresses`);
-    req.sessionModel.set(`${this.field}Addresses`, _.omit(items, req.params.id));
-    const step = _.size(items) > 1 ? `/${this.field}-add-another-address` : `/${this.field}-postcode`;
+    const items = req.sessionModel.get(this.options.addressKey);
+    req.sessionModel.set(this.options.addressKey,
+      _.omit(items, req.params.id));
+    const step = _.size(items) > 1 ? `/${this.options.locals.field}-add-another-address` :
+      `/${this.options.locals.field}-postcode`;
     return res.redirect(`${req.baseUrl}${step}`);
   }
 
   process(req, res, callback) {
     const postcodesModel = new PostcodesModel();
-    const postcode = req.form.values[`${this.field}-postcode`];
-    const previousPostcode = req.sessionModel.get(`${this.field}-postcode`);
+    const postcode = req.form.values[`${this.options.locals.field}-postcode`];
+    const previousPostcode = req.sessionModel.get(`${this.options.locals.field}-postcode`);
     if (!postcode
       || previousPostcode && previousPostcode === postcode) {
       return callback();
@@ -87,16 +67,16 @@ module.exports = class PostcodeLoopController extends BaseController {
 
     if (_.startsWith(postcode, 'BT')) {
       req.sessionModel.unset('postcodeApiMeta');
-      req.sessionModel.unset(`${this.field}-addresses`);
+      req.sessionModel.unset(`${this.options.locals.field}-addresses`);
       return callback();
     }
 
     postcodesModel.fetch(postcode)
       .then(data => {
         if (data.length) {
-          req.sessionModel.set(`${this.field}-addresses`, data);
+          req.sessionModel.set(`${this.options.locals.field}-addresses`, data);
         } else {
-          req.sessionModel.unset(`${this.field}-addresses`);
+          req.sessionModel.unset(`${this.options.locals.field}-addresses`);
           req.sessionModel.set('postcodeApiMeta', {
             messageKey: 'not-found'
           });

@@ -1,7 +1,9 @@
 'use strict';
 
+const _ = require('lodash');
+
 function notBothOptions(values) {
-  values = !Array.isArray(values) ? [values] : values;
+  values = _.castArray(values);
   return !(values.length > 1 && values.indexOf('unspecified') > -1);
 }
 
@@ -530,6 +532,7 @@ module.exports = {
     includeInSummary: false
   },
   'first-authority-holders-address-lookup': {
+    validate: 'required',
     className: 'address'
   },
   'first-authority-holders-address-manual': {
@@ -569,6 +572,7 @@ module.exports = {
     includeInSummary: false
   },
   'second-authority-holders-address-lookup': {
+    validate: 'required',
     className: 'address'
   },
   'second-authority-holders-address-manual': {
@@ -605,6 +609,7 @@ module.exports = {
   },
   'storage-address-lookup': {
     className: 'address',
+    validate: 'required',
     includeInSummary: false
   },
   'storage-address-manual': {
@@ -647,6 +652,7 @@ module.exports = {
     includeInSummary: false
   },
   'authority-holder-contact-address-lookup': {
+    validate: 'required',
     className: 'address'
   },
   'authority-holder-contact-address-manual': {
@@ -666,6 +672,7 @@ module.exports = {
     includeInSummary: false
   },
   'contact-address-lookup': {
+    validate: 'required',
     className: 'address'
   },
   'contact-address-manual': {

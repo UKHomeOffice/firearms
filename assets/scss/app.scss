@@ -179,6 +179,27 @@ div.add-remove-section {
   }
 }
 
+// address loop table
+.table-address-loop {
+  width: 100%;
+
+  tbody {
+    td:nth-child(1) {
+      width: 60%;
+    }
+    td:nth-child(2) {
+      width: 40%;
+    }
+    td:nth-child(3) {
+      text-align: right;
+      padding-right: 0;
+    }
+    td:not(.no-white-space) {
+      white-space: pre-wrap;
+    }
+  }
+}
+
 // confirmation
 .alert-complete {
   padding: 4.65263em;

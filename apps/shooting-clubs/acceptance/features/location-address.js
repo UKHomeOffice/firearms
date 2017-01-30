@@ -100,12 +100,12 @@ Scenario('address lookup step: error appears when I click submit the form withou
   I.seeErrors(locationAddressPage.addressLookUp.field.addressLookUpGroup);
 });
 
-Scenario('from address lookup step: I am taken to the next step, add another location address', (
+Scenario('from address lookup step: I am taken to the next step, location category page', (
   I,
   locationAddressPage
 ) => {
   locationAddressPage.selectAddressAndSubmit();
-  I.seeInCurrentUrl(locationAddressPage.addAnotherAddress.url);
+  I.seeInCurrentUrl(locationAddressPage.category.url);
 });
 
 Scenario('Manual entry step: The correct form elements are present for location-manual address step', (
@@ -125,20 +125,76 @@ Scenario('manual entry step: an error appears for not entering anything and subm
   I.seeErrors(locationAddressPage.manualEntry.field.addressManual)
 });
 
-Scenario('from manual entry step: I am taken to the location-add-another-address step', (
+Scenario('from manual entry step: I am taken to the location-category step', (
   I,
   locationAddressPage
 ) => {
   I.click(locationAddressPage.postcode.manualEntryLink);
   locationAddressPage.fillFormAndSubmit(locationAddressPage.manualEntry.field.addressManual, locationAddressPage.manualEntry.content.address);
-  I.seeInCurrentUrl(locationAddressPage.addAnotherAddress.url);
+  I.seeInCurrentUrl(locationAddressPage.category.url);
+});
+
+
+Scenario('category step: the correct form elements are present', (
+  I,
+  locationAddressPage
+) => {
+  locationAddressPage.selectAddressAndSubmit();
+  I.seeElements(
+    [locationAddressPage.category.field.fullBoreRifles],
+    [locationAddressPage.category.field.smallBoreRifles],
+    [locationAddressPage.category.field.muzzleLoadingPistols]
+  )
+});
+
+Scenario('category step: I see an error when I submit an empty form', (
+  I,
+  locationAddressPage
+) => {
+  locationAddressPage.selectAddressAndSubmit();
+  I.submitForm();
+  I.seeErrors(locationAddressPage.category.field.locationAddressCategory)
+});
+
+Scenario('category step: when I select full-bore rifles category, I see this category against the address', (
+  I,
+  locationAddressPage
+) => {
+  locationAddressPage.selectAddressCategoryAndSubmit();
+  I.see(locationAddressPage.category.content.fullBoreRifles, locationAddressPage.addAnotherAddress.field.summary)
+});
+
+Scenario('category step: when I select 2 categories: full-bore rifles, small-bore rifles category, I see these categories against the address', (
+  I,
+  locationAddressPage
+) => {
+  locationAddressPage.selectAddressAndSubmit();
+  I.click(locationAddressPage.category.field.fullBoreRifles);
+  I.click(locationAddressPage.category.field.smallBoreRifles);
+  I.submitForm();
+  I.see(locationAddressPage.category.content.fullBoreRifles, locationAddressPage.addAnotherAddress.field.summary)
+  I.see(locationAddressPage.category.content.smallBoreRifles, locationAddressPage.addAnotherAddress.field.summary)
+});
+
+Scenario('category step: when I select 3 categories: full-bore rifles, small-bore rifles, muzzle-loading pistols categories, I see these categories against the address', (
+  I,
+  locationAddressPage
+) => {
+  locationAddressPage.selectAddressAndSubmit();
+  I.click(locationAddressPage.category.field.fullBoreRifles);
+  I.click(locationAddressPage.category.field.smallBoreRifles);
+  I.click(locationAddressPage.category.field.muzzleLoadingPistols);
+  I.submitForm();
+  I.see(locationAddressPage.category.content.fullBoreRifles, locationAddressPage.addAnotherAddress.field.summary)
+  I.see(locationAddressPage.category.content.smallBoreRifles, locationAddressPage.addAnotherAddress.field.summary)
+  I.see(locationAddressPage.category.content.muzzleLoadingPistols, locationAddressPage.addAnotherAddress.field.summary)
 });
 
 Scenario('add another address step: the correct form elements are present', (
   I,
   locationAddressPage
 ) => {
-  locationAddressPage.selectAddressAndSubmit();
+  locationAddressPage.selectAddressCategoryAndSubmit();
   I.seeElements([
     locationAddressPage.addAnotherAddress.field.yes,
     locationAddressPage.addAnotherAddress.field.no
@@ -149,7 +205,7 @@ Scenario('add another address step: an error is present when I submit form the f
   I,
   locationAddressPage
 ) => {
-  locationAddressPage.selectAddressAndSubmit();
+  locationAddressPage.selectAddressCategoryAndSubmit();
   I.submitForm();
 });
 
@@ -157,15 +213,15 @@ Scenario('add another address step: the previous address is present', (
   I,
   locationAddressPage
 ) => {
-  locationAddressPage.selectAddressAndSubmit();
-  I.see(locationAddressPage.addAnotherAddress.content.address, locationAddressPage.addAnotherAddress.field.summary)
+  locationAddressPage.selectAddressCategoryAndSubmit();
+  I.see(locationAddressPage.addAnotherAddress.content.address, locationAddressPage.addAnotherAddress.field.summary);
 });
 
 Scenario('add-another-address page step: I select yes I am taken to the location-postcode step', (
   I,
   locationAddressPage
 ) => {
-  locationAddressPage.selectAddressAndSubmit();
+  locationAddressPage.selectAddressCategoryAndSubmit();
   I.click(locationAddressPage.addAnotherAddress.field.yes);
   I.submitForm();
   I.seeInCurrentUrl(locationAddressPage.url);
@@ -176,7 +232,7 @@ Scenario('add another address page: When I select No I am taken to the confirm p
   locationAddressPage,
   confirmPage
 ) => {
-  locationAddressPage.selectAddressAndSubmit();
+  locationAddressPage.selectAddressCategoryAndSubmit();
   I.click(locationAddressPage.addAnotherAddress.field.no);
   I.submitForm();
   I.seeInCurrentUrl(confirmPage.url);
@@ -186,18 +242,19 @@ Scenario('add another address page: When I click Remove, I am taken back to the 
   I,
   locationAddressPage
 ) => {
-  locationAddressPage.selectAddressAndSubmit();
+  locationAddressPage.selectAddressCategoryAndSubmit();
   I.click(locationAddressPage.addAnotherAddress.field.delete);
   I.seeInCurrentUrl(locationAddressPage.url);
 });
 
-Scenario('add another address page: When I click Remove, the address is removed from the summary table', (
+Scenario('add another address page: When I click Remove, the address is removed from the summary table and the associated category', (
   I,
   locationAddressPage
 ) => {
   locationAddressPage.addMultipleAddresses();
   I.click(locationAddressPage.addAnotherAddress.field.delete);
-  I.dontSee(locationAddressPage.addAnotherAddress.content.address, locationAddressPage.addAnotherAddress.field.summary)
+  I.dontSee(locationAddressPage.addAnotherAddress.content.address, locationAddressPage.addAnotherAddress.field.summary);
+  I.dontSee(locationAddressPage.category.content.fullBoreRifles, locationAddressPage.addAnotherAddress.field.summary)
 });
 
 Scenario('add another address page: When I add two addresses I can see both addresses on the add-another-address step', (
@@ -209,4 +266,30 @@ Scenario('add another address page: When I add two addresses I can see both addr
     locationAddressPage.addAnotherAddress.content.address,
     locationAddressPage.manualEntry.content.address
   ])
+});
+
+Scenario('add another address page: When I click edit location, I can enter a new location', (
+  I,
+  locationAddressPage
+) => {
+  locationAddressPage.selectAddressCategoryAndSubmit();
+  I.click(locationAddressPage.addAnotherAddress.field.editLocationLink);
+  I.click(locationAddressPage.postcode.manualEntryLink);
+  locationAddressPage.fillFormAndSubmit(locationAddressPage.manualEntry.field.addressManual, locationAddressPage.manualEntry.content.address);
+  I.click(locationAddressPage.category.field.smallBoreRifles);
+  I.submitForm();
+  I.see(locationAddressPage.manualEntry.content.address, locationAddressPage.addAnotherAddress.field.summary);
+});
+
+Scenario('add another address page: When I click edit categories, I can choose different categories', (
+  I,
+  locationAddressPage
+) => {
+  locationAddressPage.selectAddressCategoryAndSubmit();
+  I.click(locationAddressPage.addAnotherAddress.field.editCategoriesLink);
+  I.click(locationAddressPage.category.field.fullBoreRifles);
+  I.click(locationAddressPage.category.field.smallBoreRifles);
+  I.submitForm();
+  I.see(locationAddressPage.category.content.smallBoreRifles, locationAddressPage.addAnotherAddress.field.summary);
+  I.dontSee(locationAddressPage.category.content.fullBoreRifles, locationAddressPage.addAnotherAddress.field.summary);
 });
