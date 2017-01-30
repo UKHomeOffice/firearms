@@ -5,7 +5,7 @@ const AddressController = require('./base');
 module.exports = class AddressSelectController extends AddressController {
 
   configure(req, res, callback) {
-    const addresses = req.sessionModel.get(`${req.form.options.prefix}-addresses`);
+    const addresses = req.sessionModel.get(`${req.form.options.prefix}-address-list`);
     const list = addresses.map(add => ({value: add, label: add}));
 
     const defaults = {

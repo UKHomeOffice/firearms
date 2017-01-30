@@ -60,7 +60,7 @@
   "location-address-manual": {
     "label": "Address"
   },
-  "location-add-another-address": {
+  "location-addresses-add-another": {
     "options": {
       "yes": {
         "label": "Yes"
