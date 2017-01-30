@@ -23,7 +23,7 @@
     "header": "Placeholder pending address lookup refactor"
   },
   "confirmation": {
-    "next": "We will review your application. We’ll instruct the local police force to make enquiries on behalf of the Secretary of State about matters related to this application. In this case, you should hear from the police within the next X weeks. If insufficient information has been provided for the Home Office to assess this application, we will be in touch with you within the next X days/weeks.",
+    "next": "We will review your application. If more information is required, we shall email the contact address provided. Otherwise, you shall hear from us next when a decision regarding this application has been made.",
     "feedback": "<a href='https://eforms.homeoffice.gov.uk/outreach/feedback.ofml?FormName=Firearms-licencing-S5'>What did you think of this service?</a>  (takes 30 seconds)"
   }
 }

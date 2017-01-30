@@ -61,6 +61,9 @@ module.exports = {
       fieldsConfig: require('./fields'),
       next: '/confirmation'
     },
-    '/confirmation': {}
+    '/confirmation': {
+      clearSession: true,
+      backLink: false
+    }
   }
 };
