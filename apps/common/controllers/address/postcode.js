@@ -20,7 +20,7 @@ module.exports = class PostcodeController extends AddressController {
     req.form.options.forks.push({
       target: req.form.options.select,
       condition(r) {
-        const addresses = r.sessionModel.get(`${r.form.options.prefix}-addresses`);
+        const addresses = r.sessionModel.get(`${r.form.options.prefix}-address-list`);
         return addresses && addresses.length;
       }
     });
@@ -45,7 +45,7 @@ module.exports = class PostcodeController extends AddressController {
 
     if (_.startsWith(postcode, 'BT')) {
       req.sessionModel.unset('postcodeApiMeta');
-      req.sessionModel.unset(`${req.form.options.prefix}-addresses`);
+      req.sessionModel.unset(`${req.form.options.prefix}-address-list`);
       return callback();
     }
 
@@ -54,9 +54,9 @@ module.exports = class PostcodeController extends AddressController {
       .then(data => {
         if (data.length) {
           const mapper = req.form.options.formatAddress || (a => a);
-          req.sessionModel.set(`${req.form.options.prefix}-addresses`, data.map(mapper));
+          req.sessionModel.set(`${req.form.options.prefix}-address-list`, data.map(mapper));
         } else {
-          req.sessionModel.unset(`${req.form.options.prefix}-addresses`);
+          req.sessionModel.unset(`${req.form.options.prefix}-address-list`);
           req.sessionModel.set('postcodeApiMeta', {
             messageKey: 'not-found'
           });
