@@ -16,7 +16,6 @@
     "watch:app": "NODE_ENV=development nodemon -x 'npm run hof-transpile && npm start' --ignore 'apps/**/translations/en/'",
     "watch:scss": "nodemon -e scss -x 'npm run sass'",
     "watch:js": "nodemon --watch assets/js -e js -x 'npm run browserify'",
-    "watch:translations": "nodemon --watch apps/**/translations/src -x 'npm run hof-transpile'",
     "test": "NODE_ENV=test npm run lint && istanbul cover _mocha",
     "test:ci": "npm run test",
     "test:acceptance": "funkie so-acceptance --steps",
