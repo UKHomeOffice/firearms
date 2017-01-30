@@ -21,7 +21,7 @@
   "club-postcode": {
     "label": "Postcode"
   },
-  "club-address-lookup": {
+  "club-address-select": {
     "label": "Select the address"
   },
   "club-address-manual": {
@@ -30,7 +30,7 @@
   "club-secretary-postcode": {
     "label": "Postcode"
   },
-  "club-secretary-address-lookup": {
+  "club-secretary-address-select": {
     "label": "Select the address"
   },
   "club-secretary-address-manual": {
@@ -45,7 +45,7 @@
   "second-contact-postcode": {
     "label": "Postcode"
   },
-  "second-contact-address-lookup": {
+  "second-contact-address-select": {
     "label": "Select the address"
   },
   "second-contact-address-manual": {
@@ -84,23 +84,10 @@
       }
     }
   },
-  "storage-postcode": {
-    "label": "Postcode"
+  "storage-address-range": {
+    "legend": "Shooting ranges"
   },
-  "storage-address-lookup": {
-    "label": "Select the address"
-  },
-  "storage-address-manual": {
-    "label": "Address"
-  },
-  "storage-add-another-address": {
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
+  "storage-address-secretary": {
+    "legend": "Club secretary's contact address"
   }
 }

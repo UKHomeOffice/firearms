@@ -34,97 +34,67 @@ module.exports = {
       fields: [
         'club-name'
       ],
-      next: '/club-postcode'
-    },
-    '/club-postcode': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'club-postcode'
-      ],
-      next: '/club-address',
-      forks: [{
-        target: '/club-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('club-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        field: 'club'
-      }
+      next: '/club-address'
     },
     '/club-address': {
-      template: 'address.html',
-      controller: require('../common/controllers/address'),
-      fields: [
-        'club-address-manual'
-      ],
-      next: '/club-secretary-name',
-      prereqs: ['/club-postcode', '/club-name'],
-      backLink: 'club-postcode',
-      locals: {
-        field: 'club'
-      }
+      template: 'postcode.html',
+      controller: require('../common/controllers/address/postcode'),
+      prefix: 'club',
+      manual: '/club-address-manual',
+      select: '/club-address-select',
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
     },
-    '/club-address-lookup': {
+    '/club-address-select': {
       template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'club-address-lookup'
-      ],
+      controller: require('../common/controllers/address/select'),
+      prefix: 'club',
+      manual: '/club-address-manual',
       next: '/club-secretary-name',
-      locals: {
-        field: 'club'
-      }
+      fieldSettings: {
+        className: 'address'
+      },
+      prereqs: ['/club-address'],
+      backLink: 'club-address'
+    },
+    '/club-address-manual': {
+      template: 'address.html',
+      controller: require('../common/controllers/address/manual'),
+      prefix: 'club',
+      next: '/club-secretary-name',
+      backLink: 'club-address'
     },
     '/club-secretary-name': {
       fields: [
         'club-secretary-name'
       ],
-      next: '/club-secretary-postcode'
-    },
-    '/club-secretary-postcode': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'club-secretary-postcode'
-      ],
-      next: '/club-secretary-address',
-      forks: [{
-        target: '/club-secretary-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('club-secretary-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        field: 'club-secretary'
-      }
+      next: '/club-secretary-address'
     },
     '/club-secretary-address': {
-      template: 'address.html',
-      controller: require('../common/controllers/address'),
-      fields: [
-        'club-secretary-address-manual'
-      ],
-      next: '/club-secretary-email',
-      prereqs: ['/club-secretary-postcode', '/club-secretary-name'],
-      backLink: 'club-secretary-postcode',
-      locals: {
-        field: 'club-secretary'
-      }
+      template: 'postcode.html',
+      controller: require('../common/controllers/address/postcode'),
+      prefix: 'club-secretary',
+      manual: '/club-secretary-address-manual',
+      select: '/club-secretary-address-select',
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
     },
-    '/club-secretary-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'club-secretary-address-lookup'
-      ],
+    '/club-secretary-address-manual': {
+      template: 'address.html',
+      controller: require('../common/controllers/address/manual'),
+      prefix: 'club-secretary',
       next: '/club-secretary-email',
-      locals: {
-        field: 'club-secretary'
-      }
+      backLink: 'club-secretary-address'
+    },
+    '/club-secretary-address-select': {
+      template: 'address-lookup.html',
+      controller: require('../common/controllers/address/select'),
+      prefix: 'club-secretary',
+      manual: '/club-secretary-address-manual',
+      next: '/club-secretary-email',
+      fieldSettings: {
+        className: 'address'
+      },
+      prereqs: ['/club-secretary-address'],
+      backLink: 'club-secretary-address'
     },
     '/club-secretary-email': {
       fields: [
@@ -137,49 +107,34 @@ module.exports = {
       fields: [
         'second-contact-name'
       ],
-      next: '/second-contact-postcode'
-    },
-    '/second-contact-postcode': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'second-contact-postcode'
-      ],
-      next: '/second-contact-address',
-      forks: [{
-        target: '/second-contact-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('second-contact-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        field: 'second-contact'
-      }
+      next: '/second-contact-address'
     },
     '/second-contact-address': {
-      template: 'address.html',
-      controller: require('../common/controllers/address'),
-      fields: [
-        'second-contact-address-manual'
-      ],
-      next: '/second-contact-email',
-      prereqs: ['/second-contact-postcode', '/second-contact-name'],
-      backLink: 'second-contact-postcode',
-      locals: {
-        field: 'second-contact'
-      }
+      template: 'postcode.html',
+      controller: require('../common/controllers/address/postcode'),
+      prefix: 'second-contact',
+      manual: '/second-contact-address-manual',
+      select: '/second-contact-address-select',
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
     },
-    '/second-contact-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'second-contact-address-lookup'
-      ],
+    '/second-contact-address-manual': {
+      template: 'address.html',
+      controller: require('../common/controllers/address/manual'),
+      prefix: 'second-contact',
       next: '/second-contact-email',
-      locals: {
-        field: 'second-contact'
-      }
+      backLink: 'second-contact-address'
+    },
+    '/second-contact-address-select': {
+      template: 'address-lookup.html',
+      controller: require('../common/controllers/address/select'),
+      prefix: 'second-contact',
+      manual: '/second-contact-address-manual',
+      next: '/second-contact-email',
+      fieldSettings: {
+        className: 'address'
+      },
+      prereqs: ['/second-contact-address'],
+      backLink: 'second-contact-address'
     },
     '/second-contact-email': {
       fields: [
