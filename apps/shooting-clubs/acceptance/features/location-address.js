@@ -227,15 +227,15 @@ Scenario('add-another-address page step: I select yes I am taken to the location
   I.seeInCurrentUrl(locationAddressPage.url);
 });
 
-Scenario('add another address page: When I select No I am taken to the storage address list page', (
+Scenario('add another address page: When I select No I am taken to the confirm page', (
   I,
   locationAddressPage,
-  shootingClubStorageAddressListPage
+  confirmPage
 ) => {
   locationAddressPage.selectAddressCategoryAndSubmit();
   I.click(locationAddressPage.addAnotherAddress.field.no);
   I.submitForm();
-  I.seeInCurrentUrl(shootingClubStorageAddressListPage.url);
+  I.seeInCurrentUrl(confirmPage.url);
 });
 
 Scenario('add another address page: When I click Remove, I am taken back to the location-postcode page', (
