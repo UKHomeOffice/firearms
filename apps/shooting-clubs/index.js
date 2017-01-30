@@ -239,12 +239,12 @@ module.exports = {
       addressKey: 'locationAddresses',
       controller: require('./controllers/location-address-category'),
       fields: [
-       'location-address-category'
+        'location-address-category'
       ],
       continueOnEdit: true,
       next: '/location-add-another-address',
       locals: {
-       field: 'location'
+        field: 'location'
       }
     },
     '/location-add-another-address': {
@@ -255,7 +255,7 @@ module.exports = {
         'location-add-another-address'
       ],
       prereqs: ['/second-contact-email'],
-      next: '/storage-address-list',
+      next: '/confirm',
       forks: [{
         target: '/location-postcode',
         condition: {
@@ -267,10 +267,9 @@ module.exports = {
         field: 'location'
       }
     },
-    '/storage-address-list': {
-      next: '/confirm'
-    },
     '/confirm': {
+      controller: controllers.confirm,
+      next: '/confirmation'
     },
     '/confirmation': {
     }
