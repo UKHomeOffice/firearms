@@ -49,13 +49,17 @@ module.exports = class LoopController extends BaseController {
         return callback(err);
       }
       if (!added) {
-        aggregate.push(_.pick(req.sessionModel.toJSON(), req.form.options.aggregateFields));
+        aggregate.push(this.getLoopFields(req, res));
         req.sessionModel.set(req.form.options.aggregateTo, aggregate);
         values[req.form.options.aggregateTo] = aggregate;
         req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, true);
       }
       callback(null, values);
     });
+  }
+
+  getLoopFields(req, res) {
+    return _.pick(req.sessionModel.toJSON(), req.form.options.aggregateFields);
   }
 
   saveValues(req, res, callback) {
