@@ -1,0 +1,29 @@
+{
+  "name": {
+    "summary": "Museum details",
+    "header": "What is the museum's name?"
+  },
+  "address-loop": {
+    "header": "Placeholder pending address lookup refactor"
+  },
+  "contact-name": {
+    "header": "Who should we contact about this application?"
+  },
+  "contact-details": {
+    "summary": "Contact details",
+    "header": "What are their contact details?"
+  },
+  "contact-address": {
+    "header": "Is the contact address the same as an address previously given?"
+  },
+  "contact-address-postcode": {
+    "header": "Placeholder pending address lookup refactor"
+  },
+  "contact-address-select": {
+    "header": "Placeholder pending address lookup refactor"
+  },
+  "confirmation": {
+    "next": "We will review your application. If more information is required, we shall email the contact address provided. Otherwise, you shall hear from us next when a decision regarding this application has been made.",
+    "feedback": "<a href='https://eforms.homeoffice.gov.uk/outreach/feedback.ofml?FormName=Firearms-licencing-S5'>What did you think of this service?</a>  (takes 30 seconds)"
+  }
+}
