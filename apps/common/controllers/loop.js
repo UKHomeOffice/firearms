@@ -25,6 +25,7 @@ module.exports = class LoopController extends BaseController {
     if (req.params.action === 'delete' && req.params.id) {
       var router = express.Router({mergeParams: true});
       router.use([
+        // eslint-disable-next-line no-underscore-dangle
         this._configure.bind(this),
         this.removeItem.bind(this),
         this.reload.bind(this)
@@ -41,6 +42,7 @@ module.exports = class LoopController extends BaseController {
     callback();
   }
 
+  // eslint-disable-next-line no-unused-vars
   reload(req, res, callback) {
     const items = req.sessionModel.get(req.form.options.aggregateTo);
     if (!items.length) {
@@ -93,6 +95,7 @@ module.exports = class LoopController extends BaseController {
     });
   }
 
+  // eslint-disable-next-line no-unused-vars
   getLoopFields(req, res) {
     return _.pick(req.sessionModel.toJSON(), req.form.options.aggregateFields);
   }
