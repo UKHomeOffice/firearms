@@ -13,9 +13,10 @@ module.exports = class LocationAddressLoopController extends LoopController {
     const locals = super.locals(req, res);
     const items = locals.items.map((address) => {
       return {
+        id: address.id,
         address: address.address,
         categories: this.translateCategories(req, address['address-category'])
-      }
+      };
     });
     return Object.assign({}, locals, {
       items: items,

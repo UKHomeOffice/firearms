@@ -1,6 +1,9 @@
 'use strict';
 
 const _ = require('lodash');
+const uuid = require('uuid/v1');
+const path = require('path');
+const express = require('express');
 const BaseController = require('./base');
 
 module.exports = class LoopController extends BaseController {
@@ -16,6 +19,37 @@ module.exports = class LoopController extends BaseController {
       throw new Error('options.aggregateField is required for loops');
     }
     super(options);
+  }
+
+  get(req, res, callback) {
+    if (req.params.action === 'delete' && req.params.id) {
+      var router = express.Router({mergeParams: true});
+      router.use([
+        this._configure.bind(this),
+        this.removeItem.bind(this),
+        this.reload.bind(this)
+      ]);
+      return router.handle(req, res, callback);
+    }
+    super.get(req, res, callback);
+  }
+
+  removeItem(req, res, callback) {
+    const id = req.params.id;
+    const items = req.sessionModel.get(req.form.options.aggregateTo).filter(item => item.id !== id);
+    req.sessionModel.set(req.form.options.aggregateTo, items);
+    callback();
+  }
+
+  reload(req, res, callback) {
+    const items = req.sessionModel.get(req.form.options.aggregateTo);
+    if (!items.length) {
+      req.form.options.aggregateFields.forEach((field) => {
+        req.sessionModel.unset(field);
+      });
+    }
+    const target = items.length ? req.form.options.route : req.form.options.returnTo;
+    res.redirect(path.join(req.baseUrl, target));
   }
 
   configure(req, res, callback) {
@@ -49,7 +83,7 @@ module.exports = class LoopController extends BaseController {
         return callback(err);
       }
       if (!added) {
-        aggregate.push(this.getLoopFields(req, res));
+        aggregate.push(Object.assign({id: uuid()}, this.getLoopFields(req, res)));
         req.sessionModel.set(req.form.options.aggregateTo, aggregate);
         values[req.form.options.aggregateTo] = aggregate;
         req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, true);
@@ -77,8 +111,8 @@ module.exports = class LoopController extends BaseController {
       const field = `${req.form.options.aggregateTo}-add-another`;
       if (req.form.values[field] === 'yes') {
         req.sessionModel.unset(field);
-        req.form.options.aggregateFields.forEach((field) => {
-          req.sessionModel.unset(field);
+        req.form.options.aggregateFields.forEach((f) => {
+          req.sessionModel.unset(f);
         });
         req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, false);
       }

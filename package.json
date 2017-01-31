@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "browserify": "^12.0.1",
+    "express": "^4.14.1",
     "hof-bootstrap": "^9.0.1",
     "hof-controllers": "^6.0.1",
     "hof-frontend-toolkit": "^1.0.0",
@@ -39,7 +40,8 @@
     "jquery": "^2.1.4",
     "lodash": "^4.17.4",
     "node-sass": "^3.7.0",
-    "typeahead-aria": "^1.0.4"
+    "typeahead-aria": "^1.0.4",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "chai": "^3.0.0",
