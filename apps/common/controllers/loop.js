@@ -62,13 +62,24 @@ module.exports = class LoopController extends BaseController {
     return _.pick(req.sessionModel.toJSON(), req.form.options.aggregateFields);
   }
 
+  locals(req, res) {
+    const items = req.sessionModel.get(req.form.options.aggregateTo);
+    return Object.assign({}, super.locals(req, res), {
+      items,
+      hasItems: items.length > 0,
+      field: req.form.options.aggregateTo
+    });
+  }
+
   saveValues(req, res, callback) {
     // remove "yes" value from session so it is no pre-populated next time around
     super.saveValues(req, res, (err) => {
       const field = `${req.form.options.aggregateTo}-add-another`;
       if (req.form.values[field] === 'yes') {
         req.sessionModel.unset(field);
-        req.sessionModel.unset(req.form.options.aggregateFields);
+        req.form.options.aggregateFields.forEach((field) => {
+          req.sessionModel.unset(field);
+        });
         req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, false);
       }
       callback(err);
