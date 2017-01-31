@@ -69,20 +69,14 @@ module.exports = {
     },
     '/contact-address': {
       fields: ['same-contact-address'],
-      next: '/contact-address-select',
+      next: '/confirm',
       forks: [{
-        target: '/contact-address-postcode',
+        target: '/confirm',
         condition: {
           field: 'same-contact-address',
           value: 'no'
         }
       }]
-    },
-    '/contact-address-postcode': {
-      next: '/contact-address-select'
-    },
-    '/contact-address-select': {
-      next: '/confirm'
     },
     '/confirm': {
       template: 'confirm',
