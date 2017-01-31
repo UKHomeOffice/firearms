@@ -140,7 +140,7 @@ module.exports = {
     '/location-add-another-address': {
       addressKey: 'locationAddresses',
       template: 'add-another-address-loop.html',
-      controller: require('../common/controllers/loop'),
+      controller: require('./controllers/location-address-loop'),
       next: '/storage-address',
       returnTo: '/location-address',
       aggregateTo: 'location-addresses',

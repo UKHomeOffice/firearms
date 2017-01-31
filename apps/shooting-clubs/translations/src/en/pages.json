@@ -81,5 +81,19 @@
   },
   "location-add-another-address": {
     "header": "Will the club use another shooting range?"
+  },
+  "storage-address": {
+    "header": "At which of these addresses, if any, will the firearms be stored?"
+  },
+  "location-addresses": {
+    "header": "Shooting location(s)",
+    "table": {
+      "location": "Location",
+      "categories": "Categories of firearms"
+    },
+    "edit": {
+      "location": "edit location",
+      "categories": "edit categories"
+    }
   }
 }
