@@ -68,12 +68,9 @@
   "storage-add-another-address": {
     "header": "Is there another address where the guns will be stored?"
   },
-  "location-postcode": {
+  "location-address": {
     "header": "Which shooting ranges will the club use?",
     "intro": "You can add further addresses later, if required."
-  },
-  "location-address": {
-    "header": "What is the address of the shooting club?"
   },
   "location-address-category": {
     "header": "Which categories of firearms will be used at this range?",
@@ -83,7 +80,8 @@
     "header": "Will the club use another shooting range?"
   },
   "storage-address": {
-    "header": "At which of these addresses, if any, will the firearms be stored?"
+    "header": "At which of these addresses, if any, will the firearms be stored?",
+    "intro": "Select all that apply, or leave blank if relevant. The police will inspect each address used for storage."
   },
   "location-addresses": {
     "header": "Shooting location(s)",

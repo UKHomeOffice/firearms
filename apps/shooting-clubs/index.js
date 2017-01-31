@@ -154,6 +154,14 @@ module.exports = {
         }
       }
     },
+    '/storage-address': {
+      controller: require('./controllers/storage-address'),
+      fields: [
+        'storage-address-range',
+        'storage-address-secretary'
+      ],
+      next: '/confirm'
+    },
     '/confirm': {
       controller: controllers.confirm,
       next: '/confirmation'
