@@ -8,14 +8,14 @@ module.exports = {
     I = require('so-acceptance/steps')();
   },
 
-  url: 'second-contact-postcode',
-  'address-url': 'second-contact-address',
-  'address-lookup-url': 'second-contact-address-lookup',
+  url: 'second-contact-address',
+  'address-url': 'second-contact-address-manual',
+  'address-lookup-url': 'second-contact-address-select',
 
   fields: {
     postcode: '#second-contact-postcode',
-    'address-manual': '#second-contact-address-manual',
-    'address-lookup': '#second-contact-address-lookup'
+    'address-manual': '#second-contact-address',
+    'address-lookup': '#second-contact-address'
   },
 
   links: {

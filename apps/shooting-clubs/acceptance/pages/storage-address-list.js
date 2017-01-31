@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  url: 'storage-address-list'
+  url: 'storage-address'
 };
