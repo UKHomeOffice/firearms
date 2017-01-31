@@ -1,15 +1,20 @@
-{{#hasItems}}
+{{#hasAddresses}}
   <div id="address-summary">
     <h2>{{#t}}pages.{{field}}.header{{/t}}</h2>
     <table class="table-address-loop">
-      <tbody>
-        {{#items}}
-        <tr class="address-summary">
-          <td>{{address}}</td>
-          <td><a href="{{baseUrl}}/{{route}}/delete/{{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a></td>
-        </tr>
-        {{/items}}
-      </tbody>
+      {{#hasCategories}}
+        {{> partials-location-categories}}
+      {{/hasCategories}}
+      {{^hasCategories}}
+        <tbody>
+          {{#items}}
+          <tr class="address-summary">
+            <td>{{address}}</td>
+            <td><a href="{{baseUrl}}/{{route}}/delete/{{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a></td>
+          </tr>
+          {{/items}}
+        </tbody>
+      {{/hasCategories}}
     </table>
   </div>
-{{/hasItems}}
+{{/hasAddresses}}
