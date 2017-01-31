@@ -132,36 +132,12 @@ module.exports = {
       'muzzle-loading-pistols'
     ]
   },
-  'storage-postcode': {
-    mixin: 'input-text-code',
-    validate: ['required', 'postcode'],
-    formatter: 'uppercase',
-    includeInSummary: false
+  'storage-address-range': {
+    mixin: 'checkbox-group',
+    options: []
   },
-  'storage-address-lookup': {
-    className: 'address',
-    validate: 'required',
-    includeInSummary: false
-  },
-  'storage-address-manual': {
-    mixin: 'textarea',
-    validate: 'required',
-    'ignore-defaults': true,
-    formatter: ['trim', 'hyphens'],
-    attributes: [{
-      attribute: 'rows',
-      value: 5
-    }]
-  },
-  'storage-add-another-address': {
-    mixin: 'radio-group',
-    legend: {
-      className: 'visuallyhidden'
-    },
-    validate: 'required',
-    options: [
-      'yes',
-      'no'
-    ]
+  'storage-address-secretary': {
+    mixin: 'checkbox-group',
+    options: []
   }
 };

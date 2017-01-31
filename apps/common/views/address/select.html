@@ -1,0 +1,19 @@
+{{<partials-page}}
+  {{$page-content}}
+    <label>
+      {{#t}}fields.{{options.prefix}}-postcode.label{{/t}}
+    </label>
+    <p>
+      <span class="postcode">{{postcode}}</span>
+      <span class="link"><a href="{{baseUrl}}/{{backLink}}">{{#t}}pages.address.edit{{/t}}</a></span>
+    </p>
+
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+
+    <p><span class="link"><a id="cant-find" href="{{baseUrl}}{{manual-entry}}">{{#t}}pages.address.cantfind{{/t}}</a></span></p>
+
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

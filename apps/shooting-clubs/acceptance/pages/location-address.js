@@ -8,7 +8,7 @@ module.exports = {
     I = require('so-acceptance/steps')();
   },
 
-  url: 'location-postcode',
+  url: 'location-address',
   postcode: {
     field: {
       postcode:'#location-postcode',
@@ -23,10 +23,10 @@ module.exports = {
   },
 
   manualEntry: {
-    url: 'location-address',
+    url: 'location-address-manual',
     field: {
-      addressManual: '#location-address-manual',
-      addressManualGroup: '#location-address-manual-group'
+      addressManual: '#location-address',
+      addressManualGroup: '#location-address-group'
     },
     content: {
       address: '7 Ramsey Street, London, SE1 5lp'
@@ -34,11 +34,11 @@ module.exports = {
   },
 
   addressLookUp: {
-    url: 'location-address-lookup/',
+    url: 'location-address-select',
     cantFindLink: '#cant-find',
     field: {
-      addressLookUp: '#location-address-lookup',
-      addressLookUpGroup: '#location-address-lookup-group'
+      addressLookUp: '#location-address',
+      addressLookUpGroup: '#location-address-group'
     },
     content: {
       address: '49 Sydenham Road, Croydon, CR0 2EU'
@@ -48,8 +48,8 @@ module.exports = {
   addAnotherAddress: {
     url: 'location-add-another-address',
     field: {
-      yes: '#location-add-another-address-yes',
-      no: '#location-add-another-address-no',
+      yes: '#location-addresses-add-another-yes',
+      no: '#location-addresses-add-another-no',
       summary: '.address-summary',
       delete: 'Remove',
       editLocationLink: 'a[href$="/shooting-clubs/location-postcode/edit/0"]',
@@ -98,8 +98,6 @@ module.exports = {
     I.submitForm();
     I.click(this.postcode.manualEntryLink);
     this.fillFormAndSubmit(this.manualEntry.field.addressManual, this.manualEntry.content.address);
-    // this is to untick the fullbore Rifles as it was ticked the first time
-    I.click(this.category.field.fullBoreRifles);
     I.click(this.category.field.smallBoreRifles);
     I.submitForm();
   }

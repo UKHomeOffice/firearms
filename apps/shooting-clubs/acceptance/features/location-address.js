@@ -227,15 +227,15 @@ Scenario('add-another-address page step: I select yes I am taken to the location
   I.seeInCurrentUrl(locationAddressPage.url);
 });
 
-Scenario('add another address page: When I select No I am taken to the confirm page', (
+Scenario('add another address page: When I select No I am taken to the storage address page', (
   I,
   locationAddressPage,
-  confirmPage
+  clubsStorageAddressPage
 ) => {
   locationAddressPage.selectAddressCategoryAndSubmit();
   I.click(locationAddressPage.addAnotherAddress.field.no);
   I.submitForm();
-  I.seeInCurrentUrl(confirmPage.url);
+  I.seeInCurrentUrl(clubsStorageAddressPage.url);
 });
 
 Scenario('add another address page: When I click Remove, I am taken back to the location-postcode page', (
@@ -254,7 +254,7 @@ Scenario('add another address page: When I click Remove, the address is removed 
   locationAddressPage.addMultipleAddresses();
   I.click(locationAddressPage.addAnotherAddress.field.delete);
   I.dontSee(locationAddressPage.addAnotherAddress.content.address, locationAddressPage.addAnotherAddress.field.summary);
-  I.dontSee(locationAddressPage.category.content.fullBoreRifles, locationAddressPage.addAnotherAddress.field.summary)
+  I.dontSee(locationAddressPage.category.content.fullBoreRifles, locationAddressPage.addAnotherAddress.field.summary);
 });
 
 Scenario('add another address page: When I add two addresses I can see both addresses on the add-another-address step', (
@@ -266,30 +266,4 @@ Scenario('add another address page: When I add two addresses I can see both addr
     locationAddressPage.addAnotherAddress.content.address,
     locationAddressPage.manualEntry.content.address
   ])
-});
-
-Scenario('add another address page: When I click edit location, I can enter a new location', (
-  I,
-  locationAddressPage
-) => {
-  locationAddressPage.selectAddressCategoryAndSubmit();
-  I.click(locationAddressPage.addAnotherAddress.field.editLocationLink);
-  I.click(locationAddressPage.postcode.manualEntryLink);
-  locationAddressPage.fillFormAndSubmit(locationAddressPage.manualEntry.field.addressManual, locationAddressPage.manualEntry.content.address);
-  I.click(locationAddressPage.category.field.smallBoreRifles);
-  I.submitForm();
-  I.see(locationAddressPage.manualEntry.content.address, locationAddressPage.addAnotherAddress.field.summary);
-});
-
-Scenario('add another address page: When I click edit categories, I can choose different categories', (
-  I,
-  locationAddressPage
-) => {
-  locationAddressPage.selectAddressCategoryAndSubmit();
-  I.click(locationAddressPage.addAnotherAddress.field.editCategoriesLink);
-  I.click(locationAddressPage.category.field.fullBoreRifles);
-  I.click(locationAddressPage.category.field.smallBoreRifles);
-  I.submitForm();
-  I.see(locationAddressPage.category.content.smallBoreRifles, locationAddressPage.addAnotherAddress.field.summary);
-  I.dontSee(locationAddressPage.category.content.fullBoreRifles, locationAddressPage.addAnotherAddress.field.summary);
 });

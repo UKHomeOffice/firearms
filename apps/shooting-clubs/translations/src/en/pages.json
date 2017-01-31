@@ -18,32 +18,32 @@
   "club-postcode": {
     "header": "What is the club's address?"
   },
-  "club-address-lookup": {
+  "club-address-select": {
     "header": "Select the club's address"
   },
-  "club-address": {
+  "club-address-manual": {
     "header": "What is the club's address?"
   },
-  "club-secretary-postcode": {
+  "club-secretary-address": {
     "header": "What is the club secretary's contact address?",
     "intro": "This is where the shooting club approval will be sent"
   },
-  "club-secretary-address-lookup": {
+  "club-secretary-address-select": {
     "header": "Select the club secretary's contact address"
   },
-  "club-secretary-address": {
+  "club-secretary-address-manual": {
     "header": "What is the club secretary's contact address?"
   },
   "club-secretary-email": {
     "header": "What are the club secretary's contact details?"
   },
-  "second-contact-postcode": {
+  "second-contact-address": {
     "header": "What is the second person's contact address?"
   },
-  "second-contact-address-lookup": {
+  "second-contact-address-select": {
     "header": "Select the second person's contact address"
   },
-  "second-contact-address": {
+  "second-contact-address-manual": {
     "header": "What is the second person's contact address?"
   },
   "location-postcode": {
@@ -68,12 +68,9 @@
   "storage-add-another-address": {
     "header": "Is there another address where the guns will be stored?"
   },
-  "location-postcode": {
+  "location-address": {
     "header": "Which shooting ranges will the club use?",
     "intro": "You can add further addresses later, if required."
-  },
-  "location-address": {
-    "header": "What is the address of the shooting club?"
   },
   "location-address-category": {
     "header": "Which categories of firearms will be used at this range?",
@@ -81,5 +78,20 @@
   },
   "location-add-another-address": {
     "header": "Will the club use another shooting range?"
+  },
+  "storage-address": {
+    "header": "At which of these addresses, if any, will the firearms be stored?",
+    "intro": "Select all that apply, or leave blank if relevant. The police will inspect each address used for storage."
+  },
+  "location-addresses": {
+    "header": "Shooting location(s)",
+    "table": {
+      "location": "Location",
+      "categories": "Categories of firearms"
+    },
+    "edit": {
+      "location": "edit location",
+      "categories": "edit categories"
+    }
   }
 }

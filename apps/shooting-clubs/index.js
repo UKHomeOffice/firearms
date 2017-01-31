@@ -2,6 +2,37 @@
 
 const controllers = require('hof-controllers');
 
+const AddressLookup = require('../common/controllers/address/helper');
+
+const clubAddressLookup = AddressLookup({
+  prefix: 'club',
+  start: '/club-address',
+  select: '/club-address-select',
+  manual: '/club-address-manual',
+  next: '/club-secretary-name'
+});
+const clubSecretaryAddressLookup = AddressLookup({
+  prefix: 'club-secretary',
+  start: '/club-secretary-address',
+  select: '/club-secretary-address-select',
+  manual: '/club-secretary-address-manual',
+  next: '/club-secretary-email'
+});
+const secondContactAddressLookup = AddressLookup({
+  prefix: 'second-contact',
+  start: '/second-contact-address',
+  select: '/second-contact-address-select',
+  manual: '/second-contact-address-manual',
+  next: '/second-contact-email'
+});
+const locationAddressLookup = AddressLookup({
+  prefix: 'location',
+  start: '/location-address',
+  select: '/location-address-select',
+  manual: '/location-address-manual',
+  next: '/location-address-category'
+});
+
 module.exports = {
   name: 'shooting-clubs',
   baseUrl: '/shooting-clubs',
@@ -34,98 +65,35 @@ module.exports = {
       fields: [
         'club-name'
       ],
-      next: '/club-postcode'
-    },
-    '/club-postcode': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'club-postcode'
-      ],
       next: '/club-address',
-      forks: [{
-        target: '/club-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('club-addresses');
-          return addresses && addresses.length;
-        }
-      }],
       locals: {
-        field: 'club'
+        section: 'club'
       }
     },
-    '/club-address': {
-      template: 'address.html',
-      controller: require('../common/controllers/address'),
-      fields: [
-        'club-address-manual'
-      ],
-      next: '/club-secretary-name',
-      prereqs: ['/club-postcode', '/club-name'],
-      backLink: 'club-postcode',
-      locals: {
-        field: 'club'
+    '/club-address': Object.assign(clubAddressLookup.start, {
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+    }),
+    '/club-address-select': Object.assign(clubAddressLookup.select, {
+      fieldSettings: {
+        className: 'address'
       }
-    },
-    '/club-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'club-address-lookup'
-      ],
-      next: '/club-secretary-name',
-      locals: {
-        field: 'club'
-      }
-    },
+    }),
+    '/club-address-manual': clubAddressLookup.manual,
     '/club-secretary-name': {
       fields: [
         'club-secretary-name'
       ],
-      next: '/club-secretary-postcode'
+      next: '/club-secretary-address'
     },
-    '/club-secretary-postcode': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'club-secretary-postcode'
-      ],
-      next: '/club-secretary-address',
-      forks: [{
-        target: '/club-secretary-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('club-secretary-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        field: 'club-secretary'
+    '/club-secretary-address': Object.assign(clubSecretaryAddressLookup.start, {
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+    }),
+    '/club-secretary-address-select': Object.assign(clubSecretaryAddressLookup.select, {
+      fieldSettings: {
+        className: 'address'
       }
-    },
-    '/club-secretary-address': {
-      template: 'address.html',
-      controller: require('../common/controllers/address'),
-      fields: [
-        'club-secretary-address-manual'
-      ],
-      next: '/club-secretary-email',
-      prereqs: ['/club-secretary-postcode', '/club-secretary-name'],
-      backLink: 'club-secretary-postcode',
-      locals: {
-        field: 'club-secretary'
-      }
-    },
-    '/club-secretary-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'club-secretary-address-lookup'
-      ],
-      next: '/club-secretary-email',
-      locals: {
-        field: 'club-secretary'
-      }
-    },
+    }),
+    '/club-secretary-address-manual': clubSecretaryAddressLookup.manual,
     '/club-secretary-email': {
       fields: [
         'club-secretary-email',
@@ -137,138 +105,69 @@ module.exports = {
       fields: [
         'second-contact-name'
       ],
-      next: '/second-contact-postcode'
+      next: '/second-contact-address'
     },
-    '/second-contact-postcode': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'second-contact-postcode'
-      ],
-      next: '/second-contact-address',
-      forks: [{
-        target: '/second-contact-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('second-contact-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        field: 'second-contact'
+    '/second-contact-address': Object.assign(secondContactAddressLookup.start, {
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+    }),
+    '/second-contact-address-select': Object.assign(secondContactAddressLookup.select, {
+      fieldSettings: {
+        className: 'address'
       }
-    },
-    '/second-contact-address': {
-      template: 'address.html',
-      controller: require('../common/controllers/address'),
-      fields: [
-        'second-contact-address-manual'
-      ],
-      next: '/second-contact-email',
-      prereqs: ['/second-contact-postcode', '/second-contact-name'],
-      backLink: 'second-contact-postcode',
-      locals: {
-        field: 'second-contact'
-      }
-    },
-    '/second-contact-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'second-contact-address-lookup'
-      ],
-      next: '/second-contact-email',
-      locals: {
-        field: 'second-contact'
-      }
-    },
+    }),
+    '/second-contact-address-manual': secondContactAddressLookup.manual,
     '/second-contact-email': {
       fields: [
         'second-contact-email',
         'second-contact-phone'
       ],
-      next: '/location-postcode'
+      next: '/location-address'
     },
-    '/location-postcode': {
-      addressKey: 'locationAddresses',
-      template: 'postcode-loop.html',
-      controller: require('../common/controllers/postcode-loop'),
-      fields: [
-        'location-postcode'
-      ],
-      next: '/location-address',
-      backlink: 'second-contact-email',
-      forks: [{
-        target: '/location-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('location-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        field: 'location'
+    '/location-address': Object.assign(locationAddressLookup.start, {
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+    }),
+    '/location-address-select': Object.assign(locationAddressLookup.select, {
+      fieldSettings: {
+        className: 'address'
       }
-    },
-    '/location-address': {
-      addressKey: 'locationAddresses',
-      template: 'address-loop.html',
-      controller: require('../common/controllers/address-loop'),
-      fields: [
-        'location-address-manual'
-      ],
-      next: '/location-address-category',
-      prereqs: ['/location-postcode', '/second-contact-email'],
-      backlink: 'location-postcode',
-      locals: {
-        field: 'location'
-      }
-    },
-    '/location-address-lookup': {
-      addressKey: 'locationAddresses',
-      template: 'address-lookup-loop.html',
-      controller: require('../common/controllers/address-lookup-loop'),
-      fields: [
-        'location-address-lookup'
-      ],
-      next: '/location-address-category',
-      locals: {
-        field: 'location'
-      }
-    },
+    }),
+    '/location-address-manual': locationAddressLookup.manual,
     '/location-address-category': {
       template: '../common/views/add-another-address-loop.html',
-      addressKey: 'locationAddresses',
-      controller: require('./controllers/location-address-category'),
       fields: [
         'location-address-category'
       ],
       continueOnEdit: true,
-      next: '/location-add-another-address',
-      locals: {
-        field: 'location'
-      }
+      next: '/location-add-another-address'
     },
     '/location-add-another-address': {
       addressKey: 'locationAddresses',
       template: 'add-another-address-loop.html',
-      controller: require('../common/controllers/add-another-address-loop'),
-      fields: [
-        'location-add-another-address'
+      controller: require('./controllers/location-address-loop'),
+      next: '/storage-address',
+      returnTo: '/location-address',
+      aggregateTo: 'location-addresses',
+      aggregateFields: [
+        'location-address',
+        'location-address-category'
       ],
-      prereqs: ['/second-contact-email'],
-      next: '/confirm',
-      forks: [{
-        target: '/location-postcode',
-        condition: {
-          field: 'location-add-another-address',
-          value: 'yes'
+      fieldSettings: {
+        legend: {
+          className: 'visuallyhidden'
         }
-      }],
-      locals: {
-        field: 'location'
       }
+    },
+    '/storage-address': {
+      controller: require('./controllers/storage-address'),
+      fields: [
+        'storage-address-range',
+        'storage-address-secretary'
+      ],
+      next: '/confirm'
     },
     '/confirm': {
       controller: controllers.confirm,
+      fieldsConfig: require('./fields'),
       next: '/confirmation'
     },
     '/confirmation': {
