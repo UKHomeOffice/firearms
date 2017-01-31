@@ -44,6 +44,7 @@ module.exports = class LoopController extends BaseController {
   reload(req, res, callback) {
     const items = req.sessionModel.get(req.form.options.aggregateTo);
     if (!items.length) {
+      req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, false);
       req.form.options.aggregateFields.forEach((field) => {
         req.sessionModel.unset(field);
       });
