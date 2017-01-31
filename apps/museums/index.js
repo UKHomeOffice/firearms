@@ -39,9 +39,7 @@ module.exports = {
     }),
     '/exhibit-address-manual': exhibitAddressLookup.manual,
     '/exhibit-add-another-address': {
-      addressKey: 'exhibitAddresses',
-      template: 'add-another-address-loop.html',
-      controller: require('../common/controllers/add-another-address-loop'),
+      controller: require('../common/controllers/loop'),
       next: '/contact-name',
       returnTo: '/exhibit-address',
       aggregateTo: 'exhibit-addresses',
