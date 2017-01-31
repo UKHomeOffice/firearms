@@ -1,18 +1,16 @@
 {{<partials-page}}
   {{$page-content}}
     <label>
-      {{#t}}fields.{{options.prefix}}-postcode.label{{/t}}
+      {{#t}}fields.{{field}}-postcode.label{{/t}}
     </label>
     <p>
       <span class="postcode">{{postcode}}</span>
-      <span class="link"><a href="{{baseUrl}}/{{backLink}}">{{#t}}pages.address.edit{{/t}}</a></span>
+      <span class="link"><a href="{{baseUrl}}/{{field}}-postcode">{{#t}}pages.address.edit{{/t}}</a></span>
     </p>
 
-    {{#fields}}
-      {{#renderField}}{{/renderField}}
-    {{/fields}}
+    {{#select}}{{field}}-address-lookup{{/select}}
 
-    <p><span id="cant-find" class="link"><a href="{{baseUrl}}{{manual-entry}}">{{#t}}pages.address.cantfind{{/t}}</a></span></p>
+    <p><span id="cant-find" class="link"><a href="{{baseUrl}}/{{field}}-address">{{#t}}pages.address.cantfind{{/t}}</a></span></p>
 
     {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
