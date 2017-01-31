@@ -65,7 +65,10 @@ module.exports = {
       fields: [
         'club-name'
       ],
-      next: '/club-address'
+      next: '/club-address',
+      locals: {
+        section: 'club'
+      }
     },
     '/club-address': Object.assign(clubAddressLookup.start, {
       formatAddress: (address) => address.formatted_address.split('\n').join(', ')
@@ -164,6 +167,7 @@ module.exports = {
     },
     '/confirm': {
       controller: controllers.confirm,
+      fieldsConfig: require('./fields'),
       next: '/confirmation'
     },
     '/confirmation': {
