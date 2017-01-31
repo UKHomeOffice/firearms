@@ -29,14 +29,14 @@ module.exports = function addressLookupHelper(config) {
   validateConfig(config);
   return {
     start: {
-      template: 'postcode.html',
+      template: 'address/postcode',
       controller: PostcodeController,
       prefix: config.prefix,
       manual: config.manual,
       select: config.select
     },
     select: {
-      template: 'address-lookup.html',
+      template: 'address/select',
       controller: SelectAddressController,
       prefix: config.prefix,
       manual: config.manual,
@@ -45,7 +45,7 @@ module.exports = function addressLookupHelper(config) {
       next: config.next
     },
     manual: {
-      template: 'address.html',
+      template: 'address/manual',
       controller: ManualAddressController,
       prefix: config.prefix,
       backLink: config.start.replace(/^\//, ''),

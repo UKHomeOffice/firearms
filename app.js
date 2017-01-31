@@ -11,6 +11,7 @@ const options = {
   views: path.resolve(__dirname, './apps/common/views'),
   fields: path.resolve(__dirname, './apps/common/fields'),
   routes: [
+    require('./apps/museums'),
     require('./apps/new-dealer'),
     require('./apps/shooting-clubs')
   ],
