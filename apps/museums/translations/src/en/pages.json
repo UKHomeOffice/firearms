@@ -3,6 +3,19 @@
     "summary": "Museum details",
     "header": "What is the museum's name?"
   },
+  "exhibit-address": {
+    "header": "Where will the firearms be exhibited or stored?",
+    "intro": "You can add further addresses later, if required."
+  },
+  "exhibit-address-manual": {
+    "header": "Where will the firearms be exhibited or stored?"
+  },
+  "exhibit-postcode": {
+    "header": "Where will the firearms be exhibited or stored?"
+  },
+  "exhibit-addresses": {
+    "header": "Addresses added"
+  },
   "address-loop": {
     "header": "Placeholder pending address lookup refactor"
   },
