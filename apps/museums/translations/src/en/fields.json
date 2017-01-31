@@ -21,5 +21,25 @@
         "label": "No"
       }
     }
+  },
+  "exhibit-postcode": {
+    "label": "Postcode"
+  },
+  "exhibit-address-select": {
+    "label": "Select the address"
+  },
+  "exhibit-address-manual": {
+    "label": "Address"
+  },
+  "exhibit-addresses-add-another": {
+    "legend": "Is there another address where the firearms will be exhibited or stored?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
