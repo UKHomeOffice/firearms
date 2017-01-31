@@ -1,6 +1,14 @@
 'use strict';
 
 const controllers = require('hof-controllers');
+const AddressLookup = require('../common/controllers/address/helper');
+const exhibitAddressLookup = AddressLookup({
+  prefix: 'exhibit',
+  start: '/exhibit-address',
+  select: '/exhibit-address-select',
+  manual: '/exhibit-address-manual',
+  next: '/exhibit-add-another-address'
+});
 
 module.exports = {
   name: 'museums',
@@ -16,13 +24,35 @@ module.exports = {
     },
     '/name': {
       fields: ['name'],
-      next: '/address-loop',
+      next: '/exhibit-address',
       locals: {
         section: 'name'
       }
     },
-    '/address-loop': {
-      next: '/contact-name'
+    '/exhibit-address': Object.assign(exhibitAddressLookup.start, {
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+    }),
+    '/exhibit-address-select': Object.assign(exhibitAddressLookup.select, {
+      fieldSettings: {
+        className: 'address'
+      }
+    }),
+    '/exhibit-address-manual': exhibitAddressLookup.manual,
+    '/exhibit-add-another-address': {
+      addressKey: 'exhibitAddresses',
+      template: 'add-another-address-loop.html',
+      controller: require('../common/controllers/add-another-address-loop'),
+      next: '/contact-name',
+      returnTo: '/exhibit-address',
+      aggregateTo: 'exhibit-addresses',
+      aggregateFields: [
+        'exhibit-address'
+      ],
+      fieldSettings: {
+        legend: {
+          className: 'visuallyhidden'
+        }
+      }
     },
     '/contact-name': {
       fields: ['contact-name'],
