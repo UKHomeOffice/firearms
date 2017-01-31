@@ -16,17 +16,6 @@
   "storage": {
     "header": "Addresses added"
   },
-  "location": {
-    "header": "Shooting location(s)",
-    "table": {
-      "location": "Location",
-      "categories": "Categories of firearms"
-    },
-    "edit": {
-      "location": "edit location",
-      "categories": "edit categories"
-    }
-  },
   "confirm": {
     "header": "Check your answers page",
     "intro": "Check your answers and make any necessary changes before you submit this application",
