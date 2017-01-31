@@ -2,6 +2,37 @@
 
 const controllers = require('hof-controllers');
 
+const AddressLookup = require('../common/controllers/address/helper');
+
+const clubAddressLookup = AddressLookup({
+  prefix: 'club',
+  start: '/club-address',
+  select: '/club-address-select',
+  manual: '/club-address-manual',
+  next: '/club-secretary-name'
+});
+const clubSecretaryAddressLookup = AddressLookup({
+  prefix: 'club-secretary',
+  start: '/club-secretary-address',
+  select: '/club-secretary-address-select',
+  manual: '/club-secretary-address-manual',
+  next: '/club-secretary-email'
+});
+const secondContactAddressLookup = AddressLookup({
+  prefix: 'second-contact',
+  start: '/second-contact-address',
+  select: '/second-contact-address-select',
+  manual: '/second-contact-address-manual',
+  next: '/second-contact-email'
+});
+const locationAddressLookup = AddressLookup({
+  prefix: 'location',
+  start: '/location-address',
+  select: '/location-address-select',
+  manual: '/location-address-manual',
+  next: '/location-address-category'
+});
+
 module.exports = {
   name: 'shooting-clubs',
   baseUrl: '/shooting-clubs',
@@ -36,66 +67,30 @@ module.exports = {
       ],
       next: '/club-address'
     },
-    '/club-address': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/address/postcode'),
-      prefix: 'club',
-      manual: '/club-address-manual',
-      select: '/club-address-select',
+    '/club-address': Object.assign(clubAddressLookup.start, {
       formatAddress: (address) => address.formatted_address.split('\n').join(', ')
-    },
-    '/club-address-select': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address/select'),
-      prefix: 'club',
-      manual: '/club-address-manual',
-      next: '/club-secretary-name',
+    }),
+    '/club-address-select': Object.assign(clubAddressLookup.select, {
       fieldSettings: {
         className: 'address'
-      },
-      prereqs: ['/club-address'],
-      backLink: 'club-address'
-    },
-    '/club-address-manual': {
-      template: 'address.html',
-      controller: require('../common/controllers/address/manual'),
-      prefix: 'club',
-      next: '/club-secretary-name',
-      backLink: 'club-address'
-    },
+      }
+    }),
+    '/club-address-manual': clubAddressLookup.manual,
     '/club-secretary-name': {
       fields: [
         'club-secretary-name'
       ],
       next: '/club-secretary-address'
     },
-    '/club-secretary-address': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/address/postcode'),
-      prefix: 'club-secretary',
-      manual: '/club-secretary-address-manual',
-      select: '/club-secretary-address-select',
+    '/club-secretary-address': Object.assign(clubSecretaryAddressLookup.start, {
       formatAddress: (address) => address.formatted_address.split('\n').join(', ')
-    },
-    '/club-secretary-address-manual': {
-      template: 'address.html',
-      controller: require('../common/controllers/address/manual'),
-      prefix: 'club-secretary',
-      next: '/club-secretary-email',
-      backLink: 'club-secretary-address'
-    },
-    '/club-secretary-address-select': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address/select'),
-      prefix: 'club-secretary',
-      manual: '/club-secretary-address-manual',
-      next: '/club-secretary-email',
+    }),
+    '/club-secretary-address-select': Object.assign(clubSecretaryAddressLookup.select, {
       fieldSettings: {
         className: 'address'
-      },
-      prereqs: ['/club-secretary-address'],
-      backLink: 'club-secretary-address'
-    },
+      }
+    }),
+    '/club-secretary-address-manual': clubSecretaryAddressLookup.manual,
     '/club-secretary-email': {
       fields: [
         'club-secretary-email',
@@ -109,33 +104,15 @@ module.exports = {
       ],
       next: '/second-contact-address'
     },
-    '/second-contact-address': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/address/postcode'),
-      prefix: 'second-contact',
-      manual: '/second-contact-address-manual',
-      select: '/second-contact-address-select',
+    '/second-contact-address': Object.assign(secondContactAddressLookup.start, {
       formatAddress: (address) => address.formatted_address.split('\n').join(', ')
-    },
-    '/second-contact-address-manual': {
-      template: 'address.html',
-      controller: require('../common/controllers/address/manual'),
-      prefix: 'second-contact',
-      next: '/second-contact-email',
-      backLink: 'second-contact-address'
-    },
-    '/second-contact-address-select': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address/select'),
-      prefix: 'second-contact',
-      manual: '/second-contact-address-manual',
-      next: '/second-contact-email',
+    }),
+    '/second-contact-address-select': Object.assign(secondContactAddressLookup.select, {
       fieldSettings: {
         className: 'address'
-      },
-      prereqs: ['/second-contact-address'],
-      backLink: 'second-contact-address'
-    },
+      }
+    }),
+    '/second-contact-address-manual': secondContactAddressLookup.manual,
     '/second-contact-email': {
       fields: [
         'second-contact-email',
@@ -143,33 +120,15 @@ module.exports = {
       ],
       next: '/location-address'
     },
-    '/location-address': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/address/postcode'),
-      prefix: 'location',
-      manual: '/location-address-manual',
-      select: '/location-address-select',
+    '/location-address': Object.assign(locationAddressLookup.start, {
       formatAddress: (address) => address.formatted_address.split('\n').join(', ')
-    },
-    '/location-address-manual': {
-      template: 'address.html',
-      controller: require('../common/controllers/address/manual'),
-      prefix: 'location',
-      next: '/location-address-category',
-      backLink: 'location-address'
-    },
-    '/location-address-select': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address/select'),
-      prefix: 'location',
-      manual: '/location-address-manual',
-      next: '/location-address-category',
+    }),
+    '/location-address-select': Object.assign(locationAddressLookup.select, {
       fieldSettings: {
         className: 'address'
-      },
-      prereqs: ['/location-address'],
-      backLink: 'location-address'
-    },
+      }
+    }),
+    '/location-address-manual': locationAddressLookup.manual,
     '/location-address-category': {
       template: '../common/views/add-another-address-loop.html',
       fields: [
