@@ -13,7 +13,7 @@ module.exports = class UploadModel extends Model {
       };
       const reqConf = url.parse(this.url(attributes));
       reqConf.formData = {
-        upload: {
+        document: {
           value: this.get('data'),
           options: {
             filename: this.get('name'),
@@ -27,6 +27,32 @@ module.exports = class UploadModel extends Model {
           return reject(err);
         }
         resolve(data);
+      });
+    });
+  }
+
+  auth() {
+    const tokenReq = {
+      url: config.keycloak.token,
+      form: {
+        username: config.keycloak.username,
+        password: config.keycloak.password,
+        'grant_type': 'password',
+        'client_id': config.keycloak.clientId,
+        'client_secret': config.keycloak.secret
+      },
+      method: 'POST'
+    };
+
+    return new Promise((resolve, reject) => {
+      this._request(tokenReq, (err, response) => {
+        if (err) {
+          reject(err);
+        }
+
+        resolve({
+          'bearer': JSON.parse(response.body).access_token
+        });
       });
     });
   }
