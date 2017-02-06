@@ -40,7 +40,7 @@
     "hof-model": "^2.0.0",
     "hof-bootstrap": "^8.0.1",
     "hof-frontend-toolkit": "^1.0.0",
-    "hof-model": "^2.0.0",
+    "hof-model": "^2.1.0",
     "hof-transpiler": "^0.1.0",
     "jquery": "^2.1.4",
     "lodash": "^4.17.4",
