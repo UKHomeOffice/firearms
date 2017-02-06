@@ -7,7 +7,7 @@ const UploadModel = require('../../../apps/common/models/file-upload');
 
 const request = require('../../helpers/request');
 
-const uuid = require('node-uuid');
+const uuid = require('uuid');
 
 describe('Supporting Documents Controller', () => {
 

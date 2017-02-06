@@ -3,7 +3,7 @@
 const BaseController = require('../../common/controllers/base');
 const UploadModel = require('../../common/models/file-upload');
 
-const uuid = require('node-uuid');
+const uuid = require('uuid');
 
 module.exports = class UploadController extends BaseController {
   process(req, res, next) {
