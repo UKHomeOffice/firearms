@@ -10,9 +10,6 @@
   "exhibit-address-manual": {
     "header": "Where will the firearms be exhibited or stored?"
   },
-  "exhibit-postcode": {
-    "header": "Where will the firearms be exhibited or stored?"
-  },
   "exhibit-addresses": {
     "header": "Addresses added"
   },
@@ -29,11 +26,32 @@
   "contact-address": {
     "header": "Is the contact address the same as an address previously given?"
   },
-  "contact-address-postcode": {
-    "header": "Placeholder pending address lookup refactor"
+  "contact-address-input": {
+    "header": "What is their contact address?"
+  },
+  "contact-address-input-select": {
+    "header": "Select the contact address"
+  },
+  "contact-address-input-manual": {
+    "header": "What is their contact address?"
   },
   "contact-address-select": {
-    "header": "Placeholder pending address lookup refactor"
+    "header": "Select the contact address"
+  },
+  "confirm": {
+    "sections": {
+      "museum-details": {
+        "header": "Museum details"
+      },
+      "contact-details": {
+        "header": "Contact details"
+      }
+    },
+    "fields": {
+      "name": {
+        "label": "Name"
+      }
+    }
   },
   "confirmation": {
     "next": "We will review your application. If more information is required, we shall email the contact address provided. Otherwise, you shall hear from us next when a decision regarding this application has been made.",
