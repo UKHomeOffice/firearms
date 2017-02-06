@@ -56,7 +56,7 @@ describe('File Upload Model', () => {
       return response.then(() => {
         expect(model.request).to.have.been.calledWith(sinon.match({
           formData: {
-            upload: {
+            document: {
               value: 'foo',
               options: {
                 filename: 'myfile.png',

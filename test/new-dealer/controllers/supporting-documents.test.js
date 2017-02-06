@@ -13,7 +13,7 @@ describe('Supporting Documents Controller', () => {
 
   beforeEach(function() {
     this.stub(UploadModel.prototype, 'save').returns(new Promise((resolve) => {
-      resolve({'upload-url': 'http://example.com/file/upload'});
+      resolve({'url': 'http://example.com/file/upload'});
     }));
     this.spy(UploadModel.prototype, 'set');
   });
