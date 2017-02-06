@@ -41,5 +41,20 @@
         "label": "No"
       }
     }
+  },
+  "contact-postcode": {
+    "label": "Postcode"
+  },
+  "contact-address-select": {
+    "label": "Select the address"
+  },
+  "contact-address-manual": {
+    "label": "Address"
+  },
+  "contact-address": {
+    "legend": "Address"
+  },
+  "exhibit-addresses": {
+    "label": "Address"
   }
 }

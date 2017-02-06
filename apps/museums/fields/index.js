@@ -23,5 +23,12 @@ module.exports = {
       className: 'visuallyhidden'
     },
     options: ['yes', 'no']
+  },
+  'contact-address': {
+    mixin: 'radio-group',
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    }
   }
 };
