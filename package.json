@@ -40,6 +40,7 @@
     "hof-transpiler": "^0.1.0",
     "jquery": "^2.1.4",
     "lodash": "^4.17.4",
+    "npm-sass": "^2.0.0",
     "typeahead-aria": "^1.0.4",
     "uuid": "^3.0.1"
   },
@@ -55,7 +56,6 @@
     "mocha-multi": "^0.7.1",
     "nodemon": "^1.9.2",
     "npm-run-all": "^1.7.0",
-    "npm-sass": "^2.0.0",
     "pre-commit": "^1.0.10",
     "proxyquire": "^1.5.0",
     "sinomocha": "^0.2.4",
