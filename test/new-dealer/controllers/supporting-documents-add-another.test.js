@@ -107,6 +107,14 @@ describe('Add Supporting Documents Controller', () => {
 
   describe('locals', () => {
 
+    beforeEach(() => {
+      sinon.stub(Base.prototype, 'locals').returns({});
+    });
+
+    afterEach(() => {
+      Base.prototype.locals.restore();
+    });
+
     it('sets a custom legend property based on the length of the supporting documents array - zero elements', () => {
       const controller = new Controller(options);
       const req = request();
