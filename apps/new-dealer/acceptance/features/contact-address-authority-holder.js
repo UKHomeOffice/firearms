@@ -73,33 +73,30 @@ Scenario('Second-authority-holder\'s name is in the header', function *(
 
 Scenario('I am taken to the contact manual-address step when I click the link', (
   I,
-  contactAddressAuthorityHolderPage,
-  contactAddressPage
+  contactAddressAuthorityHolderPage
 ) => {
   I.click(contactAddressAuthorityHolderPage.fields['different-address']);
   I.click(contactAddressAuthorityHolderPage.links['manual-entry']);
-  I.seeInCurrentUrl(contactAddressPage['address-url'])
+  I.seeInCurrentUrl(contactAddressAuthorityHolderPage.next)
 });
 
 Scenario('I am taken to the contact-address-lookup step when use-different-address is selected and postcode is provided', (
   I,
-  contactAddressAuthorityHolderPage,
-  contactAddressPage
+  contactAddressAuthorityHolderPage
 ) => {
   I.click(contactAddressAuthorityHolderPage.fields['different-address']);
   I.fillField(contactAddressAuthorityHolderPage.fields.postcode, contactAddressAuthorityHolderPage.content.postcode);
   I.submitForm();
-  I.seeInCurrentUrl(contactAddressPage['address-lookup-url'])
+  I.seeInCurrentUrl(contactAddressAuthorityHolderPage['next-address-select'])
 });
 
 Scenario('I am taken to the summary step when use-same-address is selected', (
   I,
-  contactAddressAuthorityHolderPage,
-  confirmPage
+  contactAddressAuthorityHolderPage
 ) => {
   I.click(contactAddressAuthorityHolderPage.fields['same-address']);
   I.submitForm();
-  I.seeInCurrentUrl(confirmPage.url)
+  I.seeInCurrentUrl(contactAddressAuthorityHolderPage['next-with-address'])
 });
 
 Scenario('The correct form elements are present for authority holders contact manual address step', (
@@ -207,23 +204,21 @@ Scenario('When I click cant find my address link, I will see the postcode I ente
   I.see(contactAddressAuthorityHolderPage.content.postcode);
 });
 
-Scenario('I am taken to the summary step from the manual-address step', (
+Scenario('I am taken to the next configured step from the manual-address step', (
   I,
-  contactAddressAuthorityHolderPage,
-  confirmPage
+  contactAddressAuthorityHolderPage
 ) => {
   I.click(contactAddressAuthorityHolderPage.fields['different-address']);
   I.click(contactAddressAuthorityHolderPage.links['manual-entry']);
   contactAddressAuthorityHolderPage.fillFormAndSubmit(contactAddressAuthorityHolderPage.fields['address-manual']);
-  I.seeInCurrentUrl(confirmPage.url);
+  I.seeInCurrentUrl(contactAddressAuthorityHolderPage['next-with-address']);
 });
 
-Scenario('When an address is selected I am taken to the summary step', (
+Scenario('When an address is selected I am taken to the next configured step', (
   I,
-  contactAddressAuthorityHolderPage,
-  confirmPage
+  contactAddressAuthorityHolderPage
 ) => {
   I.click(contactAddressAuthorityHolderPage.fields['different-address']);
   contactAddressAuthorityHolderPage.selectAddressAndSubmit();
-  I.seeInCurrentUrl(confirmPage.url);
+  I.seeInCurrentUrl(contactAddressAuthorityHolderPage['next-with-address']);
 });

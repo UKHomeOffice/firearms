@@ -177,6 +177,13 @@
   "contacts-details": {
     "header": "Contact details"
   },
+  "supporting-documents": {
+    "header": "Supporting documents"
+  },
+  "supporting-documents-add": {
+    "header": "Supporting documents",
+    "list-header": "Documents added"
+  },
   "email": {
     "subject": {
       "customer": "Your email confirmation - application to handle prohibited weapons, components or ammunition"

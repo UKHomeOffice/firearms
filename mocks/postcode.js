@@ -2,7 +2,7 @@
 'use strict';
 const router = require('express').Router();
 
-module.exports = router.use('/api/postcode-test', (req, res) => {
+module.exports = router.use((req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.status(200);
   if (req.query.postcode === 'CR0 2EU') {

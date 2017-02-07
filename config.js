@@ -4,7 +4,7 @@
 module.exports = {
   env: process.env.NODE_ENV,
   postcode: {
-    hostname: process.env.NODE_ENV === 'ci' ?
+    hostname: process.env.NODE_ENV === 'ci' || process.env.NODE_ENV === 'development' ?
       `http://${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}/api/postcode-test` :
       'https://postcodeinfo.service.justice.gov.uk',
     authorization: process.env.POSTCODE_AUTH,
@@ -12,6 +12,18 @@ module.exports = {
       path: '/addresses',
       param: 'postcode'
     }
+  },
+  upload: {
+    hostname: process.env.NODE_ENV === 'ci' || process.env.NODE_ENV === 'development' ?
+      `http://${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}/api/file-upload` :
+      process.env.FILE_VAULT_URL
+  },
+  keycloak: {
+    token: process.env.KEYCLOAK_TOKEN_URL,
+    username: process.env.KEYCLOAK_USERNAME,
+    password: process.env.KEYCLOAK_PASSWORD,
+    clientId: process.env.KEYCLOAK_CLIENT_ID,
+    secret: process.env.KEYCLOAK_SECRET
   },
   email: {
     from: process.env.FROM_ADDRESS || '',

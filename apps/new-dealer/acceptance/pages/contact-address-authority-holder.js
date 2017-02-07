@@ -2,6 +2,8 @@
 
 let I;
 
+let steps = require('../../').steps;
+
 module.exports = {
 
   _init() {
@@ -11,6 +13,10 @@ module.exports = {
   url: 'authority-holder-contact-postcode',
   'address-url': 'authority-holder-contact-address',
   'address-lookup-url': 'authority-holder-contact-address-lookup',
+
+  next: steps['/authority-holder-contact-postcode'].next,
+  'next-with-address': '/supporting-documents-add',
+  'next-address-select': '/authority-holder-contact-address-lookup',
 
   fields: {
     'contact-address-group':' #use-different-address-group',
@@ -28,7 +34,6 @@ module.exports = {
     first: 'first',
     second: 'second'
   },
-
 
   links: {
     'manual-entry': '#manual-entry',

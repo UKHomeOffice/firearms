@@ -169,7 +169,7 @@ module.exports = {
       className: 'visuallyhidden'
     },
     options: [{
-      value: 'true',
+      value: 'true'
     }, {
       value: 'false',
       toggle: 'no-storage-details',
@@ -635,7 +635,7 @@ module.exports = {
     mixin: 'radio-group',
     validate: 'required',
     options: [{
-     value: 'false'
+      value: 'false'
     }, {
       value: 'true',
       toggle: 'authority-holder-contact-postcode',
@@ -686,6 +686,21 @@ module.exports = {
     }]
   },
   'storage-add-another-address': {
+    mixin: 'radio-group',
+    validate: 'required',
+    options: [
+      'yes',
+      'no'
+    ]
+  },
+  'supporting-document-upload': {
+    mixin: 'input-file',
+    validate: 'required'
+  },
+  'supporting-document-description': {
+    mixin: 'textarea'
+  },
+  'supporting-document-add-another': {
     mixin: 'radio-group',
     validate: 'required',
     options: [
