@@ -10,6 +10,14 @@ const exhibitAddressLookup = AddressLookup({
   next: '/exhibit-add-another-address'
 });
 
+const contactAddressLookup = AddressLookup({
+  prefix: 'contact',
+  start: '/contact-address-input',
+  select: '/contact-address-input-select',
+  manual: '/contact-address-input-manual',
+  next: '/confirm'
+});
+
 module.exports = {
   name: 'museums',
   baseUrl: '/museums',
@@ -24,10 +32,7 @@ module.exports = {
     },
     '/name': {
       fields: ['name'],
-      next: '/exhibit-address',
-      locals: {
-        section: 'name'
-      }
+      next: '/exhibit-address'
     },
     '/exhibit-address': Object.assign(exhibitAddressLookup.start, {
       formatAddress: (address) => address.formatted_address.split('\n').join(', ')
@@ -55,29 +60,38 @@ module.exports = {
     },
     '/contact-name': {
       fields: ['contact-name'],
-      next: '/contact-details',
-      locals: {
-        section: 'contact-details'
-      }
+      next: '/contact-details'
     },
     '/contact-details': {
       fields: ['contact-email', 'contact-phone'],
-      next: '/contact-address',
-      locals: {
-        section: 'contact-details'
-      }
+      next: '/contact-address'
     },
     '/contact-address': {
       fields: ['same-contact-address'],
-      next: '/confirm',
+      next: '/contact-address-select',
       forks: [{
-        target: '/confirm',
+        target: '/contact-address-input',
         condition: {
           field: 'same-contact-address',
           value: 'no'
         }
-      }]
+      }],
+      continueOnEdit: true
     },
+    '/contact-address-select': {
+      controller: require('./controllers/contact-address-select'),
+      fields: ['contact-address'],
+      next: '/confirm'
+    },
+    '/contact-address-input': Object.assign(contactAddressLookup.start, {
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+    }),
+    '/contact-address-input-select': Object.assign(contactAddressLookup.select, {
+      fieldSettings: {
+        className: 'address'
+      }
+    }),
+    '/contact-address-input-manual': contactAddressLookup.manual,
     '/confirm': {
       template: 'confirm',
       controller: require('./controllers/confirm'),
