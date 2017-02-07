@@ -11,7 +11,7 @@ module.exports = class ManualAddressController extends AddressController {
       formatter: ['trim', 'hyphens'],
       label: req.translate(`fields.${req.form.options.prefix}-address-manual.label`)
     };
-    const name = `${req.form.options.prefix}-address`;
+    const name = `${req.form.options.prefix}-address-manual`;
     req.form.options.fields[name] = Object.assign(defaults, req.form.options.fieldSettings);
 
     callback();
