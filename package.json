@@ -36,6 +36,7 @@
     "express": "^4.14.1",
     "hof-bootstrap": "^9.0.1",
     "hof-controllers": "^6.0.2",
+    "hof-confirm-controller": "^1.0.1",
     "hof-frontend-toolkit": "^1.0.1",
     "hof-model": "^2.1.0",
     "hof-transpiler": "^0.2.1",

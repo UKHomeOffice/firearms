@@ -22,6 +22,7 @@ module.exports = {
   name: 'museums',
   params: '/:action?/:id?',
   baseUrl: '/museums',
+  params: '/:action?',
   steps: {
     '/': {
       controller: controllers.start,
@@ -95,8 +96,27 @@ module.exports = {
     '/contact-address-input-manual': contactAddressLookup.manual,
     '/confirm': {
       template: 'confirm',
-      controller: require('./controllers/confirm'),
-      fieldsConfig: require('./fields'),
+      controller: require('hof-confirm-controller'),
+      sections: {
+        'museum-details': [
+          'name',
+          {
+            field: 'exhibit-addresses',
+            parse: (value) => value.map(a => a.address),
+            step: '/exhibit-add-another-address'
+          }
+        ],
+        'contact-details': [
+          'contact-name',
+          'contact-email',
+          'contact-phone',
+          'a thing',
+          {
+            field: 'contact-address',
+            step: '/contact-address'
+          }
+        ]
+      },
       next: '/confirmation'
     },
     '/confirmation': {
