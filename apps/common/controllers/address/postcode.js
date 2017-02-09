@@ -61,7 +61,11 @@ module.exports = class PostcodeController extends AddressController {
             messageKey: 'not-found'
           });
         }
-      }, callback)
+      }, () => {
+        req.sessionModel.set('postcodeApiMeta', {
+          messageKey: 'cant-connect'
+        });
+      })
       .then(() => {
         super.saveValues(req, res, callback);
       });
