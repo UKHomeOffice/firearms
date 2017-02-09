@@ -6,6 +6,11 @@ module.exports = class AddressSelectController extends AddressController {
 
   configure(req, res, callback) {
     const addresses = req.sessionModel.get(`${req.form.options.prefix}-address-list`);
+    if (!addresses || !addresses.length) {
+      const err = new Error();
+      err.code = 'MISSING_PREREQ';
+      callback(err);
+    }
     const list = addresses.map(add => ({value: add, label: add}));
 
     const defaults = {
