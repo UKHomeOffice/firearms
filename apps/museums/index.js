@@ -96,7 +96,7 @@ module.exports = {
     '/contact-address-input-manual': contactAddressLookup.manual,
     '/confirm': {
       template: 'confirm',
-      controller: require('hof-confirm-controller'),
+      controller: require('../common/controllers/confirm'),
       sections: {
         'museum-details': [
           'name',
