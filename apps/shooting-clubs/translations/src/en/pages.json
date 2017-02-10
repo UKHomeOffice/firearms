@@ -92,5 +92,38 @@
       "location": "edit location",
       "categories": "edit categories"
     }
+  },
+  "confirm": {
+    "sections": {
+      "club": {
+        "header": "Club details"
+      },
+      "secretary": {
+        "header": "Club secretary's details"
+      },
+      "second-contact": {
+        "header": "Secondary contact details"
+      },
+      "range-addresses": {
+        "header": "Shooting ranges"
+      },
+      "storage-addresses": {
+        "header": "Storage addresses"
+      }
+    },
+    "fields": {
+      "club-address": {
+        "label": "Address"
+      },
+      "club-secretary-address": {
+        "label": "Address"
+      },
+      "second-contact-address": {
+        "label": "Address"
+      },
+      "storage-addresses": {
+        "label": "Address"
+      }
+    }
   }
 }

@@ -65,10 +65,7 @@ module.exports = {
       fields: [
         'club-name'
       ],
-      next: '/club-address',
-      locals: {
-        section: 'club'
-      }
+      next: '/club-address'
     },
     '/club-address': Object.assign(clubAddressLookup.start, {
       formatAddress: (address) => address.formatted_address.split('\n').join(', ')
@@ -166,8 +163,36 @@ module.exports = {
       next: '/confirm'
     },
     '/confirm': {
-      controller: controllers.confirm,
-      fieldsConfig: require('./fields'),
+      controller: require('./controllers/confirm'),
+      sections: {
+        authority: ['reference-number'],
+        club: ['club-name', 'club-address'],
+        secretary: [
+          'club-secretary-name',
+          'club-secretary-address',
+          'club-secretary-email',
+          'club-secretary-phone'
+        ],
+        'second-contact': [
+          'second-contact-name',
+          'second-contact-address',
+          'second-contact-email',
+          'second-contact-phone'
+        ],
+        'range-addresses': [
+          {
+            field: 'location-addresses',
+            step: '/location-add-another-address'
+          }
+        ],
+        'storage-addresses': [
+          {
+            field: 'storage-addresses',
+            parse: list => list.join('\n'),
+            step: '/storage-address'
+          }
+        ]
+      },
       next: '/confirmation'
     },
     '/confirmation': {

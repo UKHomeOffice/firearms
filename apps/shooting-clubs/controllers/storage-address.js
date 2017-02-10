@@ -17,4 +17,12 @@ module.exports = class StorageAddressController extends BaseController {
     req.form.options.fields['storage-address-secretary'].options = [{value: secretaryAddress, label: secretaryAddress}];
     callback();
   }
+
+  saveValues(req, res, callback) {
+    const addresses = []
+      .concat(req.form.values['storage-address-range'])
+      .concat(req.form.values['storage-address-secretary']);
+    req.form.values['storage-addresses'] = addresses;
+    super.saveValues(req, res, callback);
+  }
 };
