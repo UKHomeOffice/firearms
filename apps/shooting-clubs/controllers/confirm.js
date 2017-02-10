@@ -9,6 +9,7 @@ module.exports = class ConfirmController extends Controller {
 
     if (field.field === 'location-addresses') {
       return defaults.value.map(address => {
+        address['address-category'] = [].concat(address['address-category']);
         return Object.assign({}, defaults, {
           label: address.address,
           value: address['address-category']
