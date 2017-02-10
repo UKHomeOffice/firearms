@@ -86,10 +86,16 @@ module.exports = class LoopController extends BaseController {
         return callback(err);
       }
       if (!added) {
-        aggregate.push(Object.assign({id: uuid()}, this.getLoopFields(req, res)));
-        req.sessionModel.set(req.form.options.aggregateTo, aggregate);
-        values[req.form.options.aggregateTo] = aggregate;
-        req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, true);
+        const fields = this.getLoopFields(req, res);
+        if (!_.isEmpty(fields)) {
+          aggregate.push(Object.assign({id: uuid()}, fields));
+          req.sessionModel.set(req.form.options.aggregateTo, aggregate);
+          values[req.form.options.aggregateTo] = aggregate;
+          req.form.options.aggregateFields.forEach((f) => {
+            req.sessionModel.unset(f);
+          });
+          req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, true);
+        }
       }
       callback(null, values);
     });
@@ -115,9 +121,6 @@ module.exports = class LoopController extends BaseController {
       const field = `${req.form.options.aggregateTo}-add-another`;
       if (req.form.values[field] === 'yes') {
         req.sessionModel.unset(field);
-        req.form.options.aggregateFields.forEach((f) => {
-          req.sessionModel.unset(f);
-        });
         req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, false);
       }
       callback(err);
