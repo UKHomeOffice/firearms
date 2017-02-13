@@ -20,6 +20,7 @@ const contactAddressLookup = AddressLookup({
 
 module.exports = {
   name: 'museums',
+  params: '/:action?/:id?',
   baseUrl: '/museums',
   steps: {
     '/': {
