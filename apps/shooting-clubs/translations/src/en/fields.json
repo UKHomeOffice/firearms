@@ -54,7 +54,7 @@
   "location-postcode": {
     "label": "Postcode"
   },
-  "location-address-lookup": {
+  "location-address-select": {
     "label": "Select the address"
   },
   "location-address-manual": {

@@ -7,6 +7,9 @@
     "header": "Where will the firearms be exhibited or stored?",
     "intro": "You can add further addresses later, if required."
   },
+  "exhibit-address-select": {
+    "header": "Where will the firearms be exhibited or stored?"
+  },
   "exhibit-address-manual": {
     "header": "Where will the firearms be exhibited or stored?"
   },

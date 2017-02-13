@@ -15,7 +15,7 @@
   "club-secretary-name": {
     "header": "What is the club secretary's name?"
   },
-  "club-postcode": {
+  "club-address": {
     "header": "What is the club's address?"
   },
   "club-address-select": {
@@ -53,22 +53,18 @@
   "location-address": {
     "header": "What is the address of the shooting club?"
   },
-  "location-add-another-address": {
-    "header": "Will the club use another shooting range?"
-  },
-  "storage-postcode": {
-    "header": "Where else will the guns be stored?"
-  },
-  "storage-address-lookup": {
-    "header": "Where else will the guns be stored?"
-  },
-  "storage-address": {
-    "header": "Where else will the guns be stored?"
-  },
   "storage-add-another-address": {
     "header": "Is there another address where the guns will be stored?"
   },
   "location-address": {
+    "header": "Which shooting ranges will the club use?",
+    "intro": "You can add further addresses later, if required."
+  },
+  "location-address-select": {
+    "header": "Which shooting ranges will the club use?",
+    "intro": "You can add further addresses later, if required."
+  },
+  "location-address-manual": {
     "header": "Which shooting ranges will the club use?",
     "intro": "You can add further addresses later, if required."
   },
@@ -78,6 +74,9 @@
   },
   "location-add-another-address": {
     "header": "Will the club use another shooting range?"
+  },
+  "storage-postcode": {
+    "header": "Where else will the guns be stored?"
   },
   "storage-address": {
     "header": "At which of these addresses, if any, will the firearms be stored?",
