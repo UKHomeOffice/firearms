@@ -22,7 +22,6 @@ module.exports = {
   name: 'museums',
   params: '/:action?/:id?',
   baseUrl: '/museums',
-  params: '/:action?',
   steps: {
     '/': {
       controller: controllers.start,
