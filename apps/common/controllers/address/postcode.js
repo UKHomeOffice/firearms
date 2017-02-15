@@ -6,6 +6,11 @@ const PostcodesModel = require('../../models/postcodes');
 
 module.exports = class PostcodeController extends AddressController {
 
+  get(req, res, callback) {
+    this.emit('complete', req, res);
+    super.get(req, res, callback);
+  }
+
   configure(req, res, callback) {
     const field = `${req.form.options.prefix}-postcode`;
     // add postcode field
@@ -61,7 +66,11 @@ module.exports = class PostcodeController extends AddressController {
             messageKey: 'not-found'
           });
         }
-      }, callback)
+      }, () => {
+        req.sessionModel.set('postcodeApiMeta', {
+          messageKey: 'cant-connect'
+        });
+      })
       .then(() => {
         super.saveValues(req, res, callback);
       });
