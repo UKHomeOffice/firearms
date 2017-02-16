@@ -32,6 +32,13 @@ const locationAddressLookup = AddressLookup({
   manual: '/location-address-manual',
   next: '/location-address-category'
 });
+const storageAddressLookup = AddressLookup({
+  prefix: 'storage',
+  start: '/storage-address-add',
+  select: '/storage-address-add-select',
+  manual: '/storage-address-add-manual',
+  next: '/storage-add-another-address'
+});
 
 module.exports = {
   name: 'shooting-clubs',
@@ -138,7 +145,6 @@ module.exports = {
       next: '/location-add-another-address'
     },
     '/location-add-another-address': {
-      addressKey: 'locationAddresses',
       template: 'add-another-address-loop.html',
       controller: require('./controllers/location-address-loop'),
       next: '/storage-address',
@@ -160,8 +166,33 @@ module.exports = {
         'storage-address-range',
         'storage-address-secretary'
       ],
-      next: '/confirm'
+      continueOnEdit: true,
+      next: '/storage-add-another-address'
     },
+    '/storage-add-another-address': {
+      template: 'add-another-address-loop.html',
+      controller: require('./controllers/storage-address-loop'),
+      next: '/confirm',
+      returnTo: '/storage-address-add',
+      aggregateTo: 'all-storage-addresses',
+      aggregateFields: [
+        'storage-address'
+      ],
+      fieldSettings: {
+        legend: {
+          className: 'visuallyhidden'
+        }
+      }
+    },
+    '/storage-address-add': Object.assign(storageAddressLookup.start, {
+      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+    }),
+    '/storage-address-add-select': Object.assign(storageAddressLookup.select, {
+      fieldSettings: {
+        className: 'address'
+      }
+    }),
+    '/storage-address-add-manual': storageAddressLookup.manual,
     '/confirm': {
       controller: require('./controllers/confirm'),
       sections: {
@@ -187,8 +218,8 @@ module.exports = {
         ],
         'storage-addresses': [
           {
-            field: 'storage-addresses',
-            parse: list => list.join('\n'),
+            field: 'all-storage-addresses',
+            parse: list => list.map(a => a.address).join('\n'),
             step: '/storage-address'
           }
         ]

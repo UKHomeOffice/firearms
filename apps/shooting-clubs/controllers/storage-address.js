@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const uuid = require('uuid');
 const BaseController = require('../../common/controllers/base');
 
 module.exports = class StorageAddressController extends BaseController {
@@ -21,8 +22,25 @@ module.exports = class StorageAddressController extends BaseController {
   saveValues(req, res, callback) {
     const addresses = []
       .concat(req.form.values['storage-address-range'])
-      .concat(req.form.values['storage-address-secretary']);
+      .concat(req.form.values['storage-address-secretary'])
+      .filter(a => a);
     req.form.values['storage-addresses'] = addresses;
+
+    // update the list of all storage addresses
+    req.form.values['all-storage-addresses'] = req.sessionModel.get('all-storage-addresses') || [];
+
+    // remove any pre-existing addresses to cover unchecking checkboxes
+    req.form.values['all-storage-addresses'] = req.form.values['all-storage-addresses'].filter(a => !a.preentered);
+
+    // then add back any that are checked now
+    addresses.forEach((address) => {
+      req.form.values['all-storage-addresses'].push({
+        id: uuid.v1(),
+        preentered: true,
+        address: address
+      });
+    });
+
     super.saveValues(req, res, callback);
   }
 };

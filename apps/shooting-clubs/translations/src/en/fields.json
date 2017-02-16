@@ -89,5 +89,24 @@
   },
   "storage-address-secretary": {
     "legend": "Club secretary's contact address"
+  },
+  "storage-postcode": {
+    "label": "Postcode"
+  },
+  "storage-address-manual": {
+    "label": "Address"
+  },
+  "storage-address-select": {
+    "label": "Select the address"
+  },
+  "all-storage-addresses-add-another": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

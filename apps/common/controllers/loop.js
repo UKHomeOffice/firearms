@@ -107,7 +107,7 @@ module.exports = class LoopController extends BaseController {
   }
 
   locals(req, res) {
-    const items = req.sessionModel.get(req.form.options.aggregateTo);
+    const items = req.form.values[req.form.options.aggregateTo] || [];
     return Object.assign({}, super.locals(req, res), {
       items,
       hasItems: items.length > 0,
