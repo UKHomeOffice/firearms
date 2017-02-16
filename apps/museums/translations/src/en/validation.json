@@ -1,0 +1,38 @@
+{
+  "name": {
+    "required": "Enter the museum name"
+  },
+  "exhibit-postcode": {
+    "required": "Please enter a postcode",
+    "postcode": "Please enter a valid UK postcode"
+  },
+  "exhibit-address": {
+    "required": "Please select an address",
+    "required-manual": "Please enter an address"
+  },
+  "exhibit-addresses-add-another": {
+    "required": "Please select an option"
+  },
+  "contact-name": {
+    "required": "Please enter a contact name"
+  },
+  "contact-email": {
+    "required": "Please enter a contact email address",
+    "email": "Please enter a valid email address"
+  },
+  "contact-phone": {
+    "required": "Please enter a contact phone number",
+    "phonenumber": "Please enter a valid phone number"
+  },
+  "same-contact-address": {
+    "required": "Please select an option"
+  },
+  "contact-postcode": {
+    "required": "Please enter a postcode",
+    "postcode": "Please enter a valid UK postcode"
+  },
+  "contact-address": {
+    "required": "Please select an address",
+    "required-manual": "Please enter an address"
+  }
+}
