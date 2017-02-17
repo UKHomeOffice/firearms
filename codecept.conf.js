@@ -2,9 +2,6 @@
 
 const path = require('path');
 
-const commonPagesPath = page => path.resolve(__dirname,
-  `./apps/common/acceptance/pages/${page}`);
-
 const dealerPagesPath = page => path.resolve(__dirname,
   `./apps/new-dealer/acceptance/pages/${page}`);
 
@@ -15,7 +12,6 @@ module.exports = {
   name: 'firearms',
   tests: './apps/**/acceptance/features/*.js',
   include: {
-    activityPage: commonPagesPath('activity.js'),
     authorityNumberRenewPage: dealerPagesPath('authority-holder-renew-vary.js'),
     companyNamePage: dealerPagesPath('company-name.js'),
     handlePage: dealerPagesPath('handle.js'),

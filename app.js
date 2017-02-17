@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const path = require('path');
 const bootstrap = require('hof-bootstrap');
 const bodyParser = require('busboy-body-parser');
@@ -19,16 +18,6 @@ const options = {
   baseController: BaseController,
   start: false
 };
-
-if (config.env === 'ci') {
-  options.routes.unshift({
-    name: 'common',
-    params: '/:action?',
-    steps: _.mapValues(Object.assign({}, require('./apps/common'), {
-      '/empty': {}
-    }), value => Object.assign(value, {next: '/blank'}))
-  });
-}
 
 const app = bootstrap(options);
 if (config.env === 'ci' || config.env === 'development') {
