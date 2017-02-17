@@ -17,10 +17,8 @@ describe('BaseController', () => {
     // this is pointing to the contoller that is being used and providing
     // it with ith with an object, in this case BaseController is extended from controllers.base
     BaseController = proxyquire('../../../apps/common/controllers/base', {
-      'hof-controllers': {
-       base: StubBaseController
-     }
-   });
+      'hof-form-controller': StubBaseController
+    });
   });
 
   it('extends hof base-controller', () => {
