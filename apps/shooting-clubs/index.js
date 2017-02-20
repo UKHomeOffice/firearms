@@ -227,7 +227,7 @@ module.exports = {
       next: '/confirmation'
     },
     '/confirmation': {
-      clearSession: true,
+      behaviours: require('../common/behaviours/clear-session'),
       backLink: false
     }
   }
