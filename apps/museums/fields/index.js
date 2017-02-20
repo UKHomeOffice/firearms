@@ -22,7 +22,8 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    options: ['yes', 'no']
+    options: ['yes', 'no'],
+    validate: 'required'
   },
   'contact-address': {
     mixin: 'radio-group',

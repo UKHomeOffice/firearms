@@ -24,4 +24,14 @@ module.exports = class ManualAddressController extends AddressController {
     });
   }
 
+  setErrors(errors, req, res) {
+    if (errors) {
+      const key = `${req.form.options.prefix}-address`;
+      if (errors[key]) {
+        errors[key].type += '-manual';
+      }
+    }
+    super.setErrors(errors, req, res);
+  }
+
 };
