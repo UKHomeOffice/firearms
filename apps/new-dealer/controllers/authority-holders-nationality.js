@@ -1,6 +1,6 @@
 'use strict';
 
-const ErrorController = require('hof-controllers').error;
+const ValidationError = require('hof-form-controller').ValidationError;
 const BaseController = require('../../common/controllers/base');
 
 module.exports = class AuthorityHolderNationalityController extends BaseController {
@@ -13,19 +13,19 @@ module.exports = class AuthorityHolderNationalityController extends BaseControll
       const thirdNationality = req.form.values[`${key}-third`].toLowerCase();
 
       if (firstNationality === secondNationality && firstNationality !== '') {
-        return new ErrorController(`${key}-second`, {
+        return new ValidationError(`${key}-second`, {
           key: `${key}-second`,
           type: 'same-first-nationality',
           redirect: undefined
         });
       } else if (firstNationality === thirdNationality && firstNationality !== '') {
-        return new ErrorController(`${key}-third`, {
+        return new ValidationError(`${key}-third`, {
           key: `${key}-third`,
           type: 'same-first-nationality',
           redirect: undefined
         });
       } else if (secondNationality === thirdNationality && secondNationality !== '') {
-        return new ErrorController(`${key}-third`, {
+        return new ValidationError(`${key}-third`, {
           key: `${key}-third`,
           type: 'same-multi-nationality',
           redirect: undefined
