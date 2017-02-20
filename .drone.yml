@@ -59,7 +59,7 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
-      - docker run -e NODE_ENV=ci -d --net host firearms
+      - docker run -e NODE_ENV=ci -e DISABLE_CSP=true -d --net host firearms
       - docker run --rm --net host acceptance
     when:
       event: pull_request
@@ -69,7 +69,7 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
-      - docker run -e NODE_ENV=ci -d --net host firearms
+      - docker run -e NODE_ENV=ci -e DISABLE_CSP=true -d --net host firearms
       - docker run --rm --net host acceptance
     when:
       branch: master
