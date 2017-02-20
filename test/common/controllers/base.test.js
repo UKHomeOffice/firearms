@@ -1,28 +1,19 @@
 'use strict';
 
-const proxyquire = require('proxyquire');
+const BaseController = require('../../../apps/common/controllers/base');
+const FormController = require('hof-form-controller');
+
+const request = require('../../helpers/request');
+const response = require('../../helpers/response');
 
 describe('BaseController', () => {
-  const req = {
-    sessionModel: {}
-  };
-  const res = {};
-  // prototype or a class
-  let BaseController;
-  class StubBaseController {}
+
+  let req;
+  let res;
 
   beforeEach(() => {
-    // stub is just a function that listens, it doesn't return anything
-    StubBaseController.prototype.locals = sinon.stub();
-    // this is pointing to the contoller that is being used and providing
-    // it with ith with an object, in this case BaseController is extended from controllers.base
-    BaseController = proxyquire('../../../apps/common/controllers/base', {
-      'hof-form-controller': StubBaseController
-    });
-  });
-
-  it('extends hof base-controller', () => {
-    BaseController.prototype.should.be.an.instanceOf(StubBaseController);
+    req = request();
+    res = response();
   });
 
   it('has a locals method', () => {
@@ -34,11 +25,11 @@ describe('BaseController', () => {
 
     beforeEach(() => {
       // an instance of the basecontroller
-      baseController = new BaseController();
+      baseController = new BaseController({});
     });
 
-    it('extends the StubBaseController', () => {
-      baseController.should.be.instanceof(StubBaseController);
+    it('extends the hof-form-controller', () => {
+      baseController.should.be.instanceof(FormController);
     });
 
     it('has a locals method', () => {
@@ -47,12 +38,18 @@ describe('BaseController', () => {
     describe('method(s)', () => {
       describe('locals', () => {
         beforeEach(() => {
+          sinon.stub(FormController.prototype, 'locals').returns({
+            fields: []
+          });
           req.sessionModel.get = sinon.stub();
+        });
+        afterEach(() => {
+          FormController.prototype.locals.restore();
         });
 
         it('calls super.locals', () => {
           baseController.locals(req, res);
-          StubBaseController.prototype.locals.should.have.been.calledOnce
+          FormController.prototype.locals.should.have.been.calledOnce
             .and.calledWithExactly(req, res);
         });
 
@@ -64,21 +61,21 @@ describe('BaseController', () => {
 
         it('sets renew to true if activity is renew and super.locals.renew is true', () => {
           req.sessionModel.get.returns('renew');
-          StubBaseController.prototype.locals.returns({renew: true});
+          FormController.prototype.locals.returns({renew: true, fields: []});
 
           baseController.locals(req, res).renew.should.be.true;
         });
 
         it('sets renew to false if activity is not true and super.locals.renew is true', () => {
           req.sessionModel.get.returns('foo');
-          StubBaseController.prototype.locals.returns({renew: true});
+          FormController.prototype.locals.returns({renew: true, fields: []});
 
           baseController.locals(req, res).renew.should.be.false;
         });
 
         it('sets renew to true if activity is renew and super.locals.renew is true', () => {
           req.sessionModel.get.returns('renew');
-          StubBaseController.prototype.locals.returns({renew: false});
+          FormController.prototype.locals.returns({renew: false, fields: []});
 
           baseController.locals(req, res).renew.should.be.false;
         });
@@ -86,9 +83,10 @@ describe('BaseController', () => {
         it('extends super.locals', () => {
           const obj = {
             foo: 'bar',
-            renew: true
+            renew: true,
+            fields: []
           };
-          StubBaseController.prototype.locals.returns(obj);
+          FormController.prototype.locals.returns(obj);
           baseController.locals(req, res).should.have.property('foo')
             .and.equal('bar');
         });
