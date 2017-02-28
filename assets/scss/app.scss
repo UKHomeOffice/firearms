@@ -209,3 +209,29 @@ div.add-remove-section {
   font-size: 35px;
   text-align: center;
 }
+
+.pdf {
+  #global-header,
+  footer,
+  #declaration-section,
+  #skiplink-container {
+    display: none;
+  }
+}
+
+html {
+  background: white;
+}
+
+.pdf {
+  #global-header,
+  footer,
+  #declaration-section,
+  #skiplink-container {
+    display: none;
+  }
+}
+
+html {
+  background: white;
+}

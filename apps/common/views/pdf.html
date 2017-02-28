@@ -1,0 +1,19 @@
+{{<govuk-template}}
+  {{$bodyClasses}}pdf{{/bodyClasses}}
+  {{$head}}
+    {{> partials-head}}
+  {{/head}}
+  {{$main}}
+    <main id="content" class="main" role="main">
+      <h1>{{title}}</h1>
+      {{#rows}}
+        {{#hasMultipleFields}}
+          {{> partials-multiple-fields-summary-table}}
+        {{/hasMultipleFields}}
+        {{^hasMultipleFields}}
+          {{> partials-summary-table}}
+        {{/hasMultipleFields}}
+      {{/rows}}
+    </main>
+  {{/main}}
+{{/govuk-template}}
