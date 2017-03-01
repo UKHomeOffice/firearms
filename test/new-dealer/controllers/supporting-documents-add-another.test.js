@@ -1,6 +1,6 @@
 'use strict';
 
-const Controller = require('../../../apps/new-dealer/controllers/supporting-documents-add-another');
+const Controller = require('../../../apps/common/controllers/supporting-documents-add-another');
 const Base = require('../../../apps/common/controllers/base');
 const request = require('../../helpers/request');
 const response = require('../../helpers/response');
@@ -64,7 +64,7 @@ describe('Add Supporting Documents Controller', () => {
         expect(req.sessionModel.get('supporting-documents')[0].id).to.equal('def456');
       });
 
-      it('redirects to the controller route', () => {
+      it('redirects back to its referer page', () => {
         const controller = new Controller(options);
         const req = request({
           params: {action: 'delete', id: 'abc123'},
@@ -75,6 +75,7 @@ describe('Add Supporting Documents Controller', () => {
             ]
           }
         });
+        req.get.withArgs('referer').returns('/test');
         const res = response();
         const next = sinon.stub();
         controller.get(req, res, next);

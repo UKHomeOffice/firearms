@@ -1,6 +1,6 @@
 'use strict';
 
-const Controller = require('../../../apps/new-dealer/controllers/supporting-documents');
+const Controller = require('../../../apps/common/controllers/supporting-documents');
 const Base = require('../../../apps/common/controllers/base');
 
 const UploadModel = require('../../../apps/common/models/file-upload');

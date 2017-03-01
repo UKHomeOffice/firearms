@@ -1,0 +1,30 @@
+{
+  "reference": {
+    "header": "What is the reference number for your application?"
+  },
+  "supporting-documents": {
+    "header": "Supporting documents"
+  },
+  "supporting-documents-add": {
+    "header": "Supporting documents",
+    "list-header": "Documents added"
+  },
+  "confirm": {
+    "sections": {
+      "documents": {
+        "header": "Documents uploaded"
+      }
+    },
+    "fields": {
+      "supporting-documents": {
+        "label": "Documents"
+      }
+    }
+  },
+  "confirmation": {
+    "alert": "Upload complete",
+    "email": "We have sent an email to confirm receipt of your documents.",
+    "next": "",
+    "feedback": ""
+  }
+}

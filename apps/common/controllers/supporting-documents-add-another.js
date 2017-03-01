@@ -1,7 +1,6 @@
 'use strict';
 
 const BaseController = require('../../common/controllers/base');
-const path = require('path');
 
 module.exports = class UploadController extends BaseController {
   get(req, res, callback) {
@@ -14,7 +13,7 @@ module.exports = class UploadController extends BaseController {
   removeItem(req, res) {
     const items = req.sessionModel.get('supporting-documents') || [];
     req.sessionModel.set('supporting-documents', items.filter((file) => file.id !== req.params.id));
-    res.redirect(path.join(req.baseUrl, this.options.route));
+    res.redirect(req.get('referer'));
   }
 
   locals(req, res) {

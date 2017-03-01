@@ -563,7 +563,7 @@ module.exports = {
       }
     },
     '/supporting-documents': {
-      controller: require('./controllers/supporting-documents'),
+      controller: require('../common/controllers/supporting-documents'),
       fields: [
         'supporting-document-upload',
         'supporting-document-description'
@@ -571,7 +571,7 @@ module.exports = {
       next: '/supporting-documents-add'
     },
     '/supporting-documents-add': {
-      controller: require('./controllers/supporting-documents-add-another'),
+      controller: require('../common/controllers/supporting-documents-add-another'),
       fields: [
         'supporting-document-add-another'
       ],
