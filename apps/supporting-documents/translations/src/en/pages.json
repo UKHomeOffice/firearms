@@ -23,8 +23,6 @@
   },
   "confirmation": {
     "alert": "Upload complete",
-    "email": "We have sent an email to confirm receipt of your documents.",
-    "next": "",
-    "feedback": ""
+    "email": "We have sent an email to confirm receipt of your documents."
   }
 }

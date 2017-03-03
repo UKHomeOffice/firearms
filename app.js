@@ -30,4 +30,5 @@ if (config.env === 'ci' || config.env === 'development') {
   app.use(mockAPIs);
 }
 app.use(bodyParser());
+app.use(require('hof-middleware-markdown')());
 app.start();
