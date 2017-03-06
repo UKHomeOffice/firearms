@@ -187,11 +187,6 @@ module.exports = {
     '/usage': {
       fields: [
         'usage',
-        'sell-details',
-        'transport-details',
-        'transfer-details',
-        'training-details',
-        'research-details',
         'other-details'
       ],
       next: '/ammunition',
