@@ -692,20 +692,5 @@ module.exports = {
       'yes',
       'no'
     ]
-  },
-  'supporting-document-upload': {
-    mixin: 'input-file',
-    validate: 'required'
-  },
-  'supporting-document-description': {
-    mixin: 'textarea'
-  },
-  'supporting-document-add-another': {
-    mixin: 'radio-group',
-    validate: 'required',
-    options: [
-      'yes',
-      'no'
-    ]
   }
 };

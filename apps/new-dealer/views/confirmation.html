@@ -8,24 +8,11 @@
     <div>
       <p>{{#t}}pages.confirmation.email{{/t}}</p>
     </div>
-    <div>
-      <h2>{{#t}}pages.confirmation.evidence-subheader{{/t}}</h2>
-      <p>{{#t}}pages.confirmation.evidence{{/t}}</p>
-      {{#content}}
-        {{> partials-bullet-list}}
-      {{/content}}
-      {{#isArmedGuards}}
-        <p>{{#t}}pages.confirmation.register{{/t}}</p>
-        {{#armedGuardsContent}}
-          {{> partials-bullet-list}}
-        {{/armedGuardsContent}}
-      {{/isArmedGuards}}
-      <p>{{#t}}pages.confirmation.evidence-send{{/t}}</p>
-    </div>
-    <div>
-      <h2>{{#t}}pages.confirmation.next-subheader{{/t}}</h2>
-      <p>{{#t}}pages.confirmation.next{{/t}}</p>
-      <p>{{#t}}pages.confirmation.feedback{{/t}}</p>
-    </div>
+    {{#markdown}}evidence{{/markdown}}
+    {{#isArmedGuards}}
+      {{#markdown}}armed-guards{{/markdown}}
+    {{/isArmedGuards}}
+    {{#markdown}}evidence-instructions{{/markdown}}
+    {{#markdown}}what-happens-next{{/markdown}}
   {{/page-content}}
 {{/partials-page}}

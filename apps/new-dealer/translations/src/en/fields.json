@@ -497,24 +497,5 @@
         "label": "No"
       }
     }
-  },
-  "supporting-document-upload": {
-    "label": "Upload a file"
-  },
-  "supporting-document-description": {
-    "label": "Description"
-  },
-  "supporting-document-add-another": {
-    "legend": "{{legend}}",
-    "legend-first": "Do you want to upload any documents to support your application?",
-    "legend-additional": "Do you want to upload any additional documents to support your application?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
   }
 }

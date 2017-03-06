@@ -13,9 +13,15 @@ const options = {
   routes: [
     require('./apps/museums'),
     require('./apps/new-dealer'),
-    require('./apps/shooting-clubs')
+    require('./apps/shooting-clubs'),
+    require('./apps/supporting-documents')
   ],
   baseController: BaseController,
+  behaviours: [superclass => class extends superclass {
+    _checkEmpty(req, res, next) {
+      next();
+    }
+  }],
   start: false
 };
 
@@ -24,4 +30,5 @@ if (config.env === 'ci' || config.env === 'development') {
   app.use(mockAPIs);
 }
 app.use(bodyParser());
+app.use(require('hof-middleware-markdown')());
 app.start();

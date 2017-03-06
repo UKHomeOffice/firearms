@@ -1,7 +1,7 @@
 'use strict';
 
-const BaseController = require('../../common/controllers/base');
-const UploadModel = require('../../common/models/file-upload');
+const BaseController = require('../controllers/base');
+const UploadModel = require('../models/file-upload');
 
 const uuid = require('uuid');
 

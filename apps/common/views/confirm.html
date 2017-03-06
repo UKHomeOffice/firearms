@@ -10,11 +10,7 @@
     {{/rows}}
     <div id="declaration-section">
       <p>{{#t}}pages.confirm.footer{{/t}}</p>
-      <h3>Declaration</h3>
-      <p>{{#t}}pages.confirm.declaration{{/t}}</p>
-      {{#content}}
-        {{> partials-bullet-list}}
-      {{/content}}
+      {{#markdown}}declaration{{/markdown}}
     </div>
     {{#input-submit}}confirm{{/input-submit}}
   {{/page-content}}
