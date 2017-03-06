@@ -1,7 +1,15 @@
 'use strict';
 
-const pages = require('../../translations/en/default').pages;
 let I;
+
+const items = [
+  'Full names (and any previous names)',
+  'Date and place of birth',
+  'Nationalities',
+  'Residential addresses covering the last 5 years',
+  'Scanned copies of passports',
+  'DBS certificate (optional) - must be no more than 4 months old'
+];
 
 module.exports = {
 
@@ -15,10 +23,10 @@ module.exports = {
   },
 
   showsArmGuardsContent() {
-    I.seeEach(pages.confirmation['armed-guards-list'].items);
+    I.seeEach(items);
   },
 
   doesntShowArmGuardsContent() {
-    I.dontSeeEach(pages.confirmation['armed-guards-list'].items);
+    I.dontSeeEach(items);
   }
 };
