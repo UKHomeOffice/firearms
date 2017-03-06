@@ -6,6 +6,9 @@
   "club-name": {
     "label": "Club name"
   },
+  "club-members": {
+    "label": "Club members"
+  },
   "second-contact-name": {
     "label": "Full name"
   },

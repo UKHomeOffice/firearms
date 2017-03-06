@@ -5,6 +5,9 @@
   "club-name": {
     "required": "Enter the club name"
   },
+  "club-members": {
+    "required": "Enter the number of club members"
+  },
   "second-contact-name" : {
     "required": "Please enter the second person's name"
   },

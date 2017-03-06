@@ -72,6 +72,12 @@ module.exports = {
       fields: [
         'club-name'
       ],
+      next: '/club-members'
+    },
+    '/club-members': {
+      fields: [
+        'club-members'
+      ],
       next: '/club-address'
     },
     '/club-address': Object.assign(clubAddressLookup.start, {
@@ -197,7 +203,11 @@ module.exports = {
       controller: require('./controllers/confirm'),
       sections: {
         authority: ['reference-number'],
-        club: ['club-name', 'club-address'],
+        club: [
+          'club-name',
+          'club-members',
+          'club-address'
+        ],
         secretary: [
           'club-secretary-name',
           'club-secretary-address',
