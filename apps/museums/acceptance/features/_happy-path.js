@@ -2,8 +2,6 @@
 
 const baseUrl = require('../../').baseUrl || '';
 
-const values = {};
-
 Feature('Happy path');
 
 Before((
@@ -15,6 +13,6 @@ Before((
 Scenario('An applicaton can be completed end-to-end', (
   I
 ) => {
-  I.completeToStep(`${baseUrl}/confirmation`, values);
+  I.completeToStep(`${baseUrl}/confirmation`);
 });
 
