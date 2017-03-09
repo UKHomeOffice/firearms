@@ -15,7 +15,7 @@ module.exports = {
   },
   'contact-phone': {
     mixin: 'input-text',
-    validate: ['required', 'phonenumber']
+    validate: 'required'
   },
   'same-contact-address': {
     mixin: 'radio-group',
