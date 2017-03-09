@@ -284,7 +284,7 @@ module.exports = {
         'first-authority-holders-nationality',
         'first-authority-holders-nationality-multi',
         'first-authority-holders-nationality-second',
-        'first-authority-holders-nationality-third',
+        'first-authority-holders-nationality-third'
       ],
       next: '/first-authority-holders-postcode',
       locals: {
@@ -557,15 +557,29 @@ module.exports = {
         section: 'contacts-details'
       }
     },
+    '/supporting-documents-add': {
+      controller: require('../common/controllers/supporting-documents-add-another'),
+      fields: [
+        'supporting-document-add-another'
+      ],
+      forks: [{
+        target: '/supporting-documents',
+        condition: {
+          field: 'supporting-document-add-another',
+          value: 'yes'
+        }
+      }],
+      next: '/confirm'
+    },
     '/supporting-documents': {
       controller: require('../common/controllers/supporting-documents'),
       fields: [
         'supporting-document-upload',
         'supporting-document-description'
       ],
-      next: '/supporting-documents-add'
+      next: '/supporting-documents-add-another'
     },
-    '/supporting-documents-add': {
+    '/supporting-documents-add-another': {
       controller: require('../common/controllers/supporting-documents-add-another'),
       fields: [
         'supporting-document-add-another'
