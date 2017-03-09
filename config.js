@@ -35,6 +35,11 @@ module.exports = {
     ignoreTLS: process.env.IGNORE_TLS === 'true',
     secure: process.env.EMAIL_SECURE === 'true',
     port: process.env.EMAIL_PORT || '',
-    host: process.env.EMAIL_HOST || '',
+    host: process.env.EMAIL_HOST || ''
+  },
+  icasework: {
+    url: process.env.ICASEWORK_URL || 'https://uat.icasework.com/createcase',
+    key: process.env.ICASEWORK_KEY,
+    secret: process.env.ICASEWORK_SECRET
   }
 };
