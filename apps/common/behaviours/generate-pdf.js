@@ -6,26 +6,21 @@ const concat = require('concat-stream');
 const path = require('path');
 
 module.exports = superclass => class extends superclass {
-  saveValues(req, res, callback) {
-    super.saveValues(req, res, (err, values) => {
-      this.generatePDF(req, res, (pdfBuffer) => {
-        const file = {
-          name: 'application_form.pdf',
-          data: pdfBuffer,
-          mimetype: 'application/pdf'
-        };
-        if (file && file.data && file.data.length) {
-          const model = new UploadModel(file);
-          model.save()
-            .then((result) => {
-              req.form.values['pdf-upload'] = result.url;
-            })
-            .then(() => callback(err, values))
-            .catch(e => callback(e));
-        } else {
-          callback(err, values);
-        }
-      });
+  process(req, res, next) {
+    this.generatePDF(req, res, (pdfBuffer) => {
+      const file = {
+        name: 'application_form.pdf',
+        data: pdfBuffer,
+        mimetype: 'application/pdf'
+      };
+      const model = new UploadModel(file);
+      model.save()
+        .then((result) => {
+          req.form.values['pdf-upload'] = result.url;
+        })
+        .then(() => {
+          super.process(req, res, next);
+        }, next);
     });
   }
 
