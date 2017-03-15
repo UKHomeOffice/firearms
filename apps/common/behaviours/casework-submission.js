@@ -25,7 +25,8 @@ module.exports = config => {
     saveValues(req, res, next) {
       const model = new Model(req.sessionModel.toJSON());
       model.save()
-        .then(() => {
+        .then(data => {
+          req.form.values.caseid = data.createcaseresponse.caseid;
           super.saveValues(req, res, next);
         }, next);
     }
