@@ -26,13 +26,13 @@ module.exports = superclass => class extends superclass {
     });
   }
 
-  generatePDF(req, res, next) {
+  generatePDF(req, res, callback) {
     const locals = Object.assign({}, this.locals(req, res), {
       title: 'Firearms Application'
     });
     res.render('pdf.html', locals, (err, html) => {
       if (err) {
-        return next(err);
+        return callback(err);
       }
 
       // phantom is weird about paths it doesn't read things like a webserver
@@ -40,12 +40,7 @@ module.exports = superclass => class extends superclass {
       pdf.create(html, {
         base: 'file://' + path.resolve(__dirname, '../../../') + '/',
         border: '1cm'
-      }).toBuffer((e, buffer) => {
-        if (e) {
-          return next(e);
-        }
-        next(null, buffer);
-      });
+      }).toBuffer(callback);
     });
   }
 };
