@@ -96,6 +96,7 @@ module.exports = {
     '/confirm': {
       template: 'confirm',
       controller: require('../common/controllers/confirm'),
+      behaviours: require('../common/behaviours/generate-pdf'),
       sections: {
         'museum-details': [
           'name',

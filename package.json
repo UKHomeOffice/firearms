@@ -42,6 +42,7 @@
     "hof-middleware-markdown": "^1.0.0",
     "hof-model": "^3.0.0",
     "hof-transpiler": "^0.2.1",
+    "html-pdf": "^2.1.0",
     "jquery": "^2.1.4",
     "lodash": "^4.17.4",
     "npm-sass": "^2.0.0",

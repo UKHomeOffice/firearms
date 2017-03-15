@@ -1,0 +1,32 @@
+{{<govuk-template}}
+  {{$bodyClasses}}pdf{{/bodyClasses}}
+  {{$head}}
+    {{> partials-head}}
+    <style>
+      .pdf #global-header,
+      .pdf footer,
+      .pdf #declaration-section,
+      .pdf #skiplink-container
+      {
+        display: none;
+      }
+
+      html {
+        background: white;
+      }
+    </style>
+  {{/head}}
+  {{$main}}
+    <main id="content" class="main" role="main">
+      <h1>{{title}}</h1>
+      {{#rows}}
+        {{#hasMultipleFields}}
+          {{> partials-multiple-fields-summary-table}}
+        {{/hasMultipleFields}}
+        {{^hasMultipleFields}}
+          {{> partials-summary-table}}
+        {{/hasMultipleFields}}
+      {{/rows}}
+    </main>
+  {{/main}}
+{{/govuk-template}}
