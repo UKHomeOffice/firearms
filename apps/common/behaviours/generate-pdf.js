@@ -2,12 +2,14 @@
 
 const pdf = require('html-pdf');
 const UploadModel = require('../../common/models/file-upload');
-const concat = require('concat-stream');
 const path = require('path');
 
 module.exports = superclass => class extends superclass {
   process(req, res, next) {
-    this.generatePDF(req, res, (pdfBuffer) => {
+    this.generatePDF(req, res, (err, pdfBuffer) => {
+      if (err) {
+        return next(err);
+      }
       const file = {
         name: 'application_form.pdf',
         data: pdfBuffer,
@@ -25,23 +27,24 @@ module.exports = superclass => class extends superclass {
   }
 
   generatePDF(req, res, next) {
-    res.render('pdf.html', Object.assign({}, this.locals(req, res), {
+    const locals = Object.assign({}, this.locals(req, res), {
       title: 'Firearms Application'
-    }), (err, html) => {
+    });
+    res.render('pdf.html', locals, (err, html) => {
       if (err) {
-        next(err);
+        return next(err);
       }
-      let concatStream = concat(next);
+
       // phantom is weird about paths it doesn't read things like a webserver
       html = html.replace(/href="\//g, 'href="./');
       pdf.create(html, {
         base: 'file://' + path.resolve(__dirname, '../../../') + '/',
         border: '1cm'
-      }).toStream((e, stream) => {
+      }).toBuffer((e, buffer) => {
         if (e) {
-          next(e);
+          return next(e);
         }
-        stream.pipe(concatStream);
+        next(null, buffer);
       });
     });
   }
