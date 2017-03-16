@@ -110,7 +110,7 @@ module.exports = class ConfirmController extends controllers {
 
   getContactHoldersName(data) {
     const contactHolder = data['contact-holder'];
-    const contactName = contactHolder === 'first' || contactHolder === 'second' ?
+    const contactName = contactHolder !== 'other' ?
       data[`${contactHolder}-authority-holders-name`] :
       data['someone-else-name'];
     return contactName;

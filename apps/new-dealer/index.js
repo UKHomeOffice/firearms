@@ -5,7 +5,12 @@ const controllers = require('hof-controllers');
 
 const ammunition = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'ammunition');
 const weapons = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'weapons');
-const storedOnPremises = req=> req.sessionModel.get('stored-on-premises') === 'true';
+const storedOnPremises = req => req.sessionModel.get('stored-on-premises') === 'true';
+
+const Submission = require('../common/behaviours/casework-submission');
+const submission = Submission({
+  prepare: require('./models/submission')
+});
 
 module.exports = {
   name: 'new-dealer',
@@ -595,6 +600,7 @@ module.exports = {
     },
     '/confirm': {
       controller: require('./controllers/confirm'),
+      behaviours: [submission],
       customerEmailField: 'contact-email',
       emailConfig: require('../../config').email,
       fieldsConfig: require('./fields'),
