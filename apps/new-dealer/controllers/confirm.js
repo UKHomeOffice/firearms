@@ -119,7 +119,8 @@ module.exports = class ConfirmController extends controllers {
   addContactDetailsSection(data, translate, result) {
     const contactHolder = data['contact-holder'];
     const contactName = this.getContactHoldersName(data);
-    const contactAddress = data[`${contactHolder}-authority-holders-address-manual`];
+    const key = `${contactHolder}-authority-holders-address`;
+    const contactAddress = data[`${key}-manual`] || data[`${key}-lookup`];
     return result.map(section => {
       if (section.fields !== undefined) {
         section.fields = section.fields.map(field => {
@@ -128,9 +129,13 @@ module.exports = class ConfirmController extends controllers {
           } else if (field.field === 'use-different-address') {
             field.label = translate('fields.authority-holder-contact-address-manual.summary');
             field.value = contactAddress;
+          } else if (field.field.match(/^contact-address-(lookup|manual)$/)) {
+            if (data['use-different-address'] === 'false') {
+              return;
+            }
           }
           return field;
-        });
+        }).filter(a => a);
       }
       return section;
     });
