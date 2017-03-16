@@ -591,7 +591,14 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     },
-    options: ['first', 'second', {value: 'other', toggle: 'someone-else-name', child: 'input-text'}]
+    options: ['first', 'second', {value: 'other', toggle: 'someone-else-name', child: 'input-text'}],
+    invalidates: [
+      'contact-address-lookup',
+      'contact-address-manual',
+      'authority-holder-contact-postcode',
+      'authority-holder-contact-address-lookup',
+      'authority-holder-contact-address-manual'
+    ]
   },
   'someone-else-name': {
     validate: 'required',
@@ -640,7 +647,12 @@ module.exports = {
       value: 'true',
       toggle: 'authority-holder-contact-postcode',
       child: 'partials/postcode-manual-link'
-    }]
+    }],
+    invalidates: [
+      'authority-holder-contact-postcode',
+      'authority-holder-contact-address-lookup',
+      'authority-holder-contact-address-manual'
+    ]
   },
   'authority-holder-contact-postcode': {
     validate: ['required', 'postcode'],
