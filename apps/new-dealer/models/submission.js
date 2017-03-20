@@ -9,7 +9,7 @@ module.exports = data => {
   response.ApplicationType = data.activity === 'new' ? 'Initial application' : 'Renewal';
 
   if (data.activity === 'renew') {
-    response['Cusomter.CustomerReference'] = data['reference-number'];
+    response['Customer.CustomerReference'] = data['reference-number'];
     response.ExistingAuthorityReference = data['authority-number'];
   }
 
