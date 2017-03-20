@@ -1,8 +1,13 @@
 'use strict';
 
-const controllers = require('hof-controllers');
-
 const AddressLookup = require('../common/controllers/address/helper');
+
+const Submission = require('../common/behaviours/casework-submission');
+const submission = Submission({
+  prepare: require('./models/submission')
+});
+
+const pdf = require('../common/behaviours/generate-pdf');
 
 const clubAddressLookup = AddressLookup({
   prefix: 'club',
@@ -45,10 +50,6 @@ module.exports = {
   baseUrl: '/shooting-clubs',
   params: '/:action?/:id?',
   steps: {
-    '/': {
-      controller: controllers.start,
-      next: '/activity'
-    },
     '/activity': {
       fields: [
         'activity'
@@ -195,7 +196,7 @@ module.exports = {
     '/storage-address-add-manual': storageAddressLookup.manual,
     '/confirm': {
       controller: require('./controllers/confirm'),
-      behaviours: require('../common/behaviours/generate-pdf'),
+      behaviours: ['complete', submission, pdf],
       sections: {
         authority: ['reference-number'],
         club: ['club-name', 'club-address'],
@@ -228,7 +229,6 @@ module.exports = {
       next: '/confirmation'
     },
     '/confirmation': {
-      behaviours: require('../common/behaviours/clear-session'),
       backLink: false
     }
   }
