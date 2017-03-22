@@ -11,6 +11,14 @@ module.exports = data => {
     response.ExistingAuthorityReference = data['authority-number'];
   }
 
+  response['Customer.Name'] = data.name;
+  response.UKStorageAddress = data['exhibit-address'];
+  response['Agent.Name'] = data['contact-name'];
+  response['Customer.Email'] = data['contact-email'];
+  response['Customer.Phone'] = data['contact-phone'];
+
+  response['Customer.Address'] = data['contact-address'];
+
   return response;
 };
 
