@@ -106,5 +106,14 @@ module.exports = data => {
   response.ActivityDeactivation = contains(data.usage, 'deactivation');
   response.ActivityOther = contains(data.usage, 'other');
 
+  data['supporting-documents'] = data['supporting-documents'] || [];
+
+  data['supporting-documents'].forEach((doc, i) => {
+    const index = i + 2;
+    response[`Document${index}.URL`] = doc.url;
+    response[`Document${index}.Name`] = doc.decription;
+    response[`Document${index}.URLLoadContent`] = true;
+  });
+
   return response;
 };
