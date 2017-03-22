@@ -17,10 +17,6 @@ module.exports = {
   baseUrl: '/s5',
   params: '/:action?/:id?',
   steps: {
-    '/': {
-      controller: controllers.start,
-      next: '/activity'
-    },
     '/activity': {
       fields: [
         'activity'
@@ -600,7 +596,7 @@ module.exports = {
     },
     '/confirm': {
       controller: require('./controllers/confirm'),
-      behaviours: [submission],
+      behaviours: ['complete', submission],
       customerEmailField: 'contact-email',
       emailConfig: require('../../config').email,
       fieldsConfig: require('./fields'),
@@ -608,7 +604,6 @@ module.exports = {
     },
     '/confirmation': {
       controller: require('./controllers/confirmation'),
-      behaviours: require('../common/behaviours/clear-session'),
       backLink: false
     }
   }
