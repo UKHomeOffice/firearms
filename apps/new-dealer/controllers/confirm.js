@@ -119,7 +119,8 @@ module.exports = class ConfirmController extends controllers {
   addContactDetailsSection(data, translate, result) {
     const contactHolder = data['contact-holder'];
     const contactName = this.getContactHoldersName(data);
-    const contactAddress = data[`${contactHolder}-authority-holders-address-manual`];
+    const key = `${contactHolder}-authority-holders-address`;
+    const contactAddress = data[`${key}-manual`] || data[`${key}-lookup`];
     return result.map(section => {
       if (section.fields !== undefined) {
         section.fields = section.fields.map(field => {

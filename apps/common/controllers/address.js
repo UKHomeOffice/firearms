@@ -23,4 +23,11 @@ module.exports = class AddressController extends BaseController {
       postcodeApiMessageKey: isManual ? '' : (req.sessionModel.get('postcodeApiMeta') || {}).messageKey
     });
   }
+
+  saveValues(req, res, callback) {
+    const field = this.options.locals.field;
+    req.sessionModel.unset(`${field}-address-lookup`);
+    super.saveValues(req, res, callback);
+  }
+
 };
