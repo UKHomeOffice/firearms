@@ -40,7 +40,11 @@ Scenario('I am taken to the confirmation page when I click submit', function *(
   confirmPage,
   confirmationPage
 ) {
-  yield confirmPage.setSessionData(steps.name);
+  yield I.setSessionData(steps.name, {
+    'weapons-ammunition': [],
+    obtain: [],
+    usage: []
+  });
   I.submitForm();
   I.seeInCurrentUrl(confirmationPage.url);
 });
