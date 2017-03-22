@@ -12,13 +12,20 @@ module.exports = class CaseworkModel extends Model {
   }
 
   prepare() {
-    return {
+    const params = {
       Key: config.key,
       Signature: this.sign(),
       Type: 'Firearms',
       Format: 'json',
       db: 'flcms'
     };
+
+    if (this.get('pdf-upload')) {
+      params['Document1.Name'] = 'full application data';
+      params['Document1.Url'] = this.get('pdf-upload');
+    }
+
+    return params;
   }
 
   sign() {
