@@ -57,7 +57,7 @@ module.exports = data => {
       'military-use-rockets': 'WeaponsS1A-b',
       'projecting-launchers': 'WeaponsS1A-c'
     };
-    Object.keys.forEach(key => {
+    Object.keys(types).forEach(key => {
       if (data['weapons-types'].indexOf(key) > -1) {
         response[types[key]] = 'Yes';
         response[`${types[key]}Quantity`] = data[`${key}-quantity`];
@@ -79,7 +79,7 @@ module.exports = data => {
       'expanding-missile': 'AmmunitionS1A-f',
       'missiles-for-above': 'AmmunitionS1A-g'
     };
-    Object.keys.forEach(key => {
+    Object.keys(types).forEach(key => {
       if (data['ammunition-types'].indexOf(key) > -1) {
         response[types[key]] = 'Yes';
         response[`${types[key]}Quantity`] = data[`${key}-quantity`];
