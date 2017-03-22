@@ -1,5 +1,5 @@
 'use strict';
-
+/* eslint complexity: 0 max-statements: 0 */
 const contains = (arr, val) => arr.indexOf(val) > -1 ? 'Yes' : 'No';
 
 module.exports = data => {
@@ -15,7 +15,27 @@ module.exports = data => {
 
   response['Customer.Category'] = data.organisation;
   response['Customer.Name'] = data['first-authority-holders-name'];
-  response['Customer.Address'] = data['first-authority-holders-name'];
+  response['Customer.Address'] = data['first-authority-holders-address-manual']
+    || data['first-authority-holders-address-lookup'];
+
+  let addressKey;
+  let contactKey;
+  if (data['contact-holder'] === 'first') {
+    addressKey = 'first-authority-holders';
+    contactKey = addressKey;
+  } else if (data['contact-holder'] === 'second') {
+    addressKey = 'second-authority-holders';
+    contactKey = addressKey;
+  } else if (data['contact-holder'] === 'other') {
+    addressKey = 'contact';
+    contactKey = 'someone-else';
+  }
+
+  response['Agent.Address'] = data[`${addressKey}-address-manual`] || data[`${addressKey}-address-lookup`];
+
+  response['Agent.Name'] = data[`${contactKey}-name`];
+  response['Agent.Email'] = data['contact-email'];
+  response['Agent.Phone'] = data['contact-phone'];
 
   if (data['weapons-ammunition'].indexOf('weapons') > -1) {
     response.AuthorityCoversWeapons = 'Yes';
