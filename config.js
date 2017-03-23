@@ -3,11 +3,13 @@
 
 const env = process.env.NODE_ENV;
 
+const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}`;
+
 module.exports = {
   env,
   postcode: {
     hostname: (!process.env.POSTCODE_AUTH && (env === 'ci' || env === 'development')) ?
-      `http://${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}/api/postcode-test` :
+      `http://${localhost()}/api/postcode-test` :
       'https://postcodeinfo.service.justice.gov.uk',
     authorization: process.env.POSTCODE_AUTH,
     addresses: {
@@ -17,7 +19,7 @@ module.exports = {
   },
   upload: {
     hostname: env === 'ci' || env === 'development' ?
-      `http://${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}/api/file-upload` :
+      `http://${localhost()}/api/file-upload` :
       process.env.FILE_VAULT_URL
   },
   keycloak: {
