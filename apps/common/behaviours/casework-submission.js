@@ -23,12 +23,17 @@ module.exports = config => {
   return superclass => class extends superclass {
 
     saveValues(req, res, next) {
-      const model = new Model(req.sessionModel.toJSON());
-      model.save()
-        .then(data => {
-          req.form.values.caseid = data.createcaseresponse.caseid;
-          super.saveValues(req, res, next);
-        }, next);
+      super.saveValues(req, res, err => {
+        if (err) {
+          return next(err);
+        }
+        const model = new Model(req.sessionModel.toJSON());
+        model.save()
+          .then(data => {
+            req.sessionModel.set('caseid', data.createcaseresponse.caseid);
+            next();
+          }, next);
+      });
     }
 
   };
