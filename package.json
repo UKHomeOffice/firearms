@@ -18,7 +18,7 @@
     "watch:js": "nodemon --watch assets/js -e js -x 'npm run browserify'",
     "test": "NODE_ENV=test npm run lint && npm run test:unit",
     "test:unit": "istanbul cover _mocha",
-    "test:acceptance": "DEBUG=hof:* funkie so-acceptance --steps",
+    "test:acceptance": "funkie so-acceptance --steps",
     "lint": "npm-run-all --parallel lint:app lint:acceptance",
     "lint:app": "eslint .",
     "lint:acceptance": "eslint --no-ignore -c ./node_modules/so-acceptance/.eslintrc ./apps/*/features/**/*.js",
