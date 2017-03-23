@@ -3,7 +3,7 @@
 module.exports = data => {
   const response = {};
 
-  response.AuthorityType = 'Dealer';
+  response.AuthorityType = 'Shooting club';
   response.ApplicationType = data.activity === 'new' ? 'Initial application' : 'Renewal';
 
   if (data.activity === 'renew') {
