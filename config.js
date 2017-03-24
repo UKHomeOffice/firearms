@@ -31,15 +31,11 @@ module.exports = {
   },
   email: {
     from: process.env.FROM_ADDRESS || '',
-    replyTo: process.env.REPLY_TO || '',
-    accessKeyId: process.env.AWS_USER || '',
-    secretAccessKey: process.env.AWS_PASSWORD || '',
-    transportType: 'ses',
-    region: process.env.EMAIL_REGION || '',
-    ignoreTLS: process.env.IGNORE_TLS === 'true',
-    secure: process.env.EMAIL_SECURE === 'true',
-    port: process.env.EMAIL_PORT || '',
-    host: process.env.EMAIL_HOST || ''
+    transport: 'ses',
+    transportOptions: {
+      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || '',
+      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || ''
+    }
   },
   icasework: {
     url: process.env.ICASEWORK_URL || 'https://uat.icasework.com/createcase',

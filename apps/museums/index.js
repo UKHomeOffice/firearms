@@ -24,6 +24,14 @@ const submission = Submission({
 
 const pdf = require('../common/behaviours/generate-pdf');
 
+const Emailer = require('../common/behaviours/emailer');
+const emailer = Emailer({
+  recipient: 'contact-email',
+  subject: data => `Ref: ${data.caseid} - Museums firearms licence application`,
+  type: 'museum firearms licence',
+  nameKey: 'contact-name'
+});
+
 module.exports = {
   name: 'museums',
   params: '/:action?/:id?',
@@ -98,7 +106,7 @@ module.exports = {
     '/confirm': {
       template: 'confirm',
       controller: require('../common/controllers/confirm'),
-      behaviours: ['complete', submission, pdf],
+      behaviours: ['complete', submission, pdf, emailer],
       sections: {
         'museum-details': [
           'name',
