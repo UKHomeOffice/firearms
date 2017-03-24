@@ -2,9 +2,9 @@
 
 const _ = require('lodash');
 const path = require('path');
-const controllers = require('hof-controllers').confirm;
+const Controller = require('../../common/controllers/legacy-confirm');
 
-module.exports = class ConfirmController extends controllers {
+module.exports = class ConfirmController extends Controller {
 
   locals(req, res) {
     const content = req.rawTranslate('pages.confirm');

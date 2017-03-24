@@ -12,6 +12,8 @@ const submission = Submission({
   prepare: require('./models/submission')
 });
 
+const pdf = require('../common/behaviours/generate-pdf');
+
 module.exports = {
   name: 'new-dealer',
   baseUrl: '/s5',
@@ -596,7 +598,7 @@ module.exports = {
     },
     '/confirm': {
       controller: require('./controllers/confirm'),
-      behaviours: ['complete', submission],
+      behaviours: ['complete', submission, pdf],
       customerEmailField: 'contact-email',
       emailConfig: require('../../config').email,
       fieldsConfig: require('./fields'),

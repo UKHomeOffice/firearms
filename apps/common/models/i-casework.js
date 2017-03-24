@@ -23,6 +23,7 @@ module.exports = class CaseworkModel extends Model {
     if (this.get('pdf-upload')) {
       params['Document1.Name'] = 'full application data';
       params['Document1.URL'] = this.get('pdf-upload');
+      params['Document1.MimeType'] = 'application/pdf';
       params['Document1.URLLoadContent'] = true;
     }
 
