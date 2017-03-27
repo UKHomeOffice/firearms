@@ -22,21 +22,17 @@
     "required": "Enter a postcode",
     "postcode": "Enter a valid postcode"
   },
-  "club-address-manual": {
-    "required": "Enter an address"
-  },
-  "club-address-lookup": {
-    "required": "Select an address"
+  "club-address": {
+    "required": "Select an address",
+    "required-manual": "Enter an address"
   },
   "club-secretary-postcode": {
     "required": "Enter a postcode",
     "postcode": "Enter a valid postcode"
   },
-  "club-secretary-address-manual": {
-    "required": "Enter an address"
-  },
-  "club-secretary-address-lookup": {
-    "required": "Select an address"
+  "club-secretary-address": {
+    "required": "Select an address",
+    "required-manual": "Enter an address"
   },
   "club-secretary-email": {
     "required": "Enter the club secretary's email",
@@ -49,21 +45,17 @@
     "required": "Enter a postcode",
     "postcode": "Enter a valid postcode"
   },
-  "second-contact-address-manual": {
-    "required": "Enter an address"
-  },
-  "second-contact-address-lookup": {
-    "required": "Select an address"
+  "second-contact-address": {
+    "required": "Select an address",
+    "required-manual": "Enter an address"
   },
   "location-postcode": {
     "required": "Enter a postcode",
     "postcode": "Enter a valid postcode"
   },
-  "location-address-manual": {
-    "required": "Enter an address"
-  },
-  "location-address-lookup": {
-    "required": "Select an address"
+  "location-address": {
+    "required": "Select an address",
+    "required-manual": "Enter an address"
   },
   "location-add-another-address": {
     "required": "Select an option"
@@ -72,11 +64,9 @@
     "required": "Enter a postcode",
     "postcode": "Enter a valid postcode"
   },
-  "storage-address-manual": {
-    "required": "Enter an address"
-  },
-  "storage-address-lookup": {
-    "required": "Select an address"
+  "storage-address": {
+    "required": "Select an address",
+    "required-manual": "Enter an address"
   },
   "storage-add-another-address": {
     "required": "Select an option"
