@@ -5,8 +5,6 @@ const config = require('../../../config');
 
 describe('File Upload Model', () => {
 
-  let model;
-
   beforeEach(function() {
     config.upload.hostname = 'http://test.example.com/file/upload';
     this.stub(Model.prototype, 'request').yieldsAsync(null, {
@@ -14,19 +12,20 @@ describe('File Upload Model', () => {
       url: '/file/12341212132123?foo=bar'
     });
 
-    model = new Model();
-    this.stub(model, '_request').yieldsAsync(null, {
-      body: '{"access_token":"myaccesstoken"}'
-    });
+    this.stub(Model.prototype, 'auth').returns(new Promise((resolve) => {
+      resolve({bearer: 'myaccesstoken'});
+    }));
   });
 
   describe('save', () => {
     it('returns a promise', () => {
+      const model = new Model();
       const response = model.save();
       expect(response).to.be.an.instanceOf(Promise);
     });
 
     it('makes a call to file upload api', () => {
+      const model = new Model();
       const response = model.save();
       return response.then(() => {
         expect(model.request).to.have.been.calledOnce;
@@ -40,6 +39,7 @@ describe('File Upload Model', () => {
     });
 
     it('resolves with response from api endpoint', () => {
+      const model = new Model();
       const response = model.save();
       return expect(response).to.eventually.deep.equal({
         api: 'response',
@@ -48,6 +48,7 @@ describe('File Upload Model', () => {
     });
 
     it('rejects if api call fails', () => {
+      const model = new Model();
       const err = new Error('test error');
       model.request.yieldsAsync(err);
       const response = model.save();
@@ -59,9 +60,6 @@ describe('File Upload Model', () => {
         data: 'foo',
         name: 'myfile.png',
         mimetype: 'image/png'
-      });
-      sinon.stub(uploadedFile, '_request').yieldsAsync(null, {
-        body: '{"access_token":"myaccesstoken"}'
       });
       const response = uploadedFile.save();
       return response.then(() => {
