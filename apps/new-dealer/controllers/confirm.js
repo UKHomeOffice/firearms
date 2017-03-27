@@ -10,6 +10,10 @@ module.exports = class ConfirmController extends Controller {
     const content = req.rawTranslate('pages.confirm');
     const locals = super.locals(req, res);
     const rows = locals.rows.filter(row => row.fields === undefined || row.fields.length);
+    if (req.sessionModel.get('usage') && req.sessionModel.get('usage').indexOf('other') > -1) {
+      const other = req.sessionModel.get('other-details');
+      this.modifyField(rows, 'usage', val => val.replace('Other', `Other (${other})`));
+    }
     return Object.assign({}, locals, {
       content,
       rows
@@ -28,6 +32,19 @@ module.exports = class ConfirmController extends Controller {
     result.splice(4, 0, ammo);
 
     return this.addContactDetailsSection(data, translate, result.filter(a => a));
+  }
+
+  modifyField(output, key, modify) {
+    output.forEach(section => {
+      if (!section.fields) {
+        return;
+      }
+      section.fields.forEach(field => {
+        if (field.field === key) {
+          field.value = modify(field.value);
+        }
+      });
+    });
   }
 
   getValues(req, res, callback) {
