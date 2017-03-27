@@ -7,11 +7,17 @@ describe('File Upload Model', () => {
 
   beforeEach(function() {
     config.upload.hostname = 'http://test.example.com/file/upload';
-    this.stub(Model.prototype, 'request').yieldsAsync(null, {api: 'response'});
+    this.stub(Model.prototype, 'request').yieldsAsync(null, {
+      api: 'response',
+      url: '/file/12341212132123?foo=bar'
+    });
+
+    this.stub(Model.prototype, 'auth').returns(new Promise((resolve) => {
+      resolve({bearer: 'myaccesstoken'});
+    }));
   });
 
   describe('save', () => {
-
     it('returns a promise', () => {
       const model = new Model();
       const response = model.save();
@@ -35,7 +41,10 @@ describe('File Upload Model', () => {
     it('resolves with response from api endpoint', () => {
       const model = new Model();
       const response = model.save();
-      return expect(response).to.eventually.deep.equal({api: 'response'});
+      return expect(response).to.eventually.deep.equal({
+        api: 'response',
+        url: '/vault/12341212132123?foo=bar&token=myaccesstoken'
+      });
     });
 
     it('rejects if api call fails', () => {
@@ -47,14 +56,14 @@ describe('File Upload Model', () => {
     });
 
     it('adds a formData property to api request with details of uploaded file', () => {
-      const model = new Model({
+      const uploadedFile = new Model({
         data: 'foo',
         name: 'myfile.png',
         mimetype: 'image/png'
       });
-      const response = model.save();
+      const response = uploadedFile.save();
       return response.then(() => {
-        expect(model.request).to.have.been.calledWith(sinon.match({
+        expect(uploadedFile.request).to.have.been.calledWith(sinon.match({
           formData: {
             document: {
               value: 'foo',

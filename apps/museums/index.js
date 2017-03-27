@@ -1,6 +1,5 @@
 'use strict';
 
-const controllers = require('hof-controllers');
 const AddressLookup = require('../common/controllers/address/helper');
 const exhibitAddressLookup = AddressLookup({
   prefix: 'exhibit',
@@ -18,15 +17,18 @@ const contactAddressLookup = AddressLookup({
   next: '/confirm'
 });
 
+const Submission = require('../common/behaviours/casework-submission');
+const submission = Submission({
+  prepare: require('./models/submission')
+});
+
+const pdf = require('../common/behaviours/generate-pdf');
+
 module.exports = {
   name: 'museums',
   params: '/:action?/:id?',
   baseUrl: '/museums',
   steps: {
-    '/': {
-      controller: controllers.start,
-      next: '/activity'
-    },
     '/activity': {
       fields: ['activity'],
       next: '/name'
@@ -96,7 +98,7 @@ module.exports = {
     '/confirm': {
       template: 'confirm',
       controller: require('../common/controllers/confirm'),
-      behaviours: require('../common/behaviours/generate-pdf'),
+      behaviours: ['complete', submission, pdf],
       sections: {
         'museum-details': [
           'name',
@@ -119,7 +121,6 @@ module.exports = {
       next: '/confirmation'
     },
     '/confirmation': {
-      behaviours: require('../common/behaviours/clear-session'),
       backLink: false
     }
   }

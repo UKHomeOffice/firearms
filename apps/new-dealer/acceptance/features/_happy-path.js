@@ -21,7 +21,7 @@ const values = {
   'supporting-document-upload': __filename
 };
 
-Feature('Happy path');
+Feature('S5 - Happy path');
 
 Before((
   I

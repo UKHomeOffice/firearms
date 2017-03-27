@@ -23,6 +23,7 @@
   },
   "confirmation": {
     "alert": "Application complete",
+    "reference": "Your reference number is {{values.caseid}}",
     "email": "We have sent an email to {{values.contact-email}} to confirm receipt of your application."
   }
 }

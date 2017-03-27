@@ -203,9 +203,13 @@ div.add-remove-section {
 // confirmation
 .alert-complete {
   padding: 4.65263em;
+  text-align: center;
 }
 
-.alert-message h1:first-child {
+.alert-message h1 {
   font-size: 35px;
-  text-align: center;
+}
+
+.alert-message p:last-child {
+  margin-bottom: 0;
 }

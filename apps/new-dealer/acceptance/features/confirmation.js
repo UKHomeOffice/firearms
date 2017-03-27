@@ -43,11 +43,3 @@ Scenario('I don\'t see content relating to arm guards on the page when arm guard
   confirmationPage.doesntShowArmGuardsContent();
 });
 
-Scenario('I am redirected to the start page when I refresh', function *(
-  I,
-  confirmationPage
-) {
-  yield I.visitPage(confirmationPage, steps);
-  yield I.refreshPage();
-  I.dontSeeInCurrentUrl(confirmationPage.url);
-});

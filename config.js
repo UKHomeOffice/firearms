@@ -1,11 +1,15 @@
 'use strict';
-
 /* eslint no-process-env: 0 */
+
+const env = process.env.NODE_ENV;
+
+const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}`;
+
 module.exports = {
-  env: process.env.NODE_ENV,
+  env,
   postcode: {
-    hostname: process.env.NODE_ENV === 'ci' || process.env.NODE_ENV === 'development' ?
-      `http://${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}/api/postcode-test` :
+    hostname: (!process.env.POSTCODE_AUTH && (env === 'ci' || env === 'development')) ?
+      `http://${localhost()}/api/postcode-test` :
       'https://postcodeinfo.service.justice.gov.uk',
     authorization: process.env.POSTCODE_AUTH,
     addresses: {
@@ -14,8 +18,8 @@ module.exports = {
     }
   },
   upload: {
-    hostname: process.env.NODE_ENV === 'ci' || process.env.NODE_ENV === 'development' ?
-      `http://${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}/api/file-upload` :
+    hostname: env === 'ci' || env === 'development' ?
+      `http://${localhost()}/api/file-upload` :
       process.env.FILE_VAULT_URL
   },
   keycloak: {

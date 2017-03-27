@@ -2,7 +2,7 @@
 
 const baseUrl = require('../../').baseUrl || '';
 
-Feature('Happy path');
+Feature('Shooting Clubs - Happy path');
 
 Before((
   I

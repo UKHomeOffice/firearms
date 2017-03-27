@@ -14,6 +14,7 @@ module.exports = class UploadController extends BaseController {
       model.save()
         .then((result) => {
           req.form.values['supporting-document-upload'] = result.url;
+          req.form.values['supporting-document-type'] = file.mimetype;
         })
         .then(() => next())
         .catch(e => next(e));
@@ -27,7 +28,9 @@ module.exports = class UploadController extends BaseController {
     files.push({
       id: uuid.v1(),
       url: req.form.values['supporting-document-upload'],
-      description: req.form.values['supporting-document-description'] || req.form.values['supporting-document-filename']
+      description:
+        req.form.values['supporting-document-description'] || req.form.values['supporting-document-filename'],
+      type: req.form.values['supporting-document-type']
     });
     req.sessionModel.set('supporting-documents', files);
     super.saveValues(req, res, (err) => {
@@ -35,6 +38,7 @@ module.exports = class UploadController extends BaseController {
       req.sessionModel.unset('supporting-document-description');
       req.sessionModel.unset('supporting-document-filename');
       req.sessionModel.unset('supporting-document-upload');
+      req.sessionModel.unset('supporting-document-type');
       next(err);
     });
   }
