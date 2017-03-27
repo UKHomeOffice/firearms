@@ -134,10 +134,15 @@ describe('Supporting Documents Controller', () => {
       req.form.values['supporting-document-upload'] = 'url';
       req.form.values['supporting-document-description'] = 'desc';
       req.form.values['supporting-document-filename'] = 'file.png';
+      req.form.values['supporting-document-type'] = 'image/png';
+
       controller.saveValues(req, {}, () => {
-        expect(req.sessionModel.get('supporting-documents')).to.deep.equal([
-          {id: 'abc123', url: 'url', description: 'desc'}
-        ]);
+        expect(req.sessionModel.get('supporting-documents')).to.deep.equal([{
+            id: 'abc123',
+            url: 'url',
+            description: 'desc',
+            type: 'image/png'
+          }]);
         done();
       });
     });
@@ -148,10 +153,14 @@ describe('Supporting Documents Controller', () => {
       req.form.values['supporting-document-upload'] = 'url';
       req.form.values['supporting-document-description'] = '';
       req.form.values['supporting-document-filename'] = 'file.png';
+      req.form.values['supporting-document-type'] = 'image/png';
       controller.saveValues(req, {}, () => {
-        expect(req.sessionModel.get('supporting-documents')).to.deep.equal([
-          {id: 'abc123', url: 'url', description: 'file.png'}
-        ]);
+        expect(req.sessionModel.get('supporting-documents')).to.deep.equal([{
+          id: 'abc123',
+          url: 'url',
+          description: 'file.png',
+          type: 'image/png'
+        }]);
         done();
       });
     });
@@ -161,16 +170,17 @@ describe('Supporting Documents Controller', () => {
       const req = request({
         session: {
           'supporting-documents': [
-            {id: 'def456', url: 'url2', description: 'desc2'}
+            {id: 'def456', url: 'url2', description: 'desc2', type: 'image/png'}
           ]
         }
       });
       req.form.values['supporting-document-upload'] = 'url';
       req.form.values['supporting-document-description'] = 'desc';
+      req.form.values['supporting-document-type'] = 'image/png';
       controller.saveValues(req, {}, () => {
         expect(req.sessionModel.get('supporting-documents')).to.deep.equal([
-          {id: 'def456', url: 'url2', description: 'desc2'},
-          {id: 'abc123', url: 'url', description: 'desc'}
+          {id: 'def456', url: 'url2', description: 'desc2', type: 'image/png'},
+          {id: 'abc123', url: 'url', description: 'desc', type: 'image/png'}
         ]);
         done();
       });
