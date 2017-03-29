@@ -5,8 +5,7 @@ RUN yum clean all && \
   yum update -y -q && \
   yum clean all && \
   yum install bzip2 -y && \
-  yum install freetype -y && \
-  yum install fontconfig -y && \
+  yum install fontconfig xorg-x11-fonts-Type1 xorg-x11-fonts-75dpi -y && \
   rpm --rebuilddb
 
 COPY package.json /app/package.json
