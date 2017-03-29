@@ -48,8 +48,10 @@
     "lodash": "^4.17.4",
     "mustache": "^2.3.0",
     "npm-sass": "^2.0.0",
+    "phantomjs-prebuilt": "^2.1.14",
     "typeahead-aria": "^1.0.4",
-    "uuid": "^3.0.1"
+    "uuid": "^3.0.1",
+    "witch": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^3.0.0",

@@ -1,15 +1,14 @@
 pipeline:
-  build_4:
-    image: node:4.4.2
+  build_6:
+    image: node:6
     commands:
-      - npm --loglevel warn install -g npm@3.10.8
       - npm --loglevel warn install
       - npm test
     when:
       event: [push, pull_request]
 
-  build_5:
-    image: node:5
+  build_7:
+    image: node:7
     commands:
       - npm --loglevel warn install
       - npm test

@@ -4,6 +4,9 @@ RUN mkdir /public
 RUN yum clean all && \
   yum update -y -q && \
   yum clean all && \
+  yum install bzip2 -y && \
+  yum install freetype -y && \
+  yum install fontconfig -y && \
   rpm --rebuilddb
 
 COPY package.json /app/package.json
