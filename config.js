@@ -1,14 +1,13 @@
 'use strict';
 /* eslint no-process-env: 0 */
 
-const env = process.env.NODE_ENV;
-
+const env = process.env.NODE_ENV || 'production';
 const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}`;
 
 module.exports = {
-  env,
+  env: env,
   postcode: {
-    hostname: (!process.env.POSTCODE_AUTH && (env === 'ci' || env === 'development')) ?
+    hostname: env !== 'production' ?
       `http://${localhost()}/api/postcode-test` :
       'https://postcodeinfo.service.justice.gov.uk',
     authorization: process.env.POSTCODE_AUTH,
@@ -18,7 +17,7 @@ module.exports = {
     }
   },
   upload: {
-    hostname: env === 'ci' || env === 'development' ?
+    hostname: env !== 'production' ?
       `http://${localhost()}/api/file-upload` :
       process.env.FILE_VAULT_URL
   },
