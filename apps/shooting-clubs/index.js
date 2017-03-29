@@ -45,6 +45,14 @@ const storageAddressLookup = AddressLookup({
   next: '/storage-add-another-address'
 });
 
+const Emailer = require('../common/behaviours/emailer');
+const emailer = Emailer({
+  recipient: 'club-secretary-email',
+  subject: data => `Ref: ${data.caseid} - Shooting club firearms licence application`,
+  type: 'shooting club approval',
+  nameKey: 'club-secretary-name'
+});
+
 module.exports = {
   name: 'shooting-clubs',
   baseUrl: '/shooting-clubs',
@@ -196,7 +204,7 @@ module.exports = {
     '/storage-address-add-manual': storageAddressLookup.manual,
     '/confirm': {
       controller: require('./controllers/confirm'),
-      behaviours: ['complete', submission, pdf],
+      behaviours: ['complete', submission, pdf, emailer],
       sections: {
         authority: ['reference-number'],
         club: ['club-name', 'club-address'],

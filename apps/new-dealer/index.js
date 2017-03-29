@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 const controllers = require('hof-controllers');
+const path = require('path');
 
 const ammunition = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'ammunition');
 const weapons = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'weapons');
@@ -13,6 +14,18 @@ const submission = Submission({
 });
 
 const pdf = require('../common/behaviours/generate-pdf');
+
+const Emailer = require('../common/behaviours/emailer');
+const emailer = Emailer({
+  template: path.resolve(__dirname, './emails/confirm.html'),
+  recipient: 'contact-email',
+  subject: data => `Ref: ${data.caseid} - Section 5 firearms licence application`,
+  type: 'Section 5 authority',
+  nameKey: data => {
+    const contact = data['contact-holder'];
+    return contact === 'other' ? 'someone-else-name' : `${contact}-authority-holders-name`;
+  }
+});
 
 module.exports = {
   name: 'new-dealer',
@@ -598,9 +611,7 @@ module.exports = {
     },
     '/confirm': {
       controller: require('./controllers/confirm'),
-      behaviours: ['complete', submission, pdf],
-      customerEmailField: 'contact-email',
-      emailConfig: require('../../config').email,
+      behaviours: ['complete', submission, pdf, emailer],
       fieldsConfig: require('./fields'),
       next: '/confirmation'
     },
