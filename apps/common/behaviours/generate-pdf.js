@@ -3,6 +3,7 @@
 const pdf = require('html-pdf');
 const UploadModel = require('../../common/models/file-upload');
 const path = require('path');
+const witch = require('witch');
 
 module.exports = superclass => class extends superclass {
   process(req, res, next) {
@@ -39,7 +40,8 @@ module.exports = superclass => class extends superclass {
       html = html.replace(/href="\//g, 'href="./');
       pdf.create(html, {
         base: 'file://' + path.resolve(__dirname, '../../../') + '/',
-        border: '1cm'
+        border: '1cm',
+        phantomPath: witch('phantomjs-prebuilt', 'phantomjs')
       }).toBuffer(callback);
     });
   }
