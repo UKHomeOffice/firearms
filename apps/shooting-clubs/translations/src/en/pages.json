@@ -130,7 +130,7 @@
       "second-contact-address": {
         "label": "Address"
       },
-      "storage-addresses": {
+      "all-storage-addresses": {
         "label": "Address"
       }
     }
