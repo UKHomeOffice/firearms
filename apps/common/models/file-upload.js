@@ -40,7 +40,9 @@ module.exports = class UploadModel extends Model {
     if (!config.keycloak.token) {
       // eslint-disable-next-line no-console
       console.error('keycloak token url is not defined');
-      return;
+      return Promise.resolve({
+        bearer: 'abc123'
+      });
     }
     const tokenReq = {
       url: config.keycloak.token,

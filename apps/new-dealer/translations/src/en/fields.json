@@ -497,5 +497,16 @@
         "label": "No"
       }
     }
+  },
+  "supporting-document-add": {
+    "legend": "Upload supporting documents",
+    "options": {
+      "yes": {
+        "label": "Upload the supporting documents now"
+      },
+      "no": {
+        "label": "Upload the supporting documents later"
+      }
+    }
   }
 }

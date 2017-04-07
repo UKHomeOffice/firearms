@@ -21,6 +21,7 @@ module.exports = {
       next: '/supporting-documents-add'
     },
     '/supporting-documents-add': {
+      template: 'supporting-documents-add-another',
       controller: require('../common/controllers/supporting-documents-add-another'),
       behaviours: [require('./behaviours/supporting-documents-add')],
       fields: [

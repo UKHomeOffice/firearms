@@ -16,9 +16,7 @@
     "label": "Description"
   },
   "supporting-document-add-another": {
-    "legend": "{{legend}}",
-    "legend-first": "Do you want to upload any documents to support your application?",
-    "legend-additional": "Do you want to upload any additional documents to support your application?",
+    "legend": "Do you want to upload any additional documents to support your application?",
     "options": {
       "yes": {
         "label": "Yes"

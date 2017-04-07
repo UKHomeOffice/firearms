@@ -1,0 +1,12 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#renew}}
+      {{> partials-important-message}}
+    {{/renew}}
+    {{#markdown}}supporting-documents{{/markdown}}
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

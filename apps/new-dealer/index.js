@@ -574,14 +574,13 @@ module.exports = {
       }
     },
     '/supporting-documents-add': {
-      controller: require('../common/controllers/supporting-documents-add-another'),
       fields: [
-        'supporting-document-add-another'
+        'supporting-document-add'
       ],
       forks: [{
         target: '/supporting-documents',
         condition: {
-          field: 'supporting-document-add-another',
+          field: 'supporting-document-add',
           value: 'yes'
         }
       }],
