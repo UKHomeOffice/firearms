@@ -204,7 +204,6 @@ module.exports = {
     '/storage-address-add-manual': storageAddressLookup.manual,
     '/confirm': {
       controller: require('./controllers/confirm'),
-      behaviours: ['complete', submission, pdf, emailer],
       sections: {
         authority: ['reference-number'],
         club: ['club-name', 'club-address'],
@@ -234,6 +233,11 @@ module.exports = {
           }
         ]
       },
+      next: '/declaration'
+    },
+    '/declaration': {
+      template: 'declaration',
+      behaviours: ['complete', submission, pdf, emailer],
       next: '/confirmation'
     },
     '/confirmation': {

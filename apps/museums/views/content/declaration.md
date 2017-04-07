@@ -1,8 +1,6 @@
-### Declaration
-
 Your licence could be revoked if you fail to comply with the:
 
-* relevant requirements of the Firearms (Amendment) Act 1988 (as amended) 
+* relevant requirements of the Firearms (Amendment) Act 1988 (as amended)
 * specific requirements detailed within your licence
 * following general requirement
 

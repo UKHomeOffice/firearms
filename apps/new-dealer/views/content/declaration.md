@@ -1,5 +1,3 @@
-### Declaration
-
 Your authority could be revoked if you fail to comply with the:
 
 * relevant requirements of the Firearms Act 1968 (as amended)

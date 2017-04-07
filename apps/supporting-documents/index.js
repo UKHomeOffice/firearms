@@ -39,8 +39,7 @@ module.exports = {
     },
     '/confirm': {
       controller: require('hof-confirm-controller'),
-      behaviours: ['complete'],
-      next: '/confirmation',
+      next: '/declaration',
       sections: {
         reference: ['reference-number'],
         documents: [
@@ -51,6 +50,11 @@ module.exports = {
           }
         ]
       }
+    },
+    '/declaration': {
+      template: 'declaration',
+      behaviours: ['complete'],
+      next: '/confirmation'
     },
     '/confirmation': {
       backLink: false

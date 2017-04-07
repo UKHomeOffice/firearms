@@ -1,5 +1,3 @@
-### Declaration
-
 By submitting this application you agree that:
 
 * there are no physical or mental health conditions that should prevent any employees and authority holders from handling the prohibited items
