@@ -1,0 +1,1 @@
+You must also provide a scanned copy of the information page from the passports of each security guard you employ. Copies of DBS certificates aren't necessary, but can speed up the application process.

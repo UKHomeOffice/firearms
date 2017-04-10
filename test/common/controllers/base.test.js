@@ -55,8 +55,7 @@ describe('BaseController', () => {
 
         it('calls gets activity from the sessionModel', () => {
           baseController.locals(req, res);
-          req.sessionModel.get.should.have.been.calledOnce
-            .and.calledWithExactly('activity');
+          req.sessionModel.get.should.have.been.calledWithExactly('activity');
         });
 
         it('sets renew to true if activity is renew and super.locals.renew is true', () => {
