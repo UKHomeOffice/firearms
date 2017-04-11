@@ -611,8 +611,12 @@ module.exports = {
     },
     '/confirm': {
       controller: require('./controllers/confirm'),
-      behaviours: ['complete', submission, pdf, emailer],
       fieldsConfig: require('./fields'),
+      next: '/declaration'
+    },
+    '/declaration': {
+      template: 'declaration',
+      behaviours: ['complete', submission, pdf, emailer],
       next: '/confirmation'
     },
     '/confirmation': {

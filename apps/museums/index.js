@@ -106,7 +106,6 @@ module.exports = {
     '/confirm': {
       template: 'confirm',
       controller: require('../common/controllers/confirm'),
-      behaviours: ['complete', submission, pdf, emailer],
       sections: {
         'museum-details': [
           'name',
@@ -126,6 +125,11 @@ module.exports = {
           }
         ]
       },
+      next: '/declaration'
+    },
+    '/declaration': {
+      template: 'declaration',
+      behaviours: ['complete', submission, pdf, emailer],
       next: '/confirmation'
     },
     '/confirmation': {

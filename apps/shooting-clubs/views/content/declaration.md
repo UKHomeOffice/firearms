@@ -1,5 +1,3 @@
-### Declaration
-
 A shooting club is approved on the condition that it abides by the [rifle and muzzle-loading pistol club criteria](https://www.gov.uk/government/publications/approval-of-rifle-and-muzzle-loading-pistol-clubs).
 
 Your approval could be revoked if you fail to comply with the:
