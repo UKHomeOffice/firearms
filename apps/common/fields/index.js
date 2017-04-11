@@ -29,6 +29,9 @@ module.exports = {
     options: [
       'yes',
       'no'
-    ]
+    ],
+    legend: {
+      className: 'visuallyhidden'
+    }
   }
 };

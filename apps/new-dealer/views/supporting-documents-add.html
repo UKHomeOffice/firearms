@@ -1,0 +1,15 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#renew}}
+      {{> partials-important-message}}
+    {{/renew}}
+    {{#markdown}}supporting-documents{{/markdown}}
+    {{#armGuards}}
+      {{#markdown}}arm-guards-documents{{/markdown}}
+    {{/armGuards}}
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

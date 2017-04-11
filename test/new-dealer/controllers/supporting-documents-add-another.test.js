@@ -106,36 +106,4 @@ describe('Add Supporting Documents Controller', () => {
 
   });
 
-  describe('locals', () => {
-
-    beforeEach(() => {
-      sinon.stub(Base.prototype, 'locals').returns({});
-    });
-
-    afterEach(() => {
-      Base.prototype.locals.restore();
-    });
-
-    it('sets a custom legend property based on the length of the supporting documents array - zero elements', () => {
-      const controller = new Controller(options);
-      const req = request();
-      const expected = req.translate('fields.supporting-document-add-another.legend-first');
-      expect(controller.locals(req, response()).legend).to.equal(expected);
-    });
-
-    it('sets a custom legend property based on the length of the supporting documents array - with elements', () => {
-      const controller = new Controller(options);
-      const req = request({
-        session: {
-          'supporting-documents': [
-            {id: 'abc123', url: 'url', description: 'desc'}
-          ]
-        }
-      });
-      const expected = req.translate('fields.supporting-document-add-another.legend-additional');
-      expect(controller.locals(req, response()).legend).to.equal(expected);
-    });
-
-  });
-
 });

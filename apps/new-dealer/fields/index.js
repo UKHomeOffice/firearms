@@ -704,5 +704,16 @@ module.exports = {
       'yes',
       'no'
     ]
+  },
+  'supporting-document-add': {
+    mixin: 'radio-group',
+    validate: 'required',
+    options: [
+      'yes',
+      'no'
+    ],
+    legend: {
+      className: 'visuallyhidden'
+    }
   }
 };

@@ -15,12 +15,4 @@ module.exports = class UploadController extends BaseController {
     req.sessionModel.set('supporting-documents', items.filter((file) => file.id !== req.params.id));
     res.redirect(req.get('referer'));
   }
-
-  locals(req, res) {
-    const locals = super.locals(req, res);
-    const docs = req.sessionModel.get('supporting-documents') || [];
-    const key = docs.length ? 'legend-additional' : 'legend-first';
-    locals.legend = req.translate(`fields.supporting-document-add-another.${key}`);
-    return locals;
-  }
 };
