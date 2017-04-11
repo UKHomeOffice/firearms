@@ -9,11 +9,11 @@
     "required": "Please enter the second person's name"
   },
   "second-contact-email": {
-    "required": "Enter the club secretary's email",
+    "required": "Enter the second person's email",
     "email": "Enter a valid email address"
   },
   "second-contact-phone": {
-    "required": "Enter the club secretary's phone number"
+    "required": "Enter the second person's phone number"
   },
   "club-secretary-name": {
     "required": "Enter the name of the club secretary"
