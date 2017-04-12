@@ -13,4 +13,11 @@ RUN npm --loglevel warn install --production
 COPY . /app
 RUN npm --loglevel warn run postinstall
 
-CMD /app/run.sh
+RUN cp -r /app/public/* /public/ && \
+    chown -R nodejs:nodejs /public
+
+USER nodejs
+
+ENTRYPOINT ["node"]
+
+CMD ["/app/app.js"]
