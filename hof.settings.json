@@ -1,0 +1,7 @@
+{
+  "build": {
+    "translate": {
+      "shared": "./apps/common/translations/src"
+    }
+  }
+}
