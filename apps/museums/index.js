@@ -39,6 +39,19 @@ module.exports = {
   steps: {
     '/activity': {
       fields: ['activity'],
+      next: '/name',
+      forks: [{
+        target: '/authority-details',
+        condition: {
+          field: 'activity',
+          value: 'renew'
+        }
+      }]
+    },
+    '/authority-details': {
+      fields: [
+        'reference-number'
+      ],
       next: '/name'
     },
     '/name': {
