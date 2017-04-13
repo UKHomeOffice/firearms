@@ -1,4 +1,7 @@
 {
+  "authority-details": {
+    "header": "What is your existing licence number?"
+  },
   "name": {
     "summary": "Museum details",
     "header": "What is the museum's name?"

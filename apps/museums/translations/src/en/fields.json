@@ -1,4 +1,8 @@
 {
+  "reference-number": {
+    "hint": "For example, FMS 08 11/16/21",
+    "label": "Licence number"
+  },
   "name": {
     "label": "Museum name"
   },
