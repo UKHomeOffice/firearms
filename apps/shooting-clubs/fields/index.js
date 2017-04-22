@@ -5,6 +5,10 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
+  'club-members': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
   'second-contact-name': {
     mixin: 'input-text',
     validate: 'required'

@@ -5,6 +5,9 @@
   "club-name": {
     "header": "What is the club's name?"
   },
+  "club-members": {
+    "header": "How many members does the club have?"
+  },
   "second-contact-name": {
     "header": "Who should we contact in the secretary's absence?",
     "intro": "We need to collect the contact details of a second person, in case the secretary is unavailable"
