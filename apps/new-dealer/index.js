@@ -592,6 +592,7 @@ module.exports = {
         'supporting-document-upload',
         'supporting-document-description'
       ],
+      continueOnEdit: true,
       next: '/supporting-documents-add-another'
     },
     '/supporting-documents-add-another': {
@@ -606,6 +607,7 @@ module.exports = {
           value: 'yes'
         }
       }],
+      continueOnEdit: true,
       next: '/confirm'
     },
     '/confirm': {
