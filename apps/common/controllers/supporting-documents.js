@@ -3,11 +3,23 @@
 const BaseController = require('../controllers/base');
 const UploadModel = require('../models/file-upload');
 
+const config = require('../../../config');
+
 const uuid = require('uuid');
+const path = require('path');
 
 module.exports = class UploadController extends BaseController {
   process(req, res, next) {
     const file = req.files['supporting-document-upload'];
+    if (file && file.truncated) {
+      const err = new this.ValidationError('supporting-document-upload', {
+        type: 'filesize',
+        arguments: [config.upload.maxfilesize]
+      }, req, res);
+      return next({
+        'supporting-document-upload': err
+      });
+    }
     if (file && file.data && file.data.length) {
       req.form.values['supporting-document-filename'] = file.name;
       const model = new UploadModel(file);
@@ -17,7 +29,18 @@ module.exports = class UploadController extends BaseController {
           req.form.values['supporting-document-type'] = file.mimetype;
         })
         .then(() => next())
-        .catch(e => next(e));
+        .catch(e => {
+          if (e.code === 'FileExtensionNotAllowed') {
+            const err = new this.ValidationError('supporting-document-upload', {
+              type: 'filetype',
+              arguments: [path.extname(file.name)]
+            }, req, res);
+            return next({
+              'supporting-document-upload': err
+            });
+          }
+          next(e);
+        });
     } else {
       next();
     }

@@ -29,6 +29,6 @@ const app = bootstrap(options);
 if (config.env === 'ci' || config.env === 'development') {
   app.use(mockAPIs);
 }
-app.use(bodyParser());
+app.use(bodyParser({ limit: config.upload.maxfilesize }));
 app.use(require('hof-middleware-markdown')());
 app.start();
