@@ -710,7 +710,10 @@ module.exports = {
     validate: 'required',
     options: [
       'yes',
-      'no'
+      {
+        value: 'no',
+        toggle: 'upload-documents-later'
+      }
     ],
     legend: {
       className: 'visuallyhidden'
