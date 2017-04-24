@@ -12,7 +12,7 @@
   "readme": "./README.md",
   "scripts": {
     "start": "node .",
-    "dev": "hof-build watch",
+    "dev": "NODE_ENV=development hof-build watch",
     "test": "NODE_ENV=test npm run lint && npm run test:unit",
     "test:unit": "istanbul cover _mocha",
     "test:acceptance": "funkie so-acceptance --steps",
