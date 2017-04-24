@@ -21,7 +21,7 @@ module.exports = class ConfirmController extends Controller {
   }
 
   formatData(data, translate) {
-    const result = super.formatData(data, translate);
+    let result = super.formatData(data, translate);
     const address = this.addAddressLoopSection(data, translate);
     result.splice(2, 0, address);
 
@@ -31,7 +31,12 @@ module.exports = class ConfirmController extends Controller {
     const ammo = this.getWeaponsAmmunitionQuantity(data, translate, 'ammunition');
     result.splice(4, 0, ammo);
 
-    return this.addContactDetailsSection(data, translate, result.filter(a => a));
+    const docs = this.getSupportingDocuments(data, translate);
+    result.splice(9, 0, docs);
+
+    result = this.addContactDetailsSection(data, translate, result.filter(a => a));
+
+    return result;
   }
 
   modifyField(output, key, modify) {
@@ -122,6 +127,23 @@ module.exports = class ConfirmController extends Controller {
         moreThanOneField: items.fields.length > 1
       };
     }
+    return section;
+  }
+
+  getSupportingDocuments(data, translate) {
+    const items = data['supporting-documents'].map(doc => ({
+      fields: {
+        field: 'supporting-documents',
+        value: doc.description
+      }
+    }));
+    const section = {
+      items,
+      hasMultipleFields: true,
+      section: translate('pages.supporting-documents-add.header'),
+      step: '/supporting-documents-add-another'
+    };
+
     return section;
   }
 
