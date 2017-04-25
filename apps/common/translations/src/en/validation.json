@@ -1,5 +1,9 @@
 {
   "activity": {
     "required": "Select an option"
+  },
+  "supporting-document-upload": {
+    "filesize": "The selected document is too large - maximum {{filesize}}",
+    "filetype": "The selected file type ({{filetype}}) is not supported"
   }
 }

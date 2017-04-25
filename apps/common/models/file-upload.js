@@ -61,7 +61,6 @@ module.exports = class UploadModel extends Model {
         if (err) {
           reject(err);
         }
-
         resolve({
           'bearer': JSON.parse(response.body).access_token
         });
