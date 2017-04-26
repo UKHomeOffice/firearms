@@ -702,6 +702,7 @@ module.exports = {
   'storage-add-another-address': {
     mixin: 'radio-group',
     validate: 'required',
+    includeInSummary: false,
     options: [
       'yes',
       'no'
