@@ -21,6 +21,7 @@ module.exports = class PostcodeController extends AddressController {
     }, req.form.options.fieldSettings);
 
     // add conditonal fork
+    req.form.options.continueOnEdit = true;
     req.form.options.forks = req.form.options.forks || [];
     req.form.options.forks.push({
       target: req.form.options.select,
