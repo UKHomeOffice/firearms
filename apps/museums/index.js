@@ -118,6 +118,7 @@ module.exports = {
     '/contact-address-input-manual': contactAddressLookup.manual,
     '/confirm': {
       template: 'confirm',
+      behaviours: [pdf],
       controller: require('../common/controllers/confirm'),
       sections: {
         'museum-details': [
@@ -142,7 +143,7 @@ module.exports = {
     },
     '/declaration': {
       template: 'declaration',
-      behaviours: ['complete', submission, pdf, emailer],
+      behaviours: ['complete', submission, emailer],
       next: '/confirmation'
     },
     '/confirmation': {
