@@ -68,7 +68,10 @@
     "required": "Select an address",
     "required-manual": "Enter an address"
   },
-  "storage-add-another-address": {
+  "all-storage-addresses-add-another": {
+    "required": "Select an option"
+  },
+  "location-addresses-add-another": {
     "required": "Select an option"
   },
   "location-address-category": {
