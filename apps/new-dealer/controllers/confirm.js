@@ -131,6 +131,9 @@ module.exports = class ConfirmController extends Controller {
   }
 
   getSupportingDocuments(data, translate) {
+    if (!data['supporting-documents'] || !data['supporting-documents']) {
+      return null;
+    }
     const items = data['supporting-documents'].map(doc => ({
       fields: {
         field: 'supporting-documents',
