@@ -593,6 +593,8 @@ module.exports = {
     },
     options: ['first', 'second', {value: 'other', toggle: 'someone-else-name', child: 'input-text'}],
     invalidates: [
+      'contact-email',
+      'contact-phone',
       'contact-address-lookup',
       'contact-address-manual',
       'authority-holder-contact-postcode',
