@@ -28,7 +28,11 @@ module.exports = data => {
   data['location-addresses'].forEach((address, i) => {
     const index = i + 1;
     response[`ShootingRange${index}.Address`] = address.address;
-    response[`ShootingRange${index}.Firearms`] = address['address-category'].join(', ');
+    if (Array.isArray(address['address-category'])) {
+      response[`ShootingRange${index}.Firearms`] = address['address-category'].join(', ');
+    } else {
+      response[`ShootingRange${index}.Firearms`] = address['address-category'];
+    }
   });
 
   data['all-storage-addresses'].forEach((address, i) => {
