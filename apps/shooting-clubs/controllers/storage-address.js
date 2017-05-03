@@ -19,6 +19,19 @@ module.exports = class StorageAddressController extends BaseController {
     callback();
   }
 
+  getValues(req, res, callback) {
+    super.getValues(req, res, (err, values) => {
+      const fields = ['storage-address-range', 'storage-address-secretary'];
+      // check address has not been deselected in a later step
+      const allAddresses = values['all-storage-addresses'] || [];
+      const isSelected = address => allAddresses.find(a => a.address === address);
+      fields.forEach(field => {
+        values[field] = [].concat(values[field]).filter(isSelected);
+      });
+      callback(err, values);
+    });
+  }
+
   saveValues(req, res, callback) {
     const addresses = []
       .concat(req.form.values['storage-address-range'])
