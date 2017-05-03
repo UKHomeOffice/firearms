@@ -22,7 +22,7 @@ module.exports = class LoopController extends BaseController {
   }
 
   get(req, res, callback) {
-    if (req.params.action === 'delete' && req.params.id) {
+    if (req.query.delete) {
       var router = express.Router({mergeParams: true});
       router.use([
         // eslint-disable-next-line no-underscore-dangle
@@ -36,7 +36,7 @@ module.exports = class LoopController extends BaseController {
   }
 
   removeItem(req, res, callback) {
-    const id = req.params.id;
+    const id = req.query.delete;
     const items = req.sessionModel.get(req.form.options.aggregateTo).filter(item => item.id !== id);
     req.sessionModel.set(req.form.options.aggregateTo, items);
     callback();
@@ -52,7 +52,8 @@ module.exports = class LoopController extends BaseController {
       });
     }
     const target = items.length ? req.form.options.route : req.form.options.returnTo;
-    res.redirect(path.join(req.baseUrl, target));
+    const action = req.params.action || '';
+    res.redirect(path.join(req.baseUrl, target, action));
   }
 
   configure(req, res, callback) {
@@ -70,6 +71,7 @@ module.exports = class LoopController extends BaseController {
     req.form.options.forks = req.form.options.forks || [];
     req.form.options.forks.push({
       target: req.form.options.returnTo,
+      continueOnEdit: true,
       condition: {
         field: field,
         value: 'yes'

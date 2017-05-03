@@ -33,7 +33,8 @@ module.exports = function addressLookupHelper(config) {
       controller: PostcodeController,
       prefix: config.prefix,
       manual: config.manual,
-      select: config.select
+      select: config.select,
+      continueOnEdit: config.continueOnEdit
     },
     select: {
       template: 'address/select',
@@ -42,14 +43,16 @@ module.exports = function addressLookupHelper(config) {
       manual: config.manual,
       backLink: config.start.replace(/^\//, ''),
       prereqs: [config.start],
-      next: config.next
+      next: config.next,
+      continueOnEdit: config.continueOnEdit
     },
     manual: {
       template: 'address/manual',
       controller: ManualAddressController,
       prefix: config.prefix,
       backLink: config.start.replace(/^\//, ''),
-      next: config.next
+      next: config.next,
+      continueOnEdit: config.continueOnEdit
     }
   };
 };
