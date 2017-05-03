@@ -124,7 +124,7 @@ module.exports = {
     '/storage-postcode': {
       addressKey: 'storageAddresses',
       template: 'postcode-loop.html',
-      controller: require('../common/controllers/postcode-loop'),
+      controller: require('../common/controllers/postcode'),
       fields: [
         'storage-postcode'
       ],
