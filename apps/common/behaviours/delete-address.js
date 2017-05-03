@@ -1,11 +1,10 @@
 'use strict';
 
 const _ = require('lodash');
-const BaseAddressController = require('./base-address');
 
-module.exports = class AddAnotherAddressController extends BaseAddressController {
+module.exports = superclass => class extends superclass {
   get(req, res, callback) {
-    if (req.params.action === 'delete' && req.params.id) {
+    if (req.query.delete) {
       return this.removeItem(req, res);
     }
     return super.get(req, res, callback);
@@ -13,10 +12,10 @@ module.exports = class AddAnotherAddressController extends BaseAddressController
 
   removeItem(req, res) {
     const items = req.sessionModel.get(this.options.addressKey);
-    req.sessionModel.set(this.options.addressKey, _.omit(items, req.params.id));
+    const action = req.params.action ? `/${req.params.action}` : '';
+    req.sessionModel.set(this.options.addressKey, _.omit(items, req.query.delete));
     const step = _.size(items) > 1 ?
       `/${this.options.locals.field}-add-another-address` : `/${this.options.locals.field}-postcode`;
-    return res.redirect(`${req.baseUrl}${step}`);
+    return res.redirect(`${req.baseUrl}${step}${action}`);
   }
-
 };
