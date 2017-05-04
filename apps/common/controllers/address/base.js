@@ -1,6 +1,7 @@
 'use strict';
 
 const BaseController = require('../base');
+const path = require('path');
 
 module.exports = class AddressController extends BaseController {
 
@@ -13,7 +14,7 @@ module.exports = class AddressController extends BaseController {
 
   locals(req, res) {
     return Object.assign({}, super.locals(req, res), {
-      'manual-entry': req.form.options.manual
+      'manual-entry': path.join(req.form.options.manual || '', req.params.action || '')
     });
   }
 
