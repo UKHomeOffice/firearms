@@ -17,7 +17,7 @@ module.exports = {
     }
   },
   upload: {
-    maxfilesize: '200mb',
+    maxfilesize: '100mb',
     hostname: env !== 'production' ?
       `http://${localhost()}/api/file-upload` :
       process.env.FILE_VAULT_URL
