@@ -1,4 +1,14 @@
 {
+  "new-club": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "reference-number": {
     "hint": "For example, CFP 10/1/7/4/1/2/1/2/3/379",
     "label": "Shooting club reference number"

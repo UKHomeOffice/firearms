@@ -1,4 +1,7 @@
 {
+  "new-club": {
+    "header": "Is the club a new club?"
+  },
   "authority-details": {
     "header": "What is the existing shooting club reference number?"
   },

@@ -1,6 +1,17 @@
 'use strict';
 
 module.exports = {
+  'new-club': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    validate: 'required',
+    options: [
+      'yes',
+      'no'
+    ]
+  },
   'club-name': {
     mixin: 'input-text',
     validate: 'required'

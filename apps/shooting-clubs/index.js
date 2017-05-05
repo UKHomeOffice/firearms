@@ -62,7 +62,7 @@ module.exports = {
       fields: [
         'activity'
       ],
-      next: '/club-name',
+      next: '/new-club',
       forks: [{
         target: '/authority-details',
         condition: {
@@ -70,6 +70,12 @@ module.exports = {
           value: 'renew'
         }
       }]
+    },
+    '/new-club': {
+      fields: [
+        'new-club'
+      ],
+      next: '/club-name'
     },
     '/authority-details': {
       fields: [
