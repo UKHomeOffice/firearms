@@ -104,6 +104,9 @@
   },
   "confirm": {
     "sections": {
+      "authority": {
+        "header": "Authority details"
+      },
       "club": {
         "header": "Club details"
       },
