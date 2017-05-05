@@ -35,14 +35,16 @@ const locationAddressLookup = AddressLookup({
   start: '/location-address',
   select: '/location-address-select',
   manual: '/location-address-manual',
-  next: '/location-address-category'
+  next: '/location-address-category',
+  continueOnEdit: true
 });
 const storageAddressLookup = AddressLookup({
   prefix: 'storage',
   start: '/storage-address-add',
   select: '/storage-address-add-select',
   manual: '/storage-address-add-manual',
-  next: '/storage-add-another-address'
+  next: '/storage-add-another-address',
+  continueOnEdit: true
 });
 
 const Emailer = require('../common/behaviours/emailer');

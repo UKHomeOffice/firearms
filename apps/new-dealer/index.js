@@ -124,7 +124,7 @@ module.exports = {
     '/storage-postcode': {
       addressKey: 'storageAddresses',
       template: 'postcode-loop.html',
-      controller: require('../common/controllers/postcode-loop'),
+      controller: require('../common/controllers/postcode'),
       fields: [
         'storage-postcode'
       ],
@@ -181,6 +181,7 @@ module.exports = {
       addressKey: 'storageAddresses',
       template: 'add-another-address-loop.html',
       controller: require('../common/controllers/add-another-address-loop'),
+      behaviours: require('../common/behaviours/delete-address'),
       fields: [
         'storage-add-another-address'
       ],
@@ -188,6 +189,7 @@ module.exports = {
       next: '/usage',
       forks: [{
         target: '/storage-postcode',
+        continueOnEdit: true,
         condition: {
           field: 'storage-add-another-address',
           value: 'yes'

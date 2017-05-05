@@ -8,11 +8,9 @@
     {{/fields}}
       <p>
         <span class="link">
-          <a id='manual-entry' href="{{baseUrl}}/{{field}}-address/manual{{#id}}/{{id}}{{/id}}">{{#t}}pages.postcode.manual{{/t}}</a>
+          <a id='manual-entry' href="{{manual-entry}}">{{#t}}pages.postcode.manual{{/t}}</a>
         </span>
       </p>
     {{#input-submit}}continue{{/input-submit}}
-
-    {{> partials-add-another-address-summary}}
   {{/page-content}}
 {{/partials-page}}

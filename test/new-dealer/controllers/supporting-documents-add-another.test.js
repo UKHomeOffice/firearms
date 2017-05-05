@@ -38,7 +38,7 @@ describe('Add Supporting Documents Controller', () => {
       it('does not call parent class `get` method', () => {
         const controller = new Controller(options);
         const req = request({
-          params: {action: 'delete', id: 'abc123'}
+          query: { delete: 'abc123' }
         });
         const res = response();
         const next = sinon.stub();
@@ -49,7 +49,7 @@ describe('Add Supporting Documents Controller', () => {
       it('removes supporting documents from session if called with a "delete" parameter', () => {
         const controller = new Controller(options);
         const req = request({
-          params: {action: 'delete', id: 'abc123'},
+          query: { delete: 'abc123' },
           session: {
             'supporting-documents': [
               {id: 'abc123', url: 'url1'},
@@ -67,7 +67,7 @@ describe('Add Supporting Documents Controller', () => {
       it('redirects back to its referer page', () => {
         const controller = new Controller(options);
         const req = request({
-          params: {action: 'delete', id: 'abc123'},
+          query: { delete: 'abc123' },
           session: {
             'supporting-documents': [
               {id: 'abc123', url: 'url1'},
@@ -85,7 +85,7 @@ describe('Add Supporting Documents Controller', () => {
       it('ignores non-matching ids', () => {
         const controller = new Controller(options);
         const req = request({
-          params: {action: 'delete', id: 'not-an-id'},
+          query: { delete: 'not-an-id' },
           session: {
             'supporting-documents': [
               {id: 'abc123', url: 'url1'},

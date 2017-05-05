@@ -6,7 +6,8 @@ const exhibitAddressLookup = AddressLookup({
   start: '/exhibit-address',
   select: '/exhibit-address-select',
   manual: '/exhibit-address-manual',
-  next: '/exhibit-add-another-address'
+  next: '/exhibit-add-another-address',
+  continueOnEdit: true
 });
 
 const contactAddressLookup = AddressLookup({

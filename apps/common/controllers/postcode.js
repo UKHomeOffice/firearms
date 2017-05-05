@@ -4,8 +4,16 @@ const _ = require('lodash');
 const logger = require('hof-bootstrap/lib/logger');
 const BaseController = require('./base');
 const PostcodesModel = require('../models/postcodes');
+const path = require('path');
 
 module.exports = class PostcodeController extends BaseController {
+  locals(req, res) {
+    const locals = super.locals(req, res);
+    return Object.assign(locals, {
+      'manual-entry': path.join(req.baseUrl, `${locals.field}-address`, req.params.action || '')
+    });
+  }
+
   process(req, res, callback) {
     const postcodesModel = new PostcodesModel();
     const field = this.options.locals.field;
