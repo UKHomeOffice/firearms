@@ -27,6 +27,9 @@
   "confirmation": {
     "alert": "Application complete",
     "reference": "Your reference number is {{values.caseid}}",
-    "email": "We have sent an email to {{values.contact-email}} to confirm receipt of your application."
+    "email": "We have sent an email to {{values.contact-email}} to confirm receipt of your application.",
+    "survey": {
+      "text": "What did you think of this service? (takes 30 seconds)"
+    }
   }
 }

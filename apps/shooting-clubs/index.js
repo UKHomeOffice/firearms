@@ -1,5 +1,7 @@
 'use strict';
 
+const config = require('../../config');
+
 const AddressLookup = require('../common/controllers/address/helper');
 
 const Submission = require('../common/behaviours/casework-submission');
@@ -244,6 +246,9 @@ module.exports = {
       next: '/confirmation'
     },
     '/confirmation': {
+      locals: {
+        'survey-url': config.survey.urls['shooting-clubs']
+      },
       backLink: false
     }
   }
