@@ -1,5 +1,6 @@
 {
   "new-club": {
+    "legend": "New club",
     "options": {
       "yes": {
         "label": "Yes"

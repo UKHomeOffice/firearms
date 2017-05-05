@@ -213,7 +213,11 @@ module.exports = {
       behaviours: [pdf],
       sections: {
         authority: ['reference-number'],
-        club: ['club-name', 'club-address'],
+        club: [
+          'club-name',
+          'club-address',
+          'new-club'
+        ],
         secretary: [
           'club-secretary-name',
           'club-secretary-address',
