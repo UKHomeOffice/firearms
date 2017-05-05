@@ -148,15 +148,13 @@ module.exports = {
     options: [{
       value: 'yes',
       toggle: 'import-country',
-      child: 'select'
+      child: 'input-text'
     }, {
       value: 'no'
     }]
   },
   'import-country': {
     validate: 'required',
-    className: ['typeahead', 'js-hidden'],
-    options: [''].concat(require('../../../assets/countries').nonUKcountries),
     dependent: {
       field: 'import',
       value: 'yes'
