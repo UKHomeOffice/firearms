@@ -50,7 +50,10 @@ module.exports = {
         'reference-number',
         'authority-number'
       ],
-      next: '/company-name'
+      next: '/company-name',
+      locals: {
+        section: 'business-details'
+      }
     },
     '/company-name': {
       fields: [
