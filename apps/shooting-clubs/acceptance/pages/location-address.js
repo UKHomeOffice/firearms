@@ -51,7 +51,7 @@ module.exports = {
       yes: '#location-addresses-add-another-yes',
       no: '#location-addresses-add-another-no',
       summary: '.address-summary',
-      delete: 'Remove',
+      delete: 'Delete',
       editLocationLink: 'a[href$="/shooting-clubs/location-postcode/edit/0"]',
       editCategoriesLink: 'a[href$="/shooting-clubs/location-address-category/edit/0"]'
     },
