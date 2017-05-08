@@ -41,5 +41,12 @@ module.exports = {
     url: process.env.ICASEWORK_URL || 'https://uat.icasework.com/createcase',
     key: process.env.ICASEWORK_KEY,
     secret: process.env.ICASEWORK_SECRET
+  },
+  survey: {
+    urls: {
+      'new-dealer': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=s5firearms/',
+      'shooting-clubs': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=shootclub/',
+      museums: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=Museums/'
+    }
   }
 };

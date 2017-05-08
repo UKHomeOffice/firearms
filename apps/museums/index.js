@@ -1,5 +1,7 @@
 'use strict';
 
+const config = require('../../config');
+
 const AddressLookup = require('../common/controllers/address/helper');
 const exhibitAddressLookup = AddressLookup({
   prefix: 'exhibit',
@@ -148,6 +150,9 @@ module.exports = {
       next: '/confirmation'
     },
     '/confirmation': {
+      locals: {
+        'survey-url': config.survey.urls.museums
+      },
       backLink: false
     }
   }

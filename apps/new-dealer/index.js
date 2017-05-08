@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const controllers = require('hof-controllers');
 const path = require('path');
+const config = require('../../config');
 
 const ammunition = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'ammunition');
 const weapons = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'weapons');
@@ -627,6 +628,9 @@ module.exports = {
       next: '/confirmation'
     },
     '/confirmation': {
+      locals: {
+        'survey-url': config.survey.urls['new-dealer']
+      },
       backLink: false
     }
   }
