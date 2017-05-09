@@ -66,7 +66,7 @@ module.exports = {
       fields: [
         'activity'
       ],
-      next: '/club-name',
+      next: '/new-club',
       forks: [{
         target: '/authority-details',
         condition: {
@@ -74,6 +74,12 @@ module.exports = {
           value: 'renew'
         }
       }]
+    },
+    '/new-club': {
+      fields: [
+        'new-club'
+      ],
+      next: '/club-name'
     },
     '/authority-details': {
       fields: [
@@ -211,7 +217,11 @@ module.exports = {
       behaviours: [pdf],
       sections: {
         authority: ['reference-number'],
-        club: ['club-name', 'club-address'],
+        club: [
+          'club-name',
+          'club-address',
+          'new-club'
+        ],
         secretary: [
           'club-secretary-name',
           'club-secretary-address',
