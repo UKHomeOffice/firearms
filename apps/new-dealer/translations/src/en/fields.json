@@ -437,11 +437,11 @@
     "label": "Postcode"
   },
   "authority-holder-contact-address-lookup": {
-    "summary": "Home address",
+    "summary": "Contact address",
     "label": "Select your address"
   },
   "authority-holder-contact-address-manual": {
-    "summary": "Home address",
+    "summary": "Contact address",
     "label": "Address"
   },
   "contact-postcode": {
