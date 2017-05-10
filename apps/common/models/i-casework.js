@@ -17,7 +17,8 @@ module.exports = class CaseworkModel extends Model {
       Signature: this.sign(),
       Type: 'Firearms',
       Format: 'json',
-      db: 'flcms'
+      db: 'flcms',
+      RequestMethod: 'Online form'
     };
 
     if (this.get('pdf-upload')) {
