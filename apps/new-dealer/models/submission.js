@@ -6,7 +6,7 @@ module.exports = data => {
   const response = {};
 
   response.AuthorityType = 'Dealer';
-  response.ApplicationType = data.activity === 'new' ? 'Initial application' : 'Renewal';
+  response.ApplicationType = data.activity === 'new' ? 'Application' : 'Renewal';
 
   if (data.activity === 'renew') {
     response['Customer.CustomerReference'] = data['reference-number'];

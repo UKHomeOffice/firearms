@@ -3,8 +3,8 @@
 module.exports = data => {
   const response = {};
 
-  response.AuthorityType = 'Shooting club';
-  response.ApplicationType = data.activity === 'new' ? 'Initial application' : 'Renewal';
+  response.AuthorityType = 'Shooting clubs';
+  response.ApplicationType = data.activity === 'new' ? 'Application' : 'Renewal';
 
   if (data.activity === 'renew') {
     response['Cusomter.CustomerReference'] = data['reference-number'];
