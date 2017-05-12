@@ -219,18 +219,27 @@ module.exports = {
         authority: ['reference-number'],
         club: [
           'club-name',
-          'club-address',
+          {
+            field: 'club-address',
+            step: '/club-address'
+          },
           'new-club'
         ],
         secretary: [
           'club-secretary-name',
-          'club-secretary-address',
+          {
+            field: 'club-secretary-address',
+            step: '/club-secretary-address'
+          },
           'club-secretary-email',
           'club-secretary-phone'
         ],
         'second-contact': [
           'second-contact-name',
-          'second-contact-address',
+          {
+            field: 'second-contact-address',
+            step: '/second-contact-address'
+          },
           'second-contact-email',
           'second-contact-phone'
         ],
