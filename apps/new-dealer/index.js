@@ -465,7 +465,8 @@ module.exports = {
         renew: true,
         section: 'contacts-details',
         step: 'contact'
-      }
+      },
+      continueOnEdit: true
     },
     '/contact-details': {
       fields: [

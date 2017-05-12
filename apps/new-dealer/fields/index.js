@@ -591,6 +591,7 @@ module.exports = {
     },
     options: ['first', 'second', {value: 'other', toggle: 'someone-else-name', child: 'input-text'}],
     invalidates: [
+      'use-different-address',
       'contact-email',
       'contact-phone',
       'contact-address-lookup',
@@ -652,7 +653,8 @@ module.exports = {
       'authority-holder-contact-postcode',
       'authority-holder-contact-address-lookup',
       'authority-holder-contact-address-manual'
-    ]
+    ],
+    includeInSummary: false
   },
   'authority-holder-contact-postcode': {
     validate: ['required', 'postcode'],
@@ -675,7 +677,8 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }]
+    }],
+    includeInSummary: false
   },
   'contact-postcode': {
     mixin: 'input-text-code',
@@ -685,7 +688,8 @@ module.exports = {
   },
   'contact-address-lookup': {
     validate: 'required',
-    className: 'address'
+    className: 'address',
+    includeInSummary: false
   },
   'contact-address-manual': {
     mixin: 'textarea',
@@ -695,7 +699,8 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }]
+    }],
+    includeInSummary: false
   },
   'storage-add-another-address': {
     mixin: 'radio-group',

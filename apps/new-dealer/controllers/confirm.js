@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const path = require('path');
 const Controller = require('../../common/controllers/legacy-confirm');
 
 module.exports = class ConfirmController extends Controller {
@@ -159,46 +158,32 @@ module.exports = class ConfirmController extends Controller {
   }
 
   addContactDetailsSection(data, translate, result) {
-    const contactHolder = data['contact-holder'];
     const contactName = this.getContactHoldersName(data);
-    const key = `${contactHolder}-authority-holders-address`;
+    const contactHolder = data['contact-holder'];
+    let key;
+    if (contactHolder === 'other') {
+      key = 'contact-address';
+    } else {
+      const contactHolderKey = `${contactHolder}-authority-holders-address`;
+      const authorityHolderKey = 'authority-holder-contact-address';
+      key = data['use-different-address'] === 'true' ? authorityHolderKey : contactHolderKey;
+    }
     const contactAddress = data[`${key}-manual`] || data[`${key}-lookup`];
     return result.map(section => {
-      if (section.fields !== undefined) {
-        section.fields = section.fields.map(field => {
+      if (section.section === translate('pages.contacts-details.header')) {
+        section.fields.forEach(field => {
           if (field.field === 'contact-holder') {
             field.value = contactName;
-          } else if (field.field === 'use-different-address') {
-            field.label = translate('fields.authority-holder-contact-address-manual.summary');
-            field.value = contactAddress;
           }
-          return field;
+        });
+
+        section.fields.push({
+          label: translate('fields.authority-holder-contact-address-manual.summary'),
+          value: contactAddress,
+          step: '/contact'
         });
       }
       return section;
-    });
-  }
-
-  getEmailerConfig(req) {
-    const config = super.getEmailerConfig(req);
-    const organisation = req.sessionModel.get('organisation');
-    const customViews = path.resolve(__dirname, '../views/email/');
-    const greeting = `${req.translate('pages.email.greeting')} ${this.getContactHoldersName(req)}`;
-    config.customerIntro = [greeting].concat(config.customerIntro);
-    const data = {
-      organisation: req.sessionModel.get(`${organisation}-name`),
-      date: (new Date()).toUTCString()
-    };
-    if (req.sessionModel.get('activity') === 'renew') {
-      data.reference = req.sessionModel.get('reference-number');
-    }
-    const emailData = _.map(data, (value, index) => ({
-      subheader: req.translate(`pages.email.data.${index}`),
-      value
-    }));
-    config.data.push({emailData});
-    return Object.assign({}, config, {
-      customViews
     });
   }
 };
