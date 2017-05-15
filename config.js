@@ -37,6 +37,9 @@ module.exports = {
       secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || ''
     }
   },
+  redis: {
+    pass: process.env.REDIS_PASSWORD
+  },
   icasework: {
     url: process.env.ICASEWORK_URL || 'https://uat.icasework.com/createcase',
     key: process.env.ICASEWORK_KEY,
