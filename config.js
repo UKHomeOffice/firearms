@@ -38,7 +38,7 @@ module.exports = {
     }
   },
   redis: {
-    pass: process.env.REDIS_PASSWORD
+    password: process.env.REDIS_PASSWORD
   },
   icasework: {
     url: process.env.ICASEWORK_URL || 'https://uat.icasework.com/createcase',
