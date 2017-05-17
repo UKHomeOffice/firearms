@@ -14,7 +14,7 @@ const submission = Submission({
   prepare: require('./models/submission')
 });
 
-const pdf = require('../common/behaviours/generate-pdf');
+const pdf = require('../common/behaviours/pdf-upload');
 
 const Emailer = require('../common/behaviours/emailer');
 const emailer = Emailer({

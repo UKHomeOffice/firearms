@@ -3,6 +3,7 @@
 
 const env = process.env.NODE_ENV || 'production';
 const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}`;
+const pdfUrl = () => `${process.env.PDF_CONVERTER_HOST}:${process.env.PDF_CONVERTER_PORT}`;
 
 module.exports = {
   env: env,
@@ -30,11 +31,11 @@ module.exports = {
     secret: process.env.KEYCLOAK_SECRET
   },
   email: {
-    from: process.env.FROM_ADDRESS || '',
+    from: process.env.FROM_ADDRESS || 'me@stuff.com',
     transport: 'ses',
     transportOptions: {
-      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || '',
-      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || ''
+      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || 'hgjhgkjh',
+      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || 'hgjhgkjhgkjh'
     }
   },
   redis: {
@@ -51,5 +52,8 @@ module.exports = {
       'shooting-clubs': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=shootclub/',
       museums: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=Museums/'
     }
+  },
+  pdf: {
+    url: `http://${pdfUrl()}/convert` || `http://${localhost()}/api/pdf-convert`
   }
 };

@@ -63,6 +63,7 @@
     "reqres": "^1.2.2",
     "sinomocha": "^0.2.4",
     "sinon": "^1.15.3",
+    "sinon-as-promised": "^4.0.3",
     "sinon-chai": "^2.9.0",
     "so-acceptance": "^4.3.0"
   },
