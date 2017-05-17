@@ -22,7 +22,8 @@ const options = {
       next();
     }
   }],
-  start: false
+  start: false,
+  redis: config.redis
 };
 
 const app = bootstrap(options);
