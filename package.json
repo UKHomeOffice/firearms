@@ -31,7 +31,7 @@
     "hof-confirm-controller": "^1.0.2",
     "hof-controllers": "^6.0.3",
     "hof-form-controller": "^4.1.0",
-    "hof-frontend-toolkit": "^1.1.0",
+    "hof-frontend-toolkit": "^2.1.0",
     "hof-middleware-markdown": "^1.0.0",
     "hof-model": "^3.0.1",
     "html-pdf": "^2.1.0",
