@@ -31,11 +31,11 @@ module.exports = {
     secret: process.env.KEYCLOAK_SECRET
   },
   email: {
-    from: process.env.FROM_ADDRESS || 'me@stuff.com',
+    from: process.env.FROM_ADDRESS || '',
     transport: 'ses',
     transportOptions: {
-      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || 'hgjhgkjh',
-      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || 'hgjhgkjhgkjh'
+      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || '',
+      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || ''
     }
   },
   redis: {

@@ -1,7 +1,11 @@
 'use strict';
 
-const Model = require('../../../apps/common/models/pdf');
 const config = require('../../../config');
+const proxyquire = require('proxyquire');
+const isPdf = sinon.stub();
+const Model = proxyquire('../../../apps/common/models/pdf', {
+  'is-pdf': isPdf
+});
 
 describe('PDF Model', () => {
 
@@ -27,6 +31,7 @@ describe('PDF Model', () => {
 
     it('proxies the successful responses to model.parseResponse', () => {
       const model = new Model();
+      isPdf.returns(true);
       const res = {
         statusCode: 200,
         body: Buffer(100)
@@ -38,6 +43,7 @@ describe('PDF Model', () => {
 
     it('passes errors to the callback', (done) => {
       const model = new Model();
+      isPdf.returns(false);
       const res = {
         statusCode: 400,
         body: JSON.stringify({
