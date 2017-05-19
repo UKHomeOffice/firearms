@@ -45,14 +45,34 @@ describe('PDF Model', () => {
       const model = new Model();
       isPdf.returns(false);
       const res = {
-        statusCode: 400,
+        statusCode: 500,
         body: JSON.stringify({
-          code: 'error',
-          message: 'error'
+          title: 'Error',
+          message: 'There is an error'
         })
       };
       model.handleResponse(res, (err, body, statusCode) => {
         expect(err).to.be.an('error');
+        expect(body).to.be.null;
+        expect(statusCode).to.equal(res.statusCode);
+        done();
+      });
+    });
+
+    it('decorate 400 client errors with a title and message', (done) => {
+      const model = new Model();
+      isPdf.returns(false);
+      const res = {
+        statusCode: 400,
+        body: JSON.stringify({
+          code: 'ClientError',
+          message: 'There is an error'
+        })
+      };
+      model.handleResponse(res, (err, body, statusCode) => {
+        expect(err).to.be.an('error');
+        expect(err.title).to.equal(res.body.code);
+        expect(err.message).to.equal(res.body.message);
         expect(body).to.be.null;
         expect(statusCode).to.equal(400);
         done();

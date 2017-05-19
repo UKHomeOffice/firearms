@@ -14,8 +14,13 @@ module.exports = class PDFModel extends Model {
     if (isPdf(Buffer.from(response.body))) {
       return this.parseResponse(response.statusCode, response.body, callback);
     }
-    let err = new Error();
-    err.body = response.body;
+    const err = new Error();
+    if (parseInt(response.statusCode, 10) === 400) {
+      err.title = response.body.code;
+      err.message = response.body.message;
+    } else {
+      err.body = response.body;
+    }
     err.status = response.statusCode;
     callback(err, null, response.statusCode);
   }
