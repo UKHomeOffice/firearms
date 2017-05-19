@@ -3,7 +3,6 @@
 
 const env = process.env.NODE_ENV || 'production';
 const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}`;
-const pdfUrl = () => `${process.env.PDF_CONVERTER_HOST}:${process.env.PDF_CONVERTER_PORT}`;
 
 module.exports = {
   env: env,
@@ -54,6 +53,8 @@ module.exports = {
     }
   },
   pdf: {
-    url: `http://${pdfUrl()}/convert` || `http://${localhost()}/api/pdf-convert`
+    url: env !== 'production' ?
+    `http://${process.env.PDF_CONVERTER_HOST}:${process.env.PDF_CONVERTER_PORT}/convert` :
+    process.env.PDF_CONVERTER_URL
   }
 };
