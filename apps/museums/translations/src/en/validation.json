@@ -2,6 +2,9 @@
   "name": {
     "required": "Enter the museum name"
   },
+  "reference-number": {
+    "required": "Enter your licence number"
+  },
   "exhibit-postcode": {
     "required": "Enter a postcode",
     "postcode": "Enter a valid UK postcode"
