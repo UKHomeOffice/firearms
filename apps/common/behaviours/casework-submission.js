@@ -32,7 +32,8 @@ module.exports = config => {
           .then(data => {
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
             next();
-          }, next);
+          })
+          .catch(next);
       });
     }
 
