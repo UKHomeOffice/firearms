@@ -53,8 +53,6 @@ module.exports = {
     }
   },
   pdf: {
-    url: env !== 'production' ?
-    `http://${process.env.PDF_CONVERTER_HOST}:${process.env.PDF_CONVERTER_PORT}/convert` :
-    process.env.PDF_CONVERTER_URL
+    url: process.env.PDF_CONVERTER_URL
   }
 };
