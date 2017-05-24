@@ -6,9 +6,9 @@ const PDFModel = require('../../common/models/pdf');
 module.exports = superclass => class PDFUpload extends superclass {
 
   process(req, res, next) {
-    this._render(req, res)
-      .then(html => this._create(html))
-      .then(pdfBuffer => this._upload({
+    this.renderHTML(req, res)
+      .then(html => this.createPDF(html))
+      .then(pdfBuffer => this.uploadPDF({
         name: 'application_form.pdf',
         data: pdfBuffer,
         mimetype: 'application/pdf'
@@ -24,7 +24,7 @@ module.exports = superclass => class PDFUpload extends superclass {
       });
   }
 
-  _render(req, res) {
+  renderHTML(req, res) {
     return new Promise((resolve, reject) => {
       const locals = Object.assign({}, this.locals(req, res), {
         title: 'Firearms Application'
@@ -38,13 +38,13 @@ module.exports = superclass => class PDFUpload extends superclass {
     });
   }
 
-  _upload(file) {
+  uploadPDF(file) {
     const model = new UploadModel();
     model.set(file);
     return model.save();
   }
 
-  _create(html) {
+  createPDF(html) {
     const pdfModel = new PDFModel();
     pdfModel.set({template: html});
     return pdfModel.save();
