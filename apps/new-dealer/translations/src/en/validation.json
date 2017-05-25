@@ -30,7 +30,7 @@
     "required": "Enter the museum name"
   },
   "other-name": {
-    "required": "Specify the name of the organisation"
+    "required": "Enter the organisation name"
   },
   "weapons-ammunition": {
     "required": "Select what the company will handle"
@@ -39,7 +39,7 @@
     "required": "Select at least one option"
   },
   "other-means-details": {
-    "required": "Provide further details"
+    "required": "Provide further detail on how the prohibited items will be obtained"
   },
   "stored-on-premises": {
     "required": "Select an option"
@@ -57,7 +57,7 @@
     "required": "Select at least one option"
   },
   "other-details": {
-    "required": "Provide further details"
+    "required": "Provide further details on what business activities will be carried out with the prohibited items"
   },
   "weapons-types": {
     "required": "Select at least one option",
