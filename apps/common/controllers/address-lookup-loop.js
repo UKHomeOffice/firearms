@@ -29,6 +29,12 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     callback();
   }
 
+  locals(req, res) {
+    const locals = super.locals(req, res);
+    locals.postcode = req.form.values[`${this.options.locals.field}-postcode`];
+    return locals;
+  }
+
   saveValues(req, res, callback) {
     const address = req.form.values[`${this.options.locals.field}-address-lookup`].split(', ').join('\n');
     let postcode;
