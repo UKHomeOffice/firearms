@@ -198,10 +198,10 @@
     "required": "Select an address"
   },
   "contact-holder": {
-    "required": "Select at least one option"
+    "required": "Tell us who we should contact about this application"
   },
   "someone-else-name": {
-    "required": "Enter contacts' full name"
+    "required": "Enter contact's full name"
   },
   "storage-postcode": {
     "required": "Enter a postcode",
