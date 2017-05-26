@@ -9,7 +9,7 @@ const submission = Submission({
   prepare: require('./models/submission')
 });
 
-const pdf = require('../common/behaviours/generate-pdf');
+const pdf = require('../common/behaviours/pdf-upload');
 
 const clubAddressLookup = AddressLookup({
   prefix: 'club',

@@ -12,9 +12,12 @@ services:
       - EMAIL_PORT=25
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - PDF_CONVERTER_URL=html-pdf-converter:8001
+
     links:
       - redis
       - maildev
+      - html-pdf-converter
     ports:
       - "8080:8080"
     volumes:
@@ -44,3 +47,15 @@ services:
     ports:
       - "8000:80"
       - "25"
+
+  html-pdf-converter:
+    image: quay.io/ukhomeofficedigital/html-pdf-converter:01442cbca45c8c1965a64f680d8fab95998e5238
+    environment:
+      - CHROME_HOST=chrome
+    ports:
+      - "8001:8001"
+    links:
+      - chrome
+
+  chrome:
+    image: yukinying/chrome-headless

@@ -51,5 +51,8 @@ module.exports = {
       'shooting-clubs': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=shootclub/',
       museums: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=Museums/'
     }
+  },
+  pdf: {
+    url: process.env.PDF_CONVERTER_URL
   }
 };
