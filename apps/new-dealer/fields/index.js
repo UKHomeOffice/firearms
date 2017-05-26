@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const countries = require('hof-util-countries')();
 
 function notBothOptions(values) {
   values = _.castArray(values);
@@ -507,7 +508,7 @@ module.exports = {
     mixin: 'select',
     validate: 'required',
     className: ['typeahead', 'js-hidden'],
-    options: [''].concat(require('../../../assets/countries').allCountries)
+    options: [''].concat(countries)
   },
   'first-authority-holders-nationality-multi': {
     mixin: 'checkbox',
@@ -517,11 +518,11 @@ module.exports = {
   },
   'first-authority-holders-nationality-second': {
     className: ['typeahead', 'js-hidden'],
-    options: [''].concat(require('../../../assets/countries').allCountries)
+    options: [''].concat(countries)
   },
   'first-authority-holders-nationality-third': {
     className: ['typeahead', 'js-hidden'],
-    options: [''].concat(require('../../../assets/countries').allCountries)
+    options: [''].concat(countries)
   },
   'first-authority-holders-postcode': {
     mixin: 'input-text-code',
@@ -547,7 +548,7 @@ module.exports = {
     mixin: 'select',
     validate: 'required',
     className: ['typeahead', 'js-hidden'],
-    options: [''].concat(require('../../../assets/countries').allCountries)
+    options: [''].concat(countries)
   },
   'second-authority-holders-nationality-multi': {
     mixin: 'checkbox',
@@ -557,11 +558,11 @@ module.exports = {
   },
   'second-authority-holders-nationality-second': {
     className: ['typeahead', 'js-hidden'],
-    options: [''].concat(require('../../../assets/countries').allCountries)
+    options: [''].concat(countries)
   },
   'second-authority-holders-nationality-third': {
     className: ['typeahead', 'js-hidden'],
-    options: [''].concat(require('../../../assets/countries').allCountries)
+    options: [''].concat(countries)
   },
   'second-authority-holders-postcode': {
     mixin: 'input-text-code',
