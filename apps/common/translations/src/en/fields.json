@@ -13,7 +13,7 @@
     "label": "Upload a file"
   },
   "supporting-document-description": {
-    "label": "Description"
+    "label": "Description (optional)"
   },
   "supporting-document-add-another": {
     "legend": "Do you want to upload any additional documents to support your application?",
