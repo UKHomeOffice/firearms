@@ -245,5 +245,8 @@
   },
   "contact-address-lookup": {
     "required": "Select an address"
+  },
+  "supporting-document-add": {
+    "required": "Select an option to upload supporting documents now or later"
   }
 }
