@@ -1,10 +1,11 @@
 {
   "authority-number": {
-    "hint": "For example, 16/B/D/001",
+    "hint": "For example, 16/B/D/001. Your authority number can be found at the bottom left of your authority letter.",
     "label": "Current authority number"
   },
   "reference-number": {
-    "label": "Customer reference number"
+    "label": "Customer reference number",
+    "hint": "Your customer reference number can be found at the top left of your authority letter."
   },
   "organisation": {
     "options": {
