@@ -8,6 +8,8 @@ module.exports = data => {
   response.AuthorityType = 'Dealer';
   response.ApplicationType = data.activity === 'new' ? 'Application' : 'Renewal';
 
+  response['Customer.Organisation'] = data[`${data.organisation}-name`];
+
   if (data.activity === 'renew') {
     response['Customer.CustomerReference'] = data['reference-number'];
     response.ExistingAuthorityReference = data['authority-number'];
