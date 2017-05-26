@@ -95,17 +95,14 @@
   },
   "storage-postcode": {
     "header": "Where will the prohibited items be stored?",
-    "intro": "You can add further addresses later, if required. The police will inspect the storage arrangements at each location.",
     "important": "The information you provide here will replace the information we currently hold."
   },
   "storage-address-lookup": {
     "header": "Where will the prohibited items be stored?",
-    "intro": "You can add further addresses later, if required. The police will inspect the storage arrangements at each location.",
     "important": "The information you provide here will replace the information we currently hold."
   },
   "storage-address": {
     "header": "Where will the prohibited items be stored?",
-    "intro": "You can add further addresses later, if required. The police will inspect the storage arrangements at each location.",
     "important": "The information you provide here will replace the information we currently hold.",
     "summary": "Storage addresses"
   },
