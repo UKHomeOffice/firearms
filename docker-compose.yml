@@ -12,6 +12,9 @@ services:
       - EMAIL_PORT=25
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - FROM_ADDRESS=caseworker@gov.uk.test
+      - AWS_USER=blah
+      - AWS_PASSWORD=passwordblah
     links:
       - redis
       - maildev
@@ -20,7 +23,7 @@ services:
     volumes:
       - "/public"
   redis:
-    image: redis
+    image: quay.io/ukhomeofficedigital/redis:v0.1.0
 
   nginx-proxy:
     image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3.0.0.0
