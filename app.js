@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const bootstrap = require('hof-bootstrap');
+const hof = require('hof');
 const bodyParser = require('busboy-body-parser');
 const config = require('./config.js');
 const mockAPIs = require('./mock-apis.js');
@@ -26,7 +26,7 @@ const options = {
   redis: config.redis
 };
 
-const app = bootstrap(options);
+const app = hof(options);
 if (config.env === 'ci' || config.env === 'development') {
   app.use(mockAPIs);
 }

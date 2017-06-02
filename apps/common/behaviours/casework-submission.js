@@ -23,6 +23,7 @@ module.exports = config => {
   return superclass => class extends superclass {
 
     saveValues(req, res, next) {
+      req.log('debug', 'Submitting case to icasework');
       super.saveValues(req, res, err => {
         if (err) {
           return next(err);
@@ -30,10 +31,15 @@ module.exports = config => {
         const model = new Model(req.sessionModel.toJSON());
         model.save()
           .then(data => {
+            req.log('debug', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
             next();
           })
-          .catch(next);
+          .catch(e => {
+            req.log('error', `Casework submission failed: ${e.status}`);
+            req.log('error', e.body);
+            next(e);
+          });
       });
     }
 
