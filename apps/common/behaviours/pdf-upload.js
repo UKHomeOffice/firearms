@@ -7,13 +7,20 @@ module.exports = superclass => class PDFUpload extends superclass {
 
   process(req, res, next) {
     this.renderHTML(req, res)
-      .then(html => this.createPDF(html))
-      .then(pdfBuffer => this.uploadPDF({
-        name: 'application_form.pdf',
-        data: pdfBuffer,
-        mimetype: 'application/pdf'
-      }))
+      .then(html => {
+        req.log('debug', 'Creating PDF document');
+        return this.createPDF(html);
+      })
+      .then(pdfBuffer => {
+        req.log('debug', 'Created PDF document. Uploading.');
+        return this.uploadPDF({
+          name: 'application_form.pdf',
+          data: pdfBuffer,
+          mimetype: 'application/pdf'
+        });
+      })
       .then(result => {
+        req.log('debug', 'Saved PDF document to S3');
         req.form.values['pdf-upload'] = result.url;
       })
       .then(() => {
