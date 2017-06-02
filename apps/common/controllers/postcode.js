@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const logger = require('hof-bootstrap/lib/logger');
 const BaseController = require('./base');
 const PostcodesModel = require('../models/postcodes');
 const path = require('path');
@@ -46,7 +45,7 @@ module.exports = class PostcodeController extends BaseController {
         req.sessionModel.set('postcodeApiMeta', {
           messageKey: 'cant-connect'
         });
-        logger.error('Postcode lookup error: ',
+        req.log('error', 'Postcode lookup error: ',
           `Code: ${err.status}; Detail: ${err.detail}`);
         return callback();
       });
