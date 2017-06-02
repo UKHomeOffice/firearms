@@ -31,6 +31,7 @@ describe('apps/common/behaviours/pdf-upload', () => {
     let Mixed;
     let instance;
     let req = {
+      log: () => {},
       form: {
         values: {}
       }
