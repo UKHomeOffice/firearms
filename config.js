@@ -41,7 +41,9 @@ module.exports = {
     password: process.env.REDIS_PASSWORD
   },
   icasework: {
-    url: process.env.ICASEWORK_URL || 'https://uat.icasework.com/createcase',
+    url: process.env.ICASEWORK_URL || 'https://uat.icasework.com',
+    createpath: '/createcase',
+    uploadpath: '/uploaddocuments',
     key: process.env.ICASEWORK_KEY,
     secret: process.env.ICASEWORK_SECRET
   },

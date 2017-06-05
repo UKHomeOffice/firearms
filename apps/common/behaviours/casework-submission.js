@@ -17,8 +17,11 @@ module.exports = config => {
 
   config = config || {};
 
+  // allow a custom model override
+  config.Model = config.Model || CaseworkModel;
+
   // compose custom per-app prepare methods onto the standard model
-  const Model = Compose(config.prepare)(CaseworkModel);
+  const Model = Compose(config.prepare)(config.Model);
 
   return superclass => class extends superclass {
 
@@ -29,6 +32,7 @@ module.exports = config => {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
+        req.log('debug', `Sending icasework submission to ${model.url()}`);
         model.save()
           .then(data => {
             req.log('debug', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);

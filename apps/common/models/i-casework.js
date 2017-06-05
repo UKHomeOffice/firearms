@@ -8,7 +8,7 @@ const config = require('../../../config');
 module.exports = class CaseworkModel extends Model {
 
   url() {
-    return config.icasework.url;
+    return config.icasework.url + config.icasework.createpath;
   }
 
   prepare() {

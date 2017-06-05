@@ -1,5 +1,12 @@
 'use strict';
 
+const Submission = require('../common/behaviours/casework-submission');
+const submission = Submission({
+  prepare: require('./models/submission'),
+  Model: require('../common/models/i-casework-documents')
+});
+
+
 module.exports = {
   name: 'supporting-documents',
   baseUrl: '/supporting-documents',
@@ -54,7 +61,7 @@ module.exports = {
     },
     '/declaration': {
       template: 'declaration',
-      behaviours: ['complete'],
+      behaviours: ['complete', submission],
       next: '/confirmation'
     },
     '/confirmation': {
