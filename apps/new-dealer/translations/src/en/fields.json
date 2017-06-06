@@ -323,7 +323,7 @@
     "label": "Country of birth"
   },
   "first-authority-holders-nationality": {
-    "label": "Nationality"
+    "label": "Country of nationality"
   },
   "first-authority-holders-nationality-multi": {
     "label": "Add another nationality"
@@ -367,7 +367,7 @@
     "label": "Country of birth"
   },
   "second-authority-holders-nationality": {
-    "label": "Nationality"
+    "label": "Country of nationality"
   },
   "second-authority-holders-nationality-multi": {
     "label": "Add another nationality"
