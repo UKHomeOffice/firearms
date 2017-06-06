@@ -9,11 +9,11 @@
     "header": "What is the club's name?"
   },
   "second-contact-name": {
-    "header": "Who should we contact in the secretary's absence?",
-    "intro": "We need to collect the contact details of a second person, in case the secretary is unavailable"
+    "header": "Who should we contact in {{values.club-secretary-name}}'s absence?",
+    "intro": "We need to collect the contact details of a second person, in case {{values.club-secretary-name}} is unavailable"
   },
   "second-contact-email": {
-    "header": "What are the second person's contact details?"
+    "header": "What are {{values.second-contact-name}}'s contact details?"
   },
   "club-secretary-name": {
     "header": "What is the club secretary's name?"
@@ -28,26 +28,26 @@
     "header": "What is the club's address?"
   },
   "club-secretary-address": {
-    "header": "What is the club secretary's contact address?",
+    "header": "What is {{values.club-secretary-name}}'s contact address?",
     "intro": "This is where the shooting club approval will be sent"
   },
   "club-secretary-address-select": {
-    "header": "Select the club secretary's contact address"
+    "header": "Select {{values.club-secretary-name}}'s contact address"
   },
   "club-secretary-address-manual": {
-    "header": "What is the club secretary's contact address?"
+    "header": "What is {{values.club-secretary-name}}'s contact address?"
   },
   "club-secretary-email": {
-    "header": "What are the club secretary's contact details?"
+    "header": "What are {{values.club-secretary-name}}'s contact details?"
   },
   "second-contact-address": {
-    "header": "What is the second person's contact address?"
+    "header": "What is {{values.second-contact-name}}'s contact address?"
   },
   "second-contact-address-select": {
-    "header": "Select the second person's contact address"
+    "header": "Select {{values.second-contact-name}}'s contact address"
   },
   "second-contact-address-manual": {
-    "header": "What is the second person's contact address?"
+    "header": "What is {{values.second-contact-name}}'s contact address?"
   },
   "location-postcode": {
     "header": "Which shooting ranges will the club use?",
