@@ -1,5 +1,8 @@
 {
   "reference-number": {
     "label": "Reference number"
+  },
+  "email": {
+    "label": "Email"
   }
 }

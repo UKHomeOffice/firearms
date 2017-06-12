@@ -2,6 +2,10 @@
   "reference-number": {
     "required": "Enter your application reference number"
   },
+  "email": {
+    "required": "Enter the email address used for your original application",
+    "incorrect": "The email address provided does not match the reference number"
+  },
   "supporting-document-upload": {
     "required": "Select a document"
   }

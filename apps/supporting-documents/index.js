@@ -1,11 +1,23 @@
 'use strict';
 
+const path = require('path');
+
+const GetCase = require('./behaviours/get-case');
+const CheckEmail = require('./behaviours/check-email');
+
 const Submission = require('../common/behaviours/casework-submission');
 const submission = Submission({
   prepare: require('./models/submission'),
   Model: require('../common/models/i-casework-documents')
 });
 
+const Emailer = require('../common/behaviours/emailer');
+const emailer = Emailer({
+  template: path.resolve(__dirname, './emails/confirm.html'),
+  recipient: 'original-email',
+  subject: data => `Ref: ${data['reference-number']} - Supporting documents`,
+  nameKey: 'original-name'
+});
 
 module.exports = {
   name: 'supporting-documents',
@@ -16,6 +28,12 @@ module.exports = {
       fields: [
         'reference-number'
       ],
+      behaviours: [GetCase],
+      next: '/email'
+    },
+    '/email': {
+      fields: ['email'],
+      behaviours: [CheckEmail],
       next: '/supporting-documents'
     },
     '/supporting-documents': {
@@ -61,7 +79,7 @@ module.exports = {
     },
     '/declaration': {
       template: 'declaration',
-      behaviours: ['complete', submission],
+      behaviours: ['complete', submission, emailer],
       next: '/confirmation'
     },
     '/confirmation': {

@@ -1,3 +1,10 @@
 'use strict';
 
-module.exports = {};
+module.exports = {
+  'email': {
+    validate: [
+      'required',
+      'email'
+    ]
+  }
+};
