@@ -3,6 +3,8 @@
 const Model = require('hof-model');
 const isPdf = require('is-pdf');
 const config = require('../../../config');
+const debug = require('debug')('pdf-model');
+const _ = require('lodash');
 
 module.exports = class PDFModel extends Model {
 
@@ -17,6 +19,11 @@ module.exports = class PDFModel extends Model {
   }
 
   handleResponse(response, callback) {
+    if (_.isPlainObject(response.body)) {
+      debug('Response: %O', response.body);
+    } else {
+      debug('Response: %s', response.body);
+    }
     if (isPdf(Buffer.from(response.body))) {
       return this.parseResponse(response.statusCode, response.body, callback);
     }
