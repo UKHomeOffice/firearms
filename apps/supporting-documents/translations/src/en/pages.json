@@ -2,6 +2,9 @@
   "reference": {
     "header": "What is the reference number for your application?"
   },
+  "email": {
+    "header": "What is the email address used for your original application?"
+  },
   "supporting-documents": {
     "header": "Supporting documents"
   },
