@@ -67,7 +67,7 @@ module.exports = {
       controller: require('hof-confirm-controller'),
       next: '/declaration',
       sections: {
-        reference: ['reference-number'],
+        reference: ['reference-number', 'email'],
         documents: [
           {
             field: 'supporting-documents',
