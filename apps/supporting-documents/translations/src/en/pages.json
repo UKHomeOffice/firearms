@@ -1,19 +1,22 @@
 {
   "reference": {
-    "header": "What is the reference number for your application?"
+    "header": "Enter the reference number for your application:"
   },
   "email": {
-    "header": "What is the email address used for your original application?"
+    "header": "Enter the email address used for your original application:"
   },
   "supporting-documents": {
-    "header": "Supporting documents"
+    "header": "Upload supporting documents"
   },
   "supporting-documents-add": {
-    "header": "Supporting documents",
+    "header": "Do you want to upload any additional documents to support your application?",
     "list-header": "Documents added"
   },
   "confirm": {
     "sections": {
+      "reference": {
+        "header": "Application details"
+      },
       "documents": {
         "header": "Documents uploaded"
       }
