@@ -130,7 +130,7 @@ module.exports = class ConfirmController extends Controller {
   }
 
   getSupportingDocuments(data, translate) {
-    if (!data['supporting-documents'] || !data['supporting-documents']) {
+    if (!data['supporting-documents'] || !data['supporting-documents'].length) {
       return null;
     }
     const items = data['supporting-documents'].map(doc => ({
