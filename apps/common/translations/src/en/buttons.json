@@ -1,5 +1,7 @@
 {
   "delete": "Delete",
   "submit": "Submit application",
-  "find-address": "Find address"
+  "find-address": "Find address",
+  "start-again": "Start again",
+  "try-again": "Try again"
 }
