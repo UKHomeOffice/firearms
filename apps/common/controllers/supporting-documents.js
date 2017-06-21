@@ -9,6 +9,15 @@ const uuid = require('uuid');
 const path = require('path');
 
 module.exports = class UploadController extends BaseController {
+
+  get(req, res, next) {
+    const docs = req.sessionModel.get('supporting-documents') || [];
+    if (docs.length) {
+      this.emit('complete', req, res);
+    }
+    super.get(req, res, next);
+  }
+
   process(req, res, next) {
     const file = req.files['supporting-document-upload'];
     if (file && file.truncated) {
