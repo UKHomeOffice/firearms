@@ -36,6 +36,7 @@ module.exports = data => {
   response['Agent.Address'] = data[`${addressKey}-address-manual`] || data[`${addressKey}-address-lookup`];
 
   response['Agent.Name'] = data[`${contactKey}-name`];
+  response['Customer.Email'] = data['contact-email'];
   response['Agent.Email'] = data['contact-email'];
   response['Agent.Phone'] = data['contact-phone'];
 
