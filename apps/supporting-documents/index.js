@@ -15,7 +15,7 @@ const Emailer = require('../common/behaviours/emailer');
 const emailer = Emailer({
   template: path.resolve(__dirname, './emails/confirm.html'),
   recipient: 'original-email',
-  subject: data => `Ref: ${data['reference-number']} - Supporting documents`,
+  subject: data => `Application ref: ${data['reference-number']} - supporting documents`,
   nameKey: 'original-name'
 });
 
