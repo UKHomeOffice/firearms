@@ -41,7 +41,7 @@ module.exports = config => {
           })
           .catch(e => {
             req.log('error', `Casework submission failed: ${e.status}`);
-            req.log('error', e.body);
+            req.log('error', e.headers && e.headers['x-application-error-info']);
             next(e);
           });
       });
