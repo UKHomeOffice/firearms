@@ -147,7 +147,8 @@
     "required": "Enter a country of birth"
   },
   "first-authority-holders-nationality": {
-    "required": "Enter nationality"
+    "required": "Enter nationality",
+    "equal": "Enter a nationality from the list that appears"
   },
   "first-authority-holders-nationality-second": {
     "same-first-nationality": "Second nationality cannot be the same as the first nationality"
@@ -178,7 +179,8 @@
     "required": "Enter a country of birth"
   },
   "second-authority-holders-nationality": {
-    "required": "Enter nationality"
+    "required": "Enter nationality",
+    "equal": "Enter a nationality from the list that appears"
   },
   "second-authority-holders-nationality-second": {
     "same-first-nationality": "Second nationality cannot be the same as the first nationality"
