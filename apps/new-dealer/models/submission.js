@@ -2,10 +2,27 @@
 /* eslint complexity: 0 max-statements: 0 */
 const contains = (arr, val) => arr.indexOf(val) > -1 ? 'Yes' : 'No';
 
+const authorityType = usage => {
+  if (usage.indexOf('arm-guards') > -1) {
+    return 'Maritime Guards';
+  }
+
+  if (usage.indexOf('transport') > -1 || usage.indexOf('transfer') > -1) {
+    // check if any other values are selected
+    if (usage.filter(use => use !== 'transport' && use !== 'transfer').length) {
+      return 'Carriers and Dealers';
+    }
+    return 'Carriers';
+  }
+
+  return 'Dealer';
+};
+
 module.exports = data => {
   const response = {};
 
-  response.AuthorityType = 'Dealer';
+  response.AuthorityType = authorityType(data.usage);
+
   response.ApplicationType = data.activity === 'new' ? 'Application' : 'Renewal';
 
   response['Customer.Organisation'] = data[`${data.organisation}-name`];
