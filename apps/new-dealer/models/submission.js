@@ -1,11 +1,28 @@
 'use strict';
 /* eslint complexity: 0 max-statements: 0 */
-const contains = (arr, val) => arr.indexOf(val) > -1 ? 'Yes' : 'No';
+const contains = (arr, val) => arr.includes(val) ? 'Yes' : 'No';
+
+const authorityType = usage => {
+  if (usage.includes('arm-guards')) {
+    return 'Maritime Guards';
+  }
+
+  if (usage.includes('transport') || usage.includes('transfer')) {
+    // check if any other values are selected
+    if (usage.filter(use => use !== 'transport' && use !== 'transfer').length) {
+      return 'Carriers and Dealers';
+    }
+    return 'Carriers';
+  }
+
+  return 'Dealer';
+};
 
 module.exports = data => {
   const response = {};
 
-  response.AuthorityType = 'Dealer';
+  response.AuthorityType = authorityType(data.usage);
+
   response.ApplicationType = data.activity === 'new' ? 'Application' : 'Renewal';
 
   response['Customer.Organisation'] = data[`${data.organisation}-name`];
@@ -40,9 +57,9 @@ module.exports = data => {
   response['Agent.Email'] = data['contact-email'];
   response['Agent.Phone'] = data['contact-phone'];
 
-  if (data['weapons-ammunition'].indexOf('weapons') > -1) {
+  if (data['weapons-ammunition'].includes('weapons')) {
     response.AuthorityCoversWeapons = 'Yes';
-    if (data['weapons-types'].indexOf('unspecified') > -1) {
+    if (data['weapons-types'].includes('unspecified')) {
       response.WeaponsUnspecified = 'Yes';
       response.WeaponsUnspecifiedReason = data['weapons-unspecified-details'];
     }
@@ -61,16 +78,16 @@ module.exports = data => {
       'projecting-launchers': 'WeaponsS1A-c'
     };
     Object.keys(types).forEach(key => {
-      if (data['weapons-types'].indexOf(key) > -1) {
+      if (data['weapons-types'].includes(key)) {
         response[types[key]] = 'Yes';
         response[`${types[key]}Quantity`] = data[`${key}-quantity`];
       }
     });
   }
 
-  if (data['weapons-ammunition'].indexOf('ammunition') > -1) {
+  if (data['weapons-ammunition'].includes('ammunition')) {
     response.AuthorityCoversAmmunition = 'Yes';
-    if (data['ammunition-types'].indexOf('unspecified') > -1) {
+    if (data['ammunition-types'].includes('unspecified')) {
       response.AmmunitionUnspecified = 'Yes';
       response.AmmunitionUnspecifiedReason = data['ammunition-unspecified-details'];
     }
@@ -83,7 +100,7 @@ module.exports = data => {
       'missiles-for-above': 'AmmunitionS1A-g'
     };
     Object.keys(types).forEach(key => {
-      if (data['ammunition-types'].indexOf(key) > -1) {
+      if (data['ammunition-types'].includes(key)) {
         response[types[key]] = 'Yes';
         response[`${types[key]}Quantity`] = data[`${key}-quantity`];
       }
