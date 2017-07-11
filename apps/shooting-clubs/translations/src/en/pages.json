@@ -10,7 +10,7 @@
   },
   "second-contact-name": {
     "header": "Who should we contact in {{values.club-secretary-name}}'s absence?",
-    "intro": "We need to collect the contact details of a second person, in case {{values.club-secretary-name}} is unavailable"
+    "intro": "We need to collect the contact details of a second person, in case {{{values.club-secretary-name}}} is unavailable"
   },
   "second-contact-email": {
     "header": "What are {{values.second-contact-name}}'s contact details?"
