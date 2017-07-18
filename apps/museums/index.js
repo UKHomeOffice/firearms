@@ -130,7 +130,8 @@ module.exports = {
             field: 'exhibit-addresses',
             parse: (value) => value.map(a => a.address).join('\n'),
             step: '/exhibit-add-another-address'
-          }
+          },
+          'reference-number'
         ],
         'contact-details': [
           'contact-name',
