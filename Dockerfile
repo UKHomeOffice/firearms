@@ -1,4 +1,4 @@
-FROM quay.io/ukhomeofficedigital/nodejs-base:v6.11.1
+FROM quay.io/ukhomeofficedigital/nodejs-base:v6
 
 RUN mkdir /public
 
