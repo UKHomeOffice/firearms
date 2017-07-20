@@ -1,5 +1,7 @@
 FROM quay.io/ukhomeofficedigital/nodejs-base:v6
 
+RUN yum install bzip2 -y
+
 RUN mkdir /public
 
 COPY package.json /app/package.json
