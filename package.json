@@ -33,7 +33,7 @@
     "hof-controllers": "^6.0.3",
     "hof-form-controller": "^5.1.0",
     "hof-model": "^3.1.2",
-    "hof-theme-govuk": "^2.0.4",
+    "hof-theme-govuk": "^4.0.0",
     "hof-util-countries": "^1.0.0",
     "html-pdf": "^2.1.0",
     "i18n-lookup": "^1.0.0",
