@@ -12,6 +12,6 @@ You must inform the Home Office if:
 * an authority holder or a staff member with access to the prohibited items has, or acquires, any criminal convictions – including motoring offences
 * there are changes to the business, which materially changes the information provided in this application
 
-By submitting this application, you agree that relevant information you have given can be shared between the Home Office, the police and HM Revenue and Customs. Information may also be shared with other government departments, regulatory bodies and enforcement agencies to help prevent the diversion of firearms.
+By submitting this application, you agree that relevant information you have given can be shared between the Home Office, the police and HM Revenue and Customs. You give consent to the Home Office seeking information from HMRC and you consent to HMRC supplying the Home Office with any information they might hold. Information may also be shared with other government departments, regulatory bodies and enforcement agencies to help prevent the diversion of firearms.
 
 The Home Office will handle all submitted information in accordance with the Data Protection Act 1998 and the Freedom of Information Act 2000.

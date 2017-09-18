@@ -10,6 +10,6 @@ You must tell the police and the Home Office if you become aware of any threat t
 
 You must also tell the police when a person makes an application to become a probationary or full club member.
 
-By submitting this application, you agree that relevant information you have given can be shared between the Home Office and the police. Information might also be shared with other government departments, regulatory bodies and enforcement agencies to help prevent the diversion of firearms.
+By submitting this application, you agree that relevant information you have given can be shared between the Home Office and the police. You give consent to the Home Office seeking information from HMRC and you consent to HMRC supplying the Home Office with any information they might hold. Information might also be shared with other government departments, regulatory bodies and enforcement agencies to help prevent the diversion of firearms.
 
 The Home Office will handle all submitted information in accordance with the Data Protection Act 1998 and the Freedom of Information Act 2000
