@@ -12,14 +12,7 @@ module.exports = class CaseworkModel extends Model {
   }
 
   prepare() {
-    const params = {
-      Key: config.icasework.key,
-      Signature: this.sign(),
-      Type: 'Firearms',
-      Format: 'json',
-      db: 'flcms',
-      RequestMethod: 'Online form'
-    };
+    const params = {};
 
     if (this.get('pdf-upload')) {
       params['Document1.Name'] = 'full application data';
@@ -38,7 +31,15 @@ module.exports = class CaseworkModel extends Model {
 
   save() {
     const options = this.requestConfig({});
-    options.qs = this.prepare();
+    options.qs = {
+      Key: config.icasework.key,
+      Signature: this.sign(),
+      Type: 'Firearms',
+      Format: 'json',
+      db: 'flcms',
+      RequestMethod: 'Online form'
+    };
+    options.form = this.prepare();
     options.method = 'POST';
     if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
       return Promise.resolve({
