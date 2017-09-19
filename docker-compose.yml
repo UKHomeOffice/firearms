@@ -12,7 +12,7 @@ services:
       - EMAIL_PORT=25
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - PDF_CONVERTER_URL=html-pdf-converter:8001
+      - PDF_CONVERTER_URL=http://html-pdf-converter:8001/convert
 
     links:
       - redis
