@@ -208,3 +208,9 @@ div.add-remove-section {
 .alert-message p:last-child {
   margin-bottom: 0;
 }
+
+ul {
+  @extend .text;
+  @extend .list;
+  @extend .list-bullet;
+}
