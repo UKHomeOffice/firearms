@@ -7,9 +7,10 @@ const authorityType = usage => {
     return 'Maritime Guards';
   }
 
+  // usage can be an array or a string
   if (usage.includes('transport') || usage.includes('transfer')) {
     // check if any other values are selected
-    if (usage.filter(use => use !== 'transport' && use !== 'transfer').length) {
+    if ([].concat(usage).filter(use => use !== 'transport' && use !== 'transfer').length) {
       return 'Carriers and Dealers';
     }
     return 'Carriers';

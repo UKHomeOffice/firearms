@@ -15,9 +15,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Maritime Guards` if usage is to arm guards', () => {
 
       const input = Object.assign({}, defaults, {
-        usage: [
-          'arm-guards'
-        ]
+        usage: 'arm-guards'
       });
 
       const output = prepare(input);
@@ -42,9 +40,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Carriers` if usage is to transport', () => {
 
       const input = Object.assign({}, defaults, {
-        usage: [
-          'transport'
-        ]
+        usage: 'transport'
       });
 
       const output = prepare(input);
@@ -55,9 +51,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Carriers` if usage is to transfer', () => {
 
       const input = Object.assign({}, defaults, {
-        usage: [
-          'transfer'
-        ]
+        usage: 'transfer'
       });
 
       const output = prepare(input);
@@ -105,6 +99,17 @@ describe('S5 Submission Model', () => {
       const output = prepare(input);
 
       expect(output.AuthorityType).to.equal('Dealer');
+    });
+
+    it('usage can be a string', () => {
+
+      const input = Object.assign({}, defaults, {
+        usage: 'transfer'
+      });
+
+      const output = prepare(input);
+
+      expect(output.AuthorityType).to.equal('Carriers');
     });
 
   });
