@@ -9,7 +9,7 @@ module.exports = class CaseworkModel extends Model {
 
   constructor(attributes, options) {
     super(attributes, options);
-    this.options.timeout = this.options.timeout || 20000;
+    this.options.timeout = this.options.timeout || config.icasework.timeout;
   }
 
   url() {
