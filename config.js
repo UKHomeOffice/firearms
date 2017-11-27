@@ -41,12 +41,12 @@ module.exports = {
     password: process.env.REDIS_PASSWORD
   },
   icasework: {
-    url: process.env.ICASEWORK_URL || 'https://uat.icasework.com',
     createpath: '/createcase',
     uploadpath: '/uploaddocuments',
     getcasepath: '/getcasedetails',
     key: process.env.ICASEWORK_KEY,
-    secret: process.env.ICASEWORK_SECRET
+    secret: process.env.ICASEWORK_SECRET,
+    timeout: process.env.ICASEWORK_TIMEOUT || 20000
   },
   survey: {
     urls: {
