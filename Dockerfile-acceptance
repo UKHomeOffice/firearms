@@ -1,0 +1,17 @@
+FROM quay.io/ukhomeofficedigital/nodejs-base:v6
+
+RUN yum install bzip2 -y
+RUN yum install freetype -y
+RUN yum install fontconfig -y
+
+WORKDIR /test
+
+COPY package.json package.json
+COPY codecept.conf.js codecept.conf.js
+COPY config.js config.js
+COPY apps apps/
+COPY assets assets/
+
+RUN npm --loglevel warn install
+
+CMD npm run test:acceptance
