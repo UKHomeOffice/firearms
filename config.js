@@ -31,7 +31,7 @@ module.exports = {
   },
   email: {
     from: process.env.FROM_ADDRESS || '',
-    transport: 'ses',
+    transport: process.env.EMAIL_TRANSPORT || 'ses',
     transportOptions: {
       accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || '',
       secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || ''

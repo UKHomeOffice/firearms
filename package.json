@@ -43,7 +43,6 @@
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.11",
     "mustache": "^2.3.0",
-    "phantomjs-prebuilt": "^2.1.14",
     "typeahead-aria": "^1.0.4",
     "uuid": "^3.1.0",
     "witch": "^1.0.2"
@@ -66,7 +65,7 @@
     "sinon": "^1.15.3",
     "sinon-as-promised": "^4.0.3",
     "sinon-chai": "^2.11.0",
-    "so-acceptance": "^4.3.1"
+    "so-acceptance": "^4.2.5"
   },
   "pre-commit": [
     "lint",

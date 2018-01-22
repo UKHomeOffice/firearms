@@ -27,7 +27,7 @@ const options = {
 };
 
 const app = hof(options);
-if (config.env === 'ci' || config.env === 'development') {
+if (config.env !== 'production') {
   app.use(mockAPIs);
 }
 app.use(bodyParser({limit: config.upload.maxfilesize}));

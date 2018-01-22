@@ -7,8 +7,8 @@ RUN yum install fontconfig -y
 WORKDIR /test
 
 COPY package.json package.json
-COPY codecept.conf.js codecept.conf.js
 COPY config.js config.js
+COPY codecept.conf.js codecept.conf.js
 COPY apps apps/
 COPY assets assets/
 

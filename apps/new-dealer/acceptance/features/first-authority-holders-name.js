@@ -1,6 +1,10 @@
 'use strict';
 
 const steps = require('../../');
+const path = require('path');
+const TRANSLATIONS = require(path.resolve(__dirname, '../../translations/en/default'));
+const FIELDS = TRANSLATIONS.fields;
+const PAGES = TRANSLATIONS.pages;
 
 Feature('First authority holders name step');
 
@@ -34,7 +38,10 @@ Scenario('When I select one on the authority-holders step I see the one authorit
     'authority-holders': 'one'
   });
   yield I.refreshPage();
-  firstAuthorityHoldersNamePage.pageShowsCorrectAuthorityTranslations('one');
+  I.seeEach([
+    PAGES['first-authority-holders-name'].header['authority-holders']['one'],
+    FIELDS['first-authority-holders-name'].label['authority-holders']['one']
+  ]);
 });
 
 Scenario('When I select two on the authority-holders step I see the two authority holder translations', function *(
@@ -45,7 +52,10 @@ Scenario('When I select two on the authority-holders step I see the two authorit
     'authority-holders': 'two'
   });
   yield I.refreshPage();
-  firstAuthorityHoldersNamePage.pageShowsCorrectAuthorityTranslations('two');
+  I.seeEach([
+    PAGES['first-authority-holders-name'].header['authority-holders']['two'],
+    FIELDS['first-authority-holders-name'].label['authority-holders']['two']
+  ]);
 });
 
 Scenario('Im taken to the first-authority-holders-birth step', (

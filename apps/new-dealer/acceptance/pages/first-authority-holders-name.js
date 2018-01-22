@@ -1,9 +1,5 @@
 'use strict';
 
-const TRANSLATIONS = require('../../translations/en/default');
-const FIELDS = TRANSLATIONS.fields;
-const PAGES = TRANSLATIONS.pages;
-
 let I;
 
 module.exports = {
@@ -16,13 +12,6 @@ module.exports = {
   'holders-name': '#first-authority-holders-name',
   content: {
     'holders-name': 'Sterling Archer'
-  },
-
-  pageShowsCorrectAuthorityTranslations(authorityHolder){
-    I.seeEach([
-      PAGES['first-authority-holders-name'].header['authority-holders'][authorityHolder],
-      FIELDS['first-authority-holders-name'].label['authority-holders'][authorityHolder]
-    ])
   },
 
   fillFormAndSubmit(){
