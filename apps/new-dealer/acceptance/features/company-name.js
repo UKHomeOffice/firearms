@@ -11,16 +11,16 @@ Before((
   I.visitPage(companyNamePage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  companyNamePage
-) => {
-  I.seeElements([
-    companyNamePage['organisation-group'],
-    companyNamePage.company,
-    companyNamePage['sole-trader']
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   companyNamePage
+// ) => {
+//   I.seeElements([
+//     companyNamePage['organisation-group'],
+//     companyNamePage.company,
+//     companyNamePage['sole-trader']
+//   ]);
+// });
 
 Scenario('An error is shown if company-name step is not completed', (
   I,

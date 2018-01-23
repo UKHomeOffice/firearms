@@ -11,16 +11,16 @@ Before((
   I.visitPage(storagePage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  storagePage
-) => {
-  I.seeElements([
-    storagePage['storage-group'],
-    storagePage.yes,
-    storagePage.no
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   storagePage
+// ) => {
+//   I.seeElements([
+//     storagePage['storage-group'],
+//     storagePage.yes,
+//     storagePage.no
+//   ]);
+// });
 
 Scenario('When I select renew on the activity, I see the renew message icon', function *(
   I,

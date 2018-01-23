@@ -11,16 +11,16 @@ Before((
   I.visitPage(importPage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  importPage
-) => {
-  I.seeElements([
-    importPage.import,
-    importPage.yes,
-    importPage.no
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   importPage
+// ) => {
+//   I.seeElements([
+//     importPage.import,
+//     importPage.yes,
+//     importPage.no
+//   ]);
+// });
 
 Scenario('When I select renew on the activity, I see the renew message icon', function *(
   I,

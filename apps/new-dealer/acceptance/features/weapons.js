@@ -11,25 +11,25 @@ Before((
   I.visitPage(weaponsPage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  weaponsPage
-) => {
-  I.seeElements([
-    weaponsPage.unspecified,
-    weaponsPage['fully-automatic'],
-    weaponsPage['self-loading'],
-    weaponsPage['short-pistols'],
-    weaponsPage['short-self-loading'],
-    weaponsPage['large-revolvers'],
-    weaponsPage['rocket-launchers'],
-    weaponsPage['air-rifles'],
-    weaponsPage['fire-noxious-substance'],
-    weaponsPage['disguised-firearms'],
-    weaponsPage['military-rockets'],
-    weaponsPage['projecting-launchers']
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   weaponsPage
+// ) => {
+//   I.seeElements([
+//     weaponsPage.unspecified,
+//     weaponsPage['fully-automatic'],
+//     weaponsPage['self-loading'],
+//     weaponsPage['short-pistols'],
+//     weaponsPage['short-self-loading'],
+//     weaponsPage['large-revolvers'],
+//     weaponsPage['rocket-launchers'],
+//     weaponsPage['air-rifles'],
+//     weaponsPage['fire-noxious-substance'],
+//     weaponsPage['disguised-firearms'],
+//     weaponsPage['military-rockets'],
+//     weaponsPage['projecting-launchers']
+//   ]);
+// });
 
 Scenario('An error is shown if weapons step is not completed', (
   I,

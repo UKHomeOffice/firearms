@@ -135,17 +135,17 @@ Scenario('from manual entry step: I am taken to the location-category step', (
 });
 
 
-Scenario('category step: the correct form elements are present', (
-  I,
-  locationAddressPage
-) => {
-  locationAddressPage.selectAddressAndSubmit();
-  I.seeElements(
-    [locationAddressPage.category.field.fullBoreRifles],
-    [locationAddressPage.category.field.smallBoreRifles],
-    [locationAddressPage.category.field.muzzleLoadingPistols]
-  )
-});
+// Scenario('category step: the correct form elements are present', (
+//   I,
+//   locationAddressPage
+// ) => {
+//   locationAddressPage.selectAddressAndSubmit();
+//   I.seeElements(
+//     [locationAddressPage.category.field.fullBoreRifles],
+//     [locationAddressPage.category.field.smallBoreRifles],
+//     [locationAddressPage.category.field.muzzleLoadingPistols]
+//   )
+// });
 
 Scenario('category step: I see an error when I submit an empty form', (
   I,
@@ -190,16 +190,16 @@ Scenario('category step: when I select 3 categories: full-bore rifles, small-bor
   I.see(locationAddressPage.category.content.muzzleLoadingPistols, locationAddressPage.addAnotherAddress.field.summary)
 });
 
-Scenario('add another address step: the correct form elements are present', (
-  I,
-  locationAddressPage
-) => {
-  locationAddressPage.selectAddressCategoryAndSubmit();
-  I.seeElements([
-    locationAddressPage.addAnotherAddress.field.yes,
-    locationAddressPage.addAnotherAddress.field.no
-  ])
-});
+// Scenario('add another address step: the correct form elements are present', (
+//   I,
+//   locationAddressPage
+// ) => {
+//   locationAddressPage.selectAddressCategoryAndSubmit();
+//   I.seeElements([
+//     locationAddressPage.addAnotherAddress.field.yes,
+//     locationAddressPage.addAnotherAddress.field.no
+//   ])
+// });
 
 Scenario('add another address step: an error is present when I submit form the form without selecting an option', (
   I,
