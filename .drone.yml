@@ -8,7 +8,7 @@ pipeline:
       event: [push, pull_request]
 
   build_7:
-    image: node:7
+    image: node:8
     commands:
       - npm --loglevel warn install
       - npm test
@@ -16,31 +16,79 @@ pipeline:
       event: [push, pull_request]
 
   build_app:
-    image: docker:1.11
+    image: docker:17.09.1
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
-      - docker build -t firearms .
+      - docker build -t firearms-$${DRONE_COMMIT_SHA} .
     when:
       event: pull_request
 
   build_app:
-    image: docker:1.11
+    image: docker:17.09.1
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
-      - docker build -t firearms .
+      - docker build -t firearms-$${DRONE_COMMIT_SHA} .
+    when:
+      branch: master
+
+  build_acceptance:
+    image: docker:17.09.1
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+    commands:
+      - docker build -f Dockerfile-acceptance -t acceptance-$${DRONE_COMMIT_SHA} .
+    when:
+      event: pull_request
+
+  build_acceptance:
+    image: docker:17.09.1
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+    commands:
+      - docker build -f Dockerfile-acceptance -t acceptance-$${DRONE_COMMIT_SHA} .
+    when:
+      branch: master
+
+  test_acceptance:
+    image: docker:17.09.1
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+    commands:
+      - docker run -d --name=redis-$${DRONE_COMMIT_SHA} redis
+      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
+      - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+      - sleep 5
+      - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
+      - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
+    when:
+      event: pull_request
+
+  test_acceptance:
+    image: docker:17.09.1
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+    commands:
+      - docker run -d --name=redis-$${DRONE_COMMIT_SHA} redis
+      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
+      - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+      - sleep 5
+      - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
+      - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
     when:
       branch: master
       event: push
 
   image_to_quay:
-    image: docker:1.11
+    image: docker:17.09.1
+    secrets:
+      - DOCKER_PASSWORD
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
       - docker login -u="ukhomeofficedigital+drone" -p=${DOCKER_PASSWORD} quay.io
-      - docker tag firearms quay.io/ukhomeofficedigital/firearms:${DRONE_COMMIT_SHA}
+      - docker tag firearms-$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/firearms:${DRONE_COMMIT_SHA}
       - docker push quay.io/ukhomeofficedigital/firearms:${DRONE_COMMIT_SHA}
     when:
       branch: master
@@ -48,10 +96,12 @@ pipeline:
 
   trigger_deploy_to_dev:
     image: quay.io/ukhomeofficedigital/drone-trigger:latest
-    drone_server: https://drone.digital.homeoffice.gov.uk
+    secrets:
+      - DRONE_TOKEN
+    drone_server: https://drone.acp.homeoffice.gov.uk
     repo: UKHomeOffice/kube-firearms
     branch: master
-    deploy_to: firearms-dev
+    deploy_to: dev
     params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms-dev
     when:
       branch: master
@@ -59,20 +109,38 @@ pipeline:
 
   trigger_deploy_to_preprod:
     image: quay.io/ukhomeofficedigital/drone-trigger:latest
-    drone_server: https://drone.digital.homeoffice.gov.uk
+    secrets:
+      - DRONE_TOKEN
+    drone_server: https://drone.acp.homeoffice.gov.uk
     repo: UKHomeOffice/kube-firearms
     branch: master
-    deploy_to: firearms-preprod
+    deploy_to: preprod
     params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms-preprod
     when:
-      event: tag
+      event: deployment
+      environment: preprod
 
-services:
-  redis:
-    image: redis
-  dind:
-    image: docker:1.11-dind
-    privileged: true
-    command:
-      - "-s"
-      - "overlay"
+  trigger_deploy_to_prod:
+    image: quay.io/ukhomeofficedigital/drone-trigger:latest
+    secrets:
+      - DRONE_TOKEN
+    drone_server: https://drone.acp.homeoffice.gov.uk
+    repo: UKHomeOffice/kube-firearms
+    branch: master
+    deploy_to: prod
+    params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms
+    when:
+      event: deployment
+      environment: prod
+
+  smoke_test:
+    image: docker:17.09.1
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+    commands:
+      - docker run -d --userns host --net host --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+      - sleep 5
+      - docker run -e TEST_URL=https://firearms-$${DRONE_DEPLOY_TO}.notprod.homeoffice.gov.uk --rm --userns host --net host acceptance-$${DRONE_COMMIT_SHA}
+      - docker rm -vf "selenium-$${DRONE_COMMIT_SHA}"
+    when:
+      event: deployment

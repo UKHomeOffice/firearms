@@ -11,14 +11,14 @@ Before((
   I.visitPage(storageAddressPage, steps);
 });
 
-Scenario('The correct form elements are present on storage-postcode step', (
-  I,
-  storageAddressPage
-) => {
-  I.seeElements([
-    storageAddressPage.fields.postcode
-  ]);
-});
+// Scenario('The correct form elements are present on storage-postcode step', (
+//   I,
+//   storageAddressPage
+// ) => {
+//   I.seeElements([
+//     storageAddressPage.fields.postcode
+//   ]);
+// });
 
 Scenario('When I select renew on the activity, I see the renew message icon on the storage-postcode step', function *(
   I,
@@ -142,17 +142,17 @@ Scenario('I am taken to the storage-add-another-address step from the manual-add
   I.seeInCurrentUrl(storageAddressPage['another-address-url']);
 });
 
-Scenario('The correct form elements are present on storage-add-another-address step', (
-  I,
-  storageAddressPage
-) => {
-  storageAddressPage.selectAddressAndSubmit();
-  I.seeElements([
-    storageAddressPage.fields.add,
-    storageAddressPage.fields.yes,
-    storageAddressPage.fields.no
-  ]);
-});
+// Scenario('The correct form elements are present on storage-add-another-address step', (
+//   I,
+//   storageAddressPage
+// ) => {
+//   storageAddressPage.selectAddressAndSubmit();
+//   I.seeElements([
+//     storageAddressPage.fields.add,
+//     storageAddressPage.fields.yes,
+//     storageAddressPage.fields.no
+//   ]);
+// });
 
 Scenario('When I select renew on the activity, I see the renew message icon on the storage-add-another-address step', function *(
   I,

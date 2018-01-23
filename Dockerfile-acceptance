@@ -1,0 +1,12 @@
+FROM quay.io/ukhomeofficedigital/nodejs-base:v8
+
+WORKDIR /test
+
+COPY package.json package.json
+COPY codecept.conf.js codecept.conf.js
+COPY config.js config.js
+COPY apps apps/
+
+RUN npm --loglevel warn install
+
+CMD npm run test:acceptance

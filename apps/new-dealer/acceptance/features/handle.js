@@ -11,15 +11,15 @@ Before((
   I.visitPage(handlePage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  handlePage
-) => {
-  I.seeElements([
-    handlePage['handle-weapons'],
-    handlePage['handle-ammunition']
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   handlePage
+// ) => {
+//   I.seeElements([
+//     handlePage['handle-weapons'],
+//     handlePage['handle-ammunition']
+//   ]);
+// });
 
 Scenario('When I select renew on the activity, I see the renew message icon', function *(
   I,

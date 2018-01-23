@@ -11,21 +11,21 @@ Before((
   I.visitPage(usagePage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  usagePage
-) => {
-  I.seeElements([
-    usagePage.sell,
-    usagePage.transport,
-    usagePage.transfer,
-    usagePage['arm-guards'],
-    usagePage.training,
-    usagePage.research,
-    usagePage.deactivation,
-    usagePage.other
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   usagePage
+// ) => {
+//   I.seeElements([
+//     usagePage.sell,
+//     usagePage.transport,
+//     usagePage.transfer,
+//     usagePage['arm-guards'],
+//     usagePage.training,
+//     usagePage.research,
+//     usagePage.deactivation,
+//     usagePage.other
+//   ]);
+// });
 
 Scenario('When I select renew on the activity, I see the renew message icon', function *(
   I,

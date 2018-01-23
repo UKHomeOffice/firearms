@@ -71,19 +71,19 @@ Scenario('An error is shown if first nationality and third nationality are the s
   );
 });
 
-Scenario('An error is shown if second nationality and third nationality are the same', (
-  I,
-  secondAuthorityHoldersNationalityPage
-) => {
-  I.fillField(
-    secondAuthorityHoldersNationalityPage['first-nationality'],
-    secondAuthorityHoldersNationalityPage.content['nationality-two']
-  );
-  secondAuthorityHoldersNationalityPage.sameValueInFields(
-    secondAuthorityHoldersNationalityPage['second-nationality'],
-    secondAuthorityHoldersNationalityPage['third-nationality']
-  );
-});
+// Scenario('An error is shown if second nationality and third nationality are the same', (
+//   I,
+//   secondAuthorityHoldersNationalityPage
+// ) => {
+//   I.fillField(
+//     secondAuthorityHoldersNationalityPage['first-nationality'],
+//     secondAuthorityHoldersNationalityPage.content['nationality-two']
+//   );
+//   secondAuthorityHoldersNationalityPage.sameValueInFields(
+//     secondAuthorityHoldersNationalityPage['second-nationality'],
+//     secondAuthorityHoldersNationalityPage['third-nationality']
+//   );
+// });
 
 Scenario('Im taken to the first-authority-holders-address step', (
   I,

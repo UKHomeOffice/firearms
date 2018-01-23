@@ -1,4 +1,6 @@
 'use strict';
+/* eslint no-process-env: 0 */
+/* eslint implicit-dependencies/no-implicit: [2, { dev: true }] */
 
 const path = require('path');
 
@@ -11,9 +13,21 @@ const dealerPagesPath = page => path.resolve(__dirname,
 const shootingClubPagesPath = page => path.resolve(__dirname,
   `./apps/shooting-clubs/acceptance/pages/${page}`);
 
-module.exports = {
+module.exports = require('so-acceptance').extend({
   name: 'firearms',
-  tests: './apps/**/acceptance/features/*.js',
+  tests: './apps/**/acceptance/features/**/*.js',
+  helpers: {
+    WebDriverIO: {
+      host: 'localhost',
+      port: 4444,
+      path: '/wd/hub',
+      url: process.env.TEST_URL || 'http://localhost:8080',
+      browser: 'chrome',
+      desiredCapabilities: {
+        chromeOptions: { args: ['headless', 'disable-gpu'] }
+      }
+    }
+  },
   include: {
     activityPage: commonPagesPath('activity.js'),
     authorityNumberRenewPage: dealerPagesPath('authority-holder-renew-vary.js'),
@@ -53,4 +67,4 @@ module.exports = {
     locationAddressPage: shootingClubPagesPath('location-address'),
     clubsStorageAddressPage: shootingClubPagesPath('storage-address-list.js')
   }
-};
+});

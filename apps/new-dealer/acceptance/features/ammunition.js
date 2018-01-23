@@ -11,19 +11,19 @@ Before((
   I.visitPage(ammunitionsPage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  ammunitionsPage
-) => {
-  I.seeElements([
-    ammunitionsPage.unspecified,
-    ammunitionsPage['explosive-cartridges'],
-    ammunitionsPage['incendiary-missile'],
-    ammunitionsPage['armour-piercing'],
-    ammunitionsPage['expanding-missile'],
-    ammunitionsPage['missiles-for-above']
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   ammunitionsPage
+// ) => {
+//   I.seeElements([
+//     ammunitionsPage.unspecified,
+//     ammunitionsPage['explosive-cartridges'],
+//     ammunitionsPage['incendiary-missile'],
+//     ammunitionsPage['armour-piercing'],
+//     ammunitionsPage['expanding-missile'],
+//     ammunitionsPage['missiles-for-above']
+//   ]);
+// });
 
 Scenario('An error is shown if ammunition step is not completed', (
   I,
