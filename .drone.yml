@@ -29,7 +29,7 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
-      - docker build -t firearms-$${DRONE_COMMIT_SHA} .
+      - docker build -t firearms-$${DRONE_COMMIT_SHA} . --no-cache
     when:
       branch: master
 
@@ -38,7 +38,7 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
-      - docker build -f Dockerfile-acceptance -t acceptance-$${DRONE_COMMIT_SHA} .
+      - docker build -f Dockerfile-acceptance -t acceptance-$${DRONE_COMMIT_SHA} . --no-cache
     when:
       event: pull_request
 
