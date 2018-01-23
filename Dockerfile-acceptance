@@ -3,10 +3,9 @@ FROM quay.io/ukhomeofficedigital/nodejs-base:v8
 WORKDIR /test
 
 COPY package.json package.json
-COPY config.js config.js
 COPY codecept.conf.js codecept.conf.js
+COPY config.js config.js
 COPY apps apps/
-COPY assets assets/
 
 RUN npm --loglevel warn install
 

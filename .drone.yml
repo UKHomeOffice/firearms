@@ -57,9 +57,9 @@ pipeline:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
       - docker run -d --name=redis-$${DRONE_COMMIT_SHA} redis
-      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub -e FROM_ADDRESS=test@example.com --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
+      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
       - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-      - docker run --rm --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
+      - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
       - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
     when:
       event: pull_request
@@ -70,9 +70,9 @@ pipeline:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
       - docker run -d --name=redis-$${DRONE_COMMIT_SHA} redis
-      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub -e FROM_ADDRESS=test@example.com --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
+      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
       - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-      - docker run --rm --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
+      - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
       - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
     when:
       branch: master

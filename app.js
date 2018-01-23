@@ -27,6 +27,7 @@ const options = {
 };
 
 const app = hof(options);
+
 if (config.env !== 'production') {
   app.use(mockAPIs);
 }
