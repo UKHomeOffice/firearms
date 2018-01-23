@@ -11,16 +11,16 @@ Before((
   I.visitPage(contactAddressAuthorityHolderPage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  contactAddressAuthorityHolderPage
-) => {
-  I.seeElements([
-    contactAddressAuthorityHolderPage.fields['contact-address-group'],
-    contactAddressAuthorityHolderPage.fields['different-address'],
-    contactAddressAuthorityHolderPage.fields['same-address']
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   contactAddressAuthorityHolderPage
+// ) => {
+//   I.seeElements([
+//     contactAddressAuthorityHolderPage.fields['contact-address-group'],
+//     contactAddressAuthorityHolderPage.fields['different-address'],
+//     contactAddressAuthorityHolderPage.fields['same-address']
+//   ]);
+// });
 
 Scenario('An error is shown if contact-address-authority-holder step is not completed', (
   I,

@@ -11,18 +11,18 @@ Before((
   I.visitPage(obtainPage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  obtainPage
-) => {
-  I.seeElements([
-    obtainPage.buy,
-    obtainPage['temporary-possession'],
-    obtainPage.manufacture,
-    obtainPage['other-means'],
-    obtainPage['wont-take-possession']
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   obtainPage
+// ) => {
+//   I.seeElements([
+//     obtainPage.buy,
+//     obtainPage['temporary-possession'],
+//     obtainPage.manufacture,
+//     obtainPage['other-means'],
+//     obtainPage['wont-take-possession']
+//   ]);
+// });
 
 Scenario('When I select renew on the activity, I see the renew message icon', function *(
   I,

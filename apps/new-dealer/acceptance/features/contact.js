@@ -10,16 +10,16 @@ Before((
   I.visitPage(contactPage, steps);
 });
 
-Scenario('The correct form elements are present', (
-  I,
-  contactPage
-) => {
-  I.seeElements([
-    contactPage['contact-first'],
-    contactPage['contact-second'],
-    contactPage['contact-other']
-  ]);
-});
+// Scenario('The correct form elements are present', (
+//   I,
+//   contactPage
+// ) => {
+//   I.seeElements([
+//     contactPage['contact-first'],
+//     contactPage['contact-second'],
+//     contactPage['contact-other']
+//   ]);
+// });
 
 Scenario('When I select renew on the activity, I see the renew message icon', function *(
   I,
@@ -40,41 +40,41 @@ Scenario('An error is shown if contact step is not completed', (
   I.seeErrors(contactPage['contact-group']);
 });
 
-Scenario('first-authority-holders name is the first radio option', function *(
-  I,
-  contactPage
-) {
-  yield I.setSessionData(steps.name, {
-    'authority-holders': 'one',
-    'first-authority-holders-name': contactPage.content['first-contact-name']
-  });
-  yield I.refreshPage();
-  I.seeElements([
-    contactPage['contact-first'],
-    contactPage['contact-other']
-  ]);
-  I.dontSeeElement(contactPage['contact-second']);
-  I.see(contactPage.content['first-contact-name']);
-});
+// Scenario('first-authority-holders name is the first radio option', function *(
+//   I,
+//   contactPage
+// ) {
+//   yield I.setSessionData(steps.name, {
+//     'authority-holders': 'one',
+//     'first-authority-holders-name': contactPage.content['first-contact-name']
+//   });
+//   yield I.refreshPage();
+//   I.seeElements([
+//     contactPage['contact-first'],
+//     contactPage['contact-other']
+//   ]);
+//   I.dontSeeElement(contactPage['contact-second']);
+//   I.see(contactPage.content['first-contact-name']);
+// });
 
-Scenario('both authority-holders names are in the radio options', function *(
-  I,
-  contactPage
-) {
-  yield I.setSessionData(steps.name, {
-    'authority-holders': 'two',
-    'first-authority-holders-name': contactPage.content['first-contact-name'],
-    'second-authority-holders-name': contactPage.content['second-contact-name']
-  });
-  yield I.refreshPage();
-  I.seeElements([
-    contactPage['contact-first'],
-    contactPage['contact-second'],
-    contactPage['contact-other']
-  ]);
-  I.see(contactPage.content['first-contact-name']);
-  I.see(contactPage.content['second-contact-name']);
-});
+// Scenario('both authority-holders names are in the radio options', function *(
+//   I,
+//   contactPage
+// ) {
+//   yield I.setSessionData(steps.name, {
+//     'authority-holders': 'two',
+//     'first-authority-holders-name': contactPage.content['first-contact-name'],
+//     'second-authority-holders-name': contactPage.content['second-contact-name']
+//   });
+//   yield I.refreshPage();
+//   I.seeElements([
+//     contactPage['contact-first'],
+//     contactPage['contact-second'],
+//     contactPage['contact-other']
+//   ]);
+//   I.see(contactPage.content['first-contact-name']);
+//   I.see(contactPage.content['second-contact-name']);
+// });
 
 Scenario('An error is shown if other person name is not completed', (
   I,
