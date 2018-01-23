@@ -15,7 +15,8 @@
     "dev": "NODE_ENV=development hof-build watch",
     "test": "NODE_ENV=test npm run lint && npm run test:unit",
     "test:unit": "istanbul cover _mocha",
-    "test:acceptance": "funkie so-acceptance --steps",
+    "test:acceptance": "so-acceptance --steps",
+    "test:acceptance:local": "funkie --driver chromedriver npm run test:acceptance",
     "lint": "npm run lint:app && npm run lint:acceptance",
     "lint:app": "eslint .",
     "lint:acceptance": "eslint --no-ignore -c ./node_modules/so-acceptance/.eslintrc ./apps/*/features/**/*.js",
@@ -35,7 +36,6 @@
     "hof-model": "^3.1.2",
     "hof-theme-govuk": "^4.0.0",
     "hof-util-countries": "^1.0.0",
-    "html-pdf": "^2.1.0",
     "i18n-lookup": "^1.0.0",
     "is-pdf": "^1.0.0",
     "jquery": "^2.1.4",
@@ -51,8 +51,8 @@
     "chai": "^3.0.0",
     "chai-as-promised": "^6.0.0",
     "eslint-config-homeoffice": "^2.0.0",
-    "funkie": "0.0.5",
-    "funkie-phantom": "0.0.1",
+    "funkie": "0.0.6",
+    "funkie-chromedriver": "0.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^2.2.5",
     "mocha-junit-reporter": "^1.4.0",
@@ -65,7 +65,7 @@
     "sinon": "^1.15.3",
     "sinon-as-promised": "^4.0.3",
     "sinon-chai": "^2.11.0",
-    "so-acceptance": "^4.2.5"
+    "so-acceptance": "^5.0.1"
   },
   "pre-commit": [
     "lint",

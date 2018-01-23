@@ -1,8 +1,4 @@
-FROM quay.io/ukhomeofficedigital/nodejs-base:v6
-
-RUN yum install bzip2 -y
-RUN yum install freetype -y
-RUN yum install fontconfig -y
+FROM quay.io/ukhomeofficedigital/nodejs-base:v8
 
 WORKDIR /test
 

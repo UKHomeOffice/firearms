@@ -56,8 +56,11 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
-      - docker run -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub -d --net host --userns host firearms-$${DRONE_COMMIT_SHA}
-      - docker run --rm --net host --userns host acceptance-$${DRONE_COMMIT_SHA}
+      - docker run -d --name=redis-$${DRONE_COMMIT_SHA} redis
+      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub -e CASEWORKER_EMAIL=test@example.com --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
+      - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+      - docker run --rm --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
+      - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
     when:
       event: pull_request
 
@@ -66,8 +69,11 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
-      - docker run -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub -d --net host --userns host firearms-$${DRONE_COMMIT_SHA}
-      - docker run --rm --net host --userns host acceptance-$${DRONE_COMMIT_SHA}
+      - docker run -d --name=redis-$${DRONE_COMMIT_SHA} redis
+      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub -e CASEWORKER_EMAIL=test@example.com --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
+      - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+      - docker run --rm --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
+      - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
     when:
       branch: master
       event: push
@@ -125,6 +131,14 @@ pipeline:
       event: deployment
       environment: prod
 
-services:
-  redis:
-    image: redis
+  smoke_test:
+    image: docker:17.09.1
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+    commands:
+      - docker run -d --userns host --net host --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+      - sleep 5
+      - docker run -e TEST_URL=https://firearms-$${DRONE_DEPLOY_TO}.notprod.homeoffice.gov.uk --rm --userns host --net host acceptance-$${DRONE_COMMIT_SHA}
+      - docker rm -vf "selenium-$${DRONE_COMMIT_SHA}"
+    when:
+      event: deployment
