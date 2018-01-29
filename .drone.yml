@@ -7,7 +7,7 @@ pipeline:
     when:
       event: [push, pull_request]
 
-  build_7:
+  build_8:
     image: node:8
     commands:
       - npm --loglevel warn install
@@ -32,6 +32,7 @@ pipeline:
       - docker build -t firearms-$${DRONE_COMMIT_SHA} .
     when:
       branch: master
+      event: push
 
   build_acceptance:
     image: docker:17.09.1
@@ -50,6 +51,7 @@ pipeline:
       - docker build -f Dockerfile-acceptance -t acceptance-$${DRONE_COMMIT_SHA} .
     when:
       branch: master
+      event: push
 
   test_acceptance:
     image: docker:17.09.1
@@ -132,15 +134,3 @@ pipeline:
     when:
       event: deployment
       environment: prod
-
-  smoke_test:
-    image: docker:17.09.1
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker run -d --userns host --net host --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-      - sleep 7
-      - docker run -e EMAIL_TRANSPORT=stub -e CASEWORKER_EMAIL=test@example.com -e TEST_URL=https://firearms-licensing-$${DRONE_DEPLOY_TO}.notprod.homeoffice.gov.uk/s5 --rm --userns host --net host acceptance-$${DRONE_COMMIT_SHA}
-      - docker rm -vf "selenium-$${DRONE_COMMIT_SHA}"
-    when:
-      event: deployment
