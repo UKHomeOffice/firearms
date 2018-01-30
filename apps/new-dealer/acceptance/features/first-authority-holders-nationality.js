@@ -71,6 +71,26 @@ Scenario('An error is shown if first nationality and third nationality are the s
   );
 });
 
+Scenario('An error is shown if I enter a country in the second nationality not in the list', (
+  I
+) => {
+  I.click('#first-authority-holders-nationality-multi');
+  I.fillField('#first-authority-holders-nationality', 'United Kingdom');
+  I.fillField('#first-authority-holders-nationality-second', 'Scotland');
+  I.submitForm();
+  I.seeErrors('#first-authority-holders-nationality-second');
+});
+
+Scenario('An error is shown if I enter a country in the third nationality not in the list', (
+  I
+) => {
+  I.click('#first-authority-holders-nationality-multi');
+  I.fillField('#first-authority-holders-nationality', 'United Kingdom');
+  I.fillField('#first-authority-holders-nationality-third', 'Scotland');
+  I.submitForm();
+  I.seeErrors('#first-authority-holders-nationality-third');
+});
+
 // Scenario('An error is shown if second nationality and third nationality are the same', (
 //   I,
 //   firstAuthorityHoldersNationalityPage

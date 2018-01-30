@@ -151,9 +151,11 @@
     "equal": "Enter a nationality from the list that appears"
   },
   "first-authority-holders-nationality-second": {
+    "equal": "Enter a nationality from the list that appears",
     "same-first-nationality": "Second nationality cannot be the same as the first nationality"
   },
   "first-authority-holders-nationality-third": {
+    "equal": "Enter a nationality from the list that appears",
     "same-first-nationality": "Third nationality cannot be the same as the first nationality",
     "same-multi-nationality": "Third nationality cannot be the same as the second nationality"
   },
