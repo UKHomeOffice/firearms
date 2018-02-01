@@ -14,9 +14,13 @@ const values = {
   activity: 'new',
   organisation: 'company',
   'weapons-types': 'fully-automatic',
+  'authority-holders': 'one',
   'ammunition-types': 'explosive-cartridges',
   'first-authority-holders-nationality-multi': null,
   'contact-holder': 'first',
+  'contact-email': 's@g.com',
+  'contact-phone': '079',
+  'use-different-address': 'false',
   'supporting-document-add-another': 'no',
   'stored-on-premises': 'true'
 };
