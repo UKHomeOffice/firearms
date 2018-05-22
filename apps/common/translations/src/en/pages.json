@@ -1,4 +1,7 @@
 {
+  "privacy": {
+    "header": "Privacy Notice"
+  },
   "activity": {
     "header": "What do you want to do?"
   },
@@ -22,7 +25,7 @@
     "footer": "You'll be able to print and save a copy of the information you've submitted on the next page"
   },
   "declaration": {
-    "header": "Declaration"
+    "header": "Important information"
   },
   "confirmation": {
     "alert": "Application complete",
