@@ -11,5 +11,5 @@ Scenario('When I click the start again button Then I am redirected to the first 
   I.clearCookie('hod.sid');
   I.refreshPage();
   I.click('a[href="/s5"]');
-  I.seeInCurrentUrl(`${baseUrl}/activity`);
+  I.seeInCurrentUrl(`${baseUrl}/privacy`);
 });
