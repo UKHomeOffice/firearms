@@ -40,6 +40,10 @@ module.exports = {
   params: '/:action?/:id?',
   baseUrl: '/museums',
   steps: {
+    '/privacy': {
+      template: 'privacy',
+      next: '/activity'
+    },
     '/activity': {
       fields: ['activity'],
       next: '/name',

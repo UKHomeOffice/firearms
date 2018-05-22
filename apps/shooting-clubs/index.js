@@ -62,6 +62,10 @@ module.exports = {
   baseUrl: '/shooting-clubs',
   params: '/:action?/:id?',
   steps: {
+    '/privacy': {
+      template: 'privacy',
+      next: '/activity'
+    },
     '/activity': {
       fields: [
         'activity'
