@@ -13,12 +13,12 @@ Details of the Department’s Data Protection Officer:
  * Email: <dpo@homeoffice.gsi.gov.uk>
  * Telephone number: 020 7035 6999
 
-##Changes to this Privacy Information Notice
+## Changes to this Privacy Information Notice
 
 The Home Office may amend this PIN from time to time. If the Home Office makes any substantial changes in the way its officials use your personal information, the Home Office will make that information available by amending this and any associated notices.
 
 
-##How and why the Department uses your information
+## How and why the Department uses your information
 
 The Home Office collects, processes, and shares personal information to enable it to carry out its statutory and other functions, including those related to law enforcement, safeguarding against, and the prevention of, threats to public security.
 
@@ -35,12 +35,12 @@ The personal information we have collected about you will be shared with the wit
 
 We also share billing information for processing of payments.
 
-##Storing your information
+## Storing your information
 
 Your personal information will be held for as long as necessary for the purpose for which it is being processed and in line with departmental retention policy. We retain your data for 25 years. More details of this policy can be found at <https://www.gov.uk/government/publications/home-office-retention-and-disposal-standards>
 
 
-##Requesting access to your personal data  
+## Requesting access to your personal data  
 
 You have the right to request access to the personal information we hold about you.
 
@@ -55,12 +55,12 @@ Home Office
 London  
 SW1P 4DF  
 
-##Other rights
+## Other rights
 
 In certain circumstances you have the right to:
  * ask us to erase or correct your personal data if it is inaccurate
 
-##Questions or concerns about personal data
+## Questions or concerns about personal data
 
 If you have any questions or concerns about our collection, use or disclosure of your personal information please contact us at
 
