@@ -30,6 +30,8 @@ More information about the ways in which the Home Office may use your personal i
 
 <https://www.gov.uk/government/organisations/home-office/about/personal-information-charter>
 
+<https://www.gov.uk/government/publications/drugs-and-firearms-licensing-privacy-information-notices>
+
 
 The personal information we have collected about you will be shared with the with the Police, and other government departments, and other public bodies where necessary to perform this function or where it is required; to protect life, prevent crime, under the terms of any court order, or to comply with lawful obligations for the purpose of preventing crime, protecting the public, and preventing the diversion of prohibited weapons (firearms). If appropriate we may share this information with carriers & airport authorities when prohibited weapons are entering/leaving the UK.
 
