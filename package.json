@@ -27,7 +27,7 @@
     "busboy-body-parser": "^0.3.0",
     "debug": "^2.6.8",
     "express": "^4.15.3",
-    "hof": "^13.2.1",
+    "hof": "^13.2.2",
     "hof-behaviour-emailer": "^2.0.0",
     "hof-build": "^1.6.0",
     "hof-confirm-controller": "^1.0.2",
@@ -65,7 +65,7 @@
     "sinon": "^1.15.3",
     "sinon-as-promised": "^4.0.3",
     "sinon-chai": "^2.11.0",
-    "so-acceptance": "^5.0.1"
+    "so-acceptance": "^6.0.0"
   },
   "pre-commit": [
     "lint",
