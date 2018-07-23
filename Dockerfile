@@ -13,6 +13,6 @@ RUN npm --loglevel warn install --production  --no-optional
 COPY . /app
 RUN chown -R nodejs:nodejs /public
 RUN npm --loglevel warn run postinstall
-USER nodejs
+USER 999
 
 CMD /app/run.sh
