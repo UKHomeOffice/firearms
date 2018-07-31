@@ -36,6 +36,7 @@
     "hof-model": "^3.1.2",
     "hof-theme-govuk": "^4.0.0",
     "hof-util-countries": "^1.0.0",
+    "hot-shots": "^5.9.0",
     "i18n-lookup": "^1.0.0",
     "is-pdf": "^1.0.0",
     "jquery": "^2.1.4",
