@@ -1,6 +1,8 @@
 'use strict';
 
 const CaseworkModel = require('../models/i-casework');
+const StatsD = require('hot-shots');
+const client = new StatsD();
 
 const Compose = func => superclass => class extends superclass {
 
@@ -37,11 +39,13 @@ module.exports = config => {
           .then(data => {
             req.log('debug', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
+            client.increment('casework.submission.success');
             next();
           })
           .catch(e => {
             req.log('error', `Casework submission failed: ${e.status}`);
             req.log('error', e.headers && e.headers['x-application-error-info']);
+            client.increment('casework.submission.failed');
             next(e);
           });
       });
