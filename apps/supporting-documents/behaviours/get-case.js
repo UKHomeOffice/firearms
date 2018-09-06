@@ -8,7 +8,7 @@ module.exports = superclass => class extends superclass {
     const model = new Model(req.form.values);
     model.fetch()
       .catch(e => {
-        if (e.code.match(/TIMEDOUT/)) {
+        if (e.code && e.code.match(/TIMEDOUT/)) {
           throw e;
         }
         return {};
