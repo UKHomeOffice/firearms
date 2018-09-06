@@ -4,6 +4,5 @@ node_modules
 public
 .idea
 coverage
-package-lock.json
 .env
 output/
