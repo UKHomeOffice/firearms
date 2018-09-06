@@ -1,12 +1,4 @@
 pipeline:
-  build_6:
-    image: node:6
-    commands:
-      - npm --loglevel warn install
-      - npm test
-    when:
-      event: [push, pull_request]
-
   build_8:
     image: node:8
     commands:
