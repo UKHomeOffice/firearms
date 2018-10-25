@@ -18,4 +18,6 @@ RUN npm --loglevel warn run postinstall
 
 RUN cp -r ./public/* /public
 
+USER 999
+
 CMD node app.js
