@@ -24,7 +24,7 @@ module.exports = {
   },
 
   content: {
-    header: 'What is Sterling Archer\'s home address?',
+    header: 'What is Sterling Archer\'s main business address?',
     postcode: 'CR0 2EU',
     address: '49 Sydenham Road, Croydon, CR0 2EU'
   },

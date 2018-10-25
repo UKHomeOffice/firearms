@@ -63,13 +63,13 @@
     "header": "What is {{values.first-authority-holders-name}}'s country of nationality?"
   },
   "first-authority-holders-postcode": {
-    "header": "What is {{values.first-authority-holders-name}}'s home address?"
+    "header": "What is {{values.first-authority-holders-name}}'s main business address?"
   },
   "first-authority-holders-address-lookup": {
-    "header": "What is {{values.first-authority-holders-name}}'s home address?"
+    "header": "What is {{values.first-authority-holders-name}}'s main business address?"
   },
   "first-authority-holders-address": {
-    "header": "What is {{values.first-authority-holders-name}}'s home address?"
+    "header": "What is {{values.first-authority-holders-name}}'s main business address?"
   },
   "second-authority-holders-name": {
     "header": "What's the full name of the second authority holder?"
@@ -81,13 +81,13 @@
     "header": "What is {{values.second-authority-holders-name}}'s country of nationality?"
   },
   "second-authority-holders-postcode": {
-    "header": "What is {{values.second-authority-holders-name}}'s home address?"
+    "header": "What is {{values.second-authority-holders-name}}'s main business address?"
   },
   "second-authority-holders-address-lookup": {
-    "header": "What is {{values.second-authority-holders-name}}'s home address?"
+    "header": "What is {{values.second-authority-holders-name}}'s main business address?"
   },
   "second-authority-holders-address": {
-    "header": "What is {{values.second-authority-holders-name}}'s home address?"
+    "header": "What is {{values.second-authority-holders-name}}'s main business address?"
   },
   "contact": {
     "header": "Who do we contact about this application?",
