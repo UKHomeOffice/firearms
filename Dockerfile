@@ -1,19 +1,21 @@
-FROM quay.io/ukhomeofficedigital/nodejs-base:v8
+FROM node:10-alpine
 
-RUN yum clean -q all && \
-    yum update -y -q && \
-    yum install -y -q git && \
-    yum clean -q all && \
-    rpm --rebuilddb --quiet
+RUN apk upgrade --no-cache
+RUN addgroup -S app
+RUN adduser -S app -G app -u 999 -h /app/
+RUN chown -R app:app /app/
 
 RUN mkdir /public
 
+WORKDIR /app
+
 COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
-RUN npm --loglevel warn install --production  --no-optional
+RUN npm ci --production
 COPY . /app
-RUN chown -R nodejs:nodejs /public
-RUN npm --loglevel warn run postinstall
-USER 999
 
-CMD /app/run.sh
+RUN npm --loglevel warn run postinstall
+
+RUN cp -r ./public/* /public
+
+CMD node app.js

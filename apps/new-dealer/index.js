@@ -585,17 +585,7 @@ module.exports = {
       }
     },
     '/supporting-documents-add': {
-      fields: [
-        'supporting-document-add'
-      ],
-      forks: [{
-        target: '/supporting-documents',
-        condition: {
-          field: 'supporting-document-add',
-          value: 'yes'
-        }
-      }],
-      next: '/confirm'
+      next: '/supporting-documents'
     },
     '/supporting-documents': {
       controller: require('../common/controllers/supporting-documents'),
