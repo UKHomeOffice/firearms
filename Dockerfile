@@ -16,4 +16,6 @@ COPY . /app
 
 RUN npm --loglevel warn run postinstall
 
+RUN cp -r ./public/* /public
+
 CMD node app.js
