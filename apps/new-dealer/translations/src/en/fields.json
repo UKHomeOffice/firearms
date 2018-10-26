@@ -427,7 +427,7 @@
     "legend": "You should only use a home address if it's the business' registered address.",
     "options": {
       "false": {
-        "label": "Use the home address already provided"
+        "label": "Use the address already provided"
       },
       "true": {
         "label": "Use a different address"
