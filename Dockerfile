@@ -6,6 +6,7 @@ RUN adduser -S app -G app -u 999 -h /app/
 RUN chown -R app:app /app/
 
 RUN mkdir /public
+RUN chown -R app:app /public
 
 WORKDIR /app
 
@@ -16,8 +17,6 @@ COPY . /app
 
 RUN npm --loglevel warn run postinstall
 
-RUN cp -r ./public/* /public
-
 USER 999
 
-CMD node app.js
+CMD /app/run.sh

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # kubernetes does not support volumes-from so when we want to
 # share a dir with nginx we use /public which is an emptyDir
