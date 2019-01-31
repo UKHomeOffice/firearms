@@ -26,53 +26,53 @@ pipeline:
       branch: master
       event: push
 
-  build_acceptance:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker build -f Dockerfile-acceptance -t acceptance-$${DRONE_COMMIT_SHA} .
-    when:
-      event: pull_request
-
-  build_acceptance:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker build -f Dockerfile-acceptance -t acceptance-$${DRONE_COMMIT_SHA} .
-    when:
-      branch: master
-      event: push
-
-  test_acceptance:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker run -d --name=redis-$${DRONE_COMMIT_SHA} redis
-      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
-      - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-      - sleep 5
-      - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
-      - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
-    when:
-      event: pull_request
-
-  test_acceptance:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker run -d --name=redis-$${DRONE_COMMIT_SHA} redis
-      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
-      - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-      - sleep 5
-      - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} acceptance-$${DRONE_COMMIT_SHA}
-      - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
-    when:
-      branch: master
-      event: push
+  # build_acceptance:
+  #   image: docker:18.03.1-ce
+  #   environment:
+  #     - DOCKER_HOST=tcp://172.17.0.1:2375
+  #   commands:
+  #     - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
+  #   when:
+  #     event: pull_request
+  #
+  # build_acceptance:
+  #   image: docker:18.03.1-ce
+  #   environment:
+  #     - DOCKER_HOST=tcp://172.17.0.1:2375
+  #   commands:
+  #     - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
+  #   when:
+  #     branch: master
+  #     event: push
+  #
+  # test_acceptance:
+  #   image: docker:18.03.1-ce
+  #   environment:
+  #     - DOCKER_HOST=tcp://172.17.0.1:2375
+  #   commands:
+  #     - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
+  #     - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
+  #     - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+  #     - sleep 5
+  #     - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
+  #     - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
+  #   when:
+  #     event: pull_request
+  #
+  # test_acceptance:
+  #   image: docker:18.03.1-ce
+  #   environment:
+  #     - DOCKER_HOST=tcp://172.17.0.1:2375
+  #   commands:
+  #     - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
+  #     - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
+  #     - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+  #     - sleep 5
+  #     - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
+  #     - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
+  #   when:
+  #     branch: master
+  #     event: push
 
   image_to_quay:
     image: docker:18.03.1-ce

@@ -9,7 +9,7 @@ module.exports = {
   postcode: {
     hostname: env !== 'production' ?
       `http://${localhost()}/api/postcode-test` :
-      'https://postcodeinfo.service.justice.gov.uk',
+      process.env.POSTCODE_HOST,
     authorization: process.env.POSTCODE_AUTH,
     addresses: {
       path: '/addresses',
