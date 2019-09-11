@@ -18,7 +18,7 @@ module.exports = require('so-acceptance').extend({
   tests: './apps/**/acceptance/features/**/*.js',
   helpers: {
     WebDriverIO: {
-      host: 'localhost',
+      host: process.env.SELENIUM_HOST || 'localhost',
       port: 4444,
       path: '/wd/hub',
       url: process.env.TEST_URL || 'http://localhost:8080',
