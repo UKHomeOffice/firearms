@@ -52,7 +52,7 @@ pipeline:
     commands:
       - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
       - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
-      - docker run --rm -e NODE_ENV=ci -e SELENIUM_HOST=selenium -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
+      - docker run --rm -e NODE_ENV=ci -e SELENIUM_HOST=selenium.chrome -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
       - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}"
     when:
       event: pull_request
@@ -64,7 +64,7 @@ pipeline:
     commands:
       - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
       - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
-      - docker run --rm -e NODE_ENV=ci -e SELENIUM_HOST=selenium -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
+      - docker run --rm -e NODE_ENV=ci -e SELENIUM_HOST=selenium.chrome -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
       - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}"
     when:
       branch: master
@@ -124,5 +124,5 @@ pipeline:
       environment: prod
 
 services:
-  selenium:
+  selenium.chrome:
     image: selenium/standalone-chrome:3.141.0
