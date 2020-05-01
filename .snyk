@@ -1,0 +1,58 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-form-controller > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-controllers > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-confirm-controller > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-model > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-form-controller > hof-behaviour-hooks > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-form-controller > hof-behaviour-session > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof > hof-form-wizard > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof > hof-middleware > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof > hof-middleware-markdown > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-theme-govuk > hof-template-partials > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-build > hof-transpiler > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-controllers > hof-emailer > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-confirm-controller > hof-controllers > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof > hof-form-wizard > hof-form-controller > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof > hof-form-wizard > hof-model > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof > hof-theme-govuk > hof-template-partials > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-confirm-controller > hof-controllers > hof-emailer > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof > hof-form-wizard > hof-form-controller > hof-behaviour-hooks > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof > hof-form-wizard > hof-form-controller > hof-behaviour-session > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-build > npm-sass > node-sass > sass-graph > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-build > npm-sass > node-sass > gaze > globule > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-behaviour-emailer > hof-emailer > nodemailer-ses-transport > aws-sdk > xml2js > xmlbuilder > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-controllers > hof-emailer > nodemailer-ses-transport > aws-sdk > xml2js > xmlbuilder > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
+    - hof-confirm-controller > hof-controllers > hof-emailer > nodemailer-ses-transport > aws-sdk > xml2js > xmlbuilder > lodash:
+        patched: '2020-05-01T04:42:47.798Z'
