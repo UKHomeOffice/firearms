@@ -1,128 +1,240 @@
-pipeline:
-  build_8:
-    image: node:8
-    commands:
-      - npm --loglevel warn install
-      - npm test
-    when:
-      event: [push, pull_request]
+---
+kind: pipeline
+name: default
+type: kubernetes
 
-  build_app:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker build -t firearms-$${DRONE_COMMIT_SHA} .
-    when:
-      event: pull_request
+steps:
+- name: build_8
+  pull: if-not-exists
+  image: node:8
+  commands:
+  - npm --loglevel warn install
+  - npm test
+  when:
+    event: push
 
-  build_app:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker build -t firearms-$${DRONE_COMMIT_SHA} .
-    when:
-      branch: master
-      event: push
+- name: build_firearms
+  pull: if-not-exists
+  image: docker:dind
+  commands:
+  - n=0; while [ "$n" -lt 60 ] && [ ! -e /var/run/docker.sock ]; do n=$(( n + 1 )); sleep 1; done
+  - docker build -t firearms-$${DRONE_COMMIT_SHA} .
+  volumes:
+    - name: dockersock
+      path: /var/run
+  when:
+    branch: [ master, features/* ]
+    event: push
 
-  build_acceptance:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
-    when:
-      event: pull_request
+- name: build_acceptance
+  pull: if-not-exists
+  image: docker:dind
+  commands:
+  - n=0; while [ "$n" -lt 60 ] && [ ! -e /var/run/docker.sock ]; do n=$(( n + 1 )); sleep 1; done
+  - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
+  volumes:
+    - name: dockersock
+      path: /var/run
+  when:
+    branch: [ master, features/* ]
+    event: push
 
-  build_acceptance:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
-    when:
-      branch: master
-      event: push
+- name: test_acceptance
+  pull: if-not-exists
+  image: docker:dind
+  commands:
+  - n=0; while [ "$n" -lt 60 ] && [ ! -e /var/run/docker.sock ]; do n=$(( n + 1 )); sleep 1; done
+  - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
+  - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
+  - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+  - sleep 5
+  - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
+  - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
+  volumes:
+    - name: dockersock
+      path: /var/run
+  when:
+    branch: [ master, features/* ]
+    event: push
 
-  test_acceptance:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
-      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
-      - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-      - sleep 5
-      - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
-      - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
-    when:
-      event: pull_request
+- name: image_to_quay
+  pull: if-not-exists
+  image: docker:dind
+  environment:
+    DOCKER_PASSWORD:
+      from_secret: DOCKER_PASSWORD
+  commands:
+  - docker login -u="ukhomeofficedigital+drone" -p=$${DOCKER_PASSWORD} quay.io
+  - docker tag firearms-$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/firearms:$${DRONE_COMMIT_SHA}
+  - docker push quay.io/ukhomeofficedigital/firearms:$${DRONE_COMMIT_SHA}
+  volumes:
+    - name: dockersock
+      path: /var/run
+  when:
+    branch: master
+    event: push
 
-  test_acceptance:
-    image: docker:18.03.1-ce
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
-      - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
-      - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-      - sleep 5
-      - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
-      - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
-    when:
-      branch: master
-      event: push
+- name: clone_repo_build
+  pull: if-not-exists
+  image: docker:git
+  environment:
+    DRONE_GIT_USERNAME:
+      from_secret: DRONE_GIT_USERNAME
+    DRONE_GIT_TOKEN:
+      from_secret: DRONE_GIT_TOKEN
+  commands:
+    - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOffice/kube-firearms.git
+    - cd kube-firearms
+    - git tag dev-${DRONE_COMMIT_SHA}
+    - git push origin --tags
+  when:
+    branch: master
+    event: push
 
-  image_to_quay:
-    image: docker:18.03.1-ce
-    secrets:
-      - DOCKER_PASSWORD
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker login -u="ukhomeofficedigital+drone" -p=$${DOCKER_PASSWORD} quay.io
-      - docker tag firearms-$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/firearms:$${DRONE_COMMIT_SHA}
-      - docker push quay.io/ukhomeofficedigital/firearms:$${DRONE_COMMIT_SHA}
-    when:
-      branch: master
-      event: push
+- name: clone_repo_promote
+  pull: if-not-exists
+  image: docker:git
+  environment:
+    DRONE_GIT_USERNAME:
+      from_secret: DRONE_GIT_USERNAME
+    DRONE_GIT_TOKEN:
+      from_secret: DRONE_GIT_TOKEN
+  commands:
+    - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOffice/kube-firearms.git
+    - cd kube-firearms
+    - git tag ${DRONE_DEPLOY_TO}-${DRONE_COMMIT_SHA}
+    - git push origin --tags
+  when:
+    event: promote
+    target: [ preprod, prod ]
 
-  trigger_deploy_to_dev:
-    image: quay.io/ukhomeofficedigital/drone-trigger:latest
-    secrets:
-      - DRONE_TOKEN
-    drone_server: https://drone.acp.homeoffice.gov.uk
-    repo: UKHomeOffice/kube-firearms
+- name: deploy_to_dev
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/kd:v1.14.0
+  commands:
+    - cd kube-firearms
+    - bin/deploy.sh
+  environment:
+    KUBE_SERVER_DEV:
+      from_secret: kube_server_dev
+    KUBE_TOKEN_DEV:
+      from_secret: kube_token_dev
+    KUBE_NAMESPACE: firearms-dev
+    APP_IMAGE_TAG: ${DRONE_COMMIT_SHA}
+  when:
+    branch: master
+    event: push
+
+- name: deploy_to_preprod
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/kd:v1.14.0
+  commands:
+    - cd kube-firearms
+    - bin/deploy.sh
+  environment:
+    KUBE_SERVER_DEV:
+      from_secret: kube_server_dev
+    KUBE_TOKEN_DEV:
+      from_secret: kube_token_dev
+    KUBE_NAMESPACE: firearms-preprod
+    APP_IMAGE_TAG: ${DRONE_COMMIT_SHA}
+  when:
+    event: promote
+    target: preprod
+
+- name: deploy_to_prod
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/kd:v1.14.0
+  commands:
+    - cd kube-firearms
+    - bin/deploy.sh
+  environment:
+    KUBE_SERVER_PROD:
+      from_secret: kube_server_prod
+    KUBE_TOKEN_PROD:
+      from_secret: kube_token_prod
+    KUBE_NAMESPACE: firearms
+    APP_IMAGE_TAG: ${DRONE_COMMIT_SHA}
+  when:
+    event: promote
+    target: prod
+
+services:
+  - name: docker
+    image: docker:dind
+    volumes:
+      - name: dockersock
+        path: /var/run
+
+volumes:
+  - name: dockersock
+    temp: {}
+
+...
+
+
+
+
+
+
+
+
+
+
+
+
+- name: trigger_deploy_to_dev
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/drone-trigger:latest
+  settings:
     branch: master
     deploy_to: dev
-    params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms-dev
-    when:
-      branch: master
-      event: push
-
-  trigger_deploy_to_preprod:
-    image: quay.io/ukhomeofficedigital/drone-trigger:latest
-    secrets:
-      - DRONE_TOKEN
     drone_server: https://drone.acp.homeoffice.gov.uk
+    params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms-dev
     repo: UKHomeOffice/kube-firearms
+  environment:
+    DRONE_TOKEN:
+      from_secret: DRONE_TOKEN
+  when:
+    branch:
+    - master
+    event:
+    - push
+
+- name: trigger_deploy_to_preprod
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/drone-trigger:latest
+  settings:
     branch: master
     deploy_to: preprod
-    params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms-preprod
-    when:
-      event: deployment
-      environment: preprod
-
-  trigger_deploy_to_prod:
-    image: quay.io/ukhomeofficedigital/drone-trigger:latest
-    secrets:
-      - DRONE_TOKEN
     drone_server: https://drone.acp.homeoffice.gov.uk
+    params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms-preprod
     repo: UKHomeOffice/kube-firearms
+  environment:
+    DRONE_TOKEN:
+      from_secret: DRONE_TOKEN
+  when:
+    event:
+    - deployment
+    target:
+    - preprod
+
+- name: trigger_deploy_to_prod
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/drone-trigger:latest
+  settings:
     branch: master
     deploy_to: prod
+    drone_server: https://drone.acp.homeoffice.gov.uk
     params: APP_IMAGE_TAG=${DRONE_COMMIT_SHA},KUBE_NAMESPACE=firearms
-    when:
-      event: deployment
-      environment: prod
+    repo: UKHomeOffice/kube-firearms
+  environment:
+    DRONE_TOKEN:
+      from_secret: DRONE_TOKEN
+  when:
+    event:
+    - deployment
+    target:
+    - prod
+
+...
