@@ -81,11 +81,11 @@ Scenario('An error is shown if a number is not entered into the explosive-cartri
   ammunitionsPage.fieldShowsNonNumericError(ammunitionsPage['explosive-cartridges'], ammunitionsPage['quantity-details']['explosive-cartridges']);
 });
 
-Scenario('An error is shown if a number is not entered into the incendiary-missile quantity field', (
-  ammunitionsPage
-) => {
-  ammunitionsPage.fieldShowsNonNumericError(ammunitionsPage['incendiary-missile'], ammunitionsPage['quantity-details']['incendiary-missile']);
-});
+//Scenario('An error is shown if a number is not entered into the incendiary-missile quantity field', (
+//  ammunitionsPage
+//) => {
+//  ammunitionsPage.fieldShowsNonNumericError(ammunitionsPage['incendiary-missile'], ammunitionsPage['quantity-details']['incendiary-missile']);
+//});
 
 Scenario('An error is shown if a number is not entered into the armour-piercing quantity field', (
   ammunitionsPage
