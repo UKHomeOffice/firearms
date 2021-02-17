@@ -4,13 +4,14 @@ name: default
 type: kubernetes
 
 steps:
-- name: build_8
+- name: build
   pull: if-not-exists
   image: node:8
   commands:
   - npm --loglevel warn install
   - npm test
   when:
+    branch: [ master, features/* ]
     event: push
 
 - name: build_firearms
