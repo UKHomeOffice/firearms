@@ -22,13 +22,13 @@ Before((
 //   ]);
 // });
 
-Scenario('An error is shown if company-name step is not completed', (
-  I,
-  companyNamePage
-) => {
-  I.submitForm();
-  I.seeErrors(companyNamePage['organisation-group']);
-});
+//Scenario('An error is shown if company-name step is not completed', (
+//  I,
+//  companyNamePage
+//) => {
+//  I.submitForm();
+//  I.seeErrors(companyNamePage['organisation-group']);
+//});
 
 Scenario('Selecting company toggles company-name and company-house-number fields', (
   I,
