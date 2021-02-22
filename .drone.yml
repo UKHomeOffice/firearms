@@ -16,61 +16,50 @@ steps:
 
 - name: build_firearms
   pull: if-not-exists
-  image: docker:dind
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   commands:
-  - n=0; while [ "$n" -lt 60 ] && [ ! -e /var/run/docker.sock ]; do n=$(( n + 1 )); sleep 1; done
+  - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
   - docker build -t firearms-$${DRONE_COMMIT_SHA} .
-  volumes:
-    - name: dockersock
-      path: /var/run
   when:
     branch: [ master, features/* ]
     event: push
 
 - name: build_acceptance
   pull: if-not-exists
-  image: docker:dind
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   commands:
-  - n=0; while [ "$n" -lt 60 ] && [ ! -e /var/run/docker.sock ]; do n=$(( n + 1 )); sleep 1; done
+  - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
   - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
-  volumes:
-    - name: dockersock
-      path: /var/run
   when:
     branch: [ master, features/* ]
     event: push
 
 - name: test_acceptance
   pull: if-not-exists
-  image: docker:dind
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   commands:
-  - n=0; while [ "$n" -lt 60 ] && [ ! -e /var/run/docker.sock ]; do n=$(( n + 1 )); sleep 1; done
+  - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
   - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
   - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} firearms-$${DRONE_COMMIT_SHA}
   - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
   - sleep 5
   - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
   - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
-  volumes:
-    - name: dockersock
-      path: /var/run
   when:
     branch: [ master, features/* ]
     event: push
 
 - name: image_to_quay
   pull: if-not-exists
-  image: docker:dind
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   environment:
     DOCKER_PASSWORD:
       from_secret: DOCKER_PASSWORD
   commands:
+  - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
   - docker login -u="ukhomeofficedigital+drone" -p=$${DOCKER_PASSWORD} quay.io
   - docker tag firearms-$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/firearms:$${DRONE_COMMIT_SHA}
   - docker push quay.io/ukhomeofficedigital/firearms:$${DRONE_COMMIT_SHA}
-  volumes:
-    - name: dockersock
-      path: /var/run
   when:
     branch: master
     event: push
@@ -162,14 +151,7 @@ steps:
 
 services:
   - name: docker
-    image: docker:dind
-    volumes:
-      - name: dockersock
-        path: /var/run
-
-volumes:
-  - name: dockersock
-    temp: {}
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
 
 ...
 
