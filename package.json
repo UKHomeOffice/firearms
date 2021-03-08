@@ -29,7 +29,7 @@
     "express": "^4.15.3",
     "hof": "^13.2.2",
     "hof-behaviour-emailer": "^2.0.0",
-    "hof-build": "^1.6.0",
+    "hof-build": "^2.0.0",
     "hof-confirm-controller": "^1.0.2",
     "hof-controllers": "^6.0.3",
     "hof-form-controller": "^5.1.0",
