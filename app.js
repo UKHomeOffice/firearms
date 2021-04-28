@@ -26,11 +26,34 @@ const options = {
   redis: config.redis
 };
 
+const addGenericLocals = (req, res, next) => {
+  // Set HTML Language
+  res.locals.htmlLang = 'en';
+  // Set feedback and footer links
+  res.locals.feedbackUrl = '/feedback';
+  res.locals.footerSupportLinks = [
+    { path: '/cookies', property: 'base.cookies' },
+    { path: '/terms-and-conditions', property: 'base.terms' },
+  ];
+  next();
+};
+
 const app = hof(options);
+
+app.use((req, res, next) => addGenericLocals(req, res, next));
+
+const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
 
 if (config.env !== 'production') {
   app.use(mockAPIs);
 }
+
+app.use('/cookies', (req, res, next) => {
+  res.locals = Object.assign({}, res.locals, req.translate('cookies'));
+  res.locals['session-cookies-table'] = sessionCookiesTable['session-cookies-table'];
+  next();
+});
+
 app.use(bodyParser({limit: config.upload.maxfilesize}));
 
 app.start();
