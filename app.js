@@ -22,6 +22,7 @@ const options = {
       next();
     }
   }],
+  getCookies: false,
   start: false,
   redis: config.redis
 };
@@ -30,6 +31,7 @@ const addGenericLocals = (req, res, next) => {
   // Set HTML Language
   res.locals.htmlLang = 'en';
   // Set feedback and footer links
+  res.locals.serviceName = 'Prohibited weapons and ammunition licensing';
   res.locals.feedbackUrl = '/feedback';
   res.locals.footerSupportLinks = [
     { path: '/cookies', property: 'base.cookies' },
@@ -48,10 +50,10 @@ if (config.env !== 'production') {
   app.use(mockAPIs);
 }
 
-app.use('/cookies', (req, res, next) => {
+app.use('/cookies', (req, res) => {
   res.locals = Object.assign({}, res.locals, req.translate('cookies'));
   res.locals['session-cookies-table'] = sessionCookiesTable['session-cookies-table'];
-  next();
+  res.render('cookies')
 });
 
 app.use(bodyParser({limit: config.upload.maxfilesize}));
