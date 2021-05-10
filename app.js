@@ -44,7 +44,6 @@ const app = hof(options);
 
 app.use((req, res, next) => addGenericLocals(req, res, next));
 
-const sessionCookiesTable = require('./apps/common/translations/src/en/cookies.json');
 
 if (config.env !== 'production') {
   app.use(mockAPIs);
@@ -52,8 +51,7 @@ if (config.env !== 'production') {
 
 app.use('/cookies', (req, res) => {
   res.locals = Object.assign({}, res.locals, req.translate('cookies'));
-  res.locals['session-cookies-table'] = sessionCookiesTable['session-cookies-table'];
-  res.render('cookies')
+  res.render('cookies');
 });
 
 app.use(bodyParser({limit: config.upload.maxfilesize}));
