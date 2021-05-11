@@ -21,7 +21,9 @@
     "lint:app": "eslint .",
     "lint:acceptance": "eslint --no-ignore -c ./node_modules/so-acceptance/.eslintrc ./apps/*/features/**/*.js",
     "prepareapp": "hof-build",
-    "postinstall": "npm run prepareapp"
+    "postinstall": "npm run prepareapp",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "busboy-body-parser": "^0.3.0",
@@ -48,7 +50,8 @@
     "mustache": "^2.3.0",
     "typeahead-aria": "^1.0.4",
     "uuid": "^3.1.0",
-    "witch": "^1.0.2"
+    "witch": "^1.0.2",
+    "snyk": "^1.590.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
@@ -73,5 +76,6 @@
   "pre-commit": [
     "lint",
     "test"
-  ]
+  ],
+  "snyk": true
 }
