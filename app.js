@@ -22,15 +22,38 @@ const options = {
       next();
     }
   }],
+  getCookies: false,
   start: false,
   redis: config.redis
 };
 
+const addGenericLocals = (req, res, next) => {
+  // Set HTML Language
+  res.locals.htmlLang = 'en';
+  // Set feedback and footer links
+  res.locals.serviceName = 'Prohibited weapons and ammunition licensing';
+  res.locals.feedbackUrl = '/feedback';
+  res.locals.footerSupportLinks = [
+    { path: '/cookies', property: 'base.cookies' },
+    { path: '/terms-and-conditions', property: 'base.terms' },
+  ];
+  next();
+};
+
 const app = hof(options);
+
+app.use((req, res, next) => addGenericLocals(req, res, next));
+
 
 if (config.env !== 'production') {
   app.use(mockAPIs);
 }
+
+app.use('/cookies', (req, res) => {
+  res.locals = Object.assign({}, res.locals, req.translate('cookies'));
+  res.render('cookies');
+});
+
 app.use(bodyParser({limit: config.upload.maxfilesize}));
 
 app.start();
