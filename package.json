@@ -31,7 +31,7 @@
     "express": "^4.15.3",
     "express-partial-templates": "^0.2.1",
     "growl": "^1.10.0",
-    "hof": "^18.2.3",
+    "hof": "^18.2.4",
     "hof-behaviour-emailer": "^2.0.0",
     "hof-build": "^2.0.0",
     "hof-confirm-controller": "^1.0.2",
@@ -74,7 +74,7 @@
     "sinon": "^1.15.3",
     "sinon-as-promised": "^4.0.3",
     "sinon-chai": "^2.11.0",
-    "so-acceptance": "^6.0.0"
+    "so-acceptance": "^6.1.0"
   },
   "pre-commit": [
     "lint",
