@@ -16,8 +16,7 @@ Scenario('The correct form elements are present', (
   firstAuthorityHoldersNationalityPage
 ) => {
   I.seeElements([
-    firstAuthorityHoldersNationalityPage['first-nationality'],
-    firstAuthorityHoldersNationalityPage['multi-nationality']
+    firstAuthorityHoldersNationalityPage['first-nationality']
   ]);
 });
 
