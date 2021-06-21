@@ -44,6 +44,15 @@ const app = hof(options);
 
 app.use((req, res, next) => addGenericLocals(req, res, next));
 
+app.use('/museums', (req, res, next) => {
+  res.locals.serviceName = 'Apply for a museum firearms licence';
+  next();
+});
+
+app.use('/shooting-clubs', (req, res, next) => {
+  res.locals.serviceName = 'Apply for shooting club approval';
+  next();
+});
 
 if (config.env !== 'production') {
   app.use(mockAPIs);
