@@ -7,6 +7,8 @@ const config = require('./config.js');
 const mockAPIs = require('./mock-apis.js');
 const BaseController = require('./apps/common/controllers/base');
 
+let serviceName = '';
+
 const options = {
   views: path.resolve(__dirname, './apps/common/views'),
   fields: path.resolve(__dirname, './apps/common/fields'),
@@ -31,7 +33,7 @@ const addGenericLocals = (req, res, next) => {
   // Set HTML Language
   res.locals.htmlLang = 'en';
   // Set feedback and footer links
-  res.locals.serviceName = 'Prohibited weapons and ammunition licensing';
+  res.locals.serviceName = serviceName;
   res.locals.feedbackUrl = '/feedback';
   res.locals.footerSupportLinks = [
     { path: '/cookies', property: 'base.cookies' },
@@ -44,13 +46,22 @@ const app = hof(options);
 
 app.use((req, res, next) => addGenericLocals(req, res, next));
 
+// set serviceName to appear on the cookie banner for each service
+app.use('/s5', (req, res, next) => {
+  res.locals.serviceName = 'Prohibited weapons and ammunition licensing';
+  serviceName = res.locals.serviceName;
+  next();
+});
+
 app.use('/museums', (req, res, next) => {
-  res.locals.serviceName = 'Apply for a museum firearms licence';
+  res.locals.serviceName = 'Apply for Museum Firearms Licence';
+  serviceName = res.locals.serviceName;
   next();
 });
 
 app.use('/shooting-clubs', (req, res, next) => {
-  res.locals.serviceName = 'Apply for shooting club approval';
+  res.locals.serviceName = 'Apply for Shooting Club Approval';
+  serviceName = res.locals.serviceName;
   next();
 });
 
