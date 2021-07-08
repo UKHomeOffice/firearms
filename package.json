@@ -33,7 +33,7 @@
     "growl": "^1.10.0",
     "hof": "^18.2.4",
     "hof-behaviour-emailer": "^2.0.0",
-    "hof-build": "^2.0.0",
+    "hof-build": "^4.0.0",
     "hof-confirm-controller": "^1.0.2",
     "hof-controllers": "^6.0.3",
     "hof-emailer": "^2.1.1",
