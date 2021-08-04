@@ -1,13 +1,20 @@
 'use strict';
 
+const _ = require('lodash');
+
 module.exports = data => {
   const response = {};
+  const activity = [
+    { activity: 'new', response: 'Application' },
+    { activity: 'renew', response: 'Renewal' },
+    { activity: 'vary', response: 'Vary' }
+  ];
 
   response.AuthorityType = 'Museums';
-  response.ApplicationType = data.activity === 'new' ? 'Application' : 'Renewal';
+  response.ApplicationType = _.find(activity, { 'activity': data.activity }).response;
 
-  if (data.activity === 'renew') {
-    response['Cusomter.CustomerReference'] = data['reference-number'];
+  if (data.activity === 'renew' || data.activity === 'vary') {
+    response['Customer.CustomerReference'] = data['reference-number'];
     response.ExistingAuthorityReference = data['authority-number'];
   }
 

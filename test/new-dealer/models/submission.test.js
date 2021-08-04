@@ -15,6 +15,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Maritime Guards` if usage is to arm guards', () => {
 
       const input = Object.assign({}, defaults, {
+        activity: 'new',
         usage: 'arm-guards'
       });
 
@@ -26,6 +27,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Maritime Guards` if usage is to arm guards and any other usage', () => {
 
       const input = Object.assign({}, defaults, {
+        activity: 'new',
         usage: [
           'transport',
           'arm-guards'
@@ -40,6 +42,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Carriers` if usage is to transport', () => {
 
       const input = Object.assign({}, defaults, {
+        activity: 'new',
         usage: 'transport'
       });
 
@@ -51,6 +54,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Carriers` if usage is to transfer', () => {
 
       const input = Object.assign({}, defaults, {
+        activity: 'new',
         usage: 'transfer'
       });
 
@@ -62,6 +66,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Carriers and Dealers` if usage is to transfer and any other usage', () => {
 
       const input = Object.assign({}, defaults, {
+        activity: 'new',
         usage: [
           'sell',
           'transfer'
@@ -76,6 +81,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Carriers and Dealers` if usage is to transport and any other usage', () => {
 
       const input = Object.assign({}, defaults, {
+        activity: 'new',
         usage: [
           'deactivation',
           'transport'
@@ -90,6 +96,7 @@ describe('S5 Submission Model', () => {
     it('sets authority type to `Dealer` if usage is any other usage', () => {
 
       const input = Object.assign({}, defaults, {
+        activity: 'new',
         usage: [
           'sell',
           'deactivation'
@@ -104,6 +111,7 @@ describe('S5 Submission Model', () => {
     it('usage can be a string', () => {
 
       const input = Object.assign({}, defaults, {
+        activity: 'new',
         usage: 'transfer'
       });
 

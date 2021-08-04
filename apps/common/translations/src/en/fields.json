@@ -6,6 +6,9 @@
       },
       "renew": {
         "label": "Renew or amend an existing authority"
+      },
+      "vary": {
+        "label": "Vary an existing authority"
       }
     }
   },

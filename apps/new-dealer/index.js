@@ -44,9 +44,8 @@ module.exports = {
       next: '/company-name',
       forks: [{
         target: '/authority-number-renew-vary',
-        condition: {
-          field: 'activity',
-          value: 'renew'
+        condition: req => {
+          return _.includes(['vary', 'renew'], req.sessionModel.get('activity'));
         }
       }]
     },
