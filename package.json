@@ -1,9 +1,12 @@
 {
   "name": "firearms",
   "version": "0.1.0",
-  "main": "app.js",
+  "main": "server.js",
   "description": "Firearms application service",
   "author": "HomeOffice",
+  "engines": {
+    "node": "^14.15.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/UKHomeOffice/firearms"
@@ -11,17 +14,15 @@
   "license": "./LICENSE",
   "readme": "./README.md",
   "scripts": {
-    "start": "node .",
+    "start": "node server.js",
     "dev": "NODE_ENV=development hof-build watch",
-    "test": "NODE_ENV=test npm run lint && npm run test:unit",
+    "test": "NODE_ENV=test yarn run test:lint && yarn run test:lint-acceptance && yarn run test:unit",
     "test:unit": "istanbul cover _mocha",
     "test:acceptance": "so-acceptance --steps",
     "test:acceptance:local": "funkie --driver chromedriver npm run test:acceptance",
-    "lint": "npm run lint:app && npm run lint:acceptance",
-    "lint:app": "eslint .",
-    "lint:acceptance": "eslint --no-ignore -c ./node_modules/so-acceptance/.eslintrc ./apps/*/features/**/*.js",
-    "prepareapp": "hof-build",
-    "postinstall": "npm run prepareapp"
+    "test:lint": "eslint .",
+    "test:lint-acceptance": "eslint --no-ignore -c ./node_modules/so-acceptance/.eslintrc ./apps/*/features/**/*.js",
+    "postinstall": "hof-build"
   },
   "dependencies": {
     "busboy-body-parser": "^0.3.0",
@@ -77,8 +78,7 @@
     "sinon-chai": "^2.11.0",
     "so-acceptance": "^6.1.0"
   },
-  "pre-commit": [
-    "lint",
-    "test"
-  ]
+  "resolutions": {
+    "underscore": "^1.12.1"
+  }
 }

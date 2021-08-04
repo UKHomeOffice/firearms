@@ -3,13 +3,34 @@ kind: pipeline
 name: default
 type: kubernetes
 
+environment:
+  APP_NAME: firearms-licensing
+  PROD_ENV: firearms
+  STG_ENV: firearms-preprod
+  UAT_ENV: firearms-dev
+  BRANCH_ENV: firearms-branch
+  PRODUCTION_URL: www.firearms-licensing.homeoffice.gov.uk
+  IMAGE_URL: quay.io/ukhomeofficedigital
+  IMAGE_REPO: firearms
+  GIT_REPO: UKHomeOffice/firearms
+  HOF_CONFIG: hof-services-config/Firearms_Licensing
+  NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
+  READY_FOR_TEST_DELAY: 20s
+  NOTIFY_STUB: stub
+
+trigger:
+  branch:
+    - feature/*
+    - master
+
 steps:
 - name: build
   pull: if-not-exists
-  image: node:8
+  image: node:14
   commands:
-  - npm --loglevel warn install
-  - npm test
+  - yarn install --frozen-lockfile
+  - yarn run postinstall
+  - yarn test
   when:
     branch: [ master, feature/* ]
     event: push
@@ -64,22 +85,21 @@ steps:
     branch: master
     event: push
 
-- name: clone_repo_build
-  pull: if-not-exists
-  image: docker:git
+- name: clone_repos
+  image: alpine/git
   environment:
     DRONE_GIT_USERNAME:
       from_secret: DRONE_GIT_USERNAME
     DRONE_GIT_TOKEN:
       from_secret: DRONE_GIT_TOKEN
   commands:
-    - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOffice/kube-firearms.git
-    - cd kube-firearms
-    - git tag dev-${DRONE_COMMIT_SHA}
-    - git push origin --tags
+    - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
   when:
-    branch: master
-    event: push
+    branch:
+      include:
+      - master
+      - feature/*
+    event: [push, pull_request]
 
 - name: clone_repo_promote
   pull: if-not-exists
@@ -154,4 +174,3 @@ services:
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
 
 ...
-
