@@ -22,6 +22,8 @@
     "test:acceptance:local": "funkie --driver chromedriver npm run test:acceptance",
     "test:lint": "eslint .",
     "test:lint-acceptance": "eslint --no-ignore -c ./node_modules/so-acceptance/.eslintrc ./apps/*/features/**/*.js",
+    "test:snyk": "snyk config set api=SNYK_TOKEN && snyk test",
+    "build": "hof-build",
     "postinstall": "hof-build"
   },
   "dependencies": {
@@ -76,6 +78,7 @@
     "sinon": "^1.15.3",
     "sinon-as-promised": "^4.0.3",
     "sinon-chai": "^2.11.0",
+    "snyk": "^1.675.0",
     "so-acceptance": "^6.1.0"
   },
   "resolutions": {
