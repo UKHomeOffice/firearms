@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/UKHomeOffice/firearms"
   },
+  "engines": {
+    "node": "14.16.1"
+  },
   "license": "./LICENSE",
   "readme": "./README.md",
   "scripts": {

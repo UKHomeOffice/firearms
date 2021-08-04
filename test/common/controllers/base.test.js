@@ -65,6 +65,13 @@ describe('BaseController', () => {
           baseController.locals(req, res).renew.should.be.true;
         });
 
+        it('sets renew to true if activity is vary and super.locals.renew is true', () => {
+          req.sessionModel.get.returns('vary');
+          FormController.prototype.locals.returns({renew: true, fields: []});
+
+          baseController.locals(req, res).renew.should.be.true;
+        });
+
         it('sets renew to false if activity is not true and super.locals.renew is true', () => {
           req.sessionModel.get.returns('foo');
           FormController.prototype.locals.returns({renew: true, fields: []});
@@ -72,8 +79,15 @@ describe('BaseController', () => {
           baseController.locals(req, res).renew.should.be.false;
         });
 
-        it('sets renew to true if activity is renew and super.locals.renew is true', () => {
+        it('sets renew to false if activity is renew and super.locals.renew is false', () => {
           req.sessionModel.get.returns('renew');
+          FormController.prototype.locals.returns({renew: false, fields: []});
+
+          baseController.locals(req, res).renew.should.be.false;
+        });
+
+        it('sets renew to false if activity is vary and super.locals.renew is false', () => {
+          req.sessionModel.get.returns('vary');
           FormController.prototype.locals.returns({renew: false, fields: []});
 
           baseController.locals(req, res).renew.should.be.false;
