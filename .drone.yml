@@ -153,6 +153,7 @@ steps:
       - export FILEVAULT_NGINX_SETTINGS=$${HOF_CONFIG}/filevault-nginx-settings.yaml
       - export DRONE_SOURCE_BRANCH=$(echo $${DRONE_SOURCE_BRANCH} | tr '[:upper:]' '[:lower:]')
       - kd --insecure-skip-tls-verify --check-interval 10s -f kube/redis-service.yml -f kube/redis-network-policy.yml -f kube/redis-deployment.yml
+      - kd --insecure-skip-tls-verify --check-interval 10s -f kube/html-pdf-service.yml -f kube/html-pdf-network-policy.yml -f kube/html-pdf-deployment.yml
       - kd --insecure-skip-tls-verify -f kube/configmap.yaml -f kube/ingress-internal.yaml -f kube/networkpolicy-internal.yaml -f kube/service.yaml
       - kd --insecure-skip-tls-verify -f kube/file-vault-ingress.yaml -f kube/file-vault-network-policy.yaml -f kube/file-vault-service.yaml
       - kd --insecure-skip-tls-verify --timeout 10m --check-interval 10s -f kube/file-vault-deployment.yaml -f kube/deployment.yaml
@@ -259,6 +260,7 @@ steps:
       - export NGINX_SETTINGS=$${HOF_CONFIG}/nginx-settings.yaml
       - export FILEVAULT_NGINX_SETTINGS=$${HOF_CONFIG}/filevault-nginx-settings.yaml
       - kd --insecure-skip-tls-verify --check-interval 10s -f kube/redis-service.yml -f kube/redis-network-policy.yml -f kube/redis-deployment.yml
+      - kd --insecure-skip-tls-verify --check-interval 10s -f kube/html-pdf-service.yml -f kube/html-pdf-network-policy.yml -f kube/html-pdf-deployment.yml
       - kd --insecure-skip-tls-verify -f kube/configmap.yaml -f kube/ingress-external.yaml -f kube/networkpolicy-external.yaml -f kube/service.yaml
       - kd --insecure-skip-tls-verify -f kube/file-vault-ingress.yaml -f kube/file-vault-network-policy.yaml -f kube/file-vault-service.yaml
       - kd --insecure-skip-tls-verify --timeout 10m --check-interval 10s -f kube/file-vault-deployment.yaml -f kube/deployment.yaml
@@ -333,6 +335,7 @@ steps:
       - export DRONE_SOURCE_BRANCH=$(cat /root/.dockersock/branch_name.txt)
       - kubectl="kubectl --insecure-skip-tls-verify --server=$${KUBE_SERVER} --namespace=$${KUBE_NAMESPACE} --token=$${KUBE_TOKEN}"
       - kd --delete --insecure-skip-tls-verify --check-interval 10s -f kube/redis-service.yml -f kube/redis-network-policy.yml -f kube/redis-deployment.yml
+      - kd --delete --insecure-skip-tls-verify --check-interval 10s -f kube/html-pdf-service.yml -f kube/html-pdf-network-policy.yml -f kube/html-pdf-deployment.yml
       - kd --delete --insecure-skip-tls-verify -f kube/configmap.yaml -f kube/ingress-internal.yaml -f kube/networkpolicy-internal.yaml -f kube/service.yaml
       - kd --delete --insecure-skip-tls-verify -f kube/file-vault-ingress.yaml -f kube/file-vault-network-policy.yaml -f kube/file-vault-service.yaml
       - kd --delete --insecure-skip-tls-verify --timeout 10m --check-interval 10s -f kube/file-vault-deployment.yaml -f kube/deployment.yaml
@@ -359,6 +362,7 @@ steps:
       - export NGINX_SETTINGS=$${HOF_CONFIG}/nginx-settings.yaml
       - export FILEVAULT_NGINX_SETTINGS=$${HOF_CONFIG}/filevault-nginx-settings.yaml
       - kd --insecure-skip-tls-verify --check-interval 10s -f kube/redis-service.yml -f kube/redis-network-policy.yml -f kube/redis-deployment.yml
+      - kd --insecure-skip-tls-verify --check-interval 10s -f kube/html-pdf-service.yml -f kube/html-pdf-network-policy.yml -f kube/html-pdf-deployment.yml
       - kd --insecure-skip-tls-verify -f kube/configmap.yaml -f kube/ingress-external.yaml -f kube/networkpolicy-external.yaml -f kube/service.yaml
       - kd --insecure-skip-tls-verify -f kube/file-vault-ingress.yaml -f kube/file-vault-network-policy.yaml -f kube/file-vault-service.yaml
       - kd --insecure-skip-tls-verify --timeout 10m --check-interval 10s -f kube/file-vault-deployment.yaml -f kube/deployment.yaml
@@ -415,6 +419,7 @@ steps:
       - export NGINX_SETTINGS=$${HOF_CONFIG}/nginx-settings.yaml
       - export FILEVAULT_NGINX_SETTINGS=$${HOF_CONFIG}/filevault-nginx-settings.yaml
       - kd --insecure-skip-tls-verify --check-interval 10s -f kube/redis-service.yml -f kube/redis-network-policy.yml -f kube/redis-deployment.yml
+      - kd --insecure-skip-tls-verify --check-interval 10s -f kube/html-pdf-service.yml -f kube/html-pdf-network-policy.yml -f kube/html-pdf-deployment.yml
       - kd --insecure-skip-tls-verify -f kube/configmap.yaml -f kube/ingress-external.yaml -f kube/networkpolicy-external.yaml -f kube/service.yaml
       - kd --insecure-skip-tls-verify -f kube/file-vault-ingress.yaml -f kube/file-vault-network-policy.yaml -f kube/file-vault-service.yaml
       - kd --insecure-skip-tls-verify --timeout 10m --check-interval 10s -f kube/file-vault-deployment.yaml -f kube/deployment.yaml

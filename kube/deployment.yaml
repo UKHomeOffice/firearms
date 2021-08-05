@@ -137,7 +137,7 @@ spec:
             {{ end }}
             - name: PDF_CONVERTER_URL
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://html-pdf-converter.{{ .UAT_ENV }}.svc.cluster.local:10443/convert
+              value: https://html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}.{{ .KUBE_NAMESPACE }}.svc.cluster.local:10443/convert
             {{ else }}
               value: https://html-pdf-converter.{{ .KUBE_NAMESPACE }}.svc.cluster.local:10443/convert
             {{ end }}

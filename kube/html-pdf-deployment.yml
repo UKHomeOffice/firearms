@@ -1,0 +1,79 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: html-pdf-converter
+  {{ end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: html-pdf-converter
+      {{ end }}
+  template:
+    metadata:
+      labels:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+        service: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
+        name: html-pdf-converter
+        service: html-pdf-converter
+        {{ end }}
+    spec:
+      containers:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        - name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
+        - name: html-pdf-converter
+        {{ end }}
+          image: quay.io/ukhomeofficedigital/html-pdf-converter:e9211de94dcf0386775ef082911b12c9d219f93c
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          env:
+            - name: APP_PORT
+              value: "8001"
+          securityContext:
+            runAsNonRoot: true
+
+        - name: nginx-proxy
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          env:
+            - name: PROXY_SERVICE_HOST
+              value: 127.0.0.1
+            - name: PROXY_SERVICE_PORT
+              value: "8001"
+            - name: ENABLE_UUID_PARAM
+              value: "FALSE"
+            - name: HTTPS_REDIRECT
+              value: "FALSE"
+            - name: NAXSI_USE_DEFAULT_RULES
+              value: "FALSE"
+            - name: PORT_IN_HOST_HEADER
+              value: "FALSE"
+            - name: ERROR_REDIRECT_CODES
+              value: "599"
+          securityContext:
+            runAsNonRoot: true
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443

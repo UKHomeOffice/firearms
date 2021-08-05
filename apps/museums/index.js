@@ -127,26 +127,7 @@ module.exports = {
       template: 'confirm',
       behaviours: [require('hof').components.summary, pdf],
       controller: require('../common/controllers/confirm'),
-      sections: {
-        'museum-details': [
-          'name',
-          {
-            field: 'exhibit-addresses',
-            parse: (value) => value.map(a => a.address).join('\n'),
-            step: '/exhibit-add-another-address'
-          },
-          'reference-number'
-        ],
-        'contact-details': [
-          'contact-name',
-          'contact-email',
-          'contact-phone',
-          {
-            field: 'contact-address',
-            step: '/contact-address'
-          }
-        ]
-      },
+      sections: require('./sections/summary-data-sections'),
       next: '/declaration'
     },
     '/declaration': {

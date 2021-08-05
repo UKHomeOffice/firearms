@@ -21,9 +21,9 @@ spec:
     - supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk
     {{ end }}
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-    secretName: file-vault-cert-cmio-{{ .DRONE_SOURCE_BRANCH }}
+    secretName: file-vault-cert-{{ .DRONE_SOURCE_BRANCH }}
     {{ else }}
-    secretName: file-vault-cert-cmio
+    secretName: file-vault-cert
     {{ end }}
   rules:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
