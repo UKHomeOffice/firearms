@@ -603,7 +603,7 @@ module.exports = {
     '/confirm': {
       controller: require('./controllers/confirm'),
       fieldsConfig: require('./fields'),
-      behaviours: [pdf],
+      behaviours: [require('hof').components.summary, pdf],
       next: '/declaration'
     },
     '/declaration': {
