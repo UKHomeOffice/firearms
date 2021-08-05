@@ -9,10 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/UKHomeOffice/firearms"
+    "url": "git+https://github.com/UKHomeOffice/firearms.git"
   },
   "license": "./LICENSE",
-  "readme": "./README.md",
   "scripts": {
     "start": "node server.js",
     "dev": "NODE_ENV=development hof-build watch",
@@ -66,5 +65,13 @@
   },
   "resolutions": {
     "underscore": "^1.12.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/UKHomeOffice/firearms/issues"
+  },
+  "homepage": "https://github.com/UKHomeOffice/firearms#readme",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
 }

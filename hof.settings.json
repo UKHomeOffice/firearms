@@ -9,9 +9,8 @@
     "./apps/shooting-clubs",
     "./apps/supporting-documents"
   ],
-  "views": [
-    "./apps/common/views"
-  ],
+  "fields": "./apps/common/fields",
+  "views": ["./apps/common/views"],
   "session": {
     "name": "firearms-licensing.hof.sid"
   }

@@ -13,6 +13,7 @@ let settings = require('./hof.settings');
 
 settings = {
   routes: settings.routes.map(require),
+  fields: path.resolve(__dirname, settings.fields),
   views: settings.views.map(view => path.resolve(__dirname, view)),
   baseController: BaseController,
   behaviours: [superclass => class extends superclass {
