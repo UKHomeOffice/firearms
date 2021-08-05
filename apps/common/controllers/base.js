@@ -1,6 +1,6 @@
 'use strict';
 
-const Controller = require('hof-form-controller');
+const Controller = require('hof').controller;
 
 module.exports = class BaseController extends Controller {
 

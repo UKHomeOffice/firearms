@@ -1,7 +1,8 @@
 'use strict';
 
 const _ = require('lodash');
-const countries = require('hof-util-countries')();
+const countries = require('hof').utils.countries();
+const date = require('hof').components.date;
 
 function notBothOptions(values) {
   values = _.castArray(values);
@@ -460,20 +461,9 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
-  'first-authority-dob': {
-  },
-  'first-authority-dob-day': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
-  'first-authority-dob-month': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
-  'first-authority-dob-year': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
+  'first-authority-dob': date('date-of-birth', {
+    validate: ['required', 'numeric']
+  }),
   'first-authority-town-birth': {
     mixin: 'input-text',
     validate: 'required'
@@ -482,20 +472,9 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
-  'second-authority-dob': {
-  },
-  'second-authority-dob-day': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
-  'second-authority-dob-month': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
-  'second-authority-dob-year': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
+  'second-authority-dob': date('date-of-birth', {
+    validate: ['required', 'numeric']
+  }),
   'second-authority-town-birth': {
     mixin: 'input-text',
     validate: 'required'

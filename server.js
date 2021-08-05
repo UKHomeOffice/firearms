@@ -9,21 +9,17 @@ const BaseController = require('./apps/common/controllers/base');
 
 let serviceName = '';
 
-const options = {
-  views: path.resolve(__dirname, './apps/common/views'),
-  fields: path.resolve(__dirname, './apps/common/fields'),
-  routes: [
-    require('./apps/museums'),
-    require('./apps/new-dealer'),
-    require('./apps/shooting-clubs'),
-    require('./apps/supporting-documents')
-  ],
+let settings = require('./hof.settings');
+
+settings = {
+  routes: settings.routes.map(require),
+  views: settings.views.map(view => path.resolve(__dirname, view)),
   baseController: BaseController,
   behaviours: [superclass => class extends superclass {
     _checkEmpty(req, res, next) {
       next();
     }
-  }],
+  }, require('hof/components/clear-session')],
   getCookies: false,
   start: false,
   redis: config.redis
@@ -42,7 +38,7 @@ const addGenericLocals = (req, res, next) => {
   next();
 };
 
-const app = hof(options);
+const app = hof(settings);
 
 app.use((req, res, next) => addGenericLocals(req, res, next));
 

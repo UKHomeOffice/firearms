@@ -218,7 +218,7 @@ module.exports = {
     '/storage-address-add-manual': storageAddressLookup.manual,
     '/confirm': {
       controller: require('./controllers/confirm'),
-      behaviours: [pdf],
+      behaviours: [require('hof').components.summary, pdf],
       sections: {
         authority: ['reference-number'],
         club: [

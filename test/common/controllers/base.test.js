@@ -1,7 +1,7 @@
 'use strict';
 
 const BaseController = require('../../../apps/common/controllers/base');
-const FormController = require('hof-form-controller');
+const FormController = require('hof').controller;
 
 const request = require('../../helpers/request');
 const response = require('../../helpers/response');

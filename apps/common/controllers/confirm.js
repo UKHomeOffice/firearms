@@ -1,6 +1,6 @@
 'use strict';
 
-const controllers = require('hof-confirm-controller');
+const controllers = require('hof').controller;
 
 module.exports = class ConfirmController extends controllers {
 

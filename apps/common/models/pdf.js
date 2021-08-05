@@ -1,6 +1,6 @@
 'use strict';
 
-const Model = require('hof-model');
+const Model = require('hof').model;
 const isPdf = require('is-pdf');
 const config = require('../../../config');
 const debug = require('debug')('pdf-model');
