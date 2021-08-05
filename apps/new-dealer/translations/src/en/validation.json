@@ -136,8 +136,8 @@
     "required": "Enter the full name of the second authority holder"
   },
   "first-authority-dob": {
+    "default": "Enter a valid date",
     "required": "Enter a date of birth",
-    "numeric": "Enter a valid date",
     "future": "Date cannot be in the future"
   },
   "first-authority-town-birth": {
@@ -171,7 +171,7 @@
   },
   "second-authority-dob": {
     "required": "Enter a date of birth",
-    "numeric": "Enter a valid date",
+    "default": "Enter a valid date",
     "future": "Date cannot be in the future"
   },
   "second-authority-town-birth": {

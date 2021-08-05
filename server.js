@@ -17,10 +17,11 @@ settings = {
   views: settings.views.map(view => path.resolve(__dirname, view)),
   baseController: BaseController,
   behaviours: [superclass => class extends superclass {
-    _checkEmpty(req, res, next) {
-      next();
-    }
-  }, require('hof/components/clear-session')],
+      _checkEmpty(req, res, next) {
+        next();
+      }
+    }, require('hof/components/clear-session')
+  ],
   getCookies: false,
   start: false,
   redis: config.redis

@@ -461,8 +461,8 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
-  'first-authority-dob': date('date-of-birth', {
-    validate: ['required', 'numeric']
+  'first-authority-dob': date('first-authority-dob', {
+    validate: ['required']
   }),
   'first-authority-town-birth': {
     mixin: 'input-text',
@@ -472,8 +472,8 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
-  'second-authority-dob': date('date-of-birth', {
-    validate: ['required', 'numeric']
+  'second-authority-dob': date('second-authority-dob', {
+    validate: ['required']
   }),
   'second-authority-town-birth': {
     mixin: 'input-text',
