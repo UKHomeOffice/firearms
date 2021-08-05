@@ -62,7 +62,7 @@ app.use('/shooting-clubs', (req, res, next) => {
   next();
 });
 
-if (config.env !== 'production') {
+if (!config.env) {
   app.use(mockAPIs);
 }
 

@@ -18,9 +18,7 @@ module.exports = {
   },
   upload: {
     maxfilesize: '100mb',
-    hostname: env !== 'production' ?
-      `http://${localhost()}/api/file-upload` :
-      process.env.FILE_VAULT_URL
+    hostname: !env ? `http://${localhost()}/api/file-upload` : process.env.FILE_VAULT_URL
   },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,

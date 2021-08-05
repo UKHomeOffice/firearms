@@ -17,7 +17,7 @@ module.exports = superclass => class PDFUpload extends superclass {
           name: 'application_form.pdf',
           data: pdfBuffer,
           mimetype: 'application/pdf'
-        });
+        }).catch(err => next(new Error(err.body)));
       })
       .then(result => {
         req.log('debug', 'Saved PDF document to S3');
@@ -27,7 +27,7 @@ module.exports = superclass => class PDFUpload extends superclass {
         super.process(req, res, next);
       }, next)
       .catch((err) => {
-        next(err);
+        next(new Error(err.body));
       });
   }
 
