@@ -9,7 +9,8 @@ module.exports = {
     },
     options: [
       'new',
-      'renew'
+      'renew',
+      'vary'
     ]
   },
   'reference-number': {

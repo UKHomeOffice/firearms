@@ -1,5 +1,7 @@
 'use strict';
 /* eslint complexity: 0 max-statements: 0 */
+
+const _ = require('lodash');
 const contains = (arr, val) => arr.includes(val) ? 'Yes' : 'No';
 
 const authorityType = usage => {
@@ -21,14 +23,19 @@ const authorityType = usage => {
 
 module.exports = data => {
   const response = {};
+  const activity = [
+    { activity: 'new', response: 'Application' },
+    { activity: 'renew', response: 'Renewal' },
+    { activity: 'vary', response: 'Vary' }
+  ];
 
   response.AuthorityType = authorityType(data.usage);
-
-  response.ApplicationType = data.activity === 'new' ? 'Application' : 'Renewal';
+  response.ApplicationType = data.activity ?
+    _.find(activity, { 'activity': data.activity }).response : 'Renewal';
 
   response['Customer.Organisation'] = data[`${data.organisation}-name`];
 
-  if (data.activity === 'renew') {
+  if (data.activity === 'renew' || data.activity === 'vary') {
     response['Customer.CustomerReference'] = data['reference-number'];
     response.ExistingAuthorityReference = data['authority-number'];
   }
