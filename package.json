@@ -11,9 +11,6 @@
     "type": "git",
     "url": "git+https://github.com/UKHomeOffice/firearms.git"
   },
-  "engines": {
-    "node": "14.16.1"
-  },
   "license": "./LICENSE",
   "scripts": {
     "start": "node server.js",
