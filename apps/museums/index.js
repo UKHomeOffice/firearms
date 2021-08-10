@@ -128,7 +128,7 @@ module.exports = {
     '/contact-address-input-manual': contactAddressLookup.manual,
     '/confirm': {
       template: 'confirm',
-      behaviours: [require('hof').components.summary, pdf],
+      behaviours: [require('./behaviours/confirm'), require('hof').components.summary, pdf],
       controller: require('../common/controllers/confirm'),
       sections: require('./sections/summary-data-sections'),
       next: '/declaration'
