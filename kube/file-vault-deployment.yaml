@@ -2,11 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-  name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-  {{ else }}
   name: file-vault
-  {{ end }}
 spec:
   {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   replicas: 2
@@ -15,23 +11,13 @@ spec:
   {{ end }}
   selector:
     matchLabels:
-      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-      name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-      service: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-      {{ else }}
       name: file-vault
       service: file-vault
-      {{ end }}
   template:
     metadata:
       labels:
-        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-        name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-        service: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-        {{ else }}
         name: file-vault
         service: file-vault
-        {{ end }}
     spec:
       containers:
         - name: file-vault
@@ -63,7 +49,7 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://{{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.fv-dev.sas-notprod.homeoffice.gov.uk
+              value: https://{{ .APP_NAME }}-branch.fv-dev.sas-notprod.homeoffice.gov.uk
             - name: DEBUG
               value: "true"
             {{ end }}
@@ -135,7 +121,7 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://{{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.fv-dev.sas-notprod.homeoffice.gov.uk
+              value: https://{{ .APP_NAME }}-branch.fv-dev.sas-notprod.homeoffice.gov.uk
             {{ end }}
             - name: PROXY_UPSTREAM_URL
               value: "http://127.0.0.1:3000"
