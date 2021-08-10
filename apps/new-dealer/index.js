@@ -37,9 +37,7 @@ module.exports = {
       next: '/activity'
     },
     '/activity': {
-      fields: [
-        'activity'
-      ],
+      fields: ['activity'],
       next: '/company-name',
       forks: [{
         target: '/authority-number-renew-vary',
@@ -53,10 +51,37 @@ module.exports = {
         'reference-number',
         'authority-number'
       ],
-      next: '/company-name',
+      next: '/existing-authority',
       locals: {
         section: 'business-details'
       }
+    },
+    '/existing-authority': {
+      controller: require('../common/controllers/existing-authority-documents'),
+      fields: [
+        'existing-authority-upload',
+        'existing-authority-description'
+      ],
+      continueOnEdit: true,
+      next: '/existing-authority-add-another'
+    },
+    '/existing-authority-add-another': {
+      template: 'existing-authority-documents-add-another',
+      controller: require('../common/controllers/existing-authority-documents-add-another'),
+      behaviours: [require('./common/behaviours/existing-authority-documents-add')],
+      fields: [
+        'existing-authority-add-another'
+      ],
+      forks: [{
+        isLoop: true,
+        target: '/existing-authority',
+        condition: {
+          field: 'existing-authority-add-another',
+          value: 'yes'
+        }
+      }],
+      continueOnEdit: true,
+      next: '/company-name'
     },
     '/company-name': {
       fields: [

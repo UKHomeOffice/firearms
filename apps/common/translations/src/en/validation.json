@@ -6,5 +6,10 @@
     "filesize": "The selected document is too large - maximum {{filesize}}",
     "filetype": "The selected file type ({{filetype}}) is not supported",
     "required": "Upload a file"
+  },
+  "existing-authority-upload": {
+    "filesize": "The selected document is too large - maximum {{filesize}}",
+    "filetype": "The selected file type ({{filetype}}) is not supported",
+    "required": "Upload a file"
   }
 }

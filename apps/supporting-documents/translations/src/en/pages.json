@@ -12,6 +12,13 @@
     "header": "Do you want to upload any additional documents to support your application?",
     "list-header": "Documents added"
   },
+  "existing-authority-documents": {
+    "header": "Upload supporting documents"
+  },
+  "existing-authority-documents-add": {
+    "header": "Do you want to upload any additional documents to support your application?",
+    "list-header": "Documents added"
+  },
   "confirm": {
     "sections": {
       "reference": {

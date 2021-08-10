@@ -29,6 +29,7 @@ module.exports = class UploadController extends BaseController {
         'supporting-document-upload': err
       });
     }
+
     if (file && file.data && file.data.length) {
       req.form.values['supporting-document-filename'] = file.name;
       const model = new UploadModel(file);

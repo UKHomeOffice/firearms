@@ -28,5 +28,22 @@
         "label": "No"
       }
     }
+  },
+  "existing-authority-upload": {
+    "label": "Upload file"
+  },
+  "existing-authority-description": {
+    "label": "Description (optional)"
+  },
+  "existing-authority-add-another": {
+    "legend": "Do you want to upload any additional documents to support your application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
