@@ -135,6 +135,8 @@ module.exports = data => {
   response.ActivityOther = contains(data.usage, 'other');
 
   data['supporting-documents'] = data['supporting-documents'] || [];
+  data['existing-authority-documents'] = data['existing-authority-documents'] || [];
+
   data['supporting-documents'] = data['supporting-documents']
     .concat(data['existing-authority-documents']);
 
