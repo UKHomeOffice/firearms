@@ -1,15 +1,34 @@
 #! /bin/bash
 set -e
 
-export IGNORE_NETPOL=("acp-deny-all")
+export IGNORE_RESOURCES=("file-vault" "html-pdf-converter")
+export IGNORE_INGRESS=("file-vault-ingress")
+export IGNORE_NETPOL=("acp-deny-all" "file-vault-allow-ingress" "html-pdf-converter-allow-ingress")
 export IGNORE_CONFIGMAP=("bundle")
-export IGNORE_SECRET=("firearms-notprod-s3" "icasework" "keycloak" "keycloak-form" "postcode-auth" "redis" "s3-bucket" "ses" "session-secret")
+export IGNORE_SECRET=("file-vault-cert" "firearms-notprod-s3" "icasework" "keycloak" "keycloak-form" "postcode-auth" "redis" "s3-bucket" "ses" "session-secret")
 
 export kubectl="kubectl --insecure-skip-tls-verify --server=$KUBE_SERVER --namespace=$KUBE_NAMESPACE --token=$KUBE_TOKEN"
 
-$kubectl delete --all deploy
-$kubectl delete --all svc
-$kubectl delete --all ing
+for each in $($kubectl get deploy -o jsonpath="{.items[*].metadata.name}");
+do
+  if [[ ! " ${IGNORE_RESOURCES[@]} " =~ " ${each} " ]]; then
+    $kubectl delete deploy "$each"
+  fi
+done
+
+for each in $($kubectl get svc -o jsonpath="{.items[*].metadata.name}");
+do
+  if [[ ! " ${IGNORE_RESOURCES[@]} " =~ " ${each} " ]]; then
+    $kubectl delete svc "$each"
+  fi
+done
+
+for each in $($kubectl get ing -o jsonpath="{.items[*].metadata.name}");
+do
+  if [[ ! " ${IGNORE_INGRESS[@]} " =~ " ${each} " ]]; then
+    $kubectl delete ing "$each"
+  fi
+done
 
 for each in $($kubectl get netpol -o jsonpath="{.items[*].metadata.name}");
 do
