@@ -4,6 +4,7 @@ module.exports = {
   'museum-details': [
     'name',
     {
+      step: '/exhibit-add-another-address',
       field: 'exhibit-addresses',
       parse: (value) => value.map(a => a.address).join('\n')
     },
@@ -13,6 +14,9 @@ module.exports = {
     'contact-name',
     'contact-email',
     'contact-phone',
-    'contact-address'
+    {
+      step: '/contact-address',
+      field: 'contact-address'
+    }
   ]
 };

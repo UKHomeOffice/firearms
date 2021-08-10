@@ -3,6 +3,7 @@
 const config = require('../../config');
 
 const AddressLookup = require('../common/controllers/address/helper');
+const AddressSelect = require('./controllers/contact-address-select');
 const exhibitAddressLookup = AddressLookup({
   prefix: 'exhibit',
   start: '/exhibit-address',
@@ -110,7 +111,7 @@ module.exports = {
       continueOnEdit: true
     },
     '/contact-address-select': {
-      controller: require('./controllers/contact-address-select'),
+      controller: AddressSelect,
       fields: ['contact-address'],
       next: '/confirm'
     },
@@ -125,7 +126,7 @@ module.exports = {
     '/contact-address-input-manual': contactAddressLookup.manual,
     '/confirm': {
       template: 'confirm',
-      behaviours: [require('hof').components.summary, pdf],
+      behaviours: [require('./behaviours/confirm'), require('hof').components.summary, pdf],
       controller: require('../common/controllers/confirm'),
       sections: require('./sections/summary-data-sections'),
       next: '/declaration'

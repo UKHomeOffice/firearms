@@ -217,50 +217,9 @@ module.exports = {
     }),
     '/storage-address-add-manual': storageAddressLookup.manual,
     '/confirm': {
-      controller: require('./controllers/confirm'),
       behaviours: [require('hof').components.summary, pdf],
-      sections: {
-        authority: ['reference-number'],
-        club: [
-          'club-name',
-          {
-            field: 'club-address',
-            step: '/club-address'
-          },
-          'new-club'
-        ],
-        secretary: [
-          'club-secretary-name',
-          {
-            field: 'club-secretary-address',
-            step: '/club-secretary-address'
-          },
-          'club-secretary-email',
-          'club-secretary-phone'
-        ],
-        'second-contact': [
-          'second-contact-name',
-          {
-            field: 'second-contact-address',
-            step: '/second-contact-address'
-          },
-          'second-contact-email',
-          'second-contact-phone'
-        ],
-        'range-addresses': [
-          {
-            field: 'location-addresses',
-            step: '/location-add-another-address'
-          }
-        ],
-        'storage-addresses': [
-          {
-            field: 'all-storage-addresses',
-            parse: list => list.map(a => a.address).join('\n'),
-            step: '/storage-address'
-          }
-        ]
-      },
+      controller: require('../common/controllers/confirm'),
+      sections: require('./sections/summary-data-sections'),
       next: '/declaration'
     },
     '/declaration': {
