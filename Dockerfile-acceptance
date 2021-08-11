@@ -1,25 +1,17 @@
 FROM node:14-alpine@sha256:5c33bc6f021453ae2e393e6e20650a4df0a4737b1882d389f17069dc1933fdc5
 
-USER root
-
-# Update packages as a result of Anchore security vulnerability checks
-RUN apk update && \
-    apk add --upgrade gnutls binutils nodejs nodejs-npm apk-tools libjpeg-turbo libcurl libx11 libxml2
-
-# Setup nodejs group & nodejs user
-RUN addgroup --system nodejs --gid 998 && \
-    adduser --system nodejs --uid 999 --home /app/ && \
-    chown -R 999:998 /app/
-
-USER 999
+RUN apk upgrade --no-cache
+RUN addgroup -S app
+RUN adduser -S app -G app -u 999 -h /app/
+RUN chown -R app:app /app/
 
 WORKDIR /test
 
-COPY --chown=999:998 package.json package.json
-COPY --chown=999:998 yarn.lock yarn.lock
-COPY --chown=999:998 codecept.conf.js codecept.conf.js
-COPY --chown=999:998 config.js config.js
-COPY --chown=999:998 apps apps/
+COPY package.json package.json
+COPY yarn.lock yarn.lock
+COPY codecept.conf.js codecept.conf.js
+COPY config.js config.js
+COPY apps apps/
 
 RUN yarn install --frozen-lockfile --production --ignore-optional && \
     yarn run postinstall
