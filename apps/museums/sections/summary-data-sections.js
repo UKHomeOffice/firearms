@@ -6,7 +6,7 @@ module.exports = {
     {
       step: '/exhibit-add-another-address',
       field: 'exhibit-addresses',
-      parse: (value) => value.map(a => a.address).join('\n')
+      parse: value => value.map(a => a.address).join('\n')
     },
     'reference-number'
   ],
@@ -16,7 +16,8 @@ module.exports = {
     'contact-phone',
     {
       step: '/contact-address',
-      field: 'contact-address'
+      field: 'contact-address',
+      useOriginalValue: true
     }
   ]
 };
