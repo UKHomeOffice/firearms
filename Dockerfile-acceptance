@@ -15,11 +15,7 @@ USER 999
 
 WORKDIR /test
 
-COPY --chown=999:998 package.json package.json
-COPY --chown=999:998 yarn.lock yarn.lock
-COPY --chown=999:998 codecept.conf.js codecept.conf.js
-COPY --chown=999:998 config.js config.js
-COPY --chown=999:998 apps apps/
+COPY --chown=999:998 . /test
 
 RUN yarn install --frozen-lockfile --production --ignore-optional && \
     yarn run postinstall
