@@ -17,7 +17,7 @@ WORKDIR /test
 
 COPY --chown=999:998 . /test
 
-RUN yarn install --frozen-lockfile --production --ignore-optional && \
+RUN yarn install --frozen-lockfile && \
     yarn run postinstall
 
 CMD npm run test:acceptance
