@@ -7,7 +7,7 @@ const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.P
 module.exports = {
   env: env,
   postcode: {
-    hostname: env !== 'production' ?
+    hostname: (!env || env === 'ci') ?
       `http://${localhost()}/api/postcode-test` :
       process.env.POSTCODE_HOST,
     authorization: process.env.POSTCODE_AUTH,
@@ -18,7 +18,9 @@ module.exports = {
   },
   upload: {
     maxfilesize: '100mb',
-    hostname: !env ? `http://${localhost()}/api/file-upload` : process.env.FILE_VAULT_URL
+    hostname: (!env || env === 'ci') ?
+      `http://${localhost()}/api/file-upload` :
+      process.env.FILE_VAULT_URL
   },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
