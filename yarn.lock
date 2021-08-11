@@ -4228,10 +4228,10 @@ hof-util-testdata@^1.0.1:
   dependencies:
     homeoffice-countries "^0.1.0"
 
-hof@^19.6.0:
-  version "19.6.0"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-19.6.0.tgz#6e126246d9963a81a74d5a141618d8b1fe17ae4b"
-  integrity sha512-eqw90NuzwY/ZZCeVpvXTZzgjMtu/094yAL3rLx2CewB6FOwnqrOJ+7PVsivK+h5Ic1fJm6syYnrm3i0LF4i91w==
+hof@^19.6.1:
+  version "19.6.1"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-19.6.1.tgz#c67aac62feefdc78ba2af80836ddd81036ca4666"
+  integrity sha512-xr1jDhTFhUF1F96ogBA7c13xWQnKeCY/dMH/B+6RFu6faFENUKAnn8d9UegkKWUOH5ymb42PGiEE3u8HcFC58A==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
