@@ -13,7 +13,6 @@ COPY codecept.conf.js codecept.conf.js
 COPY config.js config.js
 COPY apps apps/
 
-RUN yarn install --frozen-lockfile --production --ignore-optional && \
-    yarn run postinstall
+RUN yarn install --frozen-lockfile --production --ignore-optional
 
 CMD npm run test:acceptance
