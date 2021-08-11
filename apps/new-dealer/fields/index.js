@@ -462,7 +462,7 @@ module.exports = {
     validate: 'required'
   },
   'first-authority-dob': date('first-authority-dob', {
-    validate: ['required']
+    validate: ['required', 'before']
   }),
   'first-authority-town-birth': {
     mixin: 'input-text',
@@ -473,7 +473,7 @@ module.exports = {
     validate: 'required'
   },
   'second-authority-dob': date('second-authority-dob', {
-    validate: ['required']
+    validate: ['required', 'before']
   }),
   'second-authority-town-birth': {
     mixin: 'input-text',

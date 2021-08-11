@@ -138,7 +138,7 @@
   "first-authority-dob": {
     "default": "Enter a valid date",
     "required": "Enter a date of birth",
-    "future": "Date cannot be in the future"
+    "before": "Date cannot be in the future"
   },
   "first-authority-town-birth": {
     "required": "Enter a town or city of birth"
@@ -172,7 +172,7 @@
   "second-authority-dob": {
     "required": "Enter a date of birth",
     "default": "Enter a valid date",
-    "future": "Date cannot be in the future"
+    "before": "Date cannot be in the future"
   },
   "second-authority-town-birth": {
     "required": "Enter a town or city of birth"
