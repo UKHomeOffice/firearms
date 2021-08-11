@@ -32,7 +32,7 @@ module.exports = {
     {
       field: 'location-addresses',
       step: '/location-add-another-address',
-      listMultipleFields: {
+      multipleRowsFromAggregate: {
         labelCategory: 'address',
         valueCategory: 'address-category',
         valueTranslation: 'location-address-category'
