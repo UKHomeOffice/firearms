@@ -17,10 +17,10 @@ settings = {
   views: settings.views.map(view => path.resolve(__dirname, view)),
   baseController: BaseController,
   behaviours: [superclass => class extends superclass {
-      _checkEmpty(req, res, next) {
-        next();
-      }
-    }, require('hof/components/clear-session')
+    _checkEmpty(req, res, next) {
+      next();
+    }
+  }, require('hof/components/clear-session')
   ],
   getCookies: false,
   start: false,
@@ -35,7 +35,7 @@ const addGenericLocals = (req, res, next) => {
   res.locals.feedbackUrl = '/feedback';
   res.locals.footerSupportLinks = [
     { path: '/cookies', property: 'base.cookies' },
-    { path: '/terms-and-conditions', property: 'base.terms' },
+    { path: '/terms-and-conditions', property: 'base.terms' }
   ];
   next();
 };
@@ -63,7 +63,7 @@ app.use('/shooting-clubs', (req, res, next) => {
   next();
 });
 
-if (!config.env) {
+if (!config.env || config.env === 'ci') {
   app.use(mockAPIs);
 }
 

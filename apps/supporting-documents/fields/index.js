@@ -5,7 +5,7 @@ module.exports = {
     validate: ['required'],
     invalidates: ['email']
   },
-  'email': {
+  email: {
     validate: [
       'required',
       'email'

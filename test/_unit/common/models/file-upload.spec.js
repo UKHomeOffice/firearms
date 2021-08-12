@@ -1,21 +1,25 @@
+/* eslint-disable node/no-deprecated-api */
 'use strict';
 
-const Model = require('../../../apps/common/models/file-upload');
-const config = require('../../../config');
+const Model = require('../../../../apps/common/models/file-upload');
+const config = require('../../../../config');
 
 describe('File Upload Model', () => {
+  let sandbox;
 
-  beforeEach(function() {
+  beforeEach(function () {
     config.upload.hostname = 'http://test.example.com/file/upload';
-    this.stub(Model.prototype, 'request').yieldsAsync(null, {
+    sandbox = sinon.createSandbox();
+    sandbox.stub(Model.prototype, 'request').yieldsAsync(null, {
       api: 'response',
       url: '/file/12341212132123?foo=bar'
     });
-
-    this.stub(Model.prototype, 'auth').returns(new Promise((resolve) => {
+    sandbox.stub(Model.prototype, 'auth').returns(new Promise(resolve => {
       resolve({bearer: 'myaccesstoken'});
     }));
   });
+
+  afterEach(() => sandbox.restore());
 
   describe('save', () => {
     it('returns a promise', () => {
@@ -76,7 +80,5 @@ describe('File Upload Model', () => {
         }));
       });
     });
-
   });
-
 });

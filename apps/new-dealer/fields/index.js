@@ -4,8 +4,8 @@ const _ = require('lodash');
 const countries = require('hof').utils.countries();
 const date = require('hof').components.date;
 
-function notBothOptions(values) {
-  values = _.castArray(values);
+function notBothOptions(vals) {
+  const values = _.castArray(vals);
   return !(values.length > 1 && values.indexOf('unspecified') > -1);
 }
 
@@ -141,7 +141,7 @@ module.exports = {
       value: 'wont-take-possession'
     }
   },
-  'import': {
+  import: {
     mixin: 'radio-group',
     validate: 'required',
     legend: {
@@ -462,7 +462,7 @@ module.exports = {
     validate: 'required'
   },
   'first-authority-dob': date('first-authority-dob', {
-    validate: ['required']
+    validate: ['required', 'before']
   }),
   'first-authority-town-birth': {
     mixin: 'input-text',
@@ -473,7 +473,7 @@ module.exports = {
     validate: 'required'
   },
   'second-authority-dob': date('second-authority-dob', {
-    validate: ['required']
+    validate: ['required', 'before']
   }),
   'second-authority-town-birth': {
     mixin: 'input-text',

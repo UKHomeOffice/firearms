@@ -4,6 +4,7 @@ const config = require('../../config');
 const _ = require('lodash');
 
 const AddressLookup = require('../common/controllers/address/helper');
+const AddressSelect = require('./controllers/contact-address-select');
 const exhibitAddressLookup = AddressLookup({
   prefix: 'exhibit',
   start: '/exhibit-address',
@@ -68,7 +69,7 @@ module.exports = {
       next: '/exhibit-address'
     },
     '/exhibit-address': Object.assign(exhibitAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/exhibit-address-select': Object.assign(exhibitAddressLookup.select, {
       fieldSettings: {
@@ -112,12 +113,12 @@ module.exports = {
       continueOnEdit: true
     },
     '/contact-address-select': {
-      controller: require('./controllers/contact-address-select'),
+      controller: AddressSelect,
       fields: ['contact-address'],
       next: '/confirm'
     },
     '/contact-address-input': Object.assign(contactAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/contact-address-input-select': Object.assign(contactAddressLookup.select, {
       fieldSettings: {

@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = superclass => class extends superclass {
-
   validate(req, res, next) {
     if (req.sessionModel.get('original-email') !== req.form.values.email) {
       next({
@@ -11,5 +10,4 @@ module.exports = superclass => class extends superclass {
       super.validate(req, res, next);
     }
   }
-
 };

@@ -46,7 +46,7 @@ module.exports = class StorageAddressController extends BaseController {
     req.form.values['all-storage-addresses'] = req.form.values['all-storage-addresses'].filter(a => !a.preentered);
 
     // then add back any that are checked now
-    addresses.forEach((address) => {
+    addresses.forEach(address => {
       req.form.values['all-storage-addresses'].push({
         id: uuid.v1(),
         preentered: true,

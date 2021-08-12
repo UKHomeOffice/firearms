@@ -1,11 +1,9 @@
 'use strict';
 
-const prepare = require('../../../apps/new-dealer/models/submission');
+const prepare = require('../../../../apps/new-dealer/models/submission');
 
 describe('S5 Submission Model', () => {
-
   describe('Authority Type', () => {
-
     const defaults = {
       'weapons-ammunition': [],
       'weapons-type': [],
@@ -13,7 +11,6 @@ describe('S5 Submission Model', () => {
     };
 
     it('sets authority type to `Maritime Guards` if usage is to arm guards', () => {
-
       const input = Object.assign({}, defaults, {
         usage: 'arm-guards'
       });
@@ -24,7 +21,6 @@ describe('S5 Submission Model', () => {
     });
 
     it('sets authority type to `Maritime Guards` if usage is to arm guards and any other usage', () => {
-
       const input = Object.assign({}, defaults, {
         usage: [
           'transport',
@@ -38,7 +34,6 @@ describe('S5 Submission Model', () => {
     });
 
     it('sets authority type to `Carriers` if usage is to transport', () => {
-
       const input = Object.assign({}, defaults, {
         usage: 'transport'
       });
@@ -49,7 +44,6 @@ describe('S5 Submission Model', () => {
     });
 
     it('sets authority type to `Carriers` if usage is to transfer', () => {
-
       const input = Object.assign({}, defaults, {
         usage: 'transfer'
       });
@@ -60,7 +54,6 @@ describe('S5 Submission Model', () => {
     });
 
     it('sets authority type to `Carriers and Dealers` if usage is to transfer and any other usage', () => {
-
       const input = Object.assign({}, defaults, {
         usage: [
           'sell',
@@ -74,7 +67,6 @@ describe('S5 Submission Model', () => {
     });
 
     it('sets authority type to `Carriers and Dealers` if usage is to transport and any other usage', () => {
-
       const input = Object.assign({}, defaults, {
         usage: [
           'deactivation',
@@ -88,7 +80,6 @@ describe('S5 Submission Model', () => {
     });
 
     it('sets authority type to `Dealer` if usage is any other usage', () => {
-
       const input = Object.assign({}, defaults, {
         usage: [
           'sell',
@@ -102,7 +93,6 @@ describe('S5 Submission Model', () => {
     });
 
     it('usage can be a string', () => {
-
       const input = Object.assign({}, defaults, {
         usage: 'transfer'
       });
@@ -111,7 +101,5 @@ describe('S5 Submission Model', () => {
 
       expect(output.AuthorityType).to.equal('Carriers');
     });
-
   });
-
 });

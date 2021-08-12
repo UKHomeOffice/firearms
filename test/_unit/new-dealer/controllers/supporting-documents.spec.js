@@ -1,22 +1,25 @@
 'use strict';
 
-const Controller = require('../../../apps/common/controllers/supporting-documents');
-const Base = require('../../../apps/common/controllers/base');
+const Base = require('../../../../apps/common/controllers/base');
+const UploadModel = require('../../../../apps/common/models/file-upload');
+const Controller = proxyquire('../apps/common/controllers/supporting-documents', {
+  uuid: { v1: () => 'abc123' }
+});
 
-const UploadModel = require('../../../apps/common/models/file-upload');
-
-const request = require('../../helpers/request');
-
-const uuid = require('uuid');
+const request = reqres.req;
 
 describe('Supporting Documents Controller', () => {
+  let sandbox;
 
-  beforeEach(function() {
-    this.stub(UploadModel.prototype, 'save').returns(new Promise((resolve) => {
-      resolve({'url': 'http://example.com/file/upload'});
+  beforeEach(function () {
+    sandbox = sinon.createSandbox();
+    sandbox.stub(UploadModel.prototype, 'save').returns(new Promise(resolve => {
+      resolve({url: 'http://example.com/file/upload'});
     }));
-    this.spy(UploadModel.prototype, 'set');
+    sandbox.stub(UploadModel.prototype, 'set').returns();
   });
+
+  afterEach(() => sandbox.restore());
 
   it('extends the base controller', () => {
     const controller = new Controller({});
@@ -24,7 +27,6 @@ describe('Supporting Documents Controller', () => {
   });
 
   describe('process', () => {
-
     it('saves uploaded file to upload model', () => {
       const controller = new Controller({});
       const next = sinon.stub();
@@ -41,7 +43,7 @@ describe('Supporting Documents Controller', () => {
       expect(UploadModel.prototype.save).to.have.been.calledOnce;
     });
 
-    it('saves api response to form values', (done) => {
+    it('saves api response to form values', done => {
       const controller = new Controller({});
       const files = {
         'supporting-document-upload': {
@@ -57,7 +59,7 @@ describe('Supporting Documents Controller', () => {
       });
     });
 
-    it('saves file name to form values', (done) => {
+    it('saves file name to form values', done => {
       const controller = new Controller({});
       const files = {
         'supporting-document-upload': {
@@ -101,7 +103,7 @@ describe('Supporting Documents Controller', () => {
       expect(next).to.have.been.calledWithExactly();
     });
 
-    it('calls next with error if model errors', (done) => {
+    it('calls next with error if model errors', done => {
       const err = new Error('test error');
       UploadModel.prototype.save.returns(new Promise((resolve, reject) => {
         reject(err);
@@ -114,21 +116,15 @@ describe('Supporting Documents Controller', () => {
           mimetype: 'image/png'
         }
       };
-      controller.process(request({files}), {}, (e) => {
+      controller.process(request({files}), {}, e => {
         expect(e).to.equal(err);
         done();
       });
     });
-
   });
 
   describe('saveValues', () => {
-
-    beforeEach(function() {
-      this.stub(uuid, 'v1').returns('abc123');
-    });
-
-    it('creates an array of supporting documents', (done) => {
+    it('creates an array of supporting documents', done => {
       const controller = new Controller({});
       const req = request({session: null});
       req.form.values['supporting-document-upload'] = 'url';
@@ -138,16 +134,16 @@ describe('Supporting Documents Controller', () => {
 
       controller.saveValues(req, {}, () => {
         expect(req.sessionModel.get('supporting-documents')).to.deep.equal([{
-            id: 'abc123',
-            url: 'url',
-            description: 'desc',
-            type: 'image/png'
-          }]);
+          id: 'abc123',
+          url: 'url',
+          description: 'desc',
+          type: 'image/png'
+        }]);
         done();
       });
     });
 
-    it('uses the file name for the description if none is provided', (done) => {
+    it('uses the file name for the description if none is provided', done => {
       const controller = new Controller({});
       const req = request({session: null});
       req.form.values['supporting-document-upload'] = 'url';
@@ -165,7 +161,7 @@ describe('Supporting Documents Controller', () => {
       });
     });
 
-    it('adds to array of supporting documents if previous docs exist', (done) => {
+    it('adds to array of supporting documents if previous docs exist', done => {
       const controller = new Controller({});
       const req = request({
         session: {
@@ -186,7 +182,7 @@ describe('Supporting Documents Controller', () => {
       });
     });
 
-    it('resets "add another" field', (done) => {
+    it('resets "add another" field', done => {
       const controller = new Controller({});
       const req = request({
         session: {
@@ -201,7 +197,7 @@ describe('Supporting Documents Controller', () => {
       });
     });
 
-    it('does not save "description", "filename", or "upload" fields', (done) => {
+    it('does not save "description", "filename", or "upload" fields', done => {
       const controller = new Controller({});
       const req = request({
         session: null
@@ -216,7 +212,5 @@ describe('Supporting Documents Controller', () => {
         done();
       });
     });
-
   });
-
 });

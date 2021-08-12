@@ -1,13 +1,12 @@
 'use strict';
 
-const BaseController = require('../../../apps/common/controllers/base');
+const BaseController = require('../../../../apps/common/controllers/base');
 const FormController = require('hof').controller;
 
-const request = require('../../helpers/request');
-const response = require('../../helpers/response');
+const request = reqres.req;
+const response = reqres.res;
 
 describe('BaseController', () => {
-
   let req;
   let res;
 

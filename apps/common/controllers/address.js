@@ -29,5 +29,4 @@ module.exports = class AddressController extends BaseController {
     req.sessionModel.unset(`${field}-address-lookup`);
     super.saveValues(req, res, callback);
   }
-
 };

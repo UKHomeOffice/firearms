@@ -1,3 +1,4 @@
+/* eslint-disable node/no-deprecated-api */
 'use strict';
 
 const url = require('url');

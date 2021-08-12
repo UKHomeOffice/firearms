@@ -394,7 +394,7 @@ module.exports = {
         'second-authority-holders-nationality',
         'second-authority-holders-nationality-multi',
         'second-authority-holders-nationality-second',
-        'second-authority-holders-nationality-third',
+        'second-authority-holders-nationality-third'
       ],
       next: '/second-authority-holders-postcode',
       locals: {
