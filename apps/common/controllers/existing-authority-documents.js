@@ -9,7 +9,6 @@ const uuid = require('uuid');
 const path = require('path');
 
 module.exports = class UploadController extends BaseController {
-
   get(req, res, next) {
     const docs = req.sessionModel.get('existing-authority-documents') || [];
     if (docs.length) {
@@ -32,8 +31,8 @@ module.exports = class UploadController extends BaseController {
     if (file && file.data && file.data.length) {
       req.form.values['existing-authority-filename'] = file.name;
       const model = new UploadModel(file);
-      model.save()
-        .then((result) => {
+      return model.save()
+        .then(result => {
           req.form.values['existing-authority-upload'] = result.url;
           req.form.values['existing-authority-type'] = file.mimetype;
         })
@@ -48,11 +47,10 @@ module.exports = class UploadController extends BaseController {
               'existing-authority-upload': err
             });
           }
-          next(e);
+          return next(e);
         });
-    } else {
-      next();
     }
+    return next();
   }
 
   saveValues(req, res, next) {
@@ -65,7 +63,7 @@ module.exports = class UploadController extends BaseController {
       type: req.form.values['existing-authority-type']
     });
     req.sessionModel.set('existing-authority-documents', files);
-    super.saveValues(req, res, (err) => {
+    super.saveValues(req, res, err => {
       req.sessionModel.unset('existing-authority-add-another');
       req.sessionModel.unset('existing-authority-description');
       req.sessionModel.unset('existing-authority-filename');

@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = superclass => class extends superclass {
-
   get(req, res, next) {
     const items = req.sessionModel.get('existing-authority-documents') || [];
     if (items.length === 0) {
@@ -11,5 +10,4 @@ module.exports = superclass => class extends superclass {
     }
     super.get(req, res, next);
   }
-
 };

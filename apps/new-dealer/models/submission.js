@@ -31,7 +31,7 @@ module.exports = data => {
 
   response.AuthorityType = authorityType(data.usage);
   response.ApplicationType = data.activity ?
-    _.find(activity, { 'activity': data.activity }).response : 'Renewal';
+    _.find(activity, { activity: data.activity }).response : 'Renewal';
 
   response['Customer.Organisation'] = data[`${data.organisation}-name`];
 
