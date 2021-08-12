@@ -29,7 +29,7 @@ describe('Existing Authority Documents Controller', () => {
       const controller = new Controller({});
       const next = sinon.stub();
       const files = {
-        'existing-authority-doc-upload': {
+        'existing-authority-upload': {
           data: 'foobar',
           name: 'file.png',
           mimetype: 'image/png'
@@ -37,14 +37,14 @@ describe('Existing Authority Documents Controller', () => {
       };
       controller.process(request({files}), {}, next);
       expect(UploadModel.prototype.set).to.have.been.calledOnce;
-      expect(UploadModel.prototype.set).to.have.been.calledWith(files['existing-authority-doc-upload']);
+      expect(UploadModel.prototype.set).to.have.been.calledWith(files['existing-authority-upload']);
       expect(UploadModel.prototype.save).to.have.been.calledOnce;
     });
 
     it('saves api response to form values', (done) => {
       const controller = new Controller({});
       const files = {
-        'existing-authority-doc-upload': {
+        'existing-authority-upload': {
           data: 'foobar',
           name: 'file.png',
           mimetype: 'image/png'
@@ -52,7 +52,7 @@ describe('Existing Authority Documents Controller', () => {
       };
       const req = request({files});
       controller.process(req, {}, () => {
-        expect(req.form.values['existing-authority-doc-upload']).to.equal('http://example.com/file/upload');
+        expect(req.form.values['existing-authority-upload']).to.equal('http://example.com/file/upload');
         done();
       });
     });
@@ -60,7 +60,7 @@ describe('Existing Authority Documents Controller', () => {
     it('saves file name to form values', (done) => {
       const controller = new Controller({});
       const files = {
-        'existing-authority-doc-upload': {
+        'existing-authority-upload': {
           data: 'foobar',
           name: 'file.png',
           mimetype: 'image/png'
@@ -88,7 +88,7 @@ describe('Existing Authority Documents Controller', () => {
       const controller = new Controller({});
       const next = sinon.stub();
       const files = {
-        'existing-authority-doc-upload': {
+        'existing-authority-upload': {
           data: null,
           name: null,
           mimetype: null
@@ -108,7 +108,7 @@ describe('Existing Authority Documents Controller', () => {
       }));
       const controller = new Controller({});
       const files = {
-        'existing-authority-doc-upload': {
+        'existing-authority-upload': {
           data: 'foobar',
           name: 'file.png',
           mimetype: 'image/png'
@@ -131,10 +131,10 @@ describe('Existing Authority Documents Controller', () => {
     it('creates an array of supporting documents', (done) => {
       const controller = new Controller({});
       const req = request({session: null});
-      req.form.values['existing-authority-doc-upload'] = 'url';
-      req.form.values['existing-authority-doc-description'] = 'desc';
-      req.form.values['existing-authority-doc-filename'] = 'file.png';
-      req.form.values['existing-authority-doc-type'] = 'image/png';
+      req.form.values['existing-authority-upload'] = 'url';
+      req.form.values['existing-authority-description'] = 'desc';
+      req.form.values['existing-authority-filename'] = 'file.png';
+      req.form.values['existing-authority-type'] = 'image/png';
 
       controller.saveValues(req, {}, () => {
         expect(req.sessionModel.get('existing-authority-documents')).to.deep.equal([{
@@ -150,10 +150,10 @@ describe('Existing Authority Documents Controller', () => {
     it('uses the file name for the description if none is provided', (done) => {
       const controller = new Controller({});
       const req = request({session: null});
-      req.form.values['existing-authority-doc-upload'] = 'url';
-      req.form.values['existing-authority-doc-description'] = '';
-      req.form.values['existing-authority-doc-filename'] = 'file.png';
-      req.form.values['existing-authority-doc-type'] = 'image/png';
+      req.form.values['existing-authority-upload'] = 'url';
+      req.form.values['existing-authority-description'] = '';
+      req.form.values['existing-authority-filename'] = 'file.png';
+      req.form.values['existing-authority-type'] = 'image/png';
       controller.saveValues(req, {}, () => {
         expect(req.sessionModel.get('existing-authority-documents')).to.deep.equal([{
           id: 'abc123',
@@ -174,9 +174,9 @@ describe('Existing Authority Documents Controller', () => {
           ]
         }
       });
-      req.form.values['existing-authority-doc-upload'] = 'url';
-      req.form.values['existing-authority-doc-description'] = 'desc';
-      req.form.values['existing-authority-doc-type'] = 'image/png';
+      req.form.values['existing-authority-upload'] = 'url';
+      req.form.values['existing-authority-description'] = 'desc';
+      req.form.values['existing-authority-type'] = 'image/png';
       controller.saveValues(req, {}, () => {
         expect(req.sessionModel.get('existing-authority-documents')).to.deep.equal([
           {id: 'def456', url: 'url2', description: 'desc2', type: 'image/png'},
@@ -193,8 +193,8 @@ describe('Existing Authority Documents Controller', () => {
           'existing-authority-document-add-another': true
         }
       });
-      req.form.values['existing-authority-doc-upload'] = 'url';
-      req.form.values['existing-authority-doc-description'] = 'desc';
+      req.form.values['existing-authority-upload'] = 'url';
+      req.form.values['existing-authority-description'] = 'desc';
       controller.saveValues(req, {}, () => {
         expect(req.sessionModel.get('existing-authority-doc-add-another')).to.equal(undefined);
         done();
@@ -206,13 +206,13 @@ describe('Existing Authority Documents Controller', () => {
       const req = request({
         session: null
       });
-      req.form.values['existing-authority-doc-upload'] = 'url';
-      req.form.values['existing-authority-doc-description'] = 'desc';
-      req.form.values['existing-authority-doc-filename'] = 'name';
+      req.form.values['existing-authority-upload'] = 'url';
+      req.form.values['existing-authority-description'] = 'desc';
+      req.form.values['existing-authority-filename'] = 'name';
       controller.saveValues(req, {}, () => {
-        expect(req.sessionModel.get('existing-authority-doc-upload')).to.equal(undefined);
-        expect(req.sessionModel.get('existing-authority-doc-description')).to.equal(undefined);
-        expect(req.sessionModel.get('existing-authority-doc-filename')).to.equal(undefined);
+        expect(req.sessionModel.get('existing-authority-upload')).to.equal(undefined);
+        expect(req.sessionModel.get('existing-authority-description')).to.equal(undefined);
+        expect(req.sessionModel.get('existing-authority-filename')).to.equal(undefined);
         done();
       });
     });
