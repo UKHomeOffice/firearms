@@ -34,5 +34,23 @@ module.exports = {
     legend: {
       className: 'visuallyhidden'
     }
+  },
+  'existing-authority-upload': {
+    mixin: 'input-file',
+    validate: 'required'
+  },
+  'existing-authority-description': {
+    mixin: 'textarea'
+  },
+  'existing-authority-add-another': {
+    mixin: 'radio-group',
+    validate: 'required',
+    options: [
+      'yes',
+      'no'
+    ],
+    legend: {
+      className: 'visuallyhidden'
+    }
   }
 };
