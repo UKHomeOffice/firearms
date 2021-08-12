@@ -1,26 +1,29 @@
 'use strict';
 
-const Controller = require('../../../apps/common/controllers/supporting-documents-add-another');
-const Base = require('../../../apps/common/controllers/base');
-const request = require('../../helpers/request');
-const response = require('../../helpers/response');
+const Controller = require('../../../../apps/common/controllers/supporting-documents-add-another');
+const Base = require('../../../../apps/common/controllers/base');
+const request = reqres.req;
+const response = reqres.res;
 
 const options = {
   route: '/test'
 };
 
 describe('Add Supporting Documents Controller', () => {
-
   it('extends the base controller', () => {
     const controller = new Controller(options);
     expect(controller).to.be.an.instanceOf(Base);
   });
 
   describe('get', () => {
+    let sandbox;
 
-    beforeEach(function() {
-      this.stub(Base.prototype, 'get');
+    beforeEach(function () {
+      sandbox = sinon.createSandbox();
+      sandbox.stub(Base.prototype, 'get');
     });
+
+    afterEach(() => sandbox.restore());
 
     it('calls base controllers `get` method by default', () => {
       const controller = new Controller(options);
@@ -34,7 +37,6 @@ describe('Add Supporting Documents Controller', () => {
     });
 
     describe('deleting a document', () => {
-
       it('does not call parent class `get` method', () => {
         const controller = new Controller(options);
         const req = request({
@@ -101,9 +103,6 @@ describe('Add Supporting Documents Controller', () => {
           {id: 'def456', url: 'url2'}
         ]);
       });
-
     });
-
   });
-
 });

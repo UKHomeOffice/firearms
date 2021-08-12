@@ -17,15 +17,15 @@ function validateConfig(config) {
     'next'
   ];
 
-  required.forEach((key) => {
+  required.forEach(key => {
     if (!config[key]) {
       throw new Error(`options.${key} must be defined`);
     }
   });
 }
 
-module.exports = function addressLookupHelper(config) {
-  config = applyDefaults(config);
+module.exports = function addressLookupHelper(conf) {
+  const config = applyDefaults(conf);
   validateConfig(config);
   return {
     start: {

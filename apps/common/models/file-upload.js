@@ -1,3 +1,4 @@
+/* eslint-disable node/no-deprecated-api */
 'use strict';
 
 const url = require('url');
@@ -26,7 +27,7 @@ module.exports = class UploadModel extends Model {
         if (err) {
           return reject(err);
         }
-        resolve(data);
+        return resolve(data);
       });
     }).then(data => {
       return this.auth().then(bearer => {
@@ -49,9 +50,9 @@ module.exports = class UploadModel extends Model {
       form: {
         username: config.keycloak.username,
         password: config.keycloak.password,
-        'grant_type': 'password',
-        'client_id': config.keycloak.clientId,
-        'client_secret': config.keycloak.secret
+        grant_type: 'password',
+        client_id: config.keycloak.clientId,
+        client_secret: config.keycloak.secret
       },
       method: 'POST'
     };
@@ -61,8 +62,8 @@ module.exports = class UploadModel extends Model {
         if (err) {
           return reject(err);
         }
-        resolve({
-          'bearer': JSON.parse(response.body).access_token
+        return resolve({
+          bearer: JSON.parse(response.body).access_token
         });
       });
     });

@@ -28,10 +28,10 @@ module.exports = class AddressLoopController extends BaseAddressController {
         return callback(err);
       }
       if (req.params.action === 'manual') {
-            req.sessionModel.unset([
-              `${this.options.locals.field}-postcode`,
-              'postcodeApiMeta'
-            ]);
+        req.sessionModel.unset([
+          `${this.options.locals.field}-postcode`,
+          'postcodeApiMeta'
+        ]);
         if (req.params.id !== undefined) {
           const addresses = req.sessionModel.get(this.options.addressKey);
           const value = addresses[req.params.id].address;
@@ -40,7 +40,7 @@ module.exports = class AddressLoopController extends BaseAddressController {
           const addressItems = {};
           addressItems[addressIndex] = addressLines;
           return callback(null, Object.assign({}, values,
-              addressItems
+            addressItems
           ));
         }
       }
@@ -52,7 +52,7 @@ module.exports = class AddressLoopController extends BaseAddressController {
     const address = req.form.values[`${this.options.locals.field}-address-manual`];
     const postcode = req.sessionModel.get(`${this.options.locals.field}-postcode`) || '';
     const addressKey = this.options.addressKey;
-    let addresses = req.sessionModel.get(addressKey) || {};
+    const addresses = req.sessionModel.get(addressKey) || {};
     let id = req.params.id;
     if (id === undefined) {
       const currentIndex = req.sessionModel.get('currentIndex') || 0;

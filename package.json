@@ -15,12 +15,11 @@
   "scripts": {
     "start": "node server.js",
     "dev": "NODE_ENV=development hof-build watch",
-    "test": "NODE_ENV=test yarn run test:lint && yarn run test:lint-acceptance && yarn run test:unit",
-    "test:unit": "istanbul cover _mocha",
+    "test": "NODE_ENV=test yarn run test:lint && yarn run test:unit",
+    "test:unit": "nyc _mocha \"test/_unit/**/*.spec.js\"",
     "test:acceptance": "so-acceptance --steps",
     "test:acceptance:local": "funkie --driver chromedriver npm run test:acceptance",
-    "test:lint": "eslint .",
-    "test:lint-acceptance": "eslint --no-ignore -c ./node_modules/so-acceptance/.eslintrc ./apps/*/features/**/*.js",
+    "test:lint": "eslint . --config ./node_modules/eslint-config-hof/default.js",
     "test:snyk": "snyk config set api=SNYK_TOKEN && snyk test",
     "build": "hof-build",
     "postinstall": "hof-build"
@@ -41,27 +40,28 @@
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "chai": "^3.0.0",
-    "chai-as-promised": "^6.0.0",
-    "eslint-config-homeoffice": "^2.0.0",
-    "funkie": "0.0.6",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^7.32.0",
+    "eslint-config-hof": "^1.2.1",
+    "funkie": "^0.0.6",
     "funkie-chromedriver": "0.0.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^2.5.3",
-    "mocha-junit-reporter": "^1.4.0",
-    "mocha-multi": "^0.7.1",
-    "nodemon": "^1.9.2",
-    "proxyquire": "^1.5.0",
-    "reqres": "^1.2.2",
-    "sinomocha": "^0.2.4",
-    "sinon": "^1.15.3",
-    "sinon-as-promised": "^4.0.3",
-    "sinon-chai": "^2.11.0",
+    "mocha": "^9.0.3",
+    "nyc": "^15.1.0",
+    "proxyquire": "^2.1.3",
+    "sinon": "^11.1.2",
+    "sinon-chai": "^3.7.0",
     "snyk": "^1.675.0",
     "so-acceptance": "^6.1.0"
   },
   "resolutions": {
     "underscore": "^1.12.1"
+  },
+  "mocha": {
+    "reporter": "spec",
+    "require": "test/setup.js",
+    "recursive": "true",
+    "timeout": "6000"
   },
   "bugs": {
     "url": "https://github.com/UKHomeOffice/firearms/issues"

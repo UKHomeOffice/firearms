@@ -1,6 +1,5 @@
 'use strict';
 /* eslint no-process-env: 0 */
-/* eslint implicit-dependencies/no-implicit: [2, { dev: true }] */
 
 const path = require('path');
 

@@ -98,7 +98,7 @@ module.exports = {
       next: '/club-address'
     },
     '/club-address': Object.assign(clubAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/club-address-select': Object.assign(clubAddressLookup.select, {
       fieldSettings: {
@@ -113,7 +113,7 @@ module.exports = {
       next: '/club-secretary-address'
     },
     '/club-secretary-address': Object.assign(clubSecretaryAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/club-secretary-address-select': Object.assign(clubSecretaryAddressLookup.select, {
       fieldSettings: {
@@ -135,7 +135,7 @@ module.exports = {
       next: '/second-contact-address'
     },
     '/second-contact-address': Object.assign(secondContactAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/second-contact-address-select': Object.assign(secondContactAddressLookup.select, {
       fieldSettings: {
@@ -151,7 +151,7 @@ module.exports = {
       next: '/location-address'
     },
     '/location-address': Object.assign(locationAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/location-address-select': Object.assign(locationAddressLookup.select, {
       fieldSettings: {
@@ -208,7 +208,7 @@ module.exports = {
       }
     },
     '/storage-address-add': Object.assign(storageAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/storage-address-add-select': Object.assign(storageAddressLookup.select, {
       fieldSettings: {

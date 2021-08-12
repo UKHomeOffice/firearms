@@ -3,10 +3,8 @@
 const BaseController = require('../../common/controllers/base');
 
 module.exports = class AuthorityHolderNationalityController extends BaseController {
-
   validateField(key, req) {
     if (key === this.options.locals.key) {
-
       const firstNationality = req.form.values[key].toLowerCase();
       const secondNationality = req.form.values[`${key}-second`].toLowerCase();
       const thirdNationality = req.form.values[`${key}-third`].toLowerCase();

@@ -3,7 +3,6 @@
 const Controller = require('hof').controller;
 
 module.exports = class BaseController extends Controller {
-
   locals(req, res) {
     const locals = super.locals(req, res);
     const renew = req.sessionModel.get('activity') === 'renew' && locals.renew === true;
@@ -15,5 +14,4 @@ module.exports = class BaseController extends Controller {
       armGuards: usage.indexOf('arm-guards') > -1
     });
   }
-
 };

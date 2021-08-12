@@ -21,4 +21,3 @@ module.exports = data => {
 
   return response;
 };
-

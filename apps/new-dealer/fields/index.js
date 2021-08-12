@@ -4,8 +4,8 @@ const _ = require('lodash');
 const countries = require('hof').utils.countries();
 const date = require('hof').components.date;
 
-function notBothOptions(values) {
-  values = _.castArray(values);
+function notBothOptions(vals) {
+  const values = _.castArray(vals);
   return !(values.length > 1 && values.indexOf('unspecified') > -1);
 }
 
@@ -141,7 +141,7 @@ module.exports = {
       value: 'wont-take-possession'
     }
   },
-  'import': {
+  import: {
     mixin: 'radio-group',
     validate: 'required',
     legend: {

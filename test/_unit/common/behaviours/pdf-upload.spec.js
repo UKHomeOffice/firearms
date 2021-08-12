@@ -1,11 +1,11 @@
+/* eslint-disable node/no-deprecated-api */
 'use strict';
 
-const Behaviour = require('../../../apps/common/behaviours/pdf-upload');
-const PDFModel = require('../../../apps/common/models/pdf');
-const UploadModel = require('../../../apps/common/models/file-upload');
+const Behaviour = require('../../../../apps/common/behaviours/pdf-upload');
+const PDFModel = require('../../../../apps/common/models/pdf');
+const UploadModel = require('../../../../apps/common/models/file-upload');
 
 describe('apps/common/behaviours/pdf-upload', () => {
-
   it('exports a function', () => {
     expect(Behaviour).to.be.a('function');
   });
@@ -19,7 +19,6 @@ describe('apps/common/behaviours/pdf-upload', () => {
   });
 
   describe('process', () => {
-
     class Base {
       process() {}
       locals() {}
@@ -30,14 +29,14 @@ describe('apps/common/behaviours/pdf-upload', () => {
 
     let Mixed;
     let instance;
-    let req = {
+    const req = {
       log: () => {},
       form: {
         values: {}
       }
     };
-    let html = '<html></html>';
-    let res = {
+    const html = '<html></html>';
+    const res = {
       render: sinon.stub().yields(null, html)
     };
 
@@ -59,8 +58,8 @@ describe('apps/common/behaviours/pdf-upload', () => {
       Base.prototype.process.restore();
     });
 
-    it('sets and saves the html template to the PDF model', (done) => {
-      instance.process(req, res, (err) => {
+    it('sets and saves the html template to the PDF model', done => {
+      instance.process(req, res, err => {
         expect(err).not.to.exist;
         expect(PDFModel.prototype.set).to.have.been.calledWith({template: html});
         expect(PDFModel.prototype.save).to.have.been.called;
@@ -68,8 +67,8 @@ describe('apps/common/behaviours/pdf-upload', () => {
       });
     });
 
-    it('passes the result from the PDF model to the Upload model', (done) => {
-      instance.process(req, res, (err) => {
+    it('passes the result from the PDF model to the Upload model', done => {
+      instance.process(req, res, err => {
         expect(err).not.to.exist;
         expect(UploadModel.prototype.set).to.have.been.calledWith({
           name: 'application_form.pdf',
@@ -81,47 +80,44 @@ describe('apps/common/behaviours/pdf-upload', () => {
       });
     });
 
-    it('sets the result from the Upload model to the to form values on the request', (done) => {
-      instance.process(req, res, (err) => {
+    it('sets the result from the Upload model to the to form values on the request', done => {
+      instance.process(req, res, err => {
         expect(err).not.to.exist;
         expect(req.form.values['pdf-upload']).to.equal(uploadResult.url);
         done();
       });
     });
 
-    it('calls super process with the arguments to process', (done) => {
-      instance.process(req, res, (err) => {
+    it('calls super process with the arguments to process', done => {
+      instance.process(req, res, err => {
         expect(err).not.to.exist;
         expect(Base.prototype.process).to.have.been.calledWithExactly(req, res, sinon.match.func);
         done();
       });
     });
 
-    it('passes the error to next if the html can\'t be rendered', (done) => {
+    it('passes the error to next if the html can\'t be rendered', done => {
       res.render.yields(new Error({code: 'test'}));
-      instance.process(req, res, (err) => {
+      instance.process(req, res, err => {
         expect(err).to.be.an('error');
         done();
       });
     });
 
-    it('passes the error to next if the html can\'t be converted', (done) => {
+    it('passes the error to next if the html can\'t be converted', done => {
       PDFModel.prototype.save.rejects(new Error());
-      instance.process(req, res, (err) => {
+      instance.process(req, res, err => {
         expect(err).to.be.an('error');
         done();
       });
     });
 
-    it('passes the error to next if the pdf can\'t be uploaded', (done) => {
+    it('passes the error to next if the pdf can\'t be uploaded', done => {
       UploadModel.prototype.save.rejects(new Error());
-      instance.process(req, res, (err) => {
+      instance.process(req, res, err => {
         expect(err).to.be.an('error');
         done();
       });
     });
-
   });
-
 });
-

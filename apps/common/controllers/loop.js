@@ -7,7 +7,6 @@ const express = require('express');
 const BaseController = require('./base');
 
 module.exports = class LoopController extends BaseController {
-
   constructor(options) {
     if (!options.returnTo) {
       throw new Error('options.returnTo is required for loops');
@@ -23,7 +22,7 @@ module.exports = class LoopController extends BaseController {
 
   get(req, res, callback) {
     if (req.query.delete) {
-      var router = express.Router({mergeParams: true});
+      const router = express.Router({mergeParams: true});
       router.use([
         // eslint-disable-next-line no-underscore-dangle
         this._configure.bind(this),
@@ -32,7 +31,7 @@ module.exports = class LoopController extends BaseController {
       ]);
       return router.handle(req, res, callback);
     }
-    super.get(req, res, callback);
+    return super.get(req, res, callback);
   }
 
   removeItem(req, res, callback) {
@@ -47,7 +46,7 @@ module.exports = class LoopController extends BaseController {
     const items = req.sessionModel.get(req.form.options.aggregateTo);
     if (!items.length) {
       req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, false);
-      req.form.options.aggregateFields.forEach((field) => {
+      req.form.options.aggregateFields.forEach(field => {
         req.sessionModel.unset(field);
       });
     }
@@ -83,7 +82,7 @@ module.exports = class LoopController extends BaseController {
   getValues(req, res, callback) {
     const aggregate = req.sessionModel.get(req.form.options.aggregateTo) || [];
     const added = req.sessionModel.get(`${req.form.options.aggregateTo}-saved`);
-    super.getValues(req, res, (err, values) => {
+    return super.getValues(req, res, (err, values) => {
       if (err) {
         return callback(err);
       }
@@ -93,13 +92,13 @@ module.exports = class LoopController extends BaseController {
           aggregate.push(Object.assign({id: uuid()}, fields));
           req.sessionModel.set(req.form.options.aggregateTo, aggregate);
           values[req.form.options.aggregateTo] = aggregate;
-          req.form.options.aggregateFields.forEach((f) => {
+          req.form.options.aggregateFields.forEach(f => {
             req.sessionModel.unset(f);
           });
           req.sessionModel.set(`${req.form.options.aggregateTo}-saved`, true);
         }
       }
-      callback(null, values);
+      return callback(null, values);
     });
   }
 
@@ -119,7 +118,7 @@ module.exports = class LoopController extends BaseController {
 
   saveValues(req, res, callback) {
     // remove "yes" value from session so it is no pre-populated next time around
-    super.saveValues(req, res, (err) => {
+    super.saveValues(req, res, err => {
       const field = `${req.form.options.aggregateTo}-add-another`;
       if (req.form.values[field] === 'yes') {
         req.sessionModel.unset(field);
@@ -128,5 +127,4 @@ module.exports = class LoopController extends BaseController {
       callback(err);
     });
   }
-
 };

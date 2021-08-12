@@ -67,7 +67,7 @@ module.exports = {
       next: '/exhibit-address'
     },
     '/exhibit-address': Object.assign(exhibitAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/exhibit-address-select': Object.assign(exhibitAddressLookup.select, {
       fieldSettings: {
@@ -116,7 +116,7 @@ module.exports = {
       next: '/confirm'
     },
     '/contact-address-input': Object.assign(contactAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/contact-address-input-select': Object.assign(contactAddressLookup.select, {
       fieldSettings: {

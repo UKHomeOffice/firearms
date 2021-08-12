@@ -3,7 +3,6 @@
 const AddressController = require('./base');
 
 module.exports = class ManualAddressController extends AddressController {
-
   configure(req, res, callback) {
     const defaults = {
       validate: 'required',
@@ -33,5 +32,4 @@ module.exports = class ManualAddressController extends AddressController {
     }
     super.setErrors(errors, req, res);
   }
-
 };

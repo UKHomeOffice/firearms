@@ -5,19 +5,16 @@ const StatsD = require('hot-shots');
 const client = new StatsD();
 
 const Compose = func => superclass => class extends superclass {
-
   prepare() {
     if (typeof func === 'function') {
       return Object.assign(super.prepare(), func(this.toJSON()));
     }
     return super.prepare();
   }
-
 };
 
-module.exports = config => {
-
-  config = config || {};
+module.exports = conf => {
+  const config = conf || {};
 
   // allow a custom model override
   config.Model = config.Model || CaseworkModel;
@@ -26,16 +23,15 @@ module.exports = config => {
   const Model = Compose(config.prepare)(config.Model);
 
   return superclass => class extends superclass {
-
     saveValues(req, res, next) {
       req.log('debug', 'Submitting case to icasework');
-      super.saveValues(req, res, err => {
+      return super.saveValues(req, res, err => {
         if (err) {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
         req.log('debug', `Sending icasework submission to ${model.url()}`);
-        model.save()
+        return model.save()
           .then(data => {
             req.log('debug', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
@@ -50,7 +46,5 @@ module.exports = config => {
           });
       });
     }
-
   };
-
 };

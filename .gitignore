@@ -7,3 +7,4 @@ coverage
 .env
 output/
 *.iml
+anchore-reports
