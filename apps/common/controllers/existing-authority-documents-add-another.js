@@ -12,7 +12,7 @@ module.exports = class UploadController extends BaseController {
 
   removeItem(req, res) {
     const items = req.sessionModel.get('existing-authority-documents') || [];
-    req.sessionModel.set('existing-authority-documents', items.filter((file) => file.id !== req.query.delete));
+    req.sessionModel.set('existing-authority-documents', items.filter(file => file.id !== req.query.delete));
     res.redirect(req.get('referer'));
   }
 };
