@@ -1,0 +1,15 @@
+{{#values.existing-authority-documents.length}}
+  <div id="address-summary">
+    <h2>{{#t}}pages.existing-authority-documents-add.list-header{{/t}}</h2>
+    <table>
+      <tbody>
+        {{#values.existing-authority-documents}}
+          <tr class="address-summary">
+            <td>{{description}}</td>
+            <td><a href="?delete={{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a></td>
+          </tr>
+        {{/values.existing-authority-documents}}
+      </tbody>
+    </table>
+  </div>
+{{/values.existing-authority-documents.length}}

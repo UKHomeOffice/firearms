@@ -68,7 +68,7 @@ describe('Existing Authority Documents Controller', () => {
       };
       const req = request({files});
       controller.process(req, {}, () => {
-        expect(req.form.values['existing-authority-doc-filename']).to.equal('file.png');
+        expect(req.form.values['existing-authority-filename']).to.equal('file.png');
         done();
       });
     });
@@ -196,7 +196,7 @@ describe('Existing Authority Documents Controller', () => {
       req.form.values['existing-authority-upload'] = 'url';
       req.form.values['existing-authority-description'] = 'desc';
       controller.saveValues(req, {}, () => {
-        expect(req.sessionModel.get('existing-authority-doc-add-another')).to.equal(undefined);
+        expect(req.sessionModel.get('existing-authority-add-another')).to.equal(undefined);
         done();
       });
     });

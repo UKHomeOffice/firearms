@@ -10,8 +10,8 @@ describe('Shooting Clubs Submission Model', () => {
       'location-addresses': [],
       'all-storage-addresses': [],
       'existing-authority-documents': [{
-        url: 'testURL',
-        description: 'test description',
+        url: 'Existing_Authority_Documents_URL',
+        description: 'Existing_Authority_Documents_Description',
         type: '.pdf',
         URLLoadContent: true
       }]
@@ -74,8 +74,8 @@ describe('Shooting Clubs Submission Model', () => {
       });
 
       const output = prepare(data);
-      expect(output['Document2.URL']).to.equal('testURL');
-      expect(output['Document2.Name']).to.equal('test description');
+      expect(output['Document2.URL']).to.equal('Existing_Authority_Documents_URL');
+      expect(output['Document2.Name']).to.equal('Existing_Authority_Documents_Description');
       expect(output['Document2.MimeType']).to.equal('.pdf');
       expect(output['Document2.URLLoadContent']).to.equal(true);
     });

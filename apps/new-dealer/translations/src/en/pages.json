@@ -181,6 +181,13 @@
     "header": "Upload supporting documents",
     "list-header": "Documents added"
   },
+  "existing-authority-documents": {
+    "header": "Upload supporting documents"
+  },
+  "existing-authority-documents-add": {
+    "header": "Upload supporting documents",
+    "list-header": "Documents added"
+  },
   "email": {
     "subject": {
       "customer": "Your email confirmation - application to handle prohibited weapons, components or ammunition"

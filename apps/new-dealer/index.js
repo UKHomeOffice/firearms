@@ -51,7 +51,7 @@ module.exports = {
         'reference-number',
         'authority-number'
       ],
-      next: '/existing-authority',
+      next: '/company-name',
       locals: {
         section: 'business-details'
       }
