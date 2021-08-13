@@ -1,12 +1,11 @@
 'use strict';
 
-const Model = require('hof-model');
+const Model = require('hof').model;
 const crypto = require('crypto');
 
 const config = require('../../../config');
 
 module.exports = class CaseworkModel extends Model {
-
   constructor(attributes, options) {
     super(attributes, options);
     this.options.timeout = this.options.timeout || config.icasework.timeout;
@@ -54,5 +53,4 @@ module.exports = class CaseworkModel extends Model {
     }
     return this.request(options);
   }
-
 };

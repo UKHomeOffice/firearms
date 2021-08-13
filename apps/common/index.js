@@ -7,4 +7,5 @@ module.exports = {
     '/accessibility': 'accessibility',
     '/cookies': 'cookies'
   },
+  steps: {}
 };

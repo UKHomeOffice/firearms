@@ -29,7 +29,7 @@ module.exports = class PostcodeController extends BaseController {
       return callback();
     }
 
-    postcodesModel.fetch(postcode)
+    return postcodesModel.fetch(postcode)
       .then(data => {
         if (data.length) {
           req.sessionModel.set(`${field}-addresses`, data);

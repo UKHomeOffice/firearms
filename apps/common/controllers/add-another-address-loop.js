@@ -18,5 +18,4 @@ module.exports = class AddAnotherAddressController extends BaseAddressController
       `/${this.options.locals.field}-add-another-address` : `/${this.options.locals.field}-postcode`;
     return res.redirect(`${req.baseUrl}${step}`);
   }
-
 };

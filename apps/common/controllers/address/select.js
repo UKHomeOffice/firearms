@@ -3,7 +3,6 @@
 const AddressController = require('./base');
 
 module.exports = class AddressSelectController extends AddressController {
-
   configure(req, res, callback) {
     const addresses = req.sessionModel.get(`${req.form.options.prefix}-address-list`);
     if (!addresses || !addresses.length) {
@@ -35,5 +34,4 @@ module.exports = class AddressSelectController extends AddressController {
       postcode: req.form.values[`${req.form.options.prefix}-postcode`]
     });
   }
-
 };

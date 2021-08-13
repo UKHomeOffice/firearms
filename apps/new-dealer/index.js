@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const controllers = require('hof-controllers');
 const path = require('path');
 const config = require('../../config');
 
@@ -288,13 +287,8 @@ module.exports = {
       }
     },
     '/first-authority-holders-birth': {
-      controller: controllers.date,
-      dateKey: 'first-authority-dob',
       fields: [
         'first-authority-dob',
-        'first-authority-dob-day',
-        'first-authority-dob-month',
-        'first-authority-dob-year',
         'first-authority-town-birth',
         'first-authority-country-birth'
       ],
@@ -384,13 +378,8 @@ module.exports = {
       }
     },
     '/second-authority-holders-birth': {
-      controller: controllers.date,
-      dateKey: 'second-authority-dob',
       fields: [
         'second-authority-dob',
-        'second-authority-dob-day',
-        'second-authority-dob-month',
-        'second-authority-dob-year',
         'second-authority-town-birth',
         'second-authority-country-birth'
       ],
@@ -406,7 +395,7 @@ module.exports = {
         'second-authority-holders-nationality',
         'second-authority-holders-nationality-multi',
         'second-authority-holders-nationality-second',
-        'second-authority-holders-nationality-third',
+        'second-authority-holders-nationality-third'
       ],
       next: '/second-authority-holders-postcode',
       locals: {

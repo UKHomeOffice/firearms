@@ -5,7 +5,6 @@ const AddressController = require('./base');
 const PostcodesModel = require('../../models/postcodes');
 
 module.exports = class PostcodeController extends AddressController {
-
   get(req, res, callback) {
     this.emit('complete', req, res);
     super.get(req, res, callback);
@@ -56,7 +55,7 @@ module.exports = class PostcodeController extends AddressController {
     }
 
     const postcodesModel = new PostcodesModel();
-    postcodesModel.fetch(postcode)
+    return postcodesModel.fetch(postcode)
       .then(data => {
         if (data.length) {
           const mapper = req.form.options.formatAddress || (a => a);
@@ -72,9 +71,6 @@ module.exports = class PostcodeController extends AddressController {
           messageKey: 'cant-connect'
         });
       })
-      .then(() => {
-        super.saveValues(req, res, callback);
-      });
+      .then(() => super.saveValues(req, res, callback));
   }
-
 };

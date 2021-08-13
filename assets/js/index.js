@@ -1,6 +1,7 @@
+/* eslint-disable */
 'use strict';
 
-require('hof-theme-govuk');
+require('hof/frontend/themes/gov-uk/client-js');
 
 var $ = require('jquery');
 var typeahead = require('typeahead-aria');

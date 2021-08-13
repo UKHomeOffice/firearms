@@ -9,7 +9,6 @@ const uuid = require('uuid');
 const path = require('path');
 
 module.exports = class UploadController extends BaseController {
-
   get(req, res, next) {
     const docs = req.sessionModel.get('supporting-documents') || [];
     if (docs.length) {
@@ -32,8 +31,8 @@ module.exports = class UploadController extends BaseController {
     if (file && file.data && file.data.length) {
       req.form.values['supporting-document-filename'] = file.name;
       const model = new UploadModel(file);
-      model.save()
-        .then((result) => {
+      return model.save()
+        .then(result => {
           req.form.values['supporting-document-upload'] = result.url;
           req.form.values['supporting-document-type'] = file.mimetype;
         })
@@ -48,11 +47,10 @@ module.exports = class UploadController extends BaseController {
               'supporting-document-upload': err
             });
           }
-          next(e);
+          return next(e);
         });
-    } else {
-      next();
     }
+    return next();
   }
 
   saveValues(req, res, next) {
@@ -65,7 +63,7 @@ module.exports = class UploadController extends BaseController {
       type: req.form.values['supporting-document-type']
     });
     req.sessionModel.set('supporting-documents', files);
-    super.saveValues(req, res, (err) => {
+    super.saveValues(req, res, err => {
       req.sessionModel.unset('supporting-document-add-another');
       req.sessionModel.unset('supporting-document-description');
       req.sessionModel.unset('supporting-document-filename');

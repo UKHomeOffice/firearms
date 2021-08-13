@@ -4,7 +4,7 @@ const _ = require('lodash');
 const i18nLookup = require('i18n-lookup');
 const BaseController = require('./base');
 const Mustache = require('mustache');
-const helpers = require('hof-controllers/lib/util/helpers');
+const helpers = require('hof').utils.helpers;
 
 /**
  * Extends the BaseController extending res.locals

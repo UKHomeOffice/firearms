@@ -3,6 +3,7 @@
 const config = require('../../config');
 
 const AddressLookup = require('../common/controllers/address/helper');
+const AddressSelect = require('./controllers/contact-address-select');
 const exhibitAddressLookup = AddressLookup({
   prefix: 'exhibit',
   start: '/exhibit-address',
@@ -66,7 +67,7 @@ module.exports = {
       next: '/exhibit-address'
     },
     '/exhibit-address': Object.assign(exhibitAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/exhibit-address-select': Object.assign(exhibitAddressLookup.select, {
       fieldSettings: {
@@ -110,12 +111,12 @@ module.exports = {
       continueOnEdit: true
     },
     '/contact-address-select': {
-      controller: require('./controllers/contact-address-select'),
+      controller: AddressSelect,
       fields: ['contact-address'],
       next: '/confirm'
     },
     '/contact-address-input': Object.assign(contactAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/contact-address-input-select': Object.assign(contactAddressLookup.select, {
       fieldSettings: {
@@ -125,28 +126,9 @@ module.exports = {
     '/contact-address-input-manual': contactAddressLookup.manual,
     '/confirm': {
       template: 'confirm',
-      behaviours: [pdf],
+      behaviours: [require('hof').components.summary, pdf],
       controller: require('../common/controllers/confirm'),
-      sections: {
-        'museum-details': [
-          'name',
-          {
-            field: 'exhibit-addresses',
-            parse: (value) => value.map(a => a.address).join('\n'),
-            step: '/exhibit-add-another-address'
-          },
-          'reference-number'
-        ],
-        'contact-details': [
-          'contact-name',
-          'contact-email',
-          'contact-phone',
-          {
-            field: 'contact-address',
-            step: '/contact-address'
-          }
-        ]
-      },
+      sections: require('./sections/summary-data-sections'),
       next: '/declaration'
     },
     '/declaration': {
