@@ -19,5 +19,12 @@ module.exports = {
       field: 'contact-address',
       useOriginalValue: true
     }
+  ],
+  'documents': [
+    {
+      field: 'existing-authority-documents',
+      parse: list => list.map(a => a.description).join('\n'),
+      step: '/existing-authority-documents-add'
+    }
   ]
 };
