@@ -39,6 +39,10 @@
     "guidance": "File types and sizes we accept",
     "cancel": "Don't upload and continue"
   },
+  "existing-authority-documents": {
+    "guidance": "File types and sizes we accept",
+    "cancel": "Don't upload and continue"
+  },
   "existing-authority": {
     "header": "Upload existing authority documents",
     "guidance": "File types and sizes we accept",
