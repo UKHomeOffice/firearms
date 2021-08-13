@@ -27,5 +27,16 @@ module.exports = data => {
 
   response['Customer.Address'] = data['contact-address'];
 
+  data['existing-authority-documents'] = data['existing-authority-documents'] || [];
+
+  data['existing-authority-documents'].forEach((doc, i) => {
+    const index = i + 2;
+    response[`Document${index}.URL`] = doc.url;
+    response[`Document${index}.Name`] = doc.description;
+    response[`Document${index}.MimeType`] = doc.type;
+    response[`Document${index}.URLLoadContent`] = true;
+  });
+
+
   return response;
 };
