@@ -186,10 +186,10 @@ steps:
     <<: *unit_tests
     when:
       branch:
-      include:
-        - master
-        - feature/*
-    event: pull_request
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   - name: sonar_scanner_branch
     <<: *sonar_scanner
