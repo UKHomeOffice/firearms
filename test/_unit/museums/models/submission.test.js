@@ -3,9 +3,7 @@
 const prepare = require('../../../../apps/museums/models/submission');
 
 describe('Museums Submission Model', () => {
-
   describe('Authority Type', () => {
-
     const defaults = {
       'location-addresses': [],
       'all-storage-addresses': [],
@@ -18,9 +16,8 @@ describe('Museums Submission Model', () => {
     };
 
     it('sets application type to `Renewal` if data activity is set to renew', () => {
-
       const data = Object.assign({}, defaults, {
-        'activity': 'renew',
+        activity: 'renew'
       });
 
       const output = prepare(data);
@@ -28,9 +25,8 @@ describe('Museums Submission Model', () => {
     });
 
     it('sets application type to `Application` if data activity is set to new', () => {
-
       const data = Object.assign({}, defaults, {
-        'activity': 'new',
+        activity: 'new'
       });
 
       const output = prepare(data);
@@ -38,9 +34,8 @@ describe('Museums Submission Model', () => {
     });
 
     it('sets application type to `Vary` if data activity is set to vary', () => {
-
       const data = Object.assign({}, defaults, {
-        'activity': 'vary',
+        activity: 'vary'
       });
 
       const output = prepare(data);
@@ -48,9 +43,8 @@ describe('Museums Submission Model', () => {
     });
 
     it('sets application type to `Renewal` if data activity is null', () => {
-
       const data = Object.assign({}, defaults, {
-        'activity': null,
+        activity: null
       });
 
       const output = prepare(data);
@@ -58,9 +52,8 @@ describe('Museums Submission Model', () => {
     });
 
     it('sets application type to `Renewal` if data activity is empty', () => {
-
       const data = Object.assign({}, defaults, {
-        'activity': '',
+        activity: ''
       });
 
       const output = prepare(data);
@@ -68,9 +61,8 @@ describe('Museums Submission Model', () => {
     });
 
     it('sets document information into the response', () => {
-
       const data = Object.assign({}, defaults, {
-        'activity': null
+        activity: null
       });
 
       const output = prepare(data);
