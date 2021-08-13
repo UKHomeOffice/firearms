@@ -20,7 +20,7 @@ module.exports = {
       useOriginalValue: true
     }
   ],
-  'documents': [
+  documents: [
     {
       field: 'existing-authority-documents',
       parse: list => list.map(a => a.description).join('\n'),

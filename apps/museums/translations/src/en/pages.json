@@ -47,6 +47,9 @@
   "existing-authority-add-another": {
     "list-header": "Documents added"
   },
+  "existing-authority-documents-add": {
+    "list-header": "Documents added"
+  },
   "existing-authority-documents": {
     "guidance": "File types and sizes we accept",
     "cancel": "Don't upload and continue"
@@ -63,11 +66,17 @@
       },
       "contact-details": {
         "header": "Contact details"
+      },
+      "documents": {
+        "header": "Upload existing authority documents"
       }
     },
     "fields": {
       "name": {
         "label": "Name"
+      },
+      "existing-authority-documents": {
+        "label": "Documents"
       }
     }
   }
