@@ -1,10 +1,11 @@
 'use strict';
 
 const _ = require('lodash');
-const countries = require('hof-util-countries')();
+const countries = require('hof').utils.countries();
+const date = require('hof').components.date;
 
-function notBothOptions(values) {
-  values = _.castArray(values);
+function notBothOptions(vals) {
+  const values = _.castArray(vals);
   return !(values.length > 1 && values.indexOf('unspecified') > -1);
 }
 
@@ -140,7 +141,7 @@ module.exports = {
       value: 'wont-take-possession'
     }
   },
-  'import': {
+  import: {
     mixin: 'radio-group',
     validate: 'required',
     legend: {
@@ -460,20 +461,9 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
-  'first-authority-dob': {
-  },
-  'first-authority-dob-day': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
-  'first-authority-dob-month': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
-  'first-authority-dob-year': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
+  'first-authority-dob': date('first-authority-dob', {
+    validate: ['required', 'before']
+  }),
   'first-authority-town-birth': {
     mixin: 'input-text',
     validate: 'required'
@@ -482,20 +472,9 @@ module.exports = {
     mixin: 'input-text',
     validate: 'required'
   },
-  'second-authority-dob': {
-  },
-  'second-authority-dob-day': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
-  'second-authority-dob-month': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
-  'second-authority-dob-year': {
-    validate: ['required', 'numeric'],
-    includeInSummary: false
-  },
+  'second-authority-dob': date('second-authority-dob', {
+    validate: ['required', 'before']
+  }),
   'second-authority-town-birth': {
     mixin: 'input-text',
     validate: 'required'

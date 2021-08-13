@@ -4,7 +4,6 @@ const _ = require('lodash');
 const Controller = require('../../common/controllers/legacy-confirm');
 
 module.exports = class ConfirmController extends Controller {
-
   locals(req, res) {
     const content = req.rawTranslate('pages.confirm');
     const locals = super.locals(req, res);
@@ -61,22 +60,24 @@ module.exports = class ConfirmController extends Controller {
 
   addAddressLoopSection(data, translate) {
     let addresses = data.storageAddresses;
-    if (addresses !== undefined) {
-      addresses = _.map(_.values(addresses), 'address');
-      const items = addresses.map(value => ({
-        fields: [{
-          value,
-          field: 'storage-address'
-        }]
-      }));
-      const section = {
-        items,
-        section: translate('pages.storage-address.summary'),
-        hasMultipleFields: true,
-        step: 'storage-add-another-address'
-      };
-      return section;
+    if (!addresses) {
+      return addresses;
     }
+
+    addresses = _.map(_.values(addresses), 'address');
+    const items = addresses.map(value => ({
+      fields: [{
+        value,
+        field: 'storage-address'
+      }]
+    }));
+    const section = {
+      items,
+      section: translate('pages.storage-address.summary'),
+      hasMultipleFields: true,
+      step: 'storage-add-another-address'
+    };
+    return section;
   }
 
   getWeaponsAmmunitionQuantity(data, translate, key) {

@@ -1,0 +1,158 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-vault
+spec:
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  replicas: 2
+  {{ else }}
+  replicas: 1
+  {{ end }}
+  selector:
+    matchLabels:
+      name: file-vault
+      service: file-vault
+  template:
+    metadata:
+      labels:
+        name: file-vault
+        service: file-vault
+    spec:
+      containers:
+        - name: file-vault
+          image: quay.io/ukhomeofficedigital/file-vault:bab000624c4323823cd4df723b44bc3bd29fec2c
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 128m
+            limits:
+              memory: 512Mi
+              cpu: 600m
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: {{ .APP_NAME }}-configmap
+                {{ end }}
+          env:
+            # because the internal virus scanner has a self signed cert!
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: "0"
+            - name: FILE_VAULT_URL
+            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://{{ .APP_NAME }}-branch.fv-dev.sas-notprod.homeoffice.gov.uk
+            - name: DEBUG
+              value: "true"
+            {{ end }}
+            - name: PORT
+              value: "3000"
+            - name: CLAMAV_REST_URL
+              value: https://clamav.virus-scan.svc.cluster.local/scan
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-bucket
+                  key: access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-bucket
+                  key: secret_access_key
+            - name: AWS_KMS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-bucket
+                  key: kms_key_id
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: s3-bucket
+                  key: bucket_name
+            - name: AWS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ses
+                  key: password
+            - name: FILE_EXTENSION_WHITELIST
+              value: 'pdf,doc,docx,txt,jpg,jpeg,png,xls,xlsx,odt,ods'
+          securityContext:
+            runAsNonRoot: true
+
+        - name: keycloak-proxy
+          image: quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.2.2
+          resources:
+            limits:
+              memory: "1024Mi"
+              cpu: 200m
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: {{ .APP_NAME }}-configmap
+                {{ end }}
+          env:
+            - name: PROXY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak
+                  key: secret
+            - name: PROXY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak
+                  key: id
+            - name: PROXY_LISTEN
+              value: 127.0.0.1:3001
+            - name: PROXY_REDIRECTION_URL
+            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://{{ .APP_NAME }}-branch.fv-dev.sas-notprod.homeoffice.gov.uk
+            {{ end }}
+            - name: PROXY_UPSTREAM_URL
+              value: "http://127.0.0.1:3000"
+          command:
+            - "/opt/keycloak-proxy"
+            - "--resources=uri=/file|methods=GET,POST|roles=caseworkers"
+            - "--resources=uri=/*"
+            - "--enable-logging=true"
+            - "--enable-json-logging=true"
+          securityContext:
+            runAsNonRoot: true
+
+        - name: nginx-proxy
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          env:
+{{ file .FILEVAULT_NGINX_SETTINGS | indent 12 }}
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443
+          volumeMounts:
+            - mountPath: /public
+              name: public
+          securityContext:
+            runAsNonRoot: true
+      volumes:
+        - name: public
+          emptyDir: {}

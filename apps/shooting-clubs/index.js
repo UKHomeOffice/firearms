@@ -98,7 +98,7 @@ module.exports = {
       next: '/club-address'
     },
     '/club-address': Object.assign(clubAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/club-address-select': Object.assign(clubAddressLookup.select, {
       fieldSettings: {
@@ -113,7 +113,7 @@ module.exports = {
       next: '/club-secretary-address'
     },
     '/club-secretary-address': Object.assign(clubSecretaryAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/club-secretary-address-select': Object.assign(clubSecretaryAddressLookup.select, {
       fieldSettings: {
@@ -135,7 +135,7 @@ module.exports = {
       next: '/second-contact-address'
     },
     '/second-contact-address': Object.assign(secondContactAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/second-contact-address-select': Object.assign(secondContactAddressLookup.select, {
       fieldSettings: {
@@ -151,7 +151,7 @@ module.exports = {
       next: '/location-address'
     },
     '/location-address': Object.assign(locationAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/location-address-select': Object.assign(locationAddressLookup.select, {
       fieldSettings: {
@@ -208,7 +208,7 @@ module.exports = {
       }
     },
     '/storage-address-add': Object.assign(storageAddressLookup.start, {
-      formatAddress: (address) => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
     }),
     '/storage-address-add-select': Object.assign(storageAddressLookup.select, {
       fieldSettings: {
@@ -217,50 +217,9 @@ module.exports = {
     }),
     '/storage-address-add-manual': storageAddressLookup.manual,
     '/confirm': {
-      controller: require('./controllers/confirm'),
-      behaviours: [pdf],
-      sections: {
-        authority: ['reference-number'],
-        club: [
-          'club-name',
-          {
-            field: 'club-address',
-            step: '/club-address'
-          },
-          'new-club'
-        ],
-        secretary: [
-          'club-secretary-name',
-          {
-            field: 'club-secretary-address',
-            step: '/club-secretary-address'
-          },
-          'club-secretary-email',
-          'club-secretary-phone'
-        ],
-        'second-contact': [
-          'second-contact-name',
-          {
-            field: 'second-contact-address',
-            step: '/second-contact-address'
-          },
-          'second-contact-email',
-          'second-contact-phone'
-        ],
-        'range-addresses': [
-          {
-            field: 'location-addresses',
-            step: '/location-add-another-address'
-          }
-        ],
-        'storage-addresses': [
-          {
-            field: 'all-storage-addresses',
-            parse: list => list.map(a => a.address).join('\n'),
-            step: '/storage-address'
-          }
-        ]
-      },
+      behaviours: [require('hof').components.summary, pdf],
+      controller: require('../common/controllers/confirm'),
+      sections: require('./sections/summary-data-sections'),
       next: '/declaration'
     },
     '/declaration': {

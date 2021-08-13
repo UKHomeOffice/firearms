@@ -1,9 +1,9 @@
 'use strict';
 
 const path = require('path');
-const emailer = require('hof-behaviour-emailer');
+const emailer = require('hof').components.emailer;
 const config = require('../../../config');
-const moment = require('moment-timezone');
+const moment = require('moment');
 
 module.exports = conf => {
   const defaults = {
@@ -14,7 +14,7 @@ module.exports = conf => {
         reference: data.caseid,
         type: conf.type,
         name: data[nameKey],
-        date: moment().tz('Europe/London').format('LLL')
+        date: moment().format('LLL')
       };
     }
   };

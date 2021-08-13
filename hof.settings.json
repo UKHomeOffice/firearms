@@ -1,7 +1,17 @@
 {
-  "build": {
-    "translate": {
-      "shared": "./apps/common/translations/src"
-    }
+  "appName": "Firearms Licensing",
+  "theme": "govUK",
+  "translations": "./apps/common/translations",
+  "routes": [
+    "./apps/common",
+    "./apps/museums",
+    "./apps/new-dealer",
+    "./apps/shooting-clubs",
+    "./apps/supporting-documents"
+  ],
+  "fields": "./apps/common/fields",
+  "views": ["./apps/common/views"],
+  "session": {
+    "name": "firearms-licensing.hof.sid"
   }
 }

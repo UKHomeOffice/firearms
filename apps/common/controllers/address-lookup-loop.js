@@ -4,7 +4,6 @@ const _ = require('lodash');
 const BaseAddressController = require('./base-address');
 
 module.exports = class AddressLookupLoopController extends BaseAddressController {
-
   configure(req, res, callback) {
     if (req.params.action === 'edit') {
       const steps = req.sessionModel.get('steps');
@@ -15,8 +14,8 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
       req.sessionModel.unset(`${this.options.locals.field}-add-another-address`);
     }
     const addresses = req.sessionModel.get(`${this.options.locals.field}-addresses`);
-    const formattedlist = _.map(_.map(addresses, 'formatted_address'), address => {
-      address = address.split('\n').join(', ');
+    const formattedlist = _.map(_.map(addresses, 'formatted_address'), addr => {
+      const address = addr.split('\n').join(', ');
       return {
         value: address,
         label: address
@@ -39,7 +38,7 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     const address = req.form.values[`${this.options.locals.field}-address-lookup`].split(', ').join('\n');
     let postcode;
     const addressKey = this.options.addressKey;
-    let addresses = req.sessionModel.get(addressKey) || {};
+    const addresses = req.sessionModel.get(addressKey) || {};
     const currentIndex = req.sessionModel.get('currentIndex') || 0;
     const id = parseInt(currentIndex, 10);
     req.sessionModel.set('currentIndex', id + 1);
@@ -53,5 +52,4 @@ module.exports = class AddressLookupLoopController extends BaseAddressController
     req.sessionModel.unset(`${this.options.locals.field}-postcode`);
     super.saveValues(req, res, callback);
   }
-
 };

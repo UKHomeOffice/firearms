@@ -4,7 +4,6 @@ const BaseController = require('../base');
 const path = require('path');
 
 module.exports = class AddressController extends BaseController {
-
   constructor(options) {
     if (!options.prefix) {
       throw new Error('options.prefix is required');
@@ -17,5 +16,4 @@ module.exports = class AddressController extends BaseController {
       'manual-entry': path.join(req.form.options.manual || '', req.params.action || '')
     });
   }
-
 };

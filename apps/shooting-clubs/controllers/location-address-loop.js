@@ -4,14 +4,13 @@ const _ = require('lodash');
 const LoopController = require('../../common/controllers/loop');
 
 module.exports = class LocationAddressLoopController extends LoopController {
-
   getLoopFields(req, res) {
     return _.mapKeys(super.getLoopFields(req, res), (value, key) => key.replace(/^location\-/, ''));
   }
 
   locals(req, res) {
     const locals = super.locals(req, res);
-    const items = locals.items.map((address) => {
+    const items = locals.items.map(address => {
       return {
         id: address.id,
         address: address.address,
@@ -20,7 +19,7 @@ module.exports = class LocationAddressLoopController extends LoopController {
     });
     return Object.assign({}, locals, {
       items: items,
-      hasCategories: _.some(items, (address) => address.categories.length)
+      hasCategories: _.some(items, address => address.categories.length)
     });
   }
 
@@ -31,5 +30,4 @@ module.exports = class LocationAddressLoopController extends LoopController {
       return result === key ? value : result;
     }).join('\n');
   }
-
 };

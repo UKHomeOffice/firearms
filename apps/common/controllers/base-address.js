@@ -4,7 +4,6 @@ const BaseController = require('./base');
 const _ = require('lodash');
 
 module.exports = class BaseAddressController extends BaseController {
-
   locals(req, res) {
     const locals = super.locals(req, res);
     let addresses = req.sessionModel.get(this.options.addressKey);

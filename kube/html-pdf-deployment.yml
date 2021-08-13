@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: html-pdf-converter
+spec:
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  replicas: 2
+  {{ else }}
+  replicas: 1
+  {{ end }}
+  selector:
+    matchLabels:
+      name: html-pdf-converter
+  template:
+    metadata:
+      labels:
+        name: html-pdf-converter
+        service: html-pdf-converter
+    spec:
+      containers:
+        - name: html-pdf-converter
+          image: quay.io/ukhomeofficedigital/html-pdf-converter:e9211de94dcf0386775ef082911b12c9d219f93c
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          env:
+            - name: APP_PORT
+              value: "8001"
+          securityContext:
+            runAsNonRoot: true
+
+        - name: nginx-proxy
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          env:
+            - name: PROXY_SERVICE_HOST
+              value: 127.0.0.1
+            - name: PROXY_SERVICE_PORT
+              value: "8001"
+            - name: ENABLE_UUID_PARAM
+              value: "FALSE"
+            - name: HTTPS_REDIRECT
+              value: "FALSE"
+            - name: NAXSI_USE_DEFAULT_RULES
+              value: "FALSE"
+            - name: PORT_IN_HOST_HEADER
+              value: "FALSE"
+            - name: ERROR_REDIRECT_CODES
+              value: "599"
+          securityContext:
+            runAsNonRoot: true
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443

@@ -6,7 +6,6 @@ const crypto = require('crypto');
 const config = require('../../../config');
 
 module.exports = class DocumentModel extends Model {
-
   url() {
     return config.icasework.url + config.icasework.getcasepath;
   }
@@ -35,5 +34,4 @@ module.exports = class DocumentModel extends Model {
     options.method = 'GET';
     return this.request(options);
   }
-
 };

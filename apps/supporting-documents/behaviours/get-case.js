@@ -3,7 +3,6 @@
 const Model = require('../../common/models/i-casework-getcase');
 
 module.exports = superclass => class extends superclass {
-
   saveValues(req, res, next) {
     const model = new Model(req.form.values);
     model.fetch()
@@ -20,5 +19,4 @@ module.exports = superclass => class extends superclass {
       })
       .catch(e => next(e));
   }
-
 };

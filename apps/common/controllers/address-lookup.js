@@ -4,7 +4,6 @@ const _ = require('lodash');
 const BaseController = require('./base');
 
 module.exports = class AddressLookup extends BaseController {
-
   locals(req, res) {
     const locals = super.locals(req, res);
     const postcode = req.sessionModel.get(`${locals.field}-postcode`);
@@ -14,8 +13,8 @@ module.exports = class AddressLookup extends BaseController {
   configure(req, res, callback) {
     const field = this.options.locals.field;
     const addresses = req.sessionModel.get(`${field}-addresses`);
-    const formattedlist = _.map(_.map(addresses, 'formatted_address'), address => {
-      address = address.split('\n').join(', ');
+    const formattedlist = _.map(_.map(addresses, 'formatted_address'), addr => {
+      const address = addr.split('\n').join(', ');
       return {
         value: address,
         label: address
@@ -34,5 +33,4 @@ module.exports = class AddressLookup extends BaseController {
     req.sessionModel.unset(`${field}-address-manual`);
     super.saveValues(req, res, callback);
   }
-
 };
