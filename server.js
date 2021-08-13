@@ -69,6 +69,12 @@ app.use('/supporting-documents', (req, res, next) => {
   next();
 });
 
+app.use('/supporting-documents', (req, res, next) => {
+  res.locals.appName = 'Submit Supporting Documents';
+  appName = res.locals.appName;
+  next();
+});
+
 if (!config.env || config.env === 'ci') {
   app.use(mockAPIs);
 }
