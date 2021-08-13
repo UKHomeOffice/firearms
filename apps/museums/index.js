@@ -74,7 +74,7 @@ module.exports = {
       next: '/existing-authority-add-another'
     },
     '/existing-authority-add-another': {
-      template: 'existing-authority-documents-add-another',
+      // template: 'existing-authority-documents-add-another',
       controller: require('../common/controllers/existing-authority-documents-add-another'),
       behaviours: [require('../common/behaviours/existing-authority-documents-add')],
       fields: [
