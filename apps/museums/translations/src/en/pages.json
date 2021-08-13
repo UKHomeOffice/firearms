@@ -44,6 +44,18 @@
   "contact-address-select": {
     "header": "Select the contact address"
   },
+  "existing-authority-add-another": {
+    "list-header": "Documents added"
+  },
+  "existing-authority-documents": {
+    "guidance": "File types and sizes we accept",
+    "cancel": "Don't upload and continue"
+  },
+  "existing-authority": {
+    "header": "Upload existing authority documents",
+    "guidance": "File types and sizes we accept",
+    "cancel": "Don't upload and continue"
+  },
   "confirm": {
     "sections": {
       "museum-details": {
