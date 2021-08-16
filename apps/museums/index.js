@@ -1,6 +1,7 @@
 'use strict';
 
 const config = require('../../config');
+const _ = require('lodash');
 
 const AddressLookup = require('../common/controllers/address/helper');
 const AddressSelect = require('./controllers/contact-address-select');
@@ -51,8 +52,9 @@ module.exports = {
       forks: [{
         target: '/authority-details',
         condition: {
-          field: 'activity',
-          value: 'renew'
+          condition: req => {
+            return _.includes(['vary', 'renew'], req.sessionModel.get('activity'));
+          }
         }
       }]
     },
