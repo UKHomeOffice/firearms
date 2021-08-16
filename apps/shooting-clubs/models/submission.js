@@ -11,7 +11,7 @@ module.exports = data => {
 
   response.AuthorityType = 'Shooting clubs';
   response.ApplicationType = data.activity ?
-    _.find(activity, { 'activity': data.activity }).response : 'Renewal';
+    _.find(activity, { activity: data.activity }).response : 'Renewal';
 
   if (data.activity === 'renew' || data.activity === 'vary') {
     response['Cusomter.CustomerReference'] = data['reference-number'];
