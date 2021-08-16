@@ -12,7 +12,7 @@ module.exports = data => {
 
   response.AuthorityType = 'Museums';
   response.ApplicationType = data.activity ?
-    _.find(activity, { 'activity': data.activity }).response : 'Renewal';
+    _.find(activity, { activity: data.activity }).response : 'Renewal';
 
   if (data.activity === 'renew' || data.activity === 'vary') {
     response['Customer.CustomerReference'] = data['reference-number'];
