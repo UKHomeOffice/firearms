@@ -138,6 +138,9 @@
       },
       "all-storage-addresses": {
         "label": "Address"
+      },
+      "name": {
+        "label": "Name"
       }
     }
   },
