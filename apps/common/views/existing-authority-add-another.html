@@ -1,0 +1,12 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#renew}}
+      {{> partials-important-message}}
+    {{/renew}}
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+    {{> partials-file-list-existing-authority}}
+  {{/page-content}}
+{{/partials-page}}

@@ -73,7 +73,7 @@ module.exports = {
       ],
       next: '/new-club',
       forks: [{
-        target: '/authority-details',
+        target: '/existing-authority',
         condition: req => {
           return _.includes(['vary', 'renew'], req.sessionModel.get('activity'));
         }
@@ -85,10 +85,30 @@ module.exports = {
       ],
       next: '/club-name'
     },
-    '/authority-details': {
+    '/existing-authority': {
+      controller: require('../common/controllers/existing-authority-documents'),
       fields: [
-        'reference-number'
+        'existing-authority-upload',
+        'existing-authority-description'
       ],
+      continueOnEdit: true,
+      next: '/existing-authority-add-another'
+    },
+    '/existing-authority-add-another': {
+      controller: require('../common/controllers/existing-authority-documents-add-another'),
+      behaviours: [require('../common/behaviours/existing-authority-documents-add')],
+      fields: [
+        'existing-authority-add-another'
+      ],
+      forks: [{
+        isLoop: true,
+        target: '/existing-authority',
+        condition: {
+          field: 'existing-authority-add-another',
+          value: 'yes'
+        }
+      }],
+      continueOnEdit: true,
       next: '/club-name'
     },
     '/club-name': {
