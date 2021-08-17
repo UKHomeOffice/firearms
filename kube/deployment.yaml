@@ -58,6 +58,8 @@ spec:
             # because some internal services have self signed certs
             - name: TZ
               value: Europe/London
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: "0"
             - name: REDIS_PORT
               value: "6379"
             - name: REDIS_HOST
