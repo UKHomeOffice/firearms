@@ -7,6 +7,10 @@
     "label": "Customer reference number",
     "hint": "Your customer reference number can be found at the top left of your authority letter."
   },
+  "existing-authority": {
+    "label": "Attach existing authority",
+    "hint": ""
+  },
   "organisation": {
     "options": {
       "company": {
