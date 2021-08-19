@@ -1,14 +1,14 @@
 apiVersion: cert-manager.io/v1alpha3
 kind: Certificate
 metadata:
-  name: branch-tls-internal
+  name: branch-tls-external
   labels:
     cert-manager.io/solver: route53
 spec:
-  commonName: "*.internal.firearms-branch.homeoffice.gov.uk"
+  commonName: "*.{{ .BRANCH_ENV }}.homeoffice.gov.uk"
   dnsNames:
-  - "*.internal.firearms-branch.homeoffice.gov.uk"
+  - "*.{{ .BRANCH_ENV }}.homeoffice.gov.uk"
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt-prod
-  secretName: branch-tls-internal
+  secretName: branch-tls-external

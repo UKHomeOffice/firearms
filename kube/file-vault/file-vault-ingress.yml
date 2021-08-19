@@ -7,7 +7,7 @@ spec:
   tls:
   - hosts:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-    - fv-branch.firearms-branch.homeoffice.gov.uk
+    - fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
     - supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
@@ -22,7 +22,7 @@ spec:
     {{ end }}
   rules:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-  - host: fv-branch.firearms-branch.homeoffice.gov.uk
+  - host: fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
   - host: supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
