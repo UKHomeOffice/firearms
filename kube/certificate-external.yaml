@@ -2,6 +2,8 @@ apiVersion: cert-manager.io/v1alpha3
 kind: Certificate
 metadata:
   name: branch-tls-external
+  labels:
+    cert-manager.io/solver: route53
 spec:
   commonName: "*.firearms-branch.homeoffice.gov.uk"
   dnsNames:
