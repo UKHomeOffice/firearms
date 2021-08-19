@@ -133,7 +133,7 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.firearms-branch.homeoffice.gov.uk/file
+              value: https://fv-branch.firearms-branch.homeoffice.gov.uk/file
             {{ end }}
             - name: PDF_CONVERTER_URL
               {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}

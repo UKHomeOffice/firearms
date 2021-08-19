@@ -1,18 +1,13 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-  name: file-vault-ingress-{{ .DRONE_SOURCE_BRANCH }}
-  {{ else }}
   name: file-vault-ingress
-  {{ end }}
 {{ file .INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
 spec:
   tls:
   - hosts:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-    - fv-{{ .DRONE_BUILD_NUMBER }}.firearms-branch.homeoffice.gov.uk
-    - fv-{{ .DRONE_SOURCE_BRANCH }}.firearms-branch.homeoffice.gov.uk
+    - fv-branch.firearms-branch.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
     - supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
@@ -27,7 +22,7 @@ spec:
     {{ end }}
   rules:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-  - host: fv-{{ .DRONE_SOURCE_BRANCH }}.firearms-branch.homeoffice.gov.uk
+  - host: fv-branch.firearms-branch.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
   - host: supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
@@ -39,9 +34,5 @@ spec:
       paths:
       - path: /
         backend:
-          {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-          serviceName: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-          {{ else }}
           serviceName: file-vault
-          {{ end }}
           servicePort: 10443
