@@ -2,7 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
   name: html-pdf-converter
+  {{ end }}
 spec:
   {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   replicas: 2
@@ -11,16 +15,30 @@ spec:
   {{ end }}
   selector:
     matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
       name: html-pdf-converter
+      {{ end }}
   template:
     metadata:
       labels:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+        service: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
         name: html-pdf-converter
         service: html-pdf-converter
+        {{ end }}
     spec:
       containers:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        - name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
         - name: html-pdf-converter
-          image: quay.io/ukhomeofficedigital/html-pdf-converter:e9211de94dcf0386775ef082911b12c9d219f93c
+        {{ end }}
+          # html-pdf-converter:v2.1.0
+          image: quay.io/ukhomeofficedigital/html-pdf-converter@sha256:45814848f0c1d56169ab90990891b03d52d59d7558255cfca8ed2ce2a02d034e
           imagePullPolicy: Always
           resources:
             requests:
@@ -36,7 +54,8 @@ spec:
             runAsNonRoot: true
 
         - name: nginx-proxy
-          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3
+          # nginx-proxy-govuk:v4
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
           resources:
             requests:
               memory: 10Mi
