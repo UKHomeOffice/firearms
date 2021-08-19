@@ -48,7 +48,7 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-branch.firearms-branch.homeoffice.gov.uk
+              value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             - name: DEBUG
               value: "true"
             {{ end }}
@@ -120,7 +120,7 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-branch.firearms-branch.homeoffice.gov.uk
+              value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
             - name: PROXY_UPSTREAM_URL
               value: "http://127.0.0.1:3000"
