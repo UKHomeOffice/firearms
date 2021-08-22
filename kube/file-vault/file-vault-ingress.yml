@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: file-vault-ingress
-{{ file .INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
+{{ file .FILEVAULT_INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
 spec:
   tls:
   - hosts:
