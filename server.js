@@ -25,6 +25,11 @@ settings = Object.assign({}, settings, {
   redis: config.redis
 });
 
+// TODO Remove once so-acceptance module has been removed
+if (config.env === 'ci') {
+  settings.session.name = 'hod.sid';
+}
+
 const app = hof(settings);
 
 app.use((req, res, next) => {
