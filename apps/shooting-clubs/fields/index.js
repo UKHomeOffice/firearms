@@ -3,6 +3,7 @@
 module.exports = {
   'new-club': {
     mixin: 'radio-group',
+    includeInSummary: false,
     legend: {
       className: 'visuallyhidden'
     },
@@ -150,5 +151,40 @@ module.exports = {
   'storage-address-secretary': {
     mixin: 'checkbox-group',
     options: []
+  },
+  'purchase-order': {
+    mixin: 'radio-group',
+    includeInSummary: false,
+    validate: 'required',
+    className: 'form-group',
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'Yes',
+      toggle: 'purchase-order-number',
+      child: 'input-text'
+    }, {
+      value: 'No'
+    }]
+  },
+  'purchase-order-number': {
+    validate: 'required',
+    dependent: {
+      field: 'purchase-order',
+      value: 'Yes'
+    }
+  },
+  'invoice-contact-name': {
+    mixin: 'input-text',
+    validate: 'required'
+  },
+  'invoice-contact-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email']
+  },
+  'invoice-contact-phone': {
+    mixin: 'input-text',
+    validate: 'required'
   }
 };

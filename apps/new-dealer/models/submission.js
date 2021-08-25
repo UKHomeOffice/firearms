@@ -134,6 +134,15 @@ module.exports = data => {
   response.ActivityDeactivation = contains(data.usage, 'deactivation');
   response.ActivityOther = contains(data.usage, 'other');
 
+  /* Invoice Details - TBC */
+
+  // response['Invoice.ContactAddress'] = data['invoice-address-input-manual']
+  //                                  || data['invoice-address-input-select'];
+  // response['Invoice.ContactName'] = data['invoice-contact-name'];
+  // response['Invoice.ContactEmail'] = data['invoice-contact-email'];
+  // response['Invoice.ContactPhone'] = data['invoice-contact-phone'];
+  // response['Invoice.PurchaseOrder'] = data['purchase-order-number'];
+
   data['supporting-documents'] = data['supporting-documents'] || [];
   data['existing-authority-documents'] = data['existing-authority-documents'] || [];
 

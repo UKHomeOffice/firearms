@@ -115,10 +115,9 @@ describe('S5 Submission Model', () => {
     });
 
     it('sets the supporting documents to include the existing authority documents', () => {
-
       const input = Object.assign({}, defaults, {
         usage: 'transfer',
-        'activity': null
+        activity: null
       });
 
       const output = prepare(input);

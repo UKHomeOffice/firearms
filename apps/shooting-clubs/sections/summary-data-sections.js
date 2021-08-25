@@ -46,4 +46,12 @@ module.exports = {
       step: '/storage-address'
     }
   ]
+  /*,
+  documents: [
+    {
+      field: 'existing-authority-documents',
+      parse: list => list.map(a => a.description).join('\n'),
+      step: '/existing-authority-add-another'
+    }
+  ]*/
 };
