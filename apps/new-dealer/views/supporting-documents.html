@@ -1,0 +1,18 @@
+{{<partials-page}}
+  {{$encoding}}enctype="multipart/form-data"{{/encoding}}
+  {{$page-content}}
+    {{#renew}}
+      {{> partials-important-message}}
+    {{/renew}}
+    {{> partials-supporting-documents-evidence-type-guidance}}
+    <p></p>
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{> partials-supporting-documents-guidance}}
+    <p>{{#input-submit}}upload-file{{/input-submit}}</p>
+    {{#values.supporting-documents.length}}
+    <p><a href="{{nextPage}}">{{#t}}pages.supporting-documents.cancel{{/t}}</a></p>
+    {{/values.supporting-documents.length}}
+  {{/page-content}}
+{{/partials-page}}

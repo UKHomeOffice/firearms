@@ -32,6 +32,12 @@ module.exports = class ConfirmController extends Controller {
     const docs = this.getSupportingDocuments(data, translate);
     result.splice(9, 0, docs);
 
+    const existingAuthorityDocuments = this.getExistingAuthorityDocuments(data, translate);
+    result.splice(10, 0, existingAuthorityDocuments);
+
+    const invoiceAddress = this.addInvoiceAddressDetails(data, translate, result.filter(a => a));
+    result.splice(11, 0, invoiceAddress);
+
     result = this.addContactDetailsSection(data, translate, result.filter(a => a));
 
     return result;
@@ -149,6 +155,43 @@ module.exports = class ConfirmController extends Controller {
 
     return section;
   }
+
+  getExistingAuthorityDocuments(data, translate) {
+    if (!data['existing-authority-documents'] || !data['existing-authority-documents'].length) {
+      return null;
+    }
+    const items = data['existing-authority-documents'].map(doc => ({
+      fields: {
+        field: 'existing-authority-documents',
+        value: doc.description
+      }
+    }));
+    return {
+      items,
+      hasMultipleFields: true,
+      section: translate('pages.existing-authority-documents-add.header'),
+      step: '/existing-authority-documents-add-another'
+    };
+  }
+
+  addInvoiceAddressDetails(data, translate, result) {
+    const contactAddress = data['invoice-address'];
+    result.map(section => {
+      if (section.section === translate('pages.invoice-details.header')) {
+        section.fields.forEach(field => {
+          if (field.field === 'contact-holder') {
+            field.value = data['invoice-contact-name'];
+          }
+        });
+
+        return section.fields.push({
+          label: translate('fields.invoice-address-manual.label'),
+          value: contactAddress,
+          step: '/invoice-address-input'
+        });
+      }
+    });
+  };
 
   getContactHoldersName(data) {
     const contactHolder = data['contact-holder'];

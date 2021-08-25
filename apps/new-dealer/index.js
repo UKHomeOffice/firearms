@@ -3,10 +3,19 @@
 const _ = require('lodash');
 const path = require('path');
 const config = require('../../config');
+const AddressLookup = require('../common/controllers/address/helper');
 
 const ammunition = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'ammunition');
 const weapons = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'weapons');
 const storedOnPremises = req => req.sessionModel.get('stored-on-premises') === 'true';
+
+const invoiceAddressLookup = AddressLookup({
+  prefix: 'invoice',
+  start: '/invoice-address-input',
+  select: '/invoice-address-input-select',
+  manual: '/invoice-address-input-manual',
+  next: '/purchase-order'
+});
 
 const Submission = require('../common/behaviours/casework-submission');
 const submission = Submission({
@@ -34,13 +43,16 @@ module.exports = {
   steps: {
     '/privacy': {
       template: 'privacy',
+      next: '/before-you-start'
+    },
+    '/before-you-start': {
       next: '/activity'
     },
     '/activity': {
       fields: [
         'activity'
       ],
-      next: '/company-name',
+      next: '/supporting-documents',
       forks: [{
         target: '/authority-number-renew-vary',
         condition: req => {
@@ -70,7 +82,7 @@ module.exports = {
     '/existing-authority-add-another': {
       template: 'existing-authority-documents-add-another',
       controller: require('../common/controllers/existing-authority-documents-add-another'),
-      behaviours: [require('./common/behaviours/existing-authority-documents-add')],
+      behaviours: [require('../common/behaviours/existing-authority-documents-add')],
       fields: [
         'existing-authority-add-another'
       ],
@@ -79,6 +91,30 @@ module.exports = {
         target: '/existing-authority',
         condition: {
           field: 'existing-authority-add-another',
+          value: 'yes'
+        }
+      }],
+      continueOnEdit: true,
+      next: '/supporting-documents'
+    },
+    '/supporting-documents': {
+      controller: require('../common/controllers/supporting-documents'),
+      fields: [
+        'supporting-document-upload',
+        'supporting-document-description'
+      ],
+      continueOnEdit: true,
+      next: '/supporting-documents-add-another'
+    },
+    '/supporting-documents-add-another': {
+      controller: require('../common/controllers/supporting-documents-add-another'),
+      fields: [
+        'supporting-document-add-another'
+      ],
+      forks: [{
+        target: '/supporting-documents',
+        condition: {
+          field: 'supporting-document-add-another',
           value: 'yes'
         }
       }],
@@ -511,7 +547,7 @@ module.exports = {
       ],
       next: '/authority-holder-contact-address',
       forks: [{
-        target: '/supporting-documents-add',
+        target: '/invoice-contact-details',
         condition: {
           field: 'use-different-address',
           value: 'false'
@@ -534,7 +570,7 @@ module.exports = {
       fields: [
         'authority-holder-contact-address-lookup'
       ],
-      next: '/supporting-documents-add',
+      next: '/invoice-contact-details',
       locals: {
         field: 'authority-holder-contact',
         section: 'contacts-details'
@@ -546,7 +582,7 @@ module.exports = {
       fields: [
         'authority-holder-contact-address-manual'
       ],
-      next: '/supporting-documents-add',
+      next: '/invoice-contact-details',
       prereqs: ['/authority-holder-contact-postcode', '/contact-details'],
       backLink: 'authority-holder-contact-postcode',
       locals: {
@@ -579,7 +615,7 @@ module.exports = {
       fields: [
         'contact-address-lookup'
       ],
-      next: '/supporting-documents-add',
+      next: '/invoice-contact-details',
       locals: {
         field: 'contact',
         section: 'contacts-details'
@@ -591,7 +627,7 @@ module.exports = {
       fields: [
         'contact-address-manual'
       ],
-      next: '/supporting-documents-add',
+      next: '/invoice-contact-details',
       prereqs: ['/contact-postcode', '/contact-details'],
       backLink: 'contact-postcode',
       locals: {
@@ -599,32 +635,32 @@ module.exports = {
         section: 'contacts-details'
       }
     },
-    '/supporting-documents-add': {
-      next: '/supporting-documents'
+    '/invoice-contact-details': {
+      fields: ['invoice-contact-name', 'invoice-contact-email', 'invoice-contact-phone'],
+      locals: { section: 'invoice-details' },
+      next: '/invoice-address-input'
     },
-    '/supporting-documents': {
-      controller: require('../common/controllers/supporting-documents'),
+    '/invoice-address-input': Object.assign(invoiceAddressLookup.start, {
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
+    }),
+    '/invoice-address-input-select': Object.assign(invoiceAddressLookup.select, {
+      locals: { section: 'invoice-details' },
+      fieldSettings: {
+        className: 'address'
+      }
+    }),
+    '/invoice-address-input-manual': invoiceAddressLookup.manual,
+    '/purchase-order': {
       fields: [
-        'supporting-document-upload',
-        'supporting-document-description'
+        'purchase-order',
+        'purchase-order-number'
       ],
-      continueOnEdit: true,
-      next: '/supporting-documents-add-another'
-    },
-    '/supporting-documents-add-another': {
-      controller: require('../common/controllers/supporting-documents-add-another'),
-      fields: [
-        'supporting-document-add-another'
-      ],
-      forks: [{
-        target: '/supporting-documents',
-        condition: {
-          field: 'supporting-document-add-another',
-          value: 'yes'
-        }
-      }],
-      continueOnEdit: true,
-      next: '/confirm'
+      next: '/confirm',
+      locals: {
+        renew: true,
+        section: 'invoice-details',
+        step: 'purchase-order'
+      }
     },
     '/confirm': {
       controller: require('./controllers/confirm'),

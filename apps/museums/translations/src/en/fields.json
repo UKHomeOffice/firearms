@@ -55,10 +55,43 @@
   "contact-address-manual": {
     "label": "Address"
   },
+  "invoice-address-manual": {
+    "label": "Address"
+  },
   "contact-address": {
     "legend": "Address"
   },
+  "invoice-address": {
+    "label": "Address"
+  },
   "exhibit-addresses": {
     "label": "Address"
+  },
+  "invoice-postcode": {
+    "label": "Postcode"
+  },
+  "invoice-contact-name": {
+    "label": "Contact name"
+  },
+  "invoice-contact-email": {
+    "label": "Contact email address"
+  },
+  "invoice-contact-phone": {
+    "label": "Contact phone number"
+  },
+  "purchase-order": {
+    "legend": "Do you have a purchase order?",
+    "options": {
+      "Yes": {
+        "label": "Yes"
+      },
+      "No": {
+        "label": "No"
+      }
+    }
+  },
+  "purchase-order-number": {
+    "summary": "Purchase order number",
+    "label": "Purchase order number"
   }
 }

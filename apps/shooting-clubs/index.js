@@ -49,6 +49,13 @@ const storageAddressLookup = AddressLookup({
   next: '/storage-add-another-address',
   continueOnEdit: true
 });
+const invoiceAddressLookup = AddressLookup({
+  prefix: 'invoice',
+  start: '/invoice-address-input',
+  select: '/invoice-address-input-select',
+  manual: '/invoice-address-input-manual',
+  next: '/purchase-order'
+});
 
 const Emailer = require('../common/behaviours/emailer');
 const emailer = Emailer({
@@ -81,8 +88,9 @@ module.exports = {
     },
     '/new-club': {
       fields: [
-        'new-club'
+        'new-club',
       ],
+      locals: { section: 'club-details' },
       next: '/club-name'
     },
     '/existing-authority': {
@@ -115,6 +123,7 @@ module.exports = {
       fields: [
         'club-name'
       ],
+      locals: { section: 'club-details' },
       next: '/club-address'
     },
     '/club-address': Object.assign(clubAddressLookup.start, {
@@ -130,6 +139,7 @@ module.exports = {
       fields: [
         'club-secretary-name'
       ],
+      locals: { section: 'club-secretary-details' },
       next: '/club-secretary-address'
     },
     '/club-secretary-address': Object.assign(clubSecretaryAddressLookup.start, {
@@ -146,12 +156,14 @@ module.exports = {
         'club-secretary-email',
         'club-secretary-phone'
       ],
+      locals: { section: 'club-secretary-details' },
       next: '/second-contact-name'
     },
     '/second-contact-name': {
       fields: [
         'second-contact-name'
       ],
+      locals: { section: 'club-second-contact' },
       next: '/second-contact-address'
     },
     '/second-contact-address': Object.assign(secondContactAddressLookup.start, {
@@ -168,6 +180,7 @@ module.exports = {
         'second-contact-email',
         'second-contact-phone'
       ],
+      locals: { section: 'club-second-contact' },
       next: '/location-address'
     },
     '/location-address': Object.assign(locationAddressLookup.start, {
@@ -209,18 +222,20 @@ module.exports = {
         'storage-address-range',
         'storage-address-secretary'
       ],
+      locals: { section: 'storage-addresses' },
       continueOnEdit: true,
       next: '/storage-add-another-address'
     },
     '/storage-add-another-address': {
       template: 'add-another-address-loop.html',
       controller: require('./controllers/storage-address-loop'),
-      next: '/confirm',
+      next: '/invoice-contact-details',
       returnTo: '/storage-address-add',
       aggregateTo: 'all-storage-addresses',
       aggregateFields: [
         'storage-address'
       ],
+      //locals: { section: 'storage-addresses' },
       fieldSettings: {
         legend: {
           className: 'visuallyhidden'
@@ -233,13 +248,46 @@ module.exports = {
     '/storage-address-add-select': Object.assign(storageAddressLookup.select, {
       fieldSettings: {
         className: 'address'
-      }
+      },
     }),
     '/storage-address-add-manual': storageAddressLookup.manual,
+    '/invoice-contact-details': {
+      fields: ['invoice-contact-name', 'invoice-contact-email', 'invoice-contact-phone'],
+      locals: { section: 'invoice-details' },
+      next: '/invoice-address-input'
+    },
+    '/invoice-address-input': Object.assign(invoiceAddressLookup.start, {
+      formatAddress: address => address.formatted_address.split('\n').join(', ')
+    }),
+    '/invoice-address-input-select': Object.assign(invoiceAddressLookup.select, {
+      locals: { section: 'invoice-details' },
+      fieldSettings: {
+        className: 'address'
+      }
+    }),
+    '/invoice-address-input-manual': invoiceAddressLookup.manual,
+    '/purchase-order': {
+      fields: [
+        'purchase-order',
+        'purchase-order-number'
+      ],
+      next: '/confirm',
+      locals: {
+        renew: true,
+        section: 'invoice-details',
+        step: 'purchase-order'
+      }
+    }, /*
     '/confirm': {
       behaviours: [require('hof').components.summary, pdf],
       controller: require('../common/controllers/confirm'),
       sections: require('./sections/summary-data-sections'),
+      next: '/declaration'
+    }, */
+    '/confirm': {
+      behaviours: [pdf],
+      controller: require('./controllers/confirm'),
+      fieldsConfig: require('./fields'),
       next: '/declaration'
     },
     '/declaration': {
