@@ -11,7 +11,7 @@ let appName = '';
 
 let settings = require('./hof.settings');
 
-settings = {
+settings = Object.assign({}, settings, {
   routes: settings.routes.map(require),
   fields: path.resolve(__dirname, settings.fields),
   views: settings.views.map(view => path.resolve(__dirname, view)),
@@ -22,27 +22,24 @@ settings = {
     }
   }, require('hof/components/clear-session')
   ],
-  getCookies: false,
-  start: false,
   redis: config.redis
-};
+});
 
-const addGenericLocals = (req, res, next) => {
-  // Set HTML Language
-  res.locals.htmlLang = 'en';
-  // Set feedback and footer links
-  res.locals.appName = appName;
-  res.locals.feedbackUrl = '/feedback';
-  res.locals.footerSupportLinks = [
-    { path: '/cookies', property: 'base.cookies' },
-    { path: '/terms-and-conditions', property: 'base.terms' }
-  ];
-  next();
-};
+// TODO Remove once so-acceptance module has been removed
+if (config.env === 'ci') {
+  settings.session.name = 'hod.sid';
+}
 
 const app = hof(settings);
 
-app.use((req, res, next) => addGenericLocals(req, res, next));
+app.use((req, res, next) => {
+  // Set HTML Language
+  res.locals.htmlLang = 'en';
+  res.locals.appName = appName;
+  // Set feedback and footer links
+  res.locals.feedbackUrl = '/feedback';
+  next();
+});
 
 // set appName to appear on the cookie banner for each service
 app.use('/s5', (req, res, next) => {
@@ -73,11 +70,6 @@ if (!config.env || config.env === 'ci') {
   app.use(mockAPIs);
 }
 
-app.use('/cookies', (req, res) => {
-  res.locals = Object.assign({}, res.locals, req.translate('cookies'));
-  res.render('cookies');
-});
-
 app.use(bodyParser({limit: config.upload.maxfilesize}));
 
-app.start();
+module.exports = app;

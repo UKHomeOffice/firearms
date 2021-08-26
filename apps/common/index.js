@@ -7,5 +7,9 @@ module.exports = {
     '/accessibility': 'accessibility',
     '/cookies': 'cookies'
   },
-  steps: {}
+  steps: {
+    '/privacy': {},
+    '/accessibility': {},
+    '/cookies': {}
+  }
 };

@@ -4244,10 +4244,10 @@ hof-util-testdata@^1.0.1:
   dependencies:
     homeoffice-countries "^0.1.0"
 
-hof@^19.6.1:
-  version "19.6.1"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-19.6.1.tgz#c67aac62feefdc78ba2af80836ddd81036ca4666"
-  integrity sha512-xr1jDhTFhUF1F96ogBA7c13xWQnKeCY/dMH/B+6RFu6faFENUKAnn8d9UegkKWUOH5ymb42PGiEE3u8HcFC58A==
+hof@^19.8.0:
+  version "19.8.0"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-19.8.0.tgz#2a4988087c44ab3b0631901358d00cb98e4a51e0"
+  integrity sha512-P77yuCcPTaUcTMtb7w1VJMLY913LIfQU68amNok3hZPuqFHgwCWUST3XLFAwnJV1mLmsHlf51RVcKwzJonb8VA==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
@@ -4278,6 +4278,7 @@ hof@^19.6.1:
     homeoffice-countries "^0.1.0"
     i18n-future "^2.0.0"
     i18n-lookup "^0.1.0"
+    is-pdf "^1.0.0"
     libphonenumber-js "^1.9.22"
     lodash "^4.17.21"
     minimatch "^3.0.3"

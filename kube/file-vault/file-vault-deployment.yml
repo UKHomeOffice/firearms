@@ -33,12 +33,11 @@ spec:
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                name: fv-branch-configmap
                 {{ else }}
                 name: {{ .APP_NAME }}-configmap
                 {{ end }}
           env:
-            # because the internal virus scanner has a self signed cert!
             - name: NODE_TLS_REJECT_UNAUTHORIZED
               value: "0"
             - name: FILE_VAULT_URL
@@ -49,7 +48,7 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://{{ .APP_NAME }}-branch.fv-dev.sas-notprod.homeoffice.gov.uk
+              value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             - name: DEBUG
               value: "true"
             {{ end }}
@@ -96,7 +95,7 @@ spec:
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                name: fv-branch-configmap
                 {{ else }}
                 name: {{ .APP_NAME }}-configmap
                 {{ end }}
@@ -121,7 +120,7 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://{{ .APP_NAME }}-branch.fv-dev.sas-notprod.homeoffice.gov.uk
+              value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
             - name: PROXY_UPSTREAM_URL
               value: "http://127.0.0.1:3000"
@@ -135,7 +134,8 @@ spec:
             runAsNonRoot: true
 
         - name: nginx-proxy
-          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3
+          # nginx-proxy-govuk:v4
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
           resources:
             limits:
               cpu: 250m

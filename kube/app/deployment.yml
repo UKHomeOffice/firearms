@@ -133,10 +133,14 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://{{ .APP_NAME }}-branch.fv-dev.sas-notprod.homeoffice.gov.uk/file
+              value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
             {{ end }}
             - name: PDF_CONVERTER_URL
-              value: https://html-pdf-converter.{{ .KUBE_NAMESPACE }}.svc.cluster.local:10443/convert
+              {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}:10443/convert
+              {{ else }}
+              value: https://html-pdf-converter:10443/convert
+              {{ end }}
           {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
           livenessProbe:
             httpGet:
@@ -163,7 +167,8 @@ spec:
               name: public
 
         - name: nginx-proxy
-          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3
+          # nginx-proxy-govuk:v4
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
           resources:
             requests:
               memory: 10Mi
