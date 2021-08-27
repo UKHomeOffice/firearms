@@ -87,9 +87,7 @@ module.exports = {
       }]
     },
     '/new-club': {
-      fields: [
-        'new-club',
-      ],
+      fields: ['new-club'],
       locals: { section: 'club-details' },
       next: '/club-name'
     },
@@ -235,7 +233,6 @@ module.exports = {
       aggregateFields: [
         'storage-address'
       ],
-      //locals: { section: 'storage-addresses' },
       fieldSettings: {
         legend: {
           className: 'visuallyhidden'
@@ -248,7 +245,7 @@ module.exports = {
     '/storage-address-add-select': Object.assign(storageAddressLookup.select, {
       fieldSettings: {
         className: 'address'
-      },
+      }
     }),
     '/storage-address-add-manual': storageAddressLookup.manual,
     '/invoice-contact-details': {
@@ -277,17 +274,11 @@ module.exports = {
         section: 'invoice-details',
         step: 'purchase-order'
       }
-    }, /*
+    },
     '/confirm': {
       behaviours: [require('hof').components.summary, pdf],
       controller: require('../common/controllers/confirm'),
       sections: require('./sections/summary-data-sections'),
-      next: '/declaration'
-    }, */
-    '/confirm': {
-      behaviours: [pdf],
-      controller: require('./controllers/confirm'),
-      fieldsConfig: require('./fields'),
       next: '/declaration'
     },
     '/declaration': {

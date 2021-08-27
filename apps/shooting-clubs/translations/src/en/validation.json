@@ -108,5 +108,8 @@
   },
   "purchase-order-number": {
     "required": "Enter your purchase order number"
+  },
+  "existing-authority-add-another": {
+    "required": "Select an option"
   }
 }

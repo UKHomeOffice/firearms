@@ -11,14 +11,14 @@ Before((
   I.visitPage(activityPage, steps);
 });
 
-Scenario('When I select new, I am taken to the company-name step', (
+Scenario('When I select new, I am taken to the supporting-document step', (
   I,
   activityPage,
-  companyNamePage
+  supportingDocumentsPage
 ) => {
   I.click(activityPage.new);
   I.submitForm();
-  I.seeInCurrentUrl(companyNamePage.url);
+  I.seeInCurrentUrl(supportingDocumentsPage.url);
 });
 
 Scenario('When I select renew, I am taken to the authority-number-renew-vary step', (

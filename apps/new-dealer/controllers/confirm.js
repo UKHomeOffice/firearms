@@ -170,7 +170,7 @@ module.exports = class ConfirmController extends Controller {
       items,
       hasMultipleFields: true,
       section: translate('pages.existing-authority-documents-add.header'),
-      step: '/existing-authority-documents-add-another'
+      step: '/existing-authority-add-another'
     };
   }
 
@@ -184,14 +184,15 @@ module.exports = class ConfirmController extends Controller {
           }
         });
 
-        return section.fields.push({
+        section.fields.push({
           label: translate('fields.invoice-address-manual.label'),
           value: contactAddress,
           step: '/invoice-address-input'
         });
       }
+      return section;
     });
-  };
+  }
 
   getContactHoldersName(data) {
     const contactHolder = data['contact-holder'];

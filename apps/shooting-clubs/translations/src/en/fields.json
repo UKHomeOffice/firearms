@@ -149,6 +149,7 @@
   },
   "purchase-order": {
     "legend": "Do you have a purchase order?",
+    "hint": "Select one option.",
     "options": {
       "Yes": {
         "label": "Yes"

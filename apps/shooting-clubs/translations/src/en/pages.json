@@ -143,6 +143,9 @@
       },
       "storage-addresses": {
         "header": "Storage addresses"
+      },
+      "documents": {
+        "header" : "Uploaded existing authority documents"
       }
     },
     "fields": {
@@ -160,6 +163,9 @@
       },
       "name": {
         "label": "Name"
+      },
+      "existing-authority-documents": {
+        "label": "Documents"
       }
     }
   },

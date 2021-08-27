@@ -50,5 +50,11 @@
   },
   "existing-authority-add-another": {
     "list-header": "Documents added"
+  },
+  "existing-authority-add": {
+    "list-header": "Documents added"
+  },
+  "existing-authority-documents-add": {
+    "header": "Documents added"
   }
 }

@@ -36,7 +36,7 @@
     "label": "Description (optional)"
   },
   "existing-authority-add-another": {
-    "legend": "Do you want to upload any additional documents to support your application?",
+    "legend": "Do you want to upload any additional existing authority documents to support your application?",
     "options": {
       "yes": {
         "label": "Yes"

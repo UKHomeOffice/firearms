@@ -85,11 +85,17 @@
       },
       "contact-details": {
         "header": "Contact details"
+      },
+      "documents": {
+        "header" : "Uploaded existing authority documents"
       }
     },
     "fields": {
       "name": {
         "label": "Name"
+      },
+      "existing-authority-documents": {
+        "label": "Documents"
       }
     }
   }

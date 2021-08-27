@@ -66,5 +66,11 @@
   },
   "purchase-order-number": {
     "required": "Enter your purchase order number"
+  },
+  "supporting-document-add": {
+    "required": "Select an option to upload supporting documents now or later"
+  },
+  "existing-authority-add-another": {
+    "required": "Select an option"
   }
 }

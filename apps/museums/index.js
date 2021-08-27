@@ -2,6 +2,7 @@
 
 const config = require('../../config');
 const _ = require('lodash');
+const addressFormatter = require('./util/address-formatter');
 
 const AddressLookup = require('../common/controllers/address/helper');
 const AddressSelect = require('./controllers/contact-address-select');
@@ -98,7 +99,7 @@ module.exports = {
       }
     },
     '/exhibit-address': Object.assign(exhibitAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => addressFormatter(address)
     }),
     '/exhibit-address-select': Object.assign(exhibitAddressLookup.select, {
       fieldSettings: {
@@ -155,7 +156,7 @@ module.exports = {
       next: '/invoice-contact-details'
     },
     '/contact-address-input': Object.assign(contactAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', '),
+      formatAddress: address => addressFormatter(address),
       section: 'contact-details-section'
     }),
     '/contact-address-input-select': Object.assign(contactAddressLookup.select, {
@@ -171,7 +172,7 @@ module.exports = {
       next: '/invoice-address-input'
     },
     '/invoice-address-input': Object.assign(invoiceAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => addressFormatter(address)
     }),
     '/invoice-address-input-select': Object.assign(invoiceAddressLookup.select, {
       locals: { section: 'invoice-details' },
@@ -193,9 +194,10 @@ module.exports = {
       }
     },
     '/confirm': {
-      behaviours: [pdf],
-      controller: require('./controllers/confirm'),
-      fieldsConfig: require('./fields'),
+      template: 'confirm',
+      behaviours: [require('hof').components.summary, pdf],
+      controller: require('../common/controllers/confirm'),
+      sections: require('./sections/summary-data-sections'),
       next: '/declaration'
     },
     '/declaration': {

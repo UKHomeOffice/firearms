@@ -63,12 +63,15 @@ module.exports = class UploadController extends BaseController {
       type: req.form.values['existing-authority-type']
     });
     req.sessionModel.set('existing-authority-documents', files);
+    const existingAuthorityAttrs = [
+      'existing-authority-add-another',
+      'existing-authority-description',
+      'existing-authority-filename',
+      'existing-authority-upload',
+      'existing-authority-type'
+    ];
     super.saveValues(req, res, err => {
-      req.sessionModel.unset('existing-authority-add-another');
-      req.sessionModel.unset('existing-authority-description');
-      req.sessionModel.unset('existing-authority-filename');
-      req.sessionModel.unset('existing-authority-upload');
-      req.sessionModel.unset('existing-authority-type');
+      req.sessionModel.unset(existingAuthorityAttrs);
       next(err);
     });
   }

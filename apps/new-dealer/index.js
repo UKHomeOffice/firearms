@@ -4,6 +4,10 @@ const _ = require('lodash');
 const path = require('path');
 const config = require('../../config');
 const AddressLookup = require('../common/controllers/address/helper');
+const existingAuthorityController = require('../common/controllers/existing-authority-documents-add-another');
+const existingAuthorityBehaviour = require('../common/behaviours/existing-authority-documents-add');
+const supportingDocumentsBehaviour = require('../common/behaviours/supporting-documents-add');
+const resetUploadedDocuments = require('../common/behaviours/reset-on-change');
 
 const ammunition = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'ammunition');
 const weapons = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'weapons');
@@ -49,6 +53,15 @@ module.exports = {
       next: '/activity'
     },
     '/activity': {
+      behaviours: resetUploadedDocuments({
+        currentField: 'activity',
+        fieldsForRemoval: [
+          'reference-number',
+          'authority-number',
+          'existing-authority-documents',
+          'supporting-documents'
+        ]
+      }),
       fields: [
         'activity'
       ],
@@ -80,9 +93,8 @@ module.exports = {
       next: '/existing-authority-add-another'
     },
     '/existing-authority-add-another': {
-      template: 'existing-authority-documents-add-another',
-      controller: require('../common/controllers/existing-authority-documents-add-another'),
-      behaviours: [require('../common/behaviours/existing-authority-documents-add')],
+      controller: existingAuthorityController,
+      behaviours: existingAuthorityBehaviour,
       fields: [
         'existing-authority-add-another'
       ],
@@ -108,6 +120,7 @@ module.exports = {
     },
     '/supporting-documents-add-another': {
       controller: require('../common/controllers/supporting-documents-add-another'),
+      behaviours: supportingDocumentsBehaviour,
       fields: [
         'supporting-document-add-another'
       ],
