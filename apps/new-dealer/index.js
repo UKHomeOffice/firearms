@@ -4,6 +4,7 @@ const _ = require('lodash');
 const path = require('path');
 const config = require('../../config');
 const AddressLookup = require('../common/controllers/address/helper');
+const getPageCustomBackLink = require('./behaviours/custom-back-links');
 const existingAuthorityController = require('../common/controllers/existing-authority-documents-add-another');
 const existingAuthorityBehaviour = require('../common/behaviours/existing-authority-documents-add');
 const supportingDocumentsBehaviour = require('../common/behaviours/supporting-documents-add');
@@ -56,8 +57,6 @@ module.exports = {
       behaviours: resetUploadedDocuments({
         currentField: 'activity',
         fieldsForRemoval: [
-          'reference-number',
-          'authority-number',
           'existing-authority-documents',
           'supporting-documents'
         ]
@@ -67,23 +66,14 @@ module.exports = {
       ],
       next: '/supporting-documents',
       forks: [{
-        target: '/authority-number-renew-vary',
+        target: '/existing-authority',
         condition: req => {
           return _.includes(['vary', 'renew'], req.sessionModel.get('activity'));
         }
       }]
     },
-    '/authority-number-renew-vary': {
-      fields: [
-        'reference-number',
-        'authority-number'
-      ],
-      next: '/existing-authority',
-      locals: {
-        section: 'business-details'
-      }
-    },
     '/existing-authority': {
+      behaviours: getPageCustomBackLink('existing-authority'),
       controller: require('../common/controllers/existing-authority-documents'),
       fields: [
         'existing-authority-upload',
@@ -94,7 +84,7 @@ module.exports = {
     },
     '/existing-authority-add-another': {
       controller: existingAuthorityController,
-      behaviours: existingAuthorityBehaviour,
+      behaviours: [existingAuthorityBehaviour, getPageCustomBackLink('existing-authority-add-another')],
       fields: [
         'existing-authority-add-another'
       ],
@@ -110,6 +100,7 @@ module.exports = {
       next: '/supporting-documents'
     },
     '/supporting-documents': {
+      behaviours: getPageCustomBackLink('supporting-documents'),
       controller: require('../common/controllers/supporting-documents'),
       fields: [
         'supporting-document-upload',
@@ -120,7 +111,7 @@ module.exports = {
     },
     '/supporting-documents-add-another': {
       controller: require('../common/controllers/supporting-documents-add-another'),
-      behaviours: supportingDocumentsBehaviour,
+      behaviours: [supportingDocumentsBehaviour, getPageCustomBackLink('supporting-documents-add-another')],
       fields: [
         'supporting-document-add-another'
       ],

@@ -4,7 +4,9 @@ const config = require('../../config');
 const _ = require('lodash');
 
 const AddressLookup = require('../common/controllers/address/helper');
-
+const getPageCustomBackLink = require('../common/behaviours/custom-back-links.js');
+const existingAuthorityController = require('../common/controllers/existing-authority-documents-add-another');
+const existingAuthorityBehaviour = require('../common/behaviours/existing-authority-documents-add');
 const Submission = require('../common/behaviours/casework-submission');
 const submission = Submission({
   prepare: require('./models/submission')
@@ -92,6 +94,7 @@ module.exports = {
       next: '/club-name'
     },
     '/existing-authority': {
+      behaviours: getPageCustomBackLink('activity'),
       controller: require('../common/controllers/existing-authority-documents'),
       fields: [
         'existing-authority-upload',
@@ -101,8 +104,8 @@ module.exports = {
       next: '/existing-authority-add-another'
     },
     '/existing-authority-add-another': {
-      controller: require('../common/controllers/existing-authority-documents-add-another'),
-      behaviours: [require('../common/behaviours/existing-authority-documents-add')],
+      controller: existingAuthorityController,
+      behaviours: [existingAuthorityBehaviour, getPageCustomBackLink('existing-authority')],
       fields: [
         'existing-authority-add-another'
       ],

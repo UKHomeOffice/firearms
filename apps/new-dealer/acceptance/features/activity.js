@@ -21,12 +21,12 @@ Scenario('When I select new, I am taken to the supporting-document step', (
   I.seeInCurrentUrl(supportingDocumentsPage.url);
 });
 
-Scenario('When I select renew, I am taken to the authority-number-renew-vary step', (
+Scenario('When I select renew, I am taken to the existing-authority step', (
   I,
   activityPage,
-  authorityNumberRenewPage
+  existingAuthorityS5Page
 ) => {
   I.click(activityPage.renew);
   I.submitForm();
-  I.seeInCurrentUrl(authorityNumberRenewPage.url);
+  I.seeInCurrentUrl(existingAuthorityS5Page.url);
 });

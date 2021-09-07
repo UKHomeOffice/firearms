@@ -33,7 +33,7 @@ module.exports = {
   ],
   documents: [
     {
-      step: '/existing-authority-documents-add',
+      step: '/existing-authority-add-another',
       field: 'existing-authority-documents',
       parse: list => (list) ? list.map(a => a.description).join('\n') : ''
     }

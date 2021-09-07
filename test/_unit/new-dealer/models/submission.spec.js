@@ -28,7 +28,6 @@ describe('S5 Submission Model', () => {
       });
 
       const output = prepare(input);
-
       expect(output.AuthorityType).to.equal('Maritime Guards');
     });
 
@@ -41,7 +40,6 @@ describe('S5 Submission Model', () => {
       });
 
       const output = prepare(input);
-
       expect(output.AuthorityType).to.equal('Maritime Guards');
     });
 
@@ -61,7 +59,6 @@ describe('S5 Submission Model', () => {
       });
 
       const output = prepare(input);
-
       expect(output.AuthorityType).to.equal('Carriers');
     });
 
@@ -74,7 +71,19 @@ describe('S5 Submission Model', () => {
       });
 
       const output = prepare(input);
+      expect(output.AuthorityType).to.equal('Carriers and Dealers');
+    });
 
+    it('sets authority type to `Carriers and Dealers` if usage is to transfer, sell and transfer', () => {
+      const input = Object.assign({}, defaults, {
+        usage: [
+          'sell',
+          'transport',
+          'transfer'
+        ]
+      });
+
+      const output = prepare(input);
       expect(output.AuthorityType).to.equal('Carriers and Dealers');
     });
 
@@ -87,7 +96,6 @@ describe('S5 Submission Model', () => {
       });
 
       const output = prepare(input);
-
       expect(output.AuthorityType).to.equal('Carriers and Dealers');
     });
 
@@ -100,7 +108,6 @@ describe('S5 Submission Model', () => {
       });
 
       const output = prepare(input);
-
       expect(output.AuthorityType).to.equal('Dealer');
     });
 
@@ -110,7 +117,6 @@ describe('S5 Submission Model', () => {
       });
 
       const output = prepare(input);
-
       expect(output.AuthorityType).to.equal('Carriers');
     });
 

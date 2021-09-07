@@ -24,16 +24,13 @@ module.exports = data => {
   response['Agent.Name'] = data['contact-name'];
   response['Customer.Email'] = data['contact-email'];
   response['Customer.Phone'] = data['contact-phone'];
-
   response['Customer.Address'] = data['contact-address'];
 
-  /* Invoice Details - TBC */
-  // response['Invoice.ContactAddress'] = data['invoice-address-input-manual']
-  //                                  || data['invoice-address-input-select'];
-  // response['Invoice.ContactName'] = data['invoice-contact-name'];
-  // response['Invoice.ContactEmail'] = data['invoice-contact-email'];
-  // response['Invoice.ContactPhone'] = data['invoice-contact-phone'];
-  // response['Invoice.PurchaseOrder'] = data['purchase-order-number'];
+  response.InvoicingAddress = data['invoice-address'];
+  response.ContactFirstName = data['invoice-contact-name'];
+  response.ContactEmail = data['invoice-contact-email'];
+  response.ContactPhone = data['invoice-contact-phone'];
+  response.InvoicingPONumber = data['purchase-order-number'];
 
   data['existing-authority-documents'] = data['existing-authority-documents'] || [];
 

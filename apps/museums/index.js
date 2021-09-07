@@ -3,7 +3,8 @@
 const config = require('../../config');
 const _ = require('lodash');
 const addressFormatter = require('./util/address-formatter');
-
+const getPageCustomBackLink = require('../common/behaviours/custom-back-links.js');
+const existingAuthorityBehaviour = require('../common/behaviours/existing-authority-documents-add');
 const AddressLookup = require('../common/controllers/address/helper');
 const AddressSelect = require('./controllers/contact-address-select');
 const exhibitAddressLookup = AddressLookup({
@@ -66,6 +67,7 @@ module.exports = {
       }]
     },
     '/existing-authority': {
+      behaviours: getPageCustomBackLink('activity'),
       controller: require('../common/controllers/existing-authority-documents'),
       fields: [
         'existing-authority-upload',
@@ -76,7 +78,7 @@ module.exports = {
     },
     '/existing-authority-add-another': {
       controller: require('../common/controllers/existing-authority-documents-add-another'),
-      behaviours: [require('../common/behaviours/existing-authority-documents-add')],
+      behaviours: [existingAuthorityBehaviour, getPageCustomBackLink('existing-authority')],
       fields: [
         'existing-authority-add-another'
       ],

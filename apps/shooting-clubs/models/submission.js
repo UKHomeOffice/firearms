@@ -10,12 +10,11 @@ module.exports = data => {
   ];
 
   response.AuthorityType = 'Shooting clubs';
-  response.ApplicationType = data.activity ?
-    _.find(activity, { activity: data.activity }).response : 'Renewal';
 
-  if (data.activity === 'renew' || data.activity === 'vary') {
-    response['Cusomter.CustomerReference'] = data['reference-number'];
-    response.ExistingAuthorityReference = data['authority-number'];
+  if (data.activity) {
+    response.ApplicationType = _.find(activity, { activity: data.activity }).response;
+  } else {
+    response.ApplicationType = 'Renewal';
   }
 
   response['Customer.Name'] = data['club-name'];
@@ -47,13 +46,11 @@ module.exports = data => {
     response[`ShootingRange${index}.Address`] = address.address;
   });
 
-  /* Invoice Details - TBC */
-  // response['Invoice.ContactAddress'] = data['invoice-address-input-manual']
-  //                                  || data['invoice-address-input-select'];
-  // response['Invoice.ContactName'] = data['invoice-contact-name'];
-  // response['Invoice.ContactEmail'] = data['invoice-contact-email'];
-  // response['Invoice.ContactPhone'] = data['invoice-contact-phone'];
-  // response['Invoice.PurchaseOrder'] = data['purchase-order-number'];
+  response.InvoicingAddress = data['invoice-address'];
+  response.ContactFirstName = data['invoice-contact-name'];
+  response.ContactEmail = data['invoice-contact-email'];
+  response.ContactPhone = data['invoice-contact-phone'];
+  response.InvoicingPONumber = data['purchase-order-number'];
 
   data['existing-authority-documents'] = data['existing-authority-documents'] || [];
 

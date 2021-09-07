@@ -34,12 +34,6 @@ module.exports = data => {
     _.find(activity, { activity: data.activity }).response : 'Renewal';
 
   response['Customer.Organisation'] = data[`${data.organisation}-name`];
-
-  if (data.activity === 'renew' || data.activity === 'vary') {
-    response['Customer.CustomerReference'] = data['reference-number'];
-    response.ExistingAuthorityReference = data['authority-number'];
-  }
-
   response['Customer.Category'] = data.organisation;
   response['Customer.Name'] = data['first-authority-holders-name'];
   response['Customer.Address'] = data['first-authority-holders-address-manual']
@@ -134,14 +128,11 @@ module.exports = data => {
   response.ActivityDeactivation = contains(data.usage, 'deactivation');
   response.ActivityOther = contains(data.usage, 'other');
 
-  /* Invoice Details - TBC */
-
-  // response['Invoice.ContactAddress'] = data['invoice-address-input-manual']
-  //                                  || data['invoice-address-input-select'];
-  // response['Invoice.ContactName'] = data['invoice-contact-name'];
-  // response['Invoice.ContactEmail'] = data['invoice-contact-email'];
-  // response['Invoice.ContactPhone'] = data['invoice-contact-phone'];
-  // response['Invoice.PurchaseOrder'] = data['purchase-order-number'];
+  response.InvoicingAddress = data['invoice-address'];
+  response.ContactFirstName = data['invoice-contact-name'];
+  response.ContactEmail = data['invoice-contact-email'];
+  response.ContactPhone = data['invoice-contact-phone'];
+  response.InvoicingPONumber = data['purchase-order-number'];
 
   data['supporting-documents'] = data['supporting-documents'] || [];
   data['existing-authority-documents'] = data['existing-authority-documents'] || [];
