@@ -1,5 +1,7 @@
 'use strict';
 /* eslint complexity: 0 max-statements: 0 */
+
+const _ = require('lodash');
 const contains = (arr, val) => arr.includes(val) ? 'Yes' : 'No';
 
 const authorityType = usage => {
@@ -21,18 +23,17 @@ const authorityType = usage => {
 
 module.exports = data => {
   const response = {};
+  const activity = [
+    { activity: 'new', response: 'Application' },
+    { activity: 'renew', response: 'Renewal' },
+    { activity: 'vary', response: 'Vary' }
+  ];
 
   response.AuthorityType = authorityType(data.usage);
-
-  response.ApplicationType = data.activity === 'new' ? 'Application' : 'Renewal';
+  response.ApplicationType = data.activity ?
+    _.find(activity, { activity: data.activity }).response : 'Renewal';
 
   response['Customer.Organisation'] = data[`${data.organisation}-name`];
-
-  if (data.activity === 'renew') {
-    response['Customer.CustomerReference'] = data['reference-number'];
-    response.ExistingAuthorityReference = data['authority-number'];
-  }
-
   response['Customer.Category'] = data.organisation;
   response['Customer.Name'] = data['first-authority-holders-name'];
   response['Customer.Address'] = data['first-authority-holders-address-manual']
@@ -127,7 +128,17 @@ module.exports = data => {
   response.ActivityDeactivation = contains(data.usage, 'deactivation');
   response.ActivityOther = contains(data.usage, 'other');
 
+  response.InvoicingAddress = data['invoice-address'];
+  response.ContactFirstName = data['invoice-contact-name'];
+  response.ContactEmail = data['invoice-contact-email'];
+  response.ContactPhone = data['invoice-contact-phone'];
+  response.InvoicingPONumber = data['purchase-order-number'];
+
   data['supporting-documents'] = data['supporting-documents'] || [];
+  data['existing-authority-documents'] = data['existing-authority-documents'] || [];
+
+  data['supporting-documents'] = data['supporting-documents']
+    .concat(data['existing-authority-documents']);
 
   data['supporting-documents'].forEach((doc, i) => {
     const index = i + 2;

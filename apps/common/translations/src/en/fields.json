@@ -5,7 +5,10 @@
         "label": "Apply for a new authority"
       },
       "renew": {
-        "label": "Renew or amend an existing authority"
+        "label": "Renew an existing authority"
+      },
+      "vary": {
+        "label": "Amend an existing authority"
       }
     }
   },
@@ -17,6 +20,23 @@
   },
   "supporting-document-add-another": {
     "legend": "Do you want to upload any additional documents to support your application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "existing-authority-upload": {
+    "label": "Upload file"
+  },
+  "existing-authority-description": {
+    "label": "Description (optional)"
+  },
+  "existing-authority-add-another": {
+    "legend": "Do you want to upload any additional existing authority documents to support your application?",
     "options": {
       "yes": {
         "label": "Yes"

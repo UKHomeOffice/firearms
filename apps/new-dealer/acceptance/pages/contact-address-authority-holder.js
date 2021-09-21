@@ -15,7 +15,7 @@ module.exports = {
   'address-lookup-url': 'authority-holder-contact-address-lookup',
 
   next: steps['/authority-holder-contact-postcode'].next,
-  'next-with-address': '/supporting-documents-add',
+  'next-with-address': '/invoice-contact-details',
   'next-address-select': '/authority-holder-contact-address-lookup',
 
   fields: {

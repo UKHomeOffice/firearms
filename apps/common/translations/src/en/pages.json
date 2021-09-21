@@ -20,7 +20,7 @@
     "header": "Addresses added"
   },
   "confirm": {
-    "header": "Check your answers page",
+    "header": "Check your answers",
     "intro": "Check your answers and make any necessary changes before you submit this application",
     "footer": "You'll be able to print and save a copy of the information you've submitted on the next page"
   },
@@ -38,5 +38,23 @@
   "supporting-documents": {
     "guidance": "File types and sizes we accept",
     "cancel": "Don't upload and continue"
+  },
+  "existing-authority-documents": {
+    "guidance": "File types and sizes we accept",
+    "cancel": "Don't upload and continue"
+  },
+  "existing-authority": {
+    "header": "Upload existing authority documents",
+    "guidance": "File types and sizes we accept",
+    "cancel": "Don't upload and continue"
+  },
+  "existing-authority-add-another": {
+    "list-header": "Documents added"
+  },
+  "existing-authority-add": {
+    "list-header": "Documents added"
+  },
+  "existing-authority-documents-add": {
+    "header": "Documents added"
   }
 }

@@ -174,11 +174,42 @@
   "contacts-details": {
     "header": "Contact details"
   },
+  "before-you-start": {
+    "header": "Before you start"
+  },
   "supporting-documents": {
-    "header": "Upload supporting documents"
+    "header": "Upload your supporting documents",
+    "intro": "You must provide evidence to justify the types and quantities of prohibited items requested, and show how they’ll be obtained and used."
   },
   "supporting-documents-add": {
-    "header": "Upload supporting documents",
+    "header": "Upload your supporting documents",
+    "list-header": "Documents added"
+  },
+  "invoice-details": {
+    "summary": "Invoice details",
+    "header": "Invoice details"
+  },
+  "invoice-address": {
+    "header": "What is your invoicing address?",
+    "intro": "We will only use this to send your invoice."
+  },
+  "invoice-address-select": {
+    "header": "Select the invoice address"
+  },
+  "invoice-address-input": {
+    "header": "What is their invoice address?"
+  },
+  "invoice-address-input-select": {
+    "header": "Select the invoice address"
+  },
+  "invoice-address-input-manual": {
+    "header": "What is their invoice address?"
+  },
+  "invoice-contact-details": {
+    "header": "Who should we contact about the invoice?"
+  },
+  "existing-authority-documents-add": {
+    "header": "Uploaded existing authority documents",
     "list-header": "Documents added"
   },
   "email": {

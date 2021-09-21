@@ -17,7 +17,8 @@
     "header": "Where will the firearms be exhibited or stored?"
   },
   "exhibit-addresses": {
-    "header": "Addresses added"
+    "header": "Addresses added",
+    "summary": "Museum addresses"
   },
   "address-loop": {
     "header": "Placeholder pending address lookup refactor"
@@ -44,6 +45,39 @@
   "contact-address-select": {
     "header": "Select the contact address"
   },
+  "invoice-details": {
+    "summary": "Invoice details",
+    "header": "Invoice details"
+  },
+  "invoice-address": {
+    "header": "What is your invoicing address?",
+    "intro": "We will only use this to send your invoice."
+  },
+  "invoice-address-select": {
+    "header": "Select the invoice address"
+  },
+  "invoice-address-input": {
+    "header": "What is their invoice address?"
+  },
+  "invoice-address-input-select": {
+    "header": "Select the invoice address"
+  },
+  "invoice-address-input-manual": {
+    "header": "What is their invoice address?"
+  },
+  "invoice-contact-details": {
+    "header": "Who should we contact about the invoice?"
+  },
+  "exhibit-details-section": {
+    "header": "Museum details"
+  },
+  "contact-details-section": {
+    "header": "Contact details"
+  },
+  "existing-authority-documents-add": {
+    "header": "Uploaded existing authority documents",
+    "list-header": "Documents added"
+  },
   "confirm": {
     "sections": {
       "museum-details": {
@@ -51,11 +85,17 @@
       },
       "contact-details": {
         "header": "Contact details"
+      },
+      "documents": {
+        "header" : "Uploaded existing authority documents"
       }
     },
     "fields": {
       "name": {
         "label": "Name"
+      },
+      "existing-authority-documents": {
+        "label": "Documents"
       }
     }
   }

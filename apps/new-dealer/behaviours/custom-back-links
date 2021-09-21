@@ -1,0 +1,40 @@
+'use strict';
+
+const path = require('path');
+const _ = require('lodash');
+
+/**
+ * Get Custom Back links for existing authority and supporting documents
+ * pages on the new-dealer form.
+ *
+ * @param {Object} req - request parameters
+ * @param {string} pageName - name of the page
+ *
+ * @returns {string} - the back link string of the url to be directed to.
+ */
+
+const pageNames = {
+  'existing-authority' : ['activity'],
+  'existing-authority-add-another' : ['existing-authority'],
+  'supporting-documents' : ['existing-authority-add-another'],
+  'supporting-documents-add-another' : ['supporting-documents']
+};
+
+const customBackLink = (page, req) => {
+  return (req.params && req.params.action && req.params.action === 'edit') ?
+    path.join(req.baseUrl, 'confirm') : path.join(req.baseUrl, page);
+};
+
+module.exports = pageName => {
+  return superclass => class extends superclass {
+    getBackLink(req, res) {
+      let backLink = super.getBackLink(req, res);
+      if (_.includes(['new'], req.sessionModel.get('activity')) && pageName === 'supporting-documents') {
+        backLink = customBackLink('activity', req);
+      } else {
+        backLink = customBackLink(pageNames[pageName].toString(), req);
+      }
+      return backLink;
+    }
+  };
+};

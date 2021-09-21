@@ -1,7 +1,10 @@
 'use strict';
 
 const config = require('../../config');
-
+const _ = require('lodash');
+const addressFormatter = require('./util/address-formatter');
+const getPageCustomBackLink = require('../common/behaviours/custom-back-links.js');
+const existingAuthorityBehaviour = require('../common/behaviours/existing-authority-documents-add');
 const AddressLookup = require('../common/controllers/address/helper');
 const AddressSelect = require('./controllers/contact-address-select');
 const exhibitAddressLookup = AddressLookup({
@@ -18,7 +21,15 @@ const contactAddressLookup = AddressLookup({
   start: '/contact-address-input',
   select: '/contact-address-input-select',
   manual: '/contact-address-input-manual',
-  next: '/confirm'
+  next: '/invoice-contact-details'
+});
+
+const invoiceAddressLookup = AddressLookup({
+  prefix: 'invoice',
+  start: '/invoice-address-input',
+  select: '/invoice-address-input-select',
+  manual: '/invoice-address-input-manual',
+  next: '/purchase-order'
 });
 
 const Submission = require('../common/behaviours/casework-submission');
@@ -49,29 +60,53 @@ module.exports = {
       fields: ['activity'],
       next: '/name',
       forks: [{
-        target: '/authority-details',
-        condition: {
-          field: 'activity',
-          value: 'renew'
+        target: '/existing-authority',
+        condition: req => {
+          return _.includes(['vary', 'renew'], req.sessionModel.get('activity'));
         }
       }]
     },
-    '/authority-details': {
+    '/existing-authority': {
+      behaviours: getPageCustomBackLink('activity'),
+      controller: require('../common/controllers/existing-authority-documents'),
       fields: [
-        'reference-number'
+        'existing-authority-upload',
+        'existing-authority-description'
       ],
+      continueOnEdit: true,
+      next: '/existing-authority-add-another'
+    },
+    '/existing-authority-add-another': {
+      controller: require('../common/controllers/existing-authority-documents-add-another'),
+      behaviours: [existingAuthorityBehaviour, getPageCustomBackLink('existing-authority')],
+      fields: [
+        'existing-authority-add-another'
+      ],
+      forks: [{
+        isLoop: true,
+        target: '/existing-authority',
+        condition: {
+          field: 'existing-authority-add-another',
+          value: 'yes'
+        }
+      }],
+      continueOnEdit: true,
       next: '/name'
     },
     '/name': {
       fields: ['name'],
-      next: '/exhibit-address'
+      next: '/exhibit-address',
+      locals: {
+        section: 'exhibit-details-section'
+      }
     },
     '/exhibit-address': Object.assign(exhibitAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => addressFormatter(address)
     }),
     '/exhibit-address-select': Object.assign(exhibitAddressLookup.select, {
       fieldSettings: {
-        className: 'address'
+        className: 'address',
+        section: 'exhibit-details-section'
       }
     }),
     '/exhibit-address-manual': exhibitAddressLookup.manual,
@@ -86,20 +121,26 @@ module.exports = {
       ],
       fieldSettings: {
         legend: {
-          className: 'visuallyhidden'
+          className: 'visuallyhidden',
+          section: 'exhibit-details-section'
         }
       }
     },
     '/contact-name': {
       fields: ['contact-name'],
-      next: '/contact-details'
+      next: '/contact-details',
+      locals: {
+        section: 'contact-details-section'
+      }
     },
     '/contact-details': {
       fields: ['contact-email', 'contact-phone'],
-      next: '/contact-address'
+      next: '/contact-address',
+      locals: { section: 'contact-details-section' }
     },
     '/contact-address': {
       fields: ['same-contact-address'],
+      locals: { section: 'contact-details-section' },
       next: '/contact-address-select',
       forks: [{
         target: '/contact-address-input',
@@ -113,17 +154,47 @@ module.exports = {
     '/contact-address-select': {
       controller: AddressSelect,
       fields: ['contact-address'],
-      next: '/confirm'
+      locals: { section: 'contact-details-section' },
+      next: '/invoice-contact-details'
     },
     '/contact-address-input': Object.assign(contactAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
+      formatAddress: address => addressFormatter(address),
+      section: 'contact-details-section'
     }),
     '/contact-address-input-select': Object.assign(contactAddressLookup.select, {
+      fieldSettings: {
+        className: 'address',
+        section: 'contact-details-section'
+      }
+    }),
+    '/contact-address-input-manual': contactAddressLookup.manual,
+    '/invoice-contact-details': {
+      fields: ['invoice-contact-name', 'invoice-contact-email', 'invoice-contact-phone'],
+      locals: { section: 'invoice-details' },
+      next: '/invoice-address-input'
+    },
+    '/invoice-address-input': Object.assign(invoiceAddressLookup.start, {
+      formatAddress: address => addressFormatter(address)
+    }),
+    '/invoice-address-input-select': Object.assign(invoiceAddressLookup.select, {
+      locals: { section: 'invoice-details' },
       fieldSettings: {
         className: 'address'
       }
     }),
-    '/contact-address-input-manual': contactAddressLookup.manual,
+    '/invoice-address-input-manual': invoiceAddressLookup.manual,
+    '/purchase-order': {
+      fields: [
+        'purchase-order',
+        'purchase-order-number'
+      ],
+      next: '/confirm',
+      locals: {
+        renew: true,
+        section: 'invoice-details',
+        step: 'purchase-order'
+      }
+    },
     '/confirm': {
       template: 'confirm',
       behaviours: [require('hof').components.summary, pdf],

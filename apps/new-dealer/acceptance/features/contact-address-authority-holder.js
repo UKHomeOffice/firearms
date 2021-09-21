@@ -90,7 +90,7 @@ Scenario('I am taken to the contact-address-lookup step when use-different-addre
   I.seeInCurrentUrl(contactAddressAuthorityHolderPage['next-address-select'])
 });
 
-Scenario('I am taken to the summary step when use-same-address is selected', (
+Scenario('I am taken to the invoice contact details page when use-same-address is selected', (
   I,
   contactAddressAuthorityHolderPage
 ) => {

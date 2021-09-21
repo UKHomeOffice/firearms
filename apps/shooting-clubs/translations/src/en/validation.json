@@ -79,5 +79,37 @@
   },
   "location-address-category": {
     "required": "Select the categories of firearms that will be used at this range"
+  },
+  "invoice-address": {
+    "required": "Select an address",
+    "required-manual": "Enter your invoicing address"
+  },
+  "invoice-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a postcode in the correct format, like AA1 1AA"
+  },
+  "invoice-contact-address": {
+    "required": "Select an address",
+    "required-manual": "Enter your invoicing address"
+  },
+  "invoice-contact-name": {
+    "required": "Enter a contact name"
+  },
+  "invoice-contact-email": {
+    "required": "Enter a contact email address",
+    "email": "Enter an email in the correct format, like name@example.com"
+  },
+  "invoice-contact-phone": {
+    "required": "Enter a contact phone number",
+    "phonenumber": "Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192 "
+  },
+  "purchase-order": {
+    "required": "Select if you have a purchase order"
+  },
+  "purchase-order-number": {
+    "required": "Enter your purchase order number"
+  },
+  "existing-authority-add-another": {
+    "required": "Select an option"
   }
 }

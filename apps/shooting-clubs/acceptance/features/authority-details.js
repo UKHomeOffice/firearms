@@ -3,6 +3,7 @@ const steps = require('../../');
 
 Feature('Authority details step');
 
+/*
 Before((
   I,
   authorityDetailsPage
@@ -34,3 +35,4 @@ Scenario('I can go to the next page if I correctly fill the form', (
   I.submitForm();
   I.seeInCurrentUrl(clubNamePage.url);
 });
+*/

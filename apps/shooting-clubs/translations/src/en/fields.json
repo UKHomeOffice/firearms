@@ -85,12 +85,15 @@
     "legend": "Select all that apply",
     "options": {
       "full-bore-rifles": {
+        "name": "full-bore-rifles",
         "label": "Full-bore rifles"
       },
       "small-bore-rifles": {
+        "name": "small-bore-rifles",
         "label": "Small-bore rifles"
       },
       "muzzle-loading-pistols": {
+        "name": "muzzle-loading-pistols",
         "label": "Muzzle-loading pistols"
       }
     }
@@ -110,6 +113,9 @@
   "storage-address-select": {
     "label": "Select the address"
   },
+  "additional-storage": {
+    "label": "All Storage Addresses"
+  },
   "all-storage-addresses-add-another": {
     "options": {
       "yes": {
@@ -119,5 +125,42 @@
         "label": "No"
       }
     }
+  },
+  "invoice-address-manual": {
+    "label": "Address"
+  },
+  "contact-address": {
+    "legend": "Address"
+  },
+  "invoice-address": {
+    "label": "Address"
+  },
+  "invoice-postcode": {
+    "label": "Postcode"
+  },
+  "invoice-contact-name": {
+    "label": "Contact name"
+  },
+  "invoice-contact-email": {
+    "label": "Contact email address"
+  },
+  "invoice-contact-phone": {
+    "label": "Contact phone number"
+  },
+  "purchase-order": {
+    "legend": "Do you have a purchase order?",
+    "hint": "Select one option.",
+    "options": {
+      "Yes": {
+        "label": "Yes"
+      },
+      "No": {
+        "label": "No"
+      }
+    }
+  },
+  "purchase-order-number": {
+    "summary": "Purchase order number",
+    "label": "Purchase order number"
   }
 }

@@ -19,5 +19,23 @@ module.exports = {
       field: 'contact-address',
       useOriginalValue: true
     }
+  ],
+  'invoice-contact-details': [
+    'invoice-contact-name',
+    'invoice-contact-email',
+    'invoice-contact-phone',
+    {
+      step: '/invoice-address-input',
+      field: 'invoice-address',
+      useOriginalValue: true
+    },
+    'purchase-order-number'
+  ],
+  documents: [
+    {
+      step: '/existing-authority-add-another',
+      field: 'existing-authority-documents',
+      parse: list => (list) ? list.map(a => a.description).join('\n') : ''
+    }
   ]
 };

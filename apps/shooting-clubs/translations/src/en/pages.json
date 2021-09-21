@@ -93,9 +93,6 @@
     "header": "At which of these addresses, if any, will the firearms be stored?",
     "intro": "Select all that apply, or leave blank if relevant. The police will inspect each address used for storage."
   },
-  "all-storage-addresses": {
-    "header": "Storage addresses added"
-  },
   "storage-address-add": {
     "header": "Where else will the guns be stored?"
   },
@@ -104,6 +101,28 @@
   },
   "storage-address-add-manual": {
     "header": "Where else will the guns be stored?"
+  },
+  "storage-addresses": {
+    "header": "Storage addresses"
+  },
+  "club-details": {
+    "header": "Club details"
+  },
+  "club-secretary-details": {
+    "header": "Club secretary's details"
+  },
+  "club-second-contact": {
+    "header": "Secondary contact details"
+  },
+  "range-addresses": {
+    "header": "Shooting ranges"
+  },
+  "storage-addresses": {
+    "header": "Storage addresses"
+  },
+  "all-storage-addresses": {
+    "header": "Storage addresses added",
+    "label": "Address"
   },
   "confirm": {
     "sections": {
@@ -124,6 +143,9 @@
       },
       "storage-addresses": {
         "header": "Storage addresses"
+      },
+      "documents": {
+        "header" : "Uploaded existing authority documents"
       }
     },
     "fields": {
@@ -138,10 +160,49 @@
       },
       "all-storage-addresses": {
         "label": "Address"
+      },
+      "name": {
+        "label": "Name"
+      },
+      "existing-authority-documents": {
+        "label": "Documents"
       }
     }
   },
   "confirmation": {
     "email": "We have sent an email to {{values.club-secretary-email}} to confirm receipt of your application."
+  },
+  "invoice-details": {
+    "summary": "Invoice details",
+    "header": "Invoice details"
+  },
+  "invoice-address": {
+    "header": "What is your invoicing address?",
+    "intro": "We will only use this to send your invoice."
+  },
+  "invoice-address-select": {
+    "header": "Select the invoice address"
+  },
+  "invoice-address-input": {
+    "header": "What is their invoice address?"
+  },
+  "invoice-address-input-select": {
+    "header": "Select the invoice address"
+  },
+  "invoice-address-input-manual": {
+    "header": "What is their invoice address?"
+  },
+  "invoice-contact-details": {
+    "header": "Who should we contact about the invoice?"
+  },
+  "exhibit-details-section": {
+    "header": "Museum details"
+  },
+  "contact-details-section": {
+    "header": "Contact details"
+  },
+  "existing-authority-documents-add": {
+    "header": "Uploaded existing authority documents",
+    "list-header": "Documents added"
   }
 }

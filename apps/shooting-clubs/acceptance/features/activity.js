@@ -24,9 +24,9 @@ Before((
 Scenario('When I select renew, I am taken to the authority details page', (
   I,
   activityPage,
-  authorityDetailsPage
+  existingAuthorityPage
 ) => {
   I.click(activityPage.renew);
   I.submitForm();
-  I.seeInCurrentUrl(authorityDetailsPage.url);
+  I.seeInCurrentUrl(existingAuthorityPage.url);
 });

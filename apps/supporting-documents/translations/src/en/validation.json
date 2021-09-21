@@ -8,5 +8,8 @@
   },
   "supporting-document-upload": {
     "required": "Select a document"
+  },
+  "supporting-document-add-another": {
+    "required": "Select an option"
   }
 }

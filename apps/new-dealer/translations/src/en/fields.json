@@ -7,6 +7,10 @@
     "label": "Customer reference number",
     "hint": "Your customer reference number can be found at the top left of your authority letter."
   },
+  "existing-authority": {
+    "label": "Attach existing authority",
+    "hint": ""
+  },
   "organisation": {
     "options": {
       "company": {
@@ -455,6 +459,40 @@
   "contact-address-lookup": {
     "summary": "Home address",
     "label": "Select your address"
+  },
+  "invoice-address-manual": {
+    "label": "Address"
+  },
+  "invoice-address": {
+    "label": "Address"
+  },
+  "invoice-postcode": {
+    "label": "Postcode"
+  },
+  "invoice-contact-name": {
+    "label": "Contact name"
+  },
+  "invoice-contact-email": {
+    "label": "Contact email address"
+  },
+  "invoice-contact-phone": {
+    "label": "Contact phone number"
+  },
+  "purchase-order": {
+    "legend": "Do you have a purchase order?",
+    "hint": "Select one option.",
+    "options": {
+      "Yes": {
+        "label": "Yes"
+      },
+      "No": {
+        "label": "No"
+      }
+    }
+  },
+  "purchase-order-number": {
+    "summary": "Purchase order number",
+    "label": "Purchase order number"
   },
   "storage-add-another-address": {
     "legend": "The police will inspect each address used for storage",
