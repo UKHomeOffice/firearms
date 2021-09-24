@@ -158,7 +158,7 @@ spec:
           resources:
             requests:
               memory: 256Mi
-              cpu: 300m
+              cpu: 200m
             limits:
               memory: 256Mi
               cpu: 300m
@@ -171,11 +171,11 @@ spec:
           image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
           resources:
             requests:
-              memory: 1024Mi
-              cpu: 300m
+              memory: 256Mi
+              cpu: 250m
             limits:
               cpu: 250m
-              memory: 1024Mi
+              memory: 256Mi
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
           ports:
