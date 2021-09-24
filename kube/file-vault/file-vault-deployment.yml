@@ -25,10 +25,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              memory: 128Mi
-              cpu: 128m
+              memory: 1024Mi
+              cpu: 500m
             limits:
-              memory: 512Mi
+              memory: 1024Mi
               cpu: 600m
           envFrom:
             - configMapRef:
@@ -142,7 +142,7 @@ spec:
               memory: 256Mi
             requests:
               cpu: 10m
-              memory: 10Mi
+              memory: 1024Mi
           env:
 {{ file .FILEVAULT_NGINX_SETTINGS | indent 12 }}
           ports:
