@@ -58,6 +58,9 @@
   "invoice-address-manual": {
     "label": "Address"
   },
+  "invoice-address-select": {
+    "label": "Select the address"
+  },
   "contact-address": {
     "legend": "Address"
   },
