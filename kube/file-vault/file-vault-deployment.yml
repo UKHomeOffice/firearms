@@ -82,7 +82,7 @@ spec:
                   name: ses
                   key: password
             - name: FILE_EXTENSION_WHITELIST
-              value: 'pdf,doc,docx,txt,jpg,jpeg,png,xls,xlsx,odt,ods'
+              value: 'pdf,doc,docx,txt,jpg,jpeg,png,xls,xlsx,odt,ods,PDF,DOC,DOCX,TXT,JPG,JPEG,PNG,XLS,XLSX,ODT,ODS'
           securityContext:
             runAsNonRoot: true
 
