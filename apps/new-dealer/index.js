@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const path = require('path');
 const config = require('../../config');
-const AddressLookup = require('../common/controllers/address/helper');
+const formatAddress = require('../common/behaviours/format-address');
 const getPageCustomBackLink = require('./behaviours/custom-back-links');
 const existingAuthorityController = require('../common/controllers/existing-authority-documents-add-another');
 const existingAuthorityBehaviour = require('../common/behaviours/existing-authority-documents-add');
@@ -13,14 +13,6 @@ const resetUploadedDocuments = require('../common/behaviours/reset-on-change');
 const ammunition = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'ammunition');
 const weapons = req => _.includes(req.sessionModel.get('weapons-ammunition'), 'weapons');
 const storedOnPremises = req => req.sessionModel.get('stored-on-premises') === 'true';
-
-const invoiceAddressLookup = AddressLookup({
-  prefix: 'invoice',
-  start: '/invoice-address-input',
-  select: '/invoice-address-input-select',
-  manual: '/invoice-address-input-manual',
-  next: '/purchase-order'
-});
 
 const Submission = require('../common/behaviours/casework-submission');
 const submission = Submission({
@@ -184,7 +176,7 @@ module.exports = {
       ],
       next: '/usage',
       forks: [{
-        target: '/storage-postcode',
+        target: '/storage-address',
         condition(req) {
           return storedOnPremises(req);
         }
@@ -194,86 +186,40 @@ module.exports = {
         step: 'storage'
       }
     },
-    '/storage-postcode': {
-      addressKey: 'storageAddresses',
-      template: 'storage-address',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'storage-postcode'
-      ],
-      backLinks: '/storage',
-      next: '/storage-address',
-      continueOnEdit: true,
-      forks: [{
-        target: '/storage-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('storage-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        section: 'storage-postcode',
-        field: 'storage',
-        renew: true,
-        step: 'storage-postcode'
-      }
-    },
-    '/storage-address-lookup': {
-      addressKey: 'storageAddresses',
-      template: 'storage-address-lookup',
-      controller: require('../common/controllers/address-lookup-loop'),
-      fields: [
-        'storage-address-lookup'
-      ],
-      next: '/storage-add-another-address',
-      continueOnEdit: true,
-      locals: {
-        renew: true,
-        field: 'storage',
-        step: 'storage-address-lookup'
-      }
-    },
     '/storage-address': {
-      addressKey: 'storageAddresses',
-      template: 'storage-address-manual',
-      controller: require('../common/controllers/address-loop'),
+      template: 'storage-address',
+      behaviours: formatAddress('storage', 'storage-address'),
       fields: [
-        'storage-address-manual'
+        'storage-building',
+        'storage-street',
+        'storage-townOrCity',
+        'storage-postcodeOrZIPCode'
       ],
-      prereqs: ['/storage-postcode', '/storage'],
-      backLink: 'storage-postcode',
+      locals: { section: 'storage-details', renew: true, step: 'storage-address'},
+      fieldSettings: { className: 'address' },
       next: '/storage-add-another-address',
-      continueOnEdit: true,
-      locals: {
-        field: 'storage',
-        renew: true,
-        step: 'storage-address'
-      }
+      backLinks: '/storage',
+      continueOnEdit: true
     },
     '/storage-add-another-address': {
-      addressKey: 'storageAddresses',
-      template: 'add-another-address-loop.html',
-      controller: require('../common/controllers/add-another-address-loop'),
-      behaviours: require('../common/behaviours/delete-address'),
-      fields: [
-        'storage-add-another-address'
-      ],
-      prereqs: ['/storage'],
+      template: 'storage-add-another-address',
+      controller: require('./controllers/storage-address-loop'),
       next: '/usage',
-      forks: [{
-        target: '/storage-postcode',
-        continueOnEdit: true,
-        condition: {
-          field: 'storage-add-another-address',
-          value: 'yes'
+      returnTo: '/storage-address',
+      aggregateTo: 'storageAddresses',
+      aggregateFields: [
+        'storage-building',
+        'storage-street',
+        'storage-townOrCity',
+        'storage-postcodeOrZIPCode',
+        'storage-address'
+      ],
+      fieldSettings: {
+        legend: {
+          className: 'visuallyhidden'
         }
-      }],
-      locals: {
-        section: 'storage-add-another-address',
-        field: 'storage',
-        renew: true,
-        step: 'storage-add-another-address'
-      }
+      },
+      locals: { section: 'storage-details', renew: true, step: 'storage-address'}
     },
     '/usage': {
       fields: [
@@ -372,67 +318,34 @@ module.exports = {
         'first-authority-holders-nationality-second',
         'first-authority-holders-nationality-third'
       ],
-      next: '/first-authority-holders-postcode',
+      next: '/first-authority-holders-address',
       locals: {
         key: 'first-authority-holders-nationality',
         section: 'first-authority-holder'
       }
     },
-    '/first-authority-holders-postcode': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'first-authority-holders-postcode'
-      ],
-      next: '/first-authority-holders-address',
-      forks: [{
-        target: '/first-authority-holders-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('first-authority-holders-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        field: 'first-authority-holders'
-      }
-    },
-    '/first-authority-holders-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'first-authority-holders-address-lookup'
-      ],
-      next: '/contact',
-      forks: [{
-        target: '/second-authority-holders-name',
-        condition(req) {
-          return req.sessionModel.get('authority-holders') === 'two';
-        }
-      }],
-      locals: {
-        field: 'first-authority-holders',
-        section: 'first-authority-holder'
-      }
-    },
     '/first-authority-holders-address': {
-      template: 'address.html',
-      controller: require('../common/controllers/address'),
+      behaviours: formatAddress('first-authority-holders', 'first-authority-holders-address-manual'),
       fields: [
-        'first-authority-holders-address-manual'
+        'first-authority-holders-building',
+        'first-authority-holders-street',
+        'first-authority-holders-townOrCity',
+        'first-authority-holders-postcodeOrZIPCode'
       ],
+      locals: {
+        step: '/first-authority-holders-address',
+        field: 'first-authority-holders-address-manual',
+        useOriginalValue: true,
+        section: 'first-authority-holder'
+      },
+      fieldSettings: { className: 'address' },
       next: '/contact',
-      prereqs: ['/first-authority-holders-postcode', '/first-authority-holders-nationality'],
-      backLink: 'first-authority-holders-postcode',
       forks: [{
         target: '/second-authority-holders-name',
         condition(req) {
           return req.sessionModel.get('authority-holders') === 'two';
         }
-      }],
-      locals: {
-        field: 'first-authority-holders',
-        section: 'first-authority-holder'
-      }
+      }]
     },
     '/second-authority-holders-name': {
       fields: [
@@ -463,55 +376,26 @@ module.exports = {
         'second-authority-holders-nationality-second',
         'second-authority-holders-nationality-third'
       ],
-      next: '/second-authority-holders-postcode',
+      next: '/second-authority-holders-address',
       locals: {
         key: 'second-authority-holders-nationality',
         section: 'second-authority-holder'
       }
     },
-    '/second-authority-holders-postcode': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'second-authority-holders-postcode'
-      ],
-      next: '/second-authority-holders-address',
-      forks: [{
-        target: '/second-authority-holders-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('second-authority-holders-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        field: 'second-authority-holders'
-      }
-    },
-    '/second-authority-holders-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'second-authority-holders-address-lookup'
-      ],
-      next: '/contact',
-      locals: {
-        field: 'second-authority-holders',
-        section: 'second-authority-holder'
-      }
-    },
     '/second-authority-holders-address': {
-      template: 'address.html',
-      controller: require('../common/controllers/address'),
+      behaviours: formatAddress('second-authority-holders', 'second-authority-holders-address-manual'),
       fields: [
-        'second-authority-holders-address-manual'
+        'second-authority-holders-building',
+        'second-authority-holders-street',
+        'second-authority-holders-townOrCity',
+        'second-authority-holders-postcodeOrZIPCode'
       ],
-      next: '/contact',
-      prereqs: ['/second-authority-holders-postcode', '/second-authority-holders-nationality'],
-      backLink: 'second-authority-holders-postcode',
       locals: {
-        field: 'second-authority-holders',
+        field: 'second-authority-holders-address-manual',
         section: 'second-authority-holder'
-      }
+      },
+      fieldSettings: { className: 'address' },
+      next: '/contact'
     },
     '/contact': {
       fields: [
@@ -534,20 +418,19 @@ module.exports = {
       ],
       next: '/authority-holder-contact-postcode',
       forks: [{
-        target: '/contact-postcode',
+        target: '/contact-address',
         condition(req) {
           return req.sessionModel.get('contact-holder') === 'other';
         }
       }],
       locals: {
         section: 'contacts-details'
-      }
+      },
+      continueOnEdit: true
     },
     '/authority-holder-contact-postcode': {
-      controller: require('../common/controllers/postcode'),
       fields: [
-        'use-different-address',
-        'authority-holder-contact-postcode'
+        'use-different-address'
       ],
       next: '/authority-holder-contact-address',
       forks: [{
@@ -557,7 +440,7 @@ module.exports = {
           value: 'false'
         }
       }, {
-        target: '/authority-holder-contact-address-lookup',
+        target: '/authority-holder-contact-address',
         condition(req) {
           const addresses = req.sessionModel.get('authority-holder-contact-addresses');
           return addresses && addresses.length;
@@ -568,92 +451,38 @@ module.exports = {
         section: 'contacts-details'
       }
     },
-    '/authority-holder-contact-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'authority-holder-contact-address-lookup'
-      ],
-      next: '/invoice-contact-details',
-      locals: {
-        field: 'authority-holder-contact',
-        section: 'contacts-details'
-      }
-    },
     '/authority-holder-contact-address': {
+      behaviours: formatAddress('authority-holder-contact', 'authority-holder-contact-address-manual'),
       template: 'address.html',
-      controller: require('../common/controllers/address'),
       fields: [
-        'authority-holder-contact-address-manual'
+        'authority-holder-contact-building',
+        'authority-holder-contact-street',
+        'authority-holder-contact-townOrCity',
+        'authority-holder-contact-postcodeOrZIPCode'
       ],
-      next: '/invoice-contact-details',
-      prereqs: ['/authority-holder-contact-postcode', '/contact-details'],
-      backLink: 'authority-holder-contact-postcode',
-      locals: {
-        field: 'authority-holder-contact',
-        section: 'contacts-details'
-      }
-    },
-    '/contact-postcode': {
-      template: 'postcode.html',
-      controller: require('../common/controllers/postcode'),
-      fields: [
-        'contact-postcode'
-      ],
-      next: '/contact-address',
-      forks: [{
-        target: '/contact-address-lookup',
-        condition(req) {
-          const addresses = req.sessionModel.get('contact-addresses');
-          return addresses && addresses.length;
-        }
-      }],
-      locals: {
-        field: 'contact',
-        section: 'contacts-details'
-      }
-    },
-    '/contact-address-lookup': {
-      template: 'address-lookup.html',
-      controller: require('../common/controllers/address-lookup'),
-      fields: [
-        'contact-address-lookup'
-      ],
-      next: '/invoice-contact-details',
-      locals: {
-        field: 'contact',
-        section: 'contacts-details'
-      }
+      locals: { section: 'contacts-details', field: 'authority-holder-contact-address-manual' },
+      fieldSettings: { className: 'address' },
+      next: '/invoice-contact-details'
     },
     '/contact-address': {
-      template: 'address.html',
-      controller: require('../common/controllers/address'),
-      fields: [
-        'contact-address-manual'
-      ],
-      next: '/invoice-contact-details',
-      prereqs: ['/contact-postcode', '/contact-details'],
-      backLink: 'contact-postcode',
-      locals: {
-        field: 'contact',
-        section: 'contacts-details'
-      }
+      behaviours: formatAddress('contact', 'contact-address-manual'),
+      fields: ['contact-building', 'contact-street', 'contact-townOrCity', 'contact-postcodeOrZIPCode'],
+      fieldSettings: { className: 'address' },
+      next: '/invoice-contact-details'
+
     },
     '/invoice-contact-details': {
       fields: ['invoice-contact-name', 'invoice-contact-email', 'invoice-contact-phone'],
       locals: { section: 'invoice-details' },
       next: '/invoice-address-input'
     },
-    '/invoice-address-input': Object.assign(invoiceAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
-    }),
-    '/invoice-address-input-select': Object.assign(invoiceAddressLookup.select, {
+    '/invoice-address-input': {
+      behaviours: formatAddress('invoice', 'invoice-address'),
+      fields: ['invoice-building', 'invoice-street', 'invoice-townOrCity', 'invoice-postcodeOrZIPCode'],
       locals: { section: 'invoice-details' },
-      fieldSettings: {
-        className: 'address'
-      }
-    }),
-    '/invoice-address-input-manual': invoiceAddressLookup.manual,
+      fieldSettings: { className: 'address' },
+      next: '/purchase-order'
+    },
     '/purchase-order': {
       fields: [
         'purchase-order',

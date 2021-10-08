@@ -15,7 +15,12 @@ Scenario('The correct form elements are present on club-secretary-postcode step'
   I,
   clubSecretaryAddressPage
 ) => {
-  I.seeElement(clubSecretaryAddressPage.fields.postcode);
+  I.seeElements([
+    clubSecretaryAddressPage.fields['club-secretary-building'],
+    clubSecretaryAddressPage.fields['club-secretary-street'],
+    clubSecretaryAddressPage.fields['club-secretary-townOrCity'],
+    clubSecretaryAddressPage.fields['club-secretary-postcodeOrZIPCode']
+  ]);
 });
 
 Scenario('An error is shown if club-secretary-postcode is not completed', (
@@ -23,84 +28,22 @@ Scenario('An error is shown if club-secretary-postcode is not completed', (
   clubSecretaryAddressPage
 ) => {
   I.submitForm();
-  I.seeErrors(clubSecretaryAddressPage.fields.postcode);
+  I.seeErrors(clubSecretaryAddressPage.fields['club-secretary-postcodeOrZIPCode']);
 });
 
-Scenario('I am taken to the club-secretary-address-lookup step from postcode', (
+Scenario('I see errors if town city fields contains numbers for contact holders address step', (
   I,
   clubSecretaryAddressPage
 ) => {
-  clubSecretaryAddressPage.fillFormAndSubmit(clubSecretaryAddressPage.fields.postcode);
-  I.seeInCurrentUrl(clubSecretaryAddressPage['address-lookup-url']);
+  clubSecretaryAddressPage.fillFormAndSubmit(clubSecretaryAddressPage.fields['club-secretary-townOrCity']);
+  I.seeErrors(clubSecretaryAddressPage.fields['club-secretary-townOrCity']);
 });
 
-Scenario('I am taken to the club-secretary-manual-address step when I click the link', (
-  I,
-  clubSecretaryAddressPage
-) => {
-  I.click(clubSecretaryAddressPage.links['manual-entry']);
-  I.seeInCurrentUrl(clubSecretaryAddressPage['address-url']);
-});
-
-Scenario('The correct form elements are present for club secretary manual address step', (
-  I,
-  clubSecretaryAddressPage
-) => {
-  I.click(clubSecretaryAddressPage.links['manual-entry']);
-  I.seeElements(clubSecretaryAddressPage.fields['address-manual']);
-});
-
-Scenario('An error is shown if club secretary manual address is not completed', (
-  I,
-  clubSecretaryAddressPage
-) => {
-  I.click(clubSecretaryAddressPage.links['manual-entry']);
-  I.submitForm();
-  I.seeErrors(clubSecretaryAddressPage.fields['address-manual']);
-});
-
-Scenario('An error is shown if club-secretary-address-lookup is not completed', (
-  I,
-  clubSecretaryAddressPage
-) => {
-  clubSecretaryAddressPage.fillFormAndSubmit(clubSecretaryAddressPage.fields.postcode);
-  I.submitForm();
-  I.seeErrors(clubSecretaryAddressPage.fields['address-lookup']);
-});
-
-Scenario('I am taken to the club secretary manual address step if I cant find my address', (
-  I,
-  clubSecretaryAddressPage
-) => {
-  clubSecretaryAddressPage.fillFormAndSubmit(clubSecretaryAddressPage.fields.postcode);
-  I.click(clubSecretaryAddressPage.links['cant-find-address']);
-  I.seeInCurrentUrl(clubSecretaryAddressPage['address-url']);
-});
-
-Scenario('When I click cant find my address link, I will see the postcode I entered in the club secretary manual address step', (
-  I,
-  clubSecretaryAddressPage
-) => {
-  clubSecretaryAddressPage.fillFormAndSubmit(clubSecretaryAddressPage.fields.postcode);
-  I.click(clubSecretaryAddressPage.links['cant-find-address']);
-  I.see(clubSecretaryAddressPage.content.postcode);
-});
-
-Scenario('I am taken to the club-secretary-email step from the manual-address step', (
+Scenario('I am taken to the club-secretary-email step from the club-secretary-address step', (
   I,
   clubSecretaryAddressPage,
   clubSecretaryEmailPage
 ) => {
-  I.click(clubSecretaryAddressPage.links['manual-entry']);
-  clubSecretaryAddressPage.fillFormAndSubmit(clubSecretaryAddressPage.fields['address-manual']);
-  I.seeInCurrentUrl(clubSecretaryEmailPage.url);
-});
-
-Scenario('When an address is selected I am taken to the club-secretary-email step', (
-  I,
-  clubSecretaryAddressPage,
-  clubSecretaryEmailPage
-) => {
-  clubSecretaryAddressPage.selectAddressAndSubmit();
+  clubSecretaryAddressPage.fillAllAddressFieldsAndSubmit();
   I.seeInCurrentUrl(clubSecretaryEmailPage.url);
 });

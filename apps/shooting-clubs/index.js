@@ -3,7 +3,7 @@
 const config = require('../../config');
 const _ = require('lodash');
 
-const AddressLookup = require('../common/controllers/address/helper');
+const formatAddress = require('../common/behaviours/format-address');
 const getPageCustomBackLink = require('../common/behaviours/custom-back-links.js');
 const existingAuthorityController = require('../common/controllers/existing-authority-documents-add-another');
 const existingAuthorityBehaviour = require('../common/behaviours/existing-authority-documents-add');
@@ -13,52 +13,6 @@ const submission = Submission({
 });
 
 const pdf = require('../common/behaviours/pdf-upload');
-
-const clubAddressLookup = AddressLookup({
-  prefix: 'club',
-  start: '/club-address',
-  select: '/club-address-select',
-  manual: '/club-address-manual',
-  next: '/club-secretary-name'
-});
-const clubSecretaryAddressLookup = AddressLookup({
-  prefix: 'club-secretary',
-  start: '/club-secretary-address',
-  select: '/club-secretary-address-select',
-  manual: '/club-secretary-address-manual',
-  next: '/club-secretary-email'
-});
-const secondContactAddressLookup = AddressLookup({
-  prefix: 'second-contact',
-  start: '/second-contact-address',
-  select: '/second-contact-address-select',
-  manual: '/second-contact-address-manual',
-  next: '/second-contact-email'
-});
-const locationAddressLookup = AddressLookup({
-  prefix: 'location',
-  start: '/location-address',
-  select: '/location-address-select',
-  manual: '/location-address-manual',
-  next: '/location-address-category',
-  continueOnEdit: true
-});
-const storageAddressLookup = AddressLookup({
-  prefix: 'storage',
-  start: '/storage-address-add',
-  select: '/storage-address-add-select',
-  manual: '/storage-address-add-manual',
-  next: '/storage-add-another-address',
-  continueOnEdit: true
-});
-const invoiceAddressLookup = AddressLookup({
-  prefix: 'invoice',
-  start: '/invoice-address-input',
-  select: '/invoice-address-input-select',
-  manual: '/invoice-address-input-manual',
-  next: '/purchase-order'
-});
-
 const Emailer = require('../common/behaviours/emailer');
 const emailer = Emailer({
   recipient: 'club-secretary-email',
@@ -127,15 +81,13 @@ module.exports = {
       locals: { section: 'club-details' },
       next: '/club-address'
     },
-    '/club-address': Object.assign(clubAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
-    }),
-    '/club-address-select': Object.assign(clubAddressLookup.select, {
-      fieldSettings: {
-        className: 'address'
-      }
-    }),
-    '/club-address-manual': clubAddressLookup.manual,
+    '/club-address': {
+      behaviours: formatAddress('club', 'club-address'),
+      fields: ['club-building', 'club-street', 'club-townOrCity', 'club-postcodeOrZIPCode'],
+      locals: { section: 'club-details' },
+      fieldSettings: { className: 'address' },
+      next: '/club-secretary-name'
+    },
     '/club-secretary-name': {
       fields: [
         'club-secretary-name'
@@ -143,15 +95,18 @@ module.exports = {
       locals: { section: 'club-secretary-details' },
       next: '/club-secretary-address'
     },
-    '/club-secretary-address': Object.assign(clubSecretaryAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
-    }),
-    '/club-secretary-address-select': Object.assign(clubSecretaryAddressLookup.select, {
-      fieldSettings: {
-        className: 'address'
-      }
-    }),
-    '/club-secretary-address-manual': clubSecretaryAddressLookup.manual,
+    '/club-secretary-address': {
+      behaviours: formatAddress('club-secretary', 'club-secretary-address'),
+      fields: [
+        'club-secretary-building',
+        'club-secretary-street',
+        'club-secretary-townOrCity',
+        'club-secretary-postcodeOrZIPCode'
+      ],
+      locals: { section: 'club-secretary-details' },
+      fieldSettings: { className: 'address' },
+      next: '/club-secretary-email'
+    },
     '/club-secretary-email': {
       fields: [
         'club-secretary-email',
@@ -167,15 +122,18 @@ module.exports = {
       locals: { section: 'club-second-contact' },
       next: '/second-contact-address'
     },
-    '/second-contact-address': Object.assign(secondContactAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
-    }),
-    '/second-contact-address-select': Object.assign(secondContactAddressLookup.select, {
-      fieldSettings: {
-        className: 'address'
-      }
-    }),
-    '/second-contact-address-manual': secondContactAddressLookup.manual,
+    '/second-contact-address': {
+      behaviours: formatAddress('second-contact', 'second-contact-address'),
+      fields: [
+        'second-contact-building',
+        'second-contact-street',
+        'second-contact-townOrCity',
+        'second-contact-postcodeOrZIPCode'
+      ],
+      locals: { section: 'second-contact-details' },
+      fieldSettings: { className: 'address' },
+      next: '/second-contact-email'
+    },
     '/second-contact-email': {
       fields: [
         'second-contact-email',
@@ -184,15 +142,13 @@ module.exports = {
       locals: { section: 'club-second-contact' },
       next: '/location-address'
     },
-    '/location-address': Object.assign(locationAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
-    }),
-    '/location-address-select': Object.assign(locationAddressLookup.select, {
-      fieldSettings: {
-        className: 'address'
-      }
-    }),
-    '/location-address-manual': locationAddressLookup.manual,
+    '/location-address': {
+      behaviours: formatAddress('location', 'location-address'),
+      fields: ['location-building', 'location-street', 'location-townOrCity', 'location-postcodeOrZIPCode'],
+      locals: { section: 'location-details' },
+      fieldSettings: { className: 'address' },
+      next: '/location-address-category'
+    },
     '/location-address-category': {
       template: '../common/views/add-another-address-loop.html',
       fields: [
@@ -208,6 +164,10 @@ module.exports = {
       returnTo: '/location-address',
       aggregateTo: 'location-addresses',
       aggregateFields: [
+        'location-building',
+        'location-street',
+        'location-townOrCity',
+        'location-postcodeOrZIPCode',
         'location-address',
         'location-address-category'
       ],
@@ -234,6 +194,10 @@ module.exports = {
       returnTo: '/storage-address-add',
       aggregateTo: 'all-storage-addresses',
       aggregateFields: [
+        'storage-building',
+        'storage-street',
+        'storage-townOrCity',
+        'storage-postcodeOrZIPCode',
         'storage-address'
       ],
       fieldSettings: {
@@ -242,30 +206,31 @@ module.exports = {
         }
       }
     },
-    '/storage-address-add': Object.assign(storageAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
-    }),
-    '/storage-address-add-select': Object.assign(storageAddressLookup.select, {
-      fieldSettings: {
-        className: 'address'
-      }
-    }),
-    '/storage-address-add-manual': storageAddressLookup.manual,
+    '/storage-address-add': {
+      behaviours: formatAddress('storage', 'storage-address'),
+      fields: [
+        'storage-building',
+        'storage-street',
+        'storage-townOrCity',
+        'storage-postcodeOrZIPCode'
+      ],
+      locals: { section: 'storage-details' },
+      fieldSettings: { className: 'address' },
+      next: '/storage-add-another-address',
+      continueOnEdit: true
+    },
     '/invoice-contact-details': {
       fields: ['invoice-contact-name', 'invoice-contact-email', 'invoice-contact-phone'],
       locals: { section: 'invoice-details' },
       next: '/invoice-address-input'
     },
-    '/invoice-address-input': Object.assign(invoiceAddressLookup.start, {
-      formatAddress: address => address.formatted_address.split('\n').join(', ')
-    }),
-    '/invoice-address-input-select': Object.assign(invoiceAddressLookup.select, {
+    '/invoice-address-input': {
+      behaviours: formatAddress('invoice', 'invoice-address'),
+      fields: ['invoice-building', 'invoice-street', 'invoice-townOrCity', 'invoice-postcodeOrZIPCode'],
       locals: { section: 'invoice-details' },
-      fieldSettings: {
-        className: 'address'
-      }
-    }),
-    '/invoice-address-input-manual': invoiceAddressLookup.manual,
+      fieldSettings: { className: 'address' },
+      next: '/purchase-order'
+    },
     '/purchase-order': {
       fields: [
         'purchase-order',

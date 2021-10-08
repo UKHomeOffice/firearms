@@ -1,0 +1,20 @@
+{{#items.length}}
+  <div id="address-summary">
+    <h2>{{#t}}pages.{{field}}.header{{/t}}</h2>
+    <table class="table-address-loop">
+      {{#hasCategories}}
+        {{> partials-location-categories}}
+      {{/hasCategories}}
+      {{^hasCategories}}
+        <tbody>
+          {{#items}}
+          <tr class="address-summary">
+            <td>{{address}}</td>
+            <td><a href="?delete={{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a></td>
+          </tr>
+          {{/items}}
+        </tbody>
+      {{/hasCategories}}
+    </table>
+  </div>
+{{/items.length}}

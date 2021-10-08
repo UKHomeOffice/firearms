@@ -15,7 +15,20 @@ Scenario('The correct form elements are present', (
   I,
   contactAddressPage
 ) => {
-  I.seeElement(contactAddressPage.fields.postcode);
+  I.seeElements([
+    contactAddressPage.fields['contact-building'],
+    contactAddressPage.fields['contact-street'],
+    contactAddressPage.fields['contact-townOrCity'],
+    contactAddressPage.fields['contact-postcodeOrZIPCode']
+  ]);
+});
+
+Scenario('I see errors if town city fields contains numbers for contact holders address step', (
+  I,
+  contactAddressPage
+) => {
+  contactAddressPage.fillFormAndSubmit(contactAddressPage.fields['contact-townOrCity']);
+  I.seeErrors(contactAddressPage.fields['contact-townOrCity']);
 });
 
 Scenario('An error is shown if contact-postcode step is not completed', (
@@ -23,7 +36,7 @@ Scenario('An error is shown if contact-postcode step is not completed', (
   contactAddressPage
 ) => {
   I.submitForm();
-  I.seeErrors(contactAddressPage.fields.postcode);
+  I.seeErrors(contactAddressPage.fields['contact-townOrCity']);
 });
 
 Scenario('Contact\'s name is in the header of postcode step', function *(
@@ -37,104 +50,10 @@ Scenario('Contact\'s name is in the header of postcode step', function *(
   I.see(contactAddressPage.content.header);
 });
 
-Scenario('I am taken to the contact manual-address step when I click the link', (
+Scenario('When an address is entered I am taken to the configured next step', (
   I,
   contactAddressPage
 ) => {
-  I.click(contactAddressPage.links['manual-entry']);
-  I.seeInCurrentUrl(contactAddressPage['address-url'])
-});
-
-Scenario('I am taken to the contact-address-lookup step when postcode is entered', (
-  I,
-  contactAddressPage
-) => {
-  contactAddressPage.fillFormAndSubmit(contactAddressPage.fields.postcode)
-  I.seeInCurrentUrl(contactAddressPage['address-lookup-url'])
-});
-
-
-Scenario('The correct form elements are present for contact manual address step', (
-  I,
-  contactAddressPage
-) => {
-  I.click(contactAddressPage.links['manual-entry']);
-  I.seeElements(contactAddressPage.fields['address-manual']);
-});
-
-Scenario('Contact\'s name is in the page header of the manual-address step', function *(
-  I,
-  contactAddressPage
-) {
-  I.click(contactAddressPage.links['manual-entry']);
-  yield I.setSessionData(steps.name, {
-    'someone-else-name': 'Sterling Archer'
-  });
-  yield I.refreshPage();
-  I.see(contactAddressPage.content.header);
-});
-
-Scenario('An error is shown if contact manual address is not completed', (
-  I,
-  contactAddressPage
-) => {
-  I.click(contactAddressPage.links['manual-entry']);
-  I.submitForm();
-  I.seeErrors(contactAddressPage.fields['address-manual']);
-});
-
-Scenario('An error is shown if contact-address-lookup is not completed', (
-  I,
-  contactAddressPage
-) => {
-  contactAddressPage.fillFormAndSubmit(contactAddressPage.fields.postcode);
-  I.submitForm();
-  I.seeErrors(contactAddressPage.fields['address-lookup']);
-});
-
-Scenario('Contact\'s name is in the page header of the address-lookup step', function *(
-  I,
-  contactAddressPage
-) {
-  contactAddressPage.fillFormAndSubmit(contactAddressPage.fields.postcode);
-  yield I.setSessionData(steps.name, {
-    'someone-else-name': 'Sterling Archer'
-  });
-  yield I.refreshPage();
-  I.see(contactAddressPage.content.header);
-});
-
-Scenario('I am taken to the contact manual address step if I cant find my address', (
-  I,
-  contactAddressPage
-) => {
-  contactAddressPage.fillFormAndSubmit(contactAddressPage.fields.postcode);
-  I.click(contactAddressPage.links['cant-find-address']);
-  I.seeInCurrentUrl(contactAddressPage['address-url']);
-});
-
-Scenario('When I click cant find my address link, I will see the postcode I entered in the contact manual address step', (
-  I,
-  contactAddressPage
-) => {
-  contactAddressPage.fillFormAndSubmit(contactAddressPage.fields.postcode);
-  I.click(contactAddressPage.links['cant-find-address']);
-  I.see(contactAddressPage.content.postcode);
-});
-
-Scenario('I am taken to the configured next step from the manual-address step', (
-  I,
-  contactAddressPage
-) => {
-  I.click(contactAddressPage.links['manual-entry']);
-  contactAddressPage.fillFormAndSubmit(contactAddressPage.fields['address-manual']);
-  I.seeInCurrentUrl(contactAddressPage.next);
-});
-
-Scenario('When an address is selected I am taken to the configured next step', (
-  I,
-  contactAddressPage
-) => {
-  contactAddressPage.selectAddressAndSubmit();
+  contactAddressPage.fillAllAddressFieldsAndSubmit();
   I.seeInCurrentUrl(contactAddressPage.next);
 });

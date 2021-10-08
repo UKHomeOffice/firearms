@@ -11,24 +11,22 @@ Before((
   I.visitPage(companyNamePage, steps);
 });
 
-// Scenario('The correct form elements are present', (
-//   I,
-//   companyNamePage
-// ) => {
-//   I.seeElements([
-//     companyNamePage['organisation-group'],
-//     companyNamePage.company,
-//     companyNamePage['sole-trader']
-//   ]);
-// });
+Scenario('The correct form elements are present', (
+  I,
+  companyNamePage
+) => {
+  I.seeElement(companyNamePage['organisation-group']);
+  I.click(companyNamePage.company);
+  I.click(companyNamePage['sole-trader']);
+});
 
-//Scenario('An error is shown if company-name step is not completed', (
-//  I,
-//  companyNamePage
-//) => {
-//  I.submitForm();
-//  I.seeErrors(companyNamePage['organisation-group']);
-//});
+Scenario('An error is shown if company-name step is not completed', (
+  I,
+  companyNamePage
+) => {
+  I.submitForm();
+  I.seeErrors(companyNamePage['organisation-group']);
+});
 
 Scenario('Selecting company toggles company-name and company-house-number fields', (
   I,

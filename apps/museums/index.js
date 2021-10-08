@@ -2,35 +2,10 @@
 
 const config = require('../../config');
 const _ = require('lodash');
-const addressFormatter = require('./util/address-formatter');
+const formatAddress = require('../common/behaviours/format-address');
 const getPageCustomBackLink = require('../common/behaviours/custom-back-links.js');
 const existingAuthorityBehaviour = require('../common/behaviours/existing-authority-documents-add');
-const AddressLookup = require('../common/controllers/address/helper');
 const AddressSelect = require('./controllers/contact-address-select');
-const exhibitAddressLookup = AddressLookup({
-  prefix: 'exhibit',
-  start: '/exhibit-address',
-  select: '/exhibit-address-select',
-  manual: '/exhibit-address-manual',
-  next: '/exhibit-add-another-address',
-  continueOnEdit: true
-});
-
-const contactAddressLookup = AddressLookup({
-  prefix: 'contact',
-  start: '/contact-address-input',
-  select: '/contact-address-input-select',
-  manual: '/contact-address-input-manual',
-  next: '/invoice-contact-details'
-});
-
-const invoiceAddressLookup = AddressLookup({
-  prefix: 'invoice',
-  start: '/invoice-address-input',
-  select: '/invoice-address-input-select',
-  manual: '/invoice-address-input-manual',
-  next: '/purchase-order'
-});
 
 const Submission = require('../common/behaviours/casework-submission');
 const submission = Submission({
@@ -100,16 +75,14 @@ module.exports = {
         section: 'exhibit-details-section'
       }
     },
-    '/exhibit-address': Object.assign(exhibitAddressLookup.start, {
-      formatAddress: address => addressFormatter(address)
-    }),
-    '/exhibit-address-select': Object.assign(exhibitAddressLookup.select, {
-      fieldSettings: {
-        className: 'address',
-        section: 'exhibit-details-section'
-      }
-    }),
-    '/exhibit-address-manual': exhibitAddressLookup.manual,
+    '/exhibit-address': {
+      behaviours: formatAddress('exhibit', 'exhibit-address'),
+      fields: ['exhibit-building', 'exhibit-street', 'exhibit-townOrCity', 'exhibit-postcodeOrZIPCode'],
+      locals: { section: 'exhibit-details-details' },
+      fieldSettings: { className: 'address' },
+      next: '/exhibit-add-another-address',
+      continueOnEdit: true
+    },
     '/exhibit-add-another-address': {
       controller: require('./controllers/exhibit-address-loop'),
       template: 'add-another-address-loop.html',
@@ -117,6 +90,10 @@ module.exports = {
       returnTo: '/exhibit-address',
       aggregateTo: 'exhibit-addresses',
       aggregateFields: [
+        'exhibit-building',
+        'exhibit-street',
+        'exhibit-townOrCity',
+        'exhibit-postcodeOrZIPCode',
         'exhibit-address'
       ],
       fieldSettings: {
@@ -157,32 +134,25 @@ module.exports = {
       locals: { section: 'contact-details-section' },
       next: '/invoice-contact-details'
     },
-    '/contact-address-input': Object.assign(contactAddressLookup.start, {
-      formatAddress: address => addressFormatter(address),
-      section: 'contact-details-section'
-    }),
-    '/contact-address-input-select': Object.assign(contactAddressLookup.select, {
-      fieldSettings: {
-        className: 'address',
-        section: 'contact-details-section'
-      }
-    }),
-    '/contact-address-input-manual': contactAddressLookup.manual,
+    '/contact-address-input': {
+      behaviours: formatAddress('contact', 'contact-address'),
+      fields: ['contact-building', 'contact-street', 'contact-townOrCity', 'contact-postcodeOrZIPCode'],
+      locals: { section: 'contact-details-section' },
+      fieldSettings: { className: 'address' },
+      next: '/invoice-contact-details'
+    },
     '/invoice-contact-details': {
       fields: ['invoice-contact-name', 'invoice-contact-email', 'invoice-contact-phone'],
       locals: { section: 'invoice-details' },
       next: '/invoice-address-input'
     },
-    '/invoice-address-input': Object.assign(invoiceAddressLookup.start, {
-      formatAddress: address => addressFormatter(address)
-    }),
-    '/invoice-address-input-select': Object.assign(invoiceAddressLookup.select, {
+    '/invoice-address-input': {
+      behaviours: formatAddress('invoice', 'invoice-address'),
+      fields: ['invoice-building', 'invoice-street', 'invoice-townOrCity', 'invoice-postcodeOrZIPCode'],
       locals: { section: 'invoice-details' },
-      fieldSettings: {
-        className: 'address'
-      }
-    }),
-    '/invoice-address-input-manual': invoiceAddressLookup.manual,
+      fieldSettings: { className: 'address' },
+      next: '/purchase-order'
+    },
     '/purchase-order': {
       fields: [
         'purchase-order',

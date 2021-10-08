@@ -481,6 +481,22 @@
   "invoice-contact-phone": {
     "label": "Contact phone number"
   },
+  "invoice-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "invoice-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "invoice-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "invoice-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
   "purchase-order": {
     "legend": "Do you have a purchase order?",
     "hint": "Select one option.",
@@ -497,7 +513,7 @@
     "summary": "Purchase order number",
     "label": "Purchase order number"
   },
-  "storage-add-another-address": {
+  "storageAddresses-add-another": {
     "legend": "The police will inspect each address used for storage",
     "options": {
       "yes": {
@@ -518,5 +534,95 @@
         "label": "Upload the supporting documents later"
       }
     }
+  },
+  "storage-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "storage-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "storage-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "storage-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
+  "all-storage-addresses-add-another": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "contact-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "contact-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "contact-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "contact-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
+  "authority-holder-contact-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "authority-holder-contact-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "authority-holder-contact-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "authority-holder-contact-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
+  "second-authority-holders-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "second-authority-holders-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "second-authority-holders-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "second-authority-holders-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
+  "first-authority-holders-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "first-authority-holders-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "first-authority-holders-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "first-authority-holders-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
   }
 }

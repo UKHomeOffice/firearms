@@ -230,10 +230,6 @@
   "use-different-address": {
     "required": "Select an option"
   },
-  "authority-holder-contact-postcode": {
-    "required": "Enter a postcode",
-    "postcode": "Enter a valid postcode"
-  },
   "authority-holder-contact-address-lookup": {
     "required": "Select an address"
   },
@@ -276,6 +272,19 @@
     "required": "Enter a contact phone number",
     "phonenumber": "Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192 "
   },
+  "invoice-building": {
+    "default": "Enter details of your building and street"
+  },
+  "invoice-street": {
+    "default": "Enter details of your street"
+  },
+  "invoice-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "invoice-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
   "purchase-order": {
     "required": "Select if you have a purchase order"
   },
@@ -287,5 +296,73 @@
   },
   "supporting-document-add-another": {
     "required": "Select an option"
+  },
+  "storage-building": {
+    "default": "Enter details of your building and street"
+  },
+  "storage-street": {
+    "default": "Enter details of your street"
+  },
+  "storage-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "storage-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "all-storage-addresses-add-another": {
+    "required": "Select an option"
+  },
+  "first-authority-holders-building": {
+    "default": "Enter details of your building and street"
+  },
+  "first-authority-holders-street": {
+    "default": "Enter details of your street"
+  },
+  "first-authority-holders-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "first-authority-holders-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "second-authority-holders-building": {
+    "default": "Enter details of your building and street"
+  },
+  "second-authority-holders-street": {
+    "default": "Enter details of your street"
+  },
+  "second-authority-holders-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "second-authority-holders-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "authority-holder-contact-building": {
+    "default": "Enter details of your building and street"
+  },
+  "authority-holder-contact-street": {
+    "default": "Enter details of your street"
+  },
+  "authority-holder-contact-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "authority-holder-contact-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "contact-building": {
+    "default": "Enter details of your building and street"
+  },
+  "contact-street": {
+    "default": "Enter details of your street"
+  },
+  "contact-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "contact-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
   }
 }
