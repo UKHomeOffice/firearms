@@ -14,11 +14,6 @@ module.exports = data => {
   response.ApplicationType = data.activity ?
     _.find(activity, { activity: data.activity }).response : 'Renewal';
 
-  if (data.activity === 'renew' || data.activity === 'vary') {
-    response['Customer.CustomerReference'] = data['reference-number'];
-    response.ExistingAuthorityReference = data['authority-number'];
-  }
-
   response['Customer.Name'] = data.name;
   response.UKStorageAddress = data['exhibit-address'];
   response['Agent.Name'] = data['contact-name'];

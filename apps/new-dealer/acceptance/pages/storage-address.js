@@ -8,7 +8,7 @@ module.exports = {
     I = require('so-acceptance/steps')();
   },
 
-  url: 'storage-postcode',
+  url: 'storage-address',
   'address-url': 'storage-address',
   'address-lookup-url': 'storage-address-lookup',
   'another-address-url': 'storage-add-another-address',
@@ -18,9 +18,13 @@ module.exports = {
     postcode: '#storage-postcode',
     'address-manual': '#storage-address-manual',
     'address-lookup': '#storage-address-lookup',
-    add: '#storage-add-another-address-group',
-    yes: '#storage-add-another-address-yes',
-    no: '#storage-add-another-address-no'
+    add: '#storageAddresses-add-another-group',
+    yes: '#storageAddresses-add-another-yes',
+    no: '#storageAddresses-add-another-no',
+    'storage-building' : '#storage-building',
+    'storage-street': '#storage-street',
+    'storage-townOrCity': '#storage-townOrCity',
+    'storage-postcodeOrZIPCode': '#storage-postcodeOrZIPCode'
   },
 
   links: {
@@ -32,26 +36,38 @@ module.exports = {
   content: {
     postcode: 'CR0 2EU',
     address: '49 Sydenham Road, Croydon, CR0 2EU',
-    'another-address': '2 Marsham Street, London',
-    'display-address': '49 Sydenham Road'
+    'another-address': 'Test Building, 2 Marsham Street, London, SE15LP',
+    'display-address': 'Test Building, 49 Sydenham Road, Croydon, CR02EU',
+    'storage-building': 'Test Building',
+    'storage-street': '49 Sydenham Road',
+    'another-storage-street': '2 Marsham Street',
+    'storage-townOrCity': 'Croydon',
+    'another-storage-townOrCity': 'London',
+    'storage-postcodeOrZIPCode': 'CR0 2EU',
+    'another-storage-postcodeOrZIPCode': 'SE1 5LP'
   },
 
-  fillFormAndSubmit(field, content) {
-    I.fillField(field, content);
+  fillFormAndSubmit(field) {
+    I.fillField(field, this.content.postcode);
     I.submitForm();
   },
 
-  selectAddressAndSubmit() {
-    this.fillFormAndSubmit(this.fields.postcode, this.content.postcode);
-    I.selectOption(this.fields['address-lookup'], this.content.address);
+  fillAllAddressFieldsAndSubmit() {
+    I.fillField(this.fields['storage-building'], this.content['storage-building']);
+    I.fillField(this.fields['storage-street'], this.content['storage-street']);
+    I.fillField(this.fields['storage-townOrCity'], this.content['storage-townOrCity']);
+    I.fillField(this.fields['storage-postcodeOrZIPCode'], this.content['storage-postcodeOrZIPCode']);
     I.submitForm();
   },
 
   addMultipleAddresses() {
-    this.selectAddressAndSubmit();
+    this.fillAllAddressFieldsAndSubmit();
     I.click(this.fields.yes);
     I.submitForm();
-    I.click(this.links['manual-entry']);
-    this.fillFormAndSubmit(this.fields['address-manual'], this.content['another-address']);
+    I.fillField(this.fields['storage-building'], this.content['storage-building']);
+    I.fillField(this.fields['storage-street'], this.content['another-storage-street']);
+    I.fillField(this.fields['storage-townOrCity'], this.content['another-storage-townOrCity']);
+    I.fillField(this.fields['storage-postcodeOrZIPCode'], this.content['another-storage-postcodeOrZIPCode']);
+    I.submitForm();
   }
 };

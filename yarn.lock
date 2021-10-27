@@ -4233,10 +4233,10 @@ hof-util-testdata@^1.0.1:
   dependencies:
     homeoffice-countries "^0.1.0"
 
-hof@^19.9.18:
-  version "19.9.18"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-19.9.18.tgz#46d136b7c9a75018fd93eeea129b328bdb6e81f0"
-  integrity sha512-meIYAXHSK3lHkfxj8CluFTBdzfanBmpSjxctdWm5w0zBbHWBNLBhv5ZPKn2zAO1UxPQhRpQOlH467y5EVCOoiA==
+hof@^19.11.14:
+  version "19.11.14"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-19.11.14.tgz#26b512dbbc2c3d9d6b3569e2efd6835b8aee2d24"
+  integrity sha512-s8lfY+CP+SNSpYPMSzufNPG8ZhRmnkfV8bJ8BeTILFAJujTfuQSbOh84EJs1JdY1QWUKeL8yN2ugSDanNszfGQ==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
@@ -4268,7 +4268,7 @@ hof@^19.9.18:
     i18n-future "^2.0.0"
     i18n-lookup "^0.1.0"
     is-pdf "^1.0.0"
-    libphonenumber-js "^1.9.22"
+    libphonenumber-js "^1.9.34"
     lodash "^4.17.21"
     markdown-it "^12.2.0"
     minimatch "^3.0.3"
@@ -5217,10 +5217,10 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-libphonenumber-js@^1.9.22:
-  version "1.9.23"
-  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.9.23.tgz#e28babdaaaf7e09fbaf23a1c714166fa63001ea3"
-  integrity sha512-+qWSwPyJWSV9ukb7Iu21WpWEP7irFWR1ojoYykL2itAfXKj9FjsTjS6PPZoPUOZk+1kxliHjwsilqA1TNeOhuQ==
+libphonenumber-js@^1.9.34:
+  version "1.9.38"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.9.38.tgz#d0388deebc95a8691382313d2f7dac2de2219387"
+  integrity sha512-7CCl9NZPYtX4JNXdvV5RnrQqrXp7LsLOTpYSUfEJBiySEnC5hysdwouXAuWgPDB55D/fpKm4RjM2/tUUh8kuoA==
 
 lie@~3.3.0:
   version "3.3.0"

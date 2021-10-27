@@ -15,7 +15,12 @@ Scenario('The correct form elements are present on club-postcode step', (
   I,
   clubAddressPage
 ) => {
-  I.seeElement(clubAddressPage.fields.postcode);
+  I.seeElements([
+    clubAddressPage.fields['club-building'],
+    clubAddressPage.fields['club-street'],
+    clubAddressPage.fields['club-townOrCity'],
+    clubAddressPage.fields['club-postcodeOrZIPCode']
+  ]);
 });
 
 Scenario('An error is shown if club-postcode is not completed', (
@@ -23,84 +28,22 @@ Scenario('An error is shown if club-postcode is not completed', (
   clubAddressPage
 ) => {
   I.submitForm();
-  I.seeErrors(clubAddressPage.fields.postcode);
+  I.seeErrors(clubAddressPage.fields['club-postcodeOrZIPCode']);
 });
 
-Scenario('I am taken to the club-address-lookup step from postcode', (
+Scenario('I see errors if town city fields contains numbers for contact holders address step', (
   I,
   clubAddressPage
 ) => {
-  clubAddressPage.fillFormAndSubmit(clubAddressPage.fields.postcode);
-  I.seeInCurrentUrl(clubAddressPage['address-lookup-url']);
+  clubAddressPage.fillFormAndSubmit(clubAddressPage.fields['club-townOrCity']);
+  I.seeErrors(clubAddressPage.fields['club-townOrCity']);
 });
 
-Scenario('I am taken to the club-manual-address step when I click the link', (
-  I,
-  clubAddressPage
-) => {
-  I.click(clubAddressPage.links['manual-entry']);
-  I.seeInCurrentUrl(clubAddressPage['address-url']);
-});
-
-Scenario('The correct form elements are present for club manual address step', (
-  I,
-  clubAddressPage
-) => {
-  I.click(clubAddressPage.links['manual-entry']);
-  I.seeElements(clubAddressPage.fields['address-manual']);
-});
-
-Scenario('An error is shown if club manual address is not completed', (
-  I,
-  clubAddressPage
-) => {
-  I.click(clubAddressPage.links['manual-entry']);
-  I.submitForm();
-  I.seeErrors(clubAddressPage.fields['address-manual']);
-});
-
-Scenario('An error is shown if club-address-lookup is not completed', (
-  I,
-  clubAddressPage
-) => {
-  clubAddressPage.fillFormAndSubmit(clubAddressPage.fields.postcode);
-  I.submitForm();
-  I.seeErrors(clubAddressPage.fields['address-lookup']);
-});
-
-Scenario('I am taken to the club manual address step if I cant find my address', (
-  I,
-  clubAddressPage
-) => {
-  clubAddressPage.fillFormAndSubmit(clubAddressPage.fields.postcode);
-  I.click(clubAddressPage.links['cant-find-address']);
-  I.seeInCurrentUrl(clubAddressPage['address-url']);
-});
-
-Scenario('When I click cant find my address link, I will see the postcode I entered in the club manual address step', (
-  I,
-  clubAddressPage
-) => {
-  clubAddressPage.fillFormAndSubmit(clubAddressPage.fields.postcode);
-  I.click(clubAddressPage.links['cant-find-address']);
-  I.see(clubAddressPage.content.postcode);
-});
-
-Scenario('I am taken to the contact step from the manual-address step', (
+Scenario('I am taken to the contact step from the club-address step', (
   I,
   clubAddressPage,
   clubSecretaryPage
 ) => {
-  I.click(clubAddressPage.links['manual-entry']);
-  clubAddressPage.fillFormAndSubmit(clubAddressPage.fields['address-manual']);
-  I.seeInCurrentUrl(clubSecretaryPage.url);
-});
-
-Scenario('When an address is selected I am taken to the contact step', (
-  I,
-  clubAddressPage,
-  clubSecretaryPage
-) => {
-  clubAddressPage.selectAddressAndSubmit();
+  clubAddressPage.fillAllAddressFieldsAndSubmit();
   I.seeInCurrentUrl(clubSecretaryPage.url);
 });

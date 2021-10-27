@@ -8,14 +8,15 @@ module.exports = {
     I = require('so-acceptance/steps')();
   },
 
-  url: 'first-authority-holders-postcode',
+  url: 'first-authority-holders-address',
   'address-url': 'first-authority-holders-address',
   'address-lookup-url': 'first-authority-holders-address-lookup',
 
   fields: {
-    postcode: '#first-authority-holders-postcode',
-    'address-manual': '#first-authority-holders-address-manual',
-    'address-lookup': '#first-authority-holders-address-lookup'
+    'first-authority-holders-building': '#first-authority-holders-building',
+    'first-authority-holders-street': '#first-authority-holders-street',
+    'first-authority-holders-townOrCity': '#first-authority-holders-townOrCity',
+    'first-authority-holders-postcodeOrZIPCode': '#first-authority-holders-postcodeOrZIPCode'
   },
 
   links: {
@@ -25,8 +26,13 @@ module.exports = {
 
   content: {
     header: 'What is Sterling Archer\'s main business address?',
+    building: '49 Sydenham Road',
+    town: 'Croydon',
     postcode: 'CR0 2EU',
-    address: '49 Sydenham Road, Croydon, CR0 2EU'
+    'first-authority-holders-building': 'Test Building',
+    'first-authority-holders-street': '49 Sydenham Road',
+    'first-authority-holders-townOrCity': 'Croydon',
+    'first-authority-holders-postcodeOrZIPCode': 'CR0 2EU'
   },
 
   fillFormAndSubmit(field) {
@@ -34,9 +40,11 @@ module.exports = {
     I.submitForm();
   },
 
-  selectAddressAndSubmit() {
-    this.fillFormAndSubmit(this.fields.postcode);
-    I.selectOption(this.fields['address-lookup'], this.content.address);
+  fillAllAddressFieldsAndSubmit() {
+    I.fillField(this.fields['first-authority-holders-building'], this.content['first-authority-holders-building']);
+    I.fillField(this.fields['first-authority-holders-street'], this.content['first-authority-holders-street']);
+    I.fillField(this.fields['first-authority-holders-townOrCity'], this.content['first-authority-holders-townOrCity']);
+    I.fillField(this.fields['first-authority-holders-postcodeOrZIPCode'], this.content['first-authority-holders-postcodeOrZIPCode']);
     I.submitForm();
   }
 };

@@ -521,7 +521,8 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }]
+    }],
+    includeInSummary: true
   },
   'second-authority-holders-nationality': {
     mixin: 'select',
@@ -561,7 +562,8 @@ module.exports = {
     attributes: [{
       attribute: 'rows',
       value: 5
-    }]
+    }],
+    includeInSummary: true
   },
   'contact-holder': {
     mixin: 'radio-group',
@@ -625,24 +627,8 @@ module.exports = {
     options: [{
       value: 'false'
     }, {
-      value: 'true',
-      toggle: 'authority-holder-contact-postcode',
-      child: 'partials/postcode-manual-link'
-    }],
-    invalidates: [
-      'authority-holder-contact-postcode',
-      'authority-holder-contact-address-lookup',
-      'authority-holder-contact-address-manual'
-    ],
-    includeInSummary: false
-  },
-  'authority-holder-contact-postcode': {
-    validate: ['required', 'postcode'],
-    formatter: 'uppercase',
-    dependent: {
-      field: 'use-different-address',
       value: 'true'
-    },
+    }],
     includeInSummary: false
   },
   'authority-holder-contact-address-lookup': {
@@ -658,7 +644,7 @@ module.exports = {
       attribute: 'rows',
       value: 5
     }],
-    includeInSummary: false
+    includeInSummary: true
   },
   'contact-postcode': {
     mixin: 'input-text-code',
@@ -739,5 +725,127 @@ module.exports = {
   'invoice-contact-phone': {
     mixin: 'input-text',
     validate: 'required'
+  },
+  'invoice-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    includeInSummary: false
+  },
+  'invoice-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden',
+    includeInSummary: false
+  },
+  'invoice-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ],
+    includeInSummary: false
+  },
+  'invoice-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase'],
+    includeInSummary: false
+  },
+  'storage-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+  },
+  'storage-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden'
+  },
+  'storage-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ]
+  },
+  'storage-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase']
+  },
+  'first-authority-holders-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    includeInSummary: false
+  },
+  'first-authority-holders-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden',
+    includeInSummary: false
+  },
+  'first-authority-holders-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ],
+    includeInSummary: false
+  },
+  'first-authority-holders-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase'],
+    includeInSummary: false
+  },
+  'second-authority-holders-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    includeInSummary: false
+  },
+  'second-authority-holders-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden',
+    includeInSummary: false
+  },
+  'second-authority-holders-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ],
+    includeInSummary: false
+  },
+  'second-authority-holders-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase'],
+    includeInSummary: false
+  },
+  'authority-holder-contact-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    includeInSummary: false
+  },
+  'authority-holder-contact-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden',
+    includeInSummary: false
+  },
+  'authority-holder-contact-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ],
+    includeInSummary: false
+  },
+  'authority-holder-contact-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase'],
+    includeInSummary: false
+  },
+  'contact-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    includeInSummary: false
+  },
+  'contact-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden',
+    includeInSummary: false
+  },
+  'contact-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ],
+    includeInSummary: false
+  },
+  'contact-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase'],
+    includeInSummary: false
   }
 };
