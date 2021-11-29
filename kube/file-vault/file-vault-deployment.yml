@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: file-vault
-          image: quay.io/ukhomeofficedigital/file-vault:0e9ed2979bacaf22cb1ba31cc6d123d7490d7b86
+          image: quay.io/ukhomeofficedigital/file-vault:b5c5ab1b96a3e3e964e2e57d8a9e15da58e4982c
           imagePullPolicy: Always
           resources:
             requests:
@@ -84,7 +84,7 @@ spec:
             - name: FILE_EXTENSION_WHITELIST
               value: 'pdf,doc,docx,txt,jpg,jpeg,png,xls,xlsx,odt,ods'
             - name: MAX_FILE_SIZE
-              value: '104857600'
+              value: '210857600'
             - name: REQUEST_TIMEOUT
               value: '60'
           securityContext:
