@@ -84,7 +84,7 @@ spec:
             - name: FILE_EXTENSION_WHITELIST
               value: 'pdf,doc,docx,txt,jpg,jpeg,png,xls,xlsx,odt,ods'
             - name: MAX_FILE_SIZE
-              value: '20480'
+              value: '0'
             - name: REQUEST_TIMEOUT
               value: '15'
           securityContext:
