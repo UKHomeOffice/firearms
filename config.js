@@ -7,7 +7,7 @@ const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.P
 module.exports = {
   env: env,
   upload: {
-    maxfilesize: '50mb',
+    maxfilesize: '20mb',
     hostname: (!env || env === 'ci') ?
       `http://${localhost()}/api/file-upload` :
       process.env.FILE_VAULT_URL
