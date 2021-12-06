@@ -17,12 +17,12 @@ module.exports = class UploadController extends BaseController {
     super.get(req, res, next);
   }
 
-  process(req, res, next) {
+  async process(req, res, next) {
     const file = req.files['existing-authority-upload'];
     console.log('>>>>>>>>>>> file >>>>>>>>>>', file);
     console.log('>>>>>>>>>>> file truncated >>>>>>>>>>', file.truncated);
     if (file && file.truncated) {
-      const err = new this.ValidationError('existing-authority-upload', {
+      const err = await new this.ValidationError('existing-authority-upload', {
         type: 'filesize',
         arguments: [config.upload.maxfilesize]
       }, req, res);
@@ -33,7 +33,6 @@ module.exports = class UploadController extends BaseController {
     if (file && file.data && file.data.length) {
       req.form.values['existing-authority-filename'] = file.name;
       console.log('>>>>>>>>>>> file data length >>>>>>>>>>', file.data.length);
-      /*
       const model = new UploadModel(file);
       return model.save()
         .then(result => {
@@ -52,7 +51,7 @@ module.exports = class UploadController extends BaseController {
             });
           }
           return next(e);
-        }); */
+        });
     }
     return next();
   }
