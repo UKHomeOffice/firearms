@@ -30,6 +30,7 @@ module.exports = class UploadController extends BaseController {
         'existing-authority-upload': err
       });
     }
+    /*
     if (file && file.data && file.data.length) {
       req.form.values['existing-authority-filename'] = file.name;
       console.log('>>>>>>>>>>> file data length >>>>>>>>>>', file.data.length);
@@ -52,7 +53,7 @@ module.exports = class UploadController extends BaseController {
           }
           return next(e);
         });
-    }
+    } */
     return next();
   }
 
