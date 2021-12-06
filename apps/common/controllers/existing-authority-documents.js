@@ -12,11 +12,16 @@ module.exports = class UploadController extends BaseController {
   get(req, res, next) {
     const docs = req.sessionModel.get('existing-authority-documents') || [];
     if (docs.length) {
-      console.log('>>>>>>>>>>> docs length >>>>>>>>>>', docs.length);
       this.emit('complete', req, res);
     }
     super.get(req, res, next);
   }
+
+  process(req, res, next) {
+    console.log('>>>>>>>>>>> processing >>>>>>>>>>');
+    return next();
+  }
+
 
   /*
   async process(req, res, next) {
