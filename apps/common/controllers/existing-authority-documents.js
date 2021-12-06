@@ -12,11 +12,13 @@ module.exports = class UploadController extends BaseController {
   get(req, res, next) {
     const docs = req.sessionModel.get('existing-authority-documents') || [];
     if (docs.length) {
+      console.log('>>>>>>>>>>> docs length >>>>>>>>>>', docs.length);
       this.emit('complete', req, res);
     }
     super.get(req, res, next);
   }
 
+  /*
   async process(req, res, next) {
     const file = req.files['existing-authority-upload'];
     console.log('>>>>>>>>>>> file >>>>>>>>>>', file);
@@ -54,10 +56,11 @@ module.exports = class UploadController extends BaseController {
           }
           return next(e);
         });
-    } */
+    }
     return next();
-  }
+  } */
 
+  /*
   saveValues(req, res, next) {
     const files = req.sessionModel.get('existing-authority-documents') || [];
     files.push({
@@ -79,5 +82,5 @@ module.exports = class UploadController extends BaseController {
       req.sessionModel.unset(existingAuthorityAttrs);
       next(err);
     });
-  }
+  } */
 };
