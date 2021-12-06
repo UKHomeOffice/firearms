@@ -22,8 +22,6 @@ module.exports = class UploadController extends BaseController {
     return next();
   }
 
-
-  /*
   async process(req, res, next) {
     const file = req.files['existing-authority-upload'];
     console.log('>>>>>>>>>>> file >>>>>>>>>>', file);
@@ -38,7 +36,7 @@ module.exports = class UploadController extends BaseController {
         'existing-authority-upload': err
       });
     }
-    /*
+
     if (file && file.data && file.data.length) {
       req.form.values['existing-authority-filename'] = file.name;
       console.log('>>>>>>>>>>> file data length >>>>>>>>>>', file.data.length);
@@ -63,9 +61,8 @@ module.exports = class UploadController extends BaseController {
         });
     }
     return next();
-  } */
+  }
 
-  /*
   saveValues(req, res, next) {
     const files = req.sessionModel.get('existing-authority-documents') || [];
     files.push({
@@ -87,5 +84,5 @@ module.exports = class UploadController extends BaseController {
       req.sessionModel.unset(existingAuthorityAttrs);
       next(err);
     });
-  } */
+  }
 };

@@ -70,6 +70,6 @@ if (!config.env || config.env === 'ci') {
   app.use(mockAPIs);
 }
 
-//app.use(bodyParser({limit: config.upload.maxfilesize}));
+app.use(bodyParser({limit: config.upload.maxfilesize}));
 
 module.exports = app;
