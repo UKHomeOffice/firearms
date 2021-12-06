@@ -17,12 +17,14 @@ module.exports = class UploadController extends BaseController {
     super.get(req, res, next);
   }
 
-  async process(req, res, next) {
+  process(req, res, next) {
+  //async process(req, res, next) {
     const file = req.files['existing-authority-upload'];
     console.log('>>>>>>>>>>> file >>>>>>>>>>', file);
     console.log('>>>>>>>>>>> file truncated >>>>>>>>>>', file.truncated);
     if (file && file.truncated) {
-      const err = await new this.ValidationError('existing-authority-upload', {
+      //const err = await new this.ValidationError('existing-authority-upload', {
+      const err = new this.ValidationError('existing-authority-upload', {
         type: 'filesize',
         arguments: [config.upload.maxfilesize]
       }, req, res);
