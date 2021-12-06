@@ -17,10 +17,10 @@ module.exports = class UploadController extends BaseController {
     super.get(req, res, next);
   }
 
-  process(req, res, next) {
+  async process(req, res, next) {
     const file = req.files['supporting-document-upload'];
     if (file && file.truncated) {
-      const err = new this.ValidationError('supporting-document-upload', {
+      const err = await new this.ValidationError('supporting-document-upload', {
         type: 'filesize',
         arguments: [config.upload.maxfilesize]
       }, req, res);
@@ -28,6 +28,7 @@ module.exports = class UploadController extends BaseController {
         'supporting-document-upload': err
       });
     }
+    /*
     if (file && file.data && file.data.length) {
       req.form.values['supporting-document-filename'] = file.name;
       const model = new UploadModel(file);
@@ -49,7 +50,7 @@ module.exports = class UploadController extends BaseController {
           }
           return next(e);
         });
-    }
+    } */
     return next();
   }
 

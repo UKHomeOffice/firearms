@@ -7,6 +7,7 @@ const Model = require('hof').model;
 const config = require('../../../config');
 
 module.exports = class UploadModel extends Model {
+  /*
   save() {
     return new Promise((resolve, reject) => {
       const attributes = {
@@ -68,4 +69,5 @@ module.exports = class UploadModel extends Model {
       });
     });
   }
+  */
 };
