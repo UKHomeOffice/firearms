@@ -1,4 +1,4 @@
-Each document can be up to 100MB in size.
+Each document can be up to 50MB in size.
 
 We accept these file types:
 
