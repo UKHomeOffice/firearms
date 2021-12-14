@@ -28,11 +28,13 @@ module.exports = class UploadController extends BaseController {
         'existing-authority-upload': err
       });
     }
+    console.log('>>>>>>> after validation check >>>>>>>>>');
     if (file && file.data && file.data.length) {
       req.form.values['existing-authority-filename'] = file.name;
       const model = new UploadModel(file);
       return model.save()
         .then(result => {
+          console.log('>>>>>>> result >>>>>>>>>', result);
           req.form.values['existing-authority-upload'] = result.url;
           req.form.values['existing-authority-type'] = file.mimetype;
         })
