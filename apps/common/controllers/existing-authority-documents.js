@@ -32,7 +32,7 @@ module.exports = class UploadController extends BaseController {
     if (file && file.data && file.data.length) {
       req.form.values['existing-authority-filename'] = file.name;
       const model = new UploadModel(file);
-      return model.save()
+      return await model.save()
         .then(result => {
           console.log('>>>>>>> result >>>>>>>>>', result);
           req.form.values['existing-authority-upload'] = result.url;
