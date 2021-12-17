@@ -306,6 +306,7 @@ module.exports = {
       ],
       next: '/first-authority-holders-nationality',
       locals: {
+        key: 'first-authority-country-birth',
         section: 'first-authority-holder'
       }
     },
@@ -364,6 +365,7 @@ module.exports = {
       ],
       next: '/second-authority-holders-nationality',
       locals: {
+        key: 'second-authority-country-birth',
         section: 'second-authority-holder'
       }
     },
