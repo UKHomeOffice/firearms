@@ -469,8 +469,10 @@ module.exports = {
     validate: 'required'
   },
   'first-authority-country-birth': {
-    mixin: 'input-text',
-    validate: 'required'
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(countries)
   },
   'second-authority-dob': date('second-authority-dob', {
     validate: ['required', 'before']
@@ -480,8 +482,10 @@ module.exports = {
     validate: 'required'
   },
   'second-authority-country-birth': {
-    mixin: 'input-text',
-    validate: 'required'
+    mixin: 'select',
+    validate: 'required',
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(countries)
   },
   'first-authority-holders-nationality': {
     mixin: 'select',
