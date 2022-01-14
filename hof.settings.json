@@ -13,5 +13,6 @@
   "views": ["./apps/common/views"],
   "session": {
     "name": "firearms-licensing.hof.sid"
-  }
+  },
+  "getAccessibility": true
 }
