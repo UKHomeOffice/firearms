@@ -211,6 +211,16 @@ steps:
     when:
       branch: master
       event: pull_request
+    
+  - name: acceptance_tests_branch
+    <<: *acceptance_tests
+    commands:
+      - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}-$${DRONE_SOURCE_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
+      - npx playwright install
+      - npm run test:acceptance
+    when:
+      branch: master
+      event: pull_request
 
   # Snyk & Anchore security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
