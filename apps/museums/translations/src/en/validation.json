@@ -72,5 +72,44 @@
   },
   "existing-authority-add-another": {
     "required": "Select an option"
+  },
+  "invoice-building": {
+    "default": "Enter details of your building and street"
+  },
+  "invoice-street": {
+    "default": "Enter details of your street"
+  },
+  "invoice-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "invoice-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "exhibit-building": {
+    "default": "Enter details of your building and street"
+  },
+  "exhibit-street": {
+    "default": "Enter details of your street"
+  },
+  "exhibit-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "exhibit-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "contact-building": {
+    "default": "Enter details of your building and street"
+  },
+  "contact-street": {
+    "default": "Enter details of your street"
+  },
+  "contact-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "contact-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
   }
 }

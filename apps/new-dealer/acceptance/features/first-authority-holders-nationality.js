@@ -15,10 +15,7 @@ Scenario('The correct form elements are present', (
   I,
   firstAuthorityHoldersNationalityPage
 ) => {
-  I.seeElements([
-    firstAuthorityHoldersNationalityPage['first-nationality'],
-    //firstAuthorityHoldersNationalityPage['multi-nationality']
-  ]);
+  I.seeElement(firstAuthorityHoldersNationalityPage['first-nationality']);
 });
 
 Scenario('An error is shown if first-authority-holders-nationality step is not completed', (

@@ -151,8 +151,13 @@
   },
   "storage-add-another-address": {
     "header": "Is there another address where the prohibited items will be stored?",
+    "legend": "The police will inspect each address used for storage",
     "important": "The information you provide here will replace the information we currently hold.",
     "add-remove": "storage addresses"
+  },
+  "storageAddresses": {
+    "header": "Storage addresses",
+    "legend": "The police will inspect each address used for storage"
   },
   "business-details": {
     "header": "Business details"

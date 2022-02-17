@@ -111,5 +111,83 @@
   },
   "existing-authority-add-another": {
     "required": "Select an option"
+  },
+  "invoice-building": {
+    "default": "Enter details of your building and street"
+  },
+  "invoice-street": {
+    "default": "Enter details of your street"
+  },
+  "invoice-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "invoice-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "club-building": {
+    "default": "Enter details of your building and street"
+  },
+  "club-street": {
+    "default": "Enter details of your street"
+  },
+  "club-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "club-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "club-secretary-building": {
+    "default": "Enter details of your building and street"
+  },
+  "club-secretary-street": {
+    "default": "Enter details of your street"
+  },
+  "club-secretary-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "club-secretary-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "second-contact-building": {
+    "default": "Enter details of your building and street"
+  },
+  "second-contact-street": {
+    "default": "Enter details of your street"
+  },
+  "second-contact-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "second-contact-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "location-building": {
+    "default": "Enter details of your building and street"
+  },
+  "location-street": {
+    "default": "Enter details of your street"
+  },
+  "location-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "location-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
+  },
+  "storage-building": {
+    "default": "Enter details of your building and street"
+  },
+  "storage-street": {
+    "default": "Enter details of your street"
+  },
+  "storage-townOrCity": {
+    "default": "Enter a town or city",
+    "regex": "Enter a town or city without including digits"
+  },
+  "storage-postcodeOrZIPCode": {
+    "default": "Enter your postcode or ZIP Code"
   }
 }

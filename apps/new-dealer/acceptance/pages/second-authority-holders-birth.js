@@ -38,7 +38,7 @@ module.exports = {
       year: '1980'
     },
     town: 'New York',
-    country: 'USA'
+    country: 'United States of America'
   },
 
 

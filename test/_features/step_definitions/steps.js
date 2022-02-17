@@ -6,6 +6,10 @@ const Model = require('../../../apps/common/models/file-upload');
 const config = require('../../../config');
 const uuid = require('uuid');
 const sinon = require('sinon');
+const reqres = require('hof').utils.reqres;
+
+const getCase = require('../../../apps/supporting-documents/behaviours/get-case')
+const checkEmail = require('../../../apps/supporting-documents/behaviours/check-email');
 
 const domain = config.hosts.acceptanceTests;
 
@@ -19,9 +23,7 @@ Then('I select {string}', async function (name) {
   await this.page.click(`text=${name}`);
 }.bind(World));
 
-// This is a cheat, currently skips the page ...
 Then('I pick {string} to go to the {string} page', async function (name, value) {
-  
   Before( async () => {
     //Stub out response from keycloak
     config.upload.hostname =  `${domain}${this.subApp}/api/file-upload`;
@@ -35,56 +37,52 @@ Then('I pick {string} to go to the {string} page', async function (name, value) 
     }));
   })
   await this.page.click('input[type="submit"]');
-
-  //Manually return a response + URL 
-  // await this.page.route(`${domain}${this.subApp}/${value}`, async (route, request) => {
-  //   let response = await this.page.request.fetch(route.request());
-  //   let body = await response.text();
-  //   await route.fulfill({
-  //     response,
-  //     body: JSON.stringify([
-  //       {
-  //         sessionModel: {
-  //           'existing-authority-documents': mock({'testPath/test.pdf': Buffer.from([8, 6, 7, 5, 3, 0, 9]) }),
-  //           id: uuid.v1(),
-  //           url: 'www.test.com',
-  //           description: 'test',
-  //           type: '.pdf',
-  //           "activity": "renew"
-  //         }
-  //       },
-  //       {
-  //         formData: {
-  //           document: {
-  //             value: 'test',
-  //             options: {
-  //               filename: 'test.pdf',
-  //               contentType: 'application/pdf'
-  //             }
-  //           }
-  //         }
-  //       },
-  //       {
-  //         "legend": "Do you want to upload any additional existing authority documents to support your application?",
-  //         "options": {
-  //           "yes": {
-  //             "label": "Yes"
-  //           },
-  //           "no": {
-  //             "label": "No"
-  //           }
-  //         }
-  //       }
-  //     ])
-  //   });
-  // });
-
-  //Continue to the next page
   await this.page.goto(`${domain}${this.subApp}/${value}`);
-
   After(async() => {
     sandbox.restore();
     mock.restore();
+  });
+}.bind(World));
+
+//MOCK ICASEWORK DETAILS
+Then('I select {string} to go get my case number and to the {string} page', async function (name, value) {
+  let req;
+  let res;
+  let next;
+  Before(async () => {
+    req = reqres.req();
+    res = reqres.res();
+    next = () => {};
+    req.sessionModel.set('original-email', 'test@test.com');
+    req.sessionModel.set('original-name', 'Ronald Testman');
+    const sandbox = sinon.createSandbox();
+    sandbox.stub(getCase.prototype, 'saveValues').yieldsAsync(req, res, next);
+  });
+  await this.page.click(`text=${name}`);
+  After(async() => {
+    sandbox.restore();
+  });
+}.bind(World));
+
+//MOCK ENTERED EMAIL IS THE SAME AS ICASEWORK NUMBER
+Then('I select {string} to check my email and go to the {string} page', async function (name, value) {
+  let req;
+  let res;
+  Before(async () => {
+    req = reqres.req();
+    res = reqres.res();
+    req.sessionModel.SessionModel['original-email'] = 'test@test.com';
+    const sandbox = sinon.createSandbox();
+    sandbox.stub(checkEmail.prototype, 'validate').yieldsAsync();
+  });
+  await this.page.on('request', req => {
+    // req.sessionModel.SessionModel['original-email'] = 'test@test.com';
+    console.log(req.sessionModel);
+  })
+  await this.page.click(`text=${name}`);
+  // await this.page.goto(`${domain}${this.subApp}/${value}`);
+  After(() => {
+    sandbox.restore();
   });
 }.bind(World));
 

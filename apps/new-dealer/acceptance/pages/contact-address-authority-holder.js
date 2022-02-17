@@ -11,11 +11,12 @@ module.exports = {
   },
 
   url: 'authority-holder-contact-postcode',
-  'address-url': 'authority-holder-contact-address',
+  'address-url': 'authority-holder-contact-postcode',
   'address-lookup-url': 'authority-holder-contact-address-lookup',
 
-  next: steps['/authority-holder-contact-postcode'].next,
+  next: steps['/authority-holder-contact-address'].next,
   'next-with-address': '/invoice-contact-details',
+  'next-different-address': '/authority-holder-contact-address',
   'next-address-select': '/authority-holder-contact-address-lookup',
 
   fields: {
@@ -25,7 +26,11 @@ module.exports = {
     'postcode-group': '#authority-holder-contact-postcode-group',
     postcode: '#authority-holder-contact-postcode',
     'address-manual': '#authority-holder-contact-address-manual',
-    'address-lookup': '#authority-holder-contact-address-lookup'
+    'address-lookup': '#authority-holder-contact-address-lookup',
+    'authority-holder-contact-building': '#authority-holder-contact-building',
+    'authority-holder-contact-street': '#authority-holder-contact-street',
+    'authority-holder-contact-townOrCity': '#authority-holder-contact-townOrCity',
+    'authority-holder-contact-postcodeOrZIPCode': '#authority-holder-contact-postcodeOrZIPCode'
   },
 
   sessionData: {

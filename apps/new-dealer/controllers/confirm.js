@@ -29,14 +29,20 @@ module.exports = class ConfirmController extends Controller {
     const ammo = this.getWeaponsAmmunitionQuantity(data, translate, 'ammunition');
     result.splice(4, 0, ammo);
 
+    const firstAuthAddress = this.addFirstAuthorityAddressDetails(data, translate, result.filter(a => a));
+    result.splice(5, 0, firstAuthAddress);
+
+    const secondAuthAddress = this.addSecondAuthorityAddressDetails(data, translate, result.filter(a => a));
+    result.splice(6, 0, secondAuthAddress);
+
     const docs = this.getSupportingDocuments(data, translate);
-    result.splice(9, 0, docs);
+    result.splice(11, 0, docs);
 
     const existingAuthorityDocuments = this.getExistingAuthorityDocuments(data, translate);
-    result.splice(10, 0, existingAuthorityDocuments);
+    result.splice(12, 0, existingAuthorityDocuments);
 
     const invoiceAddress = this.addInvoiceAddressDetails(data, translate, result.filter(a => a));
-    result.splice(11, 0, invoiceAddress);
+    result.splice(13, 0, invoiceAddress);
 
     result = this.addContactDetailsSection(data, translate, result.filter(a => a));
 
@@ -134,6 +140,36 @@ module.exports = class ConfirmController extends Controller {
       };
     }
     return section;
+  }
+
+  addFirstAuthorityAddressDetails(data, translate, result) {
+    const contactAddress = data['first-authority-holders-address-manual'];
+    result.map(section => {
+      const authorityHolder = translate('pages.first-authority-holder.header.authority-holders.one');
+      const firstAuthorityHolder = translate('pages.first-authority-holder.header.authority-holders.two');
+      if (section.section === authorityHolder || section.section === firstAuthorityHolder) {
+        section.fields.push({
+          label: translate('fields.first-authority-holders-address-manual.summary'),
+          value: contactAddress,
+          step: '/first-authority-holders-address'
+        });
+      }
+      return section;
+    });
+  }
+
+  addSecondAuthorityAddressDetails(data, translate, result) {
+    const contactAddress = data['second-authority-holders-address-manual'];
+    result.map(section => {
+      if (section.section === translate('pages.second-authority-holder.header')) {
+        section.fields.push({
+          label: translate('fields.second-authority-holders-address-manual.summary'),
+          value: contactAddress,
+          step: '/second-authority-holders-address'
+        });
+      }
+      return section;
+    });
   }
 
   getSupportingDocuments(data, translate) {

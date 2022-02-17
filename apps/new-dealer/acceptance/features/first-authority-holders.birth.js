@@ -20,7 +20,7 @@ Scenario('The correct form elements are present', (
     firstAuthorityHoldersBirthPage.month,
     firstAuthorityHoldersBirthPage.year,
     firstAuthorityHoldersBirthPage.town,
-    firstAuthorityHoldersBirthPage.country
+    firstAuthorityHoldersBirthPage['country']
   ]);
 });
 
@@ -32,7 +32,7 @@ Scenario('An error is shown if first-authority-holders-birth step is not complet
   I.seeErrors([
     firstAuthorityHoldersBirthPage.groups.dob,
     firstAuthorityHoldersBirthPage.groups.town,
-    firstAuthorityHoldersBirthPage.groups.country
+    firstAuthorityHoldersBirthPage.groups['country']
   ])
 });
 

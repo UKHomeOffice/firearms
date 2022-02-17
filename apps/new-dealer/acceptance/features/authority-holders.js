@@ -11,16 +11,14 @@ Before((
   I.visitPage(authorityHoldersPage, steps);
 });
 
-// Scenario('The correct form elements are present', (
-//   I,
-//   authorityHoldersPage
-// ) => {
-//   I.seeElements([
-//     authorityHoldersPage['authority-holders-group'],
-//     authorityHoldersPage.one,
-//     authorityHoldersPage.two
-//   ]);
-// });
+Scenario('The correct form elements are present', (
+  I,
+  authorityHoldersPage
+) => {
+  I.seeElement(authorityHoldersPage['authority-holders-group']);
+  I.click(authorityHoldersPage.one);
+  I.click(authorityHoldersPage.two);
+});
 
 Scenario('When I select renew on the activity, I see the renew message icon', function *(
   I,

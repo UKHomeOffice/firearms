@@ -186,5 +186,107 @@ module.exports = {
   'invoice-contact-phone': {
     mixin: 'input-text',
     validate: 'required'
+  },
+  'invoice-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+  },
+  'invoice-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden'
+  },
+  'invoice-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ]
+  },
+  'invoice-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase']
+  },
+  'club-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+  },
+  'club-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden'
+  },
+  'club-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ]
+  },
+  'club-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase']
+  },
+  'club-secretary-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+  },
+  'club-secretary-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden'
+  },
+  'club-secretary-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ]
+  },
+  'club-secretary-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase']
+  },
+  'second-contact-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+  },
+  'second-contact-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden'
+  },
+  'second-contact-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ]
+  },
+  'second-contact-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase']
+  },
+  'location-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+  },
+  'location-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden'
+  },
+  'location-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ]
+  },
+  'location-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase']
+  },
+  'storage-building': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+  },
+  'storage-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    labelClassName: 'visuallyhidden'
+  },
+  'storage-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 100 }
+    ]
+  },
+  'storage-postcodeOrZIPCode': {
+    validate: ['required'],
+    formatter: ['removespaces', 'uppercase']
   }
 };

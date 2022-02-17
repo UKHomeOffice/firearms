@@ -150,6 +150,102 @@
   "invoice-contact-phone": {
     "label": "Contact phone number"
   },
+  "invoice-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "invoice-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "invoice-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "invoice-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
+  "club-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "club-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "club-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "club-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
+  "club-secretary-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "club-secretary-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "club-secretary-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "club-secretary-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
+  "second-contact-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "second-contact-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "second-contact-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "second-contact-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
+  "location-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "location-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "location-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "location-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
+  "storage-building": {
+    "label": "Building and street",
+    "changeLinkDescription": "Your current building and street"
+  },
+  "storage-street": {
+    "label": "Address line 2",
+    "changeLinkDescription": "Your current address line 2"
+  },
+  "storage-townOrCity": {
+    "label": "Town or city",
+    "changeLinkDescription": "Your current town or city"
+  },
+  "storage-postcodeOrZIPCode": {
+    "label": "Postcode or ZIP Code",
+    "changeLinkDescription": "Your current postcode or ZIP Code"
+  },
   "purchase-order": {
     "legend": "Do you have a purchase order?",
     "hint": "Select one option.",

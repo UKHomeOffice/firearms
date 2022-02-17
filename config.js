@@ -1,21 +1,11 @@
 'use strict';
 /* eslint no-process-env: 0 */
 
-const env = process.env.NODE_ENV || 'production';
+const env = 'ci';
 const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}`;
 
 module.exports = {
   env: env,
-  postcode: {
-    hostname: (!env || env === 'ci') ?
-      `http://${localhost()}/api/postcode-test` :
-      process.env.POSTCODE_HOST,
-    authorization: process.env.POSTCODE_AUTH,
-    addresses: {
-      path: '/addresses',
-      param: 'postcode'
-    }
-  },
   upload: {
     maxfilesize: '100mb',
     hostname: (!env || env === 'ci') ?
