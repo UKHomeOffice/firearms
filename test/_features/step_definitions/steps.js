@@ -2,7 +2,7 @@ const { Given, Then, Before, After } = require('@cucumber/cucumber');
 const expect = require('chai').expect;
 const mock = require('mock-fs');
 const World = require('../test.setup.js');
-const Model = require('../../../apps/common/models/file-upload');
+const FileUploadModel = require('../../../apps/common/models/file-upload');
 const config = require('../../../config');
 const uuid = require('uuid');
 const sinon = require('sinon');
@@ -23,16 +23,16 @@ Then('I select {string}', async function (name) {
   await this.page.click(`text=${name}`);
 }.bind(World));
 
+//Stub common file-upload model
 Then('I pick {string} to go to the {string} page', async function (name, value) {
   Before( async () => {
-    //Stub out response from keycloak
     config.upload.hostname =  `${domain}${this.subApp}/api/file-upload`;
     const sandbox = sinon.createSandbox();
-    sandbox.stub(Model.prototype, 'request').yieldsAsync(null, {
+    sandbox.stub(FileUploadModel.prototype, 'request').yieldsAsync(null, {
       api: 'response',
       url: '/file/12341212132123?foo=bar'
     });
-    sandbox.stub(Model.prototype, 'auth').returns(new Promise(resolve => {
+    sandbox.stub(FileUploadModel.prototype, 'auth').returns(new Promise(resolve => {
       resolve({bearer: 'myaccesstoken'});
     }));
   })
@@ -44,46 +44,17 @@ Then('I pick {string} to go to the {string} page', async function (name, value) 
   });
 }.bind(World));
 
-//MOCK ICASEWORK DETAILS
-Then('I select {string} to go get my case number and to the {string} page', async function (name, value) {
-  let req;
-  let res;
-  let next;
-  Before(async () => {
-    req = reqres.req();
-    res = reqres.res();
-    next = () => {};
-    req.sessionModel.set('original-email', 'test@test.com');
-    req.sessionModel.set('original-name', 'Ronald Testman');
-    const sandbox = sinon.createSandbox();
-    sandbox.stub(getCase.prototype, 'saveValues').yieldsAsync(req, res, next);
-  });
+//Mock/Fake check email middleware
+Then('I use {string} to check my email and go to the {string} page', async function (name, value) {
+  
   await this.page.click(`text=${name}`);
-  After(async() => {
-    sandbox.restore();
-  });
-}.bind(World));
-
-//MOCK ENTERED EMAIL IS THE SAME AS ICASEWORK NUMBER
-Then('I select {string} to check my email and go to the {string} page', async function (name, value) {
-  let req;
-  let res;
-  Before(async () => {
-    req = reqres.req();
-    res = reqres.res();
-    req.sessionModel.SessionModel['original-email'] = 'test@test.com';
-    const sandbox = sinon.createSandbox();
-    sandbox.stub(checkEmail.prototype, 'validate').yieldsAsync();
-  });
-  await this.page.on('request', req => {
-    // req.sessionModel.SessionModel['original-email'] = 'test@test.com';
-    console.log(req.sessionModel);
+  await this.page.goto(`${domain}${this.subApp}/${value}`);
+  await this.page.route(`${domain}${this.subApp}/${value}`, async (route, request) => {
+    console.log('THIS IS BEING CALLED');
+    await route.continue({
+      postData: JSON.stringify({ sessionModel: { attributes: { 'original-email': 'test@test.com' }} })
+    })
   })
-  await this.page.click(`text=${name}`);
-  // await this.page.goto(`${domain}${this.subApp}/${value}`);
-  After(() => {
-    sandbox.restore();
-  });
 }.bind(World));
 
 Then('I check {string}', async function (name) {
