@@ -147,7 +147,7 @@ steps:
 
   - name: setup_branch
     pull: if-not-exists
-    image: node:14
+    image: node:17.6
     environment:
       NOTIFY_KEY: USE_MOCK
     commands:
