@@ -7,4 +7,4 @@
 # sharing directiries between containers
 cp -r /app/public/* /public/
 
-node server.js
+node --experimental-fetch server.js
