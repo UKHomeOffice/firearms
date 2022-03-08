@@ -4,12 +4,7 @@ const mock = require('mock-fs');
 const World = require('../test.setup.js');
 const FileUploadModel = require('../../../apps/common/models/file-upload');
 const config = require('../../../config');
-const uuid = require('uuid');
 const sinon = require('sinon');
-const reqres = require('hof').utils.reqres;
-
-const getCase = require('../../../apps/supporting-documents/behaviours/get-case')
-const checkEmail = require('../../../apps/supporting-documents/behaviours/check-email');
 
 const domain = config.hosts.acceptanceTests;
 
@@ -23,8 +18,8 @@ Then('I select {string}', async function (name) {
   await this.page.click(`text=${name}`);
 }.bind(World));
 
-//Stub common file-upload model
-Then('I pick {string} to go to the {string} page', async function (name, value) {
+//  Stub common file-upload model
+Then('I submit the form to upload my file', async function () {
   Before( async () => {
     config.upload.hostname =  `${domain}${this.subApp}/api/file-upload`;
     const sandbox = sinon.createSandbox();
@@ -35,26 +30,11 @@ Then('I pick {string} to go to the {string} page', async function (name, value) 
     sandbox.stub(FileUploadModel.prototype, 'auth').returns(new Promise(resolve => {
       resolve({bearer: 'myaccesstoken'});
     }));
-  })
-  await this.page.click('input[type="submit"]');
-  await this.page.goto(`${domain}${this.subApp}/${value}`);
-  After(async() => {
-    sandbox.restore();
-    mock.restore();
   });
-}.bind(World));
-
-//Mock/Fake check email middleware
-Then('I use {string} to check my email and go to the {string} page', async function (name, value) {
-  
-  await this.page.click(`text=${name}`);
-  await this.page.goto(`${domain}${this.subApp}/${value}`);
-  await this.page.route(`${domain}${this.subApp}/${value}`, async (route, request) => {
-    console.log('THIS IS BEING CALLED');
-    await route.continue({
-      postData: JSON.stringify({ sessionModel: { attributes: { 'original-email': 'test@test.com' }} })
-    })
-  })
+  await this.page.click('input[type="submit"]');
+  After(async () => {
+    sandbox.restore();
+  });
 }.bind(World));
 
 Then('I check {string}', async function (name) {

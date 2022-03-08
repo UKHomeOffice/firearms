@@ -1,4 +1,4 @@
-@firearms
+@feature @firearms
 Feature: A user should access the correct service and be able to log an issue
   
     Scenario: I am on the Museums journey and want to apply for a new authority, there is only one address for storage and I have no purchase order.
@@ -150,7 +150,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'confirm' page showing 'Check your answers'
         Then I submit the application
-
+    
     Scenario: I am on the Museums journey and want to renew an existing authority
         Given I start the 'museums' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'
@@ -160,7 +160,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'existing-authority' page showing 'Upload existing authority documents'
         Then I upload the 'testPath/test.pdf' file to 'existing-authority-upload'
-        Then I pick 'Upload file' to go to the 'existing-authority-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'existing-authority-add-another' page showing 'Do you want to upload any additional existing authority documents to support your application?'
         Then I check 'existing-authority-add-another-no'
         Then I select 'Continue'
@@ -212,7 +212,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'existing-authority' page showing 'Upload existing authority documents'
         Then I upload the 'testPath/test.pdf' file to 'existing-authority-upload'
-        Then I pick 'Upload file' to go to the 'existing-authority-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'existing-authority-add-another' page showing 'Do you want to upload any additional existing authority documents to support your application?'
         Then I check 'existing-authority-add-another-no'
         Then I select 'Continue'
@@ -600,7 +600,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -699,13 +699,13 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'existing-authority' page showing 'Upload existing authority documents'
         Then I upload the 'testPath/test.pdf' file to 'existing-authority-upload'
-        Then I pick 'Upload file' to go to the 'existing-authority-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'existing-authority-add-another' page showing 'Do you want to upload any additional existing authority documents to support your application?'
         Then I check 'existing-authority-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -804,13 +804,13 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'existing-authority' page showing 'Upload existing authority documents'
         Then I upload the 'testPath/test.pdf' file to 'existing-authority-upload'
-        Then I pick 'Upload file' to go to the 'existing-authority-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'existing-authority-add-another' page showing 'Do you want to upload any additional existing authority documents to support your application?'
         Then I check 'existing-authority-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -918,7 +918,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I check 'activity-new'
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
-        Then I pick 'Upload file' to go to the 'existing-authority-add-another' page
+        Then I submit the form to upload my file
         Then I should see the 'Upload a file' error
 
     Scenario: I am on the New-dealer journey but don't select an option on the supporting-documents-add-another page
@@ -932,7 +932,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I select 'Continue'
         Then I should see the 'Select an option' error
@@ -948,7 +948,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -967,7 +967,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -990,7 +990,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1016,7 +1016,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1045,7 +1045,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1077,7 +1077,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1112,7 +1112,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1152,7 +1152,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1195,7 +1195,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1243,7 +1243,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1296,7 +1296,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1356,7 +1356,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1421,7 +1421,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1493,7 +1493,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1574,7 +1574,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1662,7 +1662,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1758,7 +1758,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1860,7 +1860,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -1968,7 +1968,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -2083,7 +2083,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -2207,7 +2207,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -2339,7 +2339,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add-another' page
+        Then I submit the form to upload my file
         Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
@@ -3968,8 +3968,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'confirm' page showing 'Check your answers'
         Then I select 'Continue'
-    
-    @feature
+
     Scenario: I am on the Supporting-documents journey and I upload a supporting document
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
@@ -3977,47 +3976,51 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
         Then I fill 'email' with 'test@test.com'
-        Then I use 'Continue' to check my email and go to the 'supporting-documents' page
+        Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add' page
+        Then I submit the form to upload my file
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'confirm' page showing 'Check your answers'
         Then I select 'Continue'
+        Then I should be on the 'declaration' page showing 'Important information'
+        Then I submit the application
 
     Scenario: I am on the Supporting-documents and I want to upload an additional document
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
         Then I fill 'reference-number' with '12345'
-        Then I use 'Continue' to check my email and go to the 'supporting-documents' page
+        Then I select 'Continue'
         Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
         Then I fill 'email' with 'test@test.com'
         Then I select 'Continue' 
         Then I should be on the 'supporting-documents' page showing 'Upload supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add' page
+        Then I submit the form to upload my file
         Then I check 'supporting-document-add-another-yes'
         Then I select 'Continue'
         Then I should be on the 'supporting-documents' page showing 'Upload supporting documents'
         Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
-        Then I pick 'Upload file' to go to the 'supporting-documents-add' page
+        Then I submit the form to upload my file
         Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'confirm' page showing 'Check your answers'
-        Then I should see the 'There is a problem' error
-    
+        Then I select 'Continue'
+        Then I should be on the 'declaration' page showing 'Important information'
+        Then I submit the application
+   
     Scenario: I am on the Supporting-documents journey but do not fill in a reference number
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
-        Then I use 'Continue' to check my email and go to the 'supporting-documents' page
+        Then I select 'Continue' 
         Then I should see the 'Enter your application reference number' error
-
+    
     Scenario: I am on the Supporting-documents journey but do not fill in an email address
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
         Then I fill 'reference-number' with '12345'
-        Then I use 'Continue' to check my email and go to the 'supporting-documents' page
+        Then I select 'Continue'
         Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
         Then I select 'Continue' 
         Then I should see the 'Enter the email address used for your original application' error
@@ -4026,7 +4029,7 @@ Feature: A user should access the correct service and be able to log an issue
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
         Then I fill 'reference-number' with '12345'
-        Then I use 'Continue' to check my email and go to the 'supporting-documents' page
+        Then I select 'Continue'
         Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
         Then I fill 'email' with 'test@test.com'
         Then I select 'Continue' 
