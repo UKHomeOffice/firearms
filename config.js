@@ -1,7 +1,7 @@
 'use strict';
 /* eslint no-process-env: 0 */
 
-const env = 'ci';
+const env = process.env.NODE_ENV || 'production';
 const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.PORT || 8080}`;
 
 module.exports = {
