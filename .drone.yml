@@ -200,20 +200,20 @@ steps:
       branch: master
       event: pull_request
 
-  - name: test_acceptance_branch
-    pull: if-not-exists
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    commands:
-    - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
-    - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
-    - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} $${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
-    - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-    - sleep 5
-    - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
-    - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
-    when:
-      branch: master
-      event: pull_request
+  # - name: test_acceptance_branch
+  #   pull: if-not-exists
+  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  #   commands:
+  #   - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+  #   - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
+  #   - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} $${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
+  #   - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
+  #   - sleep 5
+  #   - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
+  #   - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
+  #   when:
+  #     branch: master
+  #     event: pull_request
     
   - name: acceptance_test_branch
     <<: *acceptance_tests
