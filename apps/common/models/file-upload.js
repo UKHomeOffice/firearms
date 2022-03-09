@@ -1,10 +1,12 @@
 /* eslint-disable node/no-deprecated-api */
 'use strict';
 
+const req = require('express/lib/request');
 const url = require('url');
 
 const Model = require('hof').model;
 const config = require('../../../config');
+//const FormData = require('form-data');
 
 module.exports = class UploadModel extends Model {
   save() {
@@ -13,6 +15,34 @@ module.exports = class UploadModel extends Model {
         url: config.upload.hostname
       };
       const reqConf = url.parse(this.url(attributes));
+
+      var uploadHeaders = new Headers();
+      uploadHeaders.append("Content-Type", "multipart/form-data");
+    
+
+      const formData = new FormData();
+      
+      formData.append('value', this.get('data'));
+      formData.append('options', {
+        filename: this.get('name'),
+        contentType: this.get('mimetype')
+      });
+
+      /*
+      var formData = {
+        //document: {
+          value: this.get('data'),
+          options: {
+            filename: this.get('name'),
+            contentType: this.get('mimetype')
+          }
+        //}
+      };
+      */
+
+      formData.append('document', formData);
+
+      /*
       reqConf.formData = {
         document: {
           value: this.get('data'),
@@ -22,7 +52,11 @@ module.exports = class UploadModel extends Model {
           }
         }
       };
+      */
+
+      reqConf.formData = formData;
       reqConf.method = 'POST';
+      reqConf.headers = uploadHeaders;
       this.request(reqConf, (err, data) => {
         if (err) {
           return reject(err);
@@ -45,7 +79,7 @@ module.exports = class UploadModel extends Model {
         bearer: 'abc123'
       });
     }
-
+    
     var authHeaders = new Headers();
     authHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
@@ -56,6 +90,8 @@ module.exports = class UploadModel extends Model {
     urlencoded.append("client_secret", config.keycloak.secret);
     urlencoded.append("grant_type", "password");
 
+
+    
     const tokenReq = {
       url: config.keycloak.token,
       body: urlencoded,
