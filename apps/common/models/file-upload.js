@@ -45,15 +45,21 @@ module.exports = class UploadModel extends Model {
         bearer: 'abc123'
       });
     }
+
+    var authHeaders = new Headers();
+    authHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("username", config.keycloak.username);
+    urlencoded.append("password", config.keycloak.password);
+    urlencoded.append("client_id", config.keycloak.clientId);
+    urlencoded.append("client_secret", config.keycloak.client_secret);
+    urlencoded.append("grant_type", "password");
+
     const tokenReq = {
       url: config.keycloak.token,
-      form: {
-        username: config.keycloak.username,
-        password: config.keycloak.password,
-        grant_type: 'password',
-        client_id: config.keycloak.clientId,
-        client_secret: config.keycloak.secret
-      },
+      body: urlencoded,
+      headers: authHeaders,
       method: 'POST'
     };
 
