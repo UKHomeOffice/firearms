@@ -53,7 +53,7 @@ module.exports = class UploadModel extends Model {
     urlencoded.append("username", config.keycloak.username);
     urlencoded.append("password", config.keycloak.password);
     urlencoded.append("client_id", config.keycloak.clientId);
-    urlencoded.append("client_secret", config.keycloak.client_secret);
+    urlencoded.append("client_secret", config.keycloak.secret);
     urlencoded.append("grant_type", "password");
 
     const tokenReq = {
@@ -66,8 +66,10 @@ module.exports = class UploadModel extends Model {
     return new Promise((resolve, reject) => {
       this._request(tokenReq, (err, response) => {
         if (err) {
+          console.log('err: ' + err);
           return reject(err);
         }
+        console.log(response.body);
         return resolve({
           bearer: JSON.parse(response.body).access_token
         });
