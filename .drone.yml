@@ -215,7 +215,7 @@ steps:
       branch: master
       event: pull_request
     
-  - name: test_acceptance_branch
+  - name: acceptance_test_branch
     <<: *acceptance_tests
     commands:
       - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}-$${DRONE_SOURCE_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
