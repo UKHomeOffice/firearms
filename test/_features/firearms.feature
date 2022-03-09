@@ -3968,7 +3968,7 @@ Feature: A user should access the correct service and be able to log an issue
         Then I select 'Continue'
         Then I should be on the 'confirm' page showing 'Check your answers'
         Then I select 'Continue'
-
+    
     Scenario: I am on the Supporting-documents journey and I upload a supporting document
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'

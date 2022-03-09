@@ -6,9 +6,8 @@ const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.P
 
 module.exports = {
   env: env,
-  skipEmail: process.env.SKIP_EMAIL || 'test@test.com',
-  allowSkip: process.env.ALLOW_SKIP || true,
   upload: {
+    skipEmail: env === 'production' ? '' : 'test@test.com',
     maxfilesize: '100mb',
     hostname: (!env || env === 'ci') ?
       `http://${localhost()}/api/file-upload` :
