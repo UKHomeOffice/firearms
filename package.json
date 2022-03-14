@@ -5,7 +5,7 @@
   "description": "Firearms application service",
   "author": "HomeOffice",
   "engines": {
-    "node": "^17.5.0"
+    "node": "^17.6.0"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
     "busboy-body-parser": "^0.3.0",
     "debug": "^2.6.8",
     "express": "^4.15.3",
-    "hof": "19.13.4-betav7",
+    "hof": "19.13.4-betav8",
     "hot-shots": "^5.9.0",
     "i18n-lookup": "^1.0.0",
     "is-pdf": "^1.0.0",

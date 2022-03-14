@@ -6,7 +6,6 @@ const url = require('url');
 
 const Model = require('hof').model;
 const config = require('../../../config');
-//const FormData = require('form-data');
 
 module.exports = class UploadModel extends Model {
   save() {
@@ -15,34 +14,7 @@ module.exports = class UploadModel extends Model {
         url: config.upload.hostname
       };
       const reqConf = url.parse(this.url(attributes));
-
-      var uploadHeaders = new Headers();
-      uploadHeaders.append("Content-Type", "multipart/form-data");
-    
-
-      const formData = new FormData();
       
-      formData.append('value', this.get('data'));
-      formData.append('options', {
-        filename: this.get('name'),
-        contentType: this.get('mimetype')
-      });
-
-      /*
-      var formData = {
-        //document: {
-          value: this.get('data'),
-          options: {
-            filename: this.get('name'),
-            contentType: this.get('mimetype')
-          }
-        //}
-      };
-      */
-
-      formData.append('document', formData);
-
-      /*
       reqConf.formData = {
         document: {
           value: this.get('data'),
@@ -52,11 +24,8 @@ module.exports = class UploadModel extends Model {
           }
         }
       };
-      */
-
-      reqConf.formData = formData;
       reqConf.method = 'POST';
-      reqConf.headers = uploadHeaders;
+      reqConf.isUpload = true;
       this.request(reqConf, (err, data) => {
         if (err) {
           return reject(err);

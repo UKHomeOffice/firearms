@@ -3253,10 +3253,10 @@ hof-util-testdata@^1.0.1:
   dependencies:
     homeoffice-countries "^0.1.0"
 
-hof@19.13.4-betav7:
-  version "19.13.4-betav7"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-19.13.4-betav7.tgz#68cc46a5732283988e229c985f4c52c0668058c4"
-  integrity sha512-QZxcm1kVaCtQ9pyy783O5UbtutNMw3nICaBPqTeHnfIIh6fiWf5BsFpeL5XIB/BscgTIZP0fZ90t4vK+7p89dg==
+hof@19.13.4-betav8:
+  version "19.13.4-betav8"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-19.13.4-betav8.tgz#6a945c86c32704e7b2eb8c2007665cce586aa331"
+  integrity sha512-BCZ3DKAFU4g/JCDBjZO/HRhT8YXk3Nh/H1TzZR8JMzqX9UDEBBZMi8ei9MhDgnjephsvKJqY0eRO4LIHKS2lxQ==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
