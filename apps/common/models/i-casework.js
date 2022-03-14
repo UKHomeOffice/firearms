@@ -42,7 +42,7 @@ module.exports = class CaseworkModel extends Model {
 
   save() {
     const options = this.requestConfig({});
-    options.form = this.prepare();
+    options.body = this.prepare();
     options.method = 'POST';
     if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
       return Promise.resolve({
