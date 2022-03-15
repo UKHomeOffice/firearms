@@ -12,7 +12,7 @@ module.exports = class CaseworkModel extends Model {
   }
 
   url() {
-    return config.icasework.url + config.icasework.createpath;
+    return config.icasework.url + config.icasework.createpath + '?db=flcms';
   }
 
   prepare() {
@@ -42,7 +42,7 @@ module.exports = class CaseworkModel extends Model {
 
   save() {
     const options = this.requestConfig({});
-    options.body = this.prepare();
+    options.body = JSON.stringify(this.prepare());
     options.method = 'POST';
     if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
       return Promise.resolve({
