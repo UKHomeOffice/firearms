@@ -29,7 +29,6 @@ module.exports = class UploadController extends BaseController {
       });
     }
     if (file && file.data && file.data.length) {
-      //file.contenttype = req.headers["content-type"];
       req.form.values['supporting-document-filename'] = file.name;
       const model = new UploadModel(file);
       return model.save()
