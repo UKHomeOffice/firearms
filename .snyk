@@ -11,7 +11,7 @@ ignore:
         reason: Need to update browserify in HOF when new version is available.
         expires: '2022-09-18T14:58:46.388Z'
   SNYK-JS-CACHEDPATHRELATIVE-2342653:
-    - hof > browserify > cached-path:
+    - hof > browserify > cached-path-relative:
         reason: Need to update browserify in HOF when new version is available.
         expires: '2022-09-18T14:58:46.388Z'
 patch: {}
