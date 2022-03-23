@@ -7,6 +7,7 @@ const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.P
 module.exports = {
   env: env,
   upload: {
+    skipEmail: env === 'production' ? '' : 'test@test.com',
     maxfilesize: '100mb',
     hostname: (!env || env === 'ci') ?
       `http://${localhost()}/api/file-upload` :
@@ -20,12 +21,15 @@ module.exports = {
     secret: process.env.KEYCLOAK_SECRET
   },
   email: {
-    from: process.env.FROM_ADDRESS || '',
+    from: process.env.FROM_ADDRESS || 'fakeemail',
     transport: process.env.EMAIL_TRANSPORT || 'ses',
     transportOptions: {
-      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || '',
-      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || ''
+      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || 'randompass',
+      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || 'randompass'
     }
+  },
+  hosts: {
+    acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
   },
   redis: {
     password: process.env.REDIS_PASSWORD
