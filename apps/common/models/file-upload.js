@@ -23,6 +23,7 @@ module.exports = class UploadModel extends Model {
         }
       };
       reqConf.method = 'POST';
+      console.log(reqConf);
       this.request(reqConf, (err, data) => {
         if (err) {
           return reject(err);
@@ -56,6 +57,8 @@ module.exports = class UploadModel extends Model {
       },
       method: 'POST'
     };
+
+    console.log(tokenReq);
 
     return new Promise((resolve, reject) => {
       this._request(tokenReq, (err, response) => {
