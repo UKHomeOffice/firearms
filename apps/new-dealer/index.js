@@ -43,7 +43,7 @@ module.exports = {
       next: '/before-you-start'
     },
     '/before-you-start': {
-      next: '/activity'
+      next: '/company-name' //'/activity'
     },
     '/activity': {
       behaviours: resetUploadedDocuments({

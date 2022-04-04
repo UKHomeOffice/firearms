@@ -74,7 +74,7 @@ describe('S5 Submission Model', () => {
       expect(output.AuthorityType).to.equal('Carriers and Dealers');
     });
 
-    it('sets authority type to `Carriers and Dealers` if usage is to transfer, sell and transfer', () => {
+    it('sets authority type to `Carriers and Dealers` if usage is to transport, sell and transfer', () => {
       const input = Object.assign({}, defaults, {
         usage: [
           'sell',
