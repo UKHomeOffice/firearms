@@ -139,7 +139,7 @@
     "default": "Enter a valid date",
     "required": "Enter a date of birth",
     "before": "Date cannot be in the future",
-    "over18": "You must aged 18 or older"
+    "over18": "Enter a valid date of birth. You must be over 18 to apply for a Firearms License application"
   },
   "first-authority-town-birth": {
     "required": "Enter a town or city of birth"
@@ -174,7 +174,7 @@
     "required": "Enter a date of birth",
     "default": "Enter a valid date",
     "before": "Date cannot be in the future",
-    "over18": "You must aged 18 or older"
+    "over18": "Enter a valid date of birth. You must be over 18 to apply for a Firearms License application"
   },
   "second-authority-town-birth": {
     "required": "Enter a town or city of birth"
