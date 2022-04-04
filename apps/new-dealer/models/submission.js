@@ -8,7 +8,8 @@ const authorityType = usage => {
   // return 'Carriers and Dealers';  PROBLEM
   // return 'Maritime Guards';       CORRECT
   // return 'Carriers';              CORRECT
-  return 'Dealer';
+  // return 'Dealer';                CORRECT
+  return 'Test Authority Type';
 
   /*
   if (usage.includes('arm-guards')) {
