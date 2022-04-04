@@ -7,8 +7,8 @@ const contains = (arr, val) => arr.includes(val) ? 'Yes' : 'No';
 const authorityType = usage => {
   // return 'Carriers and Dealers';  PROBLEM
   // return 'Maritime Guards';       CORRECT
-  return 'Carriers';
-
+  // return 'Carriers';              CORRECT
+  return 'Dealer';
 
   /*
   if (usage.includes('arm-guards')) {
