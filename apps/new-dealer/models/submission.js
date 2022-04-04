@@ -5,6 +5,8 @@ const _ = require('lodash');
 const contains = (arr, val) => arr.includes(val) ? 'Yes' : 'No';
 
 const authorityType = usage => {
+  return 'Carriers and Dealers';
+  /*
   if (usage.includes('arm-guards')) {
     return 'Maritime Guards';
   }
@@ -18,7 +20,7 @@ const authorityType = usage => {
     return 'Carriers';
   }
 
-  return 'Dealer';
+  return 'Dealer'; */
 };
 
 module.exports = data => {
