@@ -309,7 +309,8 @@
   },
   "first-authority-dob": {
     "summary": "Date of birth",
-    "hint": "For example, 31 3 1980"
+    "hint": "For example, 31 3 1980",
+    "over18": "Enter a valid date of birth. You must be over 18 to apply for a Firearms License application"
   },
   "first-authority-dob-day": {
     "label": "Day"
@@ -353,7 +354,8 @@
   },
   "second-authority-dob": {
     "summary": "Date of birth",
-    "hint": "For example, 31 3 1980"
+    "hint": "For example, 31 3 1980",
+    "over18": "Enter a valid date of birth. You must be over 18 to apply for a Firearms License application"
   },
   "second-authority-dob-day": {
     "label": "Day"
