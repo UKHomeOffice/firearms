@@ -3,11 +3,11 @@
 module.exports = {
   name: {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
   },
   'contact-name': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
   },
   'contact-email': {
     mixin: 'input-text',
@@ -15,7 +15,7 @@ module.exports = {
   },
   'contact-phone': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
   },
   'same-contact-address': {
     mixin: 'radio-group',
@@ -50,7 +50,7 @@ module.exports = {
     }]
   },
   'purchase-order-number': {
-    validate: 'required',
+    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
     dependent: {
       field: 'purchase-order',
       value: 'Yes'
@@ -58,7 +58,7 @@ module.exports = {
   },
   'invoice-contact-name': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
   },
   'invoice-contact-email': {
     mixin: 'input-text',
@@ -66,57 +66,57 @@ module.exports = {
   },
   'invoice-contact-phone': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
   },
   'exhibit-building': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
   },
   'exhibit-street': {
-    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     labelClassName: 'visuallyhidden'
   },
   'exhibit-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
-      { type: 'maxlength', arguments: 100 }
+      { type: 'maxlength', arguments: 200 }
     ]
   },
   'exhibit-postcodeOrZIPCode': {
-    validate: ['required'],
+    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
     formatter: ['removespaces', 'uppercase']
   },
   'contact-building': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
   },
   'contact-street': {
-    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     labelClassName: 'visuallyhidden'
   },
   'contact-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
-      { type: 'maxlength', arguments: 100 }
+      { type: 'maxlength', arguments: 200 }
     ]
   },
   'contact-postcodeOrZIPCode': {
-    validate: ['required'],
+    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
     formatter: ['removespaces', 'uppercase']
   },
   'invoice-building': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
   },
   'invoice-street': {
-    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     labelClassName: 'visuallyhidden'
   },
   'invoice-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
-      { type: 'maxlength', arguments: 100 }
+      { type: 'maxlength', arguments: 200 }
     ]
   },
   'invoice-postcodeOrZIPCode': {
-    validate: ['required'],
+    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
     formatter: ['removespaces', 'uppercase']
   }
 };
