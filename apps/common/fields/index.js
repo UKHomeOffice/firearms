@@ -19,7 +19,7 @@ module.exports = {
   },
   'supporting-document-upload': {
     mixin: 'input-file',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required']
   },
   'supporting-document-description': {
     mixin: 'textarea',

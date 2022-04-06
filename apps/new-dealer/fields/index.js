@@ -178,7 +178,7 @@ module.exports = {
     includeInSummary: false
   },
   'no-storage-details': {
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
     dependent: {
       field: 'stored-on-premises',
       value: 'false'
