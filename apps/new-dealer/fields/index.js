@@ -276,7 +276,7 @@ module.exports = {
     includeInSummary: false
   },
   'fully-automatic-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'fully-automatic'
@@ -284,7 +284,7 @@ module.exports = {
     includeInSummary: false
   },
   'self-loading-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'self-loading'
@@ -292,7 +292,7 @@ module.exports = {
     includeInSummary: false
   },
   'short-pistols-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'short-pistols'
@@ -300,7 +300,7 @@ module.exports = {
     includeInSummary: false
   },
   'short-self-loading-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'short-self-loading'
@@ -308,7 +308,7 @@ module.exports = {
     includeInSummary: false
   },
   'large-revolvers-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'large-revolvers'
@@ -316,7 +316,7 @@ module.exports = {
     includeInSummary: false
   },
   'rocket-launchers-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'rocket-launchers'
@@ -324,7 +324,7 @@ module.exports = {
     includeInSummary: false
   },
   'air-rifles-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'air-rifles'
@@ -332,7 +332,7 @@ module.exports = {
     includeInSummary: false
   },
   'fire-noxious-substance-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'fire-noxious-substance'
@@ -340,7 +340,7 @@ module.exports = {
     includeInSummary: false
   },
   'disguised-firearms-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'disguised-firearms'
@@ -348,7 +348,7 @@ module.exports = {
     includeInSummary: false
   },
   'military-use-rockets-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'military-use-rockets'
@@ -356,7 +356,7 @@ module.exports = {
     includeInSummary: false
   },
   'projecting-launchers-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'projecting-launchers'
@@ -405,7 +405,7 @@ module.exports = {
     includeInSummary: false
   },
   'explosive-cartridges-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'explosive-cartridges'
@@ -413,7 +413,7 @@ module.exports = {
     includeInSummary: false
   },
   'incendiary-missile-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'incendiary-missile'
@@ -421,7 +421,7 @@ module.exports = {
     includeInSummary: false
   },
   'armour-piercing-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'armour-piercing'
@@ -429,7 +429,7 @@ module.exports = {
     includeInSummary: false
   },
   'expanding-missile-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'expanding-missile'
@@ -437,7 +437,7 @@ module.exports = {
     includeInSummary: false
   },
   'missiles-for-above-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'missiles-for-above'
@@ -619,7 +619,7 @@ module.exports = {
   },
   'contact-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', { type: 'maxlength', arguments: 320 }]
   },
   'contact-phone': {
     mixin: 'input-text',
@@ -724,7 +724,7 @@ module.exports = {
   },
   'invoice-contact-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', { type: 'maxlength', arguments: 320 }]
   },
   'invoice-contact-phone': {
     mixin: 'input-text',
