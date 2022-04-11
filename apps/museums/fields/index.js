@@ -11,7 +11,7 @@ module.exports = {
   },
   'contact-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', { type: 'maxlength', arguments: 320 }]
   },
   'contact-phone': {
     mixin: 'input-text',
@@ -62,7 +62,7 @@ module.exports = {
   },
   'invoice-contact-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', { type: 'maxlength', arguments: 320 }]
   },
   'invoice-contact-phone': {
     mixin: 'input-text',

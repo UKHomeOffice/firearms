@@ -8,7 +8,8 @@ module.exports = {
   email: {
     validate: [
       'required',
-      'email'
+      'email',
+      { type: 'maxlength', arguments: 320 }
     ]
   }
 };

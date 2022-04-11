@@ -23,7 +23,7 @@ module.exports = {
   },
   'second-contact-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', { type: 'maxlength', arguments: 320 }]
   },
   'second-contact-phone': {
     mixin: 'input-text',
@@ -77,7 +77,7 @@ module.exports = {
   },
   'club-secretary-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', { type: 'maxlength', arguments: 320 }]
   },
   'club-secretary-phone': {
     mixin: 'input-text',
@@ -181,7 +181,7 @@ module.exports = {
   },
   'invoice-contact-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', { type: 'maxlength', arguments: 320 }]
   },
   'invoice-contact-phone': {
     mixin: 'input-text',
