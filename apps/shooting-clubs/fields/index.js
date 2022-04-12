@@ -15,11 +15,11 @@ module.exports = {
   },
   'club-name': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'second-contact-name': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'second-contact-email': {
     mixin: 'input-text',
@@ -27,26 +27,26 @@ module.exports = {
   },
   'second-contact-phone': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'club-secretary-name': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'club-postcode': {
     mixin: 'input-text-code',
-    validate: ['required', 'postcode', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', 'postcode', {type: 'maxlength', arguments: [200]}],
     formatter: 'uppercase',
     includeInSummary: false
   },
   'club-address-lookup': {
     className: 'address',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     includeInSummary: false
   },
   'club-address-manual': {
     mixin: 'textarea',
-    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
@@ -56,18 +56,18 @@ module.exports = {
   },
   'club-secretary-postcode': {
     mixin: 'input-text-code',
-    validate: ['required', 'postcode', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', 'postcode', {type: 'maxlength', arguments: [200]}],
     formatter: 'uppercase',
     includeInSummary: false
   },
   'club-secretary-address-lookup': {
     className: 'address',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     includeInSummary: false
   },
   'club-secretary-address-manual': {
     mixin: 'textarea',
-    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
@@ -81,22 +81,22 @@ module.exports = {
   },
   'club-secretary-phone': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'second-contact-postcode': {
     mixin: 'input-text-code',
-    validate: ['required', 'postcode', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', 'postcode', {type: 'maxlength', arguments: [200]}],
     formatter: 'uppercase',
     includeInSummary: false
   },
   'second-contact-address-lookup': {
     className: 'address',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     includeInSummary: false
   },
   'second-contact-address-manual': {
     mixin: 'textarea',
-    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
@@ -106,13 +106,13 @@ module.exports = {
   },
   'location-postcode': {
     mixin: 'input-text-code',
-    validate: ['required', 'postcode', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', 'postcode', {type: 'maxlength', arguments: [200]}],
     formatter: 'uppercase',
     includeInSummary: false
   },
   'location-address-manual': {
     mixin: 'textarea',
-    validate: ['required', {'type': 'maxlength', 'arguments': [15000]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
@@ -121,7 +121,7 @@ module.exports = {
     }]
   },
   'location-address-lookup': {
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     className: 'address'
   },
   'location-add-another-address': {
@@ -169,7 +169,7 @@ module.exports = {
     }]
   },
   'purchase-order-number': {
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'purchase-order',
       value: 'Yes'
@@ -177,7 +177,7 @@ module.exports = {
   },
   'invoice-contact-name': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'invoice-contact-email': {
     mixin: 'input-text',
@@ -185,7 +185,7 @@ module.exports = {
   },
   'invoice-contact-phone': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'invoice-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
@@ -202,7 +202,7 @@ module.exports = {
   },
   'invoice-postcodeOrZIPCode': {
     validate: ['required'],
-    formatter: ['removespaces', 'uppercase', {'type': 'maxlength', 'arguments': [200]}]
+    formatter: ['removespaces', 'uppercase', {type: 'maxlength', arguments: [200]}]
   },
   'club-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
@@ -218,7 +218,7 @@ module.exports = {
     ]
   },
   'club-postcodeOrZIPCode': {
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase']
   },
   'club-secretary-building': {
@@ -236,7 +236,7 @@ module.exports = {
   },
   'club-secretary-postcodeOrZIPCode': {
     validate: ['required'],
-    formatter: ['removespaces', 'uppercase', {'type': 'maxlength', 'arguments': [200]}]
+    formatter: ['removespaces', 'uppercase', {type: 'maxlength', arguments: [200]}]
   },
   'second-contact-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
@@ -253,7 +253,7 @@ module.exports = {
   },
   'second-contact-postcodeOrZIPCode': {
     validate: ['required'],
-    formatter: ['removespaces', 'uppercase', {'type': 'maxlength', 'arguments': [200]}]
+    formatter: ['removespaces', 'uppercase', {type: 'maxlength', arguments: [200]}]
   },
   'location-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
@@ -270,7 +270,7 @@ module.exports = {
   },
   'location-postcodeOrZIPCode': {
     validate: ['required'],
-    formatter: ['removespaces', 'uppercase', {'type': 'maxlength', 'arguments': [200]}]
+    formatter: ['removespaces', 'uppercase', {type: 'maxlength', arguments: [200]}]
   },
   'storage-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
@@ -287,6 +287,6 @@ module.exports = {
   },
   'storage-postcodeOrZIPCode': {
     validate: ['required'],
-    formatter: ['removespaces', 'uppercase', {'type': 'maxlength', 'arguments': [200]}]
+    formatter: ['removespaces', 'uppercase', {type: 'maxlength', arguments: [200]}]
   }
 };

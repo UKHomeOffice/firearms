@@ -15,7 +15,7 @@ module.exports = {
   },
   'reference-number': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'supporting-document-upload': {
     mixin: 'input-file',
@@ -23,7 +23,7 @@ module.exports = {
   },
   'supporting-document-description': {
     mixin: 'textarea',
-    validate: [{'type': 'maxlength', 'arguments': [15000]}]
+    validate: [{type: 'maxlength', arguments: [15000]}]
   },
   'supporting-document-add-another': {
     mixin: 'radio-group',
@@ -42,7 +42,7 @@ module.exports = {
   },
   'existing-authority-description': {
     mixin: 'textarea',
-    validate: [{'type': 'maxlength', 'arguments': [15000]}]
+    validate: [{type: 'maxlength', arguments: [15000]}]
   },
   'existing-authority-add-another': {
     mixin: 'radio-group',
