@@ -3,11 +3,11 @@
 module.exports = {
   name: {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'contact-name': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'contact-email': {
     mixin: 'input-text',
@@ -50,7 +50,7 @@ module.exports = {
     }]
   },
   'purchase-order-number': {
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'purchase-order',
       value: 'Yes'
@@ -58,7 +58,7 @@ module.exports = {
   },
   'invoice-contact-name': {
     mixin: 'input-text',
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'invoice-contact-email': {
     mixin: 'input-text',
@@ -82,7 +82,7 @@ module.exports = {
     ]
   },
   'exhibit-postcodeOrZIPCode': {
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase']
   },
   'contact-building': {
@@ -99,7 +99,7 @@ module.exports = {
     ]
   },
   'contact-postcodeOrZIPCode': {
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase']
   },
   'invoice-building': {
@@ -116,7 +116,7 @@ module.exports = {
     ]
   },
   'invoice-postcodeOrZIPCode': {
-    validate: ['required', {'type': 'maxlength', 'arguments': [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase']
   }
 };
