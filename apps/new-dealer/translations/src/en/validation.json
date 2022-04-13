@@ -39,7 +39,8 @@
     "required": "Select at least one option"
   },
   "other-means-details": {
-    "required": "Provide further detail on how the prohibited items will be obtained"
+    "required": "Provide further detail on how the prohibited items will be obtained",
+    ffsasd
   },
   "stored-on-premises": {
     "required": "Select an option"
