@@ -890,7 +890,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
 
@@ -962,7 +962,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
         Then I fill 'first-authority-dob-day' with '1'
@@ -1043,7 +1043,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
         Then I fill 'first-authority-dob-day' with '1'
@@ -1131,7 +1131,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
         Then I fill 'first-authority-dob-day' with '1'
@@ -1227,7 +1227,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
         Then I fill 'first-authority-dob-day' with '1'
@@ -1329,7 +1329,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
         Then I fill 'first-authority-dob-day' with '1'
@@ -1437,7 +1437,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
         Then I fill 'first-authority-dob-day' with '1'
@@ -1552,7 +1552,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
         Then I fill 'first-authority-dob-day' with '1'
@@ -1676,7 +1676,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
         Then I fill 'first-authority-dob-day' with '1'
@@ -1808,7 +1808,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
         Then I select 'Continue'
-        Then I should see the 'Enter a valid date' error
+        Then I should see the 'Enter a date of birth' error
         Then I should see the 'Enter a town or city of birth' error
         Then I should see the 'Enter a country of birth' error
         Then I fill 'first-authority-dob-day' with '1'
