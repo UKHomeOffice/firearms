@@ -39,8 +39,7 @@
     "required": "Select at least one option"
   },
   "other-means-details": {
-    "required": "Provide further detail on how the prohibited items will be obtained",
-    ffsasd
+    "required": "Provide further detail on how the prohibited items will be obtained"
   },
   "stored-on-premises": {
     "required": "Select an option"
@@ -139,7 +138,8 @@
   "first-authority-dob": {
     "default": "Enter a valid date",
     "required": "Enter a date of birth",
-    "before": "Date cannot be in the future"
+    "before": "Date cannot be in the future",
+    "over18": "Enter a valid date of birth. You must be over 18 to apply for a Firearms License application"
   },
   "first-authority-town-birth": {
     "required": "Enter a town or city of birth"
@@ -173,7 +173,8 @@
   "second-authority-dob": {
     "required": "Enter a date of birth",
     "default": "Enter a valid date",
-    "before": "Date cannot be in the future"
+    "before": "Date cannot be in the future",
+    "over18": "Enter a valid date of birth. You must be over 18 to apply for a Firearms License application"
   },
   "second-authority-town-birth": {
     "required": "Enter a town or city of birth"
