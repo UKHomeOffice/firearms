@@ -128,14 +128,14 @@ module.exports = {
     ]
   },
   'other-means-details': {
-    validate: ['required', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'obtain',
       value: 'other-means'
     }
   },
   'wont-take-details': {
-    validate: ['required', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'obtain',
       value: 'wont-take-possession'
@@ -203,7 +203,7 @@ module.exports = {
       }]
   },
   'other-details': {
-    validate: ['required', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'usage',
       value: 'other'
@@ -268,7 +268,7 @@ module.exports = {
     }]
   },
   'weapons-unspecified-details': {
-    validate: ['required', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'weapons-types',
       value: 'unspecified'
@@ -397,7 +397,7 @@ module.exports = {
     }]
   },
   'ammunition-unspecified-details': {
-    validate: ['required', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'ammunition-types',
       value: 'unspecified'
