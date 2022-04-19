@@ -1,4 +1,20 @@
 {
+  "choose-a-journey": {
+    "options": {
+      "museums": {
+        "label": "Museums"
+      },
+      "new-dealer": {
+        "label": "New Dealer"
+      },
+      "shooting-clubs": {
+        "label": "Shooting Clubs"
+      },
+      "supporting-documents": {
+        "label": "Supporting Documents"
+      }
+    }
+  },
   "activity": {
     "options": {
       "new": {
