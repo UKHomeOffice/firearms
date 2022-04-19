@@ -1,4 +1,7 @@
 {
+  "choose-a-journey": {
+    "required": "Select an option"
+  },
   "activity": {
     "required": "Select an option"
   },
