@@ -15,7 +15,7 @@ module.exports = {
   },
   'contact-phone': {
     mixin: 'input-text',
-    validate: ['required', 'phonenumber']
+    validate: ['required', 'internationalPhoneNumber']
   },
   'same-contact-address': {
     mixin: 'radio-group',
@@ -66,7 +66,7 @@ module.exports = {
   },
   'invoice-contact-phone': {
     mixin: 'input-text',
-    validate: ['required', 'phonenumber']
+    validate: ['required', 'internationalPhoneNumber']
   },
   'exhibit-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]

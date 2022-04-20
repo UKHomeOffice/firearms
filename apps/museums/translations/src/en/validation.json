@@ -25,7 +25,7 @@
   },
   "contact-phone": {
     "required": "Enter a contact phone number",
-    "phonenumber": "Enter a valid phone number"
+    "internationalPhoneNumber": "Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192 "
   },
   "same-contact-address": {
     "required": "Select an option"
@@ -59,7 +59,7 @@
   },
   "invoice-contact-phone": {
     "required": "Enter a contact phone number",
-    "phonenumber": "Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192 "
+    "internationalPhoneNumber": "Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192 "
   },
   "purchase-order": {
     "required": "Select if you have a purchase order"
