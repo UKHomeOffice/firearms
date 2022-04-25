@@ -36,6 +36,7 @@ module.exports = data => {
     response[`Document${index}.MimeType`] = doc.type;
     response[`Document${index}.URLLoadContent`] = true;
   });
+  console.log('Test Branch');
 
   return response;
 };
