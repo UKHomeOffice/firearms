@@ -7,11 +7,9 @@ module.exports = superclass => class extends superclass {
     const validEmail = req.sessionModel.get('original-email');
 
     if (validEmail === req.form.values.email || acceptanceTestEmail === req.form.values.email) {
-      //Either our email matches or our acceptancetest email matches
+      // Either our email matches or our acceptancetest email matches
       super.validate(req, res, next);
-    }
-    else 
-    {
+    } else {
       next({
         email: new this.ValidationError('email', { type: 'incorrect' })
       });
