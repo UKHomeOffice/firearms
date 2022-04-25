@@ -19,6 +19,16 @@ Feature: Firearms uploading supporting documents
         Then I should be on the 'declaration' page showing 'Important information'
         Then I submit the application
 
+    Scenario: I am on the Supporting-documents journey and enter an invalid reference
+        Given I start the 'supporting-documents' application journey
+        Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
+        Then I fill 'reference-number' with '12345'
+        Then I select 'Continue'
+        Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
+        Then I fill 'email' with 'test2@test.com'
+        Then I select 'Continue'
+        Then I should see the 'The email address provided does not match the reference number' error
+        
     Scenario: I am on the Supporting-documents and I want to upload an additional document
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
