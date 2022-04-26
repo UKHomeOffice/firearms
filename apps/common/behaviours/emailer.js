@@ -7,6 +7,7 @@ const moment = require('moment');
 
 module.exports = conf => {
   const defaults = {
+    emailerFallback: config.email.emailerFallback,
     template: path.resolve(__dirname, '../emails/confirm.html'),
     parse: data => {
       const nameKey = typeof conf.nameKey === 'function' ? conf.nameKey(data) : conf.nameKey;
