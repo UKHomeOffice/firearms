@@ -1,12 +1,24 @@
 {{<partials-page}}
   {{$page-content}}
     {{>partials-confirmation-alert}}
+    
+    {{^values.nodemailer-error}}
     <div>
       <p>{{#t}}pages.confirmation.email{{/t}}</p>
     </div>
+    {{/values.nodemailer-error}}
 
     {{#values.nodemailer-error}}
-      <p></p>
+    <div class="alert-error" role="alert">
+      <div class="alert-message">
+        <p>
+          {{#t}}pages.confirmation.emailFallback{{/t}}
+        </p>
+        <p>
+          {{#t}}pages.confirmation.emailFallbackContact{{/t}}
+        </p>
+      </div>
+    </div>
     {{/values.nodemailer-error}}
 
     {{#markdown}}what-happens-next{{/markdown}}

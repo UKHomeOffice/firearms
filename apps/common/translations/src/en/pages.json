@@ -33,7 +33,9 @@
     "email": "We have sent an email to {{values.contact-email}} to confirm receipt of your application.",
     "survey": {
       "text": "What did you think of this service? (takes 30 seconds)"
-    }
+    },
+    "emailFallback": "Thanks for submitting your request. We're having a bit of trouble with our email confirmations at the moment, but rest assured we've received your request, and a member of our team will progress it as soon as they can.",
+    "emailFallbackContact": "In the mean time if you'd like to contact us please drop us a line at <a href='mailto:dflu.firearmslicensing@homeoffice.gov.uk'>dflu.firearmslicensing@homeoffice.gov.uk</a>"
   },
   "supporting-documents": {
     "guidance": "File types and sizes we accept",
