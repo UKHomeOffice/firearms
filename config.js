@@ -22,11 +22,13 @@ module.exports = {
   },
   email: {
     from: process.env.FROM_ADDRESS || 'fakeemail',
-    transport: process.env.EMAIL_TRANSPORT || 'ses',
+    transport: process.env.EMAIL_TRANSPORT || 'smtp',
     transportOptions: {
       accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || 'randompass',
-      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || 'randompass'
-    }
+      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || 'randompass',
+      port: process.env.EMAIL_PORT || 587,
+      host: process.env.EMAIL_HOST || 'email-smtp.eu-west-1.amazonaws.com'
+    },
   },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
