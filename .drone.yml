@@ -269,20 +269,10 @@ steps:
       branch: master
       event: push
 
-  - name: build_acceptance_uat
-    pull: if-not-exists
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    commands:
-    - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
-    - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
-    when:
-      branch: master
-      event: push
-
   - name: test_acceptance_uat
     <<: *acceptance_tests
     commands:
-      - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}.uat.internal.sas-notprod.homeoffice.gov.uk
+      - export ACCEPTANCE_HOST_NAME=https://dev.notprod.$${APP_NAME}.homeoffice.gov.uk
       - npx playwright install
       - npm run test:acceptance
     when:
