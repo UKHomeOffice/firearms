@@ -4,7 +4,7 @@ Feature: Firearms uploading supporting documents
     Scenario: I am on the Supporting-documents journey and I upload a supporting document
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
-        Then I fill 'reference-number' with '12345'
+        Then I fill 'reference-number' with '136335'
         Then I select 'Continue'
         Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
         Then I fill 'email' with 'test@test.com'
@@ -22,7 +22,7 @@ Feature: Firearms uploading supporting documents
     Scenario: I am on the Supporting-documents journey and enter an invalid reference
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
-        Then I fill 'reference-number' with '12345'
+        Then I fill 'reference-number' with '136335'
         Then I select 'Continue'
         Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
         Then I fill 'email' with 'test2@test.com'
@@ -32,7 +32,7 @@ Feature: Firearms uploading supporting documents
     Scenario: I am on the Supporting-documents and I want to upload an additional document
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
-        Then I fill 'reference-number' with '12345'
+        Then I fill 'reference-number' with '136335'
         Then I select 'Continue'
         Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
         Then I fill 'email' with 'test@test.com'
@@ -61,7 +61,7 @@ Feature: Firearms uploading supporting documents
     Scenario: I am on the Supporting-documents journey but do not fill in an email address
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
-        Then I fill 'reference-number' with '12345'
+        Then I fill 'reference-number' with '136335'
         Then I select 'Continue'
         Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
         Then I select 'Continue' 
@@ -70,7 +70,7 @@ Feature: Firearms uploading supporting documents
     Scenario: I am on the Supporting-documents but do not upload a supporting document
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'
-        Then I fill 'reference-number' with '12345'
+        Then I fill 'reference-number' with '136335'
         Then I select 'Continue'
         Then I should be on the 'email' page showing 'Enter the email address used for your original application:'
         Then I fill 'email' with 'test@test.com'
