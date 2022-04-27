@@ -27,7 +27,10 @@ module.exports = {
       accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || 'randompass',
       secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || 'randompass',
       port: process.env.EMAIL_PORT || 587,
-      host: process.env.EMAIL_HOST || 'email-smtp.eu-west-1.amazonaws.com'
+      host: process.env.EMAIL_HOST || 'email-smtp.eu-west-1.amazonaws.com',
+      region: process.env.AWS_REGION || 'eu-west-1',
+      ignoreTLS: process.env.EMAIL_IGNORE_TLS === 'true',
+      secure: process.env.EMAIL_SECURE === 'true'
     },
   },
   hosts: {
