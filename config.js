@@ -21,7 +21,7 @@ module.exports = {
     secret: process.env.KEYCLOAK_SECRET
   },
   email: {
-    emailerFallback: false,
+    emailerFallback: true,
     from: process.env.FROM_ADDRESS || 'fakeemail',
     transport: process.env.EMAIL_TRANSPORT || 'ses',
     transportOptions: {
