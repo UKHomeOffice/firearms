@@ -120,6 +120,11 @@ spec:
                 secretKeyRef:
                   name: icasework
                   key: secret
+            - name: NOTIFY_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: notify-key
+                  key: notify-key
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:

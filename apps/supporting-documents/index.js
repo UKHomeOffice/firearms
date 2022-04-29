@@ -1,9 +1,8 @@
 'use strict';
 
-const path = require('path');
-
 const GetCase = require('./behaviours/get-case');
 const CheckEmail = require('./behaviours/check-email');
+const config = require('../../config');
 
 const Submission = require('../common/behaviours/casework-submission');
 const submission = Submission({
@@ -11,13 +10,13 @@ const submission = Submission({
   Model: require('../common/models/i-casework-documents')
 });
 
-const Emailer = require('../common/behaviours/emailer');
-const emailer = Emailer({
-  template: path.resolve(__dirname, './emails/confirm.html'),
+const templateId = config.govukNotify.templateSupportingDocuments;
+const sendEmail = require('../common/behaviours/send-email')({
+  templateId: templateId,
   recipient: 'original-email',
-  subject: data => `Application ref: ${data['reference-number']} - supporting documents`,
   nameKey: 'original-name'
 });
+
 
 module.exports = {
   name: 'supporting-documents',
@@ -79,7 +78,7 @@ module.exports = {
     },
     '/declaration': {
       template: 'declaration',
-      behaviours: ['complete', submission, emailer],
+      behaviours: ['complete', submission, sendEmail],
       next: '/confirmation'
     },
     '/confirmation': {

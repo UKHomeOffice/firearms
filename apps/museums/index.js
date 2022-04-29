@@ -14,11 +14,10 @@ const submission = Submission({
 
 const pdf = require('../common/behaviours/pdf-upload');
 
-const Emailer = require('../common/behaviours/emailer');
-const emailer = Emailer({
+const templateId = config.govukNotify.templateMuseum;
+const sendEmail = require('../common/behaviours/send-email')({
+  templateId: templateId,
   recipient: 'contact-email',
-  subject: data => `Ref: ${data.caseid} - Museums firearms licence application`,
-  type: 'museum firearms licence',
   nameKey: 'contact-name'
 });
 
@@ -174,7 +173,7 @@ module.exports = {
     },
     '/declaration': {
       template: 'declaration',
-      behaviours: ['complete', submission, emailer],
+      behaviours: ['complete', submission, sendEmail],
       next: '/confirmation'
     },
     '/confirmation': {

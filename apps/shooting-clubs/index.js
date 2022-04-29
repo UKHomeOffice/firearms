@@ -13,11 +13,10 @@ const submission = Submission({
 });
 
 const pdf = require('../common/behaviours/pdf-upload');
-const Emailer = require('../common/behaviours/emailer');
-const emailer = Emailer({
+const templateId = config.govukNotify.templateShootingClub;
+const sendEmail = require('../common/behaviours/send-email')({
+  templateId: templateId,
   recipient: 'club-secretary-email',
-  subject: data => `Ref: ${data.caseid} - Shooting club firearms licence application`,
-  type: 'shooting club approval',
   nameKey: 'club-secretary-name'
 });
 
@@ -251,7 +250,7 @@ module.exports = {
     },
     '/declaration': {
       template: 'declaration',
-      behaviours: ['complete', submission, emailer],
+      behaviours: ['complete', submission, sendEmail],
       next: '/confirmation'
     },
     '/confirmation': {
