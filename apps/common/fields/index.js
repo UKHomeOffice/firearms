@@ -1,6 +1,19 @@
 'use strict';
 
 module.exports = {
+  'choose-a-journey': {
+    mixin: 'radio-group',
+    validate: 'required',
+    options: [
+      'museums',
+      'new-dealer',
+      'shooting-clubs',
+      'supporting-documents'
+    ],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
   activity: {
     mixin: 'radio-group',
     validate: 'required',
