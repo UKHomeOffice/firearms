@@ -41,11 +41,6 @@ module.exports = data => {
     }
   });
 
-  data['all-storage-addresses'].forEach((address, i) => {
-    const index = data['location-addresses'].length + i + 1;
-    response[`ShootingRange${index}.Address`] = address.address;
-  });
-
   response.InvoicingAddress = data['invoice-address'];
   response.ContactFirstName = data['invoice-contact-name'];
   response.ContactEmail = data['invoice-contact-email'];
