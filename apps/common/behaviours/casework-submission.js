@@ -24,16 +24,16 @@ module.exports = conf => {
 
   return superclass => class extends superclass {
     saveValues(req, res, next) {
-      req.log('debug', 'Submitting case to icasework');
+      req.log('info', 'Submitting case to icasework');
       return super.saveValues(req, res, err => {
         if (err) {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
-        req.log('debug', `Sending icasework submission to ${model.url()}`);
+        req.log('info', `Sending icasework submission to ${model.url()}`);
         return model.save()
           .then(data => {
-            req.log('debug', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
+            req.log('info', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
             client.increment('casework.submission.success');
             next();
