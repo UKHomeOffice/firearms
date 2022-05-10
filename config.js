@@ -42,7 +42,7 @@ module.exports = {
     getcasepath: '/getcasedetails',
     key: process.env.ICASEWORK_KEY,
     secret: process.env.ICASEWORK_SECRET,
-    timeout: +process.env.ICASEWORK_TIMEOUT || 60000
+    timeout: process.env.ICASEWORK_TIMEOUT || 20000
   },
   survey: {
     urls: {
