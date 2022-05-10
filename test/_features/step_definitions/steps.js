@@ -7,6 +7,7 @@ const config = require('../../../config');
 const sinon = require('sinon');
 
 const domain = config.hosts.acceptanceTests;
+console.log('>>>>>>>>>>>>>>>>>>>>> ', domain);
 
 
 Given('I start the {string} application journey', async function (subApp) {
