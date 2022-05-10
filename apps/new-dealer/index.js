@@ -20,10 +20,12 @@ const submission = Submission({
 
 const pdf = require('../common/behaviours/pdf-upload');
 const templateId = config.govukNotify.templateSection5;
+const replyTo = config.govukNotify.emailReplyToFirearms;
 const getContactSendEmail = require('./behaviours/get-contact-send-email')({
   templateId: templateId,
   recipient: 'contact-email',
-  nameKey: 'contact-holder'
+  nameKey: 'contact-holder',
+  replyTo: replyTo
 });
 
 module.exports = {

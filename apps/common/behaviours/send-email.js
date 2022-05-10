@@ -11,7 +11,7 @@ module.exports = opts => {
           user: req.sessionModel.get(opts.nameKey),
           date: moment().format('LLL')
         };
-        notifyEmailer.sendEmail(opts.templateId, req.sessionModel.get(opts.recipient), personalisation);
+        notifyEmailer.sendEmail(opts.templateId, req.sessionModel.get(opts.recipient), personalisation, opts.replyTo);
         return next(err);
       });
     }

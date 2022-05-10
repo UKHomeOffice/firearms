@@ -15,10 +15,12 @@ const submission = Submission({
 const pdf = require('../common/behaviours/pdf-upload');
 
 const templateId = config.govukNotify.templateMuseum;
+const replyTo = config.govukNotify.emailReplyToDefault;
 const sendEmail = require('../common/behaviours/send-email')({
   templateId: templateId,
   recipient: 'contact-email',
-  nameKey: 'contact-name'
+  nameKey: 'contact-name',
+  replyTo: replyTo
 });
 
 module.exports = {

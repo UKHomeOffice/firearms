@@ -11,10 +11,12 @@ const submission = Submission({
 });
 
 const templateId = config.govukNotify.templateSupportingDocuments;
+const replyTo = config.govukNotify.emailReplyToFirearms;
 const sendEmail = require('../common/behaviours/send-email')({
   templateId: templateId,
   recipient: 'original-email',
-  nameKey: 'original-name'
+  nameKey: 'original-name',
+  replyTo: replyTo
 });
 
 
