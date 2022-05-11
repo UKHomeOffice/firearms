@@ -227,7 +227,8 @@
     "email": "Enter a valid email address"
   },
   "contact-phone": {
-    "required": "Enter contact's phone number"
+    "required": "Enter contact's phone number",
+    "internationalPhoneNumber": "Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192 "
   },
   "use-different-address": {
     "required": "Select an option"
@@ -272,7 +273,7 @@
   },
   "invoice-contact-phone": {
     "required": "Enter a contact phone number",
-    "phonenumber": "Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192 "
+    "internationalPhoneNumber": "Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192 "
   },
   "invoice-building": {
     "default": "Enter details of your building and street"
