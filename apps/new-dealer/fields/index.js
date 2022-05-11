@@ -623,7 +623,7 @@ module.exports = {
   },
   'contact-phone': {
     mixin: 'input-text',
-    validate: ['required', 'internationalPhoneNumber', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
   },
   'use-different-address': {
     mixin: 'radio-group',
@@ -728,7 +728,7 @@ module.exports = {
   },
   'invoice-contact-phone': {
     mixin: 'input-text',
-    validate: ['required', 'internationalPhoneNumber', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
   },
   'invoice-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }],

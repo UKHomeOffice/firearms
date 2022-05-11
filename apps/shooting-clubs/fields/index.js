@@ -27,7 +27,7 @@ module.exports = {
   },
   'second-contact-phone': {
     mixin: 'input-text',
-    validate: ['required', 'internationalPhoneNumber', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
   },
   'club-secretary-name': {
     mixin: 'input-text',
@@ -81,7 +81,7 @@ module.exports = {
   },
   'club-secretary-phone': {
     mixin: 'input-text',
-    validate: ['required', 'internationalPhoneNumber', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
   },
   'second-contact-postcode': {
     mixin: 'input-text-code',
@@ -185,7 +185,7 @@ module.exports = {
   },
   'invoice-contact-phone': {
     mixin: 'input-text',
-    validate: ['required', 'internationalPhoneNumber', {'type': 'maxlength', 'arguments': [200]}]
+    validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
   },
   'invoice-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
