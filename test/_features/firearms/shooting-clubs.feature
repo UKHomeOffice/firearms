@@ -185,7 +185,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
 
     Scenario: I am on the Shooting-clubs journey but I don't fill in contact details on the club-secretary-email page
         Given I start the 'shooting-clubs' application journey
@@ -234,7 +233,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
 
     Scenario: I am on the Shooting-clubs journey but I don't fill in the name on the second-contact-name page
         Given I start the 'shooting-clubs' application journey
@@ -283,7 +281,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -338,7 +335,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -400,7 +396,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -422,7 +417,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
 
     Scenario: I am on the Shooting-clubs journey but I don't fill in the address on the location-address page
         Given I start the 'shooting-clubs' application journey
@@ -471,7 +465,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -493,7 +486,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
         Then I fill 'second-contact-email' with 'test@test.com'
         Then I fill 'second-contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -550,7 +542,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -572,7 +563,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
         Then I fill 'second-contact-email' with 'test@test.com'
         Then I fill 'second-contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -639,7 +629,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -661,7 +650,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
         Then I fill 'second-contact-email' with 'test@test.com'
         Then I fill 'second-contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -731,7 +719,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -753,7 +740,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
         Then I fill 'second-contact-email' with 'test@test.com'
         Then I fill 'second-contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -828,7 +814,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -850,7 +835,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
         Then I fill 'second-contact-email' with 'test@test.com'
         Then I fill 'second-contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -928,7 +912,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -950,7 +933,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
         Then I fill 'second-contact-email' with 'test@test.com'
         Then I fill 'second-contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -984,7 +966,6 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Enter a contact name' error
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
 
     Scenario: I am on the Shooting-clubs journey but I don't fill in the address on the invoice-address-input page
         Given I start the 'shooting-clubs' application journey
@@ -1033,7 +1014,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -1055,7 +1035,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
         Then I fill 'second-contact-email' with 'test@test.com'
         Then I fill 'second-contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -1089,7 +1068,6 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Enter a contact name' error
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
         Then I fill 'invoice-contact-name' with 'Bonnie Testman'
         Then I fill 'invoice-contact-email' with 'bonnie@testman.com'
         Then I fill 'invoice-contact-phone' with '01234567898'
@@ -1147,7 +1125,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -1169,7 +1146,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
         Then I fill 'second-contact-email' with 'test@test.com'
         Then I fill 'second-contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -1203,7 +1179,6 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Enter a contact name' error
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
         Then I fill 'invoice-contact-name' with 'Bonnie Testman'
         Then I fill 'invoice-contact-email' with 'bonnie@testman.com'
         Then I fill 'invoice-contact-phone' with '01234567898'
@@ -1269,7 +1244,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'club-secretary-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the club secretary\'s email' error
-        Then I should see the 'Enter the club secretary\'s phone number' error
         Then I fill 'club-secretary-email' with 'test@test.com'
         Then I fill 'club-secretary-phone' with '01234567891'
         Then I select 'Continue'
@@ -1291,7 +1265,6 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'second-contact-email' page showing 'What are Ronald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter the second person\'s email' error
-        Then I should see the 'Enter the second person\'s phone number' error
         Then I fill 'second-contact-email' with 'test@test.com'
         Then I fill 'second-contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -1325,7 +1298,6 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Enter a contact name' error
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
         Then I fill 'invoice-contact-name' with 'Bonnie Testman'
         Then I fill 'invoice-contact-email' with 'bonnie@testman.com'
         Then I fill 'invoice-contact-phone' with '01234567898'

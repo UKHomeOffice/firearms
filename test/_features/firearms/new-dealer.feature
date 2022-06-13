@@ -1259,7 +1259,6 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'contact-details' page showing 'What are Donald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter contact\'s email address' error
-        Then I should see the 'Enter contact\'s phone number' error
 
     Scenario: I am on the New-dealer journey but don't select an option on the authority-holder-contact-postcode page
         Given I start the 's5' application journey
@@ -1361,7 +1360,6 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'contact-details' page showing 'What are Donald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter contact\'s email address' error
-        Then I should see the 'Enter contact\'s phone number' error
         Then I fill 'contact-email' with 'test@test.com'
         Then I fill 'contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -1469,7 +1467,6 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'contact-details' page showing 'What are Donald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter contact\'s email address' error
-        Then I should see the 'Enter contact\'s phone number' error
         Then I fill 'contact-email' with 'test@test.com'
         Then I fill 'contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -1482,7 +1479,6 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should see the 'Enter a contact name' error
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
 
     Scenario: I am on the New-dealer journey but don't fill in invoice address on the invoice-address-input page
         Given I start the 's5' application journey
@@ -1584,7 +1580,6 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'contact-details' page showing 'What are Donald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter contact\'s email address' error
-        Then I should see the 'Enter contact\'s phone number' error
         Then I fill 'contact-email' with 'test@test.com'
         Then I fill 'contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -1597,7 +1592,6 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should see the 'Enter a contact name' error
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
         Then I fill 'invoice-contact-name' with 'Bonnie testman'
         Then I fill 'invoice-contact-email' with 'test@test.com'
         Then I fill 'invoice-contact-phone' with '01234567891'
@@ -1708,7 +1702,6 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'contact-details' page showing 'What are Donald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter contact\'s email address' error
-        Then I should see the 'Enter contact\'s phone number' error
         Then I fill 'contact-email' with 'test@test.com'
         Then I fill 'contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -1721,7 +1714,6 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should see the 'Enter a contact name' error
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
         Then I fill 'invoice-contact-name' with 'Bonnie testman'
         Then I fill 'invoice-contact-email' with 'test@test.com'
         Then I fill 'invoice-contact-phone' with '01234567891'
@@ -1840,7 +1832,6 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'contact-details' page showing 'What are Donald Testman\'s contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter contact\'s email address' error
-        Then I should see the 'Enter contact\'s phone number' error
         Then I fill 'contact-email' with 'test@test.com'
         Then I fill 'contact-phone' with '01234567891'
         Then I select 'Continue'
@@ -1853,7 +1844,6 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should see the 'Enter a contact name' error
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
         Then I fill 'invoice-contact-name' with 'Bonnie testman'
         Then I fill 'invoice-contact-email' with 'test@test.com'
         Then I fill 'invoice-contact-phone' with '01234567891'

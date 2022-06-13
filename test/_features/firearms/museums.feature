@@ -355,7 +355,6 @@ Feature: Firearms application for a Museum
         Then I should be on the 'contact-details' page showing 'What are their contact details?'
         Then I select 'Continue'
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
 
     Scenario: I am on the Museums journey and don't select an option on the contact-address page
         Given I start the 'museums' application journey
@@ -453,7 +452,6 @@ Feature: Firearms application for a Museum
         Then I select 'Continue'
         Then I should see the 'Enter a contact name' error
         Then I should see the 'Enter a contact email address' error
-        Then I should see the 'Enter a contact phone number' error
     
     Scenario: I am on the Museums journey and don't fill in the address on the invoice-address-input page
         Given I start the 'museums' application journey
