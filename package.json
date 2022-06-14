@@ -2,7 +2,7 @@
   "name": "firearms",
   "version": "0.1.0",
   "main": "server.js",
-  "description": "Firearms application service",
+  "description": "Firearms application service2",
   "author": "HomeOffice",
   "engines": {
     "node": "^14.15.0"
