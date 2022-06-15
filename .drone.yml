@@ -273,6 +273,7 @@ steps:
   - name: test_acceptance_uat
     <<: *acceptance_tests
     commands:
+      - export NODE_ENV=development
       - export ACCEPTANCE_HOST_NAME=https://dev.notprod.$${APP_NAME}.homeoffice.gov.uk
       - npx playwright install
       - npm run test:acceptance
