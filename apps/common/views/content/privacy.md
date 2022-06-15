@@ -66,8 +66,8 @@ In certain circumstances you have the right to:
 
 If you have any questions or concerns about our collection, use or disclosure of your personal information please contact us at
 
-Email: <dflu.firearmslicensing@homeoffice.gov.uk>
+Email: <public.enquiries@homeoffice.gsi.gov.uk>
 
-Or by telephone on: 0300 072 5436 and ask for Firearms Licensing.
+Or by telephone on: 020 7035 4848 and ask for Firearms Licensing.
 
 You have the right to complain to the Information Commissioner’s Office about the way the Home Office is handling your personal information, or if you believe we should have provided you with more information about why/how we are processing it for law enforcement purposes. Details on how you do this can be found at <https://ico.org.uk/concerns>
