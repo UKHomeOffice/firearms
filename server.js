@@ -33,7 +33,7 @@ app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
   res.locals.appName = appName;
   // Set feedback and footer links
-  res.locals.feedbackUrl = '/feedback';
+  res.locals.feedbackUrl = config.survey.urls['root'];
   next();
 });
 
@@ -41,24 +41,28 @@ app.use((req, res, next) => {
 app.use('/s5', (req, res, next) => {
   res.locals.appName = 'Prohibited weapons and ammunition licensing';
   appName = res.locals.appName;
+  res.locals.feedbackUrl = config.survey.urls['new-dealer'];
   next();
 });
 
 app.use('/museums', (req, res, next) => {
   res.locals.appName = 'Apply for Museum Firearms Licence';
   appName = res.locals.appName;
+  res.locals.feedbackUrl = config.survey.urls['museums'];
   next();
 });
 
 app.use('/shooting-clubs', (req, res, next) => {
   res.locals.appName = 'Apply for Shooting Club Approval';
   appName = res.locals.appName;
+  res.locals.feedbackUrl = config.survey.urls['shooting-clubs'];
   next();
 });
 
 app.use('/supporting-documents', (req, res, next) => {
   res.locals.appName = 'Submit Supporting Documents';
   appName = res.locals.appName;
+  res.locals.feedbackUrl = config.survey.urls['supporting-documents'];
   next();
 });
 
