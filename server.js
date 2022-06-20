@@ -33,7 +33,7 @@ app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
   res.locals.appName = appName;
   // Set feedback and footer links
-  res.locals.feedbackUrl = config.survey.urls['root'];
+  res.locals.feedbackUrl = config.survey.urls.root;
   next();
 });
 
@@ -48,7 +48,7 @@ app.use('/s5', (req, res, next) => {
 app.use('/museums', (req, res, next) => {
   res.locals.appName = 'Apply for Museum Firearms Licence';
   appName = res.locals.appName;
-  res.locals.feedbackUrl = config.survey.urls['museums'];
+  res.locals.feedbackUrl = config.survey.urls.museums;
   next();
 });
 
