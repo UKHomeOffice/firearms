@@ -15,7 +15,7 @@ spec:
         - {{ .DRONE_BUILD_NUMBER }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
         - {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}.internal.{{ .BRANCH_ENV }}.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-        - firearms.uat.internal.sas-notprod.homeoffice.gov.uk
+        - firearms-licensing.uat.internal.sas-notprod.homeoffice.gov.uk
         - {{ .APP_NAME }}.uat.internal.sas-notprod.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
         - stg.internal.firearms.sas.homeoffice.gov.uk
