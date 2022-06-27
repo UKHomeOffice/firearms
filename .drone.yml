@@ -7,7 +7,7 @@ environment:
   APP_NAME: firearms-licensing
   PROD_ENV: firearms
   STG_ENV: firearms-preprod
-  UAT_ENV: firearms-dev
+  UAT_ENV: firearms-uat
   BRANCH_ENV: firearms-branch
   PRODUCTION_URL: www.firearms-licensing.homeoffice.gov.uk
   IMAGE_URL: quay.io/ukhomeofficedigital
@@ -223,6 +223,21 @@ steps:
       - export CUCUMBER_PUBLISH_ENABLED=true
       - npx playwright install
       - npm run test:acceptance
+    when:
+      branch: master
+      event: pull_request
+
+  - name: TEST_deploy_to_uat
+    pull: if-not-exists
+    image: quay.io/ukhomeofficedigital/kd:v1.14.0
+    environment:
+    # NOTIFY_STUB: stub
+      KUBE_SERVER:
+        from_secret: kube_server_dev
+      KUBE_TOKEN:
+        from_secret: kube_token_sas_dev
+    commands:
+    - bin/deploy.sh $${UAT_ENV}
     when:
       branch: master
       event: pull_request
