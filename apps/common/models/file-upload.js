@@ -29,12 +29,38 @@ module.exports = class UploadModel extends Model {
         }
         return resolve(data);
       });
-    }).then(data => {
-      return this.auth().then(bearer => {
-        data.url = (data.url.replace('/file', '/vault')) + '&token=' + bearer.bearer;
+    }).then(async data => {
+      try {
+        const token = await this.authWithRetries(config.keycloak.authTokenRetries);
+        data.url = (data.url.replace('/file', '/vault')) + `&token=${token}`;
         return data;
-      });
+      } catch (e) {
+        throw e
+      }
     });
+  }
+
+  async authWithRetries(num) {
+    let retries = num;
+    let bearer = {};
+
+    try {
+      while (retries > 0) {
+        bearer = await this.auth();
+        retries--;
+
+        if (bearer.bearer) {
+          break;
+        }
+
+        if (retries <= 0) {
+          throw new Error('Failed to authenticate the upload. Please try again.');
+        }
+      }
+      return bearer.bearer;
+    } catch (e) {
+      throw e
+    }
   }
 
   auth() {

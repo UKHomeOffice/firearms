@@ -14,6 +14,7 @@ module.exports = {
       process.env.FILE_VAULT_URL
   },
   keycloak: {
+    authTokenRetries: 3,
     token: process.env.KEYCLOAK_TOKEN_URL,
     username: process.env.KEYCLOAK_USERNAME,
     password: process.env.KEYCLOAK_PASSWORD,
