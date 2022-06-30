@@ -9,7 +9,7 @@ spec:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
     - fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-    - supp-docs.uat.internal.{{ .APP_NAME }}.sas-notprod.homeoffice.gov.uk
+    - supp-docs-uat.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
     - supp-docs-stg.prod.{{ .APP_NAME }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
@@ -24,7 +24,7 @@ spec:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   - host: fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-  - host: supp-docs.uat.internal.{{ .APP_NAME }}.sas-notprod.homeoffice.gov.uk
+  - host: supp-docs-uat.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
   - host: supp-docs-stg.prod.{{ .APP_NAME }}.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
