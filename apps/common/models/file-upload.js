@@ -35,7 +35,7 @@ module.exports = class UploadModel extends Model {
         data.url = (data.url.replace('/file', '/vault')) + `&token=${token}`;
         return data;
       } catch (e) {
-        throw e
+        throw e;
       }
     });
   }
@@ -44,23 +44,23 @@ module.exports = class UploadModel extends Model {
     let retries = num;
     let bearer = {};
 
-    try {
-      while (retries > 0) {
+    while (retries > 0) {
+      try {
         bearer = await this.auth();
-        retries--;
-
-        if (bearer.bearer) {
-          break;
-        }
-
-        if (retries <= 0) {
-          throw new Error('Failed to authenticate the upload. Please try again.');
-        }
+      } catch (e) {
+        bearer = e;
       }
-      return bearer.bearer;
-    } catch (e) {
-      throw e
+      retries--;
+
+      if (bearer.bearer) {
+        break;
+      }
+
+      if (retries <= 0) {
+        throw new Error(`Failed to authenticate the upload. Please try again. Error: ${bearer}`);
+      }
     }
+    return bearer.bearer;
   }
 
   auth() {

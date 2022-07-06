@@ -15,7 +15,7 @@ describe('File Upload Model', () => {
       url: '/file/12341212132123?foo=bar'
     });
     sandbox.stub(Model.prototype, 'auth').returns(new Promise(resolve => {
-      resolve({bearer: 'myaccesstoken'});
+      resolve({ bearer: 'myaccesstoken' });
     }));
   });
 
@@ -79,6 +79,37 @@ describe('File Upload Model', () => {
           }
         }));
       });
+    });
+
+    it('returns an error if there is an auth failure after retries attempted', async () => {
+      const model = new Model();
+      model.auth = sinon.stub();
+      model.auth.rejects(new Error('Auth Error'));
+      try {
+        await model.save();
+      } catch (e) {
+        const msg = 'Failed to authenticate the upload. Please try again. Error: Error: Auth Error';
+        e.should.be.instanceof(Error);
+        expect(e.message).to.eql(msg);
+
+        model.auth.should.have.been.calledThrice;
+      }
+    });
+
+    it('calls the authentication endpoint with retry attempts specified in the config', async () => {
+      config.keycloak.authTokenRetries = 2;
+      const model = new Model();
+      model.auth = sinon.stub();
+      model.auth.rejects(new Error('Auth Error'));
+      try {
+        await model.save();
+      } catch (e) {
+        const msg = 'Failed to authenticate the upload. Please try again. Error: Error: Auth Error';
+        e.should.be.instanceof(Error);
+        expect(e.message).to.eql(msg);
+
+        model.auth.should.have.been.calledTwice;
+      }
     });
   });
 });
