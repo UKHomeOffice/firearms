@@ -31,6 +31,9 @@ module.exports = class UploadModel extends Model {
       });
     }).then(async data => {
       try {
+        // auth retries possibly isn't needed but has been implemented as a failsafe
+        // in case there are issues with requesting a bearer token first time.
+        // This can potentially be removed in future.
         const token = await this.authWithRetries(config.keycloak.authTokenRetries);
         data.url = (data.url.replace('/file', '/vault')) + `&token=${token}`;
         return data;
@@ -77,6 +80,7 @@ module.exports = class UploadModel extends Model {
         username: config.keycloak.username,
         password: config.keycloak.password,
         grant_type: 'password',
+        scope: 'openid',
         client_id: config.keycloak.clientId,
         client_secret: config.keycloak.secret
       },
