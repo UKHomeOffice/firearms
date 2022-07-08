@@ -14,7 +14,7 @@ environment:
   IMAGE_REPO: firearms
   GIT_REPO: UKHomeOffice/firearms
   HOF_CONFIG: hof-services-config/Firearms_Licensing
-  NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
+  NON_PROD_AVAILABILITY: Mon-Sat 00:00-23:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
   NOTIFY_STUB: stub
 
