@@ -3,10 +3,10 @@
 
 const url = require('url');
 
-const Model = require('hof').model;
+const AuthToken = require('./auth-token');
 const config = require('../../../config');
 
-module.exports = class UploadModel extends Model {
+module.exports = class UploadModel extends AuthToken {
   save() {
     return new Promise((resolve, reject) => {
       const attributes = {
@@ -23,6 +23,8 @@ module.exports = class UploadModel extends Model {
         }
       };
       reqConf.method = 'POST';
+      // uses 'request' function available in HOF model. auth() is used by this process and
+      // thus needs to be declared in the parent class which extends off the HOF model too.
       this.request(reqConf, (err, data) => {
         if (err) {
           return reject(err);

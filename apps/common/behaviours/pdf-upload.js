@@ -23,7 +23,7 @@ module.exports = superclass => class PDFUpload extends superclass {
         const model = new AuthToken();
         return model.auth()
           .then(token => {
-            return `${result.url.replace('/file', '/vault')}&token=${token}`;
+            return `${result.url.replace('/file', '/vault')}&token=${token.bearer}`;
           });
       })
       .then(url => {
