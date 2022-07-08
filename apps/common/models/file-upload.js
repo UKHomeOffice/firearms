@@ -80,7 +80,6 @@ module.exports = class UploadModel extends Model {
         username: config.keycloak.username,
         password: config.keycloak.password,
         grant_type: 'password',
-        scope: 'openid',
         client_id: config.keycloak.clientId,
         client_secret: config.keycloak.secret
       },
