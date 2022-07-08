@@ -1,5 +1,6 @@
 'use strict';
 
+const AuthToken = require('../../common/models/auth-token');
 const UploadModel = require('../../common/models/file-upload');
 const PDFModel = require('../../common/models/pdf');
 
@@ -19,10 +20,15 @@ module.exports = superclass => class PDFUpload extends superclass {
         }).catch(err => next(new Error(err.body)));
       })
       .then(result => {
-        req.log('info', 'Saved PDF document to S3');
-        req.form.values['pdf-upload'] = result.url;
+        const model = new AuthToken();
+        return model.auth()
+          .then(token => {
+            return `${result.url.replace('/file', '/vault')}&token=${token}`;
+          });
       })
-      .then(() => {
+      .then(url => {
+        req.log('info', 'Saved PDF document to S3');
+        req.form.values['pdf-upload'] = url;
         super.process(req, res, next);
       }, next)
       .catch(err => {

@@ -1,13 +1,20 @@
 'use strict';
 
+const AuthToken = require('../models/auth-token');
 const CaseworkModel = require('../models/i-casework');
 const StatsD = require('hot-shots');
 const client = new StatsD();
 
 const Compose = func => superclass => class extends superclass {
-  prepare() {
+  async prepare() {
     if (typeof func === 'function') {
-      return Object.assign(super.prepare(), func(this.toJSON()));
+      try {
+        const model = new AuthToken();
+        const token = await model.auth();
+        return Object.assign(super.prepare(), func(this.toJSON(), token));
+      } catch (e) {
+        throw new Error(`Problem with submitting files. Please try again. Error: ${e}`);
+      }
     }
     return super.prepare();
   }
