@@ -6,18 +6,14 @@ const StatsD = require('hot-shots');
 const client = new StatsD();
 
 const Compose = func => superclass => class extends superclass {
-  async prepare() {
+  prepare() {
     if (typeof func === 'function') {
-      try {
-        const model = new AuthToken();
-        const token = await model.auth();
-        return Object.assign(super.prepare(), func(this.toJSON(), token));
-      } catch (e) {
-        throw new Error(`Problem with submitting files. Please try again. Error: ${e}`);
-      }
+      const model = new AuthToken();
+      return model.auth().then(token => {
+        return Object.assign(super.prepare(token), func(this.toJSON(), token));
+      });
     }
     return super.prepare();
-  }
 };
 
 module.exports = conf => {
