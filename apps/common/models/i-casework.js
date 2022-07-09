@@ -42,15 +42,18 @@ module.exports = class CaseworkModel extends Model {
 
   save() {
     const options = this.requestConfig({});
-    options.form = this.prepare();
-    options.method = 'POST';
-    if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
-      return Promise.resolve({
-        createcaseresponse: {
-          caseid: 'mock caseid'
+    return Promise.resolve(this.prepare())
+      .then(formData => {
+        options.form = formData;
+        options.method = 'POST';
+        if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
+          return Promise.resolve({
+            createcaseresponse: {
+              caseid: 'mock caseid'
+            }
+          });
         }
+        return this.request(options);
       });
-    }
-    return this.request(options);
   }
 };
