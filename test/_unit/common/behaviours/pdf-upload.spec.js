@@ -86,7 +86,7 @@ describe('apps/common/behaviours/pdf-upload', () => {
     it('sets the result from the Upload model with auth token to the to form values on the request', done => {
       instance.process(req, res, err => {
         expect(err).not.to.exist;
-        expect(req.form.values['pdf-upload']).to.equal(uploadResult.url + '&token=token123');
+        expect(req.form.values['pdf-upload']).to.equal(uploadResult.url);
         done();
       });
     });
