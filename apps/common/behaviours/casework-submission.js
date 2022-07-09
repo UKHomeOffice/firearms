@@ -14,6 +14,7 @@ const Compose = func => superclass => class extends superclass {
       });
     }
     return super.prepare();
+  }
 };
 
 module.exports = conf => {
