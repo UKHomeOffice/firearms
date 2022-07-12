@@ -1,7 +1,7 @@
 'use strict';
 const _ = require('lodash');
 
-module.exports = data => {
+module.exports = (data, token) => {
   const response = {};
   const activity = [
     { activity: 'new', response: 'Application' },
@@ -51,7 +51,7 @@ module.exports = data => {
 
   data['existing-authority-documents'].forEach((doc, i) => {
     const index = i + 2;
-    response[`Document${index}.URL`] = doc.url;
+    response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
     response[`Document${index}.Name`] = doc.description;
     response[`Document${index}.MimeType`] = doc.type;
     response[`Document${index}.URLLoadContent`] = true;

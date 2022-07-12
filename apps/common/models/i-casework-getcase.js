@@ -15,8 +15,8 @@ module.exports = class DocumentModel extends Model {
     return crypto.createHash('md5').update(this.get('reference-number') + date + config.icasework.secret).digest('hex');
   }
 
-  prepare(data) {
-    const props = super.prepare(data);
+  prepare() {
+    const props = super.prepare();
     props.CaseId = this.get('reference-number');
     return props;
   }

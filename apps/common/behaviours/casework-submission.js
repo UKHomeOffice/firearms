@@ -1,5 +1,6 @@
 'use strict';
 
+const AuthToken = require('../models/auth-token');
 const CaseworkModel = require('../models/i-casework');
 const StatsD = require('hot-shots');
 const client = new StatsD();
@@ -7,7 +8,10 @@ const client = new StatsD();
 const Compose = func => superclass => class extends superclass {
   prepare() {
     if (typeof func === 'function') {
-      return Object.assign(super.prepare(), func(this.toJSON()));
+      const model = new AuthToken();
+      return model.auth().then(token => {
+        return Object.assign(super.prepare(token), func(this.toJSON(), token));
+      });
     }
     return super.prepare();
   }

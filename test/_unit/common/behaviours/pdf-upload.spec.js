@@ -1,6 +1,7 @@
 /* eslint-disable node/no-deprecated-api */
 'use strict';
 
+const AuthToken = require('../../../../apps/common/models/auth-token');
 const Behaviour = require('../../../../apps/common/behaviours/pdf-upload');
 const PDFModel = require('../../../../apps/common/models/pdf');
 const UploadModel = require('../../../../apps/common/models/file-upload');
@@ -24,7 +25,7 @@ describe('apps/common/behaviours/pdf-upload', () => {
       locals() {}
     }
 
-    const uploadResult = {url: 'path/'};
+    const uploadResult = {url: '/path?id=12'};
     const pdf = Buffer(100);
 
     let Mixed;
@@ -41,6 +42,7 @@ describe('apps/common/behaviours/pdf-upload', () => {
     };
 
     beforeEach(() => {
+      sinon.stub(AuthToken.prototype, 'auth').resolves({ bearer: 'token123' });
       sinon.stub(PDFModel.prototype, 'set');
       sinon.stub(PDFModel.prototype, 'save').resolves(pdf);
       sinon.stub(UploadModel.prototype, 'set');
@@ -51,6 +53,7 @@ describe('apps/common/behaviours/pdf-upload', () => {
     });
 
     afterEach(() => {
+      AuthToken.prototype.auth.restore();
       PDFModel.prototype.set.restore();
       PDFModel.prototype.save.restore();
       UploadModel.prototype.set.restore();
@@ -80,7 +83,7 @@ describe('apps/common/behaviours/pdf-upload', () => {
       });
     });
 
-    it('sets the result from the Upload model to the to form values on the request', done => {
+    it('sets the result from the Upload model with auth token to the to form values on the request', done => {
       instance.process(req, res, err => {
         expect(err).not.to.exist;
         expect(req.form.values['pdf-upload']).to.equal(uploadResult.url);
