@@ -14,10 +14,12 @@ const submission = Submission({
 
 const pdf = require('../common/behaviours/pdf-upload');
 const templateId = config.govukNotify.templateShootingClub;
+const replyTo = config.govukNotify.emailReplyToDefault;
 const sendEmail = require('../common/behaviours/send-email')({
   templateId: templateId,
   recipient: 'club-secretary-email',
-  nameKey: 'club-secretary-name'
+  nameKey: 'club-secretary-name',
+  replyTo: replyTo
 });
 
 module.exports = {
