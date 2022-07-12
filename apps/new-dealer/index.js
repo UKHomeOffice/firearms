@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const path = require('path');
 const config = require('../../config');
 const formatAddress = require('../common/behaviours/format-address');
 const getPageCustomBackLink = require('./behaviours/custom-back-links');
@@ -20,17 +19,13 @@ const submission = Submission({
 });
 
 const pdf = require('../common/behaviours/pdf-upload');
-
-const Emailer = require('../common/behaviours/emailer');
-const emailer = Emailer({
-  template: path.resolve(__dirname, './emails/confirm.html'),
+const templateId = config.govukNotify.templateSection5;
+const replyTo = config.govukNotify.emailReplyToFirearms;
+const getContactSendEmail = require('./behaviours/get-contact-send-email')({
+  templateId: templateId,
   recipient: 'contact-email',
-  subject: data => `Ref: ${data.caseid} - Section 5 firearms licence application`,
-  type: 'Section 5 authority',
-  nameKey: data => {
-    const contact = data['contact-holder'];
-    return contact === 'other' ? 'someone-else-name' : `${contact}-authority-holders-name`;
-  }
+  nameKey: 'contact-holder',
+  replyTo: replyTo
 });
 
 module.exports = {
@@ -505,7 +500,7 @@ module.exports = {
     },
     '/declaration': {
       template: 'declaration',
-      behaviours: ['complete', submission, emailer],
+      behaviours: ['complete', submission, getContactSendEmail],
       next: '/confirmation'
     },
     '/confirmation': {

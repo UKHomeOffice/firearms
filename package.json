@@ -5,7 +5,7 @@
   "description": "Firearms application service",
   "author": "HomeOffice",
   "engines": {
-    "node": "^14.15.0"
+    "node": ">=14.15.0"
   },
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
   "scripts": {
     "start": "node server.js",
     "start:dev": "NODE_ENV=development hof-build watch",
+    "dev": "NODE_ENV=development hof-build watch --env",
     "test": "NODE_ENV=test yarn run test:lint && yarn run test:unit",
     "test:unit": "nyc _mocha \"test/_unit/**/*.spec.js\"",
     "test:acceptance": "TAGS=\"${TAGS:=@feature}\" npm run test:cucumber",
@@ -37,6 +38,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "mustache": "^2.3.0",
+    "notifications-node-client": "^5.1.1",
     "typeahead-aria": "^1.0.4",
     "uuid": "^3.1.0"
   },
