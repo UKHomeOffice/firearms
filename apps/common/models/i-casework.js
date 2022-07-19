@@ -15,7 +15,7 @@ module.exports = class CaseworkModel extends Model {
     return config.icasework.url + config.icasework.createpath;
   }
 
-  prepare(token) {
+  prepare() {
     const params = {
       Key: config.icasework.key,
       Signature: this.sign(),
@@ -27,10 +27,11 @@ module.exports = class CaseworkModel extends Model {
 
     if (this.get('pdf-upload')) {
       params['Document1.Name'] = 'full application data';
-      params['Document1.URL'] = `${this.get('pdf-upload').replace('/file', '/vault')}&token=${token.bearer}`;
+      params['Document1.URL'] = this.get('pdf-upload');
       params['Document1.MimeType'] = 'application/pdf';
       params['Document1.URLLoadContent'] = true;
     }
+
     return params;
   }
 
@@ -40,19 +41,16 @@ module.exports = class CaseworkModel extends Model {
   }
 
   save() {
-    return Promise.resolve(this.prepare()).then(formData => {
-      const options = this.requestConfig({});
-      options.form = formData;
-      options.method = 'POST';
-
-      if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
-        return Promise.resolve({
-          createcaseresponse: {
-            caseid: 'mock caseid'
-          }
-        });
-      }
-      return this.request(options);
-    });
+    const options = this.requestConfig({});
+    options.form = this.prepare();
+    options.method = 'POST';
+    if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
+      return Promise.resolve({
+        createcaseresponse: {
+          caseid: 'mock caseid'
+        }
+      });
+    }
+    return this.request(options);
   }
 };

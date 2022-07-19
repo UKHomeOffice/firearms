@@ -21,7 +21,7 @@ const authorityType = usage => {
   return 'Dealer';
 };
 
-module.exports = (data, token) => {
+module.exports = data => {
   const response = {};
   const activity = [
     { activity: 'new', response: 'Application' },
@@ -142,7 +142,7 @@ module.exports = (data, token) => {
 
   data['supporting-documents'].forEach((doc, i) => {
     const index = i + 2;
-    response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
+    response[`Document${index}.URL`] = doc.url;
     response[`Document${index}.Name`] = doc.description;
     response[`Document${index}.MimeType`] = doc.type;
     response[`Document${index}.URLLoadContent`] = true;

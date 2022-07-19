@@ -47,7 +47,7 @@ describe('File Upload Model', () => {
       const response = model.save();
       return expect(response).to.eventually.deep.equal({
         api: 'response',
-        url: '/file/12341212132123?foo=bar'
+        url: '/vault/12341212132123?foo=bar&token=myaccesstoken'
       });
     });
 

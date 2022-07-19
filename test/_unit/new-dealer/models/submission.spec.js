@@ -9,13 +9,13 @@ describe('S5 Submission Model', () => {
       'weapons-type': [],
       obtain: [],
       'supporting-documents': [{
-        url: 'domain.com/file?id=supporting_docs',
+        url: 'Supporting_Documents_URL',
         description: 'Supporting_Documents_Description',
         type: '.pdf',
         URLLoadContent: true
       }],
       'existing-authority-documents': [{
-        url: 'domain.com/file?id=existing_docs',
+        url: 'Existing_Authority_Documents_URL',
         description: 'Existing_Authority_Documents_Description',
         type: '.pdf',
         URLLoadContent: true
@@ -27,7 +27,7 @@ describe('S5 Submission Model', () => {
         usage: 'arm-guards'
       });
 
-      const output = prepare(input, { bearer: 'token123' });
+      const output = prepare(input);
       expect(output.AuthorityType).to.equal('Maritime Guards');
     });
 
@@ -39,7 +39,7 @@ describe('S5 Submission Model', () => {
         ]
       });
 
-      const output = prepare(input, { bearer: 'token123' });
+      const output = prepare(input);
       expect(output.AuthorityType).to.equal('Maritime Guards');
     });
 
@@ -48,7 +48,7 @@ describe('S5 Submission Model', () => {
         usage: 'transport'
       });
 
-      const output = prepare(input, { bearer: 'token123' });
+      const output = prepare(input);
 
       expect(output.AuthorityType).to.equal('Carriers');
     });
@@ -58,7 +58,7 @@ describe('S5 Submission Model', () => {
         usage: 'transfer'
       });
 
-      const output = prepare(input, { bearer: 'token123' });
+      const output = prepare(input);
       expect(output.AuthorityType).to.equal('Carriers');
     });
 
@@ -70,7 +70,7 @@ describe('S5 Submission Model', () => {
         ]
       });
 
-      const output = prepare(input, { bearer: 'token123' });
+      const output = prepare(input);
       expect(output.AuthorityType).to.equal('Carriers and Dealers');
     });
 
@@ -83,7 +83,7 @@ describe('S5 Submission Model', () => {
         ]
       });
 
-      const output = prepare(input, { bearer: 'token123' });
+      const output = prepare(input);
       expect(output.AuthorityType).to.equal('Carriers and Dealers');
     });
 
@@ -95,7 +95,7 @@ describe('S5 Submission Model', () => {
         ]
       });
 
-      const output = prepare(input, { bearer: 'token123' });
+      const output = prepare(input);
       expect(output.AuthorityType).to.equal('Carriers and Dealers');
     });
 
@@ -107,7 +107,7 @@ describe('S5 Submission Model', () => {
         ]
       });
 
-      const output = prepare(input, { bearer: 'token123' });
+      const output = prepare(input);
       expect(output.AuthorityType).to.equal('Dealer');
     });
 
@@ -116,7 +116,7 @@ describe('S5 Submission Model', () => {
         usage: 'transfer'
       });
 
-      const output = prepare(input, { bearer: 'token123' });
+      const output = prepare(input);
       expect(output.AuthorityType).to.equal('Carriers');
     });
 
@@ -126,12 +126,12 @@ describe('S5 Submission Model', () => {
         activity: null
       });
 
-      const output = prepare(input, { bearer: 'token123' });
-      expect(output['Document2.URL']).to.equal('domain.com/vault?id=supporting_docs&token=token123');
+      const output = prepare(input);
+      expect(output['Document2.URL']).to.equal('Supporting_Documents_URL');
       expect(output['Document2.Name']).to.equal('Supporting_Documents_Description');
       expect(output['Document2.MimeType']).to.equal('.pdf');
       expect(output['Document2.URLLoadContent']).to.equal(true);
-      expect(output['Document3.URL']).to.equal('domain.com/vault?id=existing_docs&token=token123');
+      expect(output['Document3.URL']).to.equal('Existing_Authority_Documents_URL');
       expect(output['Document3.Name']).to.equal('Existing_Authority_Documents_Description');
       expect(output['Document3.MimeType']).to.equal('.pdf');
       expect(output['Document3.URLLoadContent']).to.equal(true);
