@@ -2983,10 +2983,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@19.13.18:
-  version "19.13.18"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-19.13.18.tgz#a6df2ac6bc90a3dc6356e9243c0b87d04ab822b1"
-  integrity sha512-8SrNjI6R0RSPH2Fa9ONMfpyOUzHihiDxZ8d62/maoCibOeAi1wUbDNw4aQW8mW0dpigMxAb0MmUd7jDFWaUtDg==
+hof@^19.14.13:
+  version "19.14.13"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-19.14.13.tgz#fe68039b89e91b1ec115d8acaf4f74a5eb443c1f"
+  integrity sha512-FO7w8FMY8g6M0FFa3GcIsxNOmP+v0gX5DGf/1jagtPTWdoYiyAcUwlfLxWXQhmgOgkeTsAPfgcv2JOESdIU6UA==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
@@ -3024,14 +3024,14 @@ hof@19.13.18:
     minimatch "^3.0.3"
     minimist "^1.2.6"
     mixwith "^0.1.1"
-    mkdirp "^0.5.1"
-    moment "^2.29.2"
+    moment "^2.29.4"
     morgan "^1.10.0"
     mustache "^2.3.0"
     nodemailer "^6.6.3"
     nodemailer-ses-transport "^1.5.0"
     nodemailer-smtp-transport "^2.7.4"
     nodemailer-stub-transport "^1.1.0"
+    notifications-node-client "^5.1.1"
     redis "^3.1.2"
     reqres "^3.0.1"
     request "^2.79.0"
@@ -4150,11 +4150,6 @@ module-not-found-error@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/module-not-found-error/-/module-not-found-error-1.0.1.tgz#cf8b4ff4f29640674d6cdd02b0e3bc523c2bbdc0"
   integrity sha1-z4tP9PKWQGdNbN0CsOO8UjwrvcA=
-
-moment@^2.29.2:
-  version "2.29.2"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
-  integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
 
 moment@^2.29.4:
   version "2.29.4"
