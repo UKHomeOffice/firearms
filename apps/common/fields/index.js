@@ -36,7 +36,7 @@ module.exports = {
   },
   'supporting-document-description': {
     mixin: 'textarea',
-    validate: [{type: 'maxlength', arguments: [15000]}]
+    validate: [{type: 'maxlength', arguments: [250]}]
   },
   'supporting-document-add-another': {
     mixin: 'radio-group',
@@ -55,7 +55,7 @@ module.exports = {
   },
   'existing-authority-description': {
     mixin: 'textarea',
-    validate: [{type: 'maxlength', arguments: [15000]}]
+    validate: [{type: 'maxlength', arguments: [250]}]
   },
   'existing-authority-add-another': {
     mixin: 'radio-group',
