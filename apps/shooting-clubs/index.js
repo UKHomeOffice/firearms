@@ -151,7 +151,7 @@ module.exports = {
       next: '/location-address-category'
     },
     '/location-address-category': {
-      template: '../common/views/add-another-address-loop.html',
+      template: 'location-address-category.html',
       fields: [
         'location-address-category'
       ],
@@ -173,9 +173,7 @@ module.exports = {
         'location-address-category'
       ],
       fieldSettings: {
-        legend: {
-          className: 'visuallyhidden'
-        }
+        isPageHeading: true
       }
     },
     '/storage-address': {
@@ -202,9 +200,7 @@ module.exports = {
         'storage-address'
       ],
       fieldSettings: {
-        legend: {
-          className: 'visuallyhidden'
-        }
+        isPageHeading: true
       }
     },
     '/storage-address-add': {

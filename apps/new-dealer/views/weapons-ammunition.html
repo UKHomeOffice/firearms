@@ -1,14 +1,15 @@
 {{<partials-page}}
   {{$page-content}}
-
-    <div class="panel-indent">
-      <p>{{#t}}pages.{{weaponsOrAmmunition}}.important{{/t}}</p>
-    </div>
-
-    {{#fields}}
-      {{#renderField}}{{/renderField}}
-    {{/fields}}
-
-    {{#input-submit}}continue{{/input-submit}}
+  <div>
+    <p>{{#t}}pages.{{weaponsOrAmmunition}}.helper{{/t}}</p>
+  </div>
+  <div class="govuk-inset-text">
+    <p>{{#t}}pages.{{weaponsOrAmmunition}}.important{{/t}}</p>
+  </div>
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+  
+  {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}

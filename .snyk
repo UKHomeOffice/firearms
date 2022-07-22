@@ -39,5 +39,5 @@ ignore:
   SNYK-JS-DICER-2311764:
     - busboy-body-parser > busboy > dicer:
         reason: Will require replacement of busboy-body-parser
-        expires: '2022-09-07T15:04:29.410Z'
+        expires: '2022-12-07T15:04:29.410Z'
 patch: {}

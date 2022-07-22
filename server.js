@@ -23,7 +23,10 @@ settings = Object.assign({}, settings, {
     }
   }, require('hof/components/clear-session')
   ],
-  redis: config.redis
+  redis: config.redis,
+  getCookies: false,
+  getAccessibility: false,
+  getTerms: false
 });
 
 const app = hof(settings);
@@ -34,6 +37,23 @@ app.use((req, res, next) => {
   res.locals.appName = appName;
   // Set feedback and footer links
   res.locals.feedbackUrl = config.survey.urls.root;
+  next();
+});
+
+// Set feedback and phase banner on cookies, accessibility and terms pages
+// along with the getTerms: false, getCookies: false, getAccessibility: false config
+app.use('/cookies', (req, res, next) => {
+  res.locals = Object.assign({}, res.locals, req.translate('cookies'));
+  next();
+});
+
+app.use('/accessibility', (req, res, next) => {
+  res.locals = Object.assign({}, res.locals, req.translate('accessibility'));
+  next();
+});
+
+app.use('/terms-and-conditions', (req, res, next) => {
+  res.locals = Object.assign({}, res.locals, req.translate('terms'));
   next();
 });
 
