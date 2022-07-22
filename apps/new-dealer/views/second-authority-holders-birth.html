@@ -1,15 +1,15 @@
 {{<partials-page}}
   {{$page-content}}
-    <fieldset id="second-authority-dob-group" class="{{#errors.second-authority-dob}}validation-error{{/errors.second-authority-dob}}">
+    <fieldset id="second-authority-dob-group">
 
       {{#errors.second-authority-dob}}
-        <span id="second-authority-dob-error" class="error-message">
+        <span id="second-authority-dob-error" class="govuk-error-message">
             {{errors.second-authority-dob.message}}
         </span>
       {{/errors.second-authority-dob}}
 
-      <p class="form-hint">{{#t}}fields.second-authority-dob.hint{{/t}}</p>
-      <div class="form-group form-date">
+      <p class="govuk-hint">{{#t}}fields.second-authority-dob.hint{{/t}}</p>
+      <div class="govuk-form-group govuk-date-input {{#errors.second-authority-dob}}govuk-form-group--error{{/errors.second-authority-dob}}">
         {{#input-date}}second-authority-dob{{/input-date}}
       </div>
 

@@ -22,7 +22,7 @@ module.exports = class LoopController extends BaseController {
 
   get(req, res, callback) {
     if (req.query.delete) {
-      const router = express.Router({mergeParams: true});
+      const router = express.Router({ mergeParams: true });
       router.use([
         // eslint-disable-next-line no-underscore-dangle
         this._configure.bind(this),
@@ -76,6 +76,15 @@ module.exports = class LoopController extends BaseController {
         value: 'yes'
       }
     });
+
+    // add renew warning for new-dealer
+    if (req.sessionModel.options.key === 'hof-wizard-new-dealer') {
+      if (req.sessionModel.get('activity') === 'renew' || req.sessionModel.get('activity') === 'vary') {
+        Object.keys(req.form.options.fields).forEach(key => {
+          req.form.options.fields[key].isWarning = true;
+        });
+      }
+    }
     callback();
   }
 
@@ -89,7 +98,7 @@ module.exports = class LoopController extends BaseController {
       if (!added) {
         const fields = this.getLoopFields(req, res);
         if (!_.isEmpty(fields)) {
-          aggregate.push(Object.assign({id: uuid()}, fields));
+          aggregate.push(Object.assign({ id: uuid() }, fields));
           req.sessionModel.set(req.form.options.aggregateTo, aggregate);
           values[req.form.options.aggregateTo] = aggregate;
           req.form.options.aggregateFields.forEach(f => {

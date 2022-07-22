@@ -98,8 +98,8 @@ module.exports = {
         'exhibit-address'
       ],
       fieldSettings: {
+        isPageHeading: true,
         legend: {
-          className: 'visuallyhidden',
           section: 'exhibit-details-section'
         }
       }

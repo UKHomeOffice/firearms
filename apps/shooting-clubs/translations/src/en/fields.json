@@ -1,6 +1,6 @@
 {
   "new-club": {
-    "legend": "New club",
+    "legend": "Is the club a new club?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -72,6 +72,7 @@
     "label": "Address"
   },
   "location-addresses-add-another": {
+    "legend": "Will the club use another shooting range?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -82,7 +83,8 @@
     }
   },
   "location-address-category": {
-    "legend": "Select all that apply",
+    "legend": "Which categories of firearms will be used at this range?",
+    "hint": "Select all that apply",
     "options": {
       "full-bore-rifles": {
         "name": "full-bore-rifles",
@@ -117,6 +119,7 @@
     "label": "All Storage Addresses"
   },
   "all-storage-addresses-add-another": {
+    "legend": "Is there another address where the guns will be stored?",
     "options": {
       "yes": {
         "label": "Yes"

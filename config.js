@@ -31,11 +31,11 @@ module.exports = {
   },
   email: {
     emailerFallback: true,
-    from: process.env.FROM_ADDRESS || 'fakeemail',
-    transport: process.env.EMAIL_TRANSPORT || 'ses',
+    from: process.env.FROM_ADDRESS,
+    transport: process.env.EMAIL_TRANSPORT,
     transportOptions: {
-      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || 'randompass',
-      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || 'randompass'
+      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER,
+      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD
     }
   },
   hosts: {
@@ -45,7 +45,7 @@ module.exports = {
     password: process.env.REDIS_PASSWORD
   },
   icasework: {
-    url: process.env.ICASEWORK_URL || 'https://uat.icasework.com',
+    url: process.env.ICASEWORK_URL,
     createpath: '/createcase',
     uploadpath: '/uploaddocuments',
     getcasepath: '/getcasedetails',

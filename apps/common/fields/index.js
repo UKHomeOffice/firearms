@@ -2,6 +2,7 @@
 
 module.exports = {
   'choose-a-journey': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: 'required',
     options: [
@@ -9,17 +10,12 @@ module.exports = {
       'new-dealer',
       'shooting-clubs',
       'supporting-documents'
-    ],
-    legend: {
-      className: 'visuallyhidden'
-    }
+    ]
   },
   activity: {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: 'required',
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: [
       'new',
       'renew',
@@ -32,40 +28,40 @@ module.exports = {
   },
   'supporting-document-upload': {
     mixin: 'input-file',
+    className: 'govuk-file-upload',
     validate: ['required']
   },
   'supporting-document-description': {
     mixin: 'textarea',
-    validate: [{type: 'maxlength', arguments: [250]}]
+    validate: [{type: 'maxlength', arguments: [250]}],
+    attributes: [{ attribute: 'spellcheck', value: 'true' }, {attribute: 'rows', value: 5}]
   },
   'supporting-document-add-another': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: 'required',
     options: [
       'yes',
       'no'
-    ],
-    legend: {
-      className: 'visuallyhidden'
-    }
+    ]
   },
   'existing-authority-upload': {
     mixin: 'input-file',
+    className: 'govuk-file-upload',
     validate: 'required'
   },
   'existing-authority-description': {
     mixin: 'textarea',
-    validate: [{type: 'maxlength', arguments: [250]}]
+    validate: [{type: 'maxlength', arguments: [250]}],
+    attributes: [{ attribute: 'spellcheck', value: 'true' }, {attribute: 'rows', value: 5}]
   },
   'existing-authority-add-another': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: 'required',
     options: [
       'yes',
       'no'
-    ],
-    legend: {
-      className: 'visuallyhidden'
-    }
+    ]
   }
 };

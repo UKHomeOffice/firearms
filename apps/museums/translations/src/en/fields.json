@@ -62,7 +62,7 @@
     "label": "Select the address"
   },
   "contact-address": {
-    "legend": "Address"
+    "legend":  "Select the contact address"
   },
   "invoice-address": {
     "label": "Address"
