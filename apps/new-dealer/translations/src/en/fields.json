@@ -12,6 +12,7 @@
     "hint": ""
   },
   "organisation": {
+    "legend": "What type of organisation is the authority for?",
     "options": {
       "company": {
         "label": "Company"
@@ -58,7 +59,9 @@
     "label": "Organisation name"
   },
   "weapons-ammunition": {
-    "legend": "Select all that apply",
+    "legend": "What will be handled under the authority?",
+    "warning": "The information you provide here will replace the information we currently hold.",
+    "hint": "Select all that apply",
     "summary": "What will be handled?",
     "options": {
       "weapons": {
@@ -70,7 +73,9 @@
     }
   },
   "obtain": {
-    "legend": "Select all that apply",
+   "legend": "How will the prohibited items be obtained?",
+   "warning": "The information you provide here will replace the information we currently hold.",
+    "hint": "Select all that apply",
     "summary": "How will they be obtained?",
     "options": {
       "buy": {
@@ -98,6 +103,8 @@
     "label": "Provide further details"
   },
   "import": {
+    "legend": "Will any of the prohibited items be imported?",
+    "warning": "The information you provide here will replace the information we currently hold.",
     "summary": "Will the prohibited items be imported?",
     "options": {
       "yes": {
@@ -113,6 +120,8 @@
     "label": "Which countries will the prohibited items be imported from?"
   },
   "stored-on-premises": {
+    "legend": "Will the prohibited items be stored on the business's premises in the UK?",
+    "warning": "The information you provide here will replace the information on your existing authority, so enter the details of all business premises that will be used to store the prohibited items.",
     "options": {
       "true": {
         "label": "Yes"
@@ -126,7 +135,9 @@
     "label": "Provide further details, including whether or not the prohibited items will be stored with third parties"
   },
   "usage": {
-    "legend": "Select all that apply",
+    "legend": "What business activities will be carried out with the prohibited items?",
+    "warning":  "The information you provide here will replace the information we currently hold.",
+    "hint": "Select all that apply",
     "summary": "Business activities",
     "options": {
       "sell": {
@@ -159,7 +170,8 @@
     "label": "Provide further details. This can include TV film or theatrical productions, humane dispatch of animals and protection against animals, for example."
   },
   "weapons-types": {
-    "legend": "Select all that apply",
+    "legend": "Which sections do the weapons or components fall under?",
+    "important": "Only in certain circumstances, such as transporting prohibited items under seal, should you select the unspecified option or leave the maximum quantity questions blank.",
     "summary": "Sections, weapon type(s)",
     "options": {
       "unspecified": {
@@ -243,7 +255,7 @@
     "label": "Maximum quantity (leave blank if unspecified)"
   },
   "ammunition-types": {
-    "legend": "Select all that apply",
+    "legend": "Which sections does the ammunition fall under?",
     "summary": "Sections, ammunition type(s)",
     "options": {
       "unspecified": {
@@ -285,7 +297,9 @@
     "label": "Maximum quantity (leave blank if unspecified)"
   },
   "authority-holders": {
-    "legend": "You can have up to two authority holders. They will be responsible for ensuring the business operates within the limitations of the authority.",
+    "legend": "How many individuals will be named on the authority?",
+    "warning": "If the details you provide here are different to those on your existing authority, the details on your existing authority will be replaced.",
+    "hint": "You can have up to two authority holders. They will be responsible for ensuring the business operates within the limitations of the authority.",
     "options": {
       "one": {
         "label": "One"
@@ -396,6 +410,8 @@
     "label": "Select your address"
   },
   "contact-holder": {
+    "legend": "Who do we contact about this application?",
+    "warning": "The contact details you provide here will replace the information we currently hold.",
     "summary": "Name",
     "options": {
       "first": {
@@ -428,7 +444,13 @@
     "label": "Phone number"
   },
   "use-different-address": {
-    "legend": "You should only use a home address if it's the business' registered address.",
+    "legend": {
+      "contact-holder": {
+        "first": "Which address should we use to contact {{values.first-authority-holders-name}}?",
+        "second": "Which address should we use to contact {{values.second-authority-holders-name}}?"
+      }
+    },
+    "hint": "You should only use a home address if it's the business' registered address.",
     "options": {
       "false": {
         "label": "Use the address already provided"
@@ -514,7 +536,9 @@
     "label": "Purchase order number"
   },
   "storageAddresses-add-another": {
-    "legend": "The police will inspect each address used for storage",
+    "legend": "Is there another address where the prohibited items will be stored?",
+    "hint": "The police will inspect each address used for storage",
+    "warning": "The information you provide here will replace the information we currently hold.",
     "options": {
       "yes": {
         "label": "Yes"

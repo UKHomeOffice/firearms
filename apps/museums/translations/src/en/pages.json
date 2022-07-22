@@ -30,9 +30,6 @@
     "summary": "Contact details",
     "header": "What are their contact details?"
   },
-  "contact-address": {
-    "header": "Is the contact address the same as an address previously given?"
-  },
   "contact-address-input": {
     "header": "What is their contact address?"
   },
@@ -41,9 +38,6 @@
   },
   "contact-address-input-manual": {
     "header": "What is their contact address?"
-  },
-  "contact-address-select": {
-    "header": "Select the contact address"
   },
   "invoice-details": {
     "summary": "Invoice details",

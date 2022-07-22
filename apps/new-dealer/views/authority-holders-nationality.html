@@ -1,7 +1,8 @@
 {{<partials-page}}
   {{$page-content}}
     {{#select}}{{key}}{{/select}}
-    {{#checkbox}}{{key}}-multi{{/checkbox}}
+    <div data-module="govuk-checkboxes">
+      {{#checkbox}}{{key}}-multi{{/checkbox}}
     {{<partials-multi-nationality}}
       {{$panel}}{{key}}-multi{{/panel}}
       {{$panel-content}}
@@ -9,6 +10,7 @@
         {{#select}}{{key}}-third{{/select}}
       {{/panel-content}}
     {{/partials-multi-nationality}}
+    </div>
     {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}

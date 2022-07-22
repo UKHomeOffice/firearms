@@ -1,5 +1,6 @@
 {
   "choose-a-journey": {
+    "legend": "Choose A Journey",
     "options": {
       "museums": {
         "label": "Museums"
@@ -16,6 +17,7 @@
     }
   },
   "activity": {
+    "legend": "What do you want to do?",
     "options": {
       "new": {
         "label": "Apply for a new authority"

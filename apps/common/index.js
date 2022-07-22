@@ -5,7 +5,8 @@ module.exports = {
   pages: {
     '/privacy': 'privacy',
     '/accessibility': 'accessibility',
-    '/cookies': 'cookies'
+    '/cookies': 'cookies',
+    '/terms-and-conditions': 'terms'
   },
   steps: {
     '/choose': {

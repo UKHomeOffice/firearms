@@ -1,0 +1,46 @@
+{{<partials-page}}
+  {{$page-content}}
+ {{#fields}}
+  <div id="{{key}}-group" class="govuk-form-group{{#className}} {{className}} {{/className}}{{#formGroupClassName}} {{formGroupClassName}}{{/formGroupClassName}}{{#errors.location-address-category}} govuk-form-group--error{{/errors.location-address-category}}">
+  <fieldset class="govuk-fieldset" {{#hint}} aria-describedby="{{key}}-hint"{{/hint}}>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        {{#t}}fields.location-address-category.legend{{/t}}
+      </h1>
+  </legend>
+  <p>{{#t}}pages.location-address-category.introduction{{/t}}</p>
+  <div id="{{key}}-hint" class="govuk-hint">{{#t}}fields.location-address-category.hint{{/t}}</div>
+  
+  {{#errors.location-address-category}}
+  <p id="{{key}}-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> {{errors.location-address-category.message}}
+  </span>
+  {{/errors.location-address-category}}
+<div class="govuk-checkboxes" data-module="govuk-checkboxes">
+  <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" type="checkbox" name="{{key}}" id="{{key}}-full-bore-rifles" value="full-bore-rifles" aria-describedby="{{key}}-hint">
+      <label class="govuk-label govuk-checkboxes__label" for="{{key}}-full-bore-rifles">
+        {{#t}}fields.location-address-category.options.full-bore-rifles.label{{/t}}
+      </label>
+  </div>
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" type="checkbox" name="{{key}}" id="{{key}}-small-bore-rifles" value="small-bore-rifles" aria-describedby="{{key}}-hint">
+      <label class="govuk-label govuk-checkboxes__label" for="{{key}}-small-bore-rifles">
+        {{#t}}fields.location-address-category.options.small-bore-rifles.label{{/t}}
+      </label>
+  </div>
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" type="checkbox" name="{{key}}" id="{{key}}-muzzle-loading-pistols" value="muzzle-loading-pistols" aria-describedby="{{key}}-hint">
+    <label class="govuk-label govuk-checkboxes__label" for="{{key}}-{muzzle-loading-pistols">
+        {{#t}}fields.location-address-category.options.muzzle-loading-pistols.label{{/t}}
+      </label>
+  </div>
+</div>
+
+</fieldset>
+</div>
+{{/fields}}
+{{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
+
