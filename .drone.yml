@@ -235,7 +235,7 @@ steps:
       KUBE_SERVER:
         from_secret: kube_server_stg
       KUBE_TOKEN:
-        from_secret: kube_token_sas_stg
+        from_secret: kube_token_stg
     commands:
     - bin/deploy.sh $${STG_ENV}
     when:
