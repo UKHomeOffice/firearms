@@ -233,9 +233,9 @@ steps:
     environment:
     # NOTIFY_STUB: stub
       KUBE_SERVER:
-        from_secret: kube_server_dev
+        from_secret: kube_server_stg
       KUBE_TOKEN:
-        from_secret: kube_token_sas_dev
+        from_secret: kube_token_sas_stg
     commands:
     - bin/deploy.sh $${STG_ENV}
     when:
