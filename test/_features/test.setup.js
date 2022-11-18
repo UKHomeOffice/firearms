@@ -15,7 +15,7 @@ AfterAll(async function () {
 });
 
 Before(async function () {
-  this.context = await global.browser.newContext({ ignoreHTTPSErrors: true });
+  this.context = await global.browser.newContext({ ignoreHTTPSErrors: true, javaScriptEnabled: false });
   this.page = await this.context.newPage();
 }.bind(World));
 
