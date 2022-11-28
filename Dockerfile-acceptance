@@ -1,4 +1,4 @@
-FROM node:17.6-alpine3.15
+FROM node:lts-alpine@sha256:b78c9500958805b52214e8bd588defe55ec32116dfdc094e3ca652a3502d67df
 
 USER root
 

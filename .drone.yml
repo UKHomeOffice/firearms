@@ -25,7 +25,7 @@ trigger:
 
 linting: &linting
   pull: if-not-exists
-  image: node:17.6
+  image: node:lts-alpine@sha256:b78c9500958805b52214e8bd588defe55ec32116dfdc094e3ca652a3502d67df
   environment:
     NOTIFY_KEY: USE_MOCK
   commands:
@@ -33,7 +33,7 @@ linting: &linting
 
 unit_tests: &unit_tests
   pull: if-not-exists
-  image: node:17.6
+  image: node:lts-alpine@sha256:b78c9500958805b52214e8bd588defe55ec32116dfdc094e3ca652a3502d67df
   environment:
     NOTIFY_KEY: USE_MOCK
   commands:
@@ -70,7 +70,7 @@ steps:
 
   - name: setup_deploy
     pull: if-not-exists
-    image: node:17.6
+    image: node:lts-alpine@sha256:b78c9500958805b52214e8bd588defe55ec32116dfdc094e3ca652a3502d67df
     environment:
       NOTIFY_KEY: USE_MOCK
     commands:
@@ -150,7 +150,7 @@ steps:
 
   - name: setup_branch
     pull: if-not-exists
-    image: node:17.6
+    image: node:lts-alpine@sha256:b78c9500958805b52214e8bd588defe55ec32116dfdc094e3ca652a3502d67df
     environment:
       NOTIFY_KEY: USE_MOCK
     commands:
