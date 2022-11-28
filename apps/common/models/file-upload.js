@@ -14,7 +14,7 @@ module.exports = class UploadModel extends Model {
         url: config.upload.hostname
       };
       const reqConf = url.parse(this.url(attributes));
-      
+      /*
       reqConf.formData = {
         document: {
           value: this.get('data'),
@@ -24,8 +24,18 @@ module.exports = class UploadModel extends Model {
           }
         }
       };
+      */
+      const formData = new FormData();
+      formData.append('document', new Blob(this.get('data'), { type: this.get('mimetype') }), this.get('name'));
+      /*
+      const formData = new FormData();
+      formData.append("name", this.get('name'));
+      formData.append("filename", "test.txt");
+      formData.append("document", this.get('data'));
+      */
+      reqConf.body = formData;
       reqConf.method = 'POST';
-      reqConf.isUpload = true;
+      reqConf.isUpload = false;
       this.request(reqConf, (err, data) => {
         if (err) {
           return reject(err);
