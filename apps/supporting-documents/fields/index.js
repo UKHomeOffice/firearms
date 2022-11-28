@@ -2,13 +2,14 @@
 
 module.exports = {
   'reference-number': {
-    validate: ['required'],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     invalidates: ['email']
   },
   email: {
     validate: [
       'required',
-      'email'
+      'email',
+      { type: 'maxlength', arguments: 320 }
     ]
   }
 };

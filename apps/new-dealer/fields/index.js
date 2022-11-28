@@ -12,7 +12,7 @@ function notBothOptions(vals) {
 module.exports = {
   'authority-number': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   organisation: {
     mixin: 'radio-group',
@@ -49,56 +49,56 @@ module.exports = {
     }]
   },
   'sole-trader-name': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'organisation',
       value: 'sole-trader'
     }
   },
   'company-name': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'organisation',
       value: 'company'
     }
   },
   'company-house-number': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'organisation',
       value: 'company'
     }
   },
   'shooting-club-name': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'organisation',
       value: 'shooting-club'
     }
   },
   'charity-name': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'organisation',
       value: 'charity'
     }
   },
   'charity-number': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'organisation',
       value: 'charity'
     }
   },
   'museum-name': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'organisation',
       value: 'museum'
     }
   },
   'other-name': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'organisation',
       value: 'other'
@@ -128,14 +128,14 @@ module.exports = {
     ]
   },
   'other-means-details': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'obtain',
       value: 'other-means'
     }
   },
   'wont-take-details': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'obtain',
       value: 'wont-take-possession'
@@ -156,7 +156,7 @@ module.exports = {
     }]
   },
   'import-country': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'import',
       value: 'yes'
@@ -178,7 +178,7 @@ module.exports = {
     includeInSummary: false
   },
   'no-storage-details': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'stored-on-premises',
       value: 'false'
@@ -203,7 +203,7 @@ module.exports = {
       }]
   },
   'other-details': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'usage',
       value: 'other'
@@ -268,7 +268,7 @@ module.exports = {
     }]
   },
   'weapons-unspecified-details': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'weapons-types',
       value: 'unspecified'
@@ -276,7 +276,7 @@ module.exports = {
     includeInSummary: false
   },
   'fully-automatic-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'fully-automatic'
@@ -284,7 +284,7 @@ module.exports = {
     includeInSummary: false
   },
   'self-loading-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'self-loading'
@@ -292,7 +292,7 @@ module.exports = {
     includeInSummary: false
   },
   'short-pistols-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'short-pistols'
@@ -300,7 +300,7 @@ module.exports = {
     includeInSummary: false
   },
   'short-self-loading-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'short-self-loading'
@@ -308,7 +308,7 @@ module.exports = {
     includeInSummary: false
   },
   'large-revolvers-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'large-revolvers'
@@ -316,7 +316,7 @@ module.exports = {
     includeInSummary: false
   },
   'rocket-launchers-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'rocket-launchers'
@@ -324,7 +324,7 @@ module.exports = {
     includeInSummary: false
   },
   'air-rifles-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'air-rifles'
@@ -332,7 +332,7 @@ module.exports = {
     includeInSummary: false
   },
   'fire-noxious-substance-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'fire-noxious-substance'
@@ -340,7 +340,7 @@ module.exports = {
     includeInSummary: false
   },
   'disguised-firearms-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'disguised-firearms'
@@ -348,7 +348,7 @@ module.exports = {
     includeInSummary: false
   },
   'military-use-rockets-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'military-use-rockets'
@@ -356,7 +356,7 @@ module.exports = {
     includeInSummary: false
   },
   'projecting-launchers-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'weapons-types',
       value: 'projecting-launchers'
@@ -397,7 +397,7 @@ module.exports = {
     }]
   },
   'ammunition-unspecified-details': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     dependent: {
       field: 'ammunition-types',
       value: 'unspecified'
@@ -405,7 +405,7 @@ module.exports = {
     includeInSummary: false
   },
   'explosive-cartridges-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'explosive-cartridges'
@@ -413,7 +413,7 @@ module.exports = {
     includeInSummary: false
   },
   'incendiary-missile-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'incendiary-missile'
@@ -421,7 +421,7 @@ module.exports = {
     includeInSummary: false
   },
   'armour-piercing-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'armour-piercing'
@@ -429,7 +429,7 @@ module.exports = {
     includeInSummary: false
   },
   'expanding-missile-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'expanding-missile'
@@ -437,7 +437,7 @@ module.exports = {
     includeInSummary: false
   },
   'missiles-for-above-quantity': {
-    validate: 'numeric',
+    validate: ['numeric', { type: 'maxlength', arguments: 200 }],
     dependent: {
       field: 'ammunition-types',
       value: 'missiles-for-above'
@@ -455,41 +455,41 @@ module.exports = {
   },
   'first-authority-holders-name': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'second-authority-holders-name': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'first-authority-dob': date('first-authority-dob', {
-    validate: ['required', 'before']
+    validate: ['required', 'before', 'over18']
   }),
   'first-authority-town-birth': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'first-authority-country-birth': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     className: ['typeahead', 'js-hidden'],
     options: [''].concat(countries)
   },
   'second-authority-dob': date('second-authority-dob', {
-    validate: ['required', 'before']
+    validate: ['required', 'before', 'over18']
   }),
   'second-authority-town-birth': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'second-authority-country-birth': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     className: ['typeahead', 'js-hidden'],
     options: [''].concat(countries)
   },
   'first-authority-holders-nationality': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     className: ['typeahead', 'js-hidden'],
     options: [''].concat(countries)
   },
@@ -509,17 +509,17 @@ module.exports = {
   },
   'first-authority-holders-postcode': {
     mixin: 'input-text-code',
-    validate: ['required', 'postcode'],
+    validate: ['required', 'postcode', {type: 'maxlength', arguments: [200]}],
     formatter: 'uppercase',
     includeInSummary: false
   },
   'first-authority-holders-address-lookup': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     className: 'address'
   },
   'first-authority-holders-address-manual': {
     mixin: 'textarea',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
@@ -530,7 +530,7 @@ module.exports = {
   },
   'second-authority-holders-nationality': {
     mixin: 'select',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     className: ['typeahead', 'js-hidden'],
     options: [''].concat(countries)
   },
@@ -550,17 +550,17 @@ module.exports = {
   },
   'second-authority-holders-postcode': {
     mixin: 'input-text-code',
-    validate: ['required', 'postcode'],
+    validate: ['required', 'postcode', {type: 'maxlength', arguments: [200]}],
     formatter: 'uppercase',
     includeInSummary: false
   },
   'second-authority-holders-address-lookup': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     className: 'address'
   },
   'second-authority-holders-address-manual': {
     mixin: 'textarea',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
@@ -571,7 +571,7 @@ module.exports = {
   },
   'contact-holder': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     legend: {
       className: 'visuallyhidden'
     },
@@ -588,7 +588,7 @@ module.exports = {
     ]
   },
   'someone-else-name': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'contact-holder',
       value: 'other'
@@ -597,18 +597,18 @@ module.exports = {
   },
   'storage-postcode': {
     mixin: 'input-text-code',
-    validate: ['required', 'postcode'],
+    validate: ['required', 'postcode', {type: 'maxlength', arguments: [200]}],
     formatter: 'uppercase',
     includeInSummary: false
   },
   'storage-address-lookup': {
     className: 'address',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     includeInSummary: false
   },
   'storage-address-manual': {
     mixin: 'textarea',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
@@ -619,15 +619,15 @@ module.exports = {
   },
   'contact-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', { type: 'maxlength', arguments: 320 }]
   },
   'contact-phone': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
   },
   'use-different-address': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     options: [{
       value: 'false'
     }, {
@@ -636,12 +636,12 @@ module.exports = {
     includeInSummary: false
   },
   'authority-holder-contact-address-lookup': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     className: 'address'
   },
   'authority-holder-contact-address-manual': {
     mixin: 'textarea',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
@@ -652,18 +652,18 @@ module.exports = {
   },
   'contact-postcode': {
     mixin: 'input-text-code',
-    validate: ['required', 'postcode'],
+    validate: ['required', 'postcode', {type: 'maxlength', arguments: [200]}],
     formatter: 'uppercase',
     includeInSummary: false
   },
   'contact-address-lookup': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     className: 'address',
     includeInSummary: false
   },
   'contact-address-manual': {
     mixin: 'textarea',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [15000]}],
     'ignore-defaults': true,
     formatter: ['trim', 'hyphens'],
     attributes: [{
@@ -674,7 +674,7 @@ module.exports = {
   },
   'storage-add-another-address': {
     mixin: 'radio-group',
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     includeInSummary: false,
     options: [
       'yes',
@@ -712,7 +712,7 @@ module.exports = {
     }]
   },
   'purchase-order-number': {
-    validate: 'required',
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     dependent: {
       field: 'purchase-order',
       value: 'Yes'
@@ -720,135 +720,135 @@ module.exports = {
   },
   'invoice-contact-name': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['required', {type: 'maxlength', arguments: [200]}]
   },
   'invoice-contact-email': {
     mixin: 'input-text',
-    validate: ['required', 'email']
+    validate: ['required', 'email', { type: 'maxlength', arguments: 320 }]
   },
   'invoice-contact-phone': {
     mixin: 'input-text',
-    validate: 'required'
+    validate: ['internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
   },
   'invoice-building': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }],
     includeInSummary: false
   },
   'invoice-street': {
-    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     labelClassName: 'visuallyhidden',
     includeInSummary: false
   },
   'invoice-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
-      { type: 'maxlength', arguments: 100 }
+      { type: 'maxlength', arguments: 200 }
     ],
     includeInSummary: false
   },
   'invoice-postcodeOrZIPCode': {
-    validate: ['required'],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase'],
     includeInSummary: false
   },
   'storage-building': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }]
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
   },
   'storage-street': {
-    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     labelClassName: 'visuallyhidden'
   },
   'storage-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
-      { type: 'maxlength', arguments: 100 }
+      { type: 'maxlength', arguments: 200 }
     ]
   },
   'storage-postcodeOrZIPCode': {
-    validate: ['required'],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase']
   },
   'first-authority-holders-building': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }],
     includeInSummary: false
   },
   'first-authority-holders-street': {
-    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     labelClassName: 'visuallyhidden',
     includeInSummary: false
   },
   'first-authority-holders-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
-      { type: 'maxlength', arguments: 100 }
+      { type: 'maxlength', arguments: 200 }
     ],
     includeInSummary: false
   },
   'first-authority-holders-postcodeOrZIPCode': {
-    validate: ['required'],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase'],
     includeInSummary: false
   },
   'second-authority-holders-building': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }],
     includeInSummary: false
   },
   'second-authority-holders-street': {
-    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     labelClassName: 'visuallyhidden',
     includeInSummary: false
   },
   'second-authority-holders-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
-      { type: 'maxlength', arguments: 100 }
+      { type: 'maxlength', arguments: 200 }
     ],
     includeInSummary: false
   },
   'second-authority-holders-postcodeOrZIPCode': {
-    validate: ['required'],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase'],
     includeInSummary: false
   },
   'authority-holder-contact-building': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }],
     includeInSummary: false
   },
   'authority-holder-contact-street': {
-    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     labelClassName: 'visuallyhidden',
     includeInSummary: false
   },
   'authority-holder-contact-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
-      { type: 'maxlength', arguments: 100 }
+      { type: 'maxlength', arguments: 200 }
     ],
     includeInSummary: false
   },
   'authority-holder-contact-postcodeOrZIPCode': {
-    validate: ['required'],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase'],
     includeInSummary: false
   },
   'contact-building': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 100 }],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }],
     includeInSummary: false
   },
   'contact-street': {
-    validate: ['notUrl', { type: 'maxlength', arguments: 50 }],
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     labelClassName: 'visuallyhidden',
     includeInSummary: false
   },
   'contact-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
-      { type: 'maxlength', arguments: 100 }
+      { type: 'maxlength', arguments: 200 }
     ],
     includeInSummary: false
   },
   'contact-postcodeOrZIPCode': {
-    validate: ['required'],
+    validate: ['required', {type: 'maxlength', arguments: [200]}],
     formatter: ['removespaces', 'uppercase'],
     includeInSummary: false
   }

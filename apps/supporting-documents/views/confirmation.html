@@ -1,6 +1,20 @@
 {{<partials-page}}
   {{$page-content}}
     {{>partials-confirmation-alert}}
+
+    {{#values.nodemailer-error}}
+    <div class="alert-error" role="alert">
+      <div class="alert-message">
+        <p>
+          {{#t}}pages.confirmation.emailFallback{{/t}}
+        </p>
+        <p>
+          {{#t}}pages.confirmation.emailFallbackContact{{/t}}
+        </p>
+      </div>
+    </div>
+    {{/values.nodemailer-error}}
+
     {{#markdown}}what-happens-next{{/markdown}}
   {{/page-content}}
 {{/partials-page}}

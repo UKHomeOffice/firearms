@@ -14,5 +14,6 @@
   "session": {
     "name": "firearms-licensing.hof.sid"
   },
-  "getAccessibility": true
+  "getAccessibility": true,
+  "emailerFallback": true
 }

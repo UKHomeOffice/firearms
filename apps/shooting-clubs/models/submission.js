@@ -1,7 +1,7 @@
 'use strict';
 const _ = require('lodash');
 
-module.exports = data => {
+module.exports = (data, token) => {
   const response = {};
   const activity = [
     { activity: 'new', response: 'Application' },
@@ -41,11 +41,6 @@ module.exports = data => {
     }
   });
 
-  data['all-storage-addresses'].forEach((address, i) => {
-    const index = data['location-addresses'].length + i + 1;
-    response[`ShootingRange${index}.Address`] = address.address;
-  });
-
   response.InvoicingAddress = data['invoice-address'];
   response.ContactFirstName = data['invoice-contact-name'];
   response.ContactEmail = data['invoice-contact-email'];
@@ -56,7 +51,7 @@ module.exports = data => {
 
   data['existing-authority-documents'].forEach((doc, i) => {
     const index = i + 2;
-    response[`Document${index}.URL`] = doc.url;
+    response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
     response[`Document${index}.Name`] = doc.description;
     response[`Document${index}.MimeType`] = doc.type;
     response[`Document${index}.URLLoadContent`] = true;

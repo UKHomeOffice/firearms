@@ -7,6 +7,7 @@ const config = require('./config.js');
 const mockAPIs = require('./mock-apis.js');
 const BaseController = require('./apps/common/controllers/base');
 
+
 let appName = '';
 
 let settings = require('./hof.settings');
@@ -25,11 +26,6 @@ settings = Object.assign({}, settings, {
   redis: config.redis
 });
 
-// TODO Remove once so-acceptance module has been removed
-if (config.env === 'ci') {
-  settings.session.name = 'hod.sid';
-}
-
 const app = hof(settings);
 
 app.use((req, res, next) => {
@@ -37,7 +33,7 @@ app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
   res.locals.appName = appName;
   // Set feedback and footer links
-  res.locals.feedbackUrl = '/feedback';
+  res.locals.feedbackUrl = config.survey.urls.root;
   next();
 });
 
@@ -45,24 +41,28 @@ app.use((req, res, next) => {
 app.use('/s5', (req, res, next) => {
   res.locals.appName = 'Prohibited weapons and ammunition licensing';
   appName = res.locals.appName;
+  res.locals.feedbackUrl = config.survey.urls['new-dealer'];
   next();
 });
 
 app.use('/museums', (req, res, next) => {
   res.locals.appName = 'Apply for Museum Firearms Licence';
   appName = res.locals.appName;
+  res.locals.feedbackUrl = config.survey.urls.museums;
   next();
 });
 
 app.use('/shooting-clubs', (req, res, next) => {
   res.locals.appName = 'Apply for Shooting Club Approval';
   appName = res.locals.appName;
+  res.locals.feedbackUrl = config.survey.urls['shooting-clubs'];
   next();
 });
 
 app.use('/supporting-documents', (req, res, next) => {
   res.locals.appName = 'Submit Supporting Documents';
   appName = res.locals.appName;
+  res.locals.feedbackUrl = config.survey.urls['supporting-documents'];
   next();
 });
 

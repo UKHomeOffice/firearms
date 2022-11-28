@@ -7,6 +7,7 @@ const localhost = () => `${process.env.LISTEN_HOST || '0.0.0.0'}:${process.env.P
 module.exports = {
   env: env,
   upload: {
+    skipEmail: env === 'production' ? '' : 'test@test.com',
     maxfilesize: '100mb',
     hostname: (!env || env === 'ci') ?
       `http://${localhost()}/api/file-upload` :
@@ -19,13 +20,26 @@ module.exports = {
     clientId: process.env.KEYCLOAK_CLIENT_ID,
     secret: process.env.KEYCLOAK_SECRET
   },
+  govukNotify: {
+    notifyApiKey: process.env.NOTIFY_KEY,
+    templateMuseum: process.env.TEMPLATE_MUSEUM,
+    templateSection5: process.env.TEMPLATE_SECTION5,
+    templateShootingClub: process.env.TEMPLATE_SHOOTING_CLUB,
+    templateSupportingDocuments: process.env.TEMPLATE_SUPPORTING_DOCUMENTS,
+    emailReplyToDefault: process.env.EMAIL_REPLY_TO_DEFAULT,
+    emailReplyToFirearms: process.env.EMAIL_REPLY_TO_FIREARMS
+  },
   email: {
-    from: process.env.FROM_ADDRESS || '',
+    emailerFallback: true,
+    from: process.env.FROM_ADDRESS || 'fakeemail',
     transport: process.env.EMAIL_TRANSPORT || 'ses',
     transportOptions: {
-      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || '',
-      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || ''
+      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER || 'randompass',
+      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD || 'randompass'
     }
+  },
+  hosts: {
+    acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
   },
   redis: {
     password: process.env.REDIS_PASSWORD
@@ -37,13 +51,15 @@ module.exports = {
     getcasepath: '/getcasedetails',
     key: process.env.ICASEWORK_KEY,
     secret: process.env.ICASEWORK_SECRET,
-    timeout: process.env.ICASEWORK_TIMEOUT || 20000
+    timeout: process.env.ICASEWORK_TIMEOUT || 60000
   },
   survey: {
     urls: {
+      root: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml',
       'new-dealer': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=s5firearms/',
       'shooting-clubs': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=shootclub/',
-      museums: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=Museums/'
+      museums: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=Museums/',
+      'supporting-documents': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=SupportingDocs/'
     }
   },
   pdf: {

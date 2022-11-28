@@ -7,11 +7,11 @@ module.exports = superclass => class PDFUpload extends superclass {
   process(req, res, next) {
     this.renderHTML(req, res)
       .then(html => {
-        req.log('debug', 'Creating PDF document');
+        req.log('info', 'Creating PDF document');
         return this.createPDF(html);
       })
       .then(pdfBuffer => {
-        req.log('debug', 'Created PDF document. Uploading.');
+        req.log('info', 'Created PDF document. Uploading.');
         return this.uploadPDF({
           name: 'application_form.pdf',
           data: pdfBuffer,
@@ -19,10 +19,8 @@ module.exports = superclass => class PDFUpload extends superclass {
         }).catch(err => next(new Error(err.body)));
       })
       .then(result => {
-        req.log('debug', 'Saved PDF document to S3');
+        req.log('info', 'Saved PDF document to S3');
         req.form.values['pdf-upload'] = result.url;
-      })
-      .then(() => {
         super.process(req, res, next);
       }, next)
       .catch(err => {
