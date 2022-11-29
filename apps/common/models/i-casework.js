@@ -12,7 +12,7 @@ module.exports = class CaseworkModel extends Model {
   }
 
   url() {
-    return config.icasework.url + config.icasework.createpath;
+    return config.icasework.url + config.icasework.createpath + '?db=flcms';
   }
 
   prepare(token) {
