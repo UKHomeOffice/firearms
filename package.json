@@ -29,8 +29,8 @@
   "dependencies": {
     "busboy-body-parser": "^0.3.0",
     "debug": "^2.6.8",
-    "express": "^4.15.3",
-    "hof": "^19.14.13",
+    "express": "4.17.3",
+    "hof": "^20.1.19",
     "hot-shots": "^5.9.0",
     "i18n-lookup": "^1.0.0",
     "is-pdf": "^1.0.0",
@@ -38,7 +38,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "mustache": "^2.3.0",
-    "notifications-node-client": "^5.1.1",
+    "notifications-node-client": "6.0.0",
     "typeahead-aria": "^1.0.4",
     "uuid": "^3.1.0"
   },
