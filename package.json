@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "busboy-body-parser": "^0.3.0",
-    "debug": "^2.6.8",
+    "debug": "^3.1.0",
     "express": "^4.15.3",
     "hof": "^19.14.13",
     "hot-shots": "^5.9.0",
