@@ -2841,11 +2841,6 @@ govuk-elements-sass@^3.1.3:
   dependencies:
     govuk_frontend_toolkit "^7.1.0"
 
-govuk-frontend@3.14:
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-3.14.0.tgz#d3a9c54437c08f5188f87b1f4480ba60e95c8eb6"
-  integrity sha512-y7FTuihCSA8Hty+e9h0uPhCoNanCAN+CLioNFlPmlbeHXpbi09VMyxTcH+XfnMPY4Cp++7096v0rLwwdapTXnA==
-
 govuk_frontend_toolkit@^7.1.0:
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/govuk_frontend_toolkit/-/govuk_frontend_toolkit-7.6.0.tgz#b09a60631afbba4bfac76a8b7c02e72419c29cf5"
@@ -2989,10 +2984,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@^20.1.19:
-  version "20.1.19"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-20.1.19.tgz#6c547658af29635f904c482ae39172135103990e"
-  integrity sha512-JbJEbRG/J94HF2Wdhpdmwc3IbXmFf/Phu3QHW7HRBeCjPufowNYvq5GNv2NvXokBHa6EFM5YY1jjE8EDG9hpxA==
+hof@19.14.17-beta.0:
+  version "19.14.17-beta.0"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-19.14.17-beta.0.tgz#3ced5b499d63a8ce5a018233e90ea10e86991f83"
+  integrity sha512-lp3+01L+uAmcpA2uoRD4Qg/R9Fm86KUKzYQaIUL6EiaP1QulkQsCwvNh3+Eg6b7bXsCJ8WGg+v41dp1wKeOT9g==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
@@ -3016,7 +3011,6 @@ hof@^20.1.19:
     findup "^0.1.5"
     glob "^7.2.0"
     govuk-elements-sass "^3.1.3"
-    govuk-frontend "3.14"
     govuk_template_mustache "^0.26.0"
     helmet "^3.22.0"
     hogan-express-strict "^0.5.4"
@@ -3028,7 +3022,7 @@ hof@^20.1.19:
     libphonenumber-js "^1.9.37"
     lodash "^4.17.21"
     markdown-it "^12.3.2"
-    minimatch "^3.0.7"
+    minimatch "^3.0.3"
     minimist "^1.2.6"
     mixwith "^0.1.1"
     moment "^2.29.4"
@@ -4009,7 +4003,7 @@ minimalistic-crypto-utils@^1.0.1:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimatch@^3.0.7:
+minimatch@^3.0.3:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
   integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==

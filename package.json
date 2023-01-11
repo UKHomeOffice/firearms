@@ -30,7 +30,7 @@
     "busboy-body-parser": "^0.3.0",
     "debug": "^2.6.8",
     "express": "4.17.3",
-    "hof": "^20.1.19",
+    "hof": "19.14.17-beta.0",
     "hot-shots": "^5.9.0",
     "i18n-lookup": "^1.0.0",
     "is-pdf": "^1.0.0",
