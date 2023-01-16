@@ -62,7 +62,8 @@
   },
   "resolutions": {
     "underscore": "^1.12.1",
-    "qs": "6.11.0"
+    "qs": "6.11.0",
+    "minimatch": "6.0.4"
   },
   "mocha": {
     "reporter": "spec",
