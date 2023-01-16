@@ -30,7 +30,7 @@
     "busboy-body-parser": "^0.3.0",
     "debug": "^2.6.8",
     "express": "4.17.3",
-    "hof": "19.14.17-beta.4",
+    "hof": "19.14.17-beta.5",
     "hot-shots": "^5.9.0",
     "i18n-lookup": "^1.0.0",
     "is-pdf": "^1.0.0",
@@ -61,7 +61,8 @@
     "snyk": "^1.675.0"
   },
   "resolutions": {
-    "underscore": "^1.12.1"
+    "underscore": "^1.12.1",
+    "qs": "6.11.0"
   },
   "mocha": {
     "reporter": "spec",

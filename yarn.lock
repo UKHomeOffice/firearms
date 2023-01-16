@@ -3025,10 +3025,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@19.14.17-beta.4:
-  version "19.14.17-beta.4"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-19.14.17-beta.4.tgz#4d1e11409524dd71d3b7e45a42a27b570c5cf50b"
-  integrity sha512-djKWdXEou61E9h1UJtwmtwZAT8aRa/VOdX/Wdd5d8jLd5psc5Fef0MH61yF8m5fc5vtXUaV6BcnO6ruhtqwtkQ==
+hof@19.14.17-beta.5:
+  version "19.14.17-beta.5"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-19.14.17-beta.5.tgz#cdd46daa76091c26eecc3d29628e19a0c294aae1"
+  integrity sha512-FZZj22PlYBkm1NtEdgqCIdBuwvwcxfeEZsZIO8qeBMZ2wb6oXPeNarLxDrpn191mq+DqAyBFmvc8eDg1TeDfoQ==
   dependencies:
     aliasify "^2.1.0"
     bluebird "^3.7.2"
@@ -4835,27 +4835,12 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qs@6.11.0:
+qs@6.11.0, qs@6.9.6, qs@6.9.7, qs@~6.5.2:
   version "6.11.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.0.tgz#fd0d963446f7a65e1367e01abd85429453f0c37a"
   integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==
   dependencies:
     side-channel "^1.0.4"
-
-qs@6.9.6:
-  version "6.9.6"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.6.tgz#26ed3c8243a431b2924aca84cc90471f35d5a0ee"
-  integrity sha512-TIRk4aqYLNoJUbd+g2lEdz5kLWIuTMRagAXxl78Q0RiVjAOugHmeKNGdd3cwo/ktpf9aL9epCfFqWDEKysUlLQ==
-
-qs@6.9.7:
-  version "6.9.7"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.7.tgz#4610846871485e1e048f44ae3b94033f0e675afe"
-  integrity sha512-IhMFgUmuNpyRfxA90umL7ByLlgRXu6tIfKPpF5TmcfRLlLCckfP/g3IQmju6jjpu+Hh8rA+2p6A27ZSPOOHdKw==
-
-qs@~6.5.2:
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.3.tgz#3aeeffc91967ef6e35c0e488ef46fb296ab76aad"
-  integrity sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==
 
 querystring-es3@~0.2.0:
   version "0.2.1"
