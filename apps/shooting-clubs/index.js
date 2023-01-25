@@ -7,6 +7,8 @@ const formatAddress = require('../common/behaviours/format-address');
 const getPageCustomBackLink = require('../common/behaviours/custom-back-links.js');
 const existingAuthorityController = require('../common/controllers/existing-authority-documents-add-another');
 const existingAuthorityBehaviour = require('../common/behaviours/existing-authority-documents-add');
+const supportingDocumentsBehaviour = require('../common/behaviours/supporting-documents-add');
+
 const Submission = require('../common/behaviours/casework-submission');
 const submission = Submission({
   prepare: require('./models/submission')
@@ -35,7 +37,7 @@ module.exports = {
       fields: [
         'activity'
       ],
-      next: '/new-club',
+      next: '/supporting-documents',
       forks: [{
         target: '/existing-authority',
         condition: req => {
@@ -69,6 +71,32 @@ module.exports = {
         target: '/existing-authority',
         condition: {
           field: 'existing-authority-add-another',
+          value: 'yes'
+        }
+      }],
+      continueOnEdit: true,
+      next: '/supporting-documents'
+    },
+    '/supporting-documents': {
+      behaviours: getPageCustomBackLink('activity'),
+      controller: require('../common/controllers/supporting-documents'),
+      fields: [
+        'supporting-document-upload',
+        'supporting-document-description'
+      ],
+      continueOnEdit: true,
+      next: '/supporting-documents-add-another'
+    },
+    '/supporting-documents-add-another': {
+      controller: require('../common/controllers/supporting-documents-add-another'),
+      behaviours: [supportingDocumentsBehaviour, getPageCustomBackLink('supporting-documents-add-another')],
+      fields: [
+        'supporting-document-add-another'
+      ],
+      forks: [{
+        target: '/supporting-documents',
+        condition: {
+          field: 'supporting-document-add-another',
           value: 'yes'
         }
       }],
