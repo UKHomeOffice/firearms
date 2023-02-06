@@ -2,6 +2,14 @@
   "new-club": {
     "header": "Is the club a new club?"
   },
+  "supporting-documents": {
+    "header": "Upload your supporting documents",
+    "intro": "You must provide evidence to justify the types and quantities of prohibited items requested, and show how they’ll be obtained and used."
+  },
+  "supporting-documents-add": {
+    "header": "Upload your supporting documents",
+    "list-header": "Documents added"
+  },
   "authority-details": {
     "header": "What is the existing shooting club reference number?"
   },
