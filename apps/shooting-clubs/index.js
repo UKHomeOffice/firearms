@@ -101,7 +101,7 @@ module.exports = {
         }
       }],
       continueOnEdit: true,
-      next: '/club-name'
+      next: '/new-club'
     },
     '/club-name': {
       fields: [
