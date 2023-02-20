@@ -39,5 +39,5 @@ ignore:
   SNYK-JS-DICER-2311764:
     - busboy-body-parser > busboy > dicer:
         reason: No update available
-        expires: '2023-02-10T12:21:04.350Z'
+        expires: '2023-06-10T12:21:04.350Z'
 patch: {}
