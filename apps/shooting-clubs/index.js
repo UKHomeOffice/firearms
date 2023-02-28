@@ -93,14 +93,34 @@ module.exports = {
       fields: [
         'supporting-document-add-another'
       ],
-      forks: [{
-        target: '/supporting-documents',
-        condition: {
-          field: 'supporting-document-add-another',
-          value: 'yes'
+      forks: [
+        // If we want to add more docs, go to supporting-document-add-another
+        {
+          target: '/supporting-documents',
+          condition: {
+            field: 'supporting-document-add-another',
+            value: 'yes'
+          }
+        },
+        // If we're on the renew or amend journey and we don't want to add anymore docs, go to the club name page
+        {
+          target: '/club-name',
+          condition: req => {
+            return _.includes(['vary', 'renew'], req.sessionModel.get('activity'))
+              && req.sessionModel.get('supporting-document-add-another') === 'no';
+          }
+        },
+        // If we're on the new journey and we don't want to add anymore docs, go to the new club page
+        {
+          target: '/new-club',
+          condition: req => {
+            return req.sessionModel.get('activity') === 'new'
+              && req.sessionModel.get('supporting-document-add-another') === 'no';
+          }
         }
-      }],
+      ],
       continueOnEdit: true,
+      // The default is to go to the new club page
       next: '/new-club'
     },
     '/club-name': {
