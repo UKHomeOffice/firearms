@@ -4,7 +4,7 @@
   },
   "supporting-documents": {
     "header": "Upload your supporting documents which must include a cover letter to explain the reasons you are applying for an approval",
-    "intro": "Please provide your Club Insurance and Constitution"
+    "optionalSubheader": "Please provide your Club Insurance and Constitution"
   },
   "supporting-documents-add": {
     "header": "Upload your supporting documents",
@@ -173,6 +173,9 @@
         "label": "Name"
       },
       "existing-authority-documents": {
+        "label": "Documents"
+      },
+      "supporting-documents": {
         "label": "Documents"
       }
     }
