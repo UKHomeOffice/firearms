@@ -33,11 +33,11 @@ module.exports = (data, token) => {
   response.ApplicationType = data.activity ?
     _.find(activity, { activity: data.activity }).response : 'Renewal';
 
-  response['Customer.Organisation'] = data[`${data.organisation}-name`];
-  response['Customer.Category'] = data.organisation;
-  response['Customer.Name'] = data['first-authority-holders-name'];
-  response['Customer.Address'] = data['first-authority-holders-address-manual']
-    || data['first-authority-holders-address-lookup'];
+  response['Customer.Organisation'] = 'Customer Organisation Name'; //data[`${data.organisation}-name`];
+  response['Customer.Category'] = 'Customer Category'; //data.organisation;
+  response['Customer.Name'] = 'Customer Name'; //data['first-authority-holders-name'];
+  response['Customer.Address'] = 'Customer Address'; //data['first-authority-holders-address-manual']
+   // || data['first-authority-holders-address-lookup'];
 
   let addressKey;
   let contactKey;
@@ -52,12 +52,12 @@ module.exports = (data, token) => {
     contactKey = 'someone-else';
   }
 
-  response['Agent.Address'] = data[`${addressKey}-address-manual`] || data[`${addressKey}-address-lookup`];
+  response['Agent.Address'] = 'Agent Address'; //data[`${addressKey}-address-manual`] || data[`${addressKey}-address-lookup`];
 
-  response['Agent.Name'] = data[`${contactKey}-name`];
-  response['Customer.Email'] = data['contact-email'];
-  response['Agent.Email'] = data['contact-email'];
-  response['Agent.Phone'] = data['contact-phone'];
+  response['Agent.Name'] = 'Agent Name'; //data[`${contactKey}-name`];
+  response['Customer.Email'] = 'Customer Email'; //data['contact-email'];
+  response['Agent.Email'] = 'Agent Email'; //data['contact-email'];
+  response['Agent.Phone'] = 'Agent Phone'; //data['contact-phone'];
 
   if (data['weapons-ammunition'].includes('weapons')) {
     response.AuthorityCoversWeapons = 'Yes';
