@@ -29,35 +29,24 @@ module.exports = (data, token) => {
     { activity: 'vary', response: 'Vary' }
   ];
 
-  response.AuthorityType = authorityType(data.usage);
   response.ApplicationType = data.activity ?
     _.find(activity, { activity: data.activity }).response : 'Renewal';
 
-  response['Customer.Organisation'] = 'Customer Organisation Name'; //data[`${data.organisation}-name`];
-  response['Customer.Category'] = 'Customer Category'; //data.organisation;
-  response['Customer.Name'] = 'Customer Name'; //data['first-authority-holders-name'];
-  response['Customer.Address'] = 'Customer Address'; //data['first-authority-holders-address-manual']
-   // || data['first-authority-holders-address-lookup'];
 
-  let addressKey;
-  let contactKey;
-  if (data['contact-holder'] === 'first') {
-    addressKey = 'first-authority-holders';
-    contactKey = addressKey;
-  } else if (data['contact-holder'] === 'second') {
-    addressKey = 'second-authority-holders';
-    contactKey = addressKey;
-  } else if (data['contact-holder'] === 'other') {
-    addressKey = 'contact';
-    contactKey = 'someone-else';
-  }
 
-  response['Agent.Address'] = 'Agent Address'; //data[`${addressKey}-address-manual`] || data[`${addressKey}-address-lookup`];
+  response.AuthorityType = 'Carriers and Dealers';
+  response['Customer.Organisation'] = 'Customer Organisation Name';
+  response['Customer.Category'] = 'company';
+  response['Customer.Name'] = 'Customer Name';
+  response['Customer.Address'] = 'Customer Address';
+  response['Customer.Email'] = 'Customer Email';
 
-  response['Agent.Name'] = 'Agent Name'; //data[`${contactKey}-name`];
-  response['Customer.Email'] = 'Customer Email'; //data['contact-email'];
-  response['Agent.Email'] = 'Agent Email'; //data['contact-email'];
-  response['Agent.Phone'] = 'Agent Phone'; //data['contact-phone'];
+  response['Agent.Name'] = 'Agent Name';
+  response['Agent.Address'] = 'Agent Address';
+  response['Agent.Email'] = 'Agent Email';
+  response['Agent.Phone'] = 'Agent Phone';
+
+
 
   if (data['weapons-ammunition'].includes('weapons')) {
     response.AuthorityCoversWeapons = 'Yes';
