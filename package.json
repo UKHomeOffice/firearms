@@ -78,5 +78,6 @@
   "directories": {
     "test": "test"
   },
-  "keywords": []
+  "keywords": [],
+  "packageManager": "yarn@1.22.1"
 }
