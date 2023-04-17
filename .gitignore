@@ -10,3 +10,6 @@ output/
 anchore-reports
 .nyc_output
 .vscode
+.yarn/
+.yarnrc.yml
+yarn-error.log
