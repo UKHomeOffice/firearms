@@ -9,6 +9,13 @@ const uuid = require('uuid');
 const path = require('path');
 
 module.exports = class UploadController extends BaseController {
+  locals(req, res) {
+    const content = req.rawTranslate('pages.supporting-documents');
+    // Only show the header if we're in the NEW journey
+    return Object.assign({}, super.locals(req, res), { optionalSubheader:
+        (req.sessionModel.get('activity') === 'new' ? content.optionalSubheader : '') });
+  }
+
   get(req, res, next) {
     const docs = req.sessionModel.get('supporting-documents') || [];
     if (docs.length) {

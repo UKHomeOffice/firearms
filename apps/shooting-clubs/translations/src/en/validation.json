@@ -2,6 +2,9 @@
   "reference-number": {
     "required": "Enter the shooting club reference number"
   },
+  "supporting-document-add-another": {
+    "required": "Select an option"
+  },
   "new-club": {
     "required": "Select an option"
   },

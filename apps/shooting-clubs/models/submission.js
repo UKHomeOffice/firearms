@@ -47,9 +47,13 @@ module.exports = (data, token) => {
   response.ContactPhone = data['invoice-contact-phone'];
   response.InvoicingPONumber = data['purchase-order-number'];
 
+  data['supporting-documents'] = data['supporting-documents'] || [];
   data['existing-authority-documents'] = data['existing-authority-documents'] || [];
 
-  data['existing-authority-documents'].forEach((doc, i) => {
+  data['supporting-documents'] = data['supporting-documents']
+    .concat(data['existing-authority-documents']);
+
+  data['supporting-documents'].forEach((doc, i) => {
     const index = i + 2;
     response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
     response[`Document${index}.Name`] = doc.description;

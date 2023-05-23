@@ -2,6 +2,14 @@
   "new-club": {
     "header": "Is the club a new club?"
   },
+  "supporting-documents": {
+    "header": "Upload your supporting documents which must include a cover letter to explain the reasons you are applying for an approval",
+    "optionalSubheader": "Please provide your Club Insurance and Constitution"
+  },
+  "supporting-documents-add": {
+    "header": "Upload your supporting documents",
+    "list-header": "Documents added"
+  },
   "authority-details": {
     "header": "What is the existing shooting club reference number?"
   },
@@ -165,6 +173,9 @@
         "label": "Name"
       },
       "existing-authority-documents": {
+        "label": "Documents"
+      },
+      "supporting-documents": {
         "label": "Documents"
       }
     }

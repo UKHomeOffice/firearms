@@ -18,6 +18,12 @@ Feature: Fireams application for Shooting clubs
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
         Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
+        Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
         Then I should see the 'Select an option' error
@@ -30,6 +36,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -48,6 +60,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -73,6 +91,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -106,6 +130,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -146,6 +176,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -194,6 +230,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -242,6 +284,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -296,6 +344,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -357,6 +411,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -426,6 +486,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -503,6 +569,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -590,6 +662,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -680,6 +758,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -775,6 +859,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -873,6 +963,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -975,6 +1071,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -1086,6 +1188,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -1205,6 +1313,12 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should see the 'Select an option' error
         Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
         Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I select 'Continue'
@@ -1326,6 +1440,12 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'activity' page showing 'What do you want to do?'
         Then I check 'activity-new'
         Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
+        Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I check 'new-club-yes'
         Then I select 'Continue'
@@ -1406,6 +1526,12 @@ Feature: Fireams application for Shooting clubs
         Then I should be on the 'activity' page showing 'What do you want to do?'
         Then I check 'activity-new'
         Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
+        Then I select 'Continue'
         Then I should be on the 'new-club' page showing 'Is the club a new club?'
         Then I check 'new-club-yes'
         Then I select 'Continue'
@@ -1478,3 +1604,46 @@ Feature: Fireams application for Shooting clubs
         Then I select 'Continue'
         Then I should be on the 'confirm' page showing 'Check your answers'
         Then I select 'Continue'
+    
+    Scenario: I am on the Shooting-clubs journey and want to test the upload supporting documents process via the renew route
+        Given I start the 'shooting-clubs' application journey
+        Then I should be on the 'privacy' page showing 'Privacy Notice'
+        Then I select 'Continue'
+        Then I should be on the 'activity' page showing 'What do you want to do?'
+        Then I check 'activity-renew'
+        Then I select 'Continue'
+        Then I should be on the 'existing-authority' page showing 'Upload existing authority documents'
+        Then I upload the 'testPath/test.pdf' file to 'existing-authority-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'existing-authority-add-another' page showing 'Do you want to upload any additional existing authority documents to support your application?'
+        Then I check 'existing-authority-add-another-no'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
+        Then I select 'Continue'
+        Then I should be on the 'club-name' page showing 'What is the club\'s name?'
+
+    Scenario: I am on the Shooting-clubs journey and want to test the upload supporting documents process via the amend route
+        Given I start the 'shooting-clubs' application journey
+        Then I should be on the 'privacy' page showing 'Privacy Notice'
+        Then I select 'Continue'
+        Then I should be on the 'activity' page showing 'What do you want to do?'
+        Then I check 'activity-vary'
+        Then I select 'Continue'
+        Then I should be on the 'existing-authority' page showing 'Upload existing authority documents'
+        Then I upload the 'testPath/test.pdf' file to 'existing-authority-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'existing-authority-add-another' page showing 'Do you want to upload any additional existing authority documents to support your application?'
+        Then I check 'existing-authority-add-another-no'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
+        Then I select 'Continue'
+        Then I should be on the 'club-name' page showing 'What is the club\'s name?'
+        
