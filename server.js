@@ -23,7 +23,19 @@ settings = Object.assign({}, settings, {
     }
   }, require('hof/components/clear-session')
   ],
-  redis: config.redis
+  redis: config.redis,
+  csp: {
+    imgSrc: [
+      'www.google-analytics.com',
+      'ssl.gstatic.com',
+      'www.google.co.uk/ads/ga-audiences'
+    ],
+    connectSrc: [
+      'https://www.google-analytics.com',
+      'https://region1.google-analytics.com',
+      'https://region1.analytics.google.com'
+    ]
+  }
 });
 
 const app = hof(settings);
