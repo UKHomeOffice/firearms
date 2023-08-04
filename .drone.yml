@@ -150,7 +150,7 @@ steps:
 
   - name: setup_branch
     pull: if-not-exists
-    image: node:18
+    image: node:lts-bullseye
     environment:
       NOTIFY_KEY: USE_MOCK
     commands:
