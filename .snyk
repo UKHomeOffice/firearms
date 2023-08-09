@@ -2,6 +2,16 @@
 version: v1.22.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
+  SNYK-JS-REQUEST-3361831:
+    - '*':
+        reason: HOF framework needs updating to remove request.js
+        expires: 2024-03-01T00:00:00.000Z
+        created: 2023-08-09T13:22:47.350Z
+  SNYK-JS-TOUGHCOOKIE-5672873:
+    - '*':
+        reason: HOF framework needs updating to remove request.js of which this is a dependency
+        expires: 2024-03-01T00:00:00.000Z
+        created: 2023-08-09T13:22:47.350Z
   SNYK-JS-REQUEST-1314897:
     - hof > request:
         reason: Need to replace request in HOF
