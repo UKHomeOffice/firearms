@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const moment = require("moment");
 const countries = require('hof').utils.countries();
 const date = require('hof').components.date;
 
