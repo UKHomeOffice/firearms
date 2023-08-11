@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const moment = require("moment");
 const countries = require('hof').utils.countries();
 const date = require('hof').components.date;
 
@@ -461,7 +462,7 @@ module.exports = {
   },
   'first-authority-dob': date('first-authority-dob', {
     mixin: 'input-date',
-    validate: ['required', 'before', 'over18']
+    validate: ['required', 'before', 'over18', { type: 'after', arguments: '1900-01-01' }]
   }),
   'first-authority-town-birth': {
     mixin: 'input-text',
@@ -476,7 +477,7 @@ module.exports = {
   },
   'second-authority-dob': date('second-authority-dob', {
     mixin: 'input-date',
-    validate: ['required', 'before', 'over18']
+    validate: ['required', 'before', 'over18', { type: 'after', arguments: '1900-01-01' }]
   }),
   'second-authority-town-birth': {
     mixin: 'input-text',
