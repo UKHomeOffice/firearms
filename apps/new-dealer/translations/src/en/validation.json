@@ -45,7 +45,8 @@
     "required": "Select an option"
   },
   "no-storage-details": {
-    "required": "Provide further details"
+    "required": "Provide further details",
+    "minlength": "Must be at least 3 characters"
   },
   "import": {
     "required": "Select an option"
@@ -139,6 +140,7 @@
     "default": "Enter a valid date",
     "required": "Enter a date of birth",
     "before": "Date cannot be in the future",
+    "after": "Date must not be before 1900",
     "over18": "Enter a valid date of birth. You must be over 18 to apply for a Firearms License application"
   },
   "first-authority-town-birth": {
@@ -174,6 +176,7 @@
     "required": "Enter a date of birth",
     "default": "Enter a valid date",
     "before": "Date cannot be in the future",
+    "after": "Date must not be before 1900",
     "over18": "Enter a valid date of birth. You must be over 18 to apply for a Firearms License application"
   },
   "second-authority-town-birth": {
