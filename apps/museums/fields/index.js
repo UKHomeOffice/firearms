@@ -15,32 +15,27 @@ module.exports = {
   },
   'contact-phone': {
     mixin: 'input-text',
-    validate: ['internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
+    validate: ['internationalPhoneNumber', {type: 'maxlength', arguments: [200]}],
+    className: ['govuk-input', 'govuk-input--width-20']
   },
   'same-contact-address': {
+    isPageHeading: true,
     mixin: 'radio-group',
     includeInSummary: false,
-    legend: {
-      className: 'visuallyhidden'
-    },
     options: ['yes', 'no'],
     validate: 'required'
   },
   'contact-address': {
+    isPageHeading: true,
     mixin: 'radio-group',
-    validate: 'required',
-    legend: {
-      className: 'visuallyhidden'
-    }
+    validate: 'required'
   },
   'purchase-order': {
+    isPageHeading: true,
     mixin: 'radio-group',
     includeInSummary: false,
     validate: 'required',
-    className: 'form-group',
-    legend: {
-      className: 'visuallyhidden'
-    },
+    className: 'govuk-form-group',
     options: [{
       value: 'Yes',
       toggle: 'purchase-order-number',
@@ -66,7 +61,8 @@ module.exports = {
   },
   'invoice-contact-phone': {
     mixin: 'input-text',
-    validate: ['internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
+    validate: ['internationalPhoneNumber', {type: 'maxlength', arguments: [200]}],
+    className: ['govuk-input', 'govuk-input--width-20']
   },
   'exhibit-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
@@ -79,11 +75,13 @@ module.exports = {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
       { type: 'maxlength', arguments: 200 }
-    ]
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'exhibit-postcodeOrZIPCode': {
     validate: ['required', {type: 'maxlength', arguments: [200]}],
-    formatter: ['removespaces', 'uppercase']
+    formatter: ['removespaces', 'uppercase'],
+    className: ['govuk-input', 'govuk-input--width-10']
   },
   'contact-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
@@ -96,11 +94,13 @@ module.exports = {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
       { type: 'maxlength', arguments: 200 }
-    ]
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'contact-postcodeOrZIPCode': {
     validate: ['required', {type: 'maxlength', arguments: [200]}],
-    formatter: ['removespaces', 'uppercase']
+    formatter: ['removespaces', 'uppercase'],
+    className: ['govuk-input', 'govuk-input--width-10']
   },
   'invoice-building': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }]
@@ -113,10 +113,12 @@ module.exports = {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
       { type: 'maxlength', arguments: 200 }
-    ]
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'invoice-postcodeOrZIPCode': {
     validate: ['required', {type: 'maxlength', arguments: [200]}],
-    formatter: ['removespaces', 'uppercase']
+    formatter: ['removespaces', 'uppercase'],
+    className: ['govuk-input', 'govuk-input--width-10']
   }
 };

@@ -1,12 +1,6 @@
 {
-  "choose": {
-    "header": "Choose A Journey"
-  },
   "privacy": {
     "header": "Privacy Notice"
-  },
-  "activity": {
-    "header": "What do you want to do?"
   },
   "postcode": {
     "manual": "Enter address manually"
@@ -19,9 +13,6 @@
       "cant-connect": "Sorry – we couldn’t connect to the postcode lookup service at this time, enter your address manually"
     }
   },
-  "storage": {
-    "header": "Addresses added"
-  },
   "confirm": {
     "header": "Check your answers",
     "intro": "Check your answers and make any necessary changes before you submit this application",
@@ -32,7 +23,7 @@
   },
   "confirmation": {
     "alert": "Application complete",
-    "reference": "Your reference number is {{values.caseid}}",
+    "reference": "Your reference number is <strong>{{values.caseid}}</strong>",
     "email": "We have sent an email to {{values.contact-email}} to confirm receipt of your application.",
     "survey": {
       "text": "What did you think of this service? (takes 30 seconds)"

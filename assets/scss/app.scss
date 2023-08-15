@@ -3,7 +3,6 @@ $path: "../img/";
 @import "hof/frontend/themes/gov-uk/styles/govuk";
 
 @import "./icons.scss";
-@import "./validation.scss";
 @import "./print.scss";
 
 
@@ -12,21 +11,6 @@ $path: "../img/";
 }
 
 #step {
-  @include core-16;
-  a {
-    display: inline-block;
-    margin-top: $gutter-half;
-    padding-left: 14px;
-    border-bottom: $black 1px solid;
-    color: $black;
-    text-decoration: none;
-    background: url("../images/icons/icon-caret-left.png") no-repeat 0 4px;
-    @include media(mobile) {
-      background-position: 0 1px;
-    }
-    margin-right: 14px;
-  }
-
   span {
     display: inline-block;
     margin-top: $gutter-half;
@@ -35,15 +19,7 @@ $path: "../img/";
 }
 
 h1 {
-  @include bold-24;
-}
-
-.form-date {
-  input {
-    &[id$="-year"] {
-      width: 70px;
-    }
-  }
+  margin-top: inherit;
 }
 
 #handle-weapons-group {
@@ -87,12 +63,12 @@ summary.summary-details {
     .button-delete {
       @include bold-24;
       font-size: 16px !important;
-      background: $red url("../images/icons/icon-cross-remove-sign.png") no-repeat 90% 50% / 14px 14px;
+      background: #d4351c url("../images/icons/icon-cross-remove-sign.png") no-repeat 90% 50% / 14px 14px;
       float: right;
-      box-shadow: 0 2px 0 darken( $red, 10% );
+      box-shadow: 0 2px 0 #55150b;
       padding: em(7) em(41) em(4) em(16);
-      -webkit-box-shadow: 0 2px 0 darken( $red, 10% );
-      -moz-box-shadow: 0 2px 0 darken( $red, 10% );
+      -webkit-box-shadow: 0 2px 0 #55150b;
+      -moz-box-shadow: 0 2px 0 #55150b;
 
       &:hover, &:active {
         background-color: darken( $red, 10% );
@@ -213,4 +189,12 @@ ul {
   @extend .text;
   @extend .list;
   @extend .list-bullet;
+}
+
+.govuk-date-input__input {
+  width: 100%
+}
+
+a {
+  @extend .govuk-link;
 }
