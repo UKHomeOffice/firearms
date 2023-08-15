@@ -6,8 +6,8 @@ type: kubernetes
 environment:
   APP_NAME: firearms-licensing
   PROD_ENV: firearms
-  STG_ENV: firearms-preprod
-  UAT_ENV: firearms-dev
+  STG_ENV: firearms-stg
+  UAT_ENV: firearms-uat
   BRANCH_ENV: firearms-branch
   PRODUCTION_URL: www.firearms-licensing.homeoffice.gov.uk
   IMAGE_URL: quay.io/ukhomeofficedigital
@@ -227,6 +227,21 @@ steps:
       branch: master
       event: pull_request
 
+  - name: TEST_deploy_to_stg
+    pull: if-not-exists
+    image: quay.io/ukhomeofficedigital/kd:v1.14.0
+    environment:
+    # NOTIFY_STUB: stub
+      KUBE_SERVER:
+        from_secret: kube_server_stg
+      KUBE_TOKEN:
+        from_secret: kube_token_stg
+    commands:
+    - bin/deploy.sh $${STG_ENV}
+    when:
+      branch: master
+      event: pull_request
+
   # Snyk & Anchore security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
     pull: if-not-exists
@@ -323,9 +338,9 @@ steps:
   #   image: quay.io/ukhomeofficedigital/kd:v1.14.0
   #   environment:
   #     KUBE_SERVER:
-  #       from_secret: kube_server_dev
+  #       from_secret: kube_server_stg
   #     KUBE_TOKEN:
-  #       from_secret: kube_token_dev
+  #       from_secret: kube_token_stg
   #   commands:
   #     - bin/deploy.sh $${STG_ENV}
   #   when:
