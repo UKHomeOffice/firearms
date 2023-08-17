@@ -150,13 +150,15 @@ module.exports = {
     options: [{
       value: 'yes',
       toggle: 'import-country',
-      child: 'input-text'
+      child: 'select'
     }, {
       value: 'no'
     }]
   },
   'import-country': {
     validate: ['required', {type: 'maxlength', arguments: [200]}],
+    className: ['typeahead', 'js-hidden'],
+    options: [''].concat(countries),
     dependent: {
       field: 'import',
       value: 'yes'
