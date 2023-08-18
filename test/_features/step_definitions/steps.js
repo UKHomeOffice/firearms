@@ -84,7 +84,7 @@ Then('I fill the date {string} with {string}', async function (field, date) {
 
 
 Then('I type in {string} into {string} and select {string}', async function (value, field, country) {
-   await this.page.fill(`input[name="${field}"]`, value);
+  await this.page.fill(`input[name="${field}"]`, value);
 
   // Wait for the dropdown options to populate (adjust timeout if needed)
   await this.page.waitForTimeout(1000);
