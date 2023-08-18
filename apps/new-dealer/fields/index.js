@@ -159,6 +159,7 @@ module.exports = {
       field: 'import',
       value: 'yes'
     },
+    className: ['typeahead', 'js-hidden'],
     options: [''].concat(countries)
 
   },
