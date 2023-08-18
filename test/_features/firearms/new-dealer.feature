@@ -1,6 +1,6 @@
 @feature @new-dealer
 Feature: Firearms application for a New-dealer
-    
+
     Scenario: I am on the New-dealer journey and want to apply for a new authority
         Given I start the 's5' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'
@@ -30,7 +30,8 @@ Feature: Firearms application for a New-dealer
         Then I check 'obtain-buy'
         Then I select 'Continue'
         Then I should be on the 'import' page showing 'Will any of the prohibited items be imported?'
-        Then I check 'import-no'
+        Then I check 'import-yes'
+        Then I type in 'U' and select United Kingdom
         Then I select 'Continue'
         Then I should be on the 'storage' page showing 'Will the prohibited items be stored on the business\'s premises in the UK?'
         Then I check 'stored-on-premises-true'
@@ -99,7 +100,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'confirm' page showing 'Check your answers'
         Then I submit the application
- 
+
     Scenario: I am on the New-dealer journey and want to amend an exixting authority
         Given I start the 's5' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'
@@ -477,7 +478,7 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'import' page showing 'Will any of the prohibited items be imported?'
         Then I select 'Continue'
         Then I should see the 'Select an option' error
-    
+
     Scenario: I am on the New-dealer journey but don't select an option on the storage page
         Given I start the 's5' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'
@@ -643,7 +644,7 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'usage' page showing 'What business activities will be carried out with the prohibited items?'
         Then I select 'Continue'
         Then I should see the 'Select at least one option' error
-        
+
     Scenario: I am on the New-dealer journey but don't select an option on the weapons page
         Given I start the 's5' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'
@@ -1864,4 +1865,3 @@ Feature: Firearms application for a New-dealer
         Then I check 'purchase-order-Yes'
         Then I select 'Continue'
         Then I should see the 'Enter your purchase order number' error
-        
