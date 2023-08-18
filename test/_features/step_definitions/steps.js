@@ -82,27 +82,6 @@ Then('I fill the date {string} with {string}', async function (field, date) {
   await this.page.fill(`input[name="${field}-year"]`, dateArr[2]);
 }.bind(World));
 
-
-Then('I type in {string} and select United Kingdom', async function () {
-  const inputElement = await this.page.$('#import-country');
-
-  // Trigger a keyboard event to input "U"
-  await inputElement.type('U');
-
-  // Wait for the dropdown options to populate (adjust timeout if needed)
-  await this.page.waitForTimeout(1000);
-
-  // Find the desired option and click on it
-  const dropdownOptions = await this.page.$$('.tt-suggestion.tt-selectable');
-  for (const option of dropdownOptions) {
-    const text = await option.evaluate(el => el.textContent);
-    if (text === 'United Kingdom') {
-      await option.click();
-      break;
-    }
-  }
-}.bind(World));
-
 Then('I enter a date of birth for a {int} year old', async function (years) {
   const now = new Date();
   await this.page.fill('input[name="date-of-birth-day"]', now.getUTCDate().toString());
