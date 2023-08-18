@@ -148,7 +148,7 @@ module.exports = {
     options: [{
       value: 'yes',
       toggle: 'import-country',
-      child: 'input-text'
+      child: 'select'
     }, {
       value: 'no'
     }]
@@ -158,7 +158,9 @@ module.exports = {
     dependent: {
       field: 'import',
       value: 'yes'
-    }
+    },
+    options: [''].concat(countries)
+
   },
   'stored-on-premises': {
     isPageHeading: true,
