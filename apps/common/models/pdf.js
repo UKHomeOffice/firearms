@@ -20,22 +20,39 @@ module.exports = class PDFModel extends Model {
   }
 
   handleResponse(response, callback) {
-    if (_.isPlainObject(response.data)) {
-      debug('Response: %O', response.data);
+    if (_.isPlainObject(response.body)) {
+      debug('Response: %O', response.body);
     } else {
-      debug('Response: %s', response.data);
+      debug('Response: %s', response.body);
     }
-    if (isPdf(Buffer.from(response.data))) {
-      return this.parseResponse(response.statusCode, response.data, callback);
+    console.log("response:: ", response);
+    
+    /*const customObjectify = (data) => {
+      try {
+          if(typeof data === "string"){
+              JSON.parse(data);
+          }
+          return data;
+      } catch (error) {
+          return data;
+      }
+    }
+    console.log("response.data::", customObjectify(response.data))*/
+    //console.log("response.data::", Buffer.from(response.data, 'binary'));
+    if (isPdf(Buffer.from(response.data, 'binary'))) {
+      console.log("********response.statusCode********", response.status);
+      return this.parseResponse(response.status, Buffer.from(response.data, 'binary'), callback);
     }
     const err = new Error();
-    if (parseInt(response.statusCode, 10) === 400) {
-      err.title = response.data.code;
-      err.message = response.data.message;
+    if (parseInt(response.status, 10) === 400) {
+      console.log("********response.statusCode parseInt********", parseInt(response.status, 10));
+      err.title = response.body.code;
+      err.message = response.body.message;
     } else {
-      err.body = response.data;
+      err.body = response.body;
     }
     err.status = response.statusCode;
+    console.log("********err********", err);
     return callback(err, null, response.statusCode);
   }
 };
