@@ -11,6 +11,7 @@ module.exports = class PDFModel extends Model {
     const settings = super.requestConfig(options);
     settings.encoding = null;
     console.log("Firearms settings:::",settings)
+    settings.rejectUnauthorized = false;
     return settings;
   }
 
@@ -19,40 +20,24 @@ module.exports = class PDFModel extends Model {
     return config.pdf.url;
   }
 
+  
   handleResponse(response, callback) {
-    if (_.isPlainObject(response.body)) {
-      debug('Response: %O', response.body);
+    if (_.isPlainObject(response.data)) {
+      debug('Response: %O', response.data);
     } else {
-      debug('Response: %s', response.body);
+      debug('Response: %s', response.data);
     }
-    console.log("response:: ", response);
-    
-    /*const customObjectify = (data) => {
-      try {
-          if(typeof data === "string"){
-              JSON.parse(data);
-          }
-          return data;
-      } catch (error) {
-          return data;
-      }
-    }
-    console.log("response.data::", customObjectify(response.data))*/
-    //console.log("response.data::", Buffer.from(response.data, 'binary'));
-    if (isPdf(Buffer.from(response.data, 'binary'))) {
-      console.log("********response.statusCode********", response.status);
-      return this.parseResponse(response.status, Buffer.from(response.data, 'binary'), callback);
+    if (isPdf(Buffer.from(response.data))) {
+      return this.parseResponse(response.status, response.data, callback);
     }
     const err = new Error();
     if (parseInt(response.status, 10) === 400) {
-      console.log("********response.statusCode parseInt********", parseInt(response.status, 10));
-      err.title = response.body.code;
-      err.message = response.body.message;
+      err.title = response.data.code;
+      err.message = response.data.message;
     } else {
-      err.body = response.body;
+      err.body = response.data;
     }
-    err.status = response.statusCode;
-    console.log("********err********", err);
-    return callback(err, null, response.statusCode);
+    err.status = response.status;
+    return callback(err, null, response.status);
   }
 };
