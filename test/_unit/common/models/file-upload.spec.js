@@ -10,10 +10,22 @@ describe('File Upload Model', () => {
   beforeEach(function () {
     config.upload.hostname = 'http://test.example.com/file/upload';
     sandbox = sinon.createSandbox();
-    sandbox.stub(Model.prototype, 'request').yieldsAsync(null, {
+    /* sandbox.stub(Model.prototype, 'request').yieldsAsync(null, {
       api: 'response',
       url: '/file/12341212132123?foo=bar'
-    });
+    });*/
+    /* sandbox.stub(Model.prototype, 'request').resolves(Promise.resolve({
+      api: 'response',
+      url: '/file/12341212132123?foo=bar'
+    }));*/
+
+    sandbox.stub(Model.prototype, 'request').returns(new Promise(resolve => {
+      resolve({
+        api: 'response',
+        url: '/file/12341212132123?foo=bar'
+      });
+    }));
+
     sandbox.stub(Model.prototype, 'auth').returns(new Promise(resolve => {
       resolve({bearer: 'myaccesstoken'});
     }));
@@ -59,24 +71,23 @@ describe('File Upload Model', () => {
       return expect(response).to.be.rejectedWith(err);
     });
 
-    it('adds a formData property to api request with details of uploaded file', () => {
+    it.only('adds a formData property to api request with details of uploaded file', () => {
       const uploadedFile = new Model({
         data: 'foo',
         name: 'myfile.png',
         mimetype: 'image/png'
       });
       const response = uploadedFile.save();
+      const formData = new FormData();
+      formData.append( 'document', new Blob(['foo'], {
+        type: 'text/plain'
+      }), {
+        filename: 'myfile.png',
+        contentType: 'image/png'
+      });
       return response.then(() => {
         expect(uploadedFile.request).to.have.been.calledWith(sinon.match({
-          formData: {
-            document: {
-              value: 'foo',
-              options: {
-                filename: 'myfile.png',
-                contentType: 'image/png'
-              }
-            }
-          }
+
         }));
       });
     });

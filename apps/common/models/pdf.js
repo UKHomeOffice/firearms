@@ -10,17 +10,15 @@ module.exports = class PDFModel extends Model {
   requestConfig(options) {
     const settings = super.requestConfig(options);
     settings.encoding = null;
-    console.log("Firearms settings:::",settings)
     settings.rejectUnauthorized = false;
     return settings;
   }
 
   url() {
-    console.log("config.pdf.url:::",config.pdf.url)
     return config.pdf.url;
   }
 
-  
+
   handleResponse(response, callback) {
     if (_.isPlainObject(response.data)) {
       debug('Response: %O', response.data);

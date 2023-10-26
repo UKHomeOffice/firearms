@@ -17,7 +17,7 @@ module.exports = superclass => class PDFUpload extends superclass {
           data: pdfBuffer,
           mimetype: 'application/pdf'
         }).catch(err => {
-          next(new Error(err))
+          next(new Error(err));
         });
       })
       .then(result => {
