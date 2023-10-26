@@ -10,21 +10,10 @@ describe('File Upload Model', () => {
   beforeEach(function () {
     config.upload.hostname = 'http://test.example.com/file/upload';
     sandbox = sinon.createSandbox();
-    /* sandbox.stub(Model.prototype, 'request').yieldsAsync(null, {
+    sandbox.stub(Model.prototype, 'request').yieldsAsync(null, {
       api: 'response',
       url: '/file/12341212132123?foo=bar'
-    });*/
-    /* sandbox.stub(Model.prototype, 'request').resolves(Promise.resolve({
-      api: 'response',
-      url: '/file/12341212132123?foo=bar'
-    }));*/
-
-    sandbox.stub(Model.prototype, 'request').returns(new Promise(resolve => {
-      resolve({
-        api: 'response',
-        url: '/file/12341212132123?foo=bar'
-      });
-    }));
+    });
 
     sandbox.stub(Model.prototype, 'auth').returns(new Promise(resolve => {
       resolve({bearer: 'myaccesstoken'});
@@ -41,7 +30,11 @@ describe('File Upload Model', () => {
     });
 
     it('makes a call to file upload api', () => {
-      const model = new Model();
+      const model = new Model({
+        data: 'foo',
+        name: 'myfile.png',
+        mimetype: 'image/png'
+      });
       const response = model.save();
       return response.then(() => {
         expect(model.request).to.have.been.calledOnce;
@@ -55,7 +48,11 @@ describe('File Upload Model', () => {
     });
 
     it('resolves with response from api endpoint', () => {
-      const model = new Model();
+      const model = new Model({
+        data: 'foo',
+        name: 'myfile.png',
+        mimetype: 'image/png'
+      });
       const response = model.save();
       return expect(response).to.eventually.deep.equal({
         api: 'response',
@@ -64,27 +61,24 @@ describe('File Upload Model', () => {
     });
 
     it('rejects if api call fails', () => {
-      const model = new Model();
+      const model = new Model({
+        data: 'foo',
+        name: 'myfile.png',
+        mimetype: 'image/png'
+      });
       const err = new Error('test error');
       model.request.yieldsAsync(err);
       const response = model.save();
       return expect(response).to.be.rejectedWith(err);
     });
 
-    it.only('adds a formData property to api request with details of uploaded file', () => {
+    it('adds a formData property to api request with details of uploaded file', () => {
       const uploadedFile = new Model({
         data: 'foo',
         name: 'myfile.png',
         mimetype: 'image/png'
       });
       const response = uploadedFile.save();
-      const formData = new FormData();
-      formData.append( 'document', new Blob(['foo'], {
-        type: 'text/plain'
-      }), {
-        filename: 'myfile.png',
-        contentType: 'image/png'
-      });
       return response.then(() => {
         expect(uploadedFile.request).to.have.been.calledWith(sinon.match({
 
