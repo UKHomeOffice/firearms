@@ -3,6 +3,7 @@
 
 const Model = require('../../../../apps/common/models/file-upload');
 const config = require('../../../../config');
+const FormData = require('form-data');
 
 describe('File Upload Model', () => {
   let sandbox;
@@ -81,7 +82,7 @@ describe('File Upload Model', () => {
       const response = uploadedFile.save();
       return response.then(() => {
         expect(uploadedFile.request).to.have.been.calledWith(sinon.match({
-
+          data: sinon.match.instanceOf(FormData)
         }));
       });
     });
