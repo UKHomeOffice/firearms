@@ -32,7 +32,7 @@
     "debug": "^2.6.8",
     "express": "4.17.3",
     "express-fileupload": "^1.4.1",
-    "hof": "20.2.19-beta",
+    "hof": "21.0.0-axios-beta",
     "hot-shots": "^5.9.0",
     "i18n-lookup": "^1.0.0",
     "is-pdf": "^1.0.0",
