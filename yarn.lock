@@ -1336,13 +1336,6 @@ busboy@^0.2.9:
     dicer "0.2.5"
     readable-stream "1.1.x"
 
-busboy@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/busboy/-/busboy-1.6.0.tgz#966ea36a9502e43cdb9146962523b92f531f6893"
-  integrity sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==
-  dependencies:
-    streamsearch "^1.1.0"
-
 bytes@3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.2.tgz#8b0beeb98605adf1b128fa4386403c009e0221a5"
@@ -2558,13 +2551,6 @@ evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
     md5.js "^1.3.4"
     safe-buffer "^5.1.1"
 
-express-fileupload@^1.4.1:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/express-fileupload/-/express-fileupload-1.4.2.tgz#59f8ab14f9d12c4b53dfc29e56face4313ca0b59"
-  integrity sha512-vk+9cK595jP03T+YgoYPAebynVCZuUBtW1JkyJnitQnWzlONHdxdAIm9yo99V4viTEftq7MUfzuqmWyqWGzMIg==
-  dependencies:
-    busboy "^1.6.0"
-
 express-healthcheck@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/express-healthcheck/-/express-healthcheck-0.1.0.tgz#cabec78129c4cb90cd7fb894dfae21b82e27cb07"
@@ -3342,10 +3328,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@21.0.0-axios-beta:
-  version "21.0.0-axios-beta"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-21.0.0-axios-beta.tgz#ceff604d281b19a0e2717a677650fef0bbbf8002"
-  integrity sha512-8O88VU7YAtUorGtAaqAmUJ2ND6jMrcNrhVd3y6NVNCcq08s0DMr4hObic8ZAzCAJ+3el0ZA8+gsYpM1/jJWV2A==
+hof@21.0.3-axios-beta:
+  version "21.0.3-axios-beta"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-21.0.3-axios-beta.tgz#6940ea13ce65d51b436e93a240bc5005721d5d17"
+  integrity sha512-M1WLWks+FR+Ktp5HCc/Lcwmyt4N89ULil3cMUtWwfUeGPCujm8ZjFh0Fe59SbU43o/L99y0lCQ9ZVVcM2lmfwQ==
   dependencies:
     aliasify "^2.1.0"
     axios "^1.5.1"
@@ -3393,6 +3379,7 @@ hof@21.0.0-axios-beta:
     nodemailer-smtp-transport "^2.7.4"
     nodemailer-stub-transport "^1.1.0"
     notifications-node-client "^6.0.0"
+    object-mapper "^6.2.0"
     redis "^3.1.2"
     reqres "^3.0.1"
     rimraf "^3.0.2"
@@ -4720,6 +4707,11 @@ object-keys@^1.1.1:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
+object-mapper@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/object-mapper/-/object-mapper-6.2.0.tgz#f12b097081a97da953adafbc1f7f41b3ff615cae"
+  integrity sha512-kGa23lcUwnTbT0W2GqRipoiPax734TbXVTUF3vaWlAXY5baMQES323B9NHJODvxhn9sVMZmzeenD74PnCZZuHA==
+
 object.assign@^4.1.4:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.4.tgz#9673c7c7c351ab8c4d0b516f4343ebf4dfb7799f"
@@ -5920,11 +5912,6 @@ streamsearch@0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
   integrity sha512-jos8u++JKm0ARcSUTAZXOVC0mSox7Bhn6sBgty73P1f3JGf7yG2clTbBNHUdde/kdvP2FESam+vM6l8jBrNxHA==
-
-streamsearch@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-1.1.0.tgz#404dd1e2247ca94af554e841a8ef0eaa238da764"
-  integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
 string-argv@^0.3.1:
   version "0.3.2"
