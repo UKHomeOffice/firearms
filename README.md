@@ -36,7 +36,7 @@ $ yarn test:unit
 ```
 ### Running firearms service locally
 1. Start file-vault
-   a. Update .env file. Copy the following key values from keybase
+   a. Update .env file. Copy the following key values from test environment configuration file
       * FILE_VAULT_URL=http://localhost:3000
       * PORT='3000'
       * AWS_ACCESS_KEY_ID=
@@ -61,7 +61,7 @@ $ yarn test:unit
       * yarn dev.
 
 3. Start Hof-rds-api
-   a. Update .env file. Copy the following key values from keybase
+   a. Update .env file. Copy the following key values from test environment configuration file
       * PORT=3001
       * SERVICE_NAME=acq
       * NODE_ENV=local
@@ -78,7 +78,7 @@ $ yarn test:unit
       * yarn start:dev  
 
 4.  Start firearms
-   a. Update .env file. Copy the following key values from keybase  
+   a. Update .env file. Copy the following key values from test environment configuration file 
       * NOTIFY_KEY=
       * CASEWORKER_EMAIL=
       * TEMPLATE_MUSEUM=
