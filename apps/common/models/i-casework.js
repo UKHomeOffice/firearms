@@ -42,6 +42,9 @@ module.exports = class CaseworkModel extends Model {
   save() {
     return Promise.resolve(this.prepare()).then(formData => {
       const options = this.requestConfig({});
+      console.debug("21398dsjajksabdjkasbdkj")
+      console.debug(options)
+      console.debug("21398dsjajksabdjkasbdkj")
       options.form = formData;
       options.method = 'POST';
 
