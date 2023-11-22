@@ -34,9 +34,15 @@ module.exports = conf => {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
+        console.debug("sihfhsdfh><><><><><><><io")
+        console.debug(model)
+        console.debug("sihfhsdfh><><><><><><><io")
         req.log('info', `Sending icasework submission to ${model.url()}`);
         return model.save()
           .then(data => {
+            console.debug("sihfhsdfhsdkhfsdifhsdio")
+            console.debug(data)
+            console.debug("sihfhsdfhsdkhfsdifhsdio")
             req.log('info', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
             client.increment('casework.submission.success');
