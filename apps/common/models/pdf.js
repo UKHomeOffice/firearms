@@ -8,13 +8,13 @@ const _ = require('lodash');
 
 module.exports = class PDFModel extends Model {
   requestConfig(options) {
-    console.log("jdkshfkjs")
-    console.log(options)
+    console.debug("jdkshfkjs")
+    console.debug(options)
     const settings = super.requestConfig(options);
     settings.responseType = 'arraybuffer';
     settings.encoding = null;
     settings.rejectUnauthorized = false;
-    console.log("settings><><><", settings)
+    console.debug("settings><><><", settings)
     return settings;
   }
 
