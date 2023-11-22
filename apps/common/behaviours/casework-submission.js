@@ -34,15 +34,22 @@ module.exports = conf => {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
+        console.debug("><><DS?SD<>DS><")
+        console.debug(model)
+        console.debug("><><DS?SD<>DS><")
         req.log('info', `Sending icasework submission to ${model.url()}`);
         return model.save()
           .then(data => {
+            console.debug("><><DS?SD<>DS><")
+            console.debug(data)
+            console.debug("><><DS?SD<>DS><")
             req.log('info', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
             client.increment('casework.submission.success');
             next();
           })
           .catch(e => {
+            console.debug("><><DS?SD<>DS><.........")
             req.log('error', `Casework submission failed: ${e.status}`);
             req.log('error', e.headers && e.headers['x-application-error-info']);
             client.increment('casework.submission.failed');
