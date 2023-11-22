@@ -35,7 +35,7 @@ module.exports = conf => {
         }
         const model = new Model(req.sessionModel.toJSON());
         console.debug("sihfhsdfh><><><><><><><io")
-        console.debug(model)
+        console.dir(model)
         console.debug("sihfhsdfh><><><><><><><io")
         req.log('info', `Sending icasework submission to ${model.url()}`);
         return model.save()
