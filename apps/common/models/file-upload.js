@@ -18,7 +18,7 @@ module.exports = class UploadModel extends AuthToken {
         filename: this.get('name'),
         contentType: this.get('mimetype')
       });
-      reqConf.data = formData;
+      reqConf.data = Buffer.from(formData, 'base64');
       reqConf.method = 'POST';
       reqConf.headers = {
         ...formData.getHeaders()
