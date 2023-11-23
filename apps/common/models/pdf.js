@@ -11,6 +11,9 @@ module.exports = class PDFModel extends Model {
     const settings = super.requestConfig(options);
     settings.encoding = null;
     settings.rejectUnauthorized = false;
+    console.debug(">><<<>>><<")
+    console.debug(settings)
+    console.debug(">><<<>>><<")
     return settings;
   }
 
