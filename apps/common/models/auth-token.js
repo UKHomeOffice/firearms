@@ -30,6 +30,9 @@ module.exports = class AuthToken extends Model {
         if (err) {
           return reject(err);
         }
+        console.debug("resssyyyyy")
+        console.debug(response)
+        console.debug("resssyyyyy")
         return resolve({ bearer: JSON.parse(response.body).access_token });
       });
     });
