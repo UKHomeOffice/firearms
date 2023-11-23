@@ -10,6 +10,9 @@ const Compose = func => superclass => class extends superclass {
     if (typeof func === 'function') {
       const model = new AuthToken();
       return model.auth().then(token => {
+        console.debug("tokennnnnnnnn")
+        console.debug(token)
+        console.debug("tokennnnnnnnn")
         return Object.assign(super.prepare(token), func(this.toJSON(), token));
       });
     }
