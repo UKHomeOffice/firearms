@@ -22,9 +22,9 @@ module.exports = class UploadModel extends AuthToken {
           }
         }
       };
-      console.debug("formdataa")
-      console.debug(reqConf.formData)
-      console.debug("formdataa")
+      console.debug("reqconfformdataa")
+      console.debug(reqConf)
+      console.debug("reqconfformdataaformdataa")
       reqConf.method = 'POST';
       // uses 'request' function available in HOF model. auth() is used by this process and
       // thus needs to be declared in the parent class which extends off the HOF model too.
