@@ -32,6 +32,7 @@ module.exports = class CaseworkModel extends Model {
       params['Document1.MimeType'] = 'application/pdf';
       params['Document1.URLLoadContent'] = true;
     }
+    console.debug("params", params)
     return params;
   }
 
