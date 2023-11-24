@@ -16,6 +16,7 @@ module.exports = class CaseworkModel extends Model {
   }
 
   prepare(token) {
+    console.log("prepareeeeeeee")
     const params = {
       Key: config.icasework.key,
       Signature: this.sign(),
@@ -35,6 +36,7 @@ module.exports = class CaseworkModel extends Model {
   }
 
   sign() {
+    console.log("signnnnnnnnnnnn")
     const date = (new Date()).toISOString().split('T')[0];
     return crypto.createHash('md5').update(date + config.icasework.secret).digest('hex');
   }
@@ -42,9 +44,6 @@ module.exports = class CaseworkModel extends Model {
   save() {
     return Promise.resolve(this.prepare()).then(formData => {
       const options = this.requestConfig({});
-      console.debug("21398dsjajksabdjkasbdkj")
-      console.debug(options)
-      console.debug("21398dsjajksabdjkasbdkj")
       options.form = formData;
       options.method = 'POST';
 
