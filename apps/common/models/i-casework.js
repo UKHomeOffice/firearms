@@ -44,6 +44,9 @@ module.exports = class CaseworkModel extends Model {
 
   save() {
     return Promise.resolve(this.prepare()).then(formData => {
+      console.log("_++_+_+_+__+_+_")
+      console.log(formData)
+      console.log("_++_+_+_+__+_+_")
       const options = this.requestConfig({});
       options.form = formData;
       options.method = 'POST';
@@ -55,6 +58,7 @@ module.exports = class CaseworkModel extends Model {
           }
         });
       }
+      console.log("_+_+_+_+_+_+_+_+_+_+__+7383")
       return this.request(options);
     });
   }
