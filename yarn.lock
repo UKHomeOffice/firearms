@@ -3328,10 +3328,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@21.0.9-axios-beta:
-  version "21.0.9-axios-beta"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-21.0.9-axios-beta.tgz#bcd65abba29217c76d47ba48ec5a2854ae69db48"
-  integrity sha512-ANTWXCk/Fn6S4gF5WDX2w5GWosLEVTlNYvEOIyrDPSyN6de2KlN7B+4b70K0sd/wnCvDmUPdeNt4HKDB1tuQ7Q==
+hof@21.0.10-axios-beta:
+  version "21.0.10-axios-beta"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-21.0.10-axios-beta.tgz#2240bad8995e36c1d8fa8d8fb82b1c053939840a"
+  integrity sha512-izwhsMwdybRpQ0usuyzj0bezeWK3YqO86Gj9k4bTaPAl9Rb+qiG0u282SwlbBu4YfCUa7DpBNknvbJ9KIdmVDg==
   dependencies:
     aliasify "^2.1.0"
     axios "^1.5.1"
