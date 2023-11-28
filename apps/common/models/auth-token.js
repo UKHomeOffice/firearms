@@ -26,7 +26,7 @@ module.exports = class AuthToken extends Model {
       },
       method: 'POST'
     };
-
+    console.log("$$$$$$$$$$$$$$£££££££££££££££")
     return axios(tokenReq).then(response => {
       console.log("()(()()()()()()()()")
       console.log(response.data.access_token)
