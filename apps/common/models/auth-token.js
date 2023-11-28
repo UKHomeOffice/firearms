@@ -28,6 +28,9 @@ module.exports = class AuthToken extends Model {
     };
 
     return axios(tokenReq).then(response => {
+      console.log("()(()()()()()()()()")
+      console.log(response.data.access_token)
+      console.log("()(()()()()()()()()")
       return { bearer: response.data.access_token };
     });
   }
