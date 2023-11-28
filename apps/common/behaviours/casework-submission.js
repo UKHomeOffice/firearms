@@ -51,6 +51,7 @@ module.exports = conf => {
           .catch(e => {
             req.log('error', `Casework submission failed: ${e.status}`);
             req.log('error', e.headers['x-application-error-info']);
+            
             client.increment('casework.submission.failed');
             next(new Error(e.body));
           });
