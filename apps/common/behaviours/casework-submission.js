@@ -53,7 +53,7 @@ module.exports = conf => {
             req.log('error', e.response.headers['x-application-error-info']);
             
             client.increment('casework.submission.failed');
-            next(new Error(e.body));
+            next(new Error(e.response.data));
           });
       });
     }
