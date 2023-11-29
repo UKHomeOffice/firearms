@@ -34,15 +34,11 @@ module.exports = conf => {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
-        console.debug("sihfhsdfh><><><><><><><io")
         console.dir(model)
-        console.debug("sihfhsdfh><><><><><><><io")
         req.log('info', `Sending icasework submission to ${model.url()}`);
         return model.save()
           .then(data => {
-            console.debug("sihfhsdfhsdkhfsdifhsdio")
             console.debug(data)
-            console.debug("sihfhsdfhsdkhfsdifhsdio")
             req.log('info', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
             client.increment('casework.submission.success');
@@ -51,7 +47,6 @@ module.exports = conf => {
           .catch(e => {
             req.log('error', `Casework submission failed: ${e.status}`);
             req.log('error', e.response.headers['x-application-error-info']);
-            
             client.increment('casework.submission.failed');
             next(new Error(e.response.data));
           });

@@ -9,7 +9,8 @@ module.exports = class AuthToken extends Model {
   auth() {
     if (!config.keycloak.token) {
       // eslint-disable-next-line no-console
-      console.error('keycloak token url is not defined');
+      console.debug('keycloak token url is not defined');
+      console.log("-----------------------------------------------")
       return Promise.resolve({
         bearer: 'abc123'
       });
@@ -26,11 +27,10 @@ module.exports = class AuthToken extends Model {
       },
       method: 'POST'
     };
-    console.log("$$$$$$$$$$$$$$£££££££££££££££")
     return axios(tokenReq).then(response => {
-      console.log("()(()()()()()()()()")
+      console.log("-----------------------------------------------")
       console.log(response.data.access_token)
-      console.log("()(()()()()()()()()")
+      console.log("-----------------------------------------------")
       return { bearer: response.data.access_token };
     });
   }
