@@ -32,7 +32,7 @@ module.exports = class AuthToken extends Model {
     console.log("$$$$$$$$$$$$$$£££££££££££££££")
     return axios(tokenReq).then(response => {
       console.log("()(()()()()()()()()")
-      console.log(response.data.access_token)
+      console.log(response)
       console.log("()(()()()()()()()()")
       return { bearer: response.data.access_token };
     });
