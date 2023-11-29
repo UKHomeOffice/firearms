@@ -29,13 +29,11 @@ module.exports = class AuthToken extends Model {
     console.log("$$$$$$$$$$$$$$£££££££££££££££")
     console.log(axios(tokenReq))
     console.log("$$$$$$$$$$$$$$£££££££££££££££")
-    return new Promise((resolve, reject) => {
-      this._request(tokenReq, (err, response) => {
-        if (err) {
-          return reject(err);
-        }
-        return resolve({ bearer: response.data.access_token });
-      })
+    this._request(tokenReq, (err, response) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve({ bearer: response.data.access_token });
     })
   }
 };
