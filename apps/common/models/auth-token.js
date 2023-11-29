@@ -29,11 +29,11 @@ module.exports = class AuthToken extends Model {
     console.log("$$$$$$$$$$$$$$£££££££££££££££")
     console.log(axios(tokenReq))
     console.log("$$$$$$$$$$$$$$£££££££££££££££")
-    this._request(tokenReq, (err, response) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve({ bearer: response.data.access_token });
-    })
+    return axios(tokenReq).then(response => {
+      console.log("()(()()()()()()()()")
+      console.log(response.data.access_token)
+      console.log("()(()()()()()()()()")
+      return { bearer: response.data.access_token };
+    });
   }
 };
