@@ -8,20 +8,13 @@ const client = new StatsD();
 const Compose = func => superclass => class extends superclass {
   prepare() {
     console.log("^^^^^^^^^^^^^^^^^^^^^^^")
-    console.log("^^^^^^^^^^^^^^^^^^^^^^^")
-    console.log(func())
-    console.log("^^^^^^^^^^^^^^^^^^^^^^^")
-    console.log("^^^^^^^^^^^^^^^^^^^^^^^")
-    if (typeof func === 'function') {
-      const model = new AuthToken();
-      return model.auth().then(token => {
-        console.log("^^^^^^^^^^^^^^^^^^^^^^^")
-        console.log(token)
-        console.log("^^^^^^^^^^^^^^^^^^^^^^^")
-        return Object.assign(super.prepare(token), func(this.toJSON(), token));
-      });
-    }
-    return super.prepare();
+    const model = new AuthToken();
+    return model.auth().then(token => {
+      console.log("^^^^^^^^^^^^^^^^^^^^^^^")
+      console.log(token)
+      console.log("^^^^^^^^^^^^^^^^^^^^^^^")
+      return Object.assign(super.prepare(token), func(this.toJSON(), token));
+    });
   }
 };
 
