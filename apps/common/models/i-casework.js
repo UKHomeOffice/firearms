@@ -16,7 +16,9 @@ module.exports = class CaseworkModel extends Model {
   }
 
   prepare(token) {
-    console.log("prepareeeeeeee")
+    console.log("************************************************")
+    console.log("Calling Icasework prepare method", token)
+    console.log("************************************************")
     const params = {
       Key: config.icasework.key,
       Signature: this.sign(),

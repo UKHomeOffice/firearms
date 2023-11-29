@@ -7,6 +7,9 @@ const client = new StatsD();
 
 const Compose = func => superclass => class extends superclass {
   prepare() {
+    console.log("************************************************")
+    console.log("Calling custom prepare method")
+    console.log("************************************************")
     if (typeof func === 'function') {
       const model = new AuthToken();
       return model.auth().then(token => {
