@@ -9,6 +9,9 @@ const Compose = func => superclass => class extends superclass {
   prepare() {
     if (typeof func === 'function') {
       const model = new AuthToken();
+      console.log('**************************************')
+      console.log(model)
+      console.log('**************************************')
       return model.auth().then(token => {
         console.debug("tokennnnn")
         console.debug(token)
