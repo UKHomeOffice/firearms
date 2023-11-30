@@ -27,8 +27,9 @@
     "postinstall": "hof-build"
   },
   "dependencies": {
-    "busboy-body-parser": "^0.3.0",
     "axios": "^1.3.4",
+    "busboy-body-parser": "^0.3.0",
+    "crypto-js": "^4.2.0",
     "debug": "^2.6.8",
     "express": "4.17.3",
     "hof": "21.0.17-axios-beta",
