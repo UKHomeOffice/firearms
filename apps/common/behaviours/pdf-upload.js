@@ -20,9 +20,6 @@ module.exports = superclass => class PDFUpload extends superclass {
       })
       .then(result => {
         req.log('info', 'Saved PDF document to S3');
-        console.debug("helloooo")
-        console.debug(result)
-        console.debug("hellooooooo")
         req.form.values['pdf-upload'] = result.url;
         super.process(req, res, next);
       }, next)

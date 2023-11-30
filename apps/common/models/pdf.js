@@ -8,11 +8,8 @@ const _ = require('lodash');
 
 module.exports = class PDFModel extends Model {
   requestConfig(options) {
-    console.debug("sdhiodshfiodshf")
-    console.debug(options)
     const settings = super.requestConfig(options);
     settings.encoding = null;
-    console.debug("settings: <><><><><<><>><><><", settings)
     return settings;
   }
 

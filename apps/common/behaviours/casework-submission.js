@@ -9,9 +9,9 @@ const Compose = func => superclass => class extends superclass {
   prepare() {
     if (typeof func === 'function') {
       const model = new AuthToken();
-      console.log('**************************************')
-      console.log(model)
-      console.log('**************************************')
+      console.debug('**************************************')
+      console.debug(model)
+      console.debug('**************************************')
       return model.auth().then(token => {
         console.debug("tokennnnn")
         console.debug(token)
@@ -40,15 +40,9 @@ module.exports = conf => {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
-        console.debug("><><DS?SD<>DS><")
-        console.debug(model)
-        console.debug("><><DS?SD<>DS><")
         req.log('info', `Sending icasework submission to ${model.url()}`);
         return model.save()
           .then(data => {
-            console.debug("><><DS?SD<>DS><")
-            console.debug(data)
-            console.debug("><><DS?SD<>DS><")
             req.log('info', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
             client.increment('casework.submission.success');
