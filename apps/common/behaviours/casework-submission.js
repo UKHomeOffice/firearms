@@ -7,10 +7,19 @@ const client = new StatsD();
 
 const Compose = func => superclass => class extends superclass {
   prepare() {
+    console.log("************************************************")
+    console.log("Calling custom prepare method")
+    console.log("************************************************")
     if (typeof func === 'function') {
       const model = new AuthToken();
-      return model.auth().then(token => {
-        return Object.assign(super.prepare(token), func(this.toJSON(), token));
+      return model.auth().then(keycloakToken => {
+        const params = super.prepare(keycloakToken);
+        const documentResult = func(this.toJSON(), keycloakToken)
+        const result = Object.assign(params, documentResult);
+        console.log("************************************************")
+        console.log("Custom Prepare", result)
+        console.log("************************************************")
+        return result
       });
     }
     return super.prepare();
@@ -34,9 +43,11 @@ module.exports = conf => {
           return next(err);
         }
         const model = new Model(req.sessionModel.toJSON());
+        // console.dir(model)
         req.log('info', `Sending icasework submission to ${model.url()}`);
         return model.save()
           .then(data => {
+            console.debug(data)
             req.log('info', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
             client.increment('casework.submission.success');
@@ -44,9 +55,15 @@ module.exports = conf => {
           })
           .catch(e => {
             req.log('error', `Casework submission failed: ${e.status}`);
-            req.log('error', e.headers && e.headers['x-application-error-info']);
-            client.increment('casework.submission.failed');
-            next(new Error(e.body));
+            if (e?.response) {
+              req.log('error', e.response.headers['x-application-error-info']);
+              client.increment('casework.submission.failed');
+              next(new Error(e.response.data));
+            } else {
+              req.log('error', e.message);
+              next(new Error(e.message))
+            }
+
           });
       });
     }

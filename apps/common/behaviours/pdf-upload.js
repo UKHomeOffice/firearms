@@ -16,10 +16,13 @@ module.exports = superclass => class PDFUpload extends superclass {
           name: 'application_form.pdf',
           data: pdfBuffer,
           mimetype: 'application/pdf'
-        }).catch(err => next(new Error(err.body)));
+        }).catch(err => {
+          next(new Error(err));
+        });
       })
       .then(result => {
         req.log('info', 'Saved PDF document to S3');
+        console.debug(result)
         req.form.values['pdf-upload'] = result.url;
         super.process(req, res, next);
       }, next)

@@ -10,10 +10,12 @@ services:
       - IGNORE_TLS=true
       - EMAIL_SECURE=false
       - EMAIL_PORT=25
+      - PORT=8080
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - PDF_CONVERTER_URL=http://html-pdf-converter:8001/convert
-
+      - FILE_VAULT_URL=http://localhost:3000'
+      - PDF_CONVERTER_URL=http://html-pdf-converter:8082/convert
+      - NOTIFY_KEY=firearms_test-89548f6c-39cd-4acb-851c-1f4ffa2e479b-74418cbd-80d4-49ff-98b3-7b43406ae3bd
     links:
       - redis
       - maildev
@@ -26,7 +28,7 @@ services:
     image: redis
 
   nginx-proxy:
-    image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3.0.0.0
+    image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:latest
     environment:
       - PROXY_SERVICE_HOST=app
       - PROXY_SERVICE_PORT=8080
@@ -35,27 +37,34 @@ services:
       - ADD_NGINX_SERVER_CFG=add_header Cache-Control private;add_header X-Frame-Options "SAMEORIGIN" always;add_header X-Content-Type-Options "nosniff" always;add_header X-XSS-Protection "1; mode=block" always;location /public {add_header Cache-Control max-age=86400;add_header X-Frame-Options "SAMEORIGIN" always;add_header X-Content-Type-Options "nosniff" always;add_header X-XSS-Protection "1; mode=block" always;alias /public;}
       - ERROR_REDIRECT_CODES=599
     ports:
-      - "443:10443"
-      - "80:10080"
+      - "443:443"
+      - "80:80"
     links:
       - app
     volumes_from:
       - app
 
   maildev:
-    image: djfarrelly/maildev
+    image: maildev/maildev
     ports:
-      - "8000:80"
-      - "25"
+      - "8000:1080"
+      - "25:1025"
 
   html-pdf-converter:
-    image: quay.io/ukhomeofficedigital/html-pdf-converter:01442cbca45c8c1965a64f680d8fab95998e5238
+    image: quay.io/ukhomeofficedigital/html-pdf-converter:v2.1.0
     environment:
+      - PORT=8001
       - CHROME_HOST=chrome
     ports:
       - "8001:8001"
     links:
-      - chrome
+      - chrome-browser:chrome
 
-  chrome:
-    image: yukinying/chrome-headless
+  chrome-browser:
+    build: ./browsers/chrome
+    shm_size: '1gb'
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - '9222:9222'
+    container_name: firearms-chrome-browser

@@ -3,6 +3,7 @@
 
 const Model = require('../../../../apps/common/models/file-upload');
 const config = require('../../../../config');
+const FormData = require('form-data');
 
 describe('File Upload Model', () => {
   let sandbox;
@@ -14,6 +15,7 @@ describe('File Upload Model', () => {
       api: 'response',
       url: '/file/12341212132123?foo=bar'
     });
+
     sandbox.stub(Model.prototype, 'auth').returns(new Promise(resolve => {
       resolve({bearer: 'myaccesstoken'});
     }));
@@ -29,7 +31,11 @@ describe('File Upload Model', () => {
     });
 
     it('makes a call to file upload api', () => {
-      const model = new Model();
+      const model = new Model({
+        data: 'foo',
+        name: 'myfile.png',
+        mimetype: 'image/png'
+      });
       const response = model.save();
       return response.then(() => {
         expect(model.request).to.have.been.calledOnce;
@@ -43,7 +49,11 @@ describe('File Upload Model', () => {
     });
 
     it('resolves with response from api endpoint', () => {
-      const model = new Model();
+      const model = new Model({
+        data: 'foo',
+        name: 'myfile.png',
+        mimetype: 'image/png'
+      });
       const response = model.save();
       return expect(response).to.eventually.deep.equal({
         api: 'response',
@@ -52,7 +62,11 @@ describe('File Upload Model', () => {
     });
 
     it('rejects if api call fails', () => {
-      const model = new Model();
+      const model = new Model({
+        data: 'foo',
+        name: 'myfile.png',
+        mimetype: 'image/png'
+      });
       const err = new Error('test error');
       model.request.yieldsAsync(err);
       const response = model.save();
@@ -68,15 +82,7 @@ describe('File Upload Model', () => {
       const response = uploadedFile.save();
       return response.then(() => {
         expect(uploadedFile.request).to.have.been.calledWith(sinon.match({
-          formData: {
-            document: {
-              value: 'foo',
-              options: {
-                filename: 'myfile.png',
-                contentType: 'image/png'
-              }
-            }
-          }
+          data: sinon.match.instanceOf(FormData)
         }));
       });
     });

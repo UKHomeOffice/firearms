@@ -8,8 +8,13 @@ const _ = require('lodash');
 
 module.exports = class PDFModel extends Model {
   requestConfig(options) {
+    console.debug(options)
     const settings = super.requestConfig(options);
+    settings.responseType = 'arraybuffer';
     settings.encoding = null;
+    settings.rejectUnauthorized = false;
+    console.debug("pdf settings:", settings)
+    console.log("-----------------------------------------------")
     return settings;
   }
 
@@ -17,23 +22,24 @@ module.exports = class PDFModel extends Model {
     return config.pdf.url;
   }
 
+
   handleResponse(response, callback) {
-    if (_.isPlainObject(response.body)) {
-      debug('Response: %O', response.body);
+    if (_.isPlainObject(response.data)) {
+      debug('Response: %O', response.data);
     } else {
-      debug('Response: %s', response.body);
+      debug('Response: %s', response.data);
     }
-    if (isPdf(Buffer.from(response.body))) {
-      return this.parseResponse(response.statusCode, response.body, callback);
+    if (isPdf(Buffer.from(response.data))) {
+      return this.parseResponse(response.status, response.data, callback);
     }
     const err = new Error();
-    if (parseInt(response.statusCode, 10) === 400) {
-      err.title = response.body.code;
-      err.message = response.body.message;
+    if (parseInt(response.status, 10) === 400) {
+      err.title = response.data.code;
+      err.message = response.data.message;
     } else {
-      err.body = response.body;
+      err.body = response.data;
     }
-    err.status = response.statusCode;
-    return callback(err, null, response.statusCode);
+    err.status = response.status;
+    return callback(err, null, response.status);
   }
 };
