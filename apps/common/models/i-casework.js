@@ -26,7 +26,6 @@ module.exports = class CaseworkModel extends Model {
     const params = {
       Type: 'Firearms',
       Format: 'json',
-      db: config.icasework.db,
       RequestMethod: 'Online form'
     };
 
@@ -42,9 +41,9 @@ module.exports = class CaseworkModel extends Model {
 
   auth() {
     return new Promise((resolve, reject) => {
-      // if (config.icasework.accessToken) {
-      //   resolve({bearer: config.icasework.accessToken})
-      // }
+      if (config.icasework.accessToken) {
+        resolve({bearer: config.icasework.accessToken})
+      }
       /**
        * Generates an access token for iCasework
        * */
@@ -86,12 +85,11 @@ module.exports = class CaseworkModel extends Model {
     try {
       const formData = await Promise.resolve(this.prepare())
       const options = this.requestConfig({});
-      console.log("OPTIONS")
-      console.log(options)
-      console.log("-----------------------------------------------")
-      console.log("FORM DATA")
-      console.log(formData)
-      options.form = formData;
+      console.log("OPTIONS");
+      console.log(options);
+      console.log("-----------------------------------------------");
+      console.log("FORM DATA");
+      console.log(formData);
       options.method = 'POST';
 
       if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
@@ -101,10 +99,10 @@ module.exports = class CaseworkModel extends Model {
           }
         });
       }
-      return await this.request(options);
+      return await this.request(options, formData);
     } catch (err) {
-      console.error(err.response)
-      throw err
+      console.error(err.response);
+      throw err;
     }
   }
 
