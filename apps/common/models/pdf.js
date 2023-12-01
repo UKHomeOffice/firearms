@@ -33,7 +33,7 @@ module.exports = class PDFModel extends Model {
     }
     const tokenReq = {
       url: config.keycloak.token,
-      //headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
         username: config.keycloak.username,
         password: config.keycloak.password,
