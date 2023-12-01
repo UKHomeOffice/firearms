@@ -29,11 +29,13 @@ module.exports = class AuthToken extends Model {
     console.log("$$$$$$$$$$$$$$£££££££££££££££")
     console.log(tokenReq)
     console.log("$$$$$$$$$$$$$$£££££££££££££££")
-    return this.request(tokenReq, (err, data) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve(data);
-    });
+    return new Promise((resolve, reject) => {
+      return this.request(tokenReq, (err, data) => {
+        if (err) {
+          return reject(err);
+        }
+        return resolve(data);
+      });
+    })
   }
 };
