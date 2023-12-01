@@ -51,7 +51,6 @@ module.exports = superclass => class PDFUpload extends superclass {
     const model = new UploadModel();
     model.set(file);
     console.log("{}{}{}{}{}{}{}{}{}{}{{}{}{%%%%%%%}{}{}{}")
-    console.log(model)
     console.log("{}{}{}{}{}{}{}{}{}{}{{}{}{%%%%%%%}{}{}{}")
     return model.save();
   }
