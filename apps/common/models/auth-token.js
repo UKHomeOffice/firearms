@@ -27,14 +27,13 @@ module.exports = class AuthToken extends Model {
       method: 'POST'
     };
     console.log("$$$$$$$$$$$$$$£££££££££££££££")
-    console.log(axios(tokenReq))
     console.log(tokenReq)
     console.log("$$$$$$$$$$$$$$£££££££££££££££")
-    return axios(tokenReq).then(response => {
-      console.log("()(()()()()()()()()")
-      console.log(response)
-      console.log("()(()()()()()()()()")
-      return { bearer: response.data.access_token };
+    return this.request(tokenReq, (err, data) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(data);
     });
   }
 };
