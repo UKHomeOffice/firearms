@@ -46,14 +46,13 @@ module.exports = class PDFModel extends Model {
     console.log("%%%%%%%%%%%%%%")
     console.log(tokenReq)
     console.log("%%%%%%%%%%%%%%%%")
-    return new Promise((resolve, reject) => {
-      return this._request(tokenReq, (err, data) => {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(data);
-      });
-    })
+
+    this.request(tokenReq, (err, data) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(data);
+    });
   }
 
   handleResponse(response, callback) {
