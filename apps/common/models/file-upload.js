@@ -16,7 +16,8 @@ module.exports = class UploadModel extends AuthToken {
       const formData = new FormData();
       formData.append( 'document', this.get('data'), {
         filename: this.get('name'),
-        contentType: this.get('mimetype')
+        contentType: 'application/pdf'
+        //contentType: this.get('mimetype')
       });
       reqConf.data = formData;
       reqConf.method = 'POST';
