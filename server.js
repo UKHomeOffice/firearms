@@ -7,7 +7,6 @@ const config = require('./config.js');
 const mockAPIs = require('./mock-apis.js');
 const BaseController = require('./apps/common/controllers/base');
 
-let cake = '';
 let appName = '';
 
 let settings = require('./hof.settings');

@@ -34,5 +34,3 @@ $ npm run test:acceptance
 ```bash
 $ yarn test:unit
 ```
-
-jfjfdlkjlfksjlkdfjgl;fdsjlgjdsflgjd;fj;dilfjg;dfsjg
