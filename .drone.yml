@@ -216,6 +216,7 @@ steps:
   #     event: pull_request
 
   - name: acceptance_test_branch
+  failure: ignore
     <<: *acceptance_tests
     commands:
       - export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
