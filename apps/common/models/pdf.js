@@ -10,6 +10,7 @@ module.exports = class PDFModel extends Model {
   requestConfig(options) {
     const settings = super.requestConfig(options);
     settings.encoding = null;
+    settings.responseType = 'arraybuffer';
     settings.rejectUnauthorized = false;
     return settings;
   }
