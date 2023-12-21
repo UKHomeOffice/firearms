@@ -28,19 +28,7 @@ module.exports = class AuthToken extends Model {
     };
 
     return axios(tokenReq).then(response => {
-      return { tokenReq: {
-        url: config.keycloak.token,
-        bearer: response.data.access_token,
-        data: {
-          client_id: config.keycloak.clientId,
-          client_secret: config.keycloak.secret,
-          grant_type: 'password',
-          password: config.keycloak.password,
-          username: config.keycloak.username,
-        }, 
-        method: 'POST'
-        }
-      };
+      return { bearer: response.data.access_token };
     });
   }
 };
