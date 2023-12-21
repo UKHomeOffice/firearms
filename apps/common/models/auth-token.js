@@ -30,7 +30,6 @@ module.exports = class AuthToken extends Model {
     return axios(tokenReq).then(response => {
       return { tokenReq: {
         url: config.keycloak.token,
-        headers: { 'content-type': 'application/x-www-form-urlencoded' },
         bearer: response.data.access_token,
         data: {
           client_id: config.keycloak.clientId,
