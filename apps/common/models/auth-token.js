@@ -3,7 +3,6 @@
 
 const Model = require('hof').model;
 const config = require('../../../config');
-const axios = require('axios');
 
 module.exports = class AuthToken extends Model {
   auth() {
@@ -27,7 +26,7 @@ module.exports = class AuthToken extends Model {
       method: 'POST'
     };
 
-    return axios(tokenReq).then(response => {
+    return this._request(tokenReq).then(response => {
       return { bearer: response.data.access_token };
     });
   }
