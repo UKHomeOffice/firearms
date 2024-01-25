@@ -27,7 +27,7 @@ module.exports = conf => {
   const Model = Compose(config.prepare)(config.Model);
 
   return superclass => class extends superclass {
-    saveValues(req, res, next) {
+    async saveValues(req, res, next) {
       req.log('info', 'Submitting case to icasework');
       return super.saveValues(req, res, err => {
         if (err) {
@@ -36,9 +36,9 @@ module.exports = conf => {
         const model = new Model(req.sessionModel.toJSON());
         req.log('info', `Sending icasework submission to ${model.url()}`);
         return model.save()
-          .then(data => {
-            req.log('info', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
-            req.sessionModel.set('caseid', data.createcaseresponse.caseid);
+          .then(response => {
+            req.log('info', `Successfully submitted case to icasework (${response.data.createcaseresponse.caseid})`);
+            req.sessionModel.set('caseid', response.data.createcaseresponse.caseid);
             client.increment('casework.submission.success');
             next();
           })

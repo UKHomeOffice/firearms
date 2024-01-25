@@ -7,7 +7,7 @@ const config = require('../../../config');
 
 module.exports = class DocumentModel extends Model {
   url() {
-    return config.icasework.url + config.icasework.uploadpath;
+    return `${config.icasework.url}${config.icasework.uploadpath}?db=flcms`;
   }
 
   sign() {
@@ -17,7 +17,9 @@ module.exports = class DocumentModel extends Model {
 
   parse(data) {
     return {
-      createcaseresponse: data.uploaddocumentsresponse
+      data: {
+        createcaseresponse: data.data.uploaddocumentsresponse
+      }
     };
   }
 };
