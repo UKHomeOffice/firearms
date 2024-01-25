@@ -27,6 +27,7 @@
     }
   },
   "confirmation": {
+    "title": "Upload complete",
     "alert": "Upload complete",
     "email": "We have sent an email to confirm receipt of your documents."
   }
