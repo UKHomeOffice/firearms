@@ -1,18 +1,17 @@
 'use strict';
 
-const Model = require('hof').model;
+const { model: Model } = require('hof');
 const crypto = require('crypto');
-
 const config = require('../../../config');
 
 module.exports = class CaseworkModel extends Model {
-  constructor(attributes, options) {
-    super(attributes, options);
-    this.options.timeout = this.options.timeout || config.icasework.timeout;
+  url() {
+    return `${config.icasework.url}${config.icasework.createpath}?db=${encodeURIComponent(config.icasework.dbName)}`;
   }
 
-  url() {
-    return config.icasework.url + config.icasework.createpath;
+  sign() {
+    const date = (new Date()).toISOString().split('T')[0];
+    return crypto.createHash('md5').update(date + config.icasework.secret).digest('hex');
   }
 
   prepare(token) {
@@ -21,7 +20,7 @@ module.exports = class CaseworkModel extends Model {
       Signature: this.sign(),
       Type: 'Firearms',
       Format: 'json',
-      db: 'flcms',
+      db: config.icasework.dbName,
       RequestMethod: 'Online form'
     };
 
@@ -34,25 +33,27 @@ module.exports = class CaseworkModel extends Model {
     return params;
   }
 
-  sign() {
-    const date = (new Date()).toISOString().split('T')[0];
-    return crypto.createHash('md5').update(date + config.icasework.secret).digest('hex');
-  }
-
-  save() {
-    return Promise.resolve(this.prepare()).then(formData => {
-      const options = this.requestConfig({});
-      options.form = formData;
-      options.method = 'POST';
+  async save() {
+    return Promise.resolve(this.prepare()).then(async data => {
+      const params = {
+        url: this.url(),
+        data,
+        timeout: config.icasework.timeout,
+        method: 'POST'
+      };
 
       if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
         return Promise.resolve({
-          createcaseresponse: {
-            caseid: 'mock caseid'
+          data: {
+            createcaseresponse: {
+              caseid: 'mock caseid'
+            }
           }
         });
       }
-      return this.request(options);
+
+      const response = await this._request(params);
+      return this.parse(response);
     });
   }
 };

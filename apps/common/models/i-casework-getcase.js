@@ -2,8 +2,8 @@
 
 const Model = require('./i-casework');
 const crypto = require('crypto');
-
 const config = require('../../../config');
+const logger = require('hof/lib/logger')({ env: config.env });
 
 module.exports = class DocumentModel extends Model {
   url() {
@@ -29,9 +29,17 @@ module.exports = class DocumentModel extends Model {
   }
 
   fetch() {
-    const options = this.requestConfig({});
-    options.qs = this.prepare();
-    options.method = 'GET';
-    return this.request(options);
+    const params = {
+      url: this.url(),
+      method: 'GET',
+      params: this.prepare()
+    };
+    return this._request(params).then(response => {
+      return this.parse(response.data);
+    })
+      .catch(err => {
+        logger.error(`Error fetching data from ${params.url}: ${err.message}`);
+        throw new Error(`Failed to fetch data: ${err.message || 'Unknown error'}`);
+      });
   }
 };

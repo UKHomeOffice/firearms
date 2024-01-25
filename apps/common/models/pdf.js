@@ -1,6 +1,6 @@
 'use strict';
 
-const Model = require('hof').model;
+const {model: Model} = require('hof');
 const isPdf = require('is-pdf');
 const config = require('../../../config');
 const debug = require('debug')('pdf-model');
@@ -11,6 +11,7 @@ module.exports = class PDFModel extends Model {
     const settings = super.requestConfig(options);
     settings.encoding = null;
     settings.rejectUnauthorized = false;
+    settings.responseType = 'arraybuffer';
     return settings;
   }
 
