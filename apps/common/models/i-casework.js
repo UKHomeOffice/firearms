@@ -40,7 +40,9 @@ module.exports = class CaseworkModel extends Model {
   }
 
   save() {
+    console.log('*************Save not promised')
     return Promise.resolve(this.prepare()).then(formData => {
+      console.log('*************Form Data:', formData)
       const options = this.requestConfig({});
       options.form = formData;
       options.method = 'POST';
@@ -52,6 +54,7 @@ module.exports = class CaseworkModel extends Model {
           }
         });
       }
+      console.log('*************We are not in local')
       return this.request(options);
     });
   }
