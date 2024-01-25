@@ -37,12 +37,14 @@ module.exports = conf => {
         req.log('info', `Sending icasework submission to ${model.url()}`);
         return model.save()
           .then(data => {
+            console.log('CASEWORK DATA: ', data)
             req.log('info', `Successfully submitted case to icasework (${data.createcaseresponse.caseid})`);
             req.sessionModel.set('caseid', data.createcaseresponse.caseid);
             client.increment('casework.submission.success');
             next();
           })
           .catch(e => {
+            console.log('ERROR ', e)
             req.log('error', `Casework submission failed: ${e.status}`);
             req.log('error', e.headers && e.headers['x-application-error-info']);
             client.increment('casework.submission.failed');
