@@ -7,7 +7,7 @@ const config = require('../../../config');
 
 module.exports = class DocumentModel extends Model {
   url() {
-    return config.icasework.url + config.icasework.uploadpath;
+    return `${config.icasework.url}${config.icasework.uploadpath}?db=${encodeURIComponent(config.icasework.dbName)}`;
   }
 
   sign() {
