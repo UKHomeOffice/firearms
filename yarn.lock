@@ -3488,10 +3488,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@21.0.0-axios-beta:
-  version "21.0.0-axios-beta"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-21.0.0-axios-beta.tgz#ceff604d281b19a0e2717a677650fef0bbbf8002"
-  integrity sha512-8O88VU7YAtUorGtAaqAmUJ2ND6jMrcNrhVd3y6NVNCcq08s0DMr4hObic8ZAzCAJ+3el0ZA8+gsYpM1/jJWV2A==
+hof@21.0.20-axios-beta:
+  version "21.0.20-axios-beta"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-21.0.20-axios-beta.tgz#fa339aea53e7686bfca56f3bfd7e8cea0a448a0f"
+  integrity sha512-8QFAvU9/3vrlaiXHWKRiojVHU8jCdA4orvNNJ4uoMLPDjSVrqt3kZIrx2UX+gr+1YlRyoU5Idn1M7Gsk3hrqiA==
   dependencies:
     aliasify "^2.1.0"
     axios "^1.5.1"
@@ -3539,6 +3539,7 @@ hof@21.0.0-axios-beta:
     nodemailer-smtp-transport "^2.7.4"
     nodemailer-stub-transport "^1.1.0"
     notifications-node-client "^6.0.0"
+    object-mapper "^6.2.0"
     redis "^3.1.2"
     reqres "^3.0.1"
     rimraf "^3.0.2"
@@ -4870,6 +4871,11 @@ object-keys@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
+
+object-mapper@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/object-mapper/-/object-mapper-6.2.0.tgz#f12b097081a97da953adafbc1f7f41b3ff615cae"
+  integrity sha512-kGa23lcUwnTbT0W2GqRipoiPax734TbXVTUF3vaWlAXY5baMQES323B9NHJODvxhn9sVMZmzeenD74PnCZZuHA==
 
 object.assign@^4.1.4:
   version "4.1.5"
