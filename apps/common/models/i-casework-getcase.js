@@ -2,7 +2,6 @@
 
 const Model = require('./i-casework');
 const crypto = require('crypto');
-
 const config = require('../../../config');
 
 module.exports = class DocumentModel extends Model {
@@ -29,9 +28,16 @@ module.exports = class DocumentModel extends Model {
   }
 
   fetch() {
-    const options = this.requestConfig({});
-    options.qs = this.prepare();
-    options.method = 'GET';
-    return this.request(options);
+    const params = {
+      url: this.url(),
+      method: 'GET',
+      params: this.prepare()
+    };
+    return this._request(params).then(response => {
+      return this.parse(response.data);
+    })
+      .catch(err => {
+        return err;
+      });
   }
 };

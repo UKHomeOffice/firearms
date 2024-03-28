@@ -15,7 +15,8 @@ module.exports = class AuthToken extends Model {
     }
     const tokenReq = {
       url: config.keycloak.token,
-      form: {
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
         username: config.keycloak.username,
         password: config.keycloak.password,
         grant_type: 'password',
@@ -25,13 +26,8 @@ module.exports = class AuthToken extends Model {
       method: 'POST'
     };
 
-    return new Promise((resolve, reject) => {
-      this._request(tokenReq, (err, response) => {
-        if (err) {
-          return reject(err);
-        }
-        return resolve({ bearer: JSON.parse(response.body).access_token });
-      });
+    return this._request(tokenReq).then(response => {
+      return { bearer: response.data.access_token };
     });
   }
 };
