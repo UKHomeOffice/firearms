@@ -17,19 +17,20 @@ module.exports = (data, token) => {
     response.ApplicationType = 'Renewal';
   }
 
-  response['Customer.Name'] = data['club-name'];
-  response['Customer.Address'] = data['club-address'];
+  response['Customer.Name'] = 'Club Name';                // Club Name
+  response['Customer.Address'] = 'Club Address';          // Club Address
 
-  response['Agent.Name'] = data['club-secretary-name'];
-  response['Agent.Address'] = data['club-secretary-address'];
+  response['Agent.Name'] = 'Club Secretary Name';         // Club Secretary Name
+  response['Agent.Address'] = 'Club Secretary Address';   // Club Secretary Address
+  response['Customer.Email'] = 'Club Secretary Email';    // Club Secretary Email
+  response['Customer.Phone'] = 'Club Secretary Phone';    // Club Secretary Phone
 
-  response['Customer.Email'] = data['club-secretary-email'];
-  response['Customer.Phone'] = data['club-secretary-phone'];
+  response['SecondaryContact.Name'] = 'Secondary Contact Name';
+  response['SecondaryContact.Address'] = 'Secondary Contact Address';
+  response['SecondaryContact.Email'] = 'Secondary Contact Email';
+  response['SecondaryContact.Phone'] = 'Secondary Contact Phone';
 
-  response['SecondaryContact.Name'] = data['second-contact-name'];
-  response['SecondaryContact.Address'] = data['second-contact-address'];
-  response['SecondaryContact.Email'] = data['second-contact-email'];
-  response['SecondaryContact.Phone'] = data['second-contact-phone'];
+
 
   data['location-addresses'].forEach((address, i) => {
     const index = i + 1;
