@@ -23,45 +23,45 @@ ignore:
   SNYK-JS-CACHEDPATHRELATIVE-2342653:
     - hof > browserify > cached-path-relative:
         reason: Need to update browserify in HOF when new version is available.
-        expires: '2024-09-18T14:58:46.388Z'
+        expires: '2024-11-18T14:58:46.388Z'
     - hof > browserify > module-deps > cached-path-relative:
         reason: Need to update browserify in HOF when new version is available.
-        expires: '2024-09-18T14:58:46.388Z'
+        expires: '2024-11-18T14:58:46.388Z'
   SNYK-JS-MINIMIST-2429795:
     - hof > minimist:
         reason: Need to update browserify in HOF when new version is available.
-        expires: '2024-06-01T14:58:46.388Z'
+        expires: '2024-11-01T14:58:46.388Z'
     - hof > mkdirp > minimist:
         reason: Need to update browserify in HOF when new version is available.
-        expires: '2024-06-01T14:58:46.388Z'
+        expires: '2024-11-01T14:58:46.388Z'
     - hof > browserify > subarg > minimist:
         reason: Need to update browserify in HOF when new version is available.
-        expires: '2024-06-01T14:58:46.388Z'
+        expires: '2024-11-01T14:58:46.388Z'
     - hof > browserify > deps-sort > subarg > minimist:
         reason: Need to update browserify in HOF when new version is available.
-        expires: '2024-06-01T14:58:46.388Z'
+        expires: '2024-11-01T14:58:46.388Z'
     - hof > browserify > module-deps > subarg > minimist:
         reason: Need to update browserify in HOF when new version is available.
-        expires: '2024-06-01T14:58:46.388Z'
+        expires: '2024-11-01T14:58:46.388Z'
     - hof > browserify > module-deps > detective > minimist:
         reason: Need to update browserify in HOF when new version is available.
-        expires: '2024-06-01T14:58:46.388Z'
+        expires: '2024-11-01T14:58:46.388Z'
   SNYK-JS-DICER-2311764:
-    - busboy-body-parser > busboy > dicer:
-        reason: No update available
-        expires: '2024-04-10T12:21:04.350Z'
+    - busboy-body-parser@0.3.2 > busboy@0.2.14 > dicer@0.2.5:
+        reason: No upgrade or patch available
+        expires: '2024-12-31T23:59:59.000Z'
   SNYK-JS-AXIOS-6032459:
     - hof > notifications-node-client > axios:
         reason: Need to update notifications-node-client in HOF to version 8.0.0.
-        expires: '2024-07-03T00:00:00.000Z'
+        expires: '2024-11-03T00:00:00.000Z'
   SNYK-JS-AXIOS-6124857:
     - hof > notifications-node-client > axios:
         reason: Need to update notifications-node-client in HOF to version 8.0.0.
-        expires: '2024-07-03T00:00:00.000Z'
+        expires: '2024-11-03T00:00:00.000Z'
   SNYK-JS-AXIOS-6144788:
     - hof > notifications-node-client > axios:
       reason: Need to update notifications-node-client in HOF to version 8.0.0.
-      expires: '2024-07-03T00:00:00.000Z'
+      expires: '2024-11-03T00:00:00.000Z'
   SNYK-JS-INFLIGHT-6095116:
     - '*':
       reason: No update available.
@@ -69,5 +69,59 @@ ignore:
   SNYK-JS-MARKDOWNIT-6483324:
     - hof > markdown-it:
       reason: No update available.
-      expires: '2024-07-03T00:00:00.000Z'
-patch: {}
+      expires: '2024-11-03T00:00:00.000Z'
+
+    SNYK-JS-USERAGENT-174737:
+    - device > useragent:
+        reason: No available patch currently in circulation
+        expires: '2024-11-01T17:02:21.865Z'
+  SNYK-JS-BRACES-6838727:
+    - hof > request:
+        reason: Need to replace request in HOF
+        expires: '2022-09-18T14:58:46.388Z'   
+  SNYK-JS-BROWSERIFYSIGN-6037026:
+    - hof > request:
+        reason: Need to replace request in HOF
+        expires: '2024-09-18T14:58:46.388Z'
+  SNYK-JS-EXPRESS-6474509:
+    - hof > request:
+        reason: Need to replace request in HOF
+        expires: '2024-09-18T14:58:46.388Z'
+  SNYK-JS-FOLLOWREDIRECTS-6141137:
+    - hof > request:
+        reason: Need to replace request in HOF
+        expires: '2024-09-18T14:58:46.388Z'
+  SNYK-JS-FOLLOWREDIRECTS-6444610:
+    - hof > request:
+        reason: Need to replace request in HOF
+        expires: '2024-09-18T14:58:46.388Z'
+  SNYK-JS-INFLIGHT-6095116:
+    - hof > browserify > glob > inflight:
+    - hof > i18n-future > glob > inflight:
+        reason: Need to replace request in HOF
+        expires: '2024-09-18T14:58:46.388Z'
+  SNYK-JS-MARKDOWNIT-6483324:
+    - hof > markdown-it:
+        reason: Need to replace request in HOF
+        expires: '2024-09-18T14:58:46.388Z'
+  SNYK-JS-NODEMAILER-6219989:
+    - hof > request:
+        reason: Need to replace request in HOF
+        expires: '2024-09-18T14:58:46.388Z'
+  SNYK-JS-TOUGHCOOKIE-5672873:
+    - hof@20.4.0 > request@2.88.2 > tough-cookie@2.5.0:
+        reason: No upgrade or patch available
+        expires: '2024-12-31T23:59:59.000Z'      
+  SNYK-JS-UNDERSCORE-1080984:
+    - hof@20.4.0 > nodemailer-smtp-transport@2.7.4 > smtp-connection@2.12.0 > httpntlm@1.6.1 > underscore@1.7.0:
+        reason: Need to replace request in HOF
+        expires: '2024-09-18T14:58:46.388Z'
+  SNYK-JS-REQUEST-3361831:
+    - hof@20.4.0 > request@2.88.2:
+        reason: Need to replace request in HOF
+        expires: '2024-09-18T14:58:46.388Z'
+  SNYK-JS-ASYNC-7414156:
+    - hof@20.4.0 > winston@3.10.0 > async@3.2.4:
+        reason: No upgrade or patch available
+        expires: '2024-12-31T23:59:59.000Z'
+patch: {} 
