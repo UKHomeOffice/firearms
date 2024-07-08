@@ -24,7 +24,8 @@ spec:
           #image: quay.io/ukhomeofficedigital/file-vault:ff139ae0ebaa279d51bc75610fc7999c2658450a
           #image: quay.io/ukhomeofficedigital/file-vault:e0514f268a813f1ef28434baf2678a50517297c1
           #image: quay.io/ukhomeofficedigital/file-vault:ef37d8960b915a5e2a6a9d95c150ebb31093282f
-          image: quay.io/ukhomeofficedigital/file-vault:ead984a95ba51e2efac5afee1e85d5884bf059e3
+          #image: quay.io/ukhomeofficedigital/file-vault:ead984a95ba51e2efac5afee1e85d5884bf059e3
+          image: quay.io/ukhomeofficedigital/file-vault@sha256:4692f887416b306d2bff3c3df977bb9a70152ba36db4bd49ce7be99902eda1eb
           imagePullPolicy: Always
           resources:
             requests:
