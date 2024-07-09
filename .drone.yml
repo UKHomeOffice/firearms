@@ -168,7 +168,7 @@ steps:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
       branch: master
-      event: pull_request
+      event: push
 
   - name: setup_branch
     pull: if-not-exists
@@ -278,7 +278,7 @@ steps:
       - bin/deploy.sh $${UAT_ENV}
     when:
       branch: master
-      event: push
+      event: pull_request
 
   - name: test_acceptance_uat
     <<: *acceptance_tests
