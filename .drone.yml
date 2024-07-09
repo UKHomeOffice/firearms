@@ -149,9 +149,7 @@ steps:
       ALLOW_CVE_LIST_FILE: hof-services-config/Firearms_Licensing/trivy-cve-exceptions.txt
     when:
       event:
-      - pull_request
       - push
-      - tag
 
 
   # Deploy to pull request UAT environment
