@@ -218,7 +218,7 @@ steps:
     - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
     when:
       branch: master
-      event: pull_request
+      event: push
 
   # - name: test_acceptance_branch
   #   pull: if-not-exists
@@ -245,7 +245,7 @@ steps:
       - npm run test:acceptance
     when:
       branch: master
-      event: pull_request
+      event: push
 
   # Snyk security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
