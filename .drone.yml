@@ -149,9 +149,7 @@ steps:
       ALLOW_CVE_LIST_FILE: hof-services-config/Firearms_Licensing/trivy-cve-exceptions.txt
     when:
       event:
-      - pull_request
       - push
-      - tag
 
 
   # Deploy to pull request UAT environment
@@ -168,7 +166,7 @@ steps:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
       branch: master
-      event: pull_request
+      event: push
 
   - name: setup_branch
     pull: if-not-exists
@@ -183,7 +181,7 @@ steps:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: push
 
   - name: linting_branch
     <<: *linting
@@ -192,7 +190,7 @@ steps:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: push
 
   - name: unit_tests_branch
     <<: *unit_tests
@@ -201,7 +199,7 @@ steps:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: push
 
   - name: sonar_scanner_branch
     <<: *sonar_scanner
@@ -210,7 +208,7 @@ steps:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: push
 
   - name: build_acceptance_branch
     pull: if-not-exists
@@ -263,7 +261,7 @@ steps:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: push
 
   # Deploy to Master UAT environment
   - name: deploy_to_uat
@@ -278,7 +276,7 @@ steps:
       - bin/deploy.sh $${UAT_ENV}
     when:
       branch: master
-      event: push
+      event: pull_request
 
   - name: test_acceptance_uat
     <<: *acceptance_tests
