@@ -2070,6 +2070,11 @@ detective@^5.2.0:
     defined "^1.0.0"
     minimist "^1.2.6"
 
+dialog-polyfill@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.5.6.tgz#7507b4c745a82fcee0fa07ce64d835979719599a"
+  integrity sha512-ZbVDJI9uvxPAKze6z146rmfUZjBqNEwcnFTVamQzXH+svluiV7swmVIGr7miwADgfgt1G2JQIytypM9fbyhX4w==
+
 dicer@0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/dicer/-/dicer-0.2.5.tgz#5996c086bb33218c812c090bddc09cd12facb70f"
@@ -3493,10 +3498,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@~21.0.0:
-  version "21.0.1"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-21.0.1.tgz#9e57ea16d189ac1f9d11c7b97d94b8fd5c326d1e"
-  integrity sha512-g3kbac4YUXDjQe4WYS8tjjYykj9OH0K+dSEMSNzTFLixIOv1zGa7yannGNnEdWL3d7ygUYw+vLwJNNqJ7Z5zqA==
+hof@22.0.0-timeout-warning-beta.4:
+  version "22.0.0-timeout-warning-beta.4"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-22.0.0-timeout-warning-beta.4.tgz#3ba2ac0be00205528e05c35c4a53456f3fa76b66"
+  integrity sha512-s8LEYKlzbp9HfZD5B3xxGyGX6iVLtCnnEnheZeYUt1nvX12QeHHrvhCzc/POYvdzqQMeIm3GzJI/8r0Li9xKCg==
   dependencies:
     aliasify "^2.1.0"
     axios "^1.5.1"
@@ -3512,6 +3517,7 @@ hof@~21.0.0:
     csrf "^3.1.0"
     debug "^4.3.1"
     deprecate "^1.0.0"
+    dialog-polyfill "^0.5.6"
     dotenv "^4.0.0"
     duplexify "^3.5.0"
     express "^4.17.1"
