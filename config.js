@@ -46,6 +46,7 @@ module.exports = {
   },
   icasework: {
     url: process.env.ICASEWORK_URL,
+    dbName: process.env.ICASEWORK_DB,
     createpath: '/createcase',
     uploadpath: '/uploaddocuments',
     getcasepath: '/getcasedetails',
