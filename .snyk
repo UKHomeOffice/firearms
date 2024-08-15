@@ -74,36 +74,24 @@ ignore:
     - hof > winston > async:
       reason: No update available.
       expires: '2024-10-03T00:00:00.000Z'
-  SNYK-JS-BRACES-6838727:
-    - hof > chokidar > braces:
-      reason: Need to update braces in HOF to version 3.0.3
-      expires: '2024-10-03T00:00:00.000Z'
   SNYK-JS-DICER-2311764:
-    - busboy-body-parser > busboy > dicer  
-      reason:  No update available.
+    - busboy-body-parser > busboy > dicer:
+      reason: No update available.
       expires: '2024-10-03T00:00:00.000Z'
-  SNYK-JS-FOLLOWREDIRECTS-6141137:
-    - notifications-node-client > axios > follow-redirects
-      reason:   Need to update version 1.15.4
-      expires: '2024-8-03T00:00:00.000Z'
-  SNYK-JS-FOLLOWREDIRECTS-6444610:
-    - notifications-node-client > axios > follow-redirects
-      reason:   Need to update version 1.15.6
-      expires: '2024-8-03T00:00:00.000Z'
   SNYK-JS-NODEMAILER-6219989:
-    - hof > nodemailer
+    - hof > nodemailer: 
       reason: Need to update nodemailer in HOF to version 6.9.9
       expires: '2024-10-03T00:00:00.000Z'
   SNYK-JS-REQUEST-3361831:
-    - hof > request
+    - hof > request:
       reason: No update available.
       expires: '2024-10-03T00:00:00.000Z'
   SNYK-JS-TOUGHCOOKIE-5672873:
-    - hof > request > tough-cookie
+    - hof > request > tough-cookie:
       reason: Need to update tough-cookie in HOF to version 4.1.9
       expires: '2024-10-03T00:00:00.000Z'
   SNYK-JS-UNDERSCORE-1080984:
-    - hof > nodemailer-smtp-transport > smtp-connection > httpntlm > underscore
+    - hof > nodemailer-smtp-transport > smtp-connection > httpntlm > underscore:
       reason: Need to update underscore in HOF to version 1.13.0-2, 1.12.1
       expires: '2024-10-03T00:00:00.000Z'
 patch: {}
