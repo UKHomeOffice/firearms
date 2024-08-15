@@ -78,10 +78,6 @@ ignore:
     - hof > chokidar > braces:
       reason: Need to update braces in HOF to version 3.0.3
       expires: '2024-10-03T00:00:00.000Z'
-  SNYK-JS-BROWSERIFYSIGN-6037026:
-    - hof > browserify > crypto-browserify> browserify-sign
-      reason: Need to update browserify-sign in HOF to version 4.2.2
-      expires: '2024-10-03T00:00:00.000Z'
   SNYK-JS-DICER-2311764:
     - busboy-body-parser > busboy > dicer  
       reason:  No update available.

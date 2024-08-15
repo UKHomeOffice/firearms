@@ -16,7 +16,7 @@ Firearms Licensing Application built using HOF (Home Office Forms) framework.
 ```bash
 $ cd firearms
 $ yarn install
-$ yarn run start:dev
+$ yarn dev
 ```
 Then visit: [http://localhost:8080/](http://localhost:8080/) and add the pathname for the desired journey. e.g. [http://localhost:8080/museums](http://localhost:8080/museums)
 
