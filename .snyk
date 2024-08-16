@@ -63,4 +63,12 @@ ignore:
     - hof > nodemailer-smtp-transport > smtp-connection > httpntlm > underscore:
       reason: Need to update underscore in HOF to version 1.13.0-2, 1.12.1
       expires: '2024-10-03T00:00:00.000Z'
+  SNYK-JS-AXIOS-6032459:
+    - hof > notifications-node-client > axios:
+        reason: Need to update notifications-node-client in HOF to version 8.0.0.
+        expires: '2024-10-03T00:00:00.000Z'
+  SNYK-JS-AXIOS-6124857:
+    - hof > notifications-node-client > axios:
+        reason: Need to update notifications-node-client in HOF to version 8.0.0.
+        expires: '2024-10-03T00:00:00.000Z'
 patch: {}
