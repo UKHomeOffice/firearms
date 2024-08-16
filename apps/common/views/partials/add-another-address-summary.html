@@ -1,12 +1,18 @@
 {{#hasAddresses}}
   <div id="address-summary">
-    <h2>{{#t}}pages.{{field}}-address.summary{{/t}}</h2>
     <table class="table-address-loop">
+      <caption class="govuk-table__caption govuk-table__caption--m">{{#t}}pages.{{field}}-address.summary{{/t}}</caption>
       {{#hasCategories}}
-        {{> partials-location-categories}}
-      {{/hasCategories}}
-      {{^hasCategories}}
-        <tbody>
+      {{> partials-location-categories}}
+    {{/hasCategories}}
+    {{^hasCategories}}
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-visually-hidden">Addresses</th>
+          <th scope="col" class="govuk-table__header govuk-visually-hidden">Action</th>
+        </tr>
+      </thead>  
+      <tbody>
           {{#items}}
           <tr class="address-summary">
             <td>{{address}}</td>
