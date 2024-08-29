@@ -28,18 +28,21 @@ module.exports = class DocumentModel extends Model {
     };
   }
 
-  fetch() {
-    const params = {
-      url: this.url(),
-      method: 'GET',
-      params: this.prepare()
+  async fetch() {
+    try {
+      const params = {
+        url: this.url(),
+        method: 'GET',
+        params: this.prepare()
+      };
+      const response = await this._request(params)
+      // return await this._request(params).then(response => {
+        return this.parse(response.data);
+      // })
+    }
+    catch (err) {
+      logger.error(`Error fetching data from ${params.url}: ${err.message}`);
+      throw new Error(`Failed to fetch data: ${err.message || 'Unknown error'}`);
     };
-    return this._request(params).then(response => {
-      return this.parse(response.data);
-    })
-      .catch(err => {
-        logger.error(`Error fetching data from ${params.url}: ${err.message}`);
-        throw new Error(`Failed to fetch data: ${err.message || 'Unknown error'}`);
-      });
   }
 };
