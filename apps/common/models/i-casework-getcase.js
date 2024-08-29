@@ -16,9 +16,20 @@ module.exports = class DocumentModel extends Model {
   }
 
   prepare() {
-    const props = super.prepare();
-    props.CaseId = this.get('reference-number');
+    const props = {
+      Key: config.icasework.key,
+      Signature: this.sign(),
+      Type: 'Firearms',
+      Format: 'json',
+      db: config.icasework.dbName,
+      RequestMethod: 'Online form',
+      CaseId: this.get('reference-number'),
+    };
+    console.log('THIS IS PROPS ', props);
     return props;
+    // const props = super.prepare();
+    // props.CaseId = this.get('reference-number');
+    // return props;
   }
 
   parse(data) {
@@ -35,9 +46,11 @@ module.exports = class DocumentModel extends Model {
         method: 'GET',
         params: this.prepare()
       };
-      const response = await this._request(params)
+      const response = await this._request(params);
+      console.log(response);
+      return response;
       // return await this._request(params).then(response => {
-        return this.parse(response.data);
+      // return this.parse(response.data);
       // })
     }
     catch (err) {
