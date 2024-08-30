@@ -50,7 +50,6 @@
     "eslint": "^7.32.0",
     "eslint-config-hof": "^1.2.1",
     "funkie": "^0.0.6",
-    "funkie-chromedriver": "0.0.1",
     "mocha": "^9.0.3",
     "mock-fs": "^5.0.0",
     "nyc": "^15.1.0",
