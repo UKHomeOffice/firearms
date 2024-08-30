@@ -4,7 +4,13 @@ const Model = require('../../common/models/i-casework-getcase');
 
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
+    console.log('********** message ', req.form.values);
     const model = new Model(req.form.values);
+    console.log('******************************  get case  ', model);
+    console.log('******************************  get case  ', model.url());
+    console.log('******************************  get case  ', model.prepare());
+    console.log('******************************  get case  ', model.sign());
+    console.log('******************************  get case  ', model.fetch());
     model.fetch()
       .catch(e => {
         if (e.code && e.code.match(/TIMEDOUT/)) {
