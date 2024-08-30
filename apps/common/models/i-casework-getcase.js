@@ -48,9 +48,7 @@ module.exports = class DocumentModel extends Model {
       };
       const response = await this._request(params);
       console.log('This is the response ', response);
-      return response.then(response => {
       return this.parse(response.data);
-      })
     }
     catch (err) {
       logger.error(`Error fetching data from ${this.url()}: ${err.message}`);
