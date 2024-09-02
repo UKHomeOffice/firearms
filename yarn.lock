@@ -1039,7 +1039,7 @@ bl@^1.2.1:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
 
-bluebird@^3.7.2:
+bluebird@^3.4.1, bluebird@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
   integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
@@ -2672,7 +2672,7 @@ express-session@^1.13.0:
     safe-buffer "5.2.1"
     uid-safe "~2.1.5"
 
-express@^4.17.1, express@^4.19.2:
+express@4.19.2, express@^4.17.1:
   version "4.19.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.19.2.tgz#e25437827a3aa7f2a827bc8171bbbb664a356465"
   integrity sha512-5T6nhjsT+EOMzuck8JjBHARTHfMht0POzlA60WV2pMD3gyXw2LZnZ+ueGdNxG+0calOJcWKbpFcuzLZ91YWq9Q==
@@ -2991,6 +2991,14 @@ functions-have-names@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
+
+funkie@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/funkie/-/funkie-0.0.6.tgz#63bb0965f3de8dfb472527ee0feb81e8515010d8"
+  integrity sha512-zAi1ypw7Lj+ixD0IZ/LxebchLm3/DBruIdEUk8zvhl65S/D9jDH6jXLV6SwzYalRnxZuZ0nE2Bi5pK6n+wFwjQ==
+  dependencies:
+    bluebird "^3.4.1"
+    minimist "^1.2.0"
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
