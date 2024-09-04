@@ -34,8 +34,38 @@ module.exports = class CaseworkModel extends Model {
     return params;
   }
 
+  // async save() {
+  //   return Promise.resolve(this.prepare()).then(async data => {
+  //     const params = {
+  //       url: this.url(),
+  //       data,
+  //       timeout: config.icasework.timeout,
+  //       method: 'POST'
+  //     };
+
+  //     if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
+  //       return Promise.resolve({
+  //         data: {
+  //           createcaseresponse: {
+  //             caseid: 'mock caseid'
+  //           }
+  //         }
+  //       });
+  //     }
+
+  //     const response = await this._request(params);
+  //     return this.parse(response);
+  //   })
+  //     .catch(err => {
+  //       logger.error(`Error saving data: ${err.message}`);
+  //       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
+  //     })
+  // }
+
   async save() {
-    return Promise.resolve(this.prepare()).then(async data => {
+    try {
+      // const data = this.prepare();
+      const data = await (async () => await this.prepare())();
       const params = {
         url: this.url(),
         data,
@@ -44,21 +74,20 @@ module.exports = class CaseworkModel extends Model {
       };
 
       if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
-        return Promise.resolve({
+        return {
           data: {
             createcaseresponse: {
               caseid: 'mock caseid'
             }
           }
-        });
+        };
       }
 
       const response = await this._request(params);
       return this.parse(response);
-    })
-      .catch(err => {
-        logger.error(`Error saving data: ${err.message}`);
-        throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
-      })
+    } catch (err) {
+      logger.error(`Error saving data: ${err.message}`);
+      throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
+    }
   }
 };
