@@ -86,7 +86,7 @@ module.exports = class CaseworkModel extends Model {
 
         const response = await this._request(params);
         return this.parse(response);
-      })
+      });
     }
     catch (err) {
       logger.error(`Error saving data: ${err.message}`);
