@@ -66,7 +66,7 @@ module.exports = class CaseworkModel extends Model {
     try {
       return Promise.resolve(this.prepare()).then(async data => {
         // const data = this.prepare();
-        const data = await (async () => await this.prepare())();
+        // const data = await (async () => await this.prepare())();
         const params = {
           url: this.url(),
           data,
