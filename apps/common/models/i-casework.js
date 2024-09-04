@@ -3,7 +3,7 @@
 const { model: Model } = require('hof');
 const crypto = require('crypto');
 const config = require('../../../config');
-// const logger = require('hof/lib/logger')({ env: config.env });
+const logger = require('hof/lib/logger')({ env: config.env });
 
 module.exports = class CaseworkModel extends Model {
   url() {
@@ -35,10 +35,7 @@ module.exports = class CaseworkModel extends Model {
   }
 
   async save() {
-    // try {
     return Promise.resolve(this.prepare()).then(async data => {
-      // const data = this.prepare();
-      // const data = await (async () => await this.prepare())();
       const params = {
         url: this.url(),
         data,
@@ -57,11 +54,7 @@ module.exports = class CaseworkModel extends Model {
       }
 
       const response = await this._request(params);
-      return this.parse(response);
+      return response;
     });
-    // } catch (err) {
-    //   logger.error(`Error saving data: ${err.message}`);
-    //   throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
-    // }
   }
-};
+}
