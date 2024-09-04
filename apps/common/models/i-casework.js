@@ -3,7 +3,7 @@
 const { model: Model } = require('hof');
 const crypto = require('crypto');
 const config = require('../../../config');
-const logger = require('hof/lib/logger')({ env: config.env });
+// const logger = require('hof/lib/logger')({ env: config.env });
 
 module.exports = class CaseworkModel extends Model {
   url() {
@@ -34,36 +34,8 @@ module.exports = class CaseworkModel extends Model {
     return params;
   }
 
-  // async save() {
-  //   return Promise.resolve(this.prepare()).then(async data => {
-  //     const params = {
-  //       url: this.url(),
-  //       data,
-  //       timeout: config.icasework.timeout,
-  //       method: 'POST'
-  //     };
-
-  //     if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
-  //       return Promise.resolve({
-  //         data: {
-  //           createcaseresponse: {
-  //             caseid: 'mock caseid'
-  //           }
-  //         }
-  //       });
-  //     }
-
-  //     const response = await this._request(params);
-  //     return this.parse(response);
-  //   })
-  //     .catch(err => {
-  //       logger.error(`Error saving data: ${err.message}`);
-  //       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
-  //     })
-  // }
-
   async save() {
-    try {
+    // try {
       return Promise.resolve(this.prepare()).then(async data => {
         // const data = this.prepare();
         // const data = await (async () => await this.prepare())();
@@ -87,9 +59,9 @@ module.exports = class CaseworkModel extends Model {
         const response = await this._request(params);
         return this.parse(response);
       });
-    } catch (err) {
-      logger.error(`Error saving data: ${err.message}`);
-      throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
-    }
+    // } catch (err) {
+    //   logger.error(`Error saving data: ${err.message}`);
+    //   throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
+    // }
   }
 };
