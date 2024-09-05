@@ -40,7 +40,7 @@ module.exports = class CaseworkModel extends Model {
         // const data = this.prepare();
         // const data = await (async () => await this.prepare())();
         const params = {
-          url: this.url(),
+          // url: this.url(),
           data,
           timeout: config.icasework.timeout,
           method: 'POST'
@@ -56,9 +56,8 @@ module.exports = class CaseworkModel extends Model {
           };
         }
 
-        // const response = await this._request(params);
-        // return response;
-        return await this._request(params);
+        const response = await this._request(params);
+        return this.parse(response);
       });
     } catch (err) {
       logger.error(`Error saving data: ${err.message}`);
