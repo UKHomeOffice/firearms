@@ -1,4 +1,4 @@
-{{#hasItems}}
+<!-- {{#hasItems}}
   <div id="address-summary">
     <h2>{{#t}}pages.{{field}}.header{{/t}}</h2>
     <table class="table-address-loop">
@@ -12,4 +12,81 @@
       </tbody>
     </table>
   </div>
+{{/hasItems}} -->
+
+<!-- {{#hasItems}}
+  <div id="address-summary">
+    <h2>{{#t}}pages.{{field}}.header{{/t}}</h2>
+    {{#items}}
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">
+          Address
+        </h2>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="?delete={{id}}">{{#t}}buttons.delete{{/t}}<span class="govuk-visually-hidden"> for address {{address}}</span></a>
+          </li>
+        </ul>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{address}}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+    {{/items}}
+  </div>
+{{/hasItems}} -->
+
+
+{{#hasItems}}
+  <div id="address-summary">
+    <h2>{{#t}}pages.{{field}}.header{{/t}}</h2>
+
+    <script>
+      var counter = 1;
+    </script>
+    
+    {{#items}}
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">
+          Address <script>document.write(counter);</script>
+        </h2>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="?delete={{id}}">{{#t}}buttons.delete{{/t}}<span class="govuk-visually-hidden"> for address {{address}}</span></a>
+          </li>
+        </ul>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{address}}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+    
+    <script>counter++;</script> <!-- Increment the counter -->
+    {{/items}}
+  </div>
 {{/hasItems}}
+
+
+
+
+
