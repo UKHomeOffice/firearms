@@ -56,8 +56,9 @@ module.exports = class CaseworkModel extends Model {
           };
         }
 
-        const response = await this._request(params);
-        return response;
+        // const response = await this._request(params);
+        // return response;
+        return await this._request(params);
       });
     } catch (err) {
       logger.error(`Error saving data: ${err.message}`);
