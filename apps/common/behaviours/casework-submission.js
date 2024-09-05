@@ -47,7 +47,7 @@ module.exports = conf => {
         await super.saveValues(req, res, next);
       } catch (e) {
         console.log(e);
-        console.log(e.response)
+        console.log(e.response);
         req.log('error', `Casework submission failed: ${e.response.status}`);
         req.log('error', e.response.headers && e.response.headers['x-application-error-info']);
         client.increment('casework.submission.failed');
