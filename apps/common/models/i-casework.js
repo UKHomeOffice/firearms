@@ -7,7 +7,7 @@ const logger = require('hof/lib/logger')({ env: config.env });
 
 module.exports = class CaseworkModel extends Model {
   url() {
-    return `${config.icasework.url}${config.icasework.createpath}`;
+    return `${config.icasework.url}${config.icasework.createpath}?db=${encodeURIComponent(config.icasework.dbName)}`;
   }
 
   sign() {
