@@ -21,7 +21,7 @@ module.exports = class CaseworkModel extends Model {
       Signature: this.sign(),
       Type: 'Firearms',
       Format: 'json',
-      db: config.icasework.dbName,
+      db: '',
       RequestMethod: 'Online form'
     };
 
@@ -40,7 +40,7 @@ module.exports = class CaseworkModel extends Model {
         // const data = this.prepare();
         // const data = await (async () => await this.prepare())();
         const params = {
-          // url: this.url(),
+          url: this.url(),
           data,
           timeout: config.icasework.timeout,
           method: 'POST'
