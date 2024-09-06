@@ -21,7 +21,7 @@ module.exports = class CaseworkModel extends Model {
       Signature: this.sign(),
       Type: 'Firearms',
       Format: 'json',
-      db: '',
+      db: config.icasework.dbName,
       RequestMethod: 'Online form'
     };
 
