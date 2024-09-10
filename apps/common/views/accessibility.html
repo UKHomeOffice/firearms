@@ -19,6 +19,8 @@
     <h2 class="govuk-heading-m">{{#t}}accessibility.how-accessible-header{{/t}}</h2>
     <p class="govuk-body">{{#t}}accessibility.how-accessible-p1{{/t}}</p>
     <ul class="govuk-list govuk-list--bullet">
+        <li>some technical labelling is missing or incorrect, which may affect how screen readers and other assistive technologies interpret information</li>
+        <li>the use of layout table for visual design may disrupt screen reader navigation by being incorrectly interpreted as data table</li>
         <li>{{#t}}accessibility.how-accessible-p1-li2{{/t}}</li>
     </ul>
     <h2 class="govuk-heading-m">{{#t}}accessibility.reporting-header{{/t}}</h2>
@@ -39,15 +41,17 @@
     <h2 class="govuk-heading-m">Non-accessible content</h2>
     <p class="govuk-body">{{#t}}accessibility.non-accessible-p1{{/t}}</p>
     <h3 class="govuk-heading-m">{{#t}}accessibility.non-compliance-header{{/t}}</h3>
-    <ul class="govuk-list">
+    <ul class="govuk-list govuk-list--bullet">
         <li>{{#t}}accessibility.non-compliance-li1{{/t}}</li>
+        <li>A layout table is present, which is intended for visual formatting rather than conveying tabular data. This could create navigation and reading difficulties for screen reader users, as the table may be incorrectly announced as a data table. This does not meet WCAG 2.2 Meaningful Sequence and Info and Relationships.</li>
     </ul>
     <h3 class="govuk-heading-m">{{#t}}accessibility.disproportionate-burden-header{{/t}}</h3>
     <p class="govuk-body">{{#t}}accessibility.disproportionate-burden-p1{{/t}}</p>
     <h3 class="govuk-heading-m">{{#t}}accessibility.outside-scope-header{{/t}}</h3>
     <p class="govuk-body">{{#t}}accessibility.outside-scope-p1{{/t}}</p>
-    <h2 class="govuk-heading-m">This statement was prepared on 28 September 2020. It was last reviewed on 29 August 2024.</h2>
-    <p class="govuk-body">This website was last tested on 20 June 2024. </p>
+    <h2 class="govuk-heading-m">Preparation of this accessibility statement</h2>
+    <p class="govuk-body">This statement was prepared on 28 September 2020. It was last reviewed on 10 September 2024.</p>
+    <p class="govuk-body">This website was last tested on 20 June 2024.</p>
     <p class="govuk-body">The test was carried out internally by the Home Office.</p>
     <p class="govuk-body">We tested the service based on a user's ability to complete key journeys. All parts of the chosen journeys were tested, including documents. Journeys were chosen on a number of factors including usage statistics, risk assessments and subject matter.</p>
   {{/content}}
