@@ -71,4 +71,8 @@ ignore:
     - hof > notifications-node-client > axios:
         reason: Need to update notifications-node-client in HOF to version 8.0.0.
         expires: "2024-10-03T00:00:00.000Z"
+  SNYK-JS-PATHTOREGEXP-7925106:
+    - '*':
+      reason: hof dependency, no update available.
+      expires: '2024-10-21T00:00:00.000Z' 
 patch: {}
