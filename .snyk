@@ -75,4 +75,20 @@ ignore:
     - '*':
       reason: hof dependency, no update available.
       expires: '2024-10-21T00:00:00.000Z' 
+  SNYK-JS-SEND-7926862:
+    - '*':
+      reason: hof dependency, no update available.
+      expires: '2024-10-21T00:00:00.000Z' 
+  SNYK-JS-SERVESTATIC-7926865:
+    - '*':
+      reason: hof dependency, no update available.
+      expires: '2024-10-21T00:00:00.000Z' 
+  SNYK-JS-EXPRESS-7926867:
+    - '*':
+      reason: hof dependency, no update available.
+      expires: '2024-10-21T00:00:00.000Z' 
+  SNYK-JS-BODYPARSER-7926860:
+    - '*':
+      reason: hof dependency, no update available.
+      expires: '2024-10-21T00:00:00.000Z' 
 patch: {}
