@@ -1,6 +1,6 @@
 @feature @new-dealer
 Feature: Firearms application for a New-dealer
-    
+
     Scenario: I am on the New-dealer journey and want to apply for a new authority
         Given I start the 's5' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'
@@ -99,7 +99,7 @@ Feature: Firearms application for a New-dealer
         Then I select 'Continue'
         Then I should be on the 'confirm' page showing 'Check your answers'
         Then I submit the application
- 
+
     Scenario: I am on the New-dealer journey and want to amend an exixting authority
         Given I start the 's5' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'
@@ -477,7 +477,7 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'import' page showing 'Will any of the prohibited items be imported?'
         Then I select 'Continue'
         Then I should see the 'Select an option' error
-    
+
     Scenario: I am on the New-dealer journey but don't select an option on the storage page
         Given I start the 's5' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'
@@ -643,7 +643,7 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'usage' page showing 'What business activities will be carried out with the prohibited items?'
         Then I select 'Continue'
         Then I should see the 'Select at least one option' error
-        
+
     Scenario: I am on the New-dealer journey but don't select an option on the weapons page
         Given I start the 's5' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'
@@ -1864,4 +1864,103 @@ Feature: Firearms application for a New-dealer
         Then I check 'purchase-order-Yes'
         Then I select 'Continue'
         Then I should see the 'Enter your purchase order number' error
-        
+
+    Scenario: I am on the New-dealer journey and want to apply for a new authority and provide a import country
+        Given I start the 's5' application journey
+        Then I should be on the 'privacy' page showing 'Privacy Notice'
+        Then I select 'Continue'
+        Then I should be on the 'before-you-start' page showing 'Before you start'
+        Then I select 'Continue'
+        Then I should be on the 'activity' page showing 'What do you want to do?'
+        Then I check 'activity-new'
+        Then I select 'Continue'
+        Then I should be on the 'supporting-documents' page showing 'Upload your supporting documents'
+        Then I upload the 'testPath/test.pdf' file to 'supporting-document-upload'
+        Then I submit the form to upload my file
+        Then I should be on the 'supporting-documents-add-another' page showing 'Do you want to upload any additional documents to support your application?'
+        Then I check 'supporting-document-add-another-no'
+        Then I select 'Continue'
+        Then I should be on the 'company-name' page showing 'What type of organisation is the authority for?'
+        Then I check 'organisation-company'
+        Then I should see 'Company name' on the page
+        Then I should see 'Companies House number' on the page
+        Then I fill 'company-name' with 'Test company'
+        Then I fill 'company-house-number' with '12345'
+        Then I select 'Continue'
+        Then I should be on the 'handle' page showing 'What will be handled under the authority?'
+        Then I check 'weapons-ammunition-weapons'
+        Then I select 'Continue'
+        Then I should be on the 'obtain' page showing 'How will the prohibited items be obtained?'
+        Then I check 'obtain-buy'
+        Then I select 'Continue'
+        Then I should be on the 'import' page showing 'Will any of the prohibited items be imported?'
+        Then I check 'import-yes'
+        Then I type in 'U' into 'import-country' and select 'United Kingdom'
+        Then I select 'Continue'
+        Then I should be on the 'storage' page showing 'Will the prohibited items be stored on the business\'s premises in the UK?'
+        Then I check 'stored-on-premises-true'
+        Then I select 'Continue'
+        Then I should be on the 'storage-address' page showing 'Where will the prohibited items be stored?'
+        Then I fill 'storage-building' with '1 Test Road'
+        Then I fill 'storage-townOrCity' with 'London'
+        Then I fill 'storage-postcodeOrZIPCode' with 'CR0 9YA'
+        Then I select 'Continue'
+        Then I should be on the 'storage-add-another-address' page showing 'Is there another address where the prohibited items will be stored?'
+        Then I check 'storageAddresses-add-another-no'
+        Then I select 'Continue'
+        Then I should be on the 'usage' page showing 'What business activities will be carried out with the prohibited items?'
+        Then I check 'usage-sell'
+        Then I select 'Continue'
+        Then I should be on the 'weapons' page showing 'Which sections do the weapons or components fall under?'
+        Then I check 'weapons-types-unspecified'
+        Then I should see 'Explain why you can\'t specify the section and quantities of prohibited items being handled.' on the page
+        Then I fill 'weapons-unspecified-details' text area with 'test'
+        Then I select 'Continue'
+        Then I should be on the 'authority-holders' page showing 'How many individuals will be named on the authority?'
+        Then I check 'authority-holders-one'
+        Then I select 'Continue'
+        Then I should be on the 'first-authority-holders-name' page showing 'What\'s the full name of the authority holder?'
+        Then I fill 'first-authority-holders-name' with 'Donald Testman'
+        Then I select 'Continue'
+        Then I should be on the 'first-authority-holders-birth' page showing 'What are Donald Testman\'s birth details?'
+        Then I fill 'first-authority-dob-day' with '1'
+        Then I fill 'first-authority-dob-month' with '1'
+        Then I fill 'first-authority-dob-year' with '1981'
+        Then I fill 'first-authority-town-birth' with 'London'
+        Then I fill 'first-authority-country-birth' with 'United Kingdom'
+        Then I select 'Continue'
+        Then I should be on the 'first-authority-holders-nationality' page showing 'What is Donald Testman\'s country of nationality?'
+        Then I fill 'first-authority-holders-nationality' with 'United Kingdom'
+        Then I select 'Continue'
+        Then I should be on the 'first-authority-holders-address' page showing 'What is Donald Testman\'s main business address?'
+        Then I fill 'first-authority-holders-building' with '1'
+        Then I fill 'first-authority-holders-street' with 'Test Road'
+        Then I fill 'first-authority-holders-townOrCity' with 'London'
+        Then I fill 'first-authority-holders-postcodeOrZIPCode' with 'CR0 9YA'
+        Then I select 'Continue'
+        Then I should be on the 'contact' page showing 'Who do we contact about this application?'
+        Then I check 'contact-holder-first'
+        Then I select 'Continue'
+        Then I should be on the 'contact-details' page showing 'What are Donald Testman\'s contact details?'
+        Then I fill 'contact-email' with 'test@test.com'
+        Then I fill 'contact-phone' with '01234567891'
+        Then I select 'Continue'
+        Then I should be on the 'authority-holder-contact-postcode' page showing 'Which address should we use to contact Donald Testman?'
+        Then I check 'use-different-address-false'
+        Then I select 'Continue'
+        Then I should be on the 'invoice-contact-details' page showing 'Who should we contact about the invoice?'
+        Then I fill 'invoice-contact-name' with 'Bonnie testman'
+        Then I fill 'invoice-contact-email' with 'test@test.com'
+        Then I fill 'invoice-contact-phone' with '01234567891'
+        Then I select 'Continue'
+        Then I should be on the 'invoice-address-input' page showing 'What is their invoice address?'
+        Then I fill 'invoice-building' with '3'
+        Then I fill 'invoice-street' with 'Test road'
+        Then I fill 'invoice-townOrCity' with 'London'
+        Then I fill 'invoice-postcodeOrZIPCode' with 'CR0 9yc'
+        Then I select 'Continue'
+        Then I should be on the 'purchase-order' page showing 'Do you have a purchase order?'
+        Then I check 'purchase-order-No'
+        Then I select 'Continue'
+        Then I should be on the 'confirm' page showing 'Check your answers'
+        Then I submit the application
