@@ -48,8 +48,8 @@ module.exports = class CaseworkModel extends Model {
 
       if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
         return Promise.resolve({
-            createcaseresponse: {
-              caseid: 'mock caseid'
+          createcaseresponse: {
+            caseid: 'mock caseid'
           }
         });
       }
