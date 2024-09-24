@@ -17,9 +17,7 @@ module.exports = class DocumentModel extends Model {
 
   parse(data) {
     return {
-      data: {
-        createcaseresponse: data.data.uploaddocumentsresponse
-      }
+      createcaseresponse: data.uploaddocumentsresponse
     };
   }
 };

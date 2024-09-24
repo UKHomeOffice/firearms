@@ -215,6 +215,7 @@ steps:
   - name: build_acceptance_branch
     pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    environment:
     commands:
     - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
     - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .

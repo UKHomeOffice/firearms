@@ -41,27 +41,23 @@ module.exports = class CaseworkModel extends Model {
 
   async save() {
     try {
-      return Promise.resolve(this.prepare()).then(async data => {
-        const options = {
-          url: this.url(),
-          data,
-          timeout: config.icasework.timeout,
-          method: 'POST'
-        };
+      const options = {
+        url: this.url(),
+        data: await Promise.resolve(this.prepare()),
+        timeout: this.options.timeout,
+        method: 'POST'
+      };
+      if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
+        return Promise.resolve({
+          createcaseresponse: {
+            caseid: 'mock caseid'
+          }
+        });
+      }
 
-        if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
-          return Promise.resolve({
-            data: {
-              createcaseresponse: {
-                caseid: 'mock caseid'
-              }
-            }
-          });
-        }
-
-        const response = await this._request(options);
-        return this.parse(response);
-      });
+      const response = await this._request(options);
+      console.log('**************RESPONSE ', response);
+      return this.parse(response.data);
     } catch (err) {
       logger.error(`Error saving data: ${err.message}`);
       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);

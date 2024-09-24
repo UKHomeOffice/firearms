@@ -36,6 +36,7 @@ module.exports = class DocumentModel extends Model {
         params: this.prepare()
       };
       const response = await this._request(options);
+      logger.info(`Successfully fetched data from ${this.url()}`);
       return this.parse(response.data);
     } catch (err) {
       logger.error(`Error fetching data from ${this.url()}: ${err.message}`);
