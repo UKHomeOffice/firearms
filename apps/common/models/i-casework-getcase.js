@@ -18,10 +18,12 @@ module.exports = class DocumentModel extends Model {
   prepare() {
     const props = super.prepare();
     props.CaseId = this.get('reference-number');
+    console.log('PROPS ', props);
     return props;
   }
 
   parse(data) {
+    console.log('PARSE DATA ', (data));
     return {
       name: data['MainParty.FullName'],
       email: data['MainParty.EmailAddress']
