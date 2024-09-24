@@ -29,17 +29,25 @@ module.exports = class DocumentModel extends Model {
   }
 
   async fetch() {
+    const options = this.requestConfig({});
+    options.method = 'GET';
     try {
-      const options = {
-        url: this.url(),
-        method: 'GET',
-        params: this.prepare()
-      };
-      const response = await this._request(options);
-      return this.parse(response.data);
+      return await this.request(options);
     } catch (err) {
       logger.error(`Error fetching data from ${this.url()}: ${err.message}`);
       throw new Error(`Failed to fetch data: ${err.message || 'Unknown error'}`);
     }
+    // try {
+    //   const options = {
+    //     url: this.url(),
+    //     method: 'GET',
+    //     params: this.prepare()
+    //   };
+    //   const response = await this._request(options);
+    //   return this.parse(response.data);
+    // } catch (err) {
+    //   logger.error(`Error fetching data from ${this.url()}: ${err.message}`);
+    //   throw new Error(`Failed to fetch data: ${err.message || 'Unknown error'}`);
+    // }
   }
 };
