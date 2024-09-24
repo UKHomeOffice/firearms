@@ -36,10 +36,10 @@ module.exports = class DocumentModel extends Model {
     //     params: this.prepare()
     //   };
     //   const response = await this._request(options);
-    const options = this.requestConfig({});
-    options.params = this.prepare();
-    options.method = 'GET';
     try {
+      const options = this.requestConfig({});
+      options.params = this.prepare();
+      options.method = 'GET';
       const response = await this.request(options);
       console.log('RESPONSE ', response);
       console.log('PARSE ', this.parse(response.data));
