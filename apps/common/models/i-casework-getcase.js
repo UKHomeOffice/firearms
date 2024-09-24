@@ -41,10 +41,9 @@ module.exports = class DocumentModel extends Model {
     options.method = 'GET';
     try {
       const response = await this.request(options);
-      console.log(response);
-      console.log(this.parse(response.data));
-      // return response;
-      return this.parse(response.data);
+      console.log('RESPONSE ', response);
+      console.log('PARSE ', this.parse(response.data));
+      return response;
     } catch (err) {
       logger.error(`Error fetching data from ${this.url()}: ${err.message}`);
       throw new Error(`Failed to fetch data: ${err.message || 'Unknown error'}`);
