@@ -29,13 +29,17 @@ module.exports = class DocumentModel extends Model {
   }
 
   async fetch() {
+    // try {
+    //   const options = {
+    //     url: this.url(),
+    //     method: 'GET',
+    //     params: this.prepare()
+    //   };
+    //   const response = await this._request(options);
+    const options = this.requestConfig({});
+    options.method = 'GET';
     try {
-      const options = {
-        url: this.url(),
-        method: 'GET',
-        params: this.prepare()
-      };
-      const response = await this._request(options);
+      const response = await this.request(options);
       return this.parse(response.data);
     } catch (err) {
       logger.error(`Error fetching data from ${this.url()}: ${err.message}`);
