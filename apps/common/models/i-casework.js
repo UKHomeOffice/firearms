@@ -48,16 +48,14 @@ module.exports = class CaseworkModel extends Model {
 
       if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
         return Promise.resolve({
-          data: {
             createcaseresponse: {
               caseid: 'mock caseid'
-            }
           }
         });
       }
 
       const response = await this.request(options);
-      return this.parse(response);
+      return response;
     } catch (err) {
       logger.error(`Error saving data: ${err.message}`);
       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
