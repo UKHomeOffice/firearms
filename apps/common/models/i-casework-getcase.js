@@ -32,12 +32,20 @@ module.exports = class DocumentModel extends Model {
 
   async fetch() {
     try {
-      const options = this.requestConfig({});
-      options.params = this.prepare();
-      options.method = 'GET';
-      const response = await this.request(options);
+      // const options = this.requestConfig({});
+      // options.params = this.prepare();
+      // options.method = 'GET';
+      // const response = await this.request(options);
+      // console.log('RESPONSE ', response);
+      // return this.parse(response);
+      const options = {
+        url: this.url(),
+        method: 'GET',
+        params: this.prepare()
+      };
+      const response = await this._request(options);
       console.log('RESPONSE ', response);
-      return this.parse(response);
+      return this.parse(response.data);
     } catch (err) {
       logger.error(`Error fetching data from ${this.url()}: ${err.message}`);
       throw new Error(`Failed to fetch data: ${err.message || 'Unknown error'}`);
