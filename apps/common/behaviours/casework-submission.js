@@ -41,8 +41,8 @@ module.exports = conf => {
       req.log('info', `Sending icasework submission to ${model.url()}`);
       try {
         const response = await model.save();
-        req.log('info', `Successfully submitted case to icasework (${response.data.createcaseresponse.caseid})`);
-        req.sessionModel.set('caseid', response.data.createcaseresponse.caseid);
+        req.log('info', `Successfully submitted case to icasework (${response.createcaseresponse.caseid})`);
+        req.sessionModel.set('caseid', response.createcaseresponse.caseid);
         client.increment('casework.submission.success');
         await super.saveValues(req, res, next);
       } catch (e) {
