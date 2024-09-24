@@ -40,7 +40,8 @@ module.exports = class DocumentModel extends Model {
     options.method = 'GET';
     try {
       const response = await this.request(options);
-      return this.parse(response.data);
+      return response;
+      // return this.parse(response.data);
     } catch (err) {
       logger.error(`Error fetching data from ${this.url()}: ${err.message}`);
       throw new Error(`Failed to fetch data: ${err.message || 'Unknown error'}`);
