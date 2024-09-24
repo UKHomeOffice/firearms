@@ -6,6 +6,11 @@ const config = require('../../../config');
 const logger = require('hof/lib/logger')({ env: config.env });
 
 module.exports = class CaseworkModel extends Model {
+  constructor(attributes, options) {
+    super(attributes, options);
+    this.options.timeout = this.options.timeout || config.icasework.timeout;
+  }
+
   url() {
     return `${config.icasework.url}${config.icasework.createpath}?db=${encodeURIComponent(config.icasework.dbName)}`;
   }
