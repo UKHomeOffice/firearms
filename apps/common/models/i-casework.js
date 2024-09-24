@@ -41,13 +41,6 @@ module.exports = class CaseworkModel extends Model {
 
   async save() {
     try {
-      // return Promise.resolve(this.prepare()).then(async data => {
-      //   const options = {
-      //     url: this.url(),
-      //     data,
-      //     timeout: config.icasework.timeout,
-      //     method: 'POST'
-      //   };
       const data = await Promise.resolve(this.prepare());
       const options = this.requestConfig({});
       options.data = data;
@@ -61,10 +54,7 @@ module.exports = class CaseworkModel extends Model {
         });
       }
 
-      const response = await this.request(options);
-      return response;
-      // return this.parse(response);
-      // });
+      return await this.request(options);
     } catch (err) {
       logger.error(`Error saving data: ${err.message}`);
       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
