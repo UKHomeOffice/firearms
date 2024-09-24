@@ -37,10 +37,12 @@ module.exports = class DocumentModel extends Model {
     //   };
     //   const response = await this._request(options);
     const options = this.requestConfig({});
+    options.params = this.prepare();
     options.method = 'GET';
     try {
       const response = await this.request(options);
       console.log(response);
+      console.log(this.parse(response.data));
       // return response;
       return this.parse(response.data);
     } catch (err) {
