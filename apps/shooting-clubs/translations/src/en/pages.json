@@ -1,7 +1,4 @@
 {
-  "new-club": {
-    "header": "Is the club a new club?"
-  },
   "supporting-documents": {
     "header": "Upload your supporting documents which must include a cover letter to explain the reasons you are applying for an approval",
     "optionalSubheader": "Please provide your Club Insurance and Constitution"
@@ -62,12 +59,6 @@
     "intro": "You can add further addresses later, if required."
   },
   "location-address": {
-    "header": "What is the address of the shooting club?"
-  },
-  "storage-add-another-address": {
-    "header": "Is there another address where the guns will be stored?"
-  },
-  "location-address": {
     "header": "Which shooting ranges will the club use?",
     "intro": "You can add further addresses later, if required."
   },
@@ -80,11 +71,7 @@
     "intro": "You can add further addresses later, if required."
   },
   "location-address-category": {
-    "header": "Which categories of firearms will be used at this range?",
-    "intro": "Rifles chambered for pistol ammunition above .22 rim-fire calibre are regarded as full-bore rifles."
-  },
-  "location-add-another-address": {
-    "header": "Will the club use another shooting range?"
+    "introduction": "Rifles chambered for pistol ammunition above .22 rim-fire calibre are regarded as full-bore rifles."
   },
   "location-addresses": {
     "header": "Shooting location(s)",
@@ -124,9 +111,6 @@
   },
   "range-addresses": {
     "header": "Shooting ranges"
-  },
-  "storage-addresses": {
-    "header": "Storage addresses"
   },
   "all-storage-addresses": {
     "header": "Storage addresses added",
