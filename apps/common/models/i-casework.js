@@ -1,9 +1,9 @@
 'use strict';
 
-const Model = require('hof').model;
+const { model: Model } = require('hof');
 const crypto = require('crypto');
-
 const config = require('../../../config');
+const logger = require('hof/lib/logger')({ env: config.env });
 
 module.exports = class CaseworkModel extends Model {
   constructor(attributes, options) {
@@ -12,7 +12,12 @@ module.exports = class CaseworkModel extends Model {
   }
 
   url() {
-    return config.icasework.url + config.icasework.createpath;
+    return `${config.icasework.url}${config.icasework.createpath}?db=${encodeURIComponent(config.icasework.dbName)}`;
+  }
+
+  sign() {
+    const date = (new Date()).toISOString().split('T')[0];
+    return crypto.createHash('md5').update(date + config.icasework.secret).digest('hex');
   }
 
   prepare(token) {
@@ -21,7 +26,7 @@ module.exports = class CaseworkModel extends Model {
       Signature: this.sign(),
       Type: 'Firearms',
       Format: 'json',
-      db: 'flcms',
+      db: config.icasework.dbName,
       RequestMethod: 'Online form'
     };
 
@@ -34,16 +39,14 @@ module.exports = class CaseworkModel extends Model {
     return params;
   }
 
-  sign() {
-    const date = (new Date()).toISOString().split('T')[0];
-    return crypto.createHash('md5').update(date + config.icasework.secret).digest('hex');
-  }
-
-  save() {
-    return Promise.resolve(this.prepare()).then(formData => {
-      const options = this.requestConfig({});
-      options.form = formData;
-      options.method = 'POST';
+  async save() {
+    try {
+      const options = {
+        url: this.url(),
+        data: await Promise.resolve(this.prepare()),
+        timeout: this.options.timeout,
+        method: 'POST'
+      };
 
       if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
         return Promise.resolve({
@@ -52,7 +55,12 @@ module.exports = class CaseworkModel extends Model {
           }
         });
       }
-      return this.request(options);
-    });
+      const response = await this._request(options);
+      logger.info('Successfully saved data', response.status);
+      return this.parse(response.data);
+    } catch (err) {
+      logger.error(`Error saving data: ${err.message}`);
+      throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
+    }
   }
 };

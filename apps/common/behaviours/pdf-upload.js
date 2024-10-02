@@ -16,7 +16,11 @@ module.exports = superclass => class PDFUpload extends superclass {
           name: 'application_form.pdf',
           data: pdfBuffer,
           mimetype: 'application/pdf'
-        }).catch(err => next(new Error(err.body)));
+        }).catch(err => {
+          req.log('error', `Error during PDF processing: ${err.message || err}`);
+          // Pass a new Error to next, ensuring that err.body is checked and a fallback message is provided
+          next(new Error(err.body || 'An unknown error occurred during PDF processing.'));
+        });
       })
       .then(result => {
         req.log('info', 'Saved PDF document to S3');
@@ -24,7 +28,9 @@ module.exports = superclass => class PDFUpload extends superclass {
         super.process(req, res, next);
       }, next)
       .catch(err => {
-        next(new Error(err.body));
+        req.log('error', `Error during saving PDF: ${err.message || err}`);
+        // Pass a new Error to next, ensuring that err.body is checked and a fallback message is provided
+        next(new Error(err.body || 'An unknown error occurred while saving PDF.'));
       });
   }
 
