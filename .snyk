@@ -5,7 +5,7 @@ ignore:
   SNYK-JS-DICER-2311764:
     - busboy-body-parser > busboy > dicer:
         reason: No update available
-        expires: '2024-10-10T12:21:04.350Z'
+        expires: '2024-12-27T12:21:04.350Z'
   SNYK-JS-INFLIGHT-6095116:
     - "*":
       reason: No update available.
