@@ -18,4 +18,16 @@ ignore:
     - '*':
       reason: No update available.
       expires: '2024-12-10T00:00:00.000Z'
+  SNYK-JS-DICER-2311764:
+    - busboy-body-parser > busboy > dicer:
+        reason: No update currently available
+        expires: '2024-12-28T00:00:00.000Z'
+  SNYK-JS-AXIOS-6671926:
+    - '*':
+        reason: need to update axios@1.7.7 - Fixed in version 1.7.8
+        expires: '2024-12-15T00:00:00.000Z'
+  SNYK-JS-ELLIPTIC-8187303:
+    - '*':
+      reason: elliptic should be updated to v6.6.0
+      expires: '2024-12-28T00:00:00.000Z'
 patch: {}
