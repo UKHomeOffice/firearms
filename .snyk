@@ -30,4 +30,8 @@ ignore:
     - '*':
       reason: No update available
       expires: '2024-12-28T00:00:00.000Z'
+  SNYK-JS-PATHTOREGEXP-8482416:
+    - '*':
+      reason: upgrade express@4.21.1 to express@4.21.2 to fix 
+      expires: '2024-12-28T00:00:00.000Z'
 patch: {}
