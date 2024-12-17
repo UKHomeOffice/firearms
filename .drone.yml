@@ -45,13 +45,6 @@ sonar_scanner: &sonar_scanner
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
-acceptance_tests: &acceptance_tests
-  pull: if-not-exists
-  image: mcr.microsoft.com/playwright:v1.12.3-focal
-  environment:
-    CUCUMBER_PUBLISH_TOKEN:
-      from_secret: CUCUMBER_PUBLISH_TOKEN
-
 steps:
   - name: clone_repos
     image: alpine/git
@@ -212,43 +205,6 @@ steps:
           - feature/*
       event: pull_request
 
-  - name: build_acceptance_branch
-    pull: if-not-exists
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    commands:
-    - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
-    - docker build -f Dockerfile-acceptance -t firearms-acceptance-$${DRONE_COMMIT_SHA} .
-    when:
-      branch: master
-      event: pull_request
-
-  # - name: test_acceptance_branch
-  #   pull: if-not-exists
-  #   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-  #   commands:
-  #   - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
-  #   - docker run -d --name=firearms-redis-$${DRONE_COMMIT_SHA} redis
-  #   - docker run -d -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:firearms-redis-$${DRONE_COMMIT_SHA} --name=app-$${DRONE_COMMIT_SHA} $${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
-  #   - docker run -d --net=container:app-$${DRONE_COMMIT_SHA} --name=selenium-$${DRONE_COMMIT_SHA} selenium/standalone-chrome
-  #   - sleep 5
-  #   - docker run --rm -e NODE_ENV=ci -e DISABLE_CSP=true -e EMAIL_TRANSPORT=stub --net=container:app-$${DRONE_COMMIT_SHA} firearms-acceptance-$${DRONE_COMMIT_SHA}
-  #   - docker rm -vf "app-$${DRONE_COMMIT_SHA}" "firearms-redis-$${DRONE_COMMIT_SHA}" "selenium-$${DRONE_COMMIT_SHA}"
-  #   when:
-  #     branch: master
-  #     event: pull_request
-
-  - name: acceptance_test_branch
-    <<: *acceptance_tests
-    commands:
-      - export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
-      - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}-$${DRONE_SOURCE_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
-      - export CUCUMBER_PUBLISH_ENABLED=true
-      - npx playwright install
-      - npm run test:acceptance
-    when:
-      branch: master
-      event: pull_request
-
   # Snyk security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
     pull: if-not-exists
@@ -279,17 +235,6 @@ steps:
     when:
       branch: master
       event: push
-
-  # - name: test_acceptance_uat
-  #   <<: *acceptance_tests
-  #   commands:
-  #     - export NODE_ENV=development
-  #     - export ACCEPTANCE_HOST_NAME=https://dev.notprod.$${APP_NAME}.homeoffice.gov.uk
-  #     - npx playwright install
-  #     - npm run test:acceptance
-  #   when:
-  #     branch: master
-  #     event: push
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
