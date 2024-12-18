@@ -179,9 +179,6 @@ module.exports = {
       next: '/confirmation'
     },
     '/confirmation': {
-      locals: {
-        'survey-url': config.survey.urls.museums
-      },
       backLink: false
     }
   }
