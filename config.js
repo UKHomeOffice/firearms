@@ -54,15 +54,7 @@ module.exports = {
     secret: process.env.ICASEWORK_SECRET,
     timeout: process.env.ICASEWORK_TIMEOUT || 60000
   },
-  survey: {
-    urls: {
-      root: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml',
-      'new-dealer': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=s5firearms/',
-      'shooting-clubs': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=shootclub/',
-      museums: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=Museums/',
-      'supporting-documents': 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=SupportingDocs/'
-    }
-  },
+  feedbackUrl: process.env.FEEDBACK_URL,
   pdf: {
     url: process.env.PDF_CONVERTER_URL
   }

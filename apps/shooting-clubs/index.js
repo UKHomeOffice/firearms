@@ -300,9 +300,6 @@ module.exports = {
       next: '/confirmation'
     },
     '/confirmation': {
-      locals: {
-        'survey-url': config.survey.urls['shooting-clubs']
-      },
       backLink: false
     }
   }
