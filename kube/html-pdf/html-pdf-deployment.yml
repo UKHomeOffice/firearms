@@ -38,7 +38,7 @@ spec:
         - name: html-pdf-converter
         {{ end }}
           # html-pdf-converter: v3.0.0 updated on 23/01/2024
-          image: quay.io/ukhomeofficedigital/html-pdf-converter@sha256:1585ce057caafeac25993549fc082093bd6acc78d83c16ea86844c7b980aa5d5
+          image: image: quay.io/ukhomeofficedigital/html-pdf-converter:3.0.0@sha256:2f13eb3bc9d396f2685e22a66b40613a44dfd9956412fe2752477601bb33772c
           imagePullPolicy: Always
           resources:
             requests:
