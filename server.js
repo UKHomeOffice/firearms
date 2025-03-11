@@ -20,7 +20,9 @@ settings = Object.assign({}, settings, {
     _checkEmpty(req, res, next) {
       next();
     }
-  }, require('hof/components/clear-session')
+  },
+  require('hof/components/clear-session'),
+  require('hof/components/session-timeout-warning')
   ],
   redis: config.redis,
   csp: {
