@@ -32,6 +32,6 @@ module.exports = class DocumentModel extends Model {
     const options = this.requestConfig({});
     options.qs = this.prepare();
     options.method = 'GET';
-    return this.request(options);
+    return this.request(options); //test
   }
 };
