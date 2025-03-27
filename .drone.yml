@@ -58,7 +58,7 @@ steps:
     when:
       branch:
         include:
-        - master
+        - develop
       event: [push, pull_request]
 
   - name: setup_deploy
