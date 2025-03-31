@@ -59,7 +59,7 @@ steps:
       branch:
         include:
         - develop
-      event: [push, pull_request]
+      event: [push, pull_request, tag]
 
   - name: setup_deploy
     pull: if-not-exists
@@ -73,7 +73,7 @@ steps:
       branch:
         include:
         - develop
-      event: push
+      event: [push, pull_request, tag]
 
   - name: linting_deploy
     <<: *linting
@@ -81,7 +81,7 @@ steps:
       branch:
         include:
           - develop
-      event: push
+      event: [push, pull_request, tag]
 
   - name: unit_tests_deploy
     <<: *unit_tests
@@ -89,7 +89,7 @@ steps:
       branch:
         include:
           - develop
-      event: push
+      event: [push, pull_request, tag]
 
   - name: sonar_scanner_deploy
     <<: *sonar_scanner
@@ -97,7 +97,7 @@ steps:
       branch:
         include:
           - develop
-      event: push
+      event: [push, pull_request, tag]
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -109,7 +109,7 @@ steps:
         path: /var/run
     when:
       branch: develop
-      event: [push, pull_request]
+      event: [push, pull_request, tag]
 
   - name: image_to_quay
     pull: if-not-exists
@@ -123,7 +123,7 @@ steps:
     - docker push $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     when:
       branch: develop
-      event: [push, pull_request]
+      event: [push, pull_request, tag]
 
 
   # Trivy Security Scannner
@@ -176,7 +176,10 @@ steps:
         include:
           - develop
           - feature/*
-      event: pull_request
+      event:
+      - pull_request
+      - push
+      - tag
 
   - name: linting_branch
     <<: *linting
@@ -185,7 +188,10 @@ steps:
         include:
           - develop
           - feature/*
-      event: pull_request
+      event:
+      - pull_request
+      - push
+      - tag
 
   - name: unit_tests_branch
     <<: *unit_tests
@@ -194,7 +200,10 @@ steps:
         include:
           - develop
           - feature/*
-      event: pull_request
+      event:
+      - pull_request
+      - push
+      - tag
 
   - name: sonar_scanner_branch
     <<: *sonar_scanner
@@ -203,7 +212,10 @@ steps:
         include:
           - develop
           - feature/*
-      event: pull_request
+      event:
+      - pull_request
+      - push
+      - tag
 
   # Snyk security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
@@ -219,9 +231,12 @@ steps:
         include:
           - develop
           - feature/*
-      event: pull_request
+      event:
+      - pull_request
+      - push
+      - tag
 
-  # Deploy to Master UAT environment
+  # Deploy to Develop UAT environment
   - name: deploy_to_uat
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -252,7 +267,10 @@ steps:
       - drone build info $GIT_REPO $DRONE_BUILD_NUMBER --format {{.Message}} | grep -o '[^ ]\+$' -m1 | sed 's|UKHomeOffice/||g' | tr '[:upper:]' '[:lower:]' | tr '/' '-' > /root/.dockersock/branch_name.txt
     when:
       branch: develop
-      event: push 
+      event:
+      - pull_request
+      - push
+      - tag
 
   # Tear down pull request UAT environment
   - name: tear_down_branch
@@ -270,7 +288,10 @@ steps:
       - bin/deploy.sh tear_down
     when:
       branch: develop
-      event: push
+      event:
+      - pull_request
+      - push
+      - tag
 
   # Deploy to Staging environment
   - name: deploy_to_stg
