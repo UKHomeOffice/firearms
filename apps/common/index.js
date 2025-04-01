@@ -50,6 +50,8 @@ module.exports = {
     },
     '/privacy': {},
     '/accessibility': {},
-    '/cookies': {}
+    '/cookies': {},
+    '/session-timeout': {},
+    '/exit': {}
   }
 };
