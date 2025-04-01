@@ -73,7 +73,7 @@ steps:
       branch:
         include:
         - develop
-      event: [pull_request, tag]
+      event: tag
 
   - name: linting_deploy
     <<: *linting
@@ -81,7 +81,7 @@ steps:
       branch:
         include:
           - develop
-      event: [pull_request, tag]
+      event: tag
 
   - name: unit_tests_deploy
     <<: *unit_tests
@@ -89,7 +89,7 @@ steps:
       branch:
         include:
           - develop
-      event: [pull_request, tag]
+      event: tag
 
   - name: sonar_scanner_deploy
     <<: *sonar_scanner
@@ -97,7 +97,7 @@ steps:
       branch:
         include:
           - develop
-      event: [pull_request, tag]
+      event: tag
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -262,7 +262,6 @@ steps:
     when:
       branch: develop
       event:
-      - pull_request
       - tag
 
   # Tear down pull request UAT environment
@@ -282,7 +281,6 @@ steps:
     when:
       branch: develop
       event:
-      - pull_request
       - tag
 
   # Deploy to Staging environment
