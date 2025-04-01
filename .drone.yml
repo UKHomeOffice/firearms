@@ -177,7 +177,6 @@ steps:
           - feature/*
       event:
       - pull_request
-      - tag
 
   - name: linting_branch
     <<: *linting
@@ -188,7 +187,6 @@ steps:
           - feature/*
       event:
       - pull_request
-      - tag
 
   - name: unit_tests_branch
     <<: *unit_tests
@@ -199,7 +197,6 @@ steps:
           - feature/*
       event:
       - pull_request
-      - tag
 
   - name: sonar_scanner_branch
     <<: *sonar_scanner
@@ -210,7 +207,6 @@ steps:
           - feature/*
       event:
       - pull_request
-      - tag
 
   # Snyk security scans which run after branch deployment to prevent blocking of PR UAT tests
   - name: snyk_scan
