@@ -135,7 +135,7 @@ steps:
         include:
           - release/*
           - develop
-      event: tag
+      event: [pull_request, tag]
 
   # Trivy Security Scannner
   - name: scan-image
