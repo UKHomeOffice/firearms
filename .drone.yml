@@ -118,7 +118,7 @@ steps:
         include:
           - release/*
           - develop
-      event: tag
+      event: [pull_request, tag]
 
   - name: image_to_quay
     pull: if-not-exists
@@ -136,7 +136,6 @@ steps:
           - release/*
           - develop
       event: tag
-
 
   # Trivy Security Scannner
   - name: scan-image
