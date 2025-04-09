@@ -283,12 +283,9 @@ steps:
         path: /root/.dockersock
     commands:
       - bin/deploy.sh tear_down
-    # when:
-    #   branch:
-    #     include:
-    #       - release/*
-    #   event: 
-    #   - tag
+    when:
+      event:
+      - tag
 
   # Deploy to Staging environment
   - name: deploy_to_stg
