@@ -248,10 +248,7 @@ steps:
     commands:
       - bin/deploy.sh $${UAT_ENV}
     when:
-      branch:
-        include:
-          - release/*
-      event: 
+      event:
       - tag
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
@@ -269,10 +266,7 @@ steps:
     commands:
       - drone build info $GIT_REPO $DRONE_BUILD_NUMBER --format {{.Message}} | grep -o '[^ ]\+$' -m1 | sed 's|UKHomeOffice/||g' | tr '[:upper:]' '[:lower:]' | tr '/' '-' > /root/.dockersock/branch_name.txt
     when:
-      branch:
-        include:
-          - release/*
-      event: 
+      event:
       - tag
 
   # Tear down pull request UAT environment
@@ -289,12 +283,12 @@ steps:
         path: /root/.dockersock
     commands:
       - bin/deploy.sh tear_down
-    when:
-      branch:
-        include:
-          - release/*
-      event: 
-      - tag
+    # when:
+    #   branch:
+    #     include:
+    #       - release/*
+    #   event: 
+    #   - tag
 
   # Deploy to Staging environment
   - name: deploy_to_stg
