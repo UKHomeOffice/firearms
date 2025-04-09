@@ -21,6 +21,7 @@ environment:
 trigger:
   branch:
     - feature/*
+    - release/*
     - develop
 
 linting: &linting
@@ -58,6 +59,7 @@ steps:
     when:
       branch:
         include:
+        - release/*
         - develop
       event: [pull_request, tag]
 
@@ -72,6 +74,7 @@ steps:
     when:
       branch:
         include:
+        - release/*
         - develop
       event: tag
 
@@ -80,6 +83,7 @@ steps:
     when:
       branch:
         include:
+          - release/*
           - develop
       event: tag
 
@@ -88,6 +92,7 @@ steps:
     when:
       branch:
         include:
+          - release/*
           - develop
       event: tag
 
@@ -96,6 +101,7 @@ steps:
     when:
       branch:
         include:
+          - release/*
           - develop
       event: tag
 
@@ -108,7 +114,10 @@ steps:
       - name: dockersock
         path: /var/run
     when:
-      branch: develop
+      branch:
+        include:
+          - release/*
+          - develop
       event: [pull_request, tag]
 
   - name: image_to_quay
@@ -122,9 +131,11 @@ steps:
     - docker tag $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     - docker push $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     when:
-      branch: develop
+      branch:
+        include:
+          - release/*
+          - develop
       event: [pull_request, tag]
-
 
   # Trivy Security Scannner
   - name: scan-image
@@ -237,8 +248,8 @@ steps:
     commands:
       - bin/deploy.sh $${UAT_ENV}
     when:
-      branch: develop
-      event: tag #please tag in this format v.1.0.0
+      branch: release/*
+      event: tag #please tag in this format v.3.2.5
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
@@ -255,7 +266,7 @@ steps:
     commands:
       - drone build info $GIT_REPO $DRONE_BUILD_NUMBER --format {{.Message}} | grep -o '[^ ]\+$' -m1 | sed 's|UKHomeOffice/||g' | tr '[:upper:]' '[:lower:]' | tr '/' '-' > /root/.dockersock/branch_name.txt
     when:
-      branch: develop
+      branch: release/*
       event:
       - tag
 
@@ -274,7 +285,7 @@ steps:
     commands:
       - bin/deploy.sh tear_down
     when:
-      branch: develop
+      branch: release/*
       event:
       - tag
 
