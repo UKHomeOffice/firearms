@@ -63,7 +63,6 @@ With the server running in development mode run (`yarn run start:acceptance`) to
 ```bash
 $ npm run test:acceptance
 ```
-
 ### Unit Tests
 ```bash
 $ yarn test:unit
