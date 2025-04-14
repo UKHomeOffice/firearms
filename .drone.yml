@@ -76,8 +76,7 @@ steps:
       branch:
         include:
         - release/*
-        - develop
-      event: tag
+      event: push
 
   - name: linting_deploy
     <<: *linting
@@ -85,8 +84,7 @@ steps:
       branch:
         include:
           - release/*
-          - develop
-      event: tag
+      event: push
 
   - name: unit_tests_deploy
     <<: *unit_tests
@@ -94,8 +92,7 @@ steps:
       branch:
         include:
           - release/*
-          - develop
-      event: tag
+      event: push
 
   - name: sonar_scanner_deploy
     <<: *sonar_scanner
@@ -103,8 +100,7 @@ steps:
       branch:
         include:
           - release/*
-          - develop
-      event: tag
+      event: push
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -119,7 +115,7 @@ steps:
         include:
           - release/*
           - develop
-      event: [pull_request, tag]
+      event: [pull_request, push, tag]
 
   - name: image_to_quay
     pull: if-not-exists
@@ -136,7 +132,7 @@ steps:
         include:
           - release/*
           - develop
-      event: [pull_request, tag]
+      event: [push, pull_request, tag]
 
   # Trivy Security Scannner
   - name: scan-image
