@@ -58,12 +58,10 @@ steps:
     commands:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
     when:
-      branch:
-        include:
-        - release/*
-        - develop
-        - master2
-      event: [pull_request, push, tag]
+      event:
+      - pull_request
+      - tag
+      - push
 
   - name: setup_deploy
     pull: if-not-exists
@@ -82,29 +80,23 @@ steps:
   - name: linting_deploy
     <<: *linting
     when:
-      branch:
-        include:
-          - release/*
-          - master2
-      event: [push, tag]
+      event:
+      - tag
+      - push
 
   - name: unit_tests_deploy
     <<: *unit_tests
     when:
-      branch:
-        include:
-          - release/*
-          - master2
-      event: [push, tag]
+      event:
+      - tag
+      - push
 
   - name: sonar_scanner_deploy
     <<: *sonar_scanner
     when:
-      branch:
-        include:
-          - release/*
-          - master2
-      event: [push, tag]
+      event:
+      - tag
+      - push
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -115,12 +107,10 @@ steps:
       - name: dockersock
         path: /var/run
     when:
-      branch:
-        include:
-          - release/*
-          - develop
-          - master2
-      event: [pull_request, push, tag]
+      event:
+      - pull_request
+      - tag
+      - push
 
   - name: image_to_quay
     pull: if-not-exists
@@ -133,12 +123,10 @@ steps:
     - docker tag $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     - docker push $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     when:
-      branch:
-        include:
-          - release/*
-          - develop
-          - master2
-      event: [push, pull_request, tag]
+      event:
+      - pull_request
+      - tag
+      - push
 
   # Trivy Security Scannner
   - name: scan-image
@@ -158,6 +146,7 @@ steps:
       event:
       - pull_request
       - tag
+      - push
 
 
   # Deploy to pull request UAT environment
@@ -316,8 +305,8 @@ steps:
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
-      branch: master2
-      event: tag
+      event:
+      - tag
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
