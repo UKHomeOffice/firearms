@@ -62,7 +62,8 @@ steps:
         include:
         - release/*
         - develop
-      event: [pull_request, tag]
+        - master2
+      event: [pull_request, push, tag]
 
   - name: setup_deploy
     pull: if-not-exists
@@ -76,7 +77,7 @@ steps:
       branch:
         include:
         - release/*
-      event: push
+      event: [push, tag]
 
   - name: linting_deploy
     <<: *linting
@@ -84,7 +85,8 @@ steps:
       branch:
         include:
           - release/*
-      event: push
+          - master2
+      event: [push, tag]
 
   - name: unit_tests_deploy
     <<: *unit_tests
@@ -92,7 +94,8 @@ steps:
       branch:
         include:
           - release/*
-      event: push
+          - master2
+      event: [push, tag]
 
   - name: sonar_scanner_deploy
     <<: *sonar_scanner
@@ -100,7 +103,8 @@ steps:
       branch:
         include:
           - release/*
-      event: push
+          - master2
+      event: [push, tag]
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -115,6 +119,7 @@ steps:
         include:
           - release/*
           - develop
+          - master2
       event: [pull_request, push, tag]
 
   - name: image_to_quay
@@ -132,6 +137,7 @@ steps:
         include:
           - release/*
           - develop
+          - master2
       event: [push, pull_request, tag]
 
   # Trivy Security Scannner
@@ -310,7 +316,7 @@ steps:
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
-      branch: master
+      branch: master2
       event: tag
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
