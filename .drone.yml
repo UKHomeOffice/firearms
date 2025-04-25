@@ -278,7 +278,7 @@ steps:
     when:
       branch:
         include:
-          - release/* #commit should include tickets
+        - release/* #commit should include tickets
       event:
       - push
 
