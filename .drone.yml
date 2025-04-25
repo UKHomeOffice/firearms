@@ -58,10 +58,12 @@ steps:
     commands:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
     when:
-      event:
-      - pull_request
-      - tag
-      - push
+      branch:
+        include:
+        - release/*
+        - develop
+        - master2
+      event: [pull_request, push, tag]
 
   - name: setup_deploy
     pull: if-not-exists
@@ -75,28 +77,35 @@ steps:
       branch:
         include:
         - release/*
+        - master2
       event: [push, tag]
 
   - name: linting_deploy
     <<: *linting
     when:
-      event:
-      - tag
-      - push
+      branch:
+        include:
+          - release/*
+          - master2
+      event: [push, tag]
 
   - name: unit_tests_deploy
     <<: *unit_tests
     when:
-      event:
-      - tag
-      - push
+      branch:
+        include:
+          - release/*
+          - master2
+      event: [push, tag]
 
   - name: sonar_scanner_deploy
     <<: *sonar_scanner
     when:
-      event:
-      - tag
-      - push
+      branch:
+        include:
+          - release/*
+          - master2
+      event: [push, tag]
 
   - name: build_image
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -305,8 +314,8 @@ steps:
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
-      event:
-      - tag
+      branch: master2
+      event: tag
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
