@@ -24,6 +24,7 @@ trigger:
     - hotfix/*
     - release/*
     - develop
+    - master2
 
 linting: &linting
   pull: if-not-exists
