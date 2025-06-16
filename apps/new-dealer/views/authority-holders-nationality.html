@@ -1,4 +1,7 @@
 {{<partials-page}}
+  {{$pageTitle}}
+    {{> partials-custom-html-title-tag-value}}
+  {{/pageTitle}}
   {{$page-content}}
     {{#select}}{{key}}{{/select}}
     <div data-module="govuk-checkboxes">

@@ -195,7 +195,11 @@ module.exports = {
         'storage-townOrCity',
         'storage-postcodeOrZIPCode'
       ],
-      locals: { section: 'storage-details', renew: true, step: 'storage-address'},
+      locals: {
+        section: 'storage-details',
+        renew: true,
+        step: 'storage-address'
+      },
       fieldSettings: { className: 'address' },
       next: '/storage-add-another-address',
       backLinks: '/storage',
@@ -217,7 +221,11 @@ module.exports = {
       fieldSettings: {
         isPageHeading: true
       },
-      locals: { section: 'storage-details', renew: true, step: 'storage-address'}
+      locals: {
+        section: 'storage-details',
+        renew: true,
+        step: 'storage-address'
+      }
     },
     '/usage': {
       behaviours: [renewOrVaryWarningBehaviour],
@@ -305,7 +313,9 @@ module.exports = {
         'first-authority-country-birth'
       ],
       next: '/first-authority-holders-nationality',
+      template: 'layout-with-custom-title',
       locals: {
+        customTitle: "What are the first authority's birth details?",
         key: 'first-authority-country-birth',
         section: 'first-authority-holder'
       }
@@ -321,11 +331,13 @@ module.exports = {
       ],
       next: '/first-authority-holders-address',
       locals: {
+        customTitle: "What is the first authority's country of nationality?",
         key: 'first-authority-holders-nationality',
         section: 'first-authority-holder'
       }
     },
     '/first-authority-holders-address': {
+      template: 'layout-with-custom-title',
       behaviours: formatAddress('first-authority-holders', 'first-authority-holders-address-manual'),
       fields: [
         'first-authority-holders-building',
@@ -334,6 +346,7 @@ module.exports = {
         'first-authority-holders-postcodeOrZIPCode'
       ],
       locals: {
+        customTitle: "What is the first authority's main business address?",
         step: '/first-authority-holders-address',
         field: 'first-authority-holders-address-manual',
         useOriginalValue: true,
@@ -364,7 +377,9 @@ module.exports = {
         'second-authority-country-birth'
       ],
       next: '/second-authority-holders-nationality',
+      template: 'layout-with-custom-title',
       locals: {
+        customTitle: "What are the second authority's birth details?",
         key: 'second-authority-country-birth',
         section: 'second-authority-holder'
       }
@@ -380,6 +395,7 @@ module.exports = {
       ],
       next: '/second-authority-holders-address',
       locals: {
+        customTitle: "What is the second authority's country of nationality?",
         key: 'second-authority-holders-nationality',
         section: 'second-authority-holder'
       }
@@ -392,7 +408,9 @@ module.exports = {
         'second-authority-holders-townOrCity',
         'second-authority-holders-postcodeOrZIPCode'
       ],
+      template: 'layout-with-custom-title',
       locals: {
+        customTitle: "What is the second authority's main business address?",
         field: 'second-authority-holders-address-manual',
         section: 'second-authority-holder'
       },
@@ -415,6 +433,7 @@ module.exports = {
       continueOnEdit: true
     },
     '/contact-details': {
+      template: 'layout-with-custom-title',
       fields: [
         'contact-email',
         'contact-phone'
@@ -427,6 +446,7 @@ module.exports = {
         }
       }],
       locals: {
+        customTitle: 'What are their contact details?',
         section: 'contacts-details'
       },
       continueOnEdit: true
@@ -436,13 +456,15 @@ module.exports = {
         'use-different-address'
       ],
       next: '/authority-holder-contact-address',
+      template: 'layout-with-custom-title',
       forks: [{
         target: '/invoice-contact-details',
         condition: {
           field: 'use-different-address',
           value: 'false'
         }
-      }, {
+      },
+      {
         target: '/authority-holder-contact-address',
         condition(req) {
           const addresses = req.sessionModel.get('authority-holder-contact-addresses');
@@ -450,6 +472,7 @@ module.exports = {
         }
       }],
       locals: {
+        customTitle: 'Which address should we use to contact the authority holder?',
         field: 'authority-holder-contact',
         section: 'contacts-details'
       }
@@ -463,7 +486,11 @@ module.exports = {
         'authority-holder-contact-townOrCity',
         'authority-holder-contact-postcodeOrZIPCode'
       ],
-      locals: { section: 'contacts-details', field: 'authority-holder-contact-address-manual' },
+      locals: {
+        customTitle: 'Which address should we use to contact the authority holder?',
+        section: 'contacts-details',
+        field: 'authority-holder-contact-address-manual'
+      },
       fieldSettings: { className: 'address' },
       next: '/invoice-contact-details'
     },
@@ -471,6 +498,10 @@ module.exports = {
       behaviours: formatAddress('contact', 'contact-address-manual'),
       fields: ['contact-building', 'contact-street', 'contact-townOrCity', 'contact-postcodeOrZIPCode'],
       fieldSettings: { className: 'address' },
+      template: 'layout-with-custom-title',
+      locals: {
+        customTitle: 'What is their address?'
+      },
       next: '/invoice-contact-details'
 
     },
