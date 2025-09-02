@@ -1,6 +1,9 @@
 {
   "appName": "Firearms Licensing",
   "theme": "govUK",
+  "behaviours": [
+    "hof/components/session-timeout-warning"
+  ],
   "translations": "./apps/common/translations",
   "routes": [
     "./apps/common",
@@ -12,7 +15,8 @@
   "fields": "./apps/common/fields",
   "views": ["./apps/common/views"],
   "session": {
-    "name": "firearms-licensing.hof.sid"
+    "name": "firearms-licensing.hof.sid",
+    "ttl": 3600
   },
   "getAccessibility": true,
   "emailerFallback": true
