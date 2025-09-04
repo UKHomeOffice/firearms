@@ -1,6 +1,9 @@
 {
   "appName": "Firearms Licensing",
   "theme": "govUK",
+  "behaviours": [
+    "hof/components/session-timeout-warning"
+  ],
   "translations": "./apps/common/translations",
   "routes": [
     "./apps/common",

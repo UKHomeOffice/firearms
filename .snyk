@@ -34,4 +34,8 @@ ignore:
     - '*':
       reason: upgrade express@4.21.1 to express@4.21.2 to fix 
       expires: '2024-12-28T00:00:00.000Z'
+  SNYK-JS-MARKDOWNIT-12143043:
+    - '*':
+      reason: No upgrade or patch available.
+      expires: '2025-11-26T00:00:00.000Z'
 patch: {}
