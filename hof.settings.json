@@ -18,5 +18,6 @@
     "name": "firearms-licensing.hof.sid"
   },
   "getAccessibility": true,
-  "emailerFallback": true
+  "emailerFallback": true,
+  "htmlLang": "cy"
 }
