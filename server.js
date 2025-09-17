@@ -43,7 +43,7 @@ const app = hof(settings);
 
 app.use((req, res, next) => {
   // Set HTML Language
-  res.locals.htmlLang = 'en';
+  //res.locals.htmlLang = 'cy';
   res.locals.appName = appName;
   // Set feedback and footer links
   res.locals.feedbackUrl = config.feedbackUrl;
