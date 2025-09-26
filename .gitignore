@@ -1,5 +1,4 @@
 .DS_Store
-apps/*/translations/en
 node_modules
 public
 .idea
@@ -10,3 +9,12 @@ output/
 anchore-reports
 .nyc_output
 .vscode
+.vscode-server
+dump.rdb
+yarn-error.log
+apps/**/translations/**/*
+!apps/**/translations/src/
+!apps/**/translations/src/**/*
+test/_accessibility/tmp/*
+.nyc_output
+.devcontainer/*.env
