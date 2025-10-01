@@ -11,6 +11,7 @@ environment:
   BRANCH_ENV: firearms-branch
   PRODUCTION_URL: www.firearms-licensing.homeoffice.gov.uk
   IMAGE_REPO: sas/firearms-licensing
+  IMAGE_URL : 340268328991.dkr.ecr.eu-west-2.amazonaws.com
   GIT_REPO: UKHomeOffice/firearms
   HOF_CONFIG: hof-services-config/Firearms_Licensing
   NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
