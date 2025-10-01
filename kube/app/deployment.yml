@@ -38,7 +38,6 @@ spec:
         app: {{ .APP_NAME }}
         service: {{ .APP_NAME }}
         {{ end }}
-        
     spec:
       containers:
         - name: {{ .APP_NAME }}
