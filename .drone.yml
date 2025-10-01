@@ -189,7 +189,7 @@ steps:
     when:
       event: [push, pull_request]
     depends_on:
-      - build_image_and_push_to_ecr
+      - build_image
       - clone_repos
 
   # Deploy to pull request UAT environment
@@ -210,7 +210,7 @@ steps:
       event: pull_request
     depends_on:
       - clone_repos
-      - build_image_and_push_to_ecr
+      - build_image
 
   # Deploy to Master UAT environment
   - name: deploy_to_uat
@@ -229,7 +229,7 @@ steps:
       event: push
     depends_on:
       - clone_repos
-      - build_image_and_push_to_ecr
+      - build_image
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
