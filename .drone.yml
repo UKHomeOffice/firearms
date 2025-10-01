@@ -132,15 +132,30 @@ steps:
       branch:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
+  
+  - name: build_image
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    commands:
+      - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+      - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
+    volumes:
+      - name: dockersock
+        path: /var/run
+    when:
+      branch: master
+      event: [push, pull_request]
+    depends_on:
+      - linting
+      - unit_tests
 
-  - name: build_image_and_push_to_ecr
+  - name: image_to_ecr
     pull: if-not-exists
     image: plugins/ecr
     settings:
       access_key:
-        from_secret: aws_access_key_id
+        from_secret: AWS_ACCESS_KEY_ID
       secret_key:
-        from_secret: aws_secret_access_key
+        from_secret: AWS_SECRET_ACCESS_KEY
       region: eu-west-2
       repo: sas/firearms-licensing
       registry: 340268328991.dkr.ecr.eu-west-2.amazonaws.com
