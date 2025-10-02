@@ -11,6 +11,7 @@ environment:
   BRANCH_ENV: firearms-branch
   PRODUCTION_URL: www.firearms-licensing.homeoffice.gov.uk
   IMAGE_REPO: sas/firearms-licensing
+  IMAGE_URL : 340268328991.dkr.ecr.eu-west-2.amazonaws.com
   GIT_REPO: UKHomeOffice/firearms
   HOF_CONFIG: hof-services-config/Firearms_Licensing
   NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
@@ -130,15 +131,30 @@ steps:
       branch:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
+  
+  - name: build_image
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    commands:
+      - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+      - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
+    volumes:
+      - name: dockersock
+        path: /var/run
+    when:
+      branch: master
+      event: [push, pull_request]
+    depends_on:
+      - linting
+      - unit_tests
 
-  - name: build_image_and_push_to_ecr
+  - name: image_to_ecr
     pull: if-not-exists
     image: plugins/ecr
     settings:
       access_key:
-        from_secret: aws_access_key_id
+        from_secret: AWS_ACCESS_KEY_ID
       secret_key:
-        from_secret: aws_secret_access_key
+        from_secret: AWS_SECRET_ACCESS_KEY
       region: eu-west-2
       repo: sas/firearms-licensing
       registry: 340268328991.dkr.ecr.eu-west-2.amazonaws.com
@@ -149,8 +165,7 @@ steps:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
     depends_on:
-      - linting
-      - unit_tests
+      - build_image
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
@@ -161,7 +176,7 @@ steps:
         cpu: 1000
         memory: 1024Mi
     environment:
-      IMAGE_NAME: firearms:${DRONE_COMMIT_SHA}
+      IMAGE_NAME: sas/firearms-licensing:${DRONE_COMMIT_SHA}
       SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: false
@@ -172,7 +187,7 @@ steps:
     when:
       event: [push, pull_request]
     depends_on:
-      - build_image_and_push_to_ecr
+      - build_image
       - clone_repos
 
   # Deploy to pull request UAT environment
@@ -193,7 +208,7 @@ steps:
       event: pull_request
     depends_on:
       - clone_repos
-      - build_image_and_push_to_ecr
+      - build_image
 
   # Deploy to Master UAT environment
   - name: deploy_to_uat
@@ -212,7 +227,7 @@ steps:
       event: push
     depends_on:
       - clone_repos
-      - build_image_and_push_to_ecr
+      - build_image
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
