@@ -11,8 +11,8 @@ if [[ "$STATUS" != "success" ]]; then
   exit 1
 fi
 
-if [[ "$BRANCH" != "master" ]]; then
-  echo "Build number $DRONE_BUILD_PARENT failed because it's not on the master branch."
+if [[ "$BRANCH" != "$DRONE_REPO_BRANCH" ]]; then
+  echo "Build number $DRONE_BUILD_PARENT failed because it's not on the $DRONE_REPO_BRANCH branch."
   exit 1
 fi
 
@@ -22,7 +22,7 @@ if [[ "$EVENT" != "push" ]]; then
 fi
 
 if [[ "$REFS" != "refs/heads/master" ]]; then
-  echo "Build number $DRONE_BUILD_PARENT failed because the reference is not refs/heads/master."
+  echo "Build number $DRONE_BUILD_PARENT failed because the reference is not refs/heads/$DRONE_REPO_BRANCH."
   exit 1
 fi
 

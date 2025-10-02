@@ -38,8 +38,6 @@ node_image: &node_image
 
 linting: &linting
   <<: *node_image
-  environment:
-    NOTIFY_KEY: USE_MOCK
   commands:
     - yarn run test:lint
 
@@ -164,7 +162,7 @@ steps:
         memory: 1024Mi
     environment:
       IMAGE_NAME: firearms:${DRONE_COMMIT_SHA}
-      SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree --format table
+      SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: false
       ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml

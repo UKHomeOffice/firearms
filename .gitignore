@@ -3,7 +3,7 @@ node_modules
 public
 .idea
 coverage
-.env
+*.env
 output/
 *.iml
 anchore-reports
@@ -18,3 +18,4 @@ apps/**/translations/**/*
 test/_accessibility/tmp/*
 .nyc_output
 .devcontainer/*.env
+*.rds

@@ -44,5 +44,24 @@ fi
 sleep $READY_FOR_TEST_DELAY
 
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
-  echo "Branch - $APP_NAME-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
+  echo "External Branch - $APP_NAME-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
+  echo "Internal Branch - $APP_NAME-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
+  echo "File Vault Branch - fv-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
+fi
+
+if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
+  echo "External Branch url - $APP_NAME-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
+  echo "Internal Branch url - $APP_NAME-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
+  echo "File Vault Branch - fv-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
+elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
+  echo "External UAT url - $APP_NAME.uat.sas-notprod.homeoffice.gov.uk"
+  echo "Internal UAT url - $APP_NAME.internal.uat.sas-notprod.homeoffice.gov.uk"
+  echo "File Vault UAT url - fv-$APP_NAME.uat.sas-notprod.homeoffice.gov.uk"
+elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
+  echo "External UAT url - $APP_NAME.stg.sas-notprod.homeoffice.gov.uk"
+  echo "Internal UAT url - $APP_NAME.internal.stg.sas.homeoffice.gov.uk"
+  echo "File Vault UAT url - fv-$APP_NAME.stg.sas.homeoffice.gov.uk"
+elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
+  echo "External PROD url - $PRODUCTION_URL"
+  echo "File Vault Prod url - fv-$APP_NAME.sas.homeoffice.gov.uk"
 fi

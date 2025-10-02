@@ -6,7 +6,7 @@ metadata:
   {{ else }}
   name: file-vault-ingress
   {{ end }}
-  {{ file .FILEVAULT_INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
+{{ file .FILEVAULT_INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
 spec:
   tls:
   - hosts:
