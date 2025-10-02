@@ -130,7 +130,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: session-secret
-                  key: session-secret
+                  key: token
             - name: FILE_VAULT_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk/file
