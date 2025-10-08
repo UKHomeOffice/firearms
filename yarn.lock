@@ -3407,10 +3407,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@~22.8.5:
-  version "22.8.5"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-22.8.5.tgz#d252ba4066408d44f84aa3273ce01a987b611d48"
-  integrity sha512-y1DePXMM4IJef0yV6oPR9AcdWYg7SVmq/YOLj+Nk9bSgn0HKWlKFTD4WZLZrYp/KMhcf/+JGYFJaJqWwNp3xMg==
+hof@~22.10.3:
+  version "22.10.3"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-22.10.3.tgz#5f79e2d6cff9fc8137e8d9eaa2d67af6d8a4334d"
+  integrity sha512-/FTa0jS/3Tve2QVcWj63ux+/7Z1/UJdyALJiAj5ITrqouXa602cxNzrGdzJBTQi9+JJ/P2UC2vcUKAZNfstgTw==
   dependencies:
     aliasify "^2.1.0"
     axios "^1.11.0"
@@ -3442,7 +3442,7 @@ hof@~22.8.5:
     helmet "^3.22.0"
     hogan-express-strict "^0.5.4"
     hogan.js "^3.0.2"
-    homeoffice-countries "^0.1.0"
+    homeoffice-countries "^0.2.0"
     i18n-future "^2.0.0"
     i18n-lookup "^0.1.0"
     is-pdf "^1.0.0"
@@ -3459,14 +3459,14 @@ hof@~22.8.5:
     nodemailer "^6.6.3"
     nodemailer-ses-transport "^1.5.1"
     nodemailer-stub-transport "^1.1.0"
-    notifications-node-client "^8.2.0"
+    notifications-node-client "^8.2.1"
     redis "^3.1.2"
     reqres "^3.0.1"
     rimraf "^3.0.2"
     sass "^1.56.2"
     serve-static "^1.14.1"
     uglify-js "^3.14.3"
-    underscore "^1.13.6"
+    underscore "^1.13.7"
     urijs "^1.19.11"
     uuid "^8.3.2"
     winston "^3.7.2"
@@ -3486,10 +3486,10 @@ hogan.js@>=3.0.0, hogan.js@^3.0.2:
     mkdirp "0.3.0"
     nopt "1.0.10"
 
-homeoffice-countries@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/homeoffice-countries/-/homeoffice-countries-0.1.0.tgz#940d74b9067f13c7ee2037bb3bcfebc30fa9316e"
-  integrity sha512-7U3JLaBkL6AltQ2RdWVwAey/soiN2ktsLewo9A7UFIUf5mvrElAtrO43whsPc9EqUn4qDqnnFYpFwm435ar+cw==
+homeoffice-countries@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/homeoffice-countries/-/homeoffice-countries-0.2.0.tgz#c4c6c9bb12534d06556ae6f3ddcd7c589e0b2876"
+  integrity sha512-E3u4MDBVVmUvX6CYNniuxt4CSlLM8Wm450JOKXmx6PZiwcA6Jd5yNPTLEsvG0/uVtDixaSTrjfvkt7u8SvE2KA==
 
 hosted-git-info@^7.0.0:
   version "7.0.2"
@@ -4754,7 +4754,7 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
-notifications-node-client@^8.0.0, notifications-node-client@^8.2.0:
+notifications-node-client@^8.0.0, notifications-node-client@^8.2.1:
   version "8.2.1"
   resolved "https://registry.yarnpkg.com/notifications-node-client/-/notifications-node-client-8.2.1.tgz#6b3e0d855c675bcb706f0f773e25eb738b46688f"
   integrity sha512-wyZh/NbjN8S2uQX18utYtCyC726BBaGeTc4HeUpdhZv5sYKuaQY94N31v9syh8SzVgehyMzW37y08EePmi+k3Q==
@@ -6492,7 +6492,7 @@ undeclared-identifiers@^1.1.2:
     simple-concat "^1.0.0"
     xtend "^4.0.1"
 
-underscore@^1.12.1, underscore@^1.13.6, underscore@^1.7.0, underscore@^1.8.2:
+underscore@^1.12.1, underscore@^1.13.7, underscore@^1.7.0, underscore@^1.8.2:
   version "1.13.7"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.13.7.tgz#970e33963af9a7dda228f17ebe8399e5fbe63a10"
   integrity sha512-GMXzWtsc57XAtguZgaQViUOzs0KTkk8ojr3/xAxXLITqf/3EMwxC0inyETfDFjH/Krbhuep0HNbbjI9i/q3F3g==
