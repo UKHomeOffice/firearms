@@ -17,7 +17,7 @@ spec:
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
         - dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-        - preprod.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
+        - preprod.prod.{{ .APP_NAME }}.sas.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
         - {{ .PRODUCTION_URL }}
       {{ end }}
