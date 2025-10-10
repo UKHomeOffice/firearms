@@ -6,7 +6,7 @@ type: kubernetes
 environment:
   APP_NAME: firearms-licensing
   PROD_ENV: firearms
-  STG_ENV: firearms-preprod
+  STG_ENV: firearms-stg
   UAT_ENV: firearms-dev
   BRANCH_ENV: firearms-branch
   PRODUCTION_URL: www.firearms-licensing.homeoffice.gov.uk
