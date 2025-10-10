@@ -64,8 +64,7 @@ steps:
       DRONE_GIT_TOKEN:
         from_secret: drone_git_token
     commands:
-      # Adding --branch to the git clone command to clone a specific branch of the hof-services-config repo will be removed before pushing to master after branch testing
-      - git clone --branch HOFF-961-keycloak-v22 https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
       - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
       branch:
