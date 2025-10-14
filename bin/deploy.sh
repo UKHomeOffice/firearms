@@ -55,7 +55,7 @@ elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
 elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   echo "External UAT url - preprod.prod.$APP_NAME.homeoffice.gov.uk"
   echo "Internal UAT url - stg.internal.$APP_NAME.sas.homeoffice.gov.uk"
-  echo "File Vault UAT url - supp-docs-preprod.prod.$APP_NAME.homeoffice.gov.uk"
+  echo "File Vault UAT url - supp-docs-preprod.prod.$APP_NAME.sas.homeoffice.gov.uk"
 elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   echo "External PROD url - $PRODUCTION_URL"
   echo "File Vault Prod url - supp-docs.prod.$APP_NAME.homeoffice.gov.uk"
