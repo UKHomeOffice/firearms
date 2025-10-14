@@ -135,7 +135,7 @@ spec:
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk/file
+              value: https://supp-docs-preprod.prod.{{ .APP_NAME }}.sas.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
