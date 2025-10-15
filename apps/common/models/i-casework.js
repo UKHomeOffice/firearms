@@ -55,10 +55,13 @@ module.exports = class CaseworkModel extends Model {
           }
         });
       }
+      console.log('Check ', config.icasework.secret, config.icasework.key);
+      console.log('**************** ', options);
       const response = await this._request(options);
       logger.info('Successfully saved data', response.status);
       return this.parse(response.data);
     } catch (err) {
+      console.log(err);
       logger.error(`Error saving data: ${err.message}`);
       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
     }
