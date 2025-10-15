@@ -9,7 +9,6 @@ metadata:
   {{ end }}
 {{ file .INGRESS_EXTERNAL_ANNOTATIONS | indent 2 }}
 spec:
-  ingressClassName: nginx-external
   tls:
     - hosts:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -18,7 +17,7 @@ spec:
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
         - dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-        - preprod.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
+        - preprod.prod.{{ .APP_NAME }}.sas.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
         - {{ .PRODUCTION_URL }}
       {{ end }}
@@ -33,7 +32,7 @@ spec:
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
     - host: dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-    - host: preprod.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
+    - host: preprod.prod.{{ .APP_NAME }}.sas.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
     - host: {{ .PRODUCTION_URL }}
     {{ end }}

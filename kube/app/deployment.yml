@@ -88,27 +88,28 @@ spec:
             - name: AWS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: ses
-                  key: password
+                  name: file-vault
+                  #encryption_key is randomly generated password used to encrypt the params that are returned by file-vault
+                  key: encryption_key
             - name: KEYCLOAK_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak
+                  name: keycloak-client
                   key: secret
             - name: KEYCLOAK_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: keycloak
+                  name: keycloak-client
                   key: id
             - name: KEYCLOAK_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-form
+                  name: keycloak-user
                   key: username
             - name: KEYCLOAK_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-form
+                  name: keycloak-user
                   key: password
             - name: ICASEWORK_KEY
               valueFrom:
