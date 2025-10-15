@@ -21,7 +21,7 @@ spec:
     secretName: file-vault-cert
     {{ end }}
   rules:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV  }}
   - host: fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
   {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
   - host: supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk

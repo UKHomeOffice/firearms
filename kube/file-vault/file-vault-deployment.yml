@@ -41,17 +41,17 @@ spec:
             - name: NODE_TLS_REJECT_UNAUTHORIZED
               value: "0"
             - name: FILE_VAULT_URL
-            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+          {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk
-            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+          {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
-            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+          {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
-            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+          {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             - name: DEBUG
               value: "true"
-            {{ end }}
+          {{ end }}
             - name: PORT
               value: "3000"
             - name: CLAMAV_REST_URL
