@@ -37,7 +37,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "mustache": "^4.2.0",
-    "notifications-node-client": "^8.2.1",
+    "notifications-node-client": "^8.0.0",
     "typeahead-aria": "^1.0.4",
     "uuid": "^7.0.3"
   },
