@@ -151,8 +151,8 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
-          #  - name: PROXY_UPSTREAM_URL
-          #    value: "http://127.0.0.1:3000"
+            - name: PROXY_UPSTREAM_URL
+              value: "http://127.0.0.1:3000"
           args:
             # URls that you wish to protect.
             - --resources=uri=/*
