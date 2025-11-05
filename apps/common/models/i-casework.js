@@ -49,7 +49,10 @@ module.exports = class CaseworkModel extends Model {
         method: 'POST'
       };
 
-      logger.info(`sessionId=${sessionId} Preparing to submit case to icasework`, { url: options.url, data: preparedData });
+      logger.info(
+        `sessionId=${sessionId} Preparing to submit case to icasework`,
+        { url: options.url, data: preparedData }
+      );
 
       if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
         logger.info(`sessionId=${sessionId} Using mock caseid response`);
@@ -60,7 +63,10 @@ module.exports = class CaseworkModel extends Model {
         });
       }
       const response = await this._request(options);
-      logger.info(`sessionId=${sessionId} Successfully saved data`, { status: response.status, response: response.data });
+      logger.info(
+        `sessionId=${sessionId} Successfully saved data`,
+        { status: response.status, response: response.data }
+      );
       return this.parse(response.data);
     } catch (err) {
       logger.error(`sessionId=${sessionId} Error saving data: ${err.message}`, {
