@@ -60,6 +60,7 @@ module.exports = class CaseworkModel extends Model {
       return this.parse(response.data);
     } catch (err) {
       logger.error(`Error saving data: ${err.message}`);
+      logger.error(`Error saving data: ${err}`);
       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
     }
   }
