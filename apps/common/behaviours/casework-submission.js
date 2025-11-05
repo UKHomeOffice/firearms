@@ -36,18 +36,40 @@ module.exports = conf => {
 
   return superclass => class extends superclass {
     async saveValues(req, res, next) {
-      req.log('info', 'Submitting case to icasework');
+      const sessionId = req.sessionID || req.session?.id || req.sessionModel?.get('sessionId') || 'unknown';
+      req.log('info', `sessionId=${sessionId} Submitting case to icasework`);
       const model = new Model(req.sessionModel.toJSON());
-      req.log('info', `Sending icasework submission to ${model.url()}`);
+      req.log('info', `sessionId=${sessionId} Sending icasework submission to ${model.url()}`);
       try {
-        const response = await model.save();
-        req.log('info', `Successfully submitted case to icasework (${response.createcaseresponse.caseid})`);
+        const response = await model.save(sessionId);
+        req.log(
+          'info',
+          `sessionId=${sessionId} Successfully submitted case to icasework (${response.createcaseresponse.caseid})`
+        );
         req.sessionModel.set('caseid', response.createcaseresponse.caseid);
         client.increment('casework.submission.success');
         await super.saveValues(req, res, next);
       } catch (e) {
-        req.log('error', 'Casework submission failed: ', e.response?.status || e);
-        req.log('error', e.response?.headers && e.response?.headers['x-application-error-info']);
+        req.log(
+          'error',
+          `sessionId=${sessionId} Casework submission failed: ${e.message}`,
+          e.response?.status || e
+        );
+        if (e.response?.headers && e.response?.headers['x-application-error-info']) {
+          req.log('error', `sessionId=${sessionId} x-application-error-info: ${e.response.headers['x-application-error-info']}`);
+        }
+        req.log(
+          'error',
+          `sessionId=${sessionId} Error details:`,
+          {
+            error: e,
+            response: e.response && {
+              status: e.response.status,
+              headers: e.response.headers,
+              data: e.response.data
+            }
+          }
+        );
         client.increment('casework.submission.failed');
         next(new Error(e.body || 'An unknown error occurred during casework submission.'));
       }
