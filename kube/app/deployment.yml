@@ -88,28 +88,27 @@ spec:
             - name: AWS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: file-vault
-                  #encryption_key is randomly generated password used to encrypt the params that are returned by file-vault
-                  key: encryption_key
+                  name: ses
+                  key: password
             - name: KEYCLOAK_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client
+                  name: keycloak
                   key: secret
             - name: KEYCLOAK_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client
+                  name: keycloak
                   key: id
             - name: KEYCLOAK_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-user
+                  name: keycloak-form
                   key: username
             - name: KEYCLOAK_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-user
+                  name: keycloak-form
                   key: password
             - name: ICASEWORK_KEY
               valueFrom:
@@ -135,11 +134,11 @@ spec:
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              value: https://supp-docs-preprod.prod.{{ .APP_NAME }}.sas.homeoffice.gov.uk/file
+              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
+              value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
             {{ end }}
             - name: PDF_CONVERTER_URL
               {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}

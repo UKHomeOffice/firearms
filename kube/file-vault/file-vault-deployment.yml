@@ -2,17 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   name: file-vault
-  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-  annotations:
-    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
-  name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-  {{ else }}
-  annotations:
-    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
-  name: file-vault
-  {{ end }}
 spec:
   {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   replicas: 2
@@ -21,28 +11,17 @@ spec:
   {{ end }}
   selector:
     matchLabels:
-      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-      name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-      service: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-      {{ else }}
       name: file-vault
       service: file-vault
-      {{ end }}
   template:
     metadata:
       labels:
-        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-        name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-        service: file-vault-{{ .DRONE_SOURCE_BRANCH }}
-        {{ else }}
         name: file-vault
         service: file-vault
-        {{ end }}
     spec:
       containers:
         - name: file-vault
-          # v3.0.1 28th August 2025
-          image: quay.io/ukhomeofficedigital/file-vault:3.0.1@sha256:44f35820701981eeb3371d332e6fd53f697e1bcd60f75731a57e8da6edb7bed5
+          image: quay.io/ukhomeofficedigital/file-vault:ff139ae0ebaa279d51bc75610fc7999c2658450a
           imagePullPolicy: Always
           resources:
             requests:
@@ -54,7 +33,7 @@ spec:
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                name: fv-branch-configmap
                 {{ else }}
                 name: {{ .APP_NAME }}-configmap
                 {{ end }}
@@ -65,11 +44,11 @@ spec:
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              value: https://supp-docs-preprod.prod.{{ .APP_NAME }}.sas.homeoffice.gov.uk
+              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+              value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             - name: DEBUG
               value: "true"
             {{ end }}
@@ -104,19 +83,11 @@ spec:
                   key: password
             - name: FILE_EXTENSION_WHITELIST
               value: 'pdf,doc,docx,txt,jpg,jpeg,png,xls,xlsx,odt,ods'
-            - name: AWS_EXPIRY_TIME
-              value: "120" # 2 minutes in seconds
-            - name: RETURN_ORIGINAL_SIGNED_URL
-              value: "no"
-            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-            - name: DEBUG
-              value: "*"
-            {{ end }}
           securityContext:
             runAsNonRoot: true
 
         - name: keycloak-proxy
-          image: quay.io/ukhomeofficedigital/gogatekeeper:3.5.0
+          image: quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.2.2
           resources:
             limits:
               memory: "1024Mi"
@@ -124,7 +95,7 @@ spec:
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
+                name: fv-branch-configmap
                 {{ else }}
                 name: {{ .APP_NAME }}-configmap
                 {{ end }}
@@ -132,12 +103,12 @@ spec:
             - name: PROXY_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client
+                  name: keycloak
                   key: secret
             - name: PROXY_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client
+                  name: keycloak
                   key: id
             - name: PROXY_LISTEN
               value: 127.0.0.1:3001
@@ -149,33 +120,18 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
+              value: https://fv-branch.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
             - name: PROXY_UPSTREAM_URL
               value: "http://127.0.0.1:3000"
-          args:
-            # URls that you wish to protect.
-            - --resources=uri=/*
-            - --enable-default-deny=false
-            - --enable-security-filter=true
-            - --enable-request-id=true
-            - --enable-logging=true
-            - --enable-json-logging=true
-            - --enable-encrypted-token=false
-          {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-            - --verbose=true
-          {{ end }}
+          command:
+            - "/opt/keycloak-proxy"
+            - "--resources=uri=/file|methods=GET,POST|roles=caseworkers"
+            - "--resources=uri=/*"
+            - "--enable-logging=true"
+            - "--enable-json-logging=true"
           securityContext:
             runAsNonRoot: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-            - mountPath: /certs
-              name: certs
-            - mountPath: /etc/ssl/certs
-              name: bundle
-              readOnly: true
-
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4
@@ -192,23 +148,11 @@ spec:
           ports:
             - containerPort: 10080
             - containerPort: 10443
+          volumeMounts:
+            - mountPath: /public
+              name: public
           securityContext:
             runAsNonRoot: true
-          volumeMounts:
-            - mountPath: /certs
-              name: certs
-              readOnly: true
-            - name: bundle
-              mountPath: /etc/ssl/certs
-              readOnly: true
       volumes:
-        - name: certs
-          secret:
-            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-            secretName: branch-tls-external
-            {{ else }}
-            secretName: file-vault-cert
-            {{ end }}
-        - name: bundle
-          configMap:
-            name: bundle
+        - name: public
+          emptyDir: {}
