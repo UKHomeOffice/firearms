@@ -42,12 +42,19 @@ module.exports = conf => {
       req.log('info', `sessionId=${sessionId} Sending icasework submission to ${model.url()}`);
       try {
         const response = await model.save(sessionId);
-        req.log('info', `sessionId=${sessionId} Successfully submitted case to icasework (${response.createcaseresponse.caseid})`);
+        req.log(
+          'info',
+          `sessionId=${sessionId} Successfully submitted case to icasework (${response.createcaseresponse.caseid})`
+        );
         req.sessionModel.set('caseid', response.createcaseresponse.caseid);
         client.increment('casework.submission.success');
         await super.saveValues(req, res, next);
       } catch (e) {
-        req.log('error', `sessionId=${sessionId} Casework submission failed: ${e.message}`, e.response?.status || e);
+        req.log(
+          'error',
+          `sessionId=${sessionId} Casework submission failed: ${e.message}`,
+          e.response?.status || e
+        );
         if (e.response?.headers && e.response?.headers['x-application-error-info']) {
           req.log('error', `sessionId=${sessionId} x-application-error-info: ${e.response.headers['x-application-error-info']}`);
         }
