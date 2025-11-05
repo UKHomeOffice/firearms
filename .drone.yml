@@ -6,7 +6,7 @@ type: kubernetes
 environment:
   APP_NAME: firearms-licensing
   PROD_ENV: firearms
-  STG_ENV: firearms-stg
+  STG_ENV: firearms-preprod
   UAT_ENV: firearms-dev
   BRANCH_ENV: firearms-branch
   PRODUCTION_URL: www.firearms-licensing.homeoffice.gov.uk
@@ -275,9 +275,9 @@ steps:
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
     environment:
       KUBE_SERVER:
-        from_secret: kube_server_stg
+        from_secret: kube_server_dev
       KUBE_TOKEN:
-        from_secret: kube_token_stg
+        from_secret: kube_token_dev
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
