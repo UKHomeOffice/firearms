@@ -58,14 +58,18 @@ module.exports = conf => {
         if (e.response?.headers && e.response?.headers['x-application-error-info']) {
           req.log('error', `sessionId=${sessionId} x-application-error-info: ${e.response.headers['x-application-error-info']}`);
         }
-        req.log('error', `sessionId=${sessionId} Error details:`, {
-          error: e,
-          response: e.response && {
-            status: e.response.status,
-            headers: e.response.headers,
-            data: e.response.data
+        req.log(
+          'error',
+          `sessionId=${sessionId} Error details:`,
+          {
+            error: e,
+            response: e.response && {
+              status: e.response.status,
+              headers: e.response.headers,
+              data: e.response.data
+            }
           }
-        });
+        );
         client.increment('casework.submission.failed');
         next(new Error(e.body || 'An unknown error occurred during casework submission.'));
       }
