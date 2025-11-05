@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fv-branch-configmap
+  namespace: {{ .KUBE_NAMESPACE }}
+  labels:
+    name: fv-branch-configmap
+data:
+{{ file .CONFIGMAP_VALUES | indent 2 }}

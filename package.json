@@ -5,7 +5,7 @@
   "description": "Firearms application service",
   "author": "HomeOffice",
   "engines": {
-    "node": ">=20.19.0 <21.0.0"
+    "node": ">=18.12.1 <21.0.0"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "test:acceptance_browser": "ACCEPTANCE_WITH_BROWSER=true TAGS=\"${TAGS:=@feature}\" yarn run test:cucumber",
     "test:cucumber": "cucumber-js -f @cucumber/pretty-formatter \"test/_features/**/*.feature\" --require test/_features/test.setup.js --require \"test/_features/step_definitions/**/*.js\" --tags $TAGS",
     "test:lint": "eslint . --config ./node_modules/eslint-config-hof/default.js",
+    "test:snyk": "snyk config set api=SNYK_TOKEN && snyk test",
     "build": "hof-build",
     "postinstall": "hof-build"
   },
@@ -55,7 +56,8 @@
     "playwright": "~1.55.0",
     "proxyquire": "^2.1.3",
     "sinon": "^21.0.0",
-    "sinon-chai": "^3.7.0"
+    "sinon-chai": "^3.7.0",
+    "snyk": "^1.1299.0"
   },
   "resolutions": {
     "underscore": "^1.12.1",
