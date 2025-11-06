@@ -51,7 +51,6 @@ module.exports = {
     '/privacy': {},
     '/accessibility': {},
     '/cookies': {},
-    '/session-timeout': {},
     '/exit': {}
   }
 };
