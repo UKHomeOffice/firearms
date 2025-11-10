@@ -106,8 +106,8 @@ spec:
               value: 'pdf,doc,docx,txt,jpg,jpeg,png,xls,xlsx,odt,ods'
             - name: AWS_EXPIRY_TIME
               value: "120" # 2 minutes in seconds
-            - name: RETURN_ORIGINAL_SIGNED_URL
-              value: "no"
+            - name: ALLOW_GENERATE_LINK_ROUTE
+              value: "yes"
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DEBUG
               value: "*"
@@ -141,6 +141,8 @@ spec:
                   key: id
             - name: PROXY_LISTEN
               value: 127.0.0.1:3001
+            - name: PROXY_UPSTREAM_URL
+              value: http://127.0.0.1:3000
             - name: PROXY_REDIRECTION_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk
@@ -151,9 +153,13 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
-            - name: PROXY_UPSTREAM_URL
-              value: "http://127.0.0.1:3000"
           args:
+            # the url which is used to retrieve the OpenID configuration
+            {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+            - --discovery-url=https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/firearms-notprod
+            {{ else }}
+            - --discovery-url=https://acp-sso.prod.acp.homeoffice.gov.uk/realms/firearms
+            {{ end }}
             # URls that you wish to protect.
             - --resources=uri=/*
             - --enable-default-deny=false
