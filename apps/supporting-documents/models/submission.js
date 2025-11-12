@@ -13,6 +13,6 @@ module.exports = (data, token) => {
     response[`Document${i + 1}.MimeType`] = doc.type;
     response[`Document${i + 1}.URLLoadContent`] = true;
   });
-
+  console.log('***********Submission response:', response);
   return response;
 };

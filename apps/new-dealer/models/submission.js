@@ -147,6 +147,7 @@ module.exports = (data, token) => {
     response[`Document${index}.MimeType`] = doc.type;
     response[`Document${index}.URLLoadContent`] = true;
   });
+  console.log('***********Submission response:', response);
 
   return response;
 };

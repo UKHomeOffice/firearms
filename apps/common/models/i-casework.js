@@ -55,10 +55,14 @@ module.exports = class CaseworkModel extends Model {
           }
         });
       }
+      console.time('Save casework data');
       const response = await this._request(options);
+      console.timeEnd('Save casework data');
+      console.log('***********Save response:', response);
       logger.info('Successfully saved data', response.status);
       return this.parse(response.data);
     } catch (err) {
+      console.log('***********Error saving data:', err);
       logger.error(`Error saving data: ${err.message}`);
       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
     }
