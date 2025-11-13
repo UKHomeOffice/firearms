@@ -176,7 +176,7 @@ spec:
             #- --enable-request-id=true
             - --enable-logging=true
             - --enable-json-logging=true
-            #- --enable-encrypted-token=false
+            - --enable-encrypted-token=false
           {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
           {{ end }}
