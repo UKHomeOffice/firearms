@@ -106,6 +106,8 @@ spec:
               value: 'pdf,doc,docx,txt,jpg,jpeg,png,xls,xlsx,odt,ods'
             - name: AWS_EXPIRY_TIME
               value: "120" # 2 minutes in seconds
+            - name: RETURN_ORIGINAL_SIGNED_URL
+              value: "no"
             - name: ALLOW_GENERATE_LINK_ROUTE
               value: "yes"
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -142,7 +144,13 @@ spec:
             - name: PROXY_LISTEN
               value: 127.0.0.1:3001
             - name: PROXY_UPSTREAM_URL
-              value: http://127.0.0.1:3000
+              value: "http://127.0.0.1:3000"
+            - name: PROXY_DISCOVERY_URL
+            {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+              value: https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/firearms-notprod
+            {{ else }}
+              value: https://acp-sso.prod.acp.homeoffice.gov.uk/realms/firearms
+            {{ end }}
             - name: PROXY_REDIRECTION_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk
@@ -161,13 +169,14 @@ spec:
             - --discovery-url=https://acp-sso.prod.acp.homeoffice.gov.uk/realms/firearms
             {{ end }}
             # URls that you wish to protect.
+            - --upstream-url=http://127.0.0.1:3000
             - --resources=uri=/*
             - --enable-default-deny=false
-            - --enable-security-filter=true
-            - --enable-request-id=true
+            #- --enable-security-filter=true
+            #- --enable-request-id=true
             - --enable-logging=true
             - --enable-json-logging=true
-            - --enable-encrypted-token=false
+            #- --enable-encrypted-token=false
           {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
           {{ end }}
