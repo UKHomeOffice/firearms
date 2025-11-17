@@ -59,6 +59,7 @@ module.exports = class CaseworkModel extends Model {
       logger.info('Successfully saved data', response.status);
       return this.parse(response.data);
     } catch (err) {
+      console.log('*********** SAVE ERROR: ', err);
       logger.error(`Error saving data: ${err.message}`);
       logger.error(`Error saving data: ${err}`);
       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
