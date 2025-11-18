@@ -31,7 +31,7 @@ module.exports = (data, token) => {
 
   data['existing-authority-documents'].forEach((doc, i) => {
     const index = i + 2;
-    response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}&token=${token.bearer}`;
+    response[`Document${index}.URL`] = `${doc.url.replace('/file', '/vault')}?token=${token.bearer}`;
     response[`Document${index}.Name`] = doc.description;
     response[`Document${index}.MimeType`] = doc.type;
     response[`Document${index}.URLLoadContent`] = true;

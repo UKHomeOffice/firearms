@@ -165,6 +165,8 @@ spec:
           {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
           {{ end }}
+          ports:
+            - containerPort: 3001
           securityContext:
             runAsNonRoot: true
           terminationMessagePath: /dev/termination-log

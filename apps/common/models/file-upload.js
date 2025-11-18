@@ -30,6 +30,7 @@ module.exports = class UploadModel extends AuthToken {
         if (err) {
           return reject(err);
         }
+        console.log('File upload successful', data);
         return resolve(data);
       });
     });
