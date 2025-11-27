@@ -32,23 +32,31 @@ module.exports = class CaseworkModel extends Model {
 
     if (this.get('pdf-upload')) {
       params['Document1.Name'] = 'full application data';
-      params['Document1.URL'] = `${this.get('pdf-upload').replace('/file', '/vault')}&token=${token.bearer}`;
+      params['Document1.URL'] = `${this.get('pdf-upload')
+        .replace('/file', '/vault')}&token=${token.bearer}`;
       params['Document1.MimeType'] = 'application/pdf';
       params['Document1.URLLoadContent'] = true;
     }
     return params;
   }
 
-  async save() {
+  async save(sessionId) {
     try {
+      const preparedData = await Promise.resolve(this.prepare());
       const options = {
         url: this.url(),
-        data: await Promise.resolve(this.prepare()),
+        data: preparedData,
         timeout: this.options.timeout,
         method: 'POST'
       };
 
+      logger.info(
+        `sessionId=${sessionId} Preparing to submit case to icasework`,
+        { url: options.url, data: preparedData }
+      );
+
       if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
+        logger.info(`sessionId=${sessionId} Using mock caseid response`);
         return Promise.resolve({
           createcaseresponse: {
             caseid: 'mock caseid'
@@ -56,10 +64,23 @@ module.exports = class CaseworkModel extends Model {
         });
       }
       const response = await this._request(options);
-      logger.info('Successfully saved data', response.status);
+      logger.info(
+        `sessionId=${sessionId} Successfully saved data`,
+        { status: response.status, response: response.data }
+      );
       return this.parse(response.data);
     } catch (err) {
-      logger.error(`Error saving data: ${err.message}`);
+      logger.error(
+        `sessionId=${sessionId} Error saving data: ${err.message}`,
+        {
+          error: err,
+          response: err.response && {
+            status: err.response.status,
+            headers: err.response.headers,
+            data: err.response.data
+          }
+        }
+      );
       throw new Error(`Failed to save data: ${err.message || 'Unknown error'}`);
     }
   }
