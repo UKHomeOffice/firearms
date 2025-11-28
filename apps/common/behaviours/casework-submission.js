@@ -56,7 +56,10 @@ module.exports = conf => {
           e.response?.status || e
         );
         if (e.response?.headers && e.response?.headers['x-application-error-info']) {
-          req.log('error', `sessionId=${sessionId} x-application-error-info: ${e.response.headers['x-application-error-info']}`);
+          req.log(
+            'error',
+            `sessionId=${sessionId} x-application-error-info: ${e.response.headers['x-application-error-info']}`
+          );
         }
         req.log(
           'error',
