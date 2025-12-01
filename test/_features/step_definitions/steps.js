@@ -8,7 +8,6 @@ const sinon = require('sinon');
 
 const domain = config.hosts.acceptanceTests;
 
-
 Given('I start the {string} application journey', async function (subApp) {
   this.subApp = subApp === 'base' ? '' : `/${subApp}`;
   await this.page.goto(`${domain}${this.subApp}`);
