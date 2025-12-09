@@ -170,8 +170,8 @@ spec:
             - --upstream-url=http://127.0.0.1:3000
             - --resources=uri=/*
             - --enable-default-deny=false
-            #- --enable-security-filter=true
-            #- --enable-request-id=true
+            # - --enable-security-filter=true
+            # - --enable-request-id=true
             - --enable-logging=true
             - --enable-json-logging=true
             - --enable-encrypted-token=false
@@ -188,7 +188,6 @@ spec:
             - mountPath: /etc/ssl/certs
               name: bundle
               readOnly: true
-
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4
