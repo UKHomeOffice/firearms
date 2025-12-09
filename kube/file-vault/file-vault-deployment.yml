@@ -140,8 +140,6 @@ spec:
             - name: PROXY_UPSTREAM_URL
               value: "http://127.0.0.1:3000"
             - name: PROXY_DISCOVERY_URL
-            # Temporarily using v22 prod realm in UAT. Stage environment will not be used until it is properly isolated from production. Prevents accidental data flow from stage to production icasework
-            # {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/firearms-notprod
             {{ else }}
@@ -158,9 +156,6 @@ spec:
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
           args:
-            # the url which is used to retrieve the OpenID configuration
-            # Temporarily using v22 prod realm in UAT. Stage environment will not be used until it is properly isolated from production. Prevents accidental data flow from stage to production icasework
-            # {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --discovery-url=https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/firearms-notprod
             {{ else }}
