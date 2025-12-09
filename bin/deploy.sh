@@ -25,7 +25,13 @@ export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower
 
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/configmaps -f kube/certs
-  $kd -f kube/redis -f kube/html-pdf -f kube/file-vault -f kube/app
+  $kd -f kube/redis 
+  echo "redis deployed now html-pdf-converter"
+  $kd -f kube/html-pdf
+  echo "html-pdf-converter deployed now deploying file-vault"
+  $kd -f kube/file-vault 
+  echo "file-vault deployed now deploying app"
+  $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml  -f kube/app/service.yml
   $kd -f kube/app/ingress-external.yml -f kube/app/networkpolicy-external.yml
