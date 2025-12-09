@@ -224,4 +224,3 @@ spec:
         - name: bundle
           configMap:
             name: bundle
-
