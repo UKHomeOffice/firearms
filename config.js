@@ -57,5 +57,6 @@ module.exports = {
   feedbackUrl: process.env.FEEDBACK_URL,
   pdf: {
     url: process.env.PDF_CONVERTER_URL
-  }
+  },
+  disallowIndexing: process.env.DISALLOW_INDEXING === 'true'
 };
