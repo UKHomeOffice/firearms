@@ -6,7 +6,8 @@ module.exports = {
     '/privacy': 'privacy',
     '/accessibility': 'accessibility',
     '/cookies': 'cookies',
-    '/terms-and-conditions': 'terms'
+    '/terms-and-conditions': 'terms',
+    '/google862eca84e8b12823.html': 'static/google862eca84e8b12823'
   },
   steps: {
     '/choose': {
