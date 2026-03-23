@@ -21,7 +21,6 @@ TEMPLATE_SECTION5              | GOV.UK notify template ID
 TEMPLATE_SHOOTING_CLUB         | GOV.UK notify template ID
 TEMPLATE_SUPPORTING_DOCUMENTS  | GOV.UK notify template ID email
 EMAIL_REPLY_TO_DEFAULT         | Default 'reply to'  email address
-EMAIL_REPLY_TO_FIREARMS        | 'Reply to' email address
 CASEWORKER_EMAIL               | Caseworker email
 AWS_EXPIRY_TIME                | AWS config
 AWS_USER                       | AWS credentials

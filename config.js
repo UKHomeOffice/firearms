@@ -26,8 +26,7 @@ module.exports = {
     templateSection5: process.env.TEMPLATE_SECTION5,
     templateShootingClub: process.env.TEMPLATE_SHOOTING_CLUB,
     templateSupportingDocuments: process.env.TEMPLATE_SUPPORTING_DOCUMENTS,
-    emailReplyToDefault: process.env.EMAIL_REPLY_TO_DEFAULT,
-    emailReplyToFirearms: process.env.EMAIL_REPLY_TO_FIREARMS
+    emailReplyToDefault: process.env.EMAIL_REPLY_TO_DEFAULT
   },
   email: {
     emailerFallback: true,

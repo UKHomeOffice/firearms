@@ -11,7 +11,7 @@ const submission = Submission({
 });
 
 const templateId = config.govukNotify.templateSupportingDocuments;
-const replyTo = config.govukNotify.emailReplyToFirearms;
+const replyTo = config.govukNotify.emailReplyToDefault;
 const sendEmail = require('../common/behaviours/send-email')({
   templateId: templateId,
   recipient: 'original-email',
