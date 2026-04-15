@@ -140,7 +140,7 @@ spec:
             - name: PROXY_UPSTREAM_URL
               value: "http://127.0.0.1:3000"
             - name: PROXY_DISCOVERY_URL
-            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
               value: https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/firearms-notprod
             {{ else }}
               value: https://acp-sso.prod.acp.homeoffice.gov.uk/realms/firearms
@@ -157,7 +157,7 @@ spec:
             {{ end }}
           args:
             # the url which is used to retrieve the OpenID configuration
-            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
             - --discovery-url=https://acp-sso.notprod.acp.homeoffice.gov.uk/realms/firearms-notprod
             {{ else }}
             - --discovery-url=https://acp-sso.prod.acp.homeoffice.gov.uk/realms/firearms
