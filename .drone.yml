@@ -134,7 +134,8 @@ steps:
   - name: build_image_for_trivy
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
-      - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+      # wait for docker service to be up before running docker build
+      - /usr/local/bin/wait
       - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
     volumes:
       - name: dockersock
@@ -420,11 +421,11 @@ steps:
       channel: sas-hof-build-notify
       failure: ignore
       template: >
-          *✘ {{ uppercasefirst build.status }}*: Cron job `tear_down_pr_envs` failed to tear down the deployments in the BRANCH environment.
+            *✘ {{ uppercasefirst build.status }}*: CRON Job `tear_down_pr_envs` for *FIREARMS LICENSING* has failed.
 
             Branch <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | Commit <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
 
-          *Build <{{build.link}}|#{{build.number}}>*
+            *Build <{{build.link}}|#{{build.number}}>*
       username: Drone_CI
       webhook:
         from_secret: slack_sas_hof_build_notify_webhook
@@ -443,11 +444,11 @@ steps:
       channel: sas-hof-security
       failure: ignore
       template: >
-          *✘ {{ uppercasefirst build.status }}*: Cron job `security_scans` has failed. Prioritise reviewing build logs and addressing issues.
+            *✘ {{ uppercasefirst build.status }}*: CRON Job `security_scans` for *FIREARMS LICENSING* has failed.
 
             Branch <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | Commit <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
 
-          *Build <{{build.link}}|#{{build.number}}>*
+            *Build <{{build.link}}|#{{build.number}}>*
       username: Drone_CI
       webhook:
         from_secret: slack_sas_hof_security_webhook
