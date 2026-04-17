@@ -34,7 +34,7 @@ trigger:
 
 node_image: &node_image
   pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21@sha256:aad584fa26cb2838739527166c8965d95d0d2d9b88cfd5e3e2d3b8647ae03101
+  image: quay.io/ukhomeofficedigital/hof-nodejs:20.20.2-alpine3.23@sha256:bcd17b68a0f1910f1670b07f6a47d1e2c28291bafc219807c494dc62b57ea25e
 
 
 linting: &linting
@@ -80,7 +80,7 @@ steps:
         cpu: 1000
         memory: 1024Mi
     environment:
-      IMAGE_NAME: quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21@sha256:aad584fa26cb2838739527166c8965d95d0d2d9b88cfd5e3e2d3b8647ae03101
+      IMAGE_NAME: quay.io/ukhomeofficedigital/hof-nodejs:20.20.2-alpine3.23@sha256:bcd17b68a0f1910f1670b07f6a47d1e2c28291bafc219807c494dc62b57ea25e
       SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree --format table
       SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443
       FAIL_ON_DETECTION: false
@@ -134,7 +134,8 @@ steps:
   - name: build_image_for_trivy
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
-      - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+      # wait for docker service to be up before running docker build
+      - /usr/local/bin/wait
       - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
     volumes:
       - name: dockersock
@@ -382,7 +383,7 @@ steps:
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     pull: always
     environment:
-        IMAGE_NAME: quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21@sha256:aad584fa26cb2838739527166c8965d95d0d2d9b88cfd5e3e2d3b8647ae03101
+        IMAGE_NAME: quay.io/ukhomeofficedigital/hof-nodejs:20.20.2-alpine3.23@sha256:bcd17b68a0f1910f1670b07f6a47d1e2c28291bafc219807c494dc62b57ea25e
         SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree --format table
         FAIL_ON_DETECTION: true
         IGNORE_UNFIXED: false
@@ -420,11 +421,11 @@ steps:
       channel: sas-hof-build-notify
       failure: ignore
       template: >
-          *✘ {{ uppercasefirst build.status }}*: Cron job `tear_down_pr_envs` failed to tear down the deployments in the BRANCH environment.
+            *✘ {{ uppercasefirst build.status }}*: CRON Job `tear_down_pr_envs` for *FIREARMS LICENSING* has failed.
 
             Branch <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | Commit <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
 
-          *Build <{{build.link}}|#{{build.number}}>*
+            *Build <{{build.link}}|#{{build.number}}>*
       username: Drone_CI
       webhook:
         from_secret: slack_sas_hof_build_notify_webhook
@@ -443,11 +444,11 @@ steps:
       channel: sas-hof-security
       failure: ignore
       template: >
-          *✘ {{ uppercasefirst build.status }}*: Cron job `security_scans` has failed. Prioritise reviewing build logs and addressing issues.
+            *✘ {{ uppercasefirst build.status }}*: CRON Job `security_scans` for *FIREARMS LICENSING* has failed.
 
             Branch <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{build.branch}}> | Commit <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
 
-          *Build <{{build.link}}|#{{build.number}}>*
+            *Build <{{build.link}}|#{{build.number}}>*
       username: Drone_CI
       webhook:
         from_secret: slack_sas_hof_security_webhook
