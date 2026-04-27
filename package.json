@@ -34,7 +34,7 @@
     "i18n-lookup": "^1.0.0",
     "is-pdf": "^1.0.0",
     "jquery": "^3.3.1",
-    "lodash": "^4.17.21",
+    "lodash": "^4.18.1",
     "moment": "^2.29.4",
     "mustache": "^4.2.0",
     "notifications-node-client": "^8.0.0",
