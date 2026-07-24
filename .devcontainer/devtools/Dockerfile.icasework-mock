@@ -1,0 +1,11 @@
+FROM node:20-alpine
+
+WORKDIR /mock
+
+COPY ./devtools/icasework-mock/. .
+
+RUN npm install
+
+EXPOSE 4000
+
+CMD ["node", "icasework-mock.js"]

@@ -1,0 +1,9 @@
+{
+  "name": "icasework-mock",
+  "version": "1.0.0",
+  "description": "Mock server for iCasework API integration",
+  "main": "icasework-mock.js",
+  "dependencies": {
+    "express": "latest"
+  }
+}

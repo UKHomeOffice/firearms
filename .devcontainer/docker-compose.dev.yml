@@ -1,0 +1,73 @@
+version: '3.8'
+services:
+  # Update this to the name of the service you want to work with in your docker-compose.yml file
+  hof-firearms-app:
+    env_file: devcontainer.env
+    # Uncomment if you want to override the service's Dockerfile to one in the .devcontainer 
+    # folder. Note that the path of the Dockerfile and context is relative to the *primary* 
+    # docker-compose.yml file (the first in the devcontainer.json "dockerComposeFile"
+    # array). The sample below assumes your primary file is in the root of your project.
+    #
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    networks:
+      - firearms-shared-network
+    ports:
+      - "8080:8080"
+    hostname: hof-app
+    depends_on:
+      - redis
+      - file-vault
+
+    volumes:
+      # Update this to wherever you want VS Code to mount the folder of your project
+      - ..:/app:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    # command: /bin/sh -c "while sleep 1000; do :; done"
+    command: sleep infinity
+
+  redis:
+    image: "redis:alpine"
+    networks:
+      - firearms-shared-network
+    hostname: hof-redis
+    ports:
+      - "6379:6379"
+
+  file-vault:
+    env_file: devcontainer.env
+    image: quay.io/ukhomeofficedigital/file-vault:f4cd1ece1caddc3bfbc8f5db761c593fda79ef12
+    networks:
+      - firearms-shared-network
+    hostname: hof-file-vault
+    environment:
+      - DEBUG=*
+    ports:
+      - "3000:3000"
+
+  html-pdf-converter:
+    image: quay.io/ukhomeofficedigital/html-pdf-converter:3.0.0@sha256:2f13eb3bc9d396f2685e22a66b40613a44dfd9956412fe2752477601bb33772c
+    networks:
+      - firearms-shared-network
+    hostname: hof-html-pdf-converter
+    environment:
+      - APP_PORT=8082
+    ports:
+      - "8082:8082"
+
+  icasework-mock:
+    build:
+      context: .
+      dockerfile: ./devtools/Dockerfile.icasework-mock
+    networks:
+      - firearms-shared-network
+    hostname: hof-icasework-mock
+    ports:
+      - "4000:4000"
+
+networks:
+  firearms-shared-network:
+    driver: bridge
