@@ -7,7 +7,7 @@ RUN echo "http://uk.alpinelinux.org/alpine/v3.24/main" > /etc/apk/repositories ;
   apk upgrade --no-cache
 
 # Upgrade bundled npm deps to Trivy vuln report
-RUN npm install -g npm@12.0.0 && npm --version
+RUN npm install -g npm@12.0.1 && npm --version
 
 # Setup nodejs group & nodejs user
 RUN addgroup --system nodejs --gid 998 && \
