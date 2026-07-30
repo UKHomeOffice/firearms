@@ -49,7 +49,7 @@ services:
       - "25"
 
   html-pdf-converter:
-    image: quay.io/ukhomeofficedigital/html-pdf-converter:01442cbca45c8c1965a64f680d8fab95998e5238
+    image: quay.io/ukhomeofficedigital/html-pdf-converter:3.1.0@sha256:42b150c3c441f72ea5d4dc50673fb82e47b1705652bcf62c9b48836e3f70f8ed
     environment:
       - CHROME_HOST=chrome
     ports:
