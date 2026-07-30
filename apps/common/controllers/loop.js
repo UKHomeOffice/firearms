@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const { v1: uuidv1 } = require('uuid');
+const uuid = require('uuid');
 const path = require('path');
 const express = require('express');
 const BaseController = require('./base');
@@ -98,7 +98,7 @@ module.exports = class LoopController extends BaseController {
       if (!added) {
         const fields = this.getLoopFields(req, res);
         if (!_.isEmpty(fields)) {
-          aggregate.push(Object.assign({ id: uuidv1() }, fields));
+          aggregate.push(Object.assign({ id: uuid.v1() }, fields));
           req.sessionModel.set(req.form.options.aggregateTo, aggregate);
           values[req.form.options.aggregateTo] = aggregate;
           req.form.options.aggregateFields.forEach(f => {
