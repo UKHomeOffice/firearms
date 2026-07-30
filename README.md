@@ -7,8 +7,7 @@ Firearms Licensing Application built using HOF (Home Office Forms) framework.
 
 ### Prerequisities
 
-- [Node.js](https://nodejs.org/en/) - Version 24.18.0
-- NPM (installed with Node.js) - 11.16.0 - 12.0.1
+- [Node.js](https://nodejs.org/en/) - for supported versions see `engines.node` in [package.json](package.json)
 - [Redis server](http://redis.io/download) running on the default port
 
 ### Up & Running

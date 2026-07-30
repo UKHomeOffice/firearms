@@ -82,31 +82,6 @@ summary.summary-details {
   }
 }
 
-//autocomplete styling
-.tt-menu {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  width: 65%;
-}
-
-.tt-suggestion {
-  padding: 0.5em;
-
-  &:hover,
-  &.tt-cursor {
-    color: #fff;
-    background-color: #0097cf;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.twitter-typeahead {
-  width: 100%;
-}
-
 // icon-important
 .notice {
   clear: both;
@@ -187,7 +162,6 @@ div.add-remove-section {
 }
 
 ul {
-  @extend .text;
   @extend .list;
   @extend .list-bullet;
 }
