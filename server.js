@@ -2,7 +2,7 @@
 
 const path = require('path');
 const hof = require('hof');
-const bodyParser = require('busboy-body-parser');
+const bodyParser = require('./utils/body-parser.js');
 const config = require('./config.js');
 const mockAPIs = require('./mock-apis.js');
 const BaseController = require('./apps/common/controllers/base');
@@ -80,6 +80,6 @@ if (!config.env || config.env === 'ci') {
   app.use(mockAPIs);
 }
 
-app.use(bodyParser({limit: config.upload.maxfilesize}));
+app.use(bodyParser(config.upload));
 
 module.exports = app;
