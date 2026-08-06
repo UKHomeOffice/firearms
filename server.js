@@ -2,7 +2,7 @@
 
 const path = require('path');
 const hof = require('hof');
-const bodyParser = require('./utils/body-parser.js');
+const bodyParser = require('./utils/body-parser');
 const config = require('./config.js');
 const mockAPIs = require('./mock-apis.js');
 const BaseController = require('./apps/common/controllers/base');
