@@ -8,7 +8,8 @@ module.exports = {
   env: env,
   upload: {
     skipEmail: env === 'production' ? '' : 'test@test.com',
-    maxfilesize: '100mb',
+    maxFileSizeInBytes: 100 * 1024 * 1024, // 100mib in bytes.
+    multi: false,
     hostname: (!env || env === 'ci') ?
       `http://${localhost()}/api/file-upload` :
       process.env.FILE_VAULT_URL

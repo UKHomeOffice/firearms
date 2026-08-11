@@ -22,7 +22,7 @@ module.exports = class UploadController extends BaseController {
     if (file && file.truncated) {
       const err = new this.ValidationError('existing-authority-upload', {
         type: 'filesize',
-        arguments: [config.upload.maxfilesize]
+        arguments: [config.upload.maxFileSizeInBytes]
       }, req, res);
       return next({
         'existing-authority-upload': err

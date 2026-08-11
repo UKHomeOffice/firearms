@@ -26,7 +26,8 @@
     "postinstall": "hof-build"
   },
   "dependencies": {
-    "busboy-body-parser": "^0.3.0",
+    "busboy": "^1.6.0",
+    "bl": "6.1.6",
     "debug": "^4.4.1",
     "express": "^5.1.0",
     "accessible-autocomplete": "^3.0.1",
