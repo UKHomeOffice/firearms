@@ -79,18 +79,7 @@ spec:
                   name: redis
                   key: pass
             - name: USE_MOCKS
-              value: "false"
-            - name: AWS_USER
-              valueFrom:
-                secretKeyRef:
-                  name: ses
-                  key: user
-            - name: AWS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: file-vault
-                  #encryption_key is randomly generated password used to encrypt the params that are returned by file-vault
-                  key: encryption_key
+              value: "false"        
             - name: KEYCLOAK_SECRET
               valueFrom:
                 secretKeyRef:

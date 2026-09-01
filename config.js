@@ -29,15 +29,6 @@ module.exports = {
     templateSupportingDocuments: process.env.TEMPLATE_SUPPORTING_DOCUMENTS,
     emailReplyToDefault: process.env.EMAIL_REPLY_TO_DEFAULT
   },
-  email: {
-    emailerFallback: true,
-    from: process.env.FROM_ADDRESS,
-    transport: process.env.EMAIL_TRANSPORT,
-    transportOptions: {
-      accessKeyId: process.env.HOF_SES_USER || process.env.AWS_USER,
-      secretAccessKey: process.env.HOF_SES_PASSWORD || process.env.AWS_PASSWORD
-    }
-  },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
   },
