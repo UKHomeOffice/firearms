@@ -22,8 +22,6 @@ TEMPLATE_SUPPORTING_DOCUMENTS  | GOV.UK notify template ID email
 EMAIL_REPLY_TO_DEFAULT         | Default 'reply to'  email address
 CASEWORKER_EMAIL               | Caseworker email
 AWS_EXPIRY_TIME                | AWS config
-AWS_USER                       | AWS credentials
-AWS_PASSWORD                   | AWS credentials
 AWS_REGION                     | AWS config
 AWS_SIGNATURE_VERSION          | AWS config
 FROM_ADDRESS                   | the sender/reply address for your emails
