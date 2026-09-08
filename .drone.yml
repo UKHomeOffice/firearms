@@ -208,7 +208,7 @@ steps:
         <<: *include_default_and_feature_branches
       event: pull_request
     depends_on:
-      - clone_repos
+      - clone_repos 
       - build_image_and_push_to_ecr
 
   # Deploy to Master UAT environment
