@@ -70,7 +70,8 @@ sonar_scanner: &sonar_scanner
   pull: if-not-exists
   image: quay.io/ukhomeofficedigital/sonar-scanner:latest
   commands:
-    - sonar-scanner -Dproject.settings=./sonar-project.properties -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300
+    - export SONAR_BRANCH=$${DRONE_SOURCE_BRANCH:-$DRONE_BRANCH}
+    - sonar-scanner -Dproject.settings=./sonar-project.properties -Dsonar.branch.name=$${SONAR_BRANCH} -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300
 
 steps:
   - name: clone_repos

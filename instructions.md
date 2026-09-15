@@ -64,6 +64,9 @@ and a failure must stop dependent build, deployment, or promotion jobs.
 - Browser tests must not be presented as Node.js source coverage.
 - NYC must use an all-source baseline and enforce committed thresholds immediately.
 - Sonar must consume LCOV, wait for its server-side quality gate, and fail Drone if that gate fails.
+- Sonar and NYC must use matching source exclusions so their coverage values have the same denominator.
+- Drone must pass the source branch to Sonar so feature and pull-request analyses cannot overwrite the master branch analysis.
+- Sonar's new-code definition must use an actively maintained reference branch or release baseline. It must not retain a stale previous-version period that attributes unrelated historical changes to the current branch.
 
 ## Drone Requirements
 
