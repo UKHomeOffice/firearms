@@ -27,6 +27,35 @@ describe('Existing Authority Documents Controller', () => {
     expect(controller).to.be.an.instanceOf(Base);
   });
 
+  describe('get', () => {
+    it('continues normally when there are no existing documents', () => {
+      const controller = new Controller({});
+      const req = {sessionModel: {get: sinon.stub().returns(undefined)}};
+      const next = sinon.stub();
+      sandbox.stub(Base.prototype, 'get');
+      sandbox.stub(controller, 'emit');
+
+      controller.get(req, {}, next);
+
+      expect(controller.emit).not.to.have.been.called;
+      expect(Base.prototype.get).to.have.been.calledWithExactly(req, {}, next);
+    });
+
+    it('completes the step when documents already exist', () => {
+      const controller = new Controller({});
+      const req = {sessionModel: {get: sinon.stub().returns([{id: 'document-1'}])}};
+      const res = {};
+      const next = sinon.stub();
+      sandbox.stub(Base.prototype, 'get');
+      sandbox.stub(controller, 'emit');
+
+      controller.get(req, res, next);
+
+      expect(controller.emit).to.have.been.calledWithExactly('complete', req, res);
+      expect(Base.prototype.get).to.have.been.calledWithExactly(req, res, next);
+    });
+  });
+
   describe('process', () => {
     it('saves uploaded file to upload model', () => {
       const controller = new Controller({});

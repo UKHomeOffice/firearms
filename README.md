@@ -67,7 +67,7 @@ Unit tests use Mocha, Chai, Sinon and Proxyquire. NYC instruments all JavaScript
 $ yarn test:unit
 ```
 
-Coverage thresholds represent the integer floor of the measured all-source baseline and should be raised as coverage improves. Reducing a threshold requires explicit review.
+Statements, branches, functions, and lines must each remain at or above 80% across the configured application source. Reducing a threshold requires explicit review.
 
 ### Integration Tests
 

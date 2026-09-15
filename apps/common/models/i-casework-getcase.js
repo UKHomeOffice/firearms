@@ -40,7 +40,8 @@ module.exports = class DocumentModel extends Model {
       return this.parse(response.data);
     } catch (err) {
       logger.error(`Error fetching data from ${this.url()}: ${err.message}`);
-      throw new Error(`Failed to fetch data: ${err.message || 'Unknown error'}`);
+      err.message = `Failed to fetch data: ${err.message || 'Unknown error'}`;
+      throw err;
     }
   }
 };

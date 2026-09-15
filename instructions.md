@@ -27,6 +27,7 @@ and a failure must stop dependent build, deployment, or promotion jobs.
 - Configure NYC to instrument all application JavaScript, not only modules loaded by tests.
 - Establish an honest initial statements, branches, functions, and lines baseline.
 - Fail the unit job when the committed NYC thresholds are not met.
+- Maintain at least 80% coverage independently for statements, branches, functions, and lines across the configured application source.
 - Ratchet thresholds upward as coverage improves. Threshold reductions require explicit review.
 - Prioritise observable behavior, request contracts, errors, side effects, and asynchronous completion over tests written only to increase percentages.
 

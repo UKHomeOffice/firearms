@@ -15,6 +15,12 @@ All notable changes for HOFF-2259 are recorded here while the work is in progres
 - Added one deterministic Cucumber smoke scenario for each service journey.
 - Added a stable PDF upload fixture for browser tests.
 - Added blocking Drone jobs for integration, local accessibility, deployed acceptance smoke, and deployed accessibility smoke.
+- Added comprehensive unit coverage for new-dealer confirmation summary formatting, including addresses, contacts, documents, weapons, ammunition, and superclass delegation.
+- Added comprehensive unit coverage for the shared loop controller, including option validation, delete routing, reload behavior, dynamic fields/forks, aggregation, locals, and add-another state.
+- Added unit contract coverage for Keycloak authentication and iCasework case creation, lookup, signatures, document upload, mock behavior, live requests, and provider failures.
+- Added unit coverage for casework submission orchestration, metrics, session IDs, provider diagnostics, supporting-document lookup, timeout handling, and document payload preparation.
+- Added unit coverage for session clearing, reset-on-change, custom back links, renew/vary warnings, Notify delivery, and confirmation-email orchestration.
+- Added unit coverage for shooting-club storage/location controllers, new-dealer nationality validation, complete weapon/ammunition submission mappings, document-controller resume behavior, dependent summary fields, and supporting-document email validation.
 
 ### Changed
 
@@ -24,6 +30,12 @@ All notable changes for HOFF-2259 are recorded here while the work is in progres
 - Updated the PDF error-response fixture to use the response shape expected by the model.
 - Updated the museums and shooting-clubs submission tests to pass the required bearer token and verify authorised document URLs.
 - Enabled all-source NYC instrumentation for `apps/**/*.js` and set the initial measured baseline to 30% statements, 25% branches, 22% functions, and 31% lines.
+- Ratcheted NYC thresholds to 44% statements, 40% branches, 38% functions, and 44% lines after the confirmation-controller coverage increase.
+- Ratcheted NYC thresholds to 51% statements, 51% branches, 45% functions, and 51% lines after the shared loop-controller coverage increase.
+- Ratcheted NYC thresholds to 58% statements, 55% branches, 52% functions, and 59% lines after the casework boundary coverage increase.
+- Ratcheted NYC thresholds to 65% statements, 63% branches, 58% functions, and 66% lines after the submission-orchestration coverage increase.
+- Ratcheted NYC thresholds to 70% statements, 67% branches, 67% functions, and 71% lines after the session/navigation/email coverage increase.
+- Raised statements, branches, functions, and lines thresholds to the required 80% after all four measured metrics exceeded the target.
 - Made the CI upload mock return a deterministic URL.
 - Repaired Cucumber hooks to use per-scenario World instances and removed invalid runtime hook registration and cross-process Sinon stubbing.
 - Made Sonar depend on unit LCOV, wait for its quality gate, and block image construction.
@@ -36,6 +48,9 @@ All notable changes for HOFF-2259 are recorded here while the work is in progres
 ### Fixed
 
 - Prevented structured PDF converter error responses from being passed to `Buffer.from`, allowing client errors to retain their title and message.
+- Prevented iCasework mock responses from being used in production when credentials are missing.
+- Preserved iCasework lookup error codes, including timeout codes, while adding failure context.
+- Made Notify delivery awaitable and prevented confirmation email from being sent when saving form values fails.
 - Prevented parallel integration and accessibility jobs from sharing port `8081` by allocating an available port for each runner process while preserving `INTEGRATION_PORT` as an explicit override.
 - Routed deployed branch and UAT smoke tests through their internal ingresses because external ingress access controls return HTTP 403 before the browser suites can run.
 
@@ -52,8 +67,8 @@ All notable changes for HOFF-2259 are recorded here while the work is in progres
 
 - Validated with Node `v24.18.0` through `nvm`.
 - Lint passes.
-- Unit tests pass: 128 tests.
-- All-source coverage passes: 30.58% statements, 25.84% branches, 22.53% functions, and 31.39% lines.
+- Unit tests pass: 243 tests.
+- All-source coverage passes: 81.77% statements, 80.73% branches, 80.28% functions, and 82.05% lines.
 - An intentional 100% line threshold override exits nonzero, proving the NYC gate fails as required.
 - Integration tests pass: 6 tests against the real application and Redis.
 - Accessibility tests pass: 2 Playwright/axe tests.
