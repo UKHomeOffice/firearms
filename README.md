@@ -53,15 +53,54 @@ Then visit: [http://localhost:8080/](http://localhost:8080/) and add the pathnam
 
 ## Testing
 
-### Acceptance Tests
-First, make sure the `env`variable in the config.js file is equal to `'ci'`.
-With the server running in development mode run (`yarn run start:acceptance`) to start the acceptance tests:
+Tests require the Node version declared in `package.json`. Install dependencies before running a suite:
 
 ```bash
-$ npm run test:acceptance
+$ yarn install --frozen-lockfile
 ```
 
 ### Unit Tests
+
+Unit tests use Mocha, Chai, Sinon and Proxyquire. NYC instruments all JavaScript under `apps` and fails when the committed statements, branches, functions or lines thresholds are not met.
+
 ```bash
 $ yarn test:unit
 ```
+
+Coverage thresholds represent the integer floor of the measured all-source baseline and should be raised as coverage improves. Reducing a threshold requires explicit review.
+
+### Integration Tests
+
+Integration tests start the real application in `ci` mode and exercise it over HTTP. A Redis service must be available. The command uses `127.0.0.1:6379` by default; set `REDIS_HOST` and `REDIS_PORT` to override it.
+
+```bash
+$ yarn test:integration
+```
+
+### Acceptance Tests
+
+Start the application with `NODE_ENV=ci`, a 32-byte `SESSION_SECRET`, and Redis configuration. In another terminal, point the browser suite at that application:
+
+```bash
+$ ACCEPTANCE_HOST_NAME=http://127.0.0.1:8080 TAGS=@smoke yarn test:acceptance
+```
+
+Omit `TAGS=@smoke` to use the script's default `@feature` tag. CI smoke scenarios avoid destructive or external submission behavior.
+
+### Accessibility Tests
+
+The local accessibility command starts the application and scans representative pages with Playwright and axe:
+
+```bash
+$ yarn test:accessibility
+```
+
+To scan an application that is already deployed or running:
+
+```bash
+$ ACCESSIBILITY_BASE_URL=https://example.test yarn test:accessibility:deployed
+```
+
+### CI Enforcement
+
+Drone runs lint, unit coverage, integration, local accessibility and the Sonar quality gate before constructing an image. Pull-request and master UAT deployments are followed by acceptance and accessibility smoke tests. A failed test, coverage threshold, readiness check or Sonar quality gate returns a nonzero status and blocks dependent jobs.

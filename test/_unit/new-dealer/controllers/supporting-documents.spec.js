@@ -1,8 +1,9 @@
 'use strict';
 
+const proxyquire = require('proxyquire');
 const Base = require('../../../../apps/common/controllers/base');
 const UploadModel = require('../../../../apps/common/models/file-upload');
-const Controller = proxyquire('../apps/common/controllers/supporting-documents', {
+const Controller = proxyquire('../../../../apps/common/controllers/supporting-documents', {
   uuid: { v1: () => 'abc123' }
 });
 

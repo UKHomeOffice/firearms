@@ -52,6 +52,7 @@ Feature: Firearms uploading supporting documents
         Then I should be on the 'declaration' page showing 'Important information'
         Then I submit the application
    
+    @smoke
     Scenario: I am on the Supporting-documents journey but do not fill in a reference number
         Given I start the 'supporting-documents' application journey
         Then I should be on the 'reference' page showing 'Enter the reference number for your application:'

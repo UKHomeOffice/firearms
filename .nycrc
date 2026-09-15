@@ -1,13 +1,17 @@
 {
+  "all": true,
+  "include": [
+    "apps/**/*.js"
+  ],
   "reporter": [
     "lcov",
     "text-summary"
   ],
   "check-coverage": true,
-  "statements": 72,
-  "branches": 64,
-  "functions": 72,
-  "lines": 73,
+  "statements": 30,
+  "branches": 25,
+  "functions": 22,
+  "lines": 31,
   "exclude": [
     "test/**/*.js",
     "apps/**/sections/**/*.js",
