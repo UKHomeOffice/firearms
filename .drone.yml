@@ -70,8 +70,12 @@ sonar_scanner: &sonar_scanner
   pull: if-not-exists
   image: quay.io/ukhomeofficedigital/sonar-scanner:latest
   commands:
-    - export SONAR_BRANCH=$${DRONE_SOURCE_BRANCH:-$DRONE_BRANCH}
-    - sonar-scanner -Dproject.settings=./sonar-project.properties -Dsonar.branch.name=$${SONAR_BRANCH} -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300
+    - |
+      if [ "$${DRONE_BRANCH}" = "master" ] && [ "$${DRONE_BUILD_EVENT}" = "push" ]; then
+        sonar-scanner -Dproject.settings=./sonar-project.properties -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300
+      else
+        echo "Skipping Sonar analysis: Community Build supports the master branch only"
+      fi
 
 steps:
   - name: clone_repos

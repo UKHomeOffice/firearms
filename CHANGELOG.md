@@ -28,7 +28,7 @@ All notable changes for HOFF-2259 are recorded here while the work is in progres
 - Repaired Cucumber hooks to use per-scenario World instances and removed invalid runtime hook registration and cross-process Sinon stubbing.
 - Made Sonar depend on unit LCOV, wait for its quality gate, and block image construction.
 - Aligned Sonar coverage exclusions with NYC so both gates measure the same application files.
-- Added explicit Drone source-branch attribution so feature and pull-request scans do not overwrite Sonar's master analysis.
+- Restricted Sonar analysis to master pushes because the Home Office SonarQube Community Build does not support branch or pull-request analysis. The step is a successful no-op on other events so downstream Drone dependencies still run; pull requests remain gated by NYC and the other test jobs.
 - Made image construction depend on lint, unit, integration, accessibility, and Sonar for master and feature/pull-request builds.
 - Corrected staging dependencies so master UAT browser smoke tests must pass before staging deployment.
 - Updated README testing and CI coverage instructions.
@@ -61,6 +61,6 @@ All notable changes for HOFF-2259 are recorded here while the work is in progres
 - Drone YAML parses successfully.
 - Drone correctly stops when the Sonar quality gate fails.
 - The enforced Sonar gate currently reports 12.2% new-code coverage against an 80% requirement, 3.80% new-code duplication against a 3% limit, and 17 new violations against a zero limit.
-- The failed HOFF-2259 scan was attributed to Sonar's only branch, `master`, because the scanner did not receive branch metadata. Master uses an inherited `PREVIOUS_VERSION` period from 25 September 2024, so unrelated historical changes were evaluated by this build.
-- The only production line changed by HOFF-2259 is covered. The next branch pipeline must confirm Sonar creates/updates `HOFF-2259` and evaluates its new code independently; the inherited master baseline should still be reviewed by the Sonar administrator.
+- SonarQube Community Build rejects `sonar.branch.name`, so feature and pull-request scans cannot be isolated from the single `master` analysis. Sonar now runs only on master pushes.
+- Master uses an inherited `PREVIOUS_VERSION` period from 25 September 2024. The inherited baseline should be reviewed by the Sonar administrator before the master quality gate can represent current new code accurately.
 - Docker image validation remains unavailable because the local Docker daemon is not running.
