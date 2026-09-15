@@ -37,6 +37,7 @@ All notable changes for HOFF-2259 are recorded here while the work is in progres
 
 - Prevented structured PDF converter error responses from being passed to `Buffer.from`, allowing client errors to retain their title and message.
 - Prevented parallel integration and accessibility jobs from sharing port `8081` by allocating an available port for each runner process while preserving `INTEGRATION_PORT` as an explicit override.
+- Routed deployed branch and UAT smoke tests through their internal ingresses because external ingress access controls return HTTP 403 before the browser suites can run.
 
 ### Planned
 

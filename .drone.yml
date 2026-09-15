@@ -262,7 +262,7 @@ steps:
     image: mcr.microsoft.com/playwright:v1.62.1-noble
     commands:
       - export TEST_BRANCH=$(echo "$${DRONE_SOURCE_BRANCH}" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')
-      - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}-$${TEST_BRANCH}.$${BRANCH_ENV}.homeoffice.gov.uk
+      - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}-$${TEST_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
       - curl --fail --retry 30 --retry-delay 2 --retry-connrefused "$${ACCEPTANCE_HOST_NAME}/healthz/readiness"
       - TAGS=@smoke yarn run test:acceptance
     when:
@@ -277,7 +277,7 @@ steps:
     image: mcr.microsoft.com/playwright:v1.62.1-noble
     commands:
       - export TEST_BRANCH=$(echo "$${DRONE_SOURCE_BRANCH}" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')
-      - export ACCESSIBILITY_BASE_URL=https://$${APP_NAME}-$${TEST_BRANCH}.$${BRANCH_ENV}.homeoffice.gov.uk
+      - export ACCESSIBILITY_BASE_URL=https://$${APP_NAME}-$${TEST_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
       - curl --fail --retry 30 --retry-delay 2 --retry-connrefused "$${ACCESSIBILITY_BASE_URL}/healthz/readiness"
       - yarn run test:accessibility:deployed
     when:
@@ -311,7 +311,7 @@ steps:
     pull: if-not-exists
     image: mcr.microsoft.com/playwright:v1.62.1-noble
     environment:
-      ACCEPTANCE_HOST_NAME: https://dev.notprod.firearms-licensing.homeoffice.gov.uk
+      ACCEPTANCE_HOST_NAME: https://firearms-licensing.uat.internal.sas-notprod.homeoffice.gov.uk
     commands:
       - curl --fail --retry 30 --retry-delay 2 --retry-connrefused "$${ACCEPTANCE_HOST_NAME}/healthz/readiness"
       - TAGS=@smoke yarn run test:acceptance
@@ -326,7 +326,7 @@ steps:
     pull: if-not-exists
     image: mcr.microsoft.com/playwright:v1.62.1-noble
     environment:
-      ACCESSIBILITY_BASE_URL: https://dev.notprod.firearms-licensing.homeoffice.gov.uk
+      ACCESSIBILITY_BASE_URL: https://firearms-licensing.uat.internal.sas-notprod.homeoffice.gov.uk
     commands:
       - curl --fail --retry 30 --retry-delay 2 --retry-connrefused "$${ACCESSIBILITY_BASE_URL}/healthz/readiness"
       - yarn run test:accessibility:deployed
