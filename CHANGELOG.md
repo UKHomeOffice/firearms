@@ -36,6 +36,7 @@ All notable changes for HOFF-2259 are recorded here while the work is in progres
 ### Fixed
 
 - Prevented structured PDF converter error responses from being passed to `Buffer.from`, allowing client errors to retain their title and message.
+- Prevented parallel integration and accessibility jobs from sharing port `8081` by allocating an available port for each runner process while preserving `INTEGRATION_PORT` as an explicit override.
 
 ### Planned
 
@@ -55,6 +56,7 @@ All notable changes for HOFF-2259 are recorded here while the work is in progres
 - An intentional 100% line threshold override exits nonzero, proving the NYC gate fails as required.
 - Integration tests pass: 6 tests against the real application and Redis.
 - Accessibility tests pass: 2 Playwright/axe tests.
+- Integration and accessibility tests pass concurrently without `EADDRINUSE`, connection failures, or leaked runner processes.
 - Acceptance smoke passes: 4 scenarios and 24 steps.
 - Drone YAML parses successfully.
 - Drone correctly stops when the Sonar quality gate fails.

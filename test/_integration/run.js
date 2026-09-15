@@ -1,27 +1,29 @@
 'use strict';
 
 const http = require('http');
+const net = require('net');
 const {spawn} = require('child_process');
 
-const port = process.env.INTEGRATION_PORT || '8081';
-const baseUrl = `http://127.0.0.1:${port}`;
 const testPattern = process.env.TEST_PATTERN || 'test/_integration/**/*.spec.js';
-const environment = Object.assign({}, process.env, {
-  NODE_ENV: 'ci',
-  PORT: port,
-  REDIS_HOST: process.env.REDIS_HOST || '127.0.0.1',
-  REDIS_PORT: process.env.REDIS_PORT || '6379',
-  SESSION_SECRET: process.env.SESSION_SECRET || 'integration-test-session-secret1',
-  NOTIFY_KEY: process.env.NOTIFY_KEY || 'USE_MOCK',
-  INTEGRATION_BASE_URL: baseUrl
-});
+let app;
 
-const app = spawn(process.execPath, ['server.js'], {
-  env: environment,
-  stdio: 'inherit'
-});
+const getAvailablePort = () => {
+  if (process.env.INTEGRATION_PORT) {
+    return Promise.resolve(process.env.INTEGRATION_PORT);
+  }
 
-const waitForReady = () => new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
+    const server = net.createServer();
+    server.unref();
+    server.on('error', reject);
+    server.listen(0, '127.0.0.1', () => {
+      const {port} = server.address();
+      server.close(() => resolve(String(port)));
+    });
+  });
+};
+
+const waitForReady = baseUrl => new Promise((resolve, reject) => {
   const deadline = Date.now() + 30000;
 
   const check = () => {
@@ -48,7 +50,7 @@ const waitForReady = () => new Promise((resolve, reject) => {
   check();
 });
 
-const runTests = () => new Promise(resolve => {
+const runTests = environment => new Promise(resolve => {
   const mocha = spawn(process.execPath, [
     require.resolve('mocha/bin/mocha.js'),
     '--require',
@@ -63,7 +65,7 @@ const runTests = () => new Promise(resolve => {
 });
 
 const stopApp = () => new Promise(resolve => {
-  if (app.exitCode !== null) {
+  if (!app || app.exitCode !== null) {
     resolve();
     return;
   }
@@ -81,8 +83,25 @@ const main = async () => {
   let exitCode = 1;
 
   try {
-    await waitForReady();
-    exitCode = await runTests();
+    const port = await getAvailablePort();
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const environment = Object.assign({}, process.env, {
+      NODE_ENV: 'ci',
+      PORT: port,
+      REDIS_HOST: process.env.REDIS_HOST || '127.0.0.1',
+      REDIS_PORT: process.env.REDIS_PORT || '6379',
+      SESSION_SECRET: process.env.SESSION_SECRET || 'integration-test-session-secret1',
+      NOTIFY_KEY: process.env.NOTIFY_KEY || 'USE_MOCK',
+      INTEGRATION_BASE_URL: baseUrl
+    });
+
+    app = spawn(process.execPath, ['server.js'], {
+      env: environment,
+      stdio: 'inherit'
+    });
+
+    await waitForReady(baseUrl);
+    exitCode = await runTests(environment);
   } catch (error) {
     process.stderr.write(`${error.stack || error}\n`);
   } finally {
@@ -91,11 +110,5 @@ const main = async () => {
 
   process.exitCode = exitCode;
 };
-
-app.once('exit', exitCode => {
-  if (exitCode && process.exitCode === undefined) {
-    process.exitCode = exitCode;
-  }
-});
 
 main();
