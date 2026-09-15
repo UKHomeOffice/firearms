@@ -187,4 +187,3 @@ describe('Casework submission behaviour', () => {
     );
   });
 });
-
