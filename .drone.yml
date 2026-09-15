@@ -49,11 +49,33 @@ unit_tests: &unit_tests
   commands:
     - yarn run test:unit
 
+integration_tests: &integration_tests
+  <<: *node_image
+  environment:
+    REDIS_HOST: session
+    REDIS_PORT: 6379
+  commands:
+    - yarn run test:integration
+
+accessibility_tests: &accessibility_tests
+  pull: if-not-exists
+  image: mcr.microsoft.com/playwright:v1.62.1-noble
+  environment:
+    REDIS_HOST: session
+    REDIS_PORT: 6379
+  commands:
+    - yarn run test:accessibility
+
 sonar_scanner: &sonar_scanner
   pull: if-not-exists
   image: quay.io/ukhomeofficedigital/sonar-scanner:latest
   commands:
-    - sonar-scanner -Dproject.settings=./sonar-project.properties
+    - |
+      if [ "$${DRONE_BRANCH}" = "master" ] && [ "$${DRONE_BUILD_EVENT}" = "push" ]; then
+        sonar-scanner -Dproject.settings=./sonar-project.properties -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300
+      else
+        echo "Skipping Sonar analysis: Community Build supports the master branch only"
+      fi
 
 steps:
   - name: clone_repos
@@ -124,13 +146,33 @@ steps:
     depends_on:
       - setup
 
+  - name: integration_tests
+    <<: *integration_tests
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+    depends_on:
+      - setup
+
+  - name: accessibility_tests
+    <<: *accessibility_tests
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+    depends_on:
+      - setup
+
   - name: sonar_scanner
     <<: *sonar_scanner
     when:
       branch:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
-  
+    depends_on:
+      - unit_tests
+
   - name: build_image_for_trivy
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
@@ -141,11 +183,15 @@ steps:
       - name: dockersock
         path: /var/run
     when:
-      branch: master
+      branch:
+        <<: *include_default_and_feature_branches
       event: [push, pull_request]
     depends_on:
       - linting
       - unit_tests
+      - integration_tests
+      - accessibility_tests
+      - sonar_scanner
 
   - name: build_image_and_push_to_ecr
     pull: if-not-exists
@@ -211,6 +257,36 @@ steps:
       - clone_repos
       - build_image_and_push_to_ecr
 
+  - name: acceptance_smoke_branch
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.62.1-noble
+    commands:
+      - export TEST_BRANCH=$(echo "$${DRONE_SOURCE_BRANCH}" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')
+      - export ACCEPTANCE_HOST_NAME=https://$${APP_NAME}-$${TEST_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
+      - curl --fail --retry 30 --retry-delay 2 --retry-connrefused "$${ACCEPTANCE_HOST_NAME}/healthz/readiness"
+      - TAGS=@smoke yarn run test:acceptance
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+    depends_on:
+      - deploy_to_branch
+
+  - name: accessibility_smoke_branch
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.62.1-noble
+    commands:
+      - export TEST_BRANCH=$(echo "$${DRONE_SOURCE_BRANCH}" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')
+      - export ACCESSIBILITY_BASE_URL=https://$${APP_NAME}-$${TEST_BRANCH}.internal.$${BRANCH_ENV}.homeoffice.gov.uk
+      - curl --fail --retry 30 --retry-delay 2 --retry-connrefused "$${ACCESSIBILITY_BASE_URL}/healthz/readiness"
+      - yarn run test:accessibility:deployed
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+    depends_on:
+      - deploy_to_branch
+
   # Deploy to Master UAT environment
   - name: deploy_to_uat
     pull: if-not-exists
@@ -230,6 +306,36 @@ steps:
     depends_on:
       - clone_repos
       - build_image_and_push_to_ecr
+
+  - name: acceptance_smoke_uat
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.62.1-noble
+    environment:
+      ACCEPTANCE_HOST_NAME: https://firearms-licensing.uat.internal.sas-notprod.homeoffice.gov.uk
+    commands:
+      - curl --fail --retry 30 --retry-delay 2 --retry-connrefused "$${ACCEPTANCE_HOST_NAME}/healthz/readiness"
+      - TAGS=@smoke yarn run test:acceptance
+    when:
+      branch:
+        <<: *include_default_branch
+      event: push
+    depends_on:
+      - deploy_to_uat
+
+  - name: accessibility_smoke_uat
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.62.1-noble
+    environment:
+      ACCESSIBILITY_BASE_URL: https://firearms-licensing.uat.internal.sas-notprod.homeoffice.gov.uk
+    commands:
+      - curl --fail --retry 30 --retry-delay 2 --retry-connrefused "$${ACCESSIBILITY_BASE_URL}/healthz/readiness"
+      - yarn run test:accessibility:deployed
+    when:
+      branch:
+        <<: *include_default_branch
+      event: push
+    depends_on:
+      - deploy_to_uat
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
@@ -292,7 +398,8 @@ steps:
     depends_on:
       - clone_repos
       - build_image_and_push_to_ecr
-      - deploy_to_branch
+      - acceptance_smoke_uat
+      - accessibility_smoke_uat
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod

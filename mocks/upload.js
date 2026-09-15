@@ -8,7 +8,7 @@ router.use(busboy(config.upload));
 
 router.post('/', (req, res, next) => {
   if (req.files.document) {
-    res.json({url: `http://s3.com/foo/${Math.random()}`});
+    res.json({url: 'http://s3.com/foo/test-document'});
   } else {
     next(new Error('No file uploaded'));
   }

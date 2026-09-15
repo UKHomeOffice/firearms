@@ -55,7 +55,7 @@ module.exports = class CaseworkModel extends Model {
         { url: options.url, data: preparedData }
       );
 
-      if (!config.icasework.secret || !config.icasework.key && config.env !== 'production') {
+      if ((!config.icasework.secret || !config.icasework.key) && config.env !== 'production') {
         logger.info(`sessionId=${sessionId} Using mock caseid response`);
         return Promise.resolve({
           createcaseresponse: {

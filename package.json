@@ -18,6 +18,9 @@
     "dev": "NODE_ENV=development hof-build watch --env",
     "test": "NODE_ENV=test yarn run test:lint && yarn run test:unit",
     "test:unit": "nyc _mocha \"test/_unit/**/*.spec.js\"",
+    "test:integration": "node test/_integration/run.js",
+    "test:accessibility": "TEST_PATTERN=\"test/_accessibility/**/*.spec.js\" node test/_integration/run.js",
+    "test:accessibility:deployed": "_mocha --require test/setup.js \"test/_accessibility/**/*.spec.js\"",
     "test:acceptance": "TAGS=\"${TAGS:=@feature}\" npm run test:cucumber",
     "test:acceptance_browser": "ACCEPTANCE_WITH_BROWSER=true TAGS=\"${TAGS:=@feature}\" yarn run test:cucumber",
     "test:cucumber": "cucumber-js -f @cucumber/pretty-formatter \"test/_features/**/*.feature\" --require test/_features/test.setup.js --require \"test/_features/step_definitions/**/*.js\" --tags $TAGS",
@@ -26,11 +29,11 @@
     "postinstall": "hof-build"
   },
   "dependencies": {
-    "busboy": "^1.6.0",
+    "accessible-autocomplete": "^3.0.1",
     "bl": "6.1.6",
+    "busboy": "^1.6.0",
     "debug": "^4.4.1",
     "express": "^5.1.0",
-    "accessible-autocomplete": "^3.0.1",
     "hof": "^24.5.0",
     "hot-shots": "^11.2.0",
     "i18n-lookup": "^1.0.0",
@@ -42,6 +45,7 @@
     "uuid": "^11.1.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@cucumber/cucumber": "^12.2.0",
     "@cucumber/pretty-formatter": "^2.1.0",
     "chai": "^6.2.2",
@@ -54,7 +58,8 @@
     "playwright": "^1.61.1",
     "proxyquire": "^2.1.3",
     "sinon": "^22.0.0",
-    "sinon-chai": "^3.7.0"
+    "sinon-chai": "^3.7.0",
+    "supertest": "^7.2.2"
   },
   "resolutions": {
     "serialize-javascript": "^7.0.7",
