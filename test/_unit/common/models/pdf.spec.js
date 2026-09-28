@@ -1,9 +1,10 @@
 /* eslint-disable node/no-deprecated-api */
 'use strict';
 
+const proxyquire = require('proxyquire');
 const config = require('../../../../config');
 const isPdf = sinon.stub();
-const Model = proxyquire('../apps/common/models/pdf', {
+const Model = proxyquire('../../../../apps/common/models/pdf', {
   'is-pdf': isPdf
 });
 
@@ -60,10 +61,10 @@ describe('PDF Model', () => {
       isPdf.returns(false);
       const res = {
         status: 400,
-        data: JSON.stringify({
+        data: {
           code: 'ClientError',
           message: 'There is an error'
-        })
+        }
       };
       model.handleResponse(res, (err, body, statusCode) => {
         expect(err).to.be.an('error');

@@ -255,6 +255,7 @@ Feature: Firearms application for a Museum
         Then I should be on the 'confirm' page showing 'Check your answers'
         Then I submit the application
     
+    @smoke
     Scenario: I am on the Museums journey and don't select an option on the activity page
         Given I start the 'museums' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'

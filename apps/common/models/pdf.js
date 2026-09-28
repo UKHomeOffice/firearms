@@ -26,7 +26,7 @@ module.exports = class PDFModel extends Model {
     } else {
       debug('Response: %s', response.data);
     }
-    if (isPdf(Buffer.from(response.data))) {
+    if (!_.isPlainObject(response.data) && isPdf(Buffer.from(response.data))) {
       return this.parseResponse(response.status, response.data, callback);
     }
     const err = new Error();

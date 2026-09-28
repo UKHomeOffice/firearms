@@ -1,0 +1,82 @@
+# Changelog
+
+All notable changes for HOFF-2259 are recorded here while the work is in progress.
+
+## Unreleased
+
+### Added
+
+- Added `instructions.md` to define the required unit, integration, acceptance, accessibility, coverage, mocking, and Drone behavior.
+- Added `plans.md` with the staged implementation and validation plan.
+- Added this changelog to track completed work separately from planned work.
+- Added an HTTP integration harness using Supertest, the real HOF application, and Redis.
+- Added integration coverage for liveness, readiness, cookie middleware, museums journey entry, rendering, and postcode mock contracts.
+- Added Playwright and axe accessibility checks for the museums privacy page and accessibility statement, including title, heading, and keyboard-focus assertions.
+- Added one deterministic Cucumber smoke scenario for each service journey.
+- Added a stable PDF upload fixture for browser tests.
+- Added blocking Drone jobs for integration, local accessibility, deployed acceptance smoke, and deployed accessibility smoke.
+- Added comprehensive unit coverage for new-dealer confirmation summary formatting, including addresses, contacts, documents, weapons, ammunition, and superclass delegation.
+- Added comprehensive unit coverage for the shared loop controller, including option validation, delete routing, reload behavior, dynamic fields/forks, aggregation, locals, and add-another state.
+- Added unit contract coverage for Keycloak authentication and iCasework case creation, lookup, signatures, document upload, mock behavior, live requests, and provider failures.
+- Added unit coverage for casework submission orchestration, metrics, session IDs, provider diagnostics, supporting-document lookup, timeout handling, and document payload preparation.
+- Added unit coverage for session clearing, reset-on-change, custom back links, renew/vary warnings, Notify delivery, and confirmation-email orchestration.
+- Added unit coverage for shooting-club storage/location controllers, new-dealer nationality validation, complete weapon/ammunition submission mappings, document-controller resume behavior, dependent summary fields, and supporting-document email validation.
+
+### Changed
+
+- Renamed the format-address unit suite from `format-address-spec.js` to `format-address.spec.js` so it matches the Mocha discovery pattern.
+- Renamed the museums and shooting-clubs submission suites from `submission.test.js` to `submission.spec.js` so they match the Mocha discovery pattern.
+- Made Proxyquire imports local to existing PDF, existing-authority-documents, and supporting-documents unit specs so target paths resolve consistently.
+- Updated the PDF error-response fixture to use the response shape expected by the model.
+- Updated the museums and shooting-clubs submission tests to pass the required bearer token and verify authorised document URLs.
+- Enabled all-source NYC instrumentation for `apps/**/*.js` and set the initial measured baseline to 30% statements, 25% branches, 22% functions, and 31% lines.
+- Ratcheted NYC thresholds to 44% statements, 40% branches, 38% functions, and 44% lines after the confirmation-controller coverage increase.
+- Ratcheted NYC thresholds to 51% statements, 51% branches, 45% functions, and 51% lines after the shared loop-controller coverage increase.
+- Ratcheted NYC thresholds to 58% statements, 55% branches, 52% functions, and 59% lines after the casework boundary coverage increase.
+- Ratcheted NYC thresholds to 65% statements, 63% branches, 58% functions, and 66% lines after the submission-orchestration coverage increase.
+- Ratcheted NYC thresholds to 70% statements, 67% branches, 67% functions, and 71% lines after the session/navigation/email coverage increase.
+- Raised statements, branches, functions, and lines thresholds to the required 80% after all four measured metrics exceeded the target.
+- Made the CI upload mock return a deterministic URL.
+- Repaired Cucumber hooks to use per-scenario World instances and removed invalid runtime hook registration and cross-process Sinon stubbing.
+- Made Sonar depend on unit LCOV, wait for its quality gate, and block image construction.
+- Aligned Sonar coverage exclusions with NYC so both gates measure the same application files.
+- Restricted Sonar analysis to master pushes because the Home Office SonarQube Community Build does not support branch or pull-request analysis. The step is a successful no-op on other events so downstream Drone dependencies still run; pull requests remain gated by NYC and the other test jobs.
+- Made image construction depend on lint, unit, integration, accessibility, and Sonar for master and feature/pull-request builds.
+- Corrected staging dependencies so master UAT browser smoke tests must pass before staging deployment.
+- Updated README testing and CI coverage instructions.
+
+### Fixed
+
+- Prevented structured PDF converter error responses from being passed to `Buffer.from`, allowing client errors to retain their title and message.
+- Prevented iCasework mock responses from being used in production when credentials are missing.
+- Preserved iCasework lookup error codes, including timeout codes, while adding failure context.
+- Made Notify delivery awaitable and prevented confirmation email from being sent when saving form values fails.
+- Prevented parallel integration and accessibility jobs from sharing port `8081` by allocating an available port for each runner process while preserving `INTEGRATION_PORT` as an explicit override.
+- Routed deployed branch and UAT smoke tests through their internal ingresses because external ingress access controls return HTTP 403 before the browser suites can run.
+
+### Planned
+
+- Add focused unit coverage for external boundaries and orchestration behavior.
+- Extend integration coverage to form posts, Redis session retention, and session isolation.
+- Add deterministic Keycloak, iCasework, Notify, PDF converter, and file-vault service stubs for complete submission journeys.
+- Run the full non-destructive acceptance and accessibility regression suites on master before staging after the service stubs are available.
+- Extend accessibility coverage across validation, conditional, upload, check-answers, declaration, and confirmation states.
+- Publish unit coverage, JUnit, browser trace/screenshot, application log, and axe artifacts.
+
+### Validation
+
+- Validated with Node `v24.18.0` through `nvm`.
+- Lint passes.
+- Unit tests pass: 243 tests.
+- All-source coverage passes: 81.77% statements, 80.73% branches, 80.28% functions, and 82.05% lines.
+- An intentional 100% line threshold override exits nonzero, proving the NYC gate fails as required.
+- Integration tests pass: 6 tests against the real application and Redis.
+- Accessibility tests pass: 2 Playwright/axe tests.
+- Integration and accessibility tests pass concurrently without `EADDRINUSE`, connection failures, or leaked runner processes.
+- Acceptance smoke passes: 4 scenarios and 24 steps.
+- Drone YAML parses successfully.
+- Drone correctly stops when the Sonar quality gate fails.
+- The enforced Sonar gate currently reports 12.2% new-code coverage against an 80% requirement, 3.80% new-code duplication against a 3% limit, and 17 new violations against a zero limit.
+- SonarQube Community Build rejects `sonar.branch.name`, so feature and pull-request scans cannot be isolated from the single `master` analysis. Sonar now runs only on master pushes.
+- Master uses an inherited `PREVIOUS_VERSION` period from 25 September 2024. The inherited baseline should be reviewed by the Sonar administrator before the master quality gate can represent current new code accurately.
+- Docker image validation remains unavailable because the local Docker daemon is not running.
