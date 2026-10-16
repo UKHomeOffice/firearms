@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "busboy": "^1.6.0",
-    "bl": "6.1.6",
+    "bl": "7.0.12",
     "debug": "^4.4.1",
     "express": "^5.1.0",
     "accessible-autocomplete": "^3.0.1",
