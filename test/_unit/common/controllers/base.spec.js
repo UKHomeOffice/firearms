@@ -102,6 +102,23 @@ describe('BaseController', () => {
           baseController.locals(req, res).should.have.property('foo')
             .and.equal('bar');
         });
+
+        it('removes dependent fields and identifies armed-guard usage', () => {
+          FormController.prototype.locals.returns({
+            fields: [{key: 'visible'}, {key: 'dependent'}]
+          });
+          req.form.options.fields = {
+            visible: {},
+            dependent: {dependent: {field: 'other'}}
+          };
+          req.sessionModel.get.withArgs('activity').returns('new');
+          req.sessionModel.get.withArgs('usage').returns(['arm-guards']);
+
+          const locals = baseController.locals(req, res);
+
+          expect(locals.fields).to.deep.equal([{key: 'visible'}]);
+          expect(locals.armGuards).to.equal(true);
+        });
       });
     });
   });

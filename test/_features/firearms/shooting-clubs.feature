@@ -1,6 +1,7 @@
 @feature @shooting-clubs
 Feature: Fireams application for Shooting clubs
 
+    @smoke
     Scenario: I am on the Shooting-clubs journey but I don't select an option on the activity page
         Given I start the 'shooting-clubs' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'

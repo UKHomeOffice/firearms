@@ -1,9 +1,5 @@
-const { Before, BeforeAll, AfterAll, After, World } = require('@cucumber/cucumber');
-const { BrowserContext, Page, chromium } = require('playwright');
-
-
-World.context = BrowserContext;
-World.page = Page;
+const {Before, BeforeAll, AfterAll, After} = require('@cucumber/cucumber');
+const {chromium} = require('playwright');
 
 BeforeAll(async () => {
   const pwConfig = process.env.ACCEPTANCE_WITH_BROWSER ? { headless: false, slowMo: 500 } : {};
@@ -17,11 +13,9 @@ AfterAll(async function () {
 Before(async function () {
   this.context = await global.browser.newContext({ ignoreHTTPSErrors: true });
   this.page = await this.context.newPage();
-}.bind(World));
+});
 
 After(async function () {
   await this.page.close();
   await this.context.close();
-}.bind(World));
-
-module.exports = World;
+});

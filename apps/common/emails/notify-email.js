@@ -6,7 +6,7 @@ const notifyClient = new NotifyClient(config.govukNotify.notifyApiKey);
 const logger = require('hof/lib/logger')({ env: config.env });
 
 const sendEmail = (templateId, emailAddress, personalisation, emailReplyToId) => {
-  notifyClient
+  return notifyClient
     .sendEmail(templateId, emailAddress, {
       personalisation: personalisation,
       emailReplyToId: emailReplyToId

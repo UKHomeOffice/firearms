@@ -310,6 +310,7 @@ Feature: Firearms application for a New-dealer
         Then I should be on the 'confirm' page showing 'Check your answers'
         Then I submit the application
 
+    @smoke
     Scenario: I am on the New-dealer journey but don't select an option on the activity page
         Given I start the 's5' application journey
         Then I should be on the 'privacy' page showing 'Privacy Notice'

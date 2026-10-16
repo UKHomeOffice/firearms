@@ -1,8 +1,9 @@
 'use strict';
 
+const proxyquire = require('proxyquire');
 const Base = require('../../../../apps/common/controllers/base');
 const UploadModel = require('../../../../apps/common/models/file-upload');
-const Controller = proxyquire('../apps/common/controllers/supporting-documents', {
+const Controller = proxyquire('../../../../apps/common/controllers/supporting-documents', {
   uuid: { v1: () => 'abc123' }
 });
 
@@ -24,6 +25,58 @@ describe('Supporting Documents Controller', () => {
   it('extends the base controller', () => {
     const controller = new Controller({});
     expect(controller).to.be.an.instanceOf(Base);
+  });
+
+  describe('locals and get', () => {
+    it('shows the optional subheader for new applications', () => {
+      const controller = new Controller({});
+      const req = {
+        rawTranslate: sinon.stub().returns({optionalSubheader: 'Upload guidance'}),
+        sessionModel: {get: sinon.stub().returns('new')}
+      };
+      sandbox.stub(Base.prototype, 'locals').returns({base: true});
+
+      expect(controller.locals(req, {})).to.deep.equal({
+        base: true,
+        optionalSubheader: 'Upload guidance'
+      });
+    });
+
+    it('hides the optional subheader for other activities', () => {
+      const controller = new Controller({});
+      const req = {
+        rawTranslate: sinon.stub().returns({optionalSubheader: 'Upload guidance'}),
+        sessionModel: {get: sinon.stub().returns('renew')}
+      };
+      sandbox.stub(Base.prototype, 'locals').returns({});
+
+      expect(controller.locals(req, {}).optionalSubheader).to.equal('');
+    });
+
+    it('continues normally when there are no supporting documents', () => {
+      const controller = new Controller({});
+      const req = {sessionModel: {get: sinon.stub().returns(undefined)}};
+      const next = sinon.stub();
+      sandbox.stub(Base.prototype, 'get');
+      sandbox.stub(controller, 'emit');
+
+      controller.get(req, {}, next);
+
+      expect(controller.emit).not.to.have.been.called;
+      expect(Base.prototype.get).to.have.been.calledOnce;
+    });
+
+    it('completes the step when supporting documents already exist', () => {
+      const controller = new Controller({});
+      const req = {sessionModel: {get: sinon.stub().returns([{id: 'document-1'}])}};
+      const res = {};
+      sandbox.stub(Base.prototype, 'get');
+      sandbox.stub(controller, 'emit');
+
+      controller.get(req, res, sinon.stub());
+
+      expect(controller.emit).to.have.been.calledWithExactly('complete', req, res);
+    });
   });
 
   describe('process', () => {
