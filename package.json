@@ -31,7 +31,7 @@
     "debug": "^4.4.1",
     "express": "^5.1.0",
     "accessible-autocomplete": "^3.0.1",
-    "hof": "^24.5.0",
+    "hof": "^24.6.0",
     "hot-shots": "^11.2.0",
     "i18n-lookup": "^1.0.0",
     "is-pdf": "^1.0.0",
