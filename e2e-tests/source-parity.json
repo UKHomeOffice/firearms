@@ -1,0 +1,2215 @@
+{
+  "sourceRoot": "C:\\Users\\satya\\OneDrive\\Documents\\HOF Projects\\HOF",
+  "compliance": {
+    "source_scenarios_inventory_count": 17,
+    "source_active_example_row_count": 20,
+    "source_step_phrases_inventory_count": 128,
+    "source_step_definition_methods_inventory_count": 63,
+    "source_steplib_methods_inventory_count": 101,
+    "source_page_objects_inventory_count": 67,
+    "mapped_scenarios_count": 17,
+    "mapped_active_example_row_count": 20,
+    "mapped_step_phrases_count": 128,
+    "mapped_step_definition_methods_count": 63,
+    "mapped_steplib_methods_count": 101,
+    "mapped_source_pages_count": 67,
+    "unmapped_scenarios": [],
+    "feature_title_drift": 0,
+    "scenario_title_drift": 0,
+    "active_example_row_drift": 0,
+    "unmapped_step_phrases": [],
+    "unmapped_step_definition_methods": [],
+    "unmapped_steplib_methods": [],
+    "unmapped_source_pages": [],
+    "refactored_duplicates_with_equivalence_rationale": "See MIGRATION.md; each route remains a distinct fixture instance with its own expected title; shared control helpers preserve source inputs, branching and assertions.",
+    "decision": "PASS",
+    "remediation_actions": [],
+    "scope": "Static traceability and exact feature/data checks; not proof of browser behavior. StepLib/page inventory conservatively includes all service methods/classes, even unused helpers."
+  },
+  "featureAudit": [
+    {
+      "file": "farMuseums/farMuseum.feature",
+      "title": "FAR - Firearms Museums",
+      "sha256": "5f83d93aa69d360e9fca9854f51a6a16f52281d1ccd47471ac26cc7dd5841e2b",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 7
+    },
+    {
+      "file": "farMuseums/farMuseumsValidation.feature",
+      "title": "FAR - Firearms Museums",
+      "sha256": "aea9fb99dff68e4e8bab0843aa35b340cade5375138d7dcdb792e8b90e4d2c5d",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 2
+    },
+    {
+      "file": "farS5/farS5.feature",
+      "title": "FAR - Firearms New Dealer",
+      "sha256": "da1ee0fc6b64e0289d2aa9d1ab0dc174cbb37f7ee4decbd7b03ae0e74eb74ad8",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 6
+    },
+    {
+      "file": "farS5/farS5Validation.feature",
+      "title": "FAR - Firearms New Dealer",
+      "sha256": "ab200cabc274defc3b7ebaa285d5e35d9f4c31660ce6d0c312b8a6c9f2aca8f4",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farShootingClub/farShootClubValidation.feature",
+      "title": "FAR - Firearms Shooting Clubs",
+      "sha256": "8d1645a865e509b643f097ee0b45298c78f400224e92ca3c12e88b5cadee38e9",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farShootingClub/farShootingClub.feature",
+      "title": "FAR - Firearms Shooting Clubs",
+      "sha256": "9f604f56cd87880b5e9ddd17f15a2ff981e8c14376e29257209d21df0f84a55f",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 7
+    },
+    {
+      "file": "farSupportDocs/farMuseumSupportDoc.feature",
+      "title": "FAR - Firearms Museums Supporting Documents",
+      "sha256": "c77a856e8dcab3c572a314ebdc43beaa0372e4e334cf70bf122b7b7976da72aa",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farSupportDocs/farS5SupportDoc.feature",
+      "title": "FAR - Firearms New Dealer Supporting Documents",
+      "sha256": "d9a17a14205ab5b6d28aee3e368ea219e312071d4597a6fb639eb0dedf655de4",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farSupportDocs/farSClubsSupportDoc.feature",
+      "title": "FAR - Firearms Shooting Clubs Supporting Documents",
+      "sha256": "81a424a1be3b37c9ef5fbad336abd1975bc4e2651280c52f1cd4032a4d774a50",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farSupportDocs/farSupportDocValidation.feature",
+      "title": "FAR - Firearms Supporting Documents Validations",
+      "sha256": "db7aef15f9ce20c278d80835ac8844f94efcba8acc8147539e5fd82345399d2b",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    }
+  ],
+  "scenarioMapping": [
+    {
+      "file": "farMuseums/farMuseum.feature",
+      "feature": "FAR - Firearms Museums",
+      "scenario": "Firearms Museums authority - E2E CI Test",
+      "sourceLine": 9,
+      "exampleRows": 2,
+      "target": "e2e-tests/features/farMuseums/farMuseum.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farMuseums/farMuseum.feature",
+      "feature": "FAR - Firearms Museums",
+      "scenario": "Firearms Museums - E2E",
+      "sourceLine": 22,
+      "exampleRows": 4,
+      "target": "e2e-tests/features/farMuseums/farMuseum.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farMuseums/farMuseum.feature",
+      "feature": "FAR - Firearms Museums",
+      "scenario": "Firearms Museums - Change answers for Museum details on the Check your answers page",
+      "sourceLine": 37,
+      "exampleRows": 0,
+      "target": "e2e-tests/features/farMuseums/farMuseum.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farMuseums/farMuseumsValidation.feature",
+      "feature": "FAR - Firearms Museums",
+      "scenario": "Firearms Museum - page error validations- \"Apply for a new authority\"",
+      "sourceLine": 8,
+      "exampleRows": 0,
+      "target": "e2e-tests/features/farMuseums/farMuseumsValidation.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farMuseums/farMuseumsValidation.feature",
+      "feature": "FAR - Firearms Museums",
+      "scenario": "Firearms Museum - page error validations- \"Renew an existing order\"",
+      "sourceLine": 78,
+      "exampleRows": 0,
+      "target": "e2e-tests/features/farMuseums/farMuseumsValidation.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farS5/farS5.feature",
+      "feature": "FAR - Firearms New Dealer",
+      "scenario": "Firearms S5 - E2E CI Test",
+      "sourceLine": 8,
+      "exampleRows": 2,
+      "target": "e2e-tests/features/farS5/farS5.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farS5/farS5.feature",
+      "feature": "FAR - Firearms New Dealer",
+      "scenario": "Firearms S5 - E2E",
+      "sourceLine": 21,
+      "exampleRows": 3,
+      "target": "e2e-tests/features/farS5/farS5.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farS5/farS5.feature",
+      "feature": "FAR - Firearms New Dealer",
+      "scenario": "Firearms S5 - Change answers in the Check your answers page",
+      "sourceLine": 36,
+      "exampleRows": 0,
+      "target": "e2e-tests/features/farS5/farS5.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farS5/farS5Validation.feature",
+      "feature": "FAR - Firearms New Dealer",
+      "scenario": "Firearms S5 - page error validations- \"Apply for a new authority\"",
+      "sourceLine": 6,
+      "exampleRows": 0,
+      "target": "e2e-tests/features/farS5/farS5Validation.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farShootingClub/farShootClubValidation.feature",
+      "feature": "FAR - Firearms Shooting Clubs",
+      "scenario": "Firearms Shooting Clubs - page error validations- \"Apply for a new authority\"",
+      "sourceLine": 4,
+      "exampleRows": 0,
+      "target": "e2e-tests/features/farShootingClub/farShootClubValidation.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farShootingClub/farShootingClub.feature",
+      "feature": "FAR - Firearms Shooting Clubs",
+      "scenario": "Firearms Shooting Clubs authority - E2E CI Test",
+      "sourceLine": 8,
+      "exampleRows": 2,
+      "target": "e2e-tests/features/farShootingClub/farShootingClub.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farShootingClub/farShootingClub.feature",
+      "feature": "FAR - Firearms Shooting Clubs",
+      "scenario": "Firearms Shooting Clubs - E2E",
+      "sourceLine": 21,
+      "exampleRows": 4,
+      "target": "e2e-tests/features/farShootingClub/farShootingClub.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farShootingClub/farShootingClub.feature",
+      "feature": "FAR - Firearms Shooting Clubs",
+      "scenario": "Firearms Shooting Clubs - Change answers for Shooting Clubs details on the Check your answers page",
+      "sourceLine": 36,
+      "exampleRows": 0,
+      "target": "e2e-tests/features/farShootingClub/farShootingClub.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farSupportDocs/farMuseumSupportDoc.feature",
+      "feature": "FAR - Firearms Museums Supporting Documents",
+      "scenario": "Firearms Museums Supporting Doc - E2E",
+      "sourceLine": 7,
+      "exampleRows": 1,
+      "target": "e2e-tests/features/farSupportDocs/farMuseumSupportDoc.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farSupportDocs/farS5SupportDoc.feature",
+      "feature": "FAR - Firearms New Dealer Supporting Documents",
+      "scenario": "Firearms S5 Supporting Doc - E2E",
+      "sourceLine": 7,
+      "exampleRows": 1,
+      "target": "e2e-tests/features/farSupportDocs/farS5SupportDoc.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farSupportDocs/farSClubsSupportDoc.feature",
+      "feature": "FAR - Firearms Shooting Clubs Supporting Documents",
+      "scenario": "Firearms Shooting Clubs Supporting Docs - E2E",
+      "sourceLine": 7,
+      "exampleRows": 1,
+      "target": "e2e-tests/features/farSupportDocs/farSClubsSupportDoc.feature",
+      "status": "MAPPED"
+    },
+    {
+      "file": "farSupportDocs/farSupportDocValidation.feature",
+      "feature": "FAR - Firearms Supporting Documents Validations",
+      "scenario": "Firearms S5 Supporting Doc Validations - E2E - \"Apply for a new authority\"",
+      "sourceLine": 8,
+      "exampleRows": 0,
+      "target": "e2e-tests/features/farSupportDocs/farSupportDocValidation.feature",
+      "status": "MAPPED"
+    }
+  ],
+  "stepDefinitions": [
+    {
+      "phrase": "Test data has been created for \"FARMuseum\" scenarios",
+      "sourceMethod": "DataSetupStepDefinitions.testData",
+      "sourceExpression": "Test data has been created for {string} scenarios",
+      "target": "steps/common.step.ts",
+      "targetExpression": "Test data has been created for {string} scenarios"
+    },
+    {
+      "phrase": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I visit the Firearms page",
+      "sourceMethod": "StepDefinitionFarCommon.farS5Open",
+      "sourceExpression": "I visit the Firearms page",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I visit the Firearms page"
+    },
+    {
+      "phrase": "I select Firearms \"Museums\" journey to start my application",
+      "sourceMethod": "StepDefinitionFarCommon.selectAJourney",
+      "sourceExpression": "I select Firearms {string} journey to start my application",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I select Firearms {string} journey to start my application"
+    },
+    {
+      "phrase": "I fill out my answers to the Firearms Museums questionnaire",
+      "sourceMethod": "StepDefinitionFarMuseums.completeFarMuseumsQuestionnaire",
+      "sourceExpression": "I fill out my answers to the Firearms Museums questionnaire",
+      "target": "steps/museums.step.ts",
+      "targetExpression": "I fill out my answers to the Firearms Museums questionnaire"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Museums\" - \"Apply for a new authority\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I am able to submit the Firearms questionnaire",
+      "sourceMethod": "StepDefinitionFarCommon.confirmSubmission",
+      "sourceExpression": "I am able to submit the Firearms questionnaire",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I am able to submit the Firearms questionnaire"
+    },
+    {
+      "phrase": "I selected the data for scenario \"2\" - \"Apply for a new authority - Another Storage address\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Museums\" - \"Apply for a new authority - Another Storage address\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"3\" - \"Renew existing authority\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Museums\" - \"Renew existing authority\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"4\" - \"Renew existing authority - additional Supporting doc - Yes\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Museums\" - \"Renew existing authority - additional Supporting doc - Yes\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"5\" - \"Amend existing authority\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Museums\" - \"Amend existing authority\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"6\" - \"Amend existing authority - additional Supporting doc - Yes\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Museums\" - \"Amend existing authority - additional Supporting doc - Yes\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I change the museum name to \"London Museum\" and museum address number to \"250\" and continue",
+      "sourceMethod": "StepDefinitionFarMuseums.changeYourCompanyDetails",
+      "sourceExpression": "I change the museum name to {string} and museum address number to {string} and continue",
+      "target": "steps/museums.step.ts",
+      "targetExpression": "I change the museum name to {string} and museum address number to {string} and continue"
+    },
+    {
+      "phrase": "I check the museum details changes \"London Museum\" and \"250\" are updated on the Check your answers page",
+      "sourceMethod": "StepDefinitionFarMuseums.checkYourChangeIsUpdated",
+      "sourceExpression": "I check the museum details changes {string} and {string} are updated on the Check your answers page",
+      "target": "steps/museums.step.ts",
+      "targetExpression": "I check the museum details changes {string} and {string} are updated on the Check your answers page"
+    },
+    {
+      "phrase": "I select continue",
+      "sourceMethod": "CommonStepDefinitions.i_select_continue",
+      "sourceExpression": "I select continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I select continue"
+    },
+    {
+      "phrase": "I see \"There is a problem\" error header message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorHeaderMessageDisplayed",
+      "sourceExpression": "I see {string} error header message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error header message displayed for firearms"
+    },
+    {
+      "phrase": "I see \"Select an option\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I choose Firearms \"Museums\" journey to start my application",
+      "sourceMethod": "StepDefinitionFarCommon.chooseJourneyType",
+      "sourceExpression": "I choose Firearms {string} journey to start my application",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I choose Firearms {string} journey to start my application"
+    },
+    {
+      "phrase": "I select What to do \"Apply for a new authority\" option and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.selectWhatToDo",
+      "sourceExpression": "I select What to do {string} option and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I select What to do {string} option and click continue"
+    },
+    {
+      "phrase": "I see \"Enter the museum name\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter museum name and click continue",
+      "sourceMethod": "StepDefinitionFarMuseums.enterMuseumsName",
+      "sourceExpression": "I enter museum name and click continue",
+      "target": "steps/museums.step.ts",
+      "targetExpression": "I enter museum name and click continue"
+    },
+    {
+      "phrase": "I see error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter exhibition or storage address and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.enterMainBusAddress",
+      "sourceExpression": "I enter exhibition or storage address and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I enter exhibition or storage address and click continue"
+    },
+    {
+      "phrase": "I select No to another address to store or exhibit firearms and click continue",
+      "sourceMethod": "StepDefinitionFarMuseums.selectNoAnotherAddressForStorage",
+      "sourceExpression": "I select No to another address to store or exhibit firearms and click continue",
+      "target": "steps/museums.step.ts",
+      "targetExpression": "I select No to another address to store or exhibit firearms and click continue"
+    },
+    {
+      "phrase": "I see \"Enter a contact name\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter a contact name and click continue",
+      "sourceMethod": "StepDefinitionFarMuseums.enterContactName",
+      "sourceExpression": "I enter a contact name and click continue",
+      "target": "steps/museums.step.ts",
+      "targetExpression": "I enter a contact name and click continue"
+    },
+    {
+      "phrase": "I see \"Enter a contact email address\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter contact email address and click continue",
+      "sourceMethod": "StepDefinitionFarS5.enterHolderContactEmailAddress",
+      "sourceExpression": "I enter contact email address and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I enter contact email address and click continue"
+    },
+    {
+      "phrase": "I select Yes to contact address same as previous and click continue",
+      "sourceMethod": "StepDefinitionFarMuseums.selectYesAnotherAddressForStorage",
+      "sourceExpression": "I select Yes to contact address same as previous and click continue",
+      "target": "steps/museums.step.ts",
+      "targetExpression": "I select Yes to contact address same as previous and click continue"
+    },
+    {
+      "phrase": "I see \"Select an address\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I select address and click continue",
+      "sourceMethod": "StepDefinitionFarMuseums.selectAnAddress",
+      "sourceExpression": "I select address and click continue",
+      "target": "steps/museums.step.ts",
+      "targetExpression": "I select address and click continue"
+    },
+    {
+      "phrase": "I enter invoice contact email \"invalid@email.c\" and click continue",
+      "sourceMethod": "StepDefinitionFarS5.enterInvoiceContactToUse",
+      "sourceExpression": "I enter invoice contact email {string} and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I enter invoice contact email {string} and click continue"
+    },
+    {
+      "phrase": "I see \"Enter an email in the correct format, like name@example.com\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter invoice contact details \"sas-hof-test@digital.homeoffice.gov.uk\" and click continue",
+      "sourceMethod": "StepDefinitionFarS5.enterInvoiceContactToUse",
+      "sourceExpression": "I enter invoice contact details {string} and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I enter invoice contact details {string} and click continue"
+    },
+    {
+      "phrase": "I enter invoice address and click continue",
+      "sourceMethod": "StepDefinitionFarS5.enterHolderInvoiceAddress",
+      "sourceExpression": "I enter invoice address and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I enter invoice address and click continue"
+    },
+    {
+      "phrase": "I see \"Select if you have a purchase order\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I selected the data for scenario \"2\" - \"Renew existing authority\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I select What to do \"Renew an existing authority\" option and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.selectWhatToDo",
+      "sourceExpression": "I select What to do {string} option and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I select What to do {string} option and click continue"
+    },
+    {
+      "phrase": "I select 'upload file' button for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.selectUploadFileBtnForFirearms",
+      "sourceExpression": "I select 'upload file' button for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I select 'upload file' button for firearms"
+    },
+    {
+      "phrase": "I see \"Upload a file\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I upload Firearms evidence file and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.uploadFile",
+      "sourceExpression": "I upload Firearms evidence file and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I upload Firearms evidence file and click continue"
+    },
+    {
+      "phrase": "I select \"No\" to upload additional doc and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.selectNo",
+      "sourceExpression": "I select {string} to upload additional doc and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I select {string} to upload additional doc and click continue"
+    },
+    {
+      "phrase": "Test data has been created for \"FARS5\" scenarios",
+      "sourceMethod": "DataSetupStepDefinitions.testData",
+      "sourceExpression": "Test data has been created for {string} scenarios",
+      "target": "steps/common.step.ts",
+      "targetExpression": "Test data has been created for {string} scenarios"
+    },
+    {
+      "phrase": "I select Firearms \"New Dealer\" journey to start my application",
+      "sourceMethod": "StepDefinitionFarCommon.selectAJourney",
+      "sourceExpression": "I select Firearms {string} journey to start my application",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I select Firearms {string} journey to start my application"
+    },
+    {
+      "phrase": "I fill out my answers to the Firearms S5 \"New Dealer\" questionnaire",
+      "sourceMethod": "StepDefinitionFarS5.completeFarS5Questionnaire",
+      "sourceExpression": "I fill out my answers to the Firearms S5 {string} questionnaire",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I fill out my answers to the Firearms S5 {string} questionnaire"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"New Dealer\" - \"Apply for a new authority\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"3\" - \"Renew existing authority - additional Supporting doc - Yes\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"New Dealer\" - \"Renew existing authority - additional Supporting doc - Yes\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"New Dealer\" - \"Renew existing authority\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"4\" - \"Amend existing authority\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"New Dealer\" - \"Amend existing authority\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"5\" - \"Amend existing authority - additional Supporting doc - Yes\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"New Dealer\" - \"Amend existing authority - additional Supporting doc - Yes\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I change the company name to \"Auto Company Ltd\" and company house number to \"150\" and continue",
+      "sourceMethod": "StepDefinitionFarS5.changeYourCompanyDetails",
+      "sourceExpression": "I change the company name to {string} and company house number to {string} and continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I change the company name to {string} and company house number to {string} and continue"
+    },
+    {
+      "phrase": "I check the company details changes \"Auto Company Ltd\" and \"150\" are updated on the Check your answers page",
+      "sourceMethod": "StepDefinitionFarS5.checkYourChangeIsUpdated",
+      "sourceExpression": "I check the company details changes {string} and {string} are updated on the Check your answers page",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I check the company details changes {string} and {string} are updated on the Check your answers page"
+    },
+    {
+      "phrase": "I choose Firearms \"New Dealer\" journey to start my application",
+      "sourceMethod": "StepDefinitionFarCommon.chooseJourneyType",
+      "sourceExpression": "I choose Firearms {string} journey to start my application",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I choose Firearms {string} journey to start my application"
+    },
+    {
+      "phrase": "I see \"Select the type of organisation the authority is for\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I select the organisation type \"Company\" and click continue",
+      "sourceMethod": "StepDefinitionFarS5.selectOrgType",
+      "sourceExpression": "I select the organisation type {string} and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I select the organisation type {string} and click continue"
+    },
+    {
+      "phrase": "I see \"Select what the company will handle\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I select what will be handled under the authority and click continue",
+      "sourceMethod": "StepDefinitionFarS5.selectWhatToHandle",
+      "sourceExpression": "I select what will be handled under the authority and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I select what will be handled under the authority and click continue"
+    },
+    {
+      "phrase": "I see \"Select at least one option\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I select how the prohibited items will be obtained and click continue",
+      "sourceMethod": "StepDefinitionFarS5.selectHowTheProhibitedItemsWillBeObtained",
+      "sourceExpression": "I select how the prohibited items will be obtained and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I select how the prohibited items will be obtained and click continue"
+    },
+    {
+      "phrase": "I select import prohibited items and click continue",
+      "sourceMethod": "StepDefinitionFarS5.selectNoToImportProhibitedItems",
+      "sourceExpression": "I select import prohibited items and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I select import prohibited items and click continue"
+    },
+    {
+      "phrase": "I answer will prohibited items be stored in business premises and click continue",
+      "sourceMethod": "StepDefinitionFarS5.selectNoToImportProhibitedItemsStoredInBusPremises",
+      "sourceExpression": "I answer will prohibited items be stored in business premises and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I answer will prohibited items be stored in business premises and click continue"
+    },
+    {
+      "phrase": "I select what business activities to be carried out and click continue",
+      "sourceMethod": "StepDefinitionFarS5.selectBusinessActivitiesToCarryOut",
+      "sourceExpression": "I select what business activities to be carried out and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I select what business activities to be carried out and click continue"
+    },
+    {
+      "phrase": "I select weapons sections and click continue",
+      "sourceMethod": "StepDefinitionFarS5.i_select_weapons_sections_and_click_continue",
+      "sourceExpression": "I select weapons sections and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I select weapons sections and click continue"
+    },
+    {
+      "phrase": "I select ammunition sections and click continue",
+      "sourceMethod": "StepDefinitionFarS5.i_select_weapons_sections_and_click_continue",
+      "sourceExpression": "I select ammunition sections and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I select ammunition sections and click continue"
+    },
+    {
+      "phrase": "I answer how many individual will be named \"One\" and click continue",
+      "sourceMethod": "StepDefinitionFarS5.selectHowManyIndividualToBeNamed",
+      "sourceExpression": "I answer how many individual will be named {string} and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I answer how many individual will be named {string} and click continue"
+    },
+    {
+      "phrase": "I see \"Enter the full name of the authority holder\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter full name of authority holder and click continue",
+      "sourceMethod": "StepDefinitionFarS5.enterAuthorityHolderFullName",
+      "sourceExpression": "I enter full name of authority holder and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I enter full name of authority holder and click continue"
+    },
+    {
+      "phrase": "I enter birth details and click continue",
+      "sourceMethod": "StepDefinitionFarS5.enterHolderBirthDetails",
+      "sourceExpression": "I enter birth details and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I enter birth details and click continue"
+    },
+    {
+      "phrase": "I see \"Enter nationality\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter country of nationality and click continue",
+      "sourceMethod": "StepDefinitionFarS5.enterHolderCountryOfNationality",
+      "sourceExpression": "I enter country of nationality and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I enter country of nationality and click continue"
+    },
+    {
+      "phrase": "I enter main business address and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.enterMainBusAddress",
+      "sourceExpression": "I enter main business address and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I enter main business address and click continue"
+    },
+    {
+      "phrase": "I see \"Tell us who we should contact about this application\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I select who to contact and click continue",
+      "sourceMethod": "StepDefinitionFarS5.selectWhoToContactAbtTheApplication",
+      "sourceExpression": "I select who to contact and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I select who to contact and click continue"
+    },
+    {
+      "phrase": "I see \"Enter contact's email address\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I select address to use and click continue",
+      "sourceMethod": "StepDefinitionFarS5.selectAddressToUseToContact",
+      "sourceExpression": "I select address to use and click continue",
+      "target": "steps/section-five.step.ts",
+      "targetExpression": "I select address to use and click continue"
+    },
+    {
+      "phrase": "Test data has been created for \"FARShootingClub\" scenarios",
+      "sourceMethod": "DataSetupStepDefinitions.testData",
+      "sourceExpression": "Test data has been created for {string} scenarios",
+      "target": "steps/common.step.ts",
+      "targetExpression": "Test data has been created for {string} scenarios"
+    },
+    {
+      "phrase": "I choose Firearms \"Shooting Clubs\" journey to start my application",
+      "sourceMethod": "StepDefinitionFarCommon.chooseJourneyType",
+      "sourceExpression": "I choose Firearms {string} journey to start my application",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I choose Firearms {string} journey to start my application"
+    },
+    {
+      "phrase": "I select No for a new club and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.selectNoForANewClub",
+      "sourceExpression": "I select No for a new club and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I select No for a new club and click continue"
+    },
+    {
+      "phrase": "I see \"Enter the club name\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter the club name and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.enterTheClubName",
+      "sourceExpression": "I enter the club name and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I enter the club name and click continue"
+    },
+    {
+      "phrase": "I enter the club address and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.enterMainBusAddress",
+      "sourceExpression": "I enter the club address and click continue",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I enter the club address and click continue"
+    },
+    {
+      "phrase": "I see \"Enter the name of the club secretary\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter the name of the club secretary and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.enterClubSecretaryName",
+      "sourceExpression": "I enter the name of the club secretary and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I enter the name of the club secretary and click continue"
+    },
+    {
+      "phrase": "I enter the club secretary address and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.enterClubSecretaryAddress",
+      "sourceExpression": "I enter the club secretary address and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I enter the club secretary address and click continue"
+    },
+    {
+      "phrase": "I see \"Enter the club secretary's email\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter the club email and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.enterClubEmailContact",
+      "sourceExpression": "I enter the club email and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I enter the club email and click continue"
+    },
+    {
+      "phrase": "I see \"Please enter the second person's name\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter the second person name and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.enterClubSecDeputyName",
+      "sourceExpression": "I enter the second person name and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I enter the second person name and click continue"
+    },
+    {
+      "phrase": "I enter the second person contact address and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.enterClubSecDeputyContactAddress",
+      "sourceExpression": "I enter the second person contact address and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I enter the second person contact address and click continue"
+    },
+    {
+      "phrase": "I see \"Enter the second person's email\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter the second person email and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.enterClubSecDeputyEmail",
+      "sourceExpression": "I enter the second person email and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I enter the second person email and click continue"
+    },
+    {
+      "phrase": "I enter the club shooting ranges address and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.enterClubShootingRangeAddress",
+      "sourceExpression": "I enter the club shooting ranges address and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I enter the club shooting ranges address and click continue"
+    },
+    {
+      "phrase": "I see \"Select the categories of firearms that will be used at this range\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I select firearms category to use and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.selectFirearmsCategoryToUse",
+      "sourceExpression": "I select firearms category to use and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I select firearms category to use and click continue"
+    },
+    {
+      "phrase": "I select No to use another shooting range and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.selectNoToUseAnotherShootingRange",
+      "sourceExpression": "I select No to use another shooting range and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I select No to use another shooting range and click continue"
+    },
+    {
+      "phrase": "I select No to use another address for gun storage and click continue",
+      "sourceMethod": "StepDefinitionFarSClubs.selectNoToUseAnotherAddress",
+      "sourceExpression": "I select No to use another address for gun storage and click continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I select No to use another address for gun storage and click continue"
+    },
+    {
+      "phrase": "I select Firearms \"Shooting Clubs\" journey to start my application",
+      "sourceMethod": "StepDefinitionFarCommon.selectAJourney",
+      "sourceExpression": "I select Firearms {string} journey to start my application",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I select Firearms {string} journey to start my application"
+    },
+    {
+      "phrase": "I fill out my answers to the Firearms 'Shooting Clubs' questionnaire",
+      "sourceMethod": "StepDefinitionFarSClubs.completeFarShootingClubQuestionnaire",
+      "sourceExpression": "I fill out my answers to the Firearms {string} questionnaire",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I fill out my answers to the Firearms {string} questionnaire"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Shooting Clubs\" - \"Apply for a new authority\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"6\" - \"Amend existing authority - additional support doc - Yes\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Shooting Clubs\" - \"Amend existing authority - additional support doc - Yes\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"2\" - \"Apply for a new authority - Another Gun Storage address\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Shooting Clubs\" - \"Apply for a new authority - Another Gun Storage address\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Shooting Clubs\" - \"Renew existing authority\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I selected the data for scenario \"4\" - \"Renew existing authority - additional support doc - Yes\"",
+      "sourceMethod": "DataSetupStepDefinitions.iReadScenarioApplicantData",
+      "sourceExpression": "I selected the data for scenario {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I selected the data for scenario {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Shooting Clubs\" - \"Renew existing authority - additional support doc - Yes\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I check my answers for Firearms \"Shooting Clubs\" - \"Amend existing authority\"",
+      "sourceMethod": "StepDefinitionFarCommon.checkAnswer",
+      "sourceExpression": "I check my answers for Firearms {string} - {string}",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I check my answers for Firearms {string} - {string}"
+    },
+    {
+      "phrase": "I change the club name to \"Youth Club\" and club address number to \"70\" and continue",
+      "sourceMethod": "StepDefinitionFarSClubs.changeYourCompanyDetails",
+      "sourceExpression": "I change the club name to {string} and club address number to {string} and continue",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I change the club name to {string} and club address number to {string} and continue"
+    },
+    {
+      "phrase": "I check the club details changes \"Youth Club\" and \"70\" are updated on the Check your answers page",
+      "sourceMethod": "StepDefinitionFarSClubs.checkYourChangeIsUpdated",
+      "sourceExpression": "I check the club details changes {string} and {string} are updated on the Check your answers page",
+      "target": "steps/shooting-clubs.step.ts",
+      "targetExpression": "I check the club details changes {string} and {string} are updated on the Check your answers page"
+    },
+    {
+      "phrase": "I navigate and select \"Supporting Documents\" journey to start my application",
+      "sourceMethod": "StepDefinitionFarCommon.startSupportingDoc",
+      "sourceExpression": "I navigate and select {string} journey to start my application",
+      "target": "steps/supporting-documents.step.ts",
+      "targetExpression": "I navigate and select {string} journey to start my application"
+    },
+    {
+      "phrase": "I fill out my answers to Supporting doc questionnaire",
+      "sourceMethod": "StepDefinitionFarCommon.completeFarSupportingDocQuestionnaire",
+      "sourceExpression": "I fill out my answers to Supporting doc questionnaire",
+      "target": "steps/supporting-documents.step.ts",
+      "targetExpression": "I fill out my answers to Supporting doc questionnaire"
+    },
+    {
+      "phrase": "I check the application details on Check your answers page",
+      "sourceMethod": "StepDefinitionFarCommon.checkApplicationDetails",
+      "sourceExpression": "I check the application details on Check your answers page",
+      "target": "steps/supporting-documents.step.ts",
+      "targetExpression": "I check the application details on Check your answers page"
+    },
+    {
+      "phrase": "I am able to submit the supporting documents",
+      "sourceMethod": "StepDefinitionFarCommon.confirmSubmissionForSupportingDoc",
+      "sourceExpression": "I am able to submit the supporting documents",
+      "target": "steps/supporting-documents.step.ts",
+      "targetExpression": "I am able to submit the supporting documents"
+    },
+    {
+      "phrase": "I see \"Enter your application reference number\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter reference application number and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.enterApplicationRefNumber",
+      "sourceExpression": "I enter reference application number and click continue",
+      "target": "steps/supporting-documents.step.ts",
+      "targetExpression": "I enter reference application number and click continue"
+    },
+    {
+      "phrase": "I see \"Enter the email address used for your original application\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter the email \"test5@test.com\" not used in original application and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.enterApplicationEmailAddress",
+      "sourceExpression": "I enter the email {string} not used in original application and click continue",
+      "target": "steps/supporting-documents.step.ts",
+      "targetExpression": "I enter the email {string} not used in original application and click continue"
+    },
+    {
+      "phrase": "I see \"The email address provided does not match the reference number\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    },
+    {
+      "phrase": "I enter the email \"sas-hof-test@digital.homeoffice.gov.uk\" used in original application and click continue",
+      "sourceMethod": "StepDefinitionFarCommon.enterApplicationEmailAddress",
+      "sourceExpression": "I enter the email {string} used in original application and click continue",
+      "target": "steps/supporting-documents.step.ts",
+      "targetExpression": "I enter the email {string} used in original application and click continue"
+    },
+    {
+      "phrase": "I see \"Select a document\" error message displayed for firearms",
+      "sourceMethod": "StepDefinitionFarCommon.errorMessageDisplayed",
+      "sourceExpression": "I see {string} error message displayed for firearms",
+      "target": "steps/common.step.ts",
+      "targetExpression": "I see {string} error message displayed for firearms"
+    }
+  ],
+  "stepLibMapping": [
+    {
+      "source": "FarCommonStepLib.openFireArmsHomePage",
+      "target": "e2e-tests/steps/common.step.ts#L20"
+    },
+    {
+      "source": "FarCommonStepLib.acceptCookies",
+      "target": "e2e-tests/steps/common.step.ts#L20"
+    },
+    {
+      "source": "FarCommonStepLib.answerChooseAJourney",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L28"
+    },
+    {
+      "source": "FarCommonStepLib.answerUploadExistingDoc",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L40"
+    },
+    {
+      "source": "FarCommonStepLib.answerUploadAdditionalExistingDocs",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L40"
+    },
+    {
+      "source": "FarCommonStepLib.answerContactDetails",
+      "target": "e2e-tests/steps/common.step.ts#L78"
+    },
+    {
+      "source": "FarCommonStepLib.answerInvoiceContactAddressDetailsAndPurchaseOrder",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L55"
+    },
+    {
+      "source": "FarCommonStepLib.answerPurchaseOrder",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L55"
+    },
+    {
+      "source": "FarCommonStepLib.checkYourAnswers",
+      "target": "e2e-tests/utility-helper/expected-answers.ts#L11"
+    },
+    {
+      "source": "FarCommonStepLib.confirmSubmission",
+      "target": "e2e-tests/steps/common.step.ts#L39"
+    },
+    {
+      "source": "FarCommonStepLib.confirmSubmissionSupportingDoc",
+      "target": "e2e-tests/steps/supporting-documents.step.ts#L31"
+    },
+    {
+      "source": "FarCommonStepLib.getApplicationRefNumber",
+      "target": "e2e-tests/pages/submission-page.ts#L8"
+    },
+    {
+      "source": "FarCommonStepLib.answerEnterRefNumber",
+      "target": "e2e-tests/steps/supporting-documents.step.ts#L16"
+    },
+    {
+      "source": "FarCommonStepLib.answerEnterEmailUsedInOriginalApplication",
+      "target": "e2e-tests/steps/supporting-documents.step.ts#L17"
+    },
+    {
+      "source": "FarCommonStepLib.uploadAdditionalSupportingDoc",
+      "target": "e2e-tests/steps/supporting-documents.step.ts#L19"
+    },
+    {
+      "source": "FarCommonStepLib.uploadSupportingDocs",
+      "target": "e2e-tests/steps/supporting-documents.step.ts#L18"
+    },
+    {
+      "source": "FarCommonStepLib.getSupportingApplicationDetails",
+      "target": "e2e-tests/steps/supporting-documents.step.ts#L23"
+    },
+    {
+      "source": "FarCommonStepLib.chooseFirearmsJourneyToStart",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L28"
+    },
+    {
+      "source": "FarCommonStepLib.getErrorSummaryHeaderText",
+      "target": "e2e-tests/steps/common.step.ts#L45"
+    },
+    {
+      "source": "FarCommonStepLib.getErrorMessageDetailText",
+      "target": "e2e-tests/steps/common.step.ts#L49"
+    },
+    {
+      "source": "FarCommonStepLib.getLinkByText",
+      "target": "e2e-tests/steps/common.step.ts#L57"
+    },
+    {
+      "source": "FarCommonStepLib.selectWhatToDo",
+      "target": "e2e-tests/steps/common.step.ts#L61"
+    },
+    {
+      "source": "FarCommonStepLib.selectUploadFileBtn",
+      "target": "e2e-tests/steps/common.step.ts#L64"
+    },
+    {
+      "source": "FarCommonStepLib.selectContinueBtn",
+      "target": "e2e-tests/steps/common.step.ts#L42"
+    },
+    {
+      "source": "FarCommonStepLib.uploadAdditionalDoc",
+      "target": "e2e-tests/steps/common.step.ts#L72"
+    },
+    {
+      "source": "FarCommonStepLib.enterContactEmailAddress",
+      "target": "e2e-tests/steps/common.step.ts#L78"
+    },
+    {
+      "source": "FarCommonStepLib.enterContactForInvoicing",
+      "target": "e2e-tests/steps/common.step.ts#L82"
+    },
+    {
+      "source": "FarCommonStepLib.enterApplicationEmail",
+      "target": "e2e-tests/steps/supporting-documents.step.ts#L17"
+    },
+    {
+      "source": "FarCommonStepLib.enterApplicationRefNo",
+      "target": "e2e-tests/steps/supporting-documents.step.ts#L16"
+    },
+    {
+      "source": "FarStepLib.answerWhatYouWantToDoAndUploadDocs",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L40"
+    },
+    {
+      "source": "FarStepLib.answerUploadSupportingDocForSecretaryOfState",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L16"
+    },
+    {
+      "source": "FarStepLib.answerUploadAdditionalDocs",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L16"
+    },
+    {
+      "source": "FarStepLib.uploadSupportAndAdditionalDocs",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L16"
+    },
+    {
+      "source": "FarStepLib.answerSelectAuthTypeOfOrgWhatToHandleAndHowtoObtainTheItems",
+      "target": "e2e-tests/steps/section-five.step.ts#L20"
+    },
+    {
+      "source": "FarStepLib.answerWhatToHandleHowtoObtainTheItems",
+      "target": "e2e-tests/steps/section-five.step.ts#L48"
+    },
+    {
+      "source": "FarStepLib.answerProhibitedItemBeImported",
+      "target": "e2e-tests/steps/section-five.step.ts#L50"
+    },
+    {
+      "source": "FarStepLib.answerWillItemBeStoredInBusPremises",
+      "target": "e2e-tests/steps/section-five.step.ts#L51"
+    },
+    {
+      "source": "FarStepLib.answerWhereWillItemsBeStored",
+      "target": "e2e-tests/steps/section-five.step.ts#L53"
+    },
+    {
+      "source": "FarStepLib.answerAnotherAddressItemsWillBeStored",
+      "target": "e2e-tests/steps/section-five.step.ts#L55"
+    },
+    {
+      "source": "FarStepLib.answerBusActivitiesAndWeaponsComponents",
+      "target": "e2e-tests/steps/section-five.step.ts#L60"
+    },
+    {
+      "source": "FarStepLib.answerAmmunitionSections",
+      "target": "e2e-tests/steps/section-five.step.ts#L62"
+    },
+    {
+      "source": "FarStepLib.answerFullNameOfTheAuthority",
+      "target": "e2e-tests/steps/section-five.step.ts#L70"
+    },
+    {
+      "source": "FarStepLib.answerBirthAndNationalDetails",
+      "target": "e2e-tests/steps/section-five.step.ts#L38"
+    },
+    {
+      "source": "FarStepLib.answerFullNameOfTheSecondAuthority",
+      "target": "e2e-tests/steps/section-five.step.ts#L67"
+    },
+    {
+      "source": "FarStepLib.answerFullNameOfTheFirstAuthority",
+      "target": "e2e-tests/steps/section-five.step.ts#L65"
+    },
+    {
+      "source": "FarStepLib.answerWhoToContactAbtThisApplication",
+      "target": "e2e-tests/steps/section-five.step.ts#L74"
+    },
+    {
+      "source": "FarStepLib.answerSecondContactOrSomeOneElseAddress",
+      "target": "e2e-tests/steps/section-five.step.ts#L77"
+    },
+    {
+      "source": "FarStepLib.answerAddressToContact",
+      "target": "e2e-tests/steps/section-five.step.ts#L77"
+    },
+    {
+      "source": "FarStepLib.changeYourAnsForS5",
+      "target": "e2e-tests/steps/section-five.step.ts#L86"
+    },
+    {
+      "source": "FarStepLib.getUpdatedBusDetails",
+      "target": "e2e-tests/steps/section-five.step.ts#L91"
+    },
+    {
+      "source": "FarStepLib.answerWhatIsTheMuseumsName",
+      "target": "e2e-tests/steps/museums.step.ts#L11"
+    },
+    {
+      "source": "FarStepLib.answerWhereToStoreFirearms",
+      "target": "e2e-tests/steps/museums.step.ts#L12"
+    },
+    {
+      "source": "FarStepLib.answerAnotherAddressToStoreFirearms",
+      "target": "e2e-tests/steps/museums.step.ts#L14"
+    },
+    {
+      "source": "FarStepLib.answerWhoToContactAndTheirContactDetails",
+      "target": "e2e-tests/steps/museums.step.ts#L18"
+    },
+    {
+      "source": "FarStepLib.answerIsContactAddressSameAsPrevious",
+      "target": "e2e-tests/steps/museums.step.ts#L20"
+    },
+    {
+      "source": "FarStepLib.changeYourAnsForMuseum",
+      "target": "e2e-tests/steps/museums.step.ts#L30"
+    },
+    {
+      "source": "FarStepLib.getUpdatedMuseumDetails",
+      "target": "e2e-tests/steps/museums.step.ts#L39"
+    },
+    {
+      "source": "FarStepLib.changeYourAnsForShootClub",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L41"
+    },
+    {
+      "source": "FarStepLib.getUpdatedSClubDetails",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L48"
+    },
+    {
+      "source": "FarStepLib.answerUploadSupportingDocForApproval_ShootClubs",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L16"
+    },
+    {
+      "source": "FarStepLib.answerUploadAdditionalDocs_ShootClub",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L16"
+    },
+    {
+      "source": "FarStepLib.answerIsClubNewClub",
+      "target": "e2e-tests/utility-helper/common-flows.ts#L16"
+    },
+    {
+      "source": "FarStepLib.answerEnterClubName",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L17"
+    },
+    {
+      "source": "FarStepLib.answerEnterClubAndSecAddressDetails",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L19"
+    },
+    {
+      "source": "FarStepLib.shootingRangesAndFirearmsCategoriesToUse",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L25"
+    },
+    {
+      "source": "FarStepLib.answerClubUseAnotherShootingRange",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L27"
+    },
+    {
+      "source": "FarStepLib.answerFirearmsStorageAddress",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L31"
+    },
+    {
+      "source": "FarStepLib.answerAnotherAddressForGunStorage",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L33"
+    },
+    {
+      "source": "FarStepLib.answerWhereElseGunsBeStored",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L34"
+    },
+    {
+      "source": "FarStepLib.uploadSupportingFile",
+      "target": "e2e-tests/steps/common.step.ts#L67"
+    },
+    {
+      "source": "FarStepLib.selectOrgType",
+      "target": "e2e-tests/steps/section-five.step.ts#L20"
+    },
+    {
+      "source": "FarStepLib.selectWhatWillBeHandled",
+      "target": "e2e-tests/steps/section-five.step.ts#L48"
+    },
+    {
+      "source": "FarStepLib.selectHowProhibitedItemsWillBeObtained",
+      "target": "e2e-tests/steps/section-five.step.ts#L49"
+    },
+    {
+      "source": "FarStepLib.willProhibitedItemsBeImported",
+      "target": "e2e-tests/steps/section-five.step.ts#L50"
+    },
+    {
+      "source": "FarStepLib.prohibitedItemsStoredInBusPremises",
+      "target": "e2e-tests/steps/section-five.step.ts#L51"
+    },
+    {
+      "source": "FarStepLib.selectBusinessActivities",
+      "target": "e2e-tests/steps/section-five.step.ts#L60"
+    },
+    {
+      "source": "FarStepLib.selectAmmunitionOrWeaponsSection",
+      "target": "e2e-tests/steps/section-five.step.ts#L62"
+    },
+    {
+      "source": "FarStepLib.selectHowManyIndividualToBeNamed",
+      "target": "e2e-tests/steps/section-five.step.ts#L63"
+    },
+    {
+      "source": "FarStepLib.enterFullNameOfAuthHolder",
+      "target": "e2e-tests/steps/section-five.step.ts#L70"
+    },
+    {
+      "source": "FarStepLib.enterDateOfBirthDetails",
+      "target": "e2e-tests/steps/section-five.step.ts#L39"
+    },
+    {
+      "source": "FarStepLib.enterCountryOfNationality",
+      "target": "e2e-tests/steps/section-five.step.ts#L40"
+    },
+    {
+      "source": "FarStepLib.enterMainBusinessOrInvoiceAddress",
+      "target": "e2e-tests/pages/address-page.ts#L4"
+    },
+    {
+      "source": "FarStepLib.selectWhoToContact",
+      "target": "e2e-tests/steps/section-five.step.ts#L74"
+    },
+    {
+      "source": "FarStepLib.selectAddressForContact",
+      "target": "e2e-tests/steps/section-five.step.ts#L79"
+    },
+    {
+      "source": "FarStepLib.enterMuseumName",
+      "target": "e2e-tests/steps/museums.step.ts#L11"
+    },
+    {
+      "source": "FarStepLib.selectNoForAnotherAddress",
+      "target": "e2e-tests/steps/museums.step.ts#L14"
+    },
+    {
+      "source": "FarStepLib.selectYesForAnotherAddress",
+      "target": "e2e-tests/steps/museums.step.ts#L20"
+    },
+    {
+      "source": "FarStepLib.selectAddress",
+      "target": "e2e-tests/steps/museums.step.ts#L22"
+    },
+    {
+      "source": "FarStepLib.selectContactName",
+      "target": "e2e-tests/steps/museums.step.ts#L18"
+    },
+    {
+      "source": "FarStepLib.selectNoForNewClub",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L54"
+    },
+    {
+      "source": "FarStepLib.enterClubName",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L17"
+    },
+    {
+      "source": "FarStepLib.enterClubEmail",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L21"
+    },
+    {
+      "source": "FarStepLib.enterClubSecName",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L19"
+    },
+    {
+      "source": "FarStepLib.enterClubSecAddress",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L20"
+    },
+    {
+      "source": "FarStepLib.enterSecondPersonName",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L22"
+    },
+    {
+      "source": "FarStepLib.enterSecondPersonContactAddress",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L23"
+    },
+    {
+      "source": "FarStepLib.enterSecondPersonEmail",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L24"
+    },
+    {
+      "source": "FarStepLib.enterShootingRangesAddress",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L10"
+    },
+    {
+      "source": "FarStepLib.selectFirearmsCategory",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L11"
+    },
+    {
+      "source": "FarStepLib.selectNoAnotherShootingRange",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L27"
+    },
+    {
+      "source": "FarStepLib.selectNoAnotherAddressForGunStorage",
+      "target": "e2e-tests/steps/shooting-clubs.step.ts#L33"
+    }
+  ],
+  "pageMapping": [
+    {
+      "source": "FarAnotherAddressForStorage",
+      "methods": [
+        "itemsInAnotherAddressYes",
+        "itemsInAnotherAddressNo",
+        "isStorageAddressAdded"
+      ],
+      "target": "e2e-tests/pages/added-items-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarBeforeYouStartPage",
+      "methods": [
+        "clickContinueBtn",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/base-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarCheckYourAnswersPage",
+      "methods": [
+        "isAbleToCheckAnswers",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/summary-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarChooseAJourneyHomePage",
+      "methods": [
+        "openFirearmsHomePage",
+        "answerSelectAJourney",
+        "acceptCookies",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/choose-journey-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarContactDetails",
+      "methods": [
+        "answerTheirContactDetails"
+      ],
+      "target": "e2e-tests/pages/contact-details-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarDoYouHavePurchaseOrderPage",
+      "methods": [
+        "answerHavePurchaseOrderYes",
+        "answerHavePurchaseOrderNo",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/purchase-order-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarDoYouWantToUploadAdditionalDocsPage",
+      "methods": [
+        "answerUploadAdditionalDoc",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/added-items-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarImportantInformationPage",
+      "methods": [
+        "answerSubmitApplication",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/important-information-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarPrivacyNoticePage",
+      "methods": [
+        "assertPageTitle"
+      ],
+      "target": "e2e-tests/pages/base-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarSubmissionNotificationsPage",
+      "methods": [
+        "emailNotification",
+        "isWillReviewYourApplicationDisplayed",
+        "getApplicationRef",
+        "isApplicationRefDisplayed",
+        "isApplicationCompleteDisplayed",
+        "isUploadCompleteDisplayed"
+      ],
+      "target": "e2e-tests/pages/submission-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarUploadAdditionalExistingDocsPage",
+      "methods": [
+        "answerUploadAdditionalDoc",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/added-items-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarUploadDocs",
+      "methods": [
+        "uploadFile",
+        "isPreviousDocAdded"
+      ],
+      "target": "e2e-tests/pages/upload-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarUploadExistingAuthDocsPage",
+      "methods": [
+        "uploadExistingFile",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/upload-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarWhatAreContactDetailsPage",
+      "methods": [
+        "answerHoldersContactDetails",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/contact-details-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarWhatDoYouWantToDoPage",
+      "methods": [
+        "answerSelectWhatYouWantToDo",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/base-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarWhatIsTheirInvoiceAddressPage",
+      "methods": [
+        "answerInvoiceDetails",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarWhoShouldWeContactAbtTheInvoicePage",
+      "methods": [
+        "answerContactDetails",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/invoice-contact-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarMuseumAnotherAddressForStoragePage",
+      "methods": [
+        "answerFirearmsInAnotherAddressYes",
+        "answerFirearmsInAnotherAddressNo",
+        "isStorageAddressAdded",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/added-items-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarMuseumCheckYourAnswersPage",
+      "methods": [
+        "getActualSectionValues",
+        "getUpdatedMuseumDetailsChanges",
+        "clickToChangeMuseumName",
+        "changeMuseumAddressNum",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/summary-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarMuseumContactAddressSameAsPreviousPage",
+      "methods": [
+        "answerContactAddressTheSameYes",
+        "answerContactAddressTheSameNo",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/base-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarMuseumSelectTheContactAddressPage",
+      "methods": [
+        "selectContactAddress",
+        "answerSelectContactAddress",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/select-contact-address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarMuseumTheMuseumNamePage",
+      "methods": [
+        "answerEnterMuseumName",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarMuseumWhatAreTheirContactDetailsPage",
+      "methods": [
+        "answerTheirContactDetails",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/contact-details-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarMuseumWhatIsTheirContactAddressPage",
+      "methods": [
+        "answerContactAddress",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarMuseumWhereWillFirearmsBeStoredPage",
+      "methods": [
+        "answerFirearmsStorage",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarMuseumWhoShouldWeContactAbtThisApplicationPage",
+      "methods": [
+        "answerWhoToContact",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5AmmunitionSectionsPage",
+      "methods": [
+        "answerSelectUnspecifiedSections",
+        "answerSelectUnspecifiedSections",
+        "answerSelectCartridges",
+        "answerSelectActualMissiles",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/ammunition-sections-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5AnotherAddressForStoragePage",
+      "methods": [
+        "answerProhibitedInAnotherAddressYes",
+        "answerProhibitedInAnotherAddressNo",
+        "isStorageAddressAdded",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/added-items-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5CheckYourAnswersPage",
+      "methods": [
+        "getActualSectionValues",
+        "getAmendActualSectionValues",
+        "getUpdatedBusinessDetails",
+        "clickToChangeBusinessDetails",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/summary-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5FullNameOfFirstAuthorityHolderPage",
+      "methods": [
+        "answerFirstAuthorityHolder",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5FullNameOfSecondAuthorityHolderPage",
+      "methods": [
+        "answerSecondAuthorityHolder",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5HowManyIndividualsToBeNamedPage",
+      "methods": [
+        "answerHowManyAuthorityHolder",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/base-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5HowWillProhibitedItemsBeObtainedPage",
+      "methods": [
+        "answerSelectAllProhibitedItems",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/obtain-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5ProhibitedItemsStoredOnBusinessPremisesPage",
+      "methods": [
+        "answerItemsStoredOnBusPremisesYes",
+        "answerItemsStoredOnBusPremisesNo",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/business-storage-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5UploadSupportingDocsPage",
+      "methods": [
+        "uploadSupportingFile",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/upload-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WeaponsAndComponentsSectionPage",
+      "methods": [
+        "answerSelectUnspecifiedSection",
+        "answerSelectUnspecifiedSection",
+        "answerSelectFullyAutomaticSection",
+        "answerSelectFullyLaunchersSection",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/weapons-sections-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhatAreBirthDayDetailsPage",
+      "methods": [
+        "answerDateOfBirthDetails",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/birth-details-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhatBusinessActivitiesToCarryOutPage",
+      "methods": [
+        "answerSelectBusinessActivities",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/business-activities-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhatIsCountryOfNationalityPage",
+      "methods": [
+        "answerEnterCountryOfNationality",
+        "answerAddAnotherNationality",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/nationality-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhatIsHolderMainBusinessPage",
+      "methods": [
+        "answerBusinessDetails",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhatIsSomeOneElseAddressPage",
+      "methods": [
+        "answerSomeoneElseContact",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhatToHandleUnderTheAuthPage",
+      "methods": [
+        "answerSelectAllWeapons",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/handle-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhatTypeOfOrgIsTheAuthForPage",
+      "methods": [
+        "answerSelectCompany",
+        "answerSelectSoleTrader",
+        "answerSelectShootingClub",
+        "answerSelectOrgCharity",
+        "answerSelectMuseum",
+        "answerSelectOther",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/organisation-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhatsTheFullNameOfAuthorityHolderPage",
+      "methods": [
+        "answerEnterNameOfAuthorityHolder",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhereWillProhibitedItemsBeStoredPage",
+      "methods": [
+        "answerProhibitedItemBeStorage",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhichAddressToContactYouPage",
+      "methods": [
+        "answerSelectAddress",
+        "answerSomeoneElseContact",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/base-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WhoDoWeContactAbtThisApplicationPage",
+      "methods": [
+        "answerContactHolderFirst",
+        "answerContactHolderSecond",
+        "answerContactSomeoneElse",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/who-to-contact-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarS5WillProhibitedBeImportedPage",
+      "methods": [
+        "answerProhibitedItemBeImportedYes",
+        "answerProhibitedItemBeImportedNo",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/import-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubAnotherAddressGunStoragePage",
+      "methods": [
+        "answerUseAnotherAddressYes",
+        "answerUseAnotherAddressNo",
+        "isFirearmsCategoriesAdded",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/added-items-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubCheckYourAnswersPage",
+      "methods": [
+        "getActualSectionValues",
+        "getUpdatedClubDetails",
+        "changeClubDetails",
+        "changeClubAddressNumb",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/summary-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubFirearmsCategoriesToUsePage",
+      "methods": [
+        "answerSelectFirearmsCategoriesRange",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/range-categories-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubFirearmsStorageAddressesPage",
+      "methods": [
+        "getCheckBox",
+        "answerSelectStorageAddress",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/storage-addresses-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubIsTheClubNewPage",
+      "methods": [
+        "answerClubIsNewYes",
+        "answerClubIsNewNo",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/base-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubSecContactAddressPage",
+      "methods": [
+        "expectClubSecretaryContactAddress",
+        "expectDeputyContactAddress",
+        "answerClubSecContactAddress",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubSecContactDetailsPage",
+      "methods": [
+        "expectClubSecretaryContactDetails",
+        "expectDeputyContactDetails",
+        "answerClubSecContactDetails",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/contact-details-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubShootingRangesToUsePage",
+      "methods": [
+        "answerShootingRangesAddress",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubUploadSupportingDocsPage",
+      "methods": [
+        "uploadSupportingFile",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/upload-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubUseAnotherShootingRangePage",
+      "methods": [
+        "answerUseAnotherShootingRangeYes",
+        "answerUseAnotherShootingRangeNo",
+        "isFirearmsCategoriesAdded",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/added-items-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubWhatIsClubAddressPage",
+      "methods": [
+        "answerEnterClubAddress",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubWhatIsTheClubSecNamePage",
+      "methods": [
+        "answerEnterClubSecName",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubWhatIsTheNamePage",
+      "methods": [
+        "answerEnterClubName",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubWhereElseWillGunBeStoredPage",
+      "methods": [
+        "answerEnterGunStorageAddress",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/address-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarShootClubWhoToContactInAbsencePage",
+      "methods": [
+        "answerEnterClubName",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarSDocUploadSupportingDocsPage",
+      "methods": [
+        "uploadSupportingDoc",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/upload-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarSupportDocAppRefNumberPage",
+      "methods": [
+        "answerEnterAppRefNumber",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarSupportingDocCheckAnswersPage",
+      "methods": [
+        "getApplicationDetails",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/summary-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    },
+    {
+      "source": "FarSupportingDocEnterEmailInOriginalAppPage",
+      "methods": [
+        "answerEnterEmailInOriginalApplication",
+        "expectedPageTitle"
+      ],
+      "target": "e2e-tests/pages/text-page.ts#L1",
+      "routeInstances": "e2e-tests/fixture/fixtures.ts"
+    }
+  ],
+  "dataRows": 18,
+  "expandedCases": 28
+}
