@@ -482,17 +482,18 @@
     figures "^3.2.0"
     ts-dedent "^2.0.0"
 
-"@cucumber/pretty-formatter@^2.1.0":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@cucumber/pretty-formatter/-/pretty-formatter-2.4.1.tgz#bfa2595244eab3f9cf7f38aecf6f223d15d985de"
-  integrity sha512-HomNZWTO7CqP44PNHOtguPqpHteIKzxyZNjFiuWKUXJ+DDTwLcdlBY2gIuP4BxEt9Q5AMu4ahde2Syo1elmTJQ==
+"@cucumber/pretty-formatter@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@cucumber/pretty-formatter/-/pretty-formatter-4.1.0.tgz#6d236726a9c96dce21074b425db7673d55292477"
+  integrity sha512-cbdb494+X3nHxvP34sbyia7CeVIkqs0K3+LWpsF8szCSUVYOxhmbP66H/Yd7f6yr2BhKLmkDokyEX24VAyOstA==
   dependencies:
-    "@cucumber/query" "^14.0.0"
+    "@cucumber/query" "16.1.1"
+    luxon "^3.7.2"
 
-"@cucumber/query@^14.0.0":
-  version "14.7.0"
-  resolved "https://registry.yarnpkg.com/@cucumber/query/-/query-14.7.0.tgz#551ac7657e293ab57c661dfc0a7a7cbc9d6d9923"
-  integrity sha512-fiqZ4gMEgYjmbuWproF/YeCdD5y+gD2BqgBIGbpihOsx6UlNsyzoDSfO+Tny0q65DxfK+pHo2UkPyEl7dO7wmQ==
+"@cucumber/query@16.1.1":
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/@cucumber/query/-/query-16.1.1.tgz#87797dacb4dbccce53f7a8ff55e642bcf060a37d"
+  integrity sha512-SBaP4Lc7xv55jY78Q8raoxvbBIPGhQKrui/Tq+l6jYBl1alV0TG1sW8TRtk9W7RQl27nVJo9DyyvASp374L9Tg==
   dependencies:
     "@teppeis/multimaps" "3.0.0"
     lodash.sortby "^4.7.0"
@@ -4267,7 +4268,7 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-luxon@3.7.2, luxon@^3.5.0:
+luxon@3.7.2, luxon@^3.5.0, luxon@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.7.2.tgz#d697e48f478553cca187a0f8436aff468e3ba0ba"
   integrity sha512-vtEhXh/gNjI9Yg1u4jX/0YVPMvxzHuGgCm6tC5kZyb08yjGWGnqAjGJvcXbqQR2P3MyMEFnRbpcdFS6PBcLqew==
