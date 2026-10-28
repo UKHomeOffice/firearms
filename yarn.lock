@@ -3511,10 +3511,10 @@ hosted-git-info@^9.0.0:
   dependencies:
     lru-cache "^11.1.0"
 
-hot-shots@^11.2.0:
-  version "11.4.0"
-  resolved "https://registry.yarnpkg.com/hot-shots/-/hot-shots-11.4.0.tgz#540d6a143247092d808af73bd09450d49df1bcec"
-  integrity sha512-IoyXi0eBFLbaARl6IjQxNzxqNxH3h1XX026PP5uru/RwVVLOt9Qr9f87GW+4L/sj7sNyMGzmIsh++0z5ibkP5w==
+hot-shots@^17.1.1:
+  version "17.1.1"
+  resolved "https://registry.yarnpkg.com/hot-shots/-/hot-shots-17.1.1.tgz#8756ae665f1a881027d2b258e22527215d8cbde6"
+  integrity sha512-NqQjc677dry0av5lxAC2JmiPqq85spE0eXR2HjQD/QFVz8zEgu3eeMnKgj8kfb9zFrS+uB/iz9/V57TefG1HuQ==
   optionalDependencies:
     unix-dgram "2.x"
 
