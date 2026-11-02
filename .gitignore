@@ -19,3 +19,6 @@ test/_accessibility/tmp/*
 .nyc_output
 .devcontainer/*.env
 *.rds
+.features-gen/
+playwright-report/
+test-results/

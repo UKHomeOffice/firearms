@@ -1,0 +1,21 @@
+import { BasePage } from './base-page';
+import { FarContactDetails } from './far-contact-details.page';
+import type { Locator, Page } from '@playwright/test';
+
+export class FarMuseumWhatAreTheirContactDetailsPage extends BasePage {
+  private readonly farTheirContactDetails: FarContactDetails;
+
+  constructor(page: Page) {
+    super(page);
+    this.farTheirContactDetails = new FarContactDetails(page);
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    return "What are their contact details? – Apply for museum firearms licence";
+  }
+
+  async answerTheirContactDetails(email: string, phoneNo: string): Promise<void> {
+    await this.farTheirContactDetails.answerTheirContactDetails(email, phoneNo);
+  }
+
+}
