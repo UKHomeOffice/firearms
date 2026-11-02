@@ -1,0 +1,330 @@
+{
+  "sourceFeatureHashes": [
+    {
+      "file": "farMuseums/farMuseum.feature",
+      "title": "FAR - Firearms Museums",
+      "sha256": "5f83d93aa69d360e9fca9854f51a6a16f52281d1ccd47471ac26cc7dd5841e2b",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 7
+    },
+    {
+      "file": "farMuseums/farMuseumsValidation.feature",
+      "title": "FAR - Firearms Museums",
+      "sha256": "aea9fb99dff68e4e8bab0843aa35b340cade5375138d7dcdb792e8b90e4d2c5d",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 2
+    },
+    {
+      "file": "farS5/farS5.feature",
+      "title": "FAR - Firearms New Dealer",
+      "sha256": "da1ee0fc6b64e0289d2aa9d1ab0dc174cbb37f7ee4decbd7b03ae0e74eb74ad8",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 6
+    },
+    {
+      "file": "farS5/farS5Validation.feature",
+      "title": "FAR - Firearms New Dealer",
+      "sha256": "ab200cabc274defc3b7ebaa285d5e35d9f4c31660ce6d0c312b8a6c9f2aca8f4",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farShootingClub/farShootClubValidation.feature",
+      "title": "FAR - Firearms Shooting Clubs",
+      "sha256": "8d1645a865e509b643f097ee0b45298c78f400224e92ca3c12e88b5cadee38e9",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farShootingClub/farShootingClub.feature",
+      "title": "FAR - Firearms Shooting Clubs",
+      "sha256": "9f604f56cd87880b5e9ddd17f15a2ff981e8c14376e29257209d21df0f84a55f",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 7
+    },
+    {
+      "file": "farSupportDocs/farMuseumSupportDoc.feature",
+      "title": "FAR - Firearms Museums Supporting Documents",
+      "sha256": "c77a856e8dcab3c572a314ebdc43beaa0372e4e334cf70bf122b7b7976da72aa",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farSupportDocs/farS5SupportDoc.feature",
+      "title": "FAR - Firearms New Dealer Supporting Documents",
+      "sha256": "d9a17a14205ab5b6d28aee3e368ea219e312071d4597a6fb639eb0dedf655de4",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farSupportDocs/farSClubsSupportDoc.feature",
+      "title": "FAR - Firearms Shooting Clubs Supporting Documents",
+      "sha256": "81a424a1be3b37c9ef5fbad336abd1975bc4e2651280c52f1cd4032a4d774a50",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    },
+    {
+      "file": "farSupportDocs/farSupportDocValidation.feature",
+      "title": "FAR - Firearms Supporting Documents Validations",
+      "sha256": "db7aef15f9ce20c278d80835ac8844f94efcba8acc8147539e5fd82345399d2b",
+      "status": "BYTE_IDENTICAL",
+      "expandedCases": 1
+    }
+  ],
+  "cases": [
+    {
+      "id": "case-001",
+      "scenario": "Firearms Museums authority - E2E CI Test",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farMuseums/farMuseum.feature",
+      "selector": "e2e-tests/features/farMuseums/farMuseum.feature.spec.js:12",
+      "command": "yarn playwright test \"e2e-tests/features/farMuseums/farMuseum.feature.spec.js:12\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-002",
+      "scenario": "Firearms Museums authority - E2E CI Test",
+      "dataSelection": "I selected the data for scenario \"2\" - \"Apply for a new authority - Another Storage address\"",
+      "feature": "farMuseums/farMuseum.feature",
+      "selector": "e2e-tests/features/farMuseums/farMuseum.feature.spec.js:21",
+      "command": "yarn playwright test \"e2e-tests/features/farMuseums/farMuseum.feature.spec.js:21\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-003",
+      "scenario": "Firearms Museums - E2E",
+      "dataSelection": "I selected the data for scenario \"3\" - \"Renew existing authority\"",
+      "feature": "farMuseums/farMuseum.feature",
+      "selector": "e2e-tests/features/farMuseums/farMuseum.feature.spec.js:34",
+      "command": "yarn playwright test \"e2e-tests/features/farMuseums/farMuseum.feature.spec.js:34\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-004",
+      "scenario": "Firearms Museums - E2E",
+      "dataSelection": "I selected the data for scenario \"4\" - \"Renew existing authority - additional Supporting doc - Yes\"",
+      "feature": "farMuseums/farMuseum.feature",
+      "selector": "e2e-tests/features/farMuseums/farMuseum.feature.spec.js:43",
+      "command": "yarn playwright test \"e2e-tests/features/farMuseums/farMuseum.feature.spec.js:43\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-005",
+      "scenario": "Firearms Museums - E2E",
+      "dataSelection": "I selected the data for scenario \"5\" - \"Amend existing authority\"",
+      "feature": "farMuseums/farMuseum.feature",
+      "selector": "e2e-tests/features/farMuseums/farMuseum.feature.spec.js:52",
+      "command": "yarn playwright test \"e2e-tests/features/farMuseums/farMuseum.feature.spec.js:52\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-006",
+      "scenario": "Firearms Museums - E2E",
+      "dataSelection": "I selected the data for scenario \"6\" - \"Amend existing authority - additional Supporting doc - Yes\"",
+      "feature": "farMuseums/farMuseum.feature",
+      "selector": "e2e-tests/features/farMuseums/farMuseum.feature.spec.js:61",
+      "command": "yarn playwright test \"e2e-tests/features/farMuseums/farMuseum.feature.spec.js:61\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-007",
+      "scenario": "Firearms Museums - Change answers for Museum details on the Check your answers page",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farMuseums/farMuseum.feature",
+      "selector": "e2e-tests/features/farMuseums/farMuseum.feature.spec.js:72",
+      "command": "yarn playwright test \"e2e-tests/features/farMuseums/farMuseum.feature.spec.js:72\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-008",
+      "scenario": "Firearms Museum - page error validations- \"Apply for a new authority\"",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farMuseums/farMuseumsValidation.feature",
+      "selector": "e2e-tests/features/farMuseums/farMuseumsValidation.feature.spec.js:10",
+      "command": "yarn playwright test \"e2e-tests/features/farMuseums/farMuseumsValidation.feature.spec.js:10\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-009",
+      "scenario": "Firearms Museum - page error validations- \"Renew an existing order\"",
+      "dataSelection": "I selected the data for scenario \"2\" - \"Renew existing authority\"",
+      "feature": "farMuseums/farMuseumsValidation.feature",
+      "selector": "e2e-tests/features/farMuseums/farMuseumsValidation.feature.spec.js:65",
+      "command": "yarn playwright test \"e2e-tests/features/farMuseums/farMuseumsValidation.feature.spec.js:65\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-010",
+      "scenario": "Firearms S5 - E2E CI Test",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farS5/farS5.feature",
+      "selector": "e2e-tests/features/farS5/farS5.feature.spec.js:12",
+      "command": "yarn playwright test \"e2e-tests/features/farS5/farS5.feature.spec.js:12\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-011",
+      "scenario": "Firearms S5 - E2E CI Test",
+      "dataSelection": "I selected the data for scenario \"3\" - \"Renew existing authority - additional Supporting doc - Yes\"",
+      "feature": "farS5/farS5.feature",
+      "selector": "e2e-tests/features/farS5/farS5.feature.spec.js:21",
+      "command": "yarn playwright test \"e2e-tests/features/farS5/farS5.feature.spec.js:21\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-012",
+      "scenario": "Firearms S5 - E2E",
+      "dataSelection": "I selected the data for scenario \"2\" - \"Renew existing authority\"",
+      "feature": "farS5/farS5.feature",
+      "selector": "e2e-tests/features/farS5/farS5.feature.spec.js:34",
+      "command": "yarn playwright test \"e2e-tests/features/farS5/farS5.feature.spec.js:34\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-013",
+      "scenario": "Firearms S5 - E2E",
+      "dataSelection": "I selected the data for scenario \"4\" - \"Amend existing authority\"",
+      "feature": "farS5/farS5.feature",
+      "selector": "e2e-tests/features/farS5/farS5.feature.spec.js:43",
+      "command": "yarn playwright test \"e2e-tests/features/farS5/farS5.feature.spec.js:43\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-014",
+      "scenario": "Firearms S5 - E2E",
+      "dataSelection": "I selected the data for scenario \"5\" - \"Amend existing authority - additional Supporting doc - Yes\"",
+      "feature": "farS5/farS5.feature",
+      "selector": "e2e-tests/features/farS5/farS5.feature.spec.js:52",
+      "command": "yarn playwright test \"e2e-tests/features/farS5/farS5.feature.spec.js:52\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-015",
+      "scenario": "Firearms S5 - Change answers in the Check your answers page",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farS5/farS5.feature",
+      "selector": "e2e-tests/features/farS5/farS5.feature.spec.js:63",
+      "command": "yarn playwright test \"e2e-tests/features/farS5/farS5.feature.spec.js:63\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-016",
+      "scenario": "Firearms S5 - page error validations- \"Apply for a new authority\"",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farS5/farS5Validation.feature",
+      "selector": "e2e-tests/features/farS5/farS5Validation.feature.spec.js:6",
+      "command": "yarn playwright test \"e2e-tests/features/farS5/farS5Validation.feature.spec.js:6\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-017",
+      "scenario": "Firearms Shooting Clubs - page error validations- \"Apply for a new authority\"",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farShootingClub/farShootClubValidation.feature",
+      "selector": "e2e-tests/features/farShootingClub/farShootClubValidation.feature.spec.js:6",
+      "command": "yarn playwright test \"e2e-tests/features/farShootingClub/farShootClubValidation.feature.spec.js:6\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-018",
+      "scenario": "Firearms Shooting Clubs authority - E2E CI Test",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farShootingClub/farShootingClub.feature",
+      "selector": "e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:12",
+      "command": "yarn playwright test \"e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:12\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-019",
+      "scenario": "Firearms Shooting Clubs authority - E2E CI Test",
+      "dataSelection": "I selected the data for scenario \"6\" - \"Amend existing authority - additional support doc - Yes\"",
+      "feature": "farShootingClub/farShootingClub.feature",
+      "selector": "e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:21",
+      "command": "yarn playwright test \"e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:21\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-020",
+      "scenario": "Firearms Shooting Clubs - E2E",
+      "dataSelection": "I selected the data for scenario \"2\" - \"Apply for a new authority - Another Gun Storage address\"",
+      "feature": "farShootingClub/farShootingClub.feature",
+      "selector": "e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:34",
+      "command": "yarn playwright test \"e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:34\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-021",
+      "scenario": "Firearms Shooting Clubs - E2E",
+      "dataSelection": "I selected the data for scenario \"3\" - \"Renew existing authority\"",
+      "feature": "farShootingClub/farShootingClub.feature",
+      "selector": "e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:43",
+      "command": "yarn playwright test \"e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:43\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-022",
+      "scenario": "Firearms Shooting Clubs - E2E",
+      "dataSelection": "I selected the data for scenario \"4\" - \"Renew existing authority - additional support doc - Yes\"",
+      "feature": "farShootingClub/farShootingClub.feature",
+      "selector": "e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:52",
+      "command": "yarn playwright test \"e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:52\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-023",
+      "scenario": "Firearms Shooting Clubs - E2E",
+      "dataSelection": "I selected the data for scenario \"5\" - \"Amend existing authority\"",
+      "feature": "farShootingClub/farShootingClub.feature",
+      "selector": "e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:61",
+      "command": "yarn playwright test \"e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:61\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-024",
+      "scenario": "Firearms Shooting Clubs - Change answers for Shooting Clubs details on the Check your answers page",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farShootingClub/farShootingClub.feature",
+      "selector": "e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:72",
+      "command": "yarn playwright test \"e2e-tests/features/farShootingClub/farShootingClub.feature.spec.js:72\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-025",
+      "scenario": "Firearms Museums Supporting Doc - E2E",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farSupportDocs/farMuseumSupportDoc.feature",
+      "selector": "e2e-tests/features/farSupportDocs/farMuseumSupportDoc.feature.spec.js:12",
+      "command": "yarn playwright test \"e2e-tests/features/farSupportDocs/farMuseumSupportDoc.feature.spec.js:12\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-026",
+      "scenario": "Firearms S5 Supporting Doc - E2E",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farSupportDocs/farS5SupportDoc.feature",
+      "selector": "e2e-tests/features/farSupportDocs/farS5SupportDoc.feature.spec.js:12",
+      "command": "yarn playwright test \"e2e-tests/features/farSupportDocs/farS5SupportDoc.feature.spec.js:12\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-027",
+      "scenario": "Firearms Shooting Clubs Supporting Docs - E2E",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farSupportDocs/farSClubsSupportDoc.feature",
+      "selector": "e2e-tests/features/farSupportDocs/farSClubsSupportDoc.feature.spec.js:12",
+      "command": "yarn playwright test \"e2e-tests/features/farSupportDocs/farSClubsSupportDoc.feature.spec.js:12\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    },
+    {
+      "id": "case-028",
+      "scenario": "Firearms S5 Supporting Doc Validations - E2E - \"Apply for a new authority\"",
+      "dataSelection": "I selected the data for scenario \"1\" - \"Apply for a new authority\"",
+      "feature": "farSupportDocs/farSupportDocValidation.feature",
+      "selector": "e2e-tests/features/farSupportDocs/farSupportDocValidation.feature.spec.js:10",
+      "command": "yarn playwright test \"e2e-tests/features/farSupportDocs/farSupportDocValidation.feature.spec.js:10\" --project=chromium --workers=1 --retries=0",
+      "result": "NOT_RUN"
+    }
+  ],
+  "fullRunCommand": "yarn test:e2e --project=chromium --workers=1 --retries=0",
+  "fullRunResult": "NOT_RUN"
+}
