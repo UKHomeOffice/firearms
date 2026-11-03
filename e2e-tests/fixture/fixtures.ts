@@ -1,6 +1,6 @@
 import { createBdd, test as base } from 'playwright-bdd';
 import { BasePage } from '../pages/base-page';
-import { FarAnotherAddressForStorage } from '../pages/far-another-address-for-storage.page';
+import { FarAnotherAddressForStoragePage } from '../pages/far-another-address-for-storage.page';
 import { FarBeforeYouStartPage } from '../pages/far-before-you-start-page.page';
 import { FarCheckYourAnswersPage } from '../pages/far-check-your-answers-page.page';
 import { FarChooseAJourneyHomePage } from '../pages/far-choose-a-journey-home-page.page';
@@ -70,7 +70,7 @@ import { FarWhoShouldWeContactAbtTheInvoicePage } from '../pages/far-who-should-
 
 export type Pages = {
   basePage: BasePage;
-  farAnotherAddressForStorage: FarAnotherAddressForStorage;
+  farAnotherAddressForStorage: FarAnotherAddressForStoragePage;
   farBeforeYouStartPage: FarBeforeYouStartPage;
   farCheckYourAnswersPage: FarCheckYourAnswersPage;
   farChooseAJourneyHomePage: FarChooseAJourneyHomePage;
@@ -143,7 +143,7 @@ export const test = base.extend<{ pages: Pages }>({
   pages: async ({ page }, use) => {
     const pageObjects = {
       basePage: new BasePage(page),
-      farAnotherAddressForStorage: new FarAnotherAddressForStorage(page),
+      farAnotherAddressForStorage: new FarAnotherAddressForStoragePage(page),
       farBeforeYouStartPage: new FarBeforeYouStartPage(page),
       farCheckYourAnswersPage: new FarCheckYourAnswersPage(page),
       farChooseAJourneyHomePage: new FarChooseAJourneyHomePage(page),

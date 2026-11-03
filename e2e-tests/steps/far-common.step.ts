@@ -5,152 +5,6 @@ import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
 import type { Pages } from '../fixture/fixtures';
 
-async function answerChooseAJourney(pages: Pages, journey: string) {
-  await pages.farChooseAJourneyHomePage.assertPageTitle();
-  await pages.farChooseAJourneyHomePage.answerSelectAJourney(journey);
-  if (journey.toLowerCase() !== 'supporting documents') {
-    await pages.farPrivacyNoticePage.assertPageTitle();
-    await pages.basePage.clickContinueButton();
-
-    if (journey.toLowerCase() === 'new dealer') {
-      await pages.farBeforeYouStartPage.assertPageTitle();
-      await pages.farBeforeYouStartPage.clickContinueBtn();
-    }
-  }
-}
-
-async function answerUploadExistingDoc(pages: Pages) {
-  await pages.farUploadExistingAuthDocsPage.assertPageTitle();
-  await pages.farUploadExistingAuthDocsPage.uploadExistingFile(c.UPLOAD_FILE);
-}
-
-export async function answerInvoiceContactAddressDetailsAndPurchaseOrder(pages: Pages) {
-  await pages.farWhoShouldWeContactAbtTheInvoicePage.assertPageTitle();
-  await enterContactForInvoicing(pages, c.CONTACT_EMAIL_ADDRESS);
-  await pages.farWhatIsTheirInvoiceAddressPage.assertPageTitle();
-  await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-  await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
-  if (pages.basePage.isYes(pages.basePage.data('purchaseOrder'))) await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderYes(c.ORDER_NUMBER);
-  else await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderNo();
-}
-
-async function answerEnterRefNumber(pages: Pages) {
-  await pages.farSupportDocAppRefNumberPage.assertPageTitle();
-  await enterApplicationRefNo(pages);
-}
-
-async function getSupportingApplicationDetails(pages: Pages) {
-  return pages.farSupportingDocCheckAnswersPage.getApplicationDetails();
-}
-
-async function chooseFirearmsJourneyToStart(pages: Pages, journey: string) {
-  await pages.farChooseAJourneyHomePage.answerSelectAJourney(journey);
-  await pages.basePage.clickContinueButton();
-  // Only the S5 journey has a before-you-start page.
-  if (journey.toLowerCase() === 'new dealer') await pages.farBeforeYouStartPage.clickContinueBtn();
-}
-
-async function selectWhatToDo(pages: Pages, whatToDo: string) {
-  await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(whatToDo);
-}
-
-async function selectUploadFileBtn(pages: Pages) {
-  await pages.basePage.page.getByRole('button', { name: 'Upload file', exact: true })
-    .and(pages.basePage.page.locator('button, input[type="submit"]')).click();
-}
-
-
-async function uploadAdditionalDoc(pages: Pages, option: string) {
-  await pages.basePage.page.getByRole('radio', { name: option, exact: true }).check();
-  await pages.basePage.clickContinueButton();
-}
-
-async function enterContactForInvoicing(pages: Pages, email: string) {
-  await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetails(email, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
-}
-
-async function enterApplicationRefNo(pages: Pages) {
-  if (!pages.basePage.applicationRef) throw new Error('No reference from a submitted application is available');
-  await pages.farSupportDocAppRefNumberPage.answerEnterAppRefNumber(pages.basePage.applicationRef);
-}
-
-async function answerWhatYouWantToDoAndUploadDocs(pages: Pages, journey: string) {
-  await pages.farWhatDoYouWantToDoPage.assertPageTitle();
-  const whatToDo = pages.basePage.data('whatYouWantToDo');
-  switch (whatToDo) {
-    case 'Apply for a new authority':
-      await selectWhatToDo(pages, whatToDo);
-      if (journey === 'New Dealer') {
-        await answerUploadSupportingDocForSecretaryOfState(pages);
-        await answerUploadAdditionalDocs(pages, journey);
-      } else if (journey === 'Shooting Clubs') {
-        await answerUploadSupportingDocForApproval_ShootClubs(pages);
-        await answerUploadAdditionalDocs_ShootClub(pages);
-      }
-      break;
-    case 'Renew an existing authority':
-    case 'Amend an existing authority':
-      await selectWhatToDo(pages, whatToDo);
-      await answerUploadExistingDoc(pages);
-      await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
-      if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalExistingDoc'))) {
-        await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
-        await answerUploadExistingDoc(pages);
-      }
-      await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
-      break;
-    default: throw new Error(`Unknown FAR activity: ${whatToDo}`);
-  }
-}
-
-async function answerUploadSupportingDocForSecretaryOfState(pages: Pages) {
-  await pages.farS5UploadSupportingDocsPage.assertPageTitle();
-  await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
-}
-
-async function answerUploadAdditionalDocs(pages: Pages, journey: string) {
-  await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
-  if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
-    await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
-    if (journey === 'New Dealer' && pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
-      await answerUploadSupportingDocForSecretaryOfState(pages);
-    }
-    if (journey === 'Shooting Clubs') await answerUploadSupportingDocForApproval_ShootClubs(pages);
-  }
-  await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
-}
-
-async function answerUploadSupportingDocForApproval_ShootClubs(pages: Pages) {
-  await pages.farShootClubUploadSupportingDocsPage.assertPageTitle();
-  await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
-}
-
-async function answerUploadAdditionalDocs_ShootClub(pages: Pages) {
-  await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
-  if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
-    await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
-    await answerUploadSupportingDocForApproval_ShootClubs(pages);
-  }
-  await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
-  await answerIsClubNewClub(pages);
-}
-
-export async function uploadSupportAndAdditionalDocs(pages: Pages, journey: string) {
-  if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
-    if (journey === 'New Dealer') await answerUploadSupportingDocForSecretaryOfState(pages);
-    else await answerUploadSupportingDocForApproval_ShootClubs(pages);
-    await answerUploadAdditionalDocs(pages, journey);
-  }
-}
-
-async function answerIsClubNewClub(pages: Pages) {
-  const club = pages.farShootClubIsTheClubNewPage;
-  await club.assertPageTitle();
-  if (pages.basePage.isYes(pages.basePage.data('clubANewClub'))) await club.answerClubIsNewYes();
-  else await club.answerClubIsNewNo();
-}
-
-
 
 Given('Test data has been created for {string} scenarios', async ({ pages, page }, product: string) => {
   pages.basePage.product = parseFarProduct(product);
@@ -166,8 +20,67 @@ When('I visit the Firearms page', async ({ pages, page }) => {
 });
 
 When('I select Firearms {string} journey to start my application', async ({ pages, page }, journey: string) => {
-  await answerChooseAJourney(pages, journey);
-  await answerWhatYouWantToDoAndUploadDocs(pages, journey);
+  await pages.farChooseAJourneyHomePage.assertPageTitle();
+  await pages.farChooseAJourneyHomePage.answerSelectAJourney(journey);
+
+  if (journey.toLowerCase() !== 'supporting documents') {
+    await pages.farPrivacyNoticePage.assertPageTitle();
+    await pages.basePage.clickContinueButton();
+    if (journey.toLowerCase() === 'new dealer') {
+      await pages.farBeforeYouStartPage.assertPageTitle();
+      await pages.farBeforeYouStartPage.clickContinueBtn();
+    }
+  }
+
+  await pages.farWhatDoYouWantToDoPage.assertPageTitle();
+  const whatToDo = pages.basePage.data('whatYouWantToDo');
+  switch (whatToDo) {
+    case 'Apply for a new authority':
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(whatToDo);
+      if (journey === 'New Dealer') {
+        await pages.farS5UploadSupportingDocsPage.assertPageTitle();
+        await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+        await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
+        if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
+          await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
+          if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
+            await pages.farS5UploadSupportingDocsPage.assertPageTitle();
+            await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+          }
+        }
+        await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
+      } else if (journey === 'Shooting Clubs') {
+        await pages.farShootClubUploadSupportingDocsPage.assertPageTitle();
+        await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+        await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
+        if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
+          await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
+          await pages.farShootClubUploadSupportingDocsPage.assertPageTitle();
+          await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+        }
+        await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
+        const club = pages.farShootClubIsTheClubNewPage;
+        await club.assertPageTitle();
+        if (pages.basePage.isYes(pages.basePage.data('clubANewClub'))) await club.answerClubIsNewYes();
+        else await club.answerClubIsNewNo();
+      }
+      break;
+    case 'Renew an existing authority':
+    case 'Amend an existing authority':
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(whatToDo);
+      await pages.farUploadExistingAuthDocsPage.assertPageTitle();
+      await pages.farUploadExistingAuthDocsPage.uploadExistingFile(c.UPLOAD_FILE);
+      await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
+      if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalExistingDoc'))) {
+        await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
+        await pages.farUploadExistingAuthDocsPage.assertPageTitle();
+        await pages.farUploadExistingAuthDocsPage.uploadExistingFile(c.UPLOAD_FILE);
+      }
+      await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
+      break;
+    default:
+      throw new Error(`Unknown FAR activity: ${whatToDo}`);
+  }
 });
 
 Given('I check my answers for Firearms {string} - {string}', async ({ pages, page }, journey: string, activity: string) => {
@@ -189,7 +102,9 @@ Given('I am able to submit the Firearms questionnaire', async ({ pages, page }) 
 });
 
 When('I fill out my answers to Supporting doc questionnaire', async ({ pages, page }) => {
-  await answerEnterRefNumber(pages);
+  await pages.farSupportDocAppRefNumberPage.assertPageTitle();
+  if (!pages.basePage.applicationRef) throw new Error('No reference from a submitted application is available');
+  await pages.farSupportDocAppRefNumberPage.answerEnterAppRefNumber(pages.basePage.applicationRef);
   await pages.farSupportingDocEnterEmailInOriginalAppPage.assertPageTitle();
   await pages.farSupportingDocEnterEmailInOriginalAppPage.answerEnterEmailInOriginalApplication(c.SAS_HOF_EMAIL);
   await pages.farSDocUploadSupportingDocsPage.uploadSupportingDoc(c.UPLOAD_FILE);
@@ -197,8 +112,16 @@ When('I fill out my answers to Supporting doc questionnaire', async ({ pages, pa
 });
 
 Given('I navigate and select {string} journey to start my application', async ({ pages, page }, journey: string) => {
-  pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
-  await answerChooseAJourney(pages, journey);
+  await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
+  await pages.farChooseAJourneyHomePage.answerSelectAJourney(journey);
+  if (journey.toLowerCase() !== 'supporting documents') {
+    await pages.farPrivacyNoticePage.assertPageTitle();
+    await pages.basePage.clickContinueButton();
+    if (journey.toLowerCase() === 'new dealer') {
+      await pages.farBeforeYouStartPage.assertPageTitle();
+      await pages.farBeforeYouStartPage.clickContinueBtn();
+    }
+  }
 });
 
 Given('I am able to submit the supporting documents', async ({ pages, page }) => {
@@ -213,13 +136,15 @@ Given('I am able to submit the supporting documents', async ({ pages, page }) =>
 });
 
 Given('I check the application details on Check your answers page', async ({ pages, page }) => {
-  const details = await getSupportingApplicationDetails(pages);
+  const details = await pages.farSupportingDocCheckAnswersPage.getApplicationDetails();
   expect(details['Reference number']).toBe(pages.basePage.applicationRef);
   expect(details.Email).toBe(c.CONTACT_EMAIL_ADDRESS);
 });
 
 Then('I choose Firearms {string} journey to start my application', async ({ pages, page }, journey: string) => {
-  await chooseFirearmsJourneyToStart(pages, journey);
+  await pages.farChooseAJourneyHomePage.answerSelectAJourney(journey);
+  await pages.basePage.clickContinueButton();
+  if (journey.toLowerCase() === 'new dealer') await pages.farBeforeYouStartPage.clickContinueBtn();
 });
 
 When('I select continue', async ({ pages, page }) => {
@@ -243,11 +168,12 @@ Then('I see {string} error link message displayed for firearms', async ({ pages,
 });
 
 Then('I select What to do {string} option and click continue', async ({ pages, page }, option: string) => {
-  await selectWhatToDo(pages, option);
+  await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(option);
 });
 
 When("I select 'upload file' button for firearms", async ({ pages, page }) => {
-  await selectUploadFileBtn(pages);
+  await pages.basePage.page.getByRole('button', { name: 'Upload file', exact: true })
+    .and(pages.basePage.page.locator('button, input[type="submit"]')).click();
 });
 
 When('I upload Firearms evidence file and click continue', async ({ pages, page }) => {
@@ -256,11 +182,13 @@ When('I upload Firearms evidence file and click continue', async ({ pages, page 
 });
 
 When('I select {string} to upload additional doc and click continue', async ({ pages, page }, option: string) => {
-  await uploadAdditionalDoc(pages, option);
+  await pages.basePage.page.getByRole('radio', { name: option, exact: true }).check();
+  await pages.basePage.clickContinueButton();
 });
 
 When('I enter reference application number and click continue', async ({ pages, page }) => {
-  await enterApplicationRefNo(pages);
+  if (!pages.basePage.applicationRef) throw new Error('No reference from a submitted application is available');
+  await pages.farSupportDocAppRefNumberPage.answerEnterAppRefNumber(pages.basePage.applicationRef);
 });
 
 When('I enter the email {string} not used in original application and click continue', async ({ pages, page }, email: string) => {
@@ -288,9 +216,9 @@ When('I enter invoice address and click continue', async ({ pages, page }) => {
 });
 
 When('I enter invoice contact details {string} and click continue', async ({ pages, page }, email: string) => {
-  await enterContactForInvoicing(pages, email);
+  await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetails(email, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
 });
 
 When('I enter invoice contact email {string} and click continue', async ({ pages, page }, email: string) => {
-  await enterContactForInvoicing(pages, email);
+  await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetails(email, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
 });

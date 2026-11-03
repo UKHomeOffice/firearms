@@ -21,13 +21,17 @@ export class FarS5WhatsTheFullNameOfAuthorityHolderPage extends BasePage {
     if (title.includes("Apply for shooting club approval")) {
         return subTitle + " – Apply for shooting club approval";
     }
-
     throw new Error("Unexpected page title: " + title);
   }
 
   async answerEnterNameOfAuthorityHolder(name: string): Promise<void> {
     await this.typeInto(this.holdersName, name);
     await this.clickContinueButton();
+  }
+
+  async answerFullNameOfTheAuthority(name: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerEnterNameOfAuthorityHolder(name);
   }
 
 }

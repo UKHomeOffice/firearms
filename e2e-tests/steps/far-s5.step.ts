@@ -2,202 +2,186 @@ import { readFileSync } from 'node:fs';
 import { expect } from '@playwright/test';
 import { Given, When } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
-import type { Pages } from '../fixture/fixtures';
-import { answerInvoiceContactAddressDetailsAndPurchaseOrder, uploadSupportAndAdditionalDocs } from './far-common.step';
-
-async function answerContactDetails(pages: Pages) {
-  await pages.farWhatAreContactDetailsPage.assertPageTitle();
-  await pages.farWhatAreContactDetailsPage.answerHoldersContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
-}
-
-async function answerSelectAuthTypeOfOrgWhatToHandleAndHowtoObtainTheItems(pages: Pages) {
-    const organisation = pages.farS5WhatTypeOfOrgIsTheAuthForPage;
-    await organisation.assertPageTitle();
-    const type = pages.basePage.data('typeOfOrganisation');
-    switch (type) {
-      case 'Company': await organisation.answerSelectCompany(type, c.COMPANY_NAME, c.COMPANY_HOUSE_NUMBER); break;
-      case 'Sole trader': await organisation.answerSelectSoleTrader(type, c.TRADER_NAME); break;
-      case 'Shooting club (section 7(3))': await organisation.answerSelectShootingClub(type, c.SHOOT_CLUB_NAME); break;
-      case 'Charity': await organisation.answerSelectOrgCharity(type, c.CHARITY_NAME, c.CHARITY_NUMBER); break;
-      case 'Museum': await organisation.answerSelectMuseum(type, c.MUSEUM_NAME); break;
-      case 'Other': await organisation.answerSelectOther(type, c.OTHER_ORG_NAME); break;
-      default: throw new Error(`Unknown FAR organisation: ${type}`);
-    }
-    await answerWhatToHandleHowtoObtainTheItems(pages);
-  }
-
-async function answerWhatToHandleHowtoObtainTheItems(pages: Pages) {
-    await pages.farS5WhatToHandleUnderTheAuthPage.assertPageTitle();
-    await pages.farS5WhatToHandleUnderTheAuthPage.answerSelectAllWeapons();
-    await pages.farS5HowWillProhibitedItemsBeObtainedPage.assertPageTitle();
-    await pages.farS5HowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItems();
-    await answerProhibitedItemBeImported(pages);
-  }
-
-async function answerProhibitedItemBeImported(pages: Pages) {
-    const imported = pages.farS5WillProhibitedBeImportedPage;
-    await imported.assertPageTitle();
-    if (pages.basePage.isYes(pages.basePage.data('prohibitedItemsBeImported'))) await imported.answerProhibitedItemBeImportedYes();
-    else await imported.answerProhibitedItemBeImportedNo();
-    await answerWillItemBeStoredInBusPremises(pages);
-  }
-
-async function answerWillItemBeStoredInBusPremises(pages: Pages) {
-    const storage = pages.farS5ProhibitedItemsStoredOnBusinessPremisesPage;
-    await storage.assertPageTitle();
-    if (pages.basePage.isYes(pages.basePage.data('willProhibitedItemsBeStoredOnBusinessPremises'))) {
-      await storage.answerItemsStoredOnBusPremisesYes();
-      await answerWhereWillItemsBeStored(pages);
-      await answerAnotherAddressItemsWillBeStored(pages);
-    } else await storage.answerItemsStoredOnBusPremisesNo();
-    await answerBusActivitiesAndWeaponsComponents(pages);
-  }
-
-async function answerWhereWillItemsBeStored(pages: Pages) {
-    await pages.farS5WhereWillProhibitedItemsBeStoredPage.assertPageTitle();
-    await pages.farS5WhereWillProhibitedItemsBeStoredPage.answerProhibitedItemBeStorage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-  }
-
-async function answerAnotherAddressItemsWillBeStored(pages: Pages) {
-    const storage = pages.farS5AnotherAddressForStoragePage;
-    await storage.assertPageTitle();
-    expect(await storage.isStorageAddressAdded()).toBe(true);
-    if (pages.basePage.isYes(pages.basePage.data('anotherAddressToStoreProhibitedItems'))) {
-      await storage.answerProhibitedInAnotherAddressYes();
-      await answerWhereWillItemsBeStored(pages);
-    }
-    await storage.answerProhibitedInAnotherAddressNo();
-  }
-
-async function answerBusActivitiesAndWeaponsComponents(pages: Pages) {
-    await pages.farS5WhatBusinessActivitiesToCarryOutPage.assertPageTitle();
-    await pages.farS5WhatBusinessActivitiesToCarryOutPage.answerSelectBusinessActivities();
-    const weapons = pages.farS5WeaponsAndComponentsSectionPage;
-    await weapons.assertPageTitle();
-    const section = pages.basePage.data('weaponsOrComponentsSections');
-    if (section.includes('Unspecified')) {
-      await weapons.answerSelectUnspecifiedSection(section.includes('Max Characters 15000') ? readFileSync(c.MAX_TEXT_FILE, 'utf8') : undefined);
-    } else if (section.includes('Fully automatic')) await weapons.answerSelectFullyAutomaticSection();
-    else if (section.includes('Launchers')) await weapons.answerSelectFullyLaunchersSection();
-    else throw new Error(`Unknown FAR weapons section: ${section}`);
-    await answerAmmunitionSections(pages);
-  }
-
-async function answerAmmunitionSections(pages: Pages) {
-    const ammunition = pages.farS5AmmunitionSectionsPage;
-    await ammunition.assertPageTitle();
-    const section = pages.basePage.data('ammunitionSection');
-    if (section.includes('Unspecified')) {
-      await ammunition.answerSelectUnspecifiedSections(section.includes('Max Characters 15000') ? readFileSync(c.MAX_TEXT_FILE, 'utf8') : undefined);
-    } else if (section.includes('Actual missiles')) await ammunition.answerSelectActualMissiles();
-    else if (section.includes('Cartridges')) await ammunition.answerSelectCartridges();
-    else throw new Error(`Unknown FAR ammunition section: ${section}`);
-    await pages.farS5HowManyIndividualsToBeNamedPage.assertPageTitle();
-    const holders = pages.basePage.data('individualNamedOnTheAuthority');
-    await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(holders);
-    switch (holders) {
-      case 'One':
-        await answerFullNameOfTheAuthority(pages);
-        await answerBirthAndNationalDetails(pages);
-        break;
-      case 'Two':
-        await answerFullNameOfTheFirstAuthority(pages);
-        await answerBirthAndNationalDetails(pages);
-        await answerFullNameOfTheSecondAuthority(pages);
-        await answerBirthAndNationalDetails(pages);
-        break;
-      default: throw new Error(`Unknown authority holder count: ${holders}`);
-    }
-  }
-
-async function answerFullNameOfTheAuthority(pages: Pages) {
-    await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.assertPageTitle();
-    await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerEnterNameOfAuthorityHolder(pages.basePage.data('nameOfAuthorityHolder'));
-  }
-
-async function answerBirthAndNationalDetails(pages: Pages) {
-    await pages.farS5WhatAreBirthDayDetailsPage.assertPageTitle();
-    await pages.farS5WhatAreBirthDayDetailsPage.answerDateOfBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
-    await pages.farS5WhatIsCountryOfNationalityPage.assertPageTitle();
-    await pages.farS5WhatIsCountryOfNationalityPage.answerEnterCountryOfNationality(c.COUNTRY_UK);
-    await pages.farS5WhatIsHolderMainBusinessPage.assertPageTitle();
-    await pages.farS5WhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-  }
-
-async function answerFullNameOfTheSecondAuthority(pages: Pages) {
-    await pages.farS5FullNameOfSecondAuthorityHolderPage.assertPageTitle();
-    await pages.farS5FullNameOfSecondAuthorityHolderPage.answerSecondAuthorityHolder(pages.basePage.data('nameOfSecondAuthorityHolder'));
-  }
-
-async function answerFullNameOfTheFirstAuthority(pages: Pages) {
-    await pages.farS5FullNameOfFirstAuthorityHolderPage.assertPageTitle();
-    await pages.farS5FullNameOfFirstAuthorityHolderPage.answerFirstAuthorityHolder(pages.basePage.data('nameOfFirstAuthorityHolder'));
-  }
-
-async function answerWhoToContactAbtThisApplication(pages: Pages) {
-    const contact = pages.farS5WhoDoWeContactAbtThisApplicationPage;
-    await contact.assertPageTitle();
-    const name = pages.basePage.data('whoToContactAbtApplication');
-    switch (name.toLowerCase()) {
-      case 'test': case 'test1':
-        await contact.answerContactHolderFirst();
-        await answerAddressToContact(pages);
-        break;
-      case 'test2':
-        await contact.answerContactHolderSecond();
-        await answerAddressToContact(pages);
-        break;
-      case 'someone':
-        await contact.answerContactSomeoneElse(name);
-        await answerContactDetails(pages);
-        await answerSecondContactOrSomeOneElseAddress(pages);
-        break;
-      default: throw new Error(`Unknown FAR application contact: ${name}`);
-    }
-  }
-
-async function answerSecondContactOrSomeOneElseAddress(pages: Pages) {
-    await pages.farS5WhatIsSomeOneElseAddressPage.assertPageTitle();
-    await pages.farS5WhatIsSomeOneElseAddressPage.answerSomeoneElseContact(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-  }
-
-async function answerAddressToContact(pages: Pages) {
-    await answerContactDetails(pages);
-    const address = pages.farS5WhichAddressToContactYouPage;
-    await address.assertPageTitle();
-    const choice = pages.basePage.data('testContactAddress');
-    await address.answerSelectAddress(choice);
-    if (choice === 'different address') {
-      await address.answerSomeoneElseContact(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-    }
-  }
-
-async function changeYourAnsForS5(pages: Pages, companyName: string, companyHouseNo: string) {
-    await pages.farS5CheckYourAnswersPage.clickToChangeBusinessDetails();
-    await pages.farS5WhatTypeOfOrgIsTheAuthForPage.assertPageTitle();
-    await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectCompany('Company', companyName, companyHouseNo);
-  }
-
-async function getUpdatedBusDetails(pages: Pages) {
-    await pages.farS5CheckYourAnswersPage.assertPageTitle();
-    return pages.farS5CheckYourAnswersPage.getUpdatedBusinessDetails();
-  }
-
 
 
 When('I fill out my answers to the Firearms S5 {string} questionnaire', async ({ pages, page }, journey: string) => {
-  await uploadSupportAndAdditionalDocs(pages, journey);
-  await answerSelectAuthTypeOfOrgWhatToHandleAndHowtoObtainTheItems(pages);
-  await answerWhoToContactAbtThisApplication(pages);
-  await answerInvoiceContactAddressDetailsAndPurchaseOrder(pages);
+  if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
+    if (journey === 'New Dealer') {
+      await pages.farS5UploadSupportingDocsPage.assertPageTitle();
+      await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+    } else {
+      await pages.farShootClubUploadSupportingDocsPage.assertPageTitle();
+      await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+    }
+    await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
+    if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
+      await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
+      if (journey === 'New Dealer' && pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
+        await pages.farS5UploadSupportingDocsPage.assertPageTitle();
+        await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+      }
+      if (journey === 'Shooting Clubs') {
+        await pages.farShootClubUploadSupportingDocsPage.assertPageTitle();
+        await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+      }
+    }
+    await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
+  }
+  const organisation = pages.farS5WhatTypeOfOrgIsTheAuthForPage;
+  await organisation.assertPageTitle();
+  const type = pages.basePage.data('typeOfOrganisation');
+
+  switch (type) {
+    case 'Company': await organisation.answerSelectCompany(type, c.COMPANY_NAME, c.COMPANY_HOUSE_NUMBER); break;
+    case 'Sole trader': await organisation.answerSelectSoleTrader(type, c.TRADER_NAME); break;
+    case 'Shooting club (section 7(3))': await organisation.answerSelectShootingClub(type, c.SHOOT_CLUB_NAME); break;
+    case 'Charity': await organisation.answerSelectOrgCharity(type, c.CHARITY_NAME, c.CHARITY_NUMBER); break;
+    case 'Museum': await organisation.answerSelectMuseum(type, c.MUSEUM_NAME); break;
+    case 'Other': await organisation.answerSelectOther(type, c.OTHER_ORG_NAME); break;
+    default: throw new Error(`Unknown FAR organisation: ${type}`);
+  }
+  await pages.farS5WhatToHandleUnderTheAuthPage.assertPageTitle();
+  await pages.farS5WhatToHandleUnderTheAuthPage.answerSelectAllWeapons();
+  await pages.farS5HowWillProhibitedItemsBeObtainedPage.assertPageTitle();
+  await pages.farS5HowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItems();
+  const imported = pages.farS5WillProhibitedBeImportedPage;
+  await imported.assertPageTitle();
+  if (pages.basePage.isYes(pages.basePage.data('prohibitedItemsBeImported'))) {
+    await imported.answerProhibitedItemBeImportedYes();
+  } else {
+    await imported.answerProhibitedItemBeImportedNo();
+  }
+
+  const storage = pages.farS5ProhibitedItemsStoredOnBusinessPremisesPage;
+  await storage.assertPageTitle();
+  if (pages.basePage.isYes(pages.basePage.data('willProhibitedItemsBeStoredOnBusinessPremises'))) {
+    await storage.answerItemsStoredOnBusPremisesYes();
+    await pages.farS5WhereWillProhibitedItemsBeStoredPage.assertPageTitle();
+    await pages.farS5WhereWillProhibitedItemsBeStoredPage.answerProhibitedItemBeStorage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+    await pages.farS5AnotherAddressForStoragePage.assertPageTitle();
+    expect(await pages.farS5AnotherAddressForStoragePage.isStorageAddressAdded()).toBe(true);
+    if (pages.basePage.isYes(pages.basePage.data('anotherAddressToStoreProhibitedItems'))) {
+      await pages.farS5AnotherAddressForStoragePage.answerProhibitedInAnotherAddressYes();
+      await pages.farS5WhereWillProhibitedItemsBeStoredPage.assertPageTitle();
+      await pages.farS5WhereWillProhibitedItemsBeStoredPage.answerProhibitedItemBeStorage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+    }
+    await pages.farS5AnotherAddressForStoragePage.answerProhibitedInAnotherAddressNo();
+  } else {
+    await storage.answerItemsStoredOnBusPremisesNo();
+  }
+
+  await pages.farS5WhatBusinessActivitiesToCarryOutPage.assertPageTitle();
+  await pages.farS5WhatBusinessActivitiesToCarryOutPage.answerSelectBusinessActivities();
+  await pages.farS5WeaponsAndComponentsSectionPage.assertPageTitle();
+
+  const weaponsOrComponentsSections = pages.basePage.data('weaponsOrComponentsSections');
+  if (weaponsOrComponentsSections.includes('Unspecified')) {
+    await pages.farS5WeaponsAndComponentsSectionPage.answerSelectUnspecifiedSection(weaponsOrComponentsSections.includes('Max Characters 15000') ? readFileSync(c.MAX_TEXT_FILE, 'utf8') : undefined);
+  } else if (weaponsOrComponentsSections.includes('Fully automatic')) {
+    await pages.farS5WeaponsAndComponentsSectionPage.answerSelectFullyAutomaticSection();
+  } else if (weaponsOrComponentsSections.includes('Launchers')) {
+    await pages.farS5WeaponsAndComponentsSectionPage.answerSelectFullyLaunchersSection();
+  }
+  else {
+    throw new Error(`Unknown FAR weapons section: ${weaponsOrComponentsSections}`);
+  }
+
+  await pages.farS5AmmunitionSectionsPage.assertPageTitle();
+  const ammunitionSection = pages.basePage.data('ammunitionSection');
+  if (ammunitionSection.includes('Unspecified')) {
+    await pages.farS5AmmunitionSectionsPage.answerSelectUnspecifiedSections(ammunitionSection.includes('Max Characters 15000') ? readFileSync(c.MAX_TEXT_FILE, 'utf8') : undefined);
+  } else if (ammunitionSection.includes('Actual missiles')) {
+    await pages.farS5AmmunitionSectionsPage.answerSelectActualMissiles();
+  } else if (ammunitionSection.includes('Cartridges')) {
+    await pages.farS5AmmunitionSectionsPage.answerSelectCartridges();
+  } else {
+    throw new Error(`Unknown FAR ammunition section: ${ammunitionSection}`);
+  }
+
+  await pages.farS5HowManyIndividualsToBeNamedPage.assertPageTitle();
+  const holders = pages.basePage.data('individualNamedOnTheAuthority');
+  await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(holders);
+  switch (holders) {
+    case 'One':
+      await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerFullNameOfTheAuthority(pages.basePage.data('nameOfAuthorityHolder'));
+      await pages.farS5WhatAreBirthDayDetailsPage.assertPageTitle();
+      await pages.farS5WhatAreBirthDayDetailsPage.answerDateOfBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
+      await pages.farS5WhatIsCountryOfNationalityPage.assertPageTitle();
+      await pages.farS5WhatIsCountryOfNationalityPage.answerEnterCountryOfNationality(c.COUNTRY_UK);
+      await pages.farS5WhatIsHolderMainBusinessPage.assertPageTitle();
+      await pages.farS5WhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+      break;
+    case 'Two':
+      await pages.farS5FullNameOfFirstAuthorityHolderPage.assertPageTitle();
+      await pages.farS5FullNameOfFirstAuthorityHolderPage.answerFirstAuthorityHolder(pages.basePage.data('nameOfFirstAuthorityHolder'));
+      await pages.farS5WhatAreBirthDayDetailsPage.assertPageTitle();
+      await pages.farS5WhatAreBirthDayDetailsPage.answerDateOfBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
+      await pages.farS5WhatIsCountryOfNationalityPage.assertPageTitle();
+      await pages.farS5WhatIsCountryOfNationalityPage.answerEnterCountryOfNationality(c.COUNTRY_UK);
+      await pages.farS5WhatIsHolderMainBusinessPage.assertPageTitle();
+      await pages.farS5WhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+      await pages.farS5FullNameOfSecondAuthorityHolderPage.assertPageTitle();
+      await pages.farS5FullNameOfSecondAuthorityHolderPage.answerSecondAuthorityHolder(pages.basePage.data('nameOfSecondAuthorityHolder'));
+      await pages.farS5WhatAreBirthDayDetailsPage.assertPageTitle();
+      await pages.farS5WhatAreBirthDayDetailsPage.answerDateOfBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
+      await pages.farS5WhatIsCountryOfNationalityPage.assertPageTitle();
+      await pages.farS5WhatIsCountryOfNationalityPage.answerEnterCountryOfNationality(c.COUNTRY_UK);
+      await pages.farS5WhatIsHolderMainBusinessPage.assertPageTitle();
+      await pages.farS5WhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+      break;
+    default: throw new Error(`Unknown authority holder count: ${holders}`);
+  }
+
+  await pages.farS5WhoDoWeContactAbtThisApplicationPage.assertPageTitle();
+  const whoToContactAboutApplication = pages.basePage.data('whoToContactAbtApplication');
+  switch (whoToContactAboutApplication.toLowerCase()) {
+    case 'test': case 'test1':
+      await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactHolderFirst();
+      await pages.farWhatAreContactDetailsPage.assertPageTitle();
+      await pages.farWhatAreContactDetailsPage.answerHoldersContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
+      await pages.farS5WhichAddressToContactYouPage.assertPageTitle();
+      await pages.farS5WhichAddressToContactYouPage.answerSelectAddress(pages.basePage.data('testContactAddress'));
+      if (pages.basePage.data('testContactAddress') === 'different address') {
+        await pages.farS5WhichAddressToContactYouPage.answerSomeoneElseContact(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+      }
+      break;
+    case 'test2':
+      await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactHolderSecond();
+      await pages.farWhatAreContactDetailsPage.assertPageTitle();
+      await pages.farWhatAreContactDetailsPage.answerHoldersContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
+      await pages.farS5WhichAddressToContactYouPage.assertPageTitle();
+      await pages.farS5WhichAddressToContactYouPage.answerSelectAddress(pages.basePage.data('testContactAddress'));
+      if (pages.basePage.data('testContactAddress') === 'different address') {
+        await pages.farS5WhichAddressToContactYouPage.answerSomeoneElseContact(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+      }
+      break;
+    case 'someone':
+      await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactSomeoneElse(whoToContactAboutApplication);
+      await pages.farWhatAreContactDetailsPage.assertPageTitle();
+      await pages.farWhatAreContactDetailsPage.answerHoldersContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
+      await pages.farS5WhatIsSomeOneElseAddressPage.assertPageTitle();
+      await pages.farS5WhatIsSomeOneElseAddressPage.answerSomeoneElseContact(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+      break;
+    default: throw new Error(`Unknown FAR application contact: ${whoToContactAboutApplication}`);
+  }
+  await pages.farWhoShouldWeContactAbtTheInvoicePage.assertPageTitle();
+  await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
+  await pages.farWhatIsTheirInvoiceAddressPage.assertPageTitle();
+  await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
+  if (pages.basePage.isYes(pages.basePage.data('purchaseOrder'))) await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderYes(c.ORDER_NUMBER);
+  else await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderNo();
 });
 
-Given('I change the company name to {string} and company house number to {string} and continue', async ({ pages, page }, name: string, number: string) => {
-  await changeYourAnsForS5(pages, name, number);
+Given('I change the company name to {string} and company house number to {string} and continue', async ({ pages, page }, companyName: string, companyHouseNo: string) => {
+  await pages.farS5CheckYourAnswersPage.clickToChangeBusinessDetails();
+  await pages.farS5WhatTypeOfOrgIsTheAuthForPage.assertPageTitle();
+  await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectCompany('Company', companyName, companyHouseNo);
 });
 
 Given('I check the company details changes {string} and {string} are updated on the Check your answers page', async ({ pages, page }, name: string, number: string) => {
-  const details = await getUpdatedBusDetails(pages);
+  await pages.farS5CheckYourAnswersPage.assertPageTitle();
+  const details = await pages.farS5CheckYourAnswersPage.getUpdatedBusinessDetails();
   expect(details['Company name']).toBe(name);
   expect(details['Companies House number']).toBe(number);
 });

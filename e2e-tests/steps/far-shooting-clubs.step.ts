@@ -1,86 +1,83 @@
 import { expect } from '@playwright/test';
 import { Given, When } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
-import { answerInvoiceContactAddressDetailsAndPurchaseOrder, uploadSupportAndAdditionalDocs } from './far-common.step';
-import type { Pages } from '../fixture/fixtures';
 
-async function answerEnterClubName(pages: Pages) {
-    await pages.farShootClubWhatIsTheNamePage.assertPageTitle();
-    await pages.farShootClubWhatIsTheNamePage.answerEnterClubName(c.BUSINESS_OR_COMPANY_NAME);
+When('I fill out my answers to the Firearms {string} questionnaire', async ({ pages, page }, journey: string) => {
+  if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
+    if (journey === 'New Dealer') {
+      await pages.farS5UploadSupportingDocsPage.assertPageTitle();
+      await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+    } else {
+      await pages.farShootClubUploadSupportingDocsPage.assertPageTitle();
+      await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+    }
+    await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
+    if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
+      await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
+      if (journey === 'New Dealer' && pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
+        await pages.farS5UploadSupportingDocsPage.assertPageTitle();
+        await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+      }
+      if (journey === 'Shooting Clubs') {
+        await pages.farShootClubUploadSupportingDocsPage.assertPageTitle();
+        await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+      }
+    }
+    await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
   }
-
-async function answerEnterClubAndSecAddressDetails(pages: Pages) {
-    await pages.farShootClubWhatIsClubAddressPage.assertPageTitle();
-    await pages.farShootClubWhatIsClubAddressPage.answerEnterClubAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-    await pages.farShootClubWhatIsTheClubSecNamePage.assertPageTitle();
-    await pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecName(c.CLUB_SEC_NAME);
-    await pages.farShootClubSecContactAddressPage.expectClubSecretaryContactAddress();
-    await pages.farShootClubSecContactAddressPage.assertPageTitle();
-    await pages.farShootClubSecContactAddressPage.answerClubSecContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-    await pages.farShootClubSecContactDetailsPage.expectClubSecretaryContactDetails();
-    await pages.farShootClubSecContactDetailsPage.assertPageTitle();
-    await pages.farShootClubSecContactDetailsPage.answerClubSecContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
-    await pages.farShootClubWhoToContactInAbsencePage.assertPageTitle();
-    await pages.farShootClubWhoToContactInAbsencePage.answerEnterClubName(c.CLUB_SEC_DEPUTY_NAME);
-    await pages.farShootClubSecContactAddressPage.expectDeputyContactAddress();
-    await pages.farShootClubSecContactAddressPage.assertPageTitle();
-    await pages.farShootClubSecContactAddressPage.answerClubSecContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-    await pages.farShootClubSecContactDetailsPage.expectDeputyContactDetails();
-    await pages.farShootClubSecContactDetailsPage.assertPageTitle();
-    await pages.farShootClubSecContactDetailsPage.answerClubSecContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
-    await shootingRangesAndFirearmsCategoriesToUse(pages);
-  }
-
-async function shootingRangesAndFirearmsCategoriesToUse(pages: Pages) {
+  await pages.farShootClubWhatIsTheNamePage.assertPageTitle();
+  await pages.farShootClubWhatIsTheNamePage.answerEnterClubName(c.BUSINESS_OR_COMPANY_NAME);
+  await pages.farShootClubWhatIsClubAddressPage.assertPageTitle();
+  await pages.farShootClubWhatIsClubAddressPage.answerEnterClubAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farShootClubWhatIsTheClubSecNamePage.assertPageTitle();
+  await pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecName(c.CLUB_SEC_NAME);
+  await pages.farShootClubSecContactAddressPage.expectClubSecretaryContactAddress();
+  await pages.farShootClubSecContactAddressPage.assertPageTitle();
+  await pages.farShootClubSecContactAddressPage.answerClubSecContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farShootClubSecContactDetailsPage.expectClubSecretaryContactDetails();
+  await pages.farShootClubSecContactDetailsPage.assertPageTitle();
+  await pages.farShootClubSecContactDetailsPage.answerClubSecContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+  await pages.farShootClubWhoToContactInAbsencePage.assertPageTitle();
+  await pages.farShootClubWhoToContactInAbsencePage.answerEnterClubName(c.CLUB_SEC_DEPUTY_NAME);
+  await pages.farShootClubSecContactAddressPage.expectDeputyContactAddress();
+  await pages.farShootClubSecContactAddressPage.assertPageTitle();
+  await pages.farShootClubSecContactAddressPage.answerClubSecContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farShootClubSecContactDetailsPage.expectDeputyContactDetails();
+  await pages.farShootClubSecContactDetailsPage.assertPageTitle();
+  await pages.farShootClubSecContactDetailsPage.answerClubSecContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+  await pages.farShootClubShootingRangesToUsePage.assertPageTitle();
+  await pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farShootClubFirearmsCategoriesToUsePage.assertPageTitle();
+  await pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRange();
+  expect(await pages.farShootClubUseAnotherShootingRangePage.isFirearmsCategoriesAdded()).toBe(true);
+  await pages.farShootClubUseAnotherShootingRangePage.assertPageTitle();
+  if (pages.basePage.isYes(pages.basePage.data('useAnotherShootingRange'))) {
+    await pages.farShootClubUseAnotherShootingRangePage.answerUseAnotherShootingRangeYes();
     await pages.farShootClubShootingRangesToUsePage.assertPageTitle();
     await pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
     await pages.farShootClubFirearmsCategoriesToUsePage.assertPageTitle();
     await pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRange();
   }
-
-async function answerClubUseAnotherShootingRange(pages: Pages) {
-    const ranges = pages.farShootClubUseAnotherShootingRangePage;
-    expect(await ranges.isFirearmsCategoriesAdded()).toBe(true);
-    await ranges.assertPageTitle();
-    if (pages.basePage.isYes(pages.basePage.data('useAnotherShootingRange'))) {
-      await ranges.answerUseAnotherShootingRangeYes();
-      await shootingRangesAndFirearmsCategoriesToUse(pages);
-    }
-    await ranges.answerUseAnotherShootingRangeNo();
-    await answerFirearmsStorageAddress(pages);
-  }
-
-async function answerFirearmsStorageAddress(pages: Pages) {
-    await pages.farShootClubFirearmsStorageAddressesPage.assertPageTitle();
-    await pages.farShootClubFirearmsStorageAddressesPage.answerSelectStorageAddress();
-  }
-
-async function answerAnotherAddressForGunStorage(pages: Pages) {
-    const storage = pages.farShootClubAnotherAddressGunStoragePage;
-    expect(await storage.isFirearmsCategoriesAdded()).toBe(true);
-    await storage.assertPageTitle();
-    if (pages.basePage.isYes(pages.basePage.data('anotherGunStorageAddress'))) {
-      await storage.answerUseAnotherAddressYes();
-      await answerWhereElseGunsBeStored(pages);
-    }
-    await storage.answerUseAnotherAddressNo();
-  }
-
-async function answerWhereElseGunsBeStored(pages: Pages) {
+  await pages.farShootClubUseAnotherShootingRangePage.answerUseAnotherShootingRangeNo();
+  await pages.farShootClubFirearmsStorageAddressesPage.assertPageTitle();
+  await pages.farShootClubFirearmsStorageAddressesPage.answerSelectStorageAddress();
+  expect(await pages.farShootClubAnotherAddressGunStoragePage.isFirearmsCategoriesAdded()).toBe(true);
+  await pages.farShootClubAnotherAddressGunStoragePage.assertPageTitle();
+  if (pages.basePage.isYes(pages.basePage.data('anotherGunStorageAddress'))) {
+    await pages.farShootClubAnotherAddressGunStoragePage.answerUseAnotherAddressYes();
     await pages.farShootClubWhereElseWillGunBeStoredPage.assertPageTitle();
     await pages.farShootClubWhereElseWillGunBeStoredPage.answerEnterGunStorageAddress(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
   }
-
-
-
-When('I fill out my answers to the Firearms {string} questionnaire', async ({ pages, page }, journey: string) => {
-  await uploadSupportAndAdditionalDocs(pages, journey);
-  await answerEnterClubName(pages);
-  await answerEnterClubAndSecAddressDetails(pages);
-  await answerClubUseAnotherShootingRange(pages);
-  await answerAnotherAddressForGunStorage(pages);
-  await answerInvoiceContactAddressDetailsAndPurchaseOrder(pages);
+  await pages.farShootClubAnotherAddressGunStoragePage.answerUseAnotherAddressNo();
+  await pages.farWhoShouldWeContactAbtTheInvoicePage.assertPageTitle();
+  await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
+  await pages.farWhatIsTheirInvoiceAddressPage.assertPageTitle();
+  await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
+  if (pages.basePage.isYes(pages.basePage.data('purchaseOrder'))) await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderYes(c.ORDER_NUMBER);
+  else await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderNo();
 });
+
 Given('I change the club name to {string} and club address number to {string} and continue', async ({ pages, page }, clubName: string, clubAddress: string) => {
   await pages.farShootClubCheckYourAnswersPage.changeClubDetails();
   await pages.farShootClubWhatIsTheNamePage.assertPageTitle();
