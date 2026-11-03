@@ -21,4 +21,9 @@ export class FarWhatIsTheirInvoiceAddressPage extends BasePage {
     await this.enterYourAddressNoCountry(addressLine1, addressLine2, town, postcode);
   }
 
+  async answerInvoiceDetailsWithTitleCheck(addressLine1: string, addressLine2: string, town: string, postcode: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerInvoiceDetails(addressLine1, addressLine2, town, postcode);
+  }
+
 }

@@ -18,4 +18,9 @@ export class FarMuseumWhatAreTheirContactDetailsPage extends BasePage {
     await this.farTheirContactDetails.answerTheirContactDetails(email, phoneNo);
   }
 
+  async answerTheirContactDetailsWithTitleCheck(email: string, phoneNo: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerTheirContactDetails(email, phoneNo);
+  }
+
 }

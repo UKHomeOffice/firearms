@@ -9,4 +9,9 @@ export class FarS5WhatIsSomeOneElseAddressPage extends BasePage {
     await this.enterYourAddressNoCountry(addressLine1, addressLine2, townOrCity, postcode);
   }
 
+  async answerSomeoneElseContactWithTitleCheck(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSomeoneElseContact(addressLine1, addressLine2, townOrCity, postcode);
+  }
+
 }

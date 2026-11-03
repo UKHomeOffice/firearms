@@ -18,4 +18,9 @@ export class FarMuseumTheMuseumNamePage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerEnterMuseumNameWithTitleCheck(name: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerEnterMuseumName(name);
+  }
+
 }

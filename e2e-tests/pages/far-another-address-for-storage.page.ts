@@ -27,5 +27,4 @@ export class FarAnotherAddressForStoragePage extends BasePage {
     await expect(this.storageAddresses).toBeVisible();
     return true;
   }
-
 }

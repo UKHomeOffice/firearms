@@ -4,37 +4,27 @@ import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 
 When('I fill out my answers to the Firearms Museums questionnaire', async ({ pages, page }) => {
-  await pages.farMuseumTheMuseumNamePage.assertPageTitle();
-  await pages.farMuseumTheMuseumNamePage.answerEnterMuseumName(c.MUSEUM_NAME);
-  await pages.farMuseumWhereWillFirearmsBeStoredPage.assertPageTitle();
-  await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-  const storage = pages.farMuseumAnotherAddressForStoragePage;
-  await storage.assertPageTitle();
-  expect(await storage.isStorageAddressAdded()).toBe(true);
+  await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(c.MUSEUM_NAME);
+  await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorageWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farMuseumAnotherAddressForStoragePage.assertPageTitle();
+  expect(await pages.farMuseumAnotherAddressForStoragePage.isStorageAddressAdded()).toBe(true);
   if (pages.basePage.isYes(pages.basePage.data('anotherAddressToStoreFirearms'))) {
-    await storage.answerFirearmsInAnotherAddressYes();
+    await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressYes();
     await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
   }
-  await storage.answerFirearmsInAnotherAddressNo();
-  await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.assertPageTitle();
-  await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact(pages.basePage.data('whoShouldWeContact'));
-  await pages.farMuseumWhatAreTheirContactDetailsPage.assertPageTitle();
-  await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
-  const address = pages.farMuseumContactAddressSameAsPreviousPage;
-  await address.assertPageTitle();
+  await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
+  await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck(pages.basePage.data('whoShouldWeContact'));
+  await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+  await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle();
   if (pages.basePage.isYes(pages.basePage.data('contactSameAsPreviousAddress'))) {
-    await address.answerContactAddressTheSameYes();
-    await pages.farMuseumSelectTheContactAddressPage.assertPageTitle();
-    await pages.farMuseumSelectTheContactAddressPage.answerSelectContactAddress();
+    await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
+    await pages.farMuseumSelectTheContactAddressPage.answerSelectContactAddressWithTitleCheck();
   } else {
-    await address.answerContactAddressTheSameNo();
-    await pages.farMuseumWhatIsTheirContactAddressPage.assertPageTitle();
-    await pages.farMuseumWhatIsTheirContactAddressPage.answerContactAddress(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
+    await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameNo();
+    await pages.farMuseumWhatIsTheirContactAddressPage.answerContactAddressWithTitleCheck(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
   }
-  await pages.farWhoShouldWeContactAbtTheInvoicePage.assertPageTitle();
-  await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
-  await pages.farWhatIsTheirInvoiceAddressPage.assertPageTitle();
-  await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
+  await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetailsWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
   await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
   if (pages.basePage.isYes(pages.basePage.data('purchaseOrder'))) await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderYes(c.ORDER_NUMBER);
   else await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderNo();
@@ -42,10 +32,8 @@ When('I fill out my answers to the Firearms Museums questionnaire', async ({ pag
 
 Given('I change the museum name to {string} and museum address number to {string} and continue', async ({ pages, page }, museumName: string, museumAddressNo: string) => {
   await pages.farMuseumCheckYourAnswersPage.clickToChangeMuseumName();
-  await pages.farMuseumTheMuseumNamePage.assertPageTitle();
-  await pages.farMuseumTheMuseumNamePage.answerEnterMuseumName(museumName);
+  await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(museumName);
   await pages.farMuseumCheckYourAnswersPage.changeMuseumAddressNum();
-  await pages.farMuseumWhereWillFirearmsBeStoredPage.assertPageTitle();
   await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(museumAddressNo, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
   await pages.basePage.clickContinueButton();
 });

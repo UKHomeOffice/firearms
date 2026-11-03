@@ -18,4 +18,9 @@ export class FarShootClubFirearmsCategoriesToUsePage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerSelectFirearmsCategoriesRangeWithTitleCheck(): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSelectFirearmsCategoriesRange();
+  }
+
 }

@@ -22,8 +22,8 @@ export class FarBeforeYouStartPage extends BasePage {
     throw new Error("Unexpected page title: " + title);
   }
 
-  async clickContinueBtn(): Promise<void> {
+  async clickContinueBtnWithTitleCheck(): Promise<void> {
+    await this.assertPageTitle();
     await this.clickContinueButton();
   }
-
 }

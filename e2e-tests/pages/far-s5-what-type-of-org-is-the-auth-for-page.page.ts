@@ -77,4 +77,9 @@ export class FarS5WhatTypeOfOrgIsTheAuthForPage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerSelectCompanyWithTitleCheck(org: string, compName: string, compHouseNo: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSelectCompany(org, compName, compHouseNo);
+  }
+
 }

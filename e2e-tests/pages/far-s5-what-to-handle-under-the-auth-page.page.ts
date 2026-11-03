@@ -29,4 +29,9 @@ export class FarS5WhatToHandleUnderTheAuthPage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerSelectAllWeaponsWithTitleCheck(): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSelectAllWeapons();
+  }
+
 }

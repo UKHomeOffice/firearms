@@ -34,4 +34,9 @@ export class FarImportantInformationPage extends BasePage {
     await this.submitApplication.click();
   }
 
+  async submitApplicationWithConfirmation(): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSubmitApplication();
+  }
+
 }

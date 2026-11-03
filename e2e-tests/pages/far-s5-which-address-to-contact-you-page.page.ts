@@ -14,4 +14,9 @@ export class FarS5WhichAddressToContactYouPage extends BasePage {
     await this.enterYourAddressNoCountry(addressLine1, addressLine2, townOrCity, postcode);
   }
 
+  async answerSelectAddressWithTitleCheck(address: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSelectAddress(address);
+  }
+
 }

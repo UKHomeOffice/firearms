@@ -22,7 +22,16 @@ export class FarChooseAJourneyHomePage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async chooseJourney(journey: string): Promise<void> {
+    await this.answerSelectAJourney(journey);
+  }
+
   async acceptCookies(): Promise<void> {
     await this.acceptCookiesLocator.click();
   }
+  async chooseJourneyWithTitleCheck(journey: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.chooseJourney(journey);
+  }
+
 }

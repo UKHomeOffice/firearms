@@ -27,4 +27,9 @@ export class FarS5UploadSupportingDocsPage extends FarUploadDocs {
     await this.uploadFile(filePath);
   }
 
+  async uploadSupportingFileWithTitleCheck(filePath: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.uploadSupportingFile(filePath);
+  }
+
 }

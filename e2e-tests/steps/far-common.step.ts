@@ -5,7 +5,6 @@ import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
 import type { Pages } from '../fixture/fixtures';
 
-
 Given('Test data has been created for {string} scenarios', async ({ pages, page }, product: string) => {
   pages.basePage.product = parseFarProduct(product);
 });
@@ -20,15 +19,12 @@ When('I visit the Firearms page', async ({ pages, page }) => {
 });
 
 When('I select Firearms {string} journey to start my application', async ({ pages, page }, journey: string) => {
-  await pages.farChooseAJourneyHomePage.assertPageTitle();
-  await pages.farChooseAJourneyHomePage.answerSelectAJourney(journey);
+  await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck(journey);
 
   if (journey.toLowerCase() !== 'supporting documents') {
-    await pages.farPrivacyNoticePage.assertPageTitle();
-    await pages.basePage.clickContinueButton();
+    await pages.farPrivacyNoticePage.continueWithTitleCheck();
     if (journey.toLowerCase() === 'new dealer') {
-      await pages.farBeforeYouStartPage.assertPageTitle();
-      await pages.farBeforeYouStartPage.clickContinueBtn();
+      await pages.farBeforeYouStartPage.clickContinueBtnWithTitleCheck();
     }
   }
 
@@ -38,25 +34,21 @@ When('I select Firearms {string} journey to start my application', async ({ page
     case 'Apply for a new authority':
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(whatToDo);
       if (journey === 'New Dealer') {
-        await pages.farS5UploadSupportingDocsPage.assertPageTitle();
-        await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+        await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
         await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
         if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
           await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
           if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
-            await pages.farS5UploadSupportingDocsPage.assertPageTitle();
-            await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+            await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
           }
         }
         await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
       } else if (journey === 'Shooting Clubs') {
-        await pages.farShootClubUploadSupportingDocsPage.assertPageTitle();
-        await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+        await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
         await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
         if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
           await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
-          await pages.farShootClubUploadSupportingDocsPage.assertPageTitle();
-          await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+          await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
         }
         await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
         const club = pages.farShootClubIsTheClubNewPage;
@@ -68,13 +60,11 @@ When('I select Firearms {string} journey to start my application', async ({ page
     case 'Renew an existing authority':
     case 'Amend an existing authority':
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(whatToDo);
-      await pages.farUploadExistingAuthDocsPage.assertPageTitle();
-      await pages.farUploadExistingAuthDocsPage.uploadExistingFile(c.UPLOAD_FILE);
+      await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalExistingDoc'))) {
         await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
-        await pages.farUploadExistingAuthDocsPage.assertPageTitle();
-        await pages.farUploadExistingAuthDocsPage.uploadExistingFile(c.UPLOAD_FILE);
+        await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       }
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
       break;
@@ -92,8 +82,7 @@ Given('I check my answers for Firearms {string} - {string}', async ({ pages, pag
 Given('I am able to submit the Firearms questionnaire', async ({ pages, page }) => {
   await pages.basePage.clickContinueButton();
 
-  await pages.farImportantInformationPage.assertPageTitle();
-  await pages.farImportantInformationPage.answerSubmitApplication();
+  await pages.farImportantInformationPage.submitApplicationWithConfirmation();
   expect(await pages.farSubmissionNotificationsPage.isApplicationCompleteDisplayed()).toBe(true);
   expect(await pages.farSubmissionNotificationsPage.isApplicationRefDisplayed()).toBe(true);
   pages.basePage.applicationRef = await pages.farSubmissionNotificationsPage.getApplicationRef();
@@ -105,21 +94,18 @@ When('I fill out my answers to Supporting doc questionnaire', async ({ pages, pa
   await pages.farSupportDocAppRefNumberPage.assertPageTitle();
   if (!pages.basePage.applicationRef) throw new Error('No reference from a submitted application is available');
   await pages.farSupportDocAppRefNumberPage.answerEnterAppRefNumber(pages.basePage.applicationRef);
-  await pages.farSupportingDocEnterEmailInOriginalAppPage.assertPageTitle();
-  await pages.farSupportingDocEnterEmailInOriginalAppPage.answerEnterEmailInOriginalApplication(c.SAS_HOF_EMAIL);
+  await pages.farSupportingDocEnterEmailInOriginalAppPage.answerEnterEmailInOriginalApplicationWithTitleCheck(c.SAS_HOF_EMAIL);
   await pages.farSDocUploadSupportingDocsPage.uploadSupportingDoc(c.UPLOAD_FILE);
   await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
 });
 
 Given('I navigate and select {string} journey to start my application', async ({ pages, page }, journey: string) => {
   await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
-  await pages.farChooseAJourneyHomePage.answerSelectAJourney(journey);
+  await pages.farChooseAJourneyHomePage.chooseJourney(journey);
   if (journey.toLowerCase() !== 'supporting documents') {
-    await pages.farPrivacyNoticePage.assertPageTitle();
-    await pages.basePage.clickContinueButton();
+    await pages.farPrivacyNoticePage.continueWithTitleCheck();
     if (journey.toLowerCase() === 'new dealer') {
-      await pages.farBeforeYouStartPage.assertPageTitle();
-      await pages.farBeforeYouStartPage.clickContinueBtn();
+      await pages.farBeforeYouStartPage.clickContinueBtnWithTitleCheck();
     }
   }
 });
@@ -127,8 +113,7 @@ Given('I navigate and select {string} journey to start my application', async ({
 Given('I am able to submit the supporting documents', async ({ pages, page }) => {
   await pages.basePage.clickContinueButton();
 
-  await pages.farImportantInformationPage.assertPageTitle();
-  await pages.farImportantInformationPage.answerSubmitApplication();
+  await pages.farImportantInformationPage.submitApplicationWithConfirmation();
   expect(await pages.farSubmissionNotificationsPage.isUploadCompleteDisplayed()).toBe(true);
   expect(await pages.farSubmissionNotificationsPage.isApplicationRefDisplayed()).toBe(true);
 
@@ -142,9 +127,11 @@ Given('I check the application details on Check your answers page', async ({ pag
 });
 
 Then('I choose Firearms {string} journey to start my application', async ({ pages, page }, journey: string) => {
-  await pages.farChooseAJourneyHomePage.answerSelectAJourney(journey);
+  await pages.farChooseAJourneyHomePage.chooseJourney(journey);
   await pages.basePage.clickContinueButton();
-  if (journey.toLowerCase() === 'new dealer') await pages.farBeforeYouStartPage.clickContinueBtn();
+  if (journey.toLowerCase() === 'new dealer') {
+    await pages.farBeforeYouStartPage.clickContinueButton();
+  }
 });
 
 When('I select continue', async ({ pages, page }) => {

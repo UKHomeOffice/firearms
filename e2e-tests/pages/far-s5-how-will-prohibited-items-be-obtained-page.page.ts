@@ -33,4 +33,9 @@ export class FarS5HowWillProhibitedItemsBeObtainedPage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerSelectAllProhibitedItemsWithTitleCheck(reason = 'Input Text'): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSelectAllProhibitedItems(reason);
+  }
+
 }

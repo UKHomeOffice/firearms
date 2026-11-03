@@ -18,4 +18,9 @@ export class FarMuseumWhoShouldWeContactAbtThisApplicationPage extends BasePage 
     await this.clickContinueButton();
   }
 
+  async answerWhoToContactWithTitleCheck(contact: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerWhoToContact(contact);
+  }
+
 }

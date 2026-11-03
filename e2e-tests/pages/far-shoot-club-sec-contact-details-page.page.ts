@@ -13,12 +13,16 @@ export class FarShootClubSecContactDetailsPage extends FarContactDetails {
     return baseMessage.replace('%s', this.deputyContactExpected ? "clubSecDeputyName's" : "clubSecName's");
   }
 
-  async expectClubSecretaryContactDetails(): Promise<void> {
+  async answerClubSecretaryContactDetails(email: string, phoneNo: string): Promise<void> {
     this.deputyContactExpected = false;
+    await this.assertPageTitle();
+    await this.answerClubSecContactDetails(email, phoneNo);
   }
 
-  async expectDeputyContactDetails(): Promise<void> {
+  async answerDeputyContactDetails(email: string, phoneNo: string): Promise<void> {
     this.deputyContactExpected = true;
+    await this.assertPageTitle();
+    await this.answerClubSecContactDetails(email, phoneNo);
   }
 
   async answerClubSecContactDetails(email: string, phoneNo: string): Promise<void> {

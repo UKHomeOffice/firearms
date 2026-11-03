@@ -18,4 +18,9 @@ export class FarShootClubWhatIsTheNamePage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerEnterClubNameWithTitleCheck(name: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerEnterClubName(name);
+  }
+
 }

@@ -30,4 +30,9 @@ export class FarS5FullNameOfSecondAuthorityHolderPage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerSecondAuthorityHolderWithTitleCheck(holder: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSecondAuthorityHolder(holder);
+  }
+
 }

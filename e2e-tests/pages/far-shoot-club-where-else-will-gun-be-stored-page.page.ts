@@ -9,4 +9,9 @@ export class FarShootClubWhereElseWillGunBeStoredPage extends BasePage {
     await this.enterYourAddressNoCountry(addressLine1, addressLine2, townOrCity, postcode);
   }
 
+  async answerEnterGunStorageAddressWithTitleCheck(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerEnterGunStorageAddress(addressLine1, addressLine2, townOrCity, postcode);
+  }
+
 }

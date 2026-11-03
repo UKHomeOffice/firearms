@@ -21,4 +21,9 @@ export class FarS5WhereWillProhibitedItemsBeStoredPage extends BasePage {
     await this.enterYourAddressNoCountry(addressLine1, addressLine2, townOrCity, postcode);
   }
 
+  async answerProhibitedItemBeStorageWithTitleCheck(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerProhibitedItemBeStorage(addressLine1, addressLine2, townOrCity, postcode);
+  }
+
 }

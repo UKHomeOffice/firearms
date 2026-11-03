@@ -28,4 +28,9 @@ export class FarPrivacyNoticePage extends BasePage {
     );
   }
 
+  async continueWithTitleCheck(): Promise<void> {
+    await this.assertPageTitle();
+    await this.clickContinueButton();
+  }
+
 }

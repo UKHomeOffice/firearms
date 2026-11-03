@@ -36,4 +36,9 @@ export class FarS5WhatBusinessActivitiesToCarryOutPage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerSelectBusinessActivitiesWithTitleCheck(reason = 'input Text'): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSelectBusinessActivities(reason);
+  }
+
 }

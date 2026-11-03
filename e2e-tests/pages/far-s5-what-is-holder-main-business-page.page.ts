@@ -12,4 +12,9 @@ export class FarS5WhatIsHolderMainBusinessPage extends BasePage {
     await this.enterYourAddressNoCountry(addressLine1, addressLine2, townOrCity, postcode);
   }
 
+  async answerAuthorityMainBusinessAddress(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerBusinessDetails(addressLine1, addressLine2, townOrCity, postcode);
+  }
+
 }

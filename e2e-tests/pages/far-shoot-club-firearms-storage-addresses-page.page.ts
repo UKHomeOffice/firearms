@@ -25,4 +25,9 @@ export class FarShootClubFirearmsStorageAddressesPage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerSelectStorageAddressWithTitleCheck(): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSelectStorageAddress();
+  }
+
 }

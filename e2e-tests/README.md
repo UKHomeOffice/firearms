@@ -6,6 +6,12 @@ Every FAR source page is registered in `fixture/fixtures.ts`. The source
 `FarStepLib` and `FarCommonStepLib` methods live in `steps/far.step.ts`; BDD
 bindings are split into common, S5, museum and shooting-club files.
 
+When a step checks a page title immediately before answering that page, use a
+page-owned `WithTitleCheck` method that awaits `assertPageTitle` and then delegates
+to the existing answer method. Keep the original answer methods for steps that
+do not check the title, including validation scenarios. Standalone title checks
+before branching or checking page content remain in the step bindings.
+
 Concrete pages implement `expectedPageTitle`, including all four submission
 confirmation journeys. The source's three shared components (`FarContactDetails`,
 `FarUploadDocs`, and `FarAnotherAddressForStorage`) inherit their title contract

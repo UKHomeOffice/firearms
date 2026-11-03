@@ -27,4 +27,9 @@ export class FarUploadExistingAuthDocsPage extends FarUploadDocs {
     await this.uploadFile(filePath);
   }
 
+  async uploadExistingAuthorityFile(filePath: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.uploadExistingFile(filePath);
+  }
+
 }

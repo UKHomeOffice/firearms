@@ -25,6 +25,11 @@ export class FarS5WhatIsCountryOfNationalityPage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerAuthorityNationality(countryOfNationality: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerEnterCountryOfNationality(countryOfNationality);
+  }
+
   async answerAddAnotherNationality(secondNationality = 'Panama', thirdNationality = 'Hungary'): Promise<void> {
     await this.page.getByRole('checkbox', { name: 'Add another nationality', exact: true }).check();
     await this.selectAutocompleteOption(this.holdersNationalitySecond, secondNationality);

@@ -20,4 +20,9 @@ export class FarMuseumSelectTheContactAddressPage extends BasePage {
     await this.clickContinueButton();
   }
 
+  async answerSelectContactAddressWithTitleCheck(): Promise<void> {
+    await this.assertPageTitle();
+    await this.answerSelectContactAddress();
+  }
+
 }
