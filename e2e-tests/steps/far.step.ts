@@ -582,93 +582,123 @@ export class FarStepLib {
   async uploadSupportingFile() {
     await this.pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
   }
+
   async selectOrgType(orgType: string) {
     await this.pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectCompany(orgType, c.COMPANY_NAME, c.COMPANY_HOUSE_NUMBER);
   }
+
   async selectWhatWillBeHandled() {
     await this.pages.farS5WhatToHandleUnderTheAuthPage.answerSelectAllWeapons();
   }
+
   async selectHowProhibitedItemsWillBeObtained() {
     await this.pages.farS5HowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItems();
   }
+
   async willProhibitedItemsBeImported() {
     await this.pages.farS5WillProhibitedBeImportedPage.answerProhibitedItemBeImportedNo();
   }
+
   async prohibitedItemsStoredInBusPremises() {
     await this.pages.farS5ProhibitedItemsStoredOnBusinessPremisesPage.answerItemsStoredOnBusPremisesNo();
   }
+
   async selectBusinessActivities() {
     await this.pages.farS5WhatBusinessActivitiesToCarryOutPage.answerSelectBusinessActivities();
   }
+
   async selectAmmunitionOrWeaponsSection() {
     await this.pages.farS5AmmunitionSectionsPage.answerSelectUnspecifiedSections();
   }
+
   async selectHowManyIndividualToBeNamed(holder: string) {
     await this.pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(holder);
   }
+
   async enterFullNameOfAuthHolder() {
     await this.pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerEnterNameOfAuthorityHolder(c.FULL_NAME);
   }
+
   async enterDateOfBirthDetails() {
     await this.pages.farS5WhatAreBirthDayDetailsPage.answerDateOfBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
   }
+
   async enterCountryOfNationality() {
     await this.pages.farS5WhatIsCountryOfNationalityPage.answerEnterCountryOfNationality(c.COUNTRY_UK);
   }
+
   async enterMainBusinessOrInvoiceAddress() {
     await this.pages.farS5WhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
   }
+
   async selectWhoToContact() {
     await this.pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactHolderFirst();
   }
+
   async selectAddressForContact() {
     await this.pages.farS5WhichAddressToContactYouPage.answerSelectAddress(this.data('testContactAddress'));
   }
+
   async enterMuseumName() {
     await this.pages.farMuseumTheMuseumNamePage.answerEnterMuseumName(c.MUSEUM_NAME);
   }
+
   async selectNoForAnotherAddress() {
     await this.pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
   }
+
   async selectYesForAnotherAddress() {
     await this.pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
   }
+
   async selectAddress() {
     await this.pages.farMuseumSelectTheContactAddressPage.answerSelectContactAddress();
   }
+
   async selectContactName() {
     await this.pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact(this.data('whoShouldWeContact'));
   }
+  
   async selectNoForNewClub() {
     await this.pages.farShootClubIsTheClubNewPage.answerClubIsNewNo();
   }
+
   async enterClubName() {
     await this.pages.farShootClubWhatIsTheNamePage.answerEnterClubName(c.BUSINESS_OR_COMPANY_NAME);
   }
+
   async enterClubEmail() {
     await this.pages.farShootClubSecContactDetailsPage.answerClubSecContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
   }
+
   async enterClubSecName() {
     await this.pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecName(c.CLUB_SEC_NAME);
   }
+
   async enterClubSecAddress() {
     await this.pages.farShootClubSecContactAddressPage.answerClubSecContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
   }
+
   async enterSecondPersonName() {
     await this.pages.farShootClubWhoToContactInAbsencePage.answerEnterClubName(c.CLUB_SEC_DEPUTY_NAME);
   }
+
   async enterSecondPersonContactAddress() {
     await this.pages.farShootClubSecContactAddressPage.answerClubSecContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
   }
+
   async enterSecondPersonEmail() {
     await this.pages.farWhatAreContactDetailsPage.answerHoldersContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
   }
+
   async enterShootingRangesAddress() {
     await this.pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
   }
+
   async selectFirearmsCategory() {
     await this.pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRange();
   }
+
   async selectNoAnotherShootingRange() {
     await this.pages.farShootClubUseAnotherShootingRangePage.answerUseAnotherShootingRangeNo();
   }
