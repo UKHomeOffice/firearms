@@ -1,4 +1,4 @@
-import { test as base } from 'playwright-bdd';
+import { createBdd, test as base } from 'playwright-bdd';
 import { BasePage } from '../pages/base-page';
 import { FarPage } from '../pages/far-page.page';
 import { FarAnotherAddressForStorage } from '../pages/far-another-address-for-storage.page';
@@ -218,3 +218,4 @@ export const test = base.extend<{ pages: Pages }>({
 });
 
 export const expect = test.expect;
+export const { Given, When, Then } = createBdd(test);

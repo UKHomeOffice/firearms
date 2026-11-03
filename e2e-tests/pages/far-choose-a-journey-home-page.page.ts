@@ -25,5 +25,4 @@ export class FarChooseAJourneyHomePage extends BasePage {
   async acceptCookies(): Promise<void> {
     await this.acceptCookiesLocator.click();
   }
-
 }

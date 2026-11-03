@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { Given, When, Then } from './far.step';
+import { Given, When, Then } from '../fixture/fixtures';
 import { parseFarProduct } from '../test-data/far-applicant';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
@@ -13,9 +13,8 @@ Given('I selected the data for scenario {string} - {string}', async ({ pages, pa
 });
 
 When('I visit the Firearms page', async ({ pages, page }) => {
-  const steps = pages.farPage;
-  await steps.openFireArmsHomePage();
-  await steps.acceptCookies();
+  await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
+  await pages.farChooseAJourneyHomePage.acceptCookies();
 });
 
 When('I select Firearms {string} journey to start my application', async ({ pages, page }, journey: string) => {
@@ -46,7 +45,7 @@ When('I fill out my answers to Supporting doc questionnaire', async ({ pages, pa
 
 Given('I navigate and select {string} journey to start my application', async ({ pages, page }, journey: string) => {
   const steps = pages.farPage;
-  await steps.openFireArmsHomePage();
+  pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
   await steps.answerChooseAJourney(journey);
 });
 

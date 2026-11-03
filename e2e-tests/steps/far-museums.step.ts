@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { Given, When } from './far.step';
+import { Given, When } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 When('I fill out my answers to the Firearms Museums questionnaire', async ({ pages, page }) => {

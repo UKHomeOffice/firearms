@@ -28,10 +28,6 @@ export class FarPage extends BasePage {
     return this.data(field).toLowerCase() === 'yes';
   }
 
-  async openFireArmsHomePage() {
-    await this.pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
-  }
-
   async acceptCookies() {
     await this.pages.farChooseAJourneyHomePage.acceptCookies();
   }
