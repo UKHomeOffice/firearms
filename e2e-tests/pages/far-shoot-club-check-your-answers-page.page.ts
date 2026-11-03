@@ -33,36 +33,36 @@ export class FarShootClubCheckYourAnswersPage extends BasePage {
     const title = await this.page.title();
     const subTitle = "Check your answers";
     if (title.includes("Apply for museum firearms licence")) {
-        return subTitle + " – Apply for museum firearms licence";
+      return subTitle + " – Apply for museum firearms licence";
     }
     if (title.includes("Prohibited weapons and ammunition licensing")) {
-        return subTitle + " – Prohibited weapons and ammunition licensing";
+      return subTitle + " – Prohibited weapons and ammunition licensing";
     }
     if (title.includes("Apply for shooting club approval")) {
-        return subTitle + " – Apply for shooting club approval";
+      return subTitle + " – Apply for shooting club approval";
     }
     throw new Error("Unexpected page title: " + title);
   }
 
   async getActualSectionValues(header: string): Promise<Record<string, string>> {
     switch (header) {
-        case "Club details":
-            return await this.getClubDetails();
-        case "Club secretary's details":
-            return await this.getClubSecDetails();
-        case "Secondary contact details":
-            return await this.getSecondaryContactDetails();
-        case "Invoice details":
-            return await this.getInvoiceDetails();
-        default:
-            throw new Error(`Unsupported shooting-club check-answers section: ${header}`);
+      case "Club details":
+        return await this.getClubDetails();
+      case "Club secretary's details":
+        return await this.getClubSecDetails();
+      case "Secondary contact details":
+        return await this.getSecondaryContactDetails();
+      case "Invoice details":
+        return await this.getInvoiceDetails();
+      default:
+        throw new Error(`Unsupported shooting-club check-answers section: ${header}`);
     }
   }
 
   private async getClubDetails(): Promise<Record<string, string>> {
     const clubDetails: Record<string, string> = {};
     for (let i = 0; i < await this.clubDetailsFields.count(); i++) {
-        clubDetails[await this.clubDetailsFields.nth(i).innerText()] = await this.clubDetailsValues.nth(i).innerText();
+      clubDetails[await this.clubDetailsFields.nth(i).innerText()] = await this.clubDetailsValues.nth(i).innerText();
     }
     return clubDetails;
   }
@@ -70,7 +70,7 @@ export class FarShootClubCheckYourAnswersPage extends BasePage {
   private async getClubSecDetails(): Promise<Record<string, string>> {
     const clubSecretaryDetails: Record<string, string> = {};
     for (let i = 0; i < await this.clubSecretaryFields.count(); i++) {
-        clubSecretaryDetails[await this.clubSecretaryFields.nth(i).innerText()] = await this.clubSecretaryValues.nth(i).innerText();
+      clubSecretaryDetails[await this.clubSecretaryFields.nth(i).innerText()] = await this.clubSecretaryValues.nth(i).innerText();
     }
     return clubSecretaryDetails;
   }
@@ -78,7 +78,7 @@ export class FarShootClubCheckYourAnswersPage extends BasePage {
   private async getSecondaryContactDetails(): Promise<Record<string, string>> {
     const secondContactDetails: Record<string, string> = {};
     for (let i = 0; i < await this.secondContactDetailsFields.count(); i++) {
-        secondContactDetails[await this.secondContactDetailsFields.nth(i).innerText()] = await this.secondContactDetailsValues.nth(i).innerText();
+      secondContactDetails[await this.secondContactDetailsFields.nth(i).innerText()] = await this.secondContactDetailsValues.nth(i).innerText();
     }
     return secondContactDetails;
   }
@@ -86,7 +86,7 @@ export class FarShootClubCheckYourAnswersPage extends BasePage {
   private async getInvoiceDetails(): Promise<Record<string, string>> {
     const InvoiceDetails: Record<string, string> = {};
     for (let i = 0; i < await this.invoiceDetailsFields.count(); i++) {
-        InvoiceDetails[await this.invoiceDetailsFields.nth(i).innerText()] = await this.invoiceDetailsValues.nth(i).innerText();
+      InvoiceDetails[await this.invoiceDetailsFields.nth(i).innerText()] = await this.invoiceDetailsValues.nth(i).innerText();
     }
     return InvoiceDetails;
   }
@@ -101,6 +101,11 @@ export class FarShootClubCheckYourAnswersPage extends BasePage {
 
   async changeClubAddressNumb(): Promise<void> {
     await this.clubAddressNumbChange.click();
+  }
+
+  async getUpdatedSClubDetails() {
+    await this.assertPageTitle();
+    return this.getUpdatedClubDetails();
   }
 
 }

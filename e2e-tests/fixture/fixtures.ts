@@ -1,6 +1,5 @@
 import { createBdd, test as base } from 'playwright-bdd';
 import { BasePage } from '../pages/base-page';
-import { FarPage } from '../pages/far-page.page';
 import { FarAnotherAddressForStorage } from '../pages/far-another-address-for-storage.page';
 import { FarBeforeYouStartPage } from '../pages/far-before-you-start-page.page';
 import { FarCheckYourAnswersPage } from '../pages/far-check-your-answers-page.page';
@@ -71,7 +70,6 @@ import { FarWhoShouldWeContactAbtTheInvoicePage } from '../pages/far-who-should-
 
 export type Pages = {
   basePage: BasePage;
-  farPage: FarPage;
   farAnotherAddressForStorage: FarAnotherAddressForStorage;
   farBeforeYouStartPage: FarBeforeYouStartPage;
   farCheckYourAnswersPage: FarCheckYourAnswersPage;
@@ -213,7 +211,7 @@ export const test = base.extend<{ pages: Pages }>({
       farWhatIsTheirInvoiceAddressPage: new FarWhatIsTheirInvoiceAddressPage(page),
       farWhoShouldWeContactAbtTheInvoicePage: new FarWhoShouldWeContactAbtTheInvoicePage(page),
     };
-    await use({ ...pageObjects, farPage: new FarPage(pageObjects, page) });
+    await use(pageObjects);
   },
 });
 

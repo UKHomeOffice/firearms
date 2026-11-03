@@ -1,7 +1,11 @@
 import { expect, type Locator, type Page } from '@playwright/test';
+import { type FarApplicant, type FarField, type FarProduct, getFarApplicant } from '../test-data/far-applicant';
 
 export class BasePage {
   readonly page: Page;
+  product?: FarProduct;
+  applicant?: FarApplicant;
+  applicationRef?: string;
   readonly headerText: Locator;
   readonly continueButton: Locator;
   readonly thereIsAProblemText: Locator;
@@ -67,21 +71,34 @@ export class BasePage {
     await this.continueButton.click();
   }
 
-  getContinueButton(): Locator {
-    return this.continueButton;
+  isYes(value: string): boolean {
+    return value.toLowerCase() === 'yes';
   }
 
-  async clickContinue(): Promise<void> {
-    await this.clickContinueButton();
+  async getErrorSummaryHeaderText(): Promise<string> {
+    return this.page.locator('#error-summary-title').innerText();
   }
 
-  async click(locator: Locator): Promise<void> {
-    await locator.click();
+  async getErrorMessageDetailText(): Promise<string> {
+    return (await this.page.locator('.govuk-error-summary__list').innerText()).trim();
   }
 
-  async type(locator: Locator, text: string): Promise<void> {
-    await locator.fill(text);
-    await this.page.keyboard.press('Tab');
+  async getLinkByText(error: string): Promise<string> {
+    return this.page.locator('.govuk-error-summary__list').getByRole('link', { name: error, exact: true }).innerText();
+  }
+
+  data(field: FarField): string {
+    const value = this.applicant?.[field];
+    if (value === undefined) throw new Error(`Missing FAR applicant field: ${field}`);
+    return value;
+  }
+
+  selectApplicant(scenarioId: string): void {
+    if (!this.product){
+      throw new Error('Select a FAR product before selecting an applicant');
+    }
+
+    this.applicant = getFarApplicant(this.product, scenarioId);
   }
 
   async typeInto(locator: Locator, text: string): Promise<void> {
