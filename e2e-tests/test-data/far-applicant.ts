@@ -1,4 +1,64 @@
 export type FarProduct = 'FARS5' | 'FARMuseum' | 'FARShootingClub';
+export type FarDataContext = 'journey' | 'validation';
+
+type FarScenarioDescription = Readonly<{ scenarioId: string; description: string }>;
+
+export const farScenarioDescriptions: Readonly<Record<FarProduct, readonly FarScenarioDescription[]>> = {
+  FARS5: [
+    { scenarioId: '1', description: 'Apply for a new authority' },
+    { scenarioId: '2', description: 'Renew existing authority' },
+    { scenarioId: '3', description: 'Renew existing authority - additional Supporting doc - Yes' },
+    { scenarioId: '4', description: 'Amend existing authority' },
+    { scenarioId: '5', description: 'Amend existing authority - additional Supporting doc - Yes' },
+    { scenarioId: '6', description: 'Max character' },
+  ],
+  FARMuseum: [
+    { scenarioId: '1', description: 'Apply for a new authority' },
+    { scenarioId: '2', description: 'Apply for a new authority - Another Storage address' },
+    { scenarioId: '3', description: 'Renew existing authority' },
+    { scenarioId: '4', description: 'Renew existing authority - additional Supporting doc - Yes' },
+    { scenarioId: '5', description: 'Amend existing authority' },
+    { scenarioId: '6', description: 'Amend existing authority - additional Supporting doc - Yes' },
+  ],
+  FARShootingClub: [
+    { scenarioId: '1', description: 'Apply for a new authority' },
+    { scenarioId: '2', description: 'Apply for a new authority - Another Gun Storage address' },
+    { scenarioId: '3', description: 'Renew existing authority' },
+    { scenarioId: '4', description: 'Renew existing authority - additional support doc - Yes' },
+    { scenarioId: '5', description: 'Amend existing authority' },
+    { scenarioId: '6', description: 'Amend existing authority - additional support doc - Yes' },
+  ],
+};
+
+// The original Museums renewal validation selected row 2, not the E2E renewal row 3.
+const museumValidationDescriptions: readonly FarScenarioDescription[] = [
+  { scenarioId: '1', description: 'Apply for a new authority' },
+  { scenarioId: '2', description: 'Renew existing authority' },
+];
+
+export function getFarScenarioId(product: FarProduct, description: string, context: FarDataContext = 'journey'): string {
+  let scenarios: readonly FarScenarioDescription[];
+  if (context === 'journey') {
+    scenarios = farScenarioDescriptions[parseFarProduct(product)];
+  } else if (context === 'validation' && product === 'FARMuseum') {
+    scenarios = museumValidationDescriptions;
+  } else {
+    throw new Error(`Unsupported FAR data context: ${product}/${context}`);
+  }
+  const matches = scenarios.filter(scenario => scenario.description === description);
+  if (matches.length === 0) {
+    throw new Error(`Unknown FAR scenario description: ${product}/${context}/${JSON.stringify(description)}`);
+  }
+  if (matches.length !== 1) {
+    throw new Error(`Ambiguous FAR scenario description: ${product}/${context}/${JSON.stringify(description)}`);
+  }
+  return matches[0].scenarioId;
+}
+
+export function getFarApplicantByDescription(product: FarProduct, description: string, context: FarDataContext = 'journey'): FarApplicant {
+  return getFarApplicant(product, getFarScenarioId(product, description, context));
+}
+
 export type FarField =
   | 'whatYouWantToDo' | 'uploadAdditionalExistingDoc' | 'uploadAdditionalDoc'
   | 'typeOfOrganisation' | 'prohibitedItemsBeImported'

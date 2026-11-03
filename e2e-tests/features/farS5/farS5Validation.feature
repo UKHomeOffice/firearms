@@ -1,24 +1,22 @@
 @FarRegression
 Feature: FAR - Firearms New Dealer
 
-
-
   Scenario: Firearms S5 - page error validations- "Apply for a new authority"
-    Given Test data has been created for "FARS5" scenarios
-    When I selected the data for scenario "1" - "Apply for a new authority"
-    And I visit the Firearms page
+    Given I visit the Firearms page
+    And Test data has been created for "FARS5" scenarios
+    When I select the data for scenario "Apply for a new authority"
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
-    And I choose Firearms "New Dealer" journey to start my application
+    When I choose Firearms "New Dealer" journey to start my application
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
-    And I select What to do "Apply for a new authority" option and click continue
+    When I select What to do "Apply for a new authority" option and click continue
     And I select 'upload file' button for firearms
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Upload a file" error message displayed for firearms
-    And I upload Firearms evidence file and click continue
+    When I upload Firearms evidence file and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
@@ -66,11 +64,11 @@ Feature: FAR - Firearms New Dealer
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see error message displayed for firearms
-          """
-          Enter a date of birth
-          Enter a town or city of birth
-          Enter a country of birth
-         """
+      """
+      Enter a date of birth
+      Enter a town or city of birth
+      Enter a country of birth
+      """
     When I enter birth details and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
@@ -79,11 +77,11 @@ Feature: FAR - Firearms New Dealer
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see error message displayed for firearms
-          """
-          Enter details of your building and street
-          Enter a town or city
-          Enter your postcode or ZIP Code
-         """
+      """
+      Enter details of your building and street
+      Enter a town or city
+      Enter your postcode or ZIP Code
+      """
     When I enter main business address and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
@@ -100,10 +98,10 @@ Feature: FAR - Firearms New Dealer
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see error message displayed for firearms
-        """
-        Enter a contact name
-        Enter a contact email address
-       """
+      """
+      Enter a contact name
+      Enter a contact email address
+      """
     When I enter invoice contact email "invalid@email.c" and click continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Enter an email in the correct format, like name@example.com" error message displayed for firearms
@@ -111,11 +109,11 @@ Feature: FAR - Firearms New Dealer
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see error message displayed for firearms
-          """
-          Enter details of your building and street
-          Enter a town or city
-          Enter your postcode or ZIP Code
-         """
+      """
+      Enter details of your building and street
+      Enter a town or city
+      Enter your postcode or ZIP Code
+      """
     When I enter invoice address and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms

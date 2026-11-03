@@ -1,9 +1,10 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { type FarApplicant, type FarField, type FarProduct, getFarApplicant } from '../test-data/far-applicant';
+import { type FarApplicant, type FarDataContext, type FarField, type FarProduct, getFarApplicantByDescription } from '../test-data/far-applicant';
 
 export class BasePage {
   readonly page: Page;
   product?: FarProduct;
+  dataContext: FarDataContext = 'journey';
   applicant?: FarApplicant;
   applicationRef?: string;
   readonly headerText: Locator;
@@ -93,12 +94,12 @@ export class BasePage {
     return value;
   }
 
-  selectApplicant(scenarioId: string): void {
+  selectApplicant(description: string): void {
     if (!this.product){
       throw new Error('Select a FAR product before selecting an applicant');
     }
 
-    this.applicant = getFarApplicant(this.product, scenarioId);
+    this.applicant = getFarApplicantByDescription(this.product, description, this.dataContext);
   }
 
   async typeInto(locator: Locator, text: string): Promise<void> {

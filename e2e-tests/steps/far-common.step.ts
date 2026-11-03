@@ -3,17 +3,26 @@ import { Given, When, Then } from '../fixture/fixtures';
 import { parseFarProduct } from '../test-data/far-applicant';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
-import type { Pages } from '../fixture/fixtures';
 
 Given('Test data has been created for {string} scenarios', async ({ pages, page }, product: string) => {
   pages.basePage.product = parseFarProduct(product);
+  pages.basePage.dataContext = 'journey';
 });
 
-Given('I selected the data for scenario {string} - {string}', async ({ pages, page }, id: string, _description: string) => {
-  pages.basePage.selectApplicant(id);
+Given('Test data has been created for {string} validation scenarios', async ({ pages }, product: string) => {
+  const parsedProduct = parseFarProduct(product);
+  if (parsedProduct !== 'FARMuseum') {
+    throw new Error(`Unsupported FAR validation data product: ${product}`);
+  }
+  pages.basePage.product = parsedProduct;
+  pages.basePage.dataContext = 'validation';
 });
 
-When('I visit the Firearms page', async ({ pages, page }) => {
+When('I select the data for scenario {string}', async ({ pages }, description: string) => {
+  pages.basePage.selectApplicant(description);
+});
+
+Given('I visit the Firearms page', async ({ pages, page }) => {
   await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
   await pages.farChooseAJourneyHomePage.acceptCookies();
 });
