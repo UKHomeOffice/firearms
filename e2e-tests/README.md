@@ -72,11 +72,22 @@ scenario IDs), source page/method and fixture coverage, StepLib method coverage,
 step-expression coverage, and all 18 CSV data variants. These are structural
 checks, not a substitute for browser validation.
 
-CSV variations are represented by switch cases in `test-data/far-applicant.ts`;
+Each scenario in `test-data/far-applicant.ts` returns an object with named
+answers, such as `whatYouWantToDo: 'Apply for a new authority'`. The single
+`getFarApplicant(product, description, context)` function switches on product
+and exact description; no positional field/value arrays or internal IDs are
+needed. Unknown descriptions, products, and contexts throw clear errors.
+Museums `validation` context preserves the original renewal scenario's distinct
+answers; all other journeys use the default `journey` context.
+
+Run `node --test e2e-tests\test-data\far-applicant.test.cjs` on Node 24 to compare
+all 18 variants and both Museums validation selections with the original
+answers in `far-applicant.expected.json`. The tests also reject duplicate
+description cases and verify invalid inputs.
+
 CSV files are not used at runtime. The duplicated shooting-range CSV column is
 retained as `sourceFirstUseAnotherShootingRange` as well as the effective final
-`useAnotherShootingRange` value. Source scenario descriptions do not select
-data: product and scenario ID do, matching `ApplicantReader`.
+`useAnotherShootingRange` value.
 
 The source's page-validation journey helper unconditionally called the S5
 before-you-start page even for museums and clubs. The migrated helper only

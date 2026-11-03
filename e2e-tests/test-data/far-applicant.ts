@@ -1,147 +1,298 @@
-export type FarProduct = 'FARS5' | 'FARMuseum' | 'FARShootingClub';
-export type FarDataContext = 'journey' | 'validation';
-
-type FarScenarioDescription = Readonly<{ scenarioId: string; description: string }>;
-
-export const farScenarioDescriptions: Readonly<Record<FarProduct, readonly FarScenarioDescription[]>> = {
-  FARS5: [
-    { scenarioId: '1', description: 'Apply for a new authority' },
-    { scenarioId: '2', description: 'Renew existing authority' },
-    { scenarioId: '3', description: 'Renew existing authority - additional Supporting doc - Yes' },
-    { scenarioId: '4', description: 'Amend existing authority' },
-    { scenarioId: '5', description: 'Amend existing authority - additional Supporting doc - Yes' },
-    { scenarioId: '6', description: 'Max character' },
-  ],
-  FARMuseum: [
-    { scenarioId: '1', description: 'Apply for a new authority' },
-    { scenarioId: '2', description: 'Apply for a new authority - Another Storage address' },
-    { scenarioId: '3', description: 'Renew existing authority' },
-    { scenarioId: '4', description: 'Renew existing authority - additional Supporting doc - Yes' },
-    { scenarioId: '5', description: 'Amend existing authority' },
-    { scenarioId: '6', description: 'Amend existing authority - additional Supporting doc - Yes' },
-  ],
-  FARShootingClub: [
-    { scenarioId: '1', description: 'Apply for a new authority' },
-    { scenarioId: '2', description: 'Apply for a new authority - Another Gun Storage address' },
-    { scenarioId: '3', description: 'Renew existing authority' },
-    { scenarioId: '4', description: 'Renew existing authority - additional support doc - Yes' },
-    { scenarioId: '5', description: 'Amend existing authority' },
-    { scenarioId: '6', description: 'Amend existing authority - additional support doc - Yes' },
-  ],
-};
-
-// The original Museums renewal validation selected row 2, not the E2E renewal row 3.
-const museumValidationDescriptions: readonly FarScenarioDescription[] = [
-  { scenarioId: '1', description: 'Apply for a new authority' },
-  { scenarioId: '2', description: 'Renew existing authority' },
-];
-
-export function getFarScenarioId(product: FarProduct, description: string, context: FarDataContext = 'journey'): string {
-  let scenarios: readonly FarScenarioDescription[];
-  if (context === 'journey') {
-    scenarios = farScenarioDescriptions[parseFarProduct(product)];
-  } else if (context === 'validation' && product === 'FARMuseum') {
-    scenarios = museumValidationDescriptions;
-  } else {
+export function getFarApplicant(product: string, description: string, context = 'journey'): Record<string, string> {
+  if (product !== 'FARS5' && product !== 'FARMuseum' && product !== 'FARShootingClub') {
+    throw new Error(`Unknown FAR product: ${product}`);
+  }
+  if (context !== 'journey' && !(context === 'validation' && product === 'FARMuseum')) {
     throw new Error(`Unsupported FAR data context: ${product}/${context}`);
   }
-  const matches = scenarios.filter(scenario => scenario.description === description);
-  if (matches.length === 0) {
-    throw new Error(`Unknown FAR scenario description: ${product}/${context}/${JSON.stringify(description)}`);
+
+  // Museums validation originally used the new-authority data for its renewal scenario.
+  if (context === 'validation') {
+    switch (description) {
+      case "Apply for a new authority":
+        return {
+          whatYouWantToDo: "Apply for a new authority",
+          uploadAdditionalExistingDoc: "Yes",
+          whatIsTheMuseumName: "Museum1",
+          anotherAddressToStoreFirearms: "No",
+          whoShouldWeContact: "MuseumTest",
+          contactSameAsPreviousAddress: "Yes",
+          purchaseOrder: "No",
+        };
+      case "Renew existing authority":
+        return {
+          whatYouWantToDo: "Apply for a new authority",
+          uploadAdditionalExistingDoc: "Yes",
+          whatIsTheMuseumName: "Museum1",
+          anotherAddressToStoreFirearms: "Yes",
+          whoShouldWeContact: "MuseumTester",
+          contactSameAsPreviousAddress: "No",
+          purchaseOrder: "Yes",
+        };
+      default:
+        throw new Error(`Unknown FAR scenario description: ${product}/${context}/${JSON.stringify(description)}`);
+    }
   }
-  if (matches.length !== 1) {
-    throw new Error(`Ambiguous FAR scenario description: ${product}/${context}/${JSON.stringify(description)}`);
-  }
-  return matches[0].scenarioId;
-}
 
-export function getFarApplicantByDescription(product: FarProduct, description: string, context: FarDataContext = 'journey'): FarApplicant {
-  return getFarApplicant(product, getFarScenarioId(product, description, context));
-}
-
-export type FarField =
-  | 'whatYouWantToDo' | 'uploadAdditionalExistingDoc' | 'uploadAdditionalDoc'
-  | 'typeOfOrganisation' | 'prohibitedItemsBeImported'
-  | 'willProhibitedItemsBeStoredOnBusinessPremises' | 'anotherAddressToStoreProhibitedItems'
-  | 'weaponsOrComponentsSections' | 'ammunitionSection' | 'individualNamedOnTheAuthority'
-  | 'nameOfFirstAuthorityHolder' | 'nameOfAuthorityHolder' | 'nameOfSecondAuthorityHolder'
-  | 'whoToContactAbtApplication' | 'testContactAddress' | 'purchaseOrder'
-  | 'whatIsTheMuseumName' | 'anotherAddressToStoreFirearms' | 'whoShouldWeContact'
-  | 'contactSameAsPreviousAddress' | 'clubANewClub' | 'useAnotherShootingRange'
-  | 'atWhichOfAddressesWillFirearmsBeStored' | 'anotherGunStorageAddress'
-  | 'sourceFirstUseAnotherShootingRange';
-
-export type FarApplicant = Partial<Record<FarField, string>>;
-
-const newAuthority = 'Apply for a new authority';
-const renewAuthority = 'Renew an existing authority';
-const amendAuthority = 'Amend an existing authority';
-const unspecified = 'Unspecified sections and quantities, Text input';
-const launchers = 'Launchers or projecting apparatus for use with the rockets or ammunition detailed above - Section 5(1A)(c), Text input';
-const cartridges = 'Cartridges designed to explode, noxious ammunition, grenades, bombs or rockets fired from firearms - Section 5(1)(c)';
-
-function row(fields: readonly FarField[], values: readonly string[]): FarApplicant {
-  if (fields.length !== values.length) throw new Error('FAR data row does not match source columns');
-  return Object.fromEntries(fields.map((field, index) => [field, values[index]]));
-}
-
-const s5Fields: readonly FarField[] = [
-  'whatYouWantToDo', 'uploadAdditionalExistingDoc', 'uploadAdditionalDoc', 'typeOfOrganisation',
-  'prohibitedItemsBeImported', 'willProhibitedItemsBeStoredOnBusinessPremises',
-  'anotherAddressToStoreProhibitedItems', 'weaponsOrComponentsSections', 'ammunitionSection',
-  'individualNamedOnTheAuthority', 'nameOfFirstAuthorityHolder', 'nameOfAuthorityHolder',
-  'nameOfSecondAuthorityHolder', 'whoToContactAbtApplication', 'testContactAddress', 'purchaseOrder',
-];
-const museumFields: readonly FarField[] = [
-  'whatYouWantToDo', 'uploadAdditionalExistingDoc', 'whatIsTheMuseumName', 'anotherAddressToStoreFirearms',
-  'whoShouldWeContact', 'contactSameAsPreviousAddress', 'purchaseOrder',
-];
-const clubFields: readonly FarField[] = [
-  'whatYouWantToDo', 'uploadAdditionalExistingDoc', 'uploadAdditionalDoc', 'clubANewClub',
-  'sourceFirstUseAnotherShootingRange', 'useAnotherShootingRange',
-  'atWhichOfAddressesWillFirearmsBeStored', 'anotherGunStorageAddress', 'purchaseOrder',
-];
-
-export function getFarApplicant(product: FarProduct, scenarioId: string): FarApplicant {
   switch (product) {
     case 'FARS5':
-      switch (scenarioId) {
-        case '1': return row(s5Fields, [newAuthority, 'N/A', 'No', 'Company', 'Yes', 'Yes', 'Yes', unspecified, unspecified, 'One', 'N/A', 'Test', 'N/A', 'Test', 'address already provided', 'Yes']);
-        case '2': return row(s5Fields, [renewAuthority, 'No', 'No', 'Charity', 'No', 'No', 'N/A', 'Fully automatic or burst-fire weapons - Section 5(1)(a), Text input', 'Actual missiles (projectiles) for all the above ammunition - Section 5(1A)(g), Text input', 'One', 'N/A', 'Test', 'N/A', 'Test', 'address already provided', 'No']);
-        case '3': return row(s5Fields, [renewAuthority, 'Yes', 'Yes', 'Museum', 'Yes', 'Yes', 'Yes', unspecified, unspecified, 'One', 'N/A', 'Test', 'N/A', 'Someone', 'address already provided', 'Yes']);
-        case '4': return row(s5Fields, [amendAuthority, 'No', 'No', 'Other', 'Yes', 'No', 'Yes', launchers, `${cartridges}\r\nText input-Maximum quantity (leave blank if unspecified)`, 'Two', 'Test1', 'Test1', 'Test2', 'Test2', 'different address', 'Yes']);
-        case '5': return row(s5Fields, [amendAuthority, 'Yes', 'Yes', 'Shooting club (section 7(3))', 'Yes', 'Yes', 'Yes', launchers, cartridges, 'Two', 'Test1', 'Test1', 'Test2', 'Test2', 'different address', 'Yes']);
-        case '6': return row(s5Fields, [newAuthority, 'N/A', 'No', 'Sole trader', 'No', 'Yes', 'No', 'Unspecified sections and quantities, Max Characters 15000', "Unspecified sections and quantities, Text input - Explain why you can't specify the section and quantities of prohibited items being handled, Max Characters 15000", 'One', 'N/A', 'Test', 'N/A', 'Test', 'address already provided', 'No']);
+      switch (description) {
+        case "Apply for a new authority":
+          return {
+            whatYouWantToDo: "Apply for a new authority",
+            uploadAdditionalExistingDoc: "N/A",
+            uploadAdditionalDoc: "No",
+            typeOfOrganisation: "Company",
+            prohibitedItemsBeImported: "Yes",
+            willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
+            anotherAddressToStoreProhibitedItems: "Yes",
+            weaponsOrComponentsSections: "Unspecified sections and quantities, Text input",
+            ammunitionSection: "Unspecified sections and quantities, Text input",
+            individualNamedOnTheAuthority: "One",
+            nameOfFirstAuthorityHolder: "N/A",
+            nameOfAuthorityHolder: "Test",
+            nameOfSecondAuthorityHolder: "N/A",
+            whoToContactAbtApplication: "Test",
+            testContactAddress: "address already provided",
+            purchaseOrder: "Yes",
+          };
+        case "Renew existing authority":
+          return {
+            whatYouWantToDo: "Renew an existing authority",
+            uploadAdditionalExistingDoc: "No",
+            uploadAdditionalDoc: "No",
+            typeOfOrganisation: "Charity",
+            prohibitedItemsBeImported: "No",
+            willProhibitedItemsBeStoredOnBusinessPremises: "No",
+            anotherAddressToStoreProhibitedItems: "N/A",
+            weaponsOrComponentsSections: "Fully automatic or burst-fire weapons - Section 5(1)(a), Text input",
+            ammunitionSection: "Actual missiles (projectiles) for all the above ammunition - Section 5(1A)(g), Text input",
+            individualNamedOnTheAuthority: "One",
+            nameOfFirstAuthorityHolder: "N/A",
+            nameOfAuthorityHolder: "Test",
+            nameOfSecondAuthorityHolder: "N/A",
+            whoToContactAbtApplication: "Test",
+            testContactAddress: "address already provided",
+            purchaseOrder: "No",
+          };
+        case "Renew existing authority - additional Supporting doc - Yes":
+          return {
+            whatYouWantToDo: "Renew an existing authority",
+            uploadAdditionalExistingDoc: "Yes",
+            uploadAdditionalDoc: "Yes",
+            typeOfOrganisation: "Museum",
+            prohibitedItemsBeImported: "Yes",
+            willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
+            anotherAddressToStoreProhibitedItems: "Yes",
+            weaponsOrComponentsSections: "Unspecified sections and quantities, Text input",
+            ammunitionSection: "Unspecified sections and quantities, Text input",
+            individualNamedOnTheAuthority: "One",
+            nameOfFirstAuthorityHolder: "N/A",
+            nameOfAuthorityHolder: "Test",
+            nameOfSecondAuthorityHolder: "N/A",
+            whoToContactAbtApplication: "Someone",
+            testContactAddress: "address already provided",
+            purchaseOrder: "Yes",
+          };
+        case "Amend existing authority":
+          return {
+            whatYouWantToDo: "Amend an existing authority",
+            uploadAdditionalExistingDoc: "No",
+            uploadAdditionalDoc: "No",
+            typeOfOrganisation: "Other",
+            prohibitedItemsBeImported: "Yes",
+            willProhibitedItemsBeStoredOnBusinessPremises: "No",
+            anotherAddressToStoreProhibitedItems: "Yes",
+            weaponsOrComponentsSections: "Launchers or projecting apparatus for use with the rockets or ammunition detailed above - Section 5(1A)(c), Text input",
+            ammunitionSection: "Cartridges designed to explode, noxious ammunition, grenades, bombs or rockets fired from firearms - Section 5(1)(c)\r\nText input-Maximum quantity (leave blank if unspecified)",
+            individualNamedOnTheAuthority: "Two",
+            nameOfFirstAuthorityHolder: "Test1",
+            nameOfAuthorityHolder: "Test1",
+            nameOfSecondAuthorityHolder: "Test2",
+            whoToContactAbtApplication: "Test2",
+            testContactAddress: "different address",
+            purchaseOrder: "Yes",
+          };
+        case "Amend existing authority - additional Supporting doc - Yes":
+          return {
+            whatYouWantToDo: "Amend an existing authority",
+            uploadAdditionalExistingDoc: "Yes",
+            uploadAdditionalDoc: "Yes",
+            typeOfOrganisation: "Shooting club (section 7(3))",
+            prohibitedItemsBeImported: "Yes",
+            willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
+            anotherAddressToStoreProhibitedItems: "Yes",
+            weaponsOrComponentsSections: "Launchers or projecting apparatus for use with the rockets or ammunition detailed above - Section 5(1A)(c), Text input",
+            ammunitionSection: "Cartridges designed to explode, noxious ammunition, grenades, bombs or rockets fired from firearms - Section 5(1)(c)",
+            individualNamedOnTheAuthority: "Two",
+            nameOfFirstAuthorityHolder: "Test1",
+            nameOfAuthorityHolder: "Test1",
+            nameOfSecondAuthorityHolder: "Test2",
+            whoToContactAbtApplication: "Test2",
+            testContactAddress: "different address",
+            purchaseOrder: "Yes",
+          };
+        case "Max character":
+          return {
+            whatYouWantToDo: "Apply for a new authority",
+            uploadAdditionalExistingDoc: "N/A",
+            uploadAdditionalDoc: "No",
+            typeOfOrganisation: "Sole trader",
+            prohibitedItemsBeImported: "No",
+            willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
+            anotherAddressToStoreProhibitedItems: "No",
+            weaponsOrComponentsSections: "Unspecified sections and quantities, Max Characters 15000",
+            ammunitionSection: "Unspecified sections and quantities, Text input - Explain why you can't specify the section and quantities of prohibited items being handled, Max Characters 15000",
+            individualNamedOnTheAuthority: "One",
+            nameOfFirstAuthorityHolder: "N/A",
+            nameOfAuthorityHolder: "Test",
+            nameOfSecondAuthorityHolder: "N/A",
+            whoToContactAbtApplication: "Test",
+            testContactAddress: "address already provided",
+            purchaseOrder: "No",
+          };
       }
       break;
     case 'FARMuseum':
-      switch (scenarioId) {
-        case '1': return row(museumFields, [newAuthority, 'Yes', 'Museum1', 'No', 'MuseumTest', 'Yes', 'No']);
-        case '2': return row(museumFields, [newAuthority, 'Yes', 'Museum1', 'Yes', 'MuseumTester', 'No', 'Yes']);
-        case '3': return row(museumFields, [renewAuthority, 'No', 'Museum1', 'No', 'Test', 'Yes', 'No']);
-        case '4': return row(museumFields, [renewAuthority, 'Yes', 'Museum1', 'Yes', 'Test', 'No', 'Yes']);
-        case '5': return row(museumFields, [amendAuthority, 'No', 'Museum1', 'No', 'Test', 'Yes', 'No']);
-        case '6': return row(museumFields, [amendAuthority, 'Yes', 'Museum1', 'Yes', 'Test', 'No', 'Yes']);
+      switch (description) {
+        case "Apply for a new authority":
+          return {
+            whatYouWantToDo: "Apply for a new authority",
+            uploadAdditionalExistingDoc: "Yes",
+            whatIsTheMuseumName: "Museum1",
+            anotherAddressToStoreFirearms: "No",
+            whoShouldWeContact: "MuseumTest",
+            contactSameAsPreviousAddress: "Yes",
+            purchaseOrder: "No",
+          };
+        case "Apply for a new authority - Another Storage address":
+          return {
+            whatYouWantToDo: "Apply for a new authority",
+            uploadAdditionalExistingDoc: "Yes",
+            whatIsTheMuseumName: "Museum1",
+            anotherAddressToStoreFirearms: "Yes",
+            whoShouldWeContact: "MuseumTester",
+            contactSameAsPreviousAddress: "No",
+            purchaseOrder: "Yes",
+          };
+        case "Renew existing authority":
+          return {
+            whatYouWantToDo: "Renew an existing authority",
+            uploadAdditionalExistingDoc: "No",
+            whatIsTheMuseumName: "Museum1",
+            anotherAddressToStoreFirearms: "No",
+            whoShouldWeContact: "Test",
+            contactSameAsPreviousAddress: "Yes",
+            purchaseOrder: "No",
+          };
+        case "Renew existing authority - additional Supporting doc - Yes":
+          return {
+            whatYouWantToDo: "Renew an existing authority",
+            uploadAdditionalExistingDoc: "Yes",
+            whatIsTheMuseumName: "Museum1",
+            anotherAddressToStoreFirearms: "Yes",
+            whoShouldWeContact: "Test",
+            contactSameAsPreviousAddress: "No",
+            purchaseOrder: "Yes",
+          };
+        case "Amend existing authority":
+          return {
+            whatYouWantToDo: "Amend an existing authority",
+            uploadAdditionalExistingDoc: "No",
+            whatIsTheMuseumName: "Museum1",
+            anotherAddressToStoreFirearms: "No",
+            whoShouldWeContact: "Test",
+            contactSameAsPreviousAddress: "Yes",
+            purchaseOrder: "No",
+          };
+        case "Amend existing authority - additional Supporting doc - Yes":
+          return {
+            whatYouWantToDo: "Amend an existing authority",
+            uploadAdditionalExistingDoc: "Yes",
+            whatIsTheMuseumName: "Museum1",
+            anotherAddressToStoreFirearms: "Yes",
+            whoShouldWeContact: "Test",
+            contactSameAsPreviousAddress: "No",
+            purchaseOrder: "Yes",
+          };
       }
       break;
     case 'FARShootingClub':
-      // The CSV repeats the range column. Jackson's last-column-wins mapping is preserved.
-      switch (scenarioId) {
-        case '1': return row(clubFields, [newAuthority, 'N/A', 'No', 'Yes', 'Yes', 'No', 'Shooting ranges', 'No', 'Yes']);
-        case '2': return row(clubFields, [newAuthority, 'N/A', 'No', 'No', 'Yes', 'Yes', 'Shooting ranges', 'Yes', 'No']);
-        case '3': return row(clubFields, [renewAuthority, 'No', 'No', 'N/A', 'No', 'N/A', "Club secretary's contact address", 'No', 'Yes']);
-        case '4': return row(clubFields, [renewAuthority, 'Yes', 'Yes', 'N/A', 'No', 'N/A', "Club secretary's contact address", 'No', 'Yes']);
-        case '5': return row(clubFields, [amendAuthority, 'No', 'No', 'N/A', 'No', 'N/A', 'Shooting ranges', 'Yes', 'No']);
-        case '6': return row(clubFields, [amendAuthority, 'Yes', 'yes', 'N/A', 'No', 'N/A', 'Shooting ranges', 'No', 'Yes']);
+      switch (description) {
+        case "Apply for a new authority":
+          return {
+            whatYouWantToDo: "Apply for a new authority",
+            uploadAdditionalExistingDoc: "N/A",
+            uploadAdditionalDoc: "No",
+            clubANewClub: "Yes",
+            sourceFirstUseAnotherShootingRange: "Yes",
+            useAnotherShootingRange: "No",
+            atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
+            anotherGunStorageAddress: "No",
+            purchaseOrder: "Yes",
+          };
+        case "Apply for a new authority - Another Gun Storage address":
+          return {
+            whatYouWantToDo: "Apply for a new authority",
+            uploadAdditionalExistingDoc: "N/A",
+            uploadAdditionalDoc: "No",
+            clubANewClub: "No",
+            sourceFirstUseAnotherShootingRange: "Yes",
+            useAnotherShootingRange: "Yes",
+            atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
+            anotherGunStorageAddress: "Yes",
+            purchaseOrder: "No",
+          };
+        case "Renew existing authority":
+          return {
+            whatYouWantToDo: "Renew an existing authority",
+            uploadAdditionalExistingDoc: "No",
+            uploadAdditionalDoc: "No",
+            clubANewClub: "N/A",
+            sourceFirstUseAnotherShootingRange: "No",
+            useAnotherShootingRange: "N/A",
+            atWhichOfAddressesWillFirearmsBeStored: "Club secretary's contact address",
+            anotherGunStorageAddress: "No",
+            purchaseOrder: "Yes",
+          };
+        case "Renew existing authority - additional support doc - Yes":
+          return {
+            whatYouWantToDo: "Renew an existing authority",
+            uploadAdditionalExistingDoc: "Yes",
+            uploadAdditionalDoc: "Yes",
+            clubANewClub: "N/A",
+            sourceFirstUseAnotherShootingRange: "No",
+            useAnotherShootingRange: "N/A",
+            atWhichOfAddressesWillFirearmsBeStored: "Club secretary's contact address",
+            anotherGunStorageAddress: "No",
+            purchaseOrder: "Yes",
+          };
+        case "Amend existing authority":
+          return {
+            whatYouWantToDo: "Amend an existing authority",
+            uploadAdditionalExistingDoc: "No",
+            uploadAdditionalDoc: "No",
+            clubANewClub: "N/A",
+            sourceFirstUseAnotherShootingRange: "No",
+            useAnotherShootingRange: "N/A",
+            atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
+            anotherGunStorageAddress: "Yes",
+            purchaseOrder: "No",
+          };
+        case "Amend existing authority - additional support doc - Yes":
+          return {
+            whatYouWantToDo: "Amend an existing authority",
+            uploadAdditionalExistingDoc: "Yes",
+            uploadAdditionalDoc: "yes",
+            clubANewClub: "N/A",
+            sourceFirstUseAnotherShootingRange: "No",
+            useAnotherShootingRange: "N/A",
+            atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
+            anotherGunStorageAddress: "No",
+            purchaseOrder: "Yes",
+          };
       }
       break;
   }
-  throw new Error(`Unknown FAR data variant: ${product}/${scenarioId}`);
-}
-
-export function parseFarProduct(value: string): FarProduct {
-  switch (value) {
-    case 'FARS5': case 'FARMuseum': case 'FARShootingClub': return value;
-    default: throw new Error(`Unknown FAR product: ${value}`);
-  }
+  throw new Error(`Unknown FAR scenario description: ${product}/${context}/${JSON.stringify(description)}`);
 }

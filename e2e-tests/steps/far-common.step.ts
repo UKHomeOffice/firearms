@@ -1,20 +1,23 @@
 import { expect } from '@playwright/test';
 import { Given, When, Then } from '../fixture/fixtures';
-import { parseFarProduct } from '../test-data/far-applicant';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
 
 Given('Test data has been created for {string} scenarios', async ({ pages, page }, product: string) => {
-  pages.basePage.product = parseFarProduct(product);
+  switch (product) {
+    case 'FARS5': case 'FARMuseum': case 'FARShootingClub':
+      pages.basePage.product = product;
+      break;
+    default: throw new Error(`Unknown FAR product: ${product}`);
+  }
   pages.basePage.dataContext = 'journey';
 });
 
 Given('Test data has been created for {string} validation scenarios', async ({ pages }, product: string) => {
-  const parsedProduct = parseFarProduct(product);
-  if (parsedProduct !== 'FARMuseum') {
+  if (product !== 'FARMuseum') {
     throw new Error(`Unsupported FAR validation data product: ${product}`);
   }
-  pages.basePage.product = parsedProduct;
+  pages.basePage.product = product;
   pages.basePage.dataContext = 'validation';
 });
 
