@@ -1,11 +1,11 @@
 import { expect } from '@playwright/test';
-import { FarStepLib } from './far.step';
+import { FarPage } from '../pages/far-page.page';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 const address = [c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE.replaceAll(' ', '')].join(', ');
 const address2 = [c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE.replaceAll(' ', '')].join(', ');
 
-export async function checkFarAnswers(steps: FarStepLib, journey: string, activity: string) {
+export async function checkFarAnswers(steps: FarPage, journey: string, activity: string) {
   const invoice: Record<string, string> = {
     'Contact name': c.CONTACT_NAME,
     'Contact email address': c.CONTACT_EMAIL_ADDRESS,
