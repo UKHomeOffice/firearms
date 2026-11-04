@@ -2,17 +2,36 @@ import { expect } from '@playwright/test';
 import { Given, When, Then, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
-import { selectS5Scenario, completeS5Questionnaire } from './far-s5.step';
-import { selectMuseumsScenario, completeMuseumsQuestionnaire } from './far-museums.step';
-import { selectShootingClubsScenario, completeShootingClubsQuestionnaire } from './far-shooting-clubs.step';
+import { completeS5Questionnaire } from './far-s5.step';
+import { completeMuseumsQuestionnaire } from './far-museums.step';
+import { completeShootingClubsQuestionnaire } from './far-shooting-clubs.step';
 
-export function selectFarScenario(product: string, description: string, context = 'journey'): Record<string, string> {
+async function completeFarQuestionnaire(
+  pages: Pages, product: string, scenario: string, dataOnly = false, context = 'journey', journey?: string): Promise<void> {
   switch (product) {
-    case 'FARS5': return selectS5Scenario(description, context);
-    case 'FARMuseum': return selectMuseumsScenario(description, context);
-    case 'FARShootingClub': return selectShootingClubsScenario(description, context);
+    case 'FARS5':
+      if (!dataOnly && journey !== 'New Dealer') {
+        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
+      }
+      await completeS5Questionnaire(pages, scenario, dataOnly, context);
+      break;
+    case 'FARMuseum':
+      if (!dataOnly && journey !== 'Museums') {
+        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
+      }
+      await completeMuseumsQuestionnaire(pages, scenario, dataOnly, context);
+      break;
+    case 'FARShootingClub':
+      if (!dataOnly && journey !== 'Shooting Clubs') {
+        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
+      }
+      await completeShootingClubsQuestionnaire(pages, scenario, dataOnly, context);
+      break;
     default: throw new Error(`Unknown FAR product: ${product}`);
   }
+  pages.basePage.product = product;
+  pages.basePage.dataContext = context;
+  pages.basePage.scenario = scenario;
 }
 
 Given('I visit the Firearms page', async ({ pages, page }) => {
@@ -22,103 +41,18 @@ Given('I visit the Firearms page', async ({ pages, page }) => {
 
 
 When('I select the data for {string} pertaining to scenario {string}', async ({ pages }, product: string, scenario: string) => {
-  const applicant = selectFarScenario(product, scenario);
-  pages.basePage.product = product;
-  pages.basePage.dataContext = 'journey';
-  pages.basePage.applicant = applicant;
-  pages.basePage.scenario = scenario;
+  await completeFarQuestionnaire(pages, product, scenario, true);
 });
 
 When('I select the validation data for {string} pertaining to scenario {string}', async ({ pages }, product: string, scenario: string) => {
   if (product !== 'FARMuseum') {
     throw new Error(`Unsupported FAR validation data product: ${product}`);
   }
-  const applicant = selectFarScenario(product, scenario, 'validation');
-  pages.basePage.product = product;
-  pages.basePage.dataContext = 'validation';
-  pages.basePage.applicant = applicant;
-  pages.basePage.scenario = scenario;
+  await completeFarQuestionnaire(pages, product, scenario, true, 'validation');
 });
 
 When('I complete the Firearms {string} questionnaire for product {string} pertaining to scenario {string}', async ({ pages }, journey: string, product: string, scenario: string) => {
-  const applicant = selectFarScenario(product, scenario);
-  const journeys: Record<string, string> = {
-    FARS5: 'New Dealer',
-    FARMuseum: 'Museums',
-    FARShootingClub: 'Shooting Clubs',
-  };
-  if (journeys[product] !== journey) {
-    throw new Error(`FAR journey does not match product: ${journey}/${product}`);
-  }
-  pages.basePage.product = product;
-  pages.basePage.dataContext = 'journey';
-  pages.basePage.applicant = applicant;
-  pages.basePage.scenario = scenario;
-
-  await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck(journey);
-
-  if (journey.toLowerCase() !== 'supporting documents') {
-    await pages.farPrivacyNoticePage.continueWithTitleCheck();
-    if (journey.toLowerCase() === 'new dealer') {
-      await pages.farBeforeYouStartPage.clickContinueBtnWithTitleCheck();
-    }
-  }
-
-  await pages.farWhatDoYouWantToDoPage.assertPageTitle();
-  const whatToDo = pages.basePage.data('whatYouWantToDo');
-  switch (whatToDo) {
-    case 'Apply for a new authority':
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(whatToDo);
-      if (journey === 'New Dealer') {
-        await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
-        await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
-        if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
-          await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
-          if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
-            await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
-          }
-        }
-        await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
-      } else if (journey === 'Shooting Clubs') {
-        await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
-        await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
-        if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalDoc'))) {
-          await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
-          await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
-        }
-        await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
-        const club = pages.farShootClubIsTheClubNewPage;
-        await club.assertPageTitle();
-        if (pages.basePage.isYes(pages.basePage.data('clubANewClub'))) await club.answerClubIsNewYes();
-        else await club.answerClubIsNewNo();
-      }
-      break;
-    case 'Renew an existing authority':
-    case 'Amend an existing authority':
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(whatToDo);
-      await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
-      await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
-      if (pages.basePage.isYes(pages.basePage.data('uploadAdditionalExistingDoc'))) {
-        await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
-        await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
-      }
-      await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
-      break;
-    default:
-      throw new Error(`Unknown FAR activity: ${whatToDo}`);
-  }
-
-  switch (product) {
-    case 'FARS5':
-      await completeS5Questionnaire(pages, journey, scenario);
-      break;
-    case 'FARMuseum':
-      await completeMuseumsQuestionnaire(pages, scenario);
-      break;
-    case 'FARShootingClub':
-      await completeShootingClubsQuestionnaire(pages, journey, scenario);
-      break;
-  }
+  await completeFarQuestionnaire(pages, product, scenario, false, 'journey', journey);
 });
 
 Given('I check my answers for Firearms {string} - {string}', async ({ pages, page }, journey: string, activity: string) => {

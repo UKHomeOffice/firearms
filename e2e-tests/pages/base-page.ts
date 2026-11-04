@@ -84,20 +84,10 @@ export class BasePage {
     return (await this.page.locator('.govuk-error-summary__list').innerText()).trim();
   }
 
-  async getLinkByText(error: string): Promise<string> {
-    return this.page.locator('.govuk-error-summary__list').getByRole('link', { name: error, exact: true }).innerText();
-  }
-
   data(field: string): string {
     const value = this.applicant?.[field];
     if (value === undefined) throw new Error(`Missing FAR applicant field: ${field}`);
     return value;
-  }
-
-  assertScenario(product: string, scenario: string): void {
-    if (this.product !== product || this.scenario !== scenario || !this.applicant) {
-      throw new Error(`FAR questionnaire scenario does not match the selected applicant: ${product}/${JSON.stringify(scenario)}`);
-    }
   }
 
   async typeInto(locator: Locator, text: string): Promise<void> {
@@ -141,40 +131,12 @@ export class BasePage {
     await locator.press('Tab');
   }
 
-  openUrl(url: string): Promise<unknown> {
-    return this.page.goto(url);
-  }
-
-  getRadioOrCheckBox(label: string): Locator {
-    return this.page.locator(`//label[contains(., "${this.escapeXPathText(label)}")]`);
-  }
-
   getRadioOrCheckBox2(label: string): Locator {
     return this.page.locator(`//label[contains(normalize-space(),'${this.escapeXPathText(label)}')]/preceding::input[1]`);
   }
 
   getTextArea2(label: string): Locator {
     return this.page.locator(`//label[contains(normalize-space(),'${this.escapeXPathText(label)}')]/following::textarea[1]`);
-  }
-
-  getInputTextForSelectedRadioBox(label: string): Locator {
-    return this.page.locator(`//label[contains(normalize-space(),'${this.escapeXPathText(label)}')]/preceding::input[1]/following::input[1]`);
-  }
-
-  getHeaderTextForSection(text: string): Locator {
-    return this.page.locator(`//h2[contains(.,'${this.escapeXPathText(text)}')]`);
-  }
-
-  getButton(label: string): Locator {
-    return this.page.locator(`//button[contains(.,'${this.escapeXPathText(label)}')]`);
-  }
-
-  getPageLinkByText(text: string): Locator {
-    return this.page.locator(`//a[.='${this.escapeXPathText(text)}']`);
-  }
-
-  async getPageLinkText(text: string): Promise<string> {
-    return this.getPageLinkByText(text).innerText();
   }
 
   async enterDateOrDob(inputDate: string | null): Promise<void> {
