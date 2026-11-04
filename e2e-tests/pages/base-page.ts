@@ -2,9 +2,6 @@ import { expect, type Locator, type Page } from '@playwright/test';
 
 export class BasePage {
   readonly page: Page;
-  product?: string;
-  dataContext = 'journey';
-  scenario?: string;
   applicationRef?: string;
   readonly headerText: Locator;
   readonly continueButton: Locator;

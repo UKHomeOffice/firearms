@@ -1,10 +1,12 @@
 # Firearms Playwright BDD tests
 
-The FAR features are copied unchanged from `hof-e2e-auto-tests/Function/src/main/resources/features/ui/far`.
+The FAR features originate from `hof-e2e-auto-tests/Function/src/main/resources/features/ui/far`.
+Museum contact and S5 contact-address validation steps now explicitly supply
+scenario/context inputs instead of relying on values stored by previous steps.
 The page objects and aggregate `pages` fixture follow the LMR test structure.
-Every FAR source page is registered in `fixture/fixtures.ts`. The source
-`FarStepLib` and `FarCommonStepLib` methods live in `steps/far.step.ts`; BDD
-bindings are split into common, S5, museum and shooting-club files.
+Every FAR source page is registered in `fixture/fixtures.ts`. BDD bindings are
+split into common, S5, museum and shooting-club files; each product owns its
+questionnaire journey.
 
 When a step checks a page title immediately before answering that page, use a
 page-owned `WithTitleCheck` method that awaits `assertPageTitle` and then delegates
@@ -75,31 +77,48 @@ checks, not a substitute for browser validation.
 Each product step file owns an exact-description scenario switch whose cases
 execute the ordered journey. Answers are passed directly into page methods as
 literals or existing constants. There is no shared answer object or answer lookup
-on `BasePage`; only product, context, scenario and the submitted reference persist.
+on `BasePage`. Product, context and scenario are step arguments, not stored state.
+Only the submitted application reference persists for supporting-document steps.
 Full questionnaire journeys combine product setup, scenario selection, journey
 navigation, and questionnaire completion in one step:
 
 ```gherkin
-When I complete the Firearms "Museums" questionnaire for product "FARMuseum" pertaining to scenario "<Description>"
+When I complete the Firearms "Museums" questionnaire for product "FARMuseum" pertaining to scenario "<Description>" in context "journey"
 ```
 
 Use `"New Dealer"` / `"FARS5"` for S5 and `"Shooting Clubs"` /
 `"FARShootingClub"` for clubs. The combined step validates the description and
-journey/product pair before navigation and stores only those identifiers.
-The existing data-only bindings validate the exact scenario without navigating.
-Validation steps pass their own explicit scenario values to page methods;
-check-your-answers assertions use explicit scenario expectations rather than
-reading answers from shared state. Unknown descriptions, products, and contexts
-throw clear errors. Museums `validation` context preserves the original renewal
+journey/product pair before navigation. `completeFarQuestionnaire` only dispatches
+full journeys; `validateFarScenario` only validates inputs, without navigation or
+state changes. Each product has a synchronous scenario validator, separate from
+its questionnaire method. There is no data-only flag. Context is a required
+feature argument, forwarded unchanged with no default, trimming or lowercasing.
+Questionnaires accept only `"journey"`; the Museums validation-data binding
+requires `"validation"`. Unsupported or missing contexts fail before navigation.
+
+The existing data-selection bindings now only validate the supplied product and
+description; they do not supply implicit defaults to later steps. Each validation
+step supplies its own scenario/context, for example:
+
+```gherkin
+When I enter a museum contact name for scenario "Renew existing authority" in context "validation" and click continue
+When I select the S5 contact address for scenario "Apply for a new authority" in context "journey" and click continue
+```
+
+Check-your-answers assertions use the journey and scenario already supplied by
+their feature step. They validate those inputs but do not compare them against a
+stored earlier selection. Unknown descriptions, products, and contexts throw
+clear errors. Museums `validation` context preserves the original renewal
 scenario's distinct contact name; full questionnaires use `journey` context.
 No descriptions are lowercased, trimmed or aliased.
 
 Run `node --test e2e-tests/steps/far-scenarios.test.cjs` on Node 24 to check all
 18 variants and both Museums validation selections. The suite retains SHA-256
-fingerprints captured before removing shared answer state, covering ordered page
-calls, their arguments, and check-your-answers expectations. It also checks
-data-only setup without answer storage or navigation, exact-description rejection,
-journey/product mismatches and validation contacts and address choices.
+fingerprints captured before this refactor for ordered page calls, arguments and
+check-your-answers expectations. Its BasePage stub rejects every state access,
+ensuring the journeys and assertions use step inputs rather than implicit state.
+It also checks validation without navigation, exact-description rejection,
+journey/product mismatches and explicit validation contact/address inputs.
 
 CSV files are not used at runtime. The effective shooting-range choices are
 visible directly in the scenario cases, without retaining unused source columns.

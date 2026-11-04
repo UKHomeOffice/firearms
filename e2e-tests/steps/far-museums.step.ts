@@ -2,30 +2,37 @@ import { expect } from '@playwright/test';
 import { Given, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-async function startMuseumsQuestionnaire(pages: Pages): Promise<void> {
-  await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('Museums');
-  await pages.farPrivacyNoticePage.continueWithTitleCheck();
-  await pages.farWhatDoYouWantToDoPage.assertPageTitle();
-}
 
-export async function completeMuseumsQuestionnaire(pages: Pages, scenario: string, dataOnly = false, context = 'journey'): Promise<void> {
+export function validateMuseumsScenario(scenario: string, context: string): void {
   if (context !== 'journey' && context !== 'validation') {
     throw new Error(`Unsupported FAR data context: FARMuseum/${context}`);
   }
-  if (context === 'validation') {
-    switch (scenario) {
-      case "Apply for a new authority":
-        return;
-      case "Renew existing authority":
-        return;
-      default:
-        throw new Error(`Unknown FAR scenario description: FARMuseum/${context}/${JSON.stringify(scenario)}`);
-    }
+  switch (scenario) {
+    case 'Apply for a new authority':
+    case 'Renew existing authority':
+      return;
+    case 'Apply for a new authority - Another Storage address':
+    case 'Renew existing authority - additional Supporting doc - Yes':
+    case 'Amend existing authority':
+    case 'Amend existing authority - additional Supporting doc - Yes':
+      if (context === 'journey') return;
+      break;
   }
+  throw new Error(`Unknown FAR scenario description: FARMuseum/${context}/${JSON.stringify(scenario)}`);
+}
+
+export async function completeMuseumsQuestionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
+  if (context !== 'journey') {
+    throw new Error(`Unsupported FAR questionnaire context: FARMuseum/${context}`);
+  }
+  validateMuseumsScenario(scenario, context);
+
+  await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('Museums');
+  await pages.farPrivacyNoticePage.continueWithTitleCheck();
+  await pages.farWhatDoYouWantToDoPage.assertPageTitle();
+
   switch (scenario) {
     case "Apply for a new authority": {
-      if (dataOnly) return;
-      await startMuseumsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(c.MUSEUM_NAME);
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorageWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
@@ -44,8 +51,6 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Apply for a new authority - Another Storage address": {
-      if (dataOnly) return;
-      await startMuseumsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(c.MUSEUM_NAME);
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorageWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
@@ -66,8 +71,6 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Renew existing authority": {
-      if (dataOnly) return;
-      await startMuseumsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -89,8 +92,6 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Renew existing authority - additional Supporting doc - Yes": {
-      if (dataOnly) return;
-      await startMuseumsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -116,8 +117,6 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Amend existing authority": {
-      if (dataOnly) return;
-      await startMuseumsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -139,8 +138,6 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Amend existing authority - additional Supporting doc - Yes": {
-      if (dataOnly) return;
-      await startMuseumsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -166,7 +163,7 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     default:
-      throw new Error(`Unknown FAR scenario description: FARMuseum/${context}/${JSON.stringify(scenario)}`);
+      throw new Error(`Unknown FAR scenario description: FARMuseum/journey/${JSON.stringify(scenario)}`);
   }
 }
 
@@ -197,12 +194,9 @@ When('I select Yes to contact address same as previous and click continue', asyn
   await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
 });
 
-When('I enter a contact name and click continue', async ({ pages, page }) => {
-  const { product, dataContext, scenario } = pages.basePage;
-  if (product !== 'FARMuseum') {
-    throw new Error(`Unsupported FAR museum contact product: ${product}`);
-  }
-  if (dataContext === 'validation') {
+When('I enter a museum contact name for scenario {string} in context {string} and click continue', async ({ pages }, scenario: string, context: string) => {
+  validateMuseumsScenario(scenario, context);
+  if (context === 'validation') {
     switch (scenario) {
       case 'Apply for a new authority':
         await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact('MuseumTest');
@@ -211,11 +205,8 @@ When('I enter a contact name and click continue', async ({ pages, page }) => {
         await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact('MuseumTester');
         return;
       default:
-        throw new Error(`Unknown FAR scenario description: FARMuseum/${dataContext}/${JSON.stringify(scenario)}`);
+        throw new Error(`Unknown FAR scenario description: FARMuseum/${context}/${JSON.stringify(scenario)}`);
     }
-  }
-  if (dataContext !== 'journey') {
-    throw new Error(`Unsupported FAR data context: FARMuseum/${dataContext}`);
   }
   switch (scenario) {
     case 'Apply for a new authority':
@@ -231,7 +222,7 @@ When('I enter a contact name and click continue', async ({ pages, page }) => {
       await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact('Test');
       break;
     default:
-      throw new Error(`Unknown FAR scenario description: FARMuseum/${dataContext}/${JSON.stringify(scenario)}`);
+      throw new Error(`Unknown FAR scenario description: FARMuseum/${context}/${JSON.stringify(scenario)}`);
   }
 });
 

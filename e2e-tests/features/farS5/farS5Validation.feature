@@ -3,7 +3,7 @@ Feature: FAR - Firearms New Dealer
 
   Scenario: Firearms S5 - page error validations- "Apply for a new authority"
     Given I visit the Firearms page
-    When I select the data for "FARS5" pertaining to scenario "Apply for a new authority"
+    When I select the data for "FARS5" pertaining to scenario "Apply for a new authority" in context "journey"
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
@@ -93,7 +93,7 @@ Feature: FAR - Firearms New Dealer
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
-    When I select address to use and click continue
+    When I select the S5 contact address for scenario "Apply for a new authority" in context "journey" and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see error message displayed for firearms

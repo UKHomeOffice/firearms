@@ -10,13 +10,27 @@ async function startS5Questionnaire(pages: Pages): Promise<void> {
   await pages.farWhatDoYouWantToDoPage.assertPageTitle();
 }
 
-export async function completeS5Questionnaire(pages: Pages, scenario: string, dataOnly = false, context = 'journey'): Promise<void> {
+export function validateS5Scenario(scenario: string, context: string): void {
   if (context !== 'journey') {
     throw new Error(`Unsupported FAR data context: FARS5/${context}`);
   }
   switch (scenario) {
+    case 'Apply for a new authority':
+    case 'Renew existing authority':
+    case 'Renew existing authority - additional Supporting doc - Yes':
+    case 'Amend existing authority':
+    case 'Amend existing authority - additional Supporting doc - Yes':
+    case 'Max character':
+      return;
+    default:
+      throw new Error(`Unknown FAR scenario description: FARS5/${context}/${JSON.stringify(scenario)}`);
+  }
+}
+
+export async function completeS5Questionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
+  validateS5Scenario(scenario, context);
+  switch (scenario) {
     case "Apply for a new authority": {
-      if (dataOnly) return;
       await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
@@ -58,7 +72,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Renew existing authority": {
-      if (dataOnly) return;
       await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
@@ -97,7 +110,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Renew existing authority - additional Supporting doc - Yes": {
-      if (dataOnly) return;
       await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
@@ -146,7 +158,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Amend existing authority": {
-      if (dataOnly) return;
       await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
@@ -190,7 +201,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Amend existing authority - additional Supporting doc - Yes": {
-      if (dataOnly) return;
       await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
@@ -244,7 +254,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Max character": {
-      if (dataOnly) return;
       await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
@@ -284,7 +293,7 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     default:
-      throw new Error(`Unknown FAR scenario description: FARS5/${context}/${JSON.stringify(scenario)}`);
+      throw new Error(`Unknown FAR scenario description: FARS5/journey/${JSON.stringify(scenario)}`);
   }
 }
 
@@ -356,11 +365,8 @@ When('I enter contact email address and click continue', async ({ pages, page })
   await pages.farWhatAreContactDetailsPage.answerHoldersContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
 });
 
-When('I select address to use and click continue', async ({ pages, page }) => {
-  const { product, dataContext, scenario } = pages.basePage;
-  if (product !== 'FARS5' || dataContext !== 'journey') {
-    throw new Error(`Unsupported FAR authority contact context: ${product}/${dataContext}`);
-  }
+When('I select the S5 contact address for scenario {string} in context {string} and click continue', async ({ pages }, scenario: string, context: string) => {
+  validateS5Scenario(scenario, context);
   switch (scenario) {
     case 'Apply for a new authority':
     case 'Renew existing authority':
@@ -373,6 +379,6 @@ When('I select address to use and click continue', async ({ pages, page }) => {
       await pages.farS5WhichAddressToContactYouPage.answerSelectAddress('different address');
       break;
     default:
-      throw new Error(`Unknown FAR scenario description: FARS5/${dataContext}/${JSON.stringify(scenario)}`);
+      throw new Error(`Unknown FAR scenario description: FARS5/journey/${JSON.stringify(scenario)}`);
   }
 });

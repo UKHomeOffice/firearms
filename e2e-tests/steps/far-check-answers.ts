@@ -74,12 +74,8 @@ async function checkShootingClubAnswers(pages: Pages, purchaseOrder: boolean, ne
 }
 
 export async function checkFarAnswers(pages: Pages, journey: string, scenario: string): Promise<void> {
-  if (pages.basePage.scenario !== scenario || pages.basePage.dataContext !== 'journey') {
-    throw new Error(`FAR check-answers scenario does not match the completed journey: ${journey}/${JSON.stringify(scenario)}`);
-  }
   switch (journey) {
     case 'New Dealer':
-      if (pages.basePage.product !== 'FARS5') throw new Error(`FAR journey does not match product: ${journey}/${pages.basePage.product}`);
       switch (scenario) {
         case 'Apply for a new authority':
           await checkS5Answers(pages, 'Test', true);
@@ -99,7 +95,6 @@ export async function checkFarAnswers(pages: Pages, journey: string, scenario: s
           throw new Error(`Unknown FAR scenario description: FARS5/journey/${JSON.stringify(scenario)}`);
       }
     case 'Museums':
-      if (pages.basePage.product !== 'FARMuseum') throw new Error(`FAR journey does not match product: ${journey}/${pages.basePage.product}`);
       switch (scenario) {
         case 'Apply for a new authority':
           await checkMuseumAnswers(pages, 'MuseumTest', address, false);
@@ -119,7 +114,6 @@ export async function checkFarAnswers(pages: Pages, journey: string, scenario: s
           throw new Error(`Unknown FAR scenario description: FARMuseum/journey/${JSON.stringify(scenario)}`);
       }
     case 'Shooting Clubs':
-      if (pages.basePage.product !== 'FARShootingClub') throw new Error(`FAR journey does not match product: ${journey}/${pages.basePage.product}`);
       switch (scenario) {
         case 'Apply for a new authority':
           await checkShootingClubAnswers(pages, true, 'Yes');

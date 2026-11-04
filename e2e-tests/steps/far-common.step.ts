@@ -2,57 +2,54 @@ import { expect } from '@playwright/test';
 import { Given, When, Then, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
-import { completeS5Questionnaire } from './far-s5.step';
-import { completeMuseumsQuestionnaire } from './far-museums.step';
-import { completeShootingClubsQuestionnaire } from './far-shooting-clubs.step';
+import { completeS5Questionnaire, validateS5Scenario } from './far-s5.step';
+import { completeMuseumsQuestionnaire, validateMuseumsScenario } from './far-museums.step';
+import { completeShootingClubsQuestionnaire, validateShootingClubsScenario } from './far-shooting-clubs.step';
 
-async function completeFarQuestionnaire(
-  pages: Pages, product: string, scenario: string, dataOnly = false, context = 'journey', journey?: string): Promise<void> {
-  switch (product) {
-    case 'FARS5':
-      if (!dataOnly && journey !== 'New Dealer') {
-        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
-      }
-      await completeS5Questionnaire(pages, scenario, dataOnly, context);
-      break;
-    case 'FARMuseum':
-      if (!dataOnly && journey !== 'Museums') {
-        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
-      }
-      await completeMuseumsQuestionnaire(pages, scenario, dataOnly, context);
-      break;
-    case 'FARShootingClub':
-      if (!dataOnly && journey !== 'Shooting Clubs') {
-        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
-      }
-      await completeShootingClubsQuestionnaire(pages, scenario, dataOnly, context);
-      break;
-    default: throw new Error(`Unknown FAR product: ${product}`);
-  }
-  pages.basePage.product = product;
-  pages.basePage.dataContext = context;
-  pages.basePage.scenario = scenario;
-}
 
 Given('I visit the Firearms page', async ({ pages, page }) => {
   await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
   await pages.farChooseAJourneyHomePage.acceptCookies();
 });
 
-
-When('I select the data for {string} pertaining to scenario {string}', async ({ pages }, product: string, scenario: string) => {
-  await completeFarQuestionnaire(pages, product, scenario, true);
-});
-
-When('I select the validation data for {string} pertaining to scenario {string}', async ({ pages }, product: string, scenario: string) => {
-  if (product !== 'FARMuseum') {
-    throw new Error(`Unsupported FAR validation data product: ${product}`);
+When('I select the data for {string} pertaining to scenario {string} in context {string}', async ({ }, product: string, scenario: string, context: string) => {
+  switch (product) {
+    case 'FARS5':
+      validateS5Scenario(scenario, context);
+      break;
+    case 'FARMuseum':
+      validateMuseumsScenario(scenario, context);
+      break;
+    case 'FARShootingClub':
+      validateShootingClubsScenario(scenario, context);
+      break;
+    default:
+      throw new Error(`Unknown FAR product: ${product}`);
   }
-  await completeFarQuestionnaire(pages, product, scenario, true, 'validation');
 });
 
-When('I complete the Firearms {string} questionnaire for product {string} pertaining to scenario {string}', async ({ pages }, journey: string, product: string, scenario: string) => {
-  await completeFarQuestionnaire(pages, product, scenario, false, 'journey', journey);
+When('I complete the Firearms {string} questionnaire for product {string} pertaining to scenario {string} in context {string}', async ({ pages }, journey: string, product: string, scenario: string, context: string) => {
+  switch (product) {
+    case 'FARS5':
+      if (journey !== 'New Dealer') {
+        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
+      }
+      await completeS5Questionnaire(pages, scenario, context);
+      break;
+    case 'FARMuseum':
+      if (journey !== 'Museums') {
+        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
+      }
+      await completeMuseumsQuestionnaire(pages, scenario, context);
+      break;
+    case 'FARShootingClub':
+      if (journey !== 'Shooting Clubs') {
+        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
+      }
+      await completeShootingClubsQuestionnaire(pages, scenario, context);
+      break;
+    default: throw new Error(`Unknown FAR product: ${product}`);
+  }
 });
 
 Given('I check my answers for Firearms {string} - {string}', async ({ pages, page }, journey: string, activity: string) => {
@@ -94,11 +91,9 @@ Given('I navigate and select {string} journey to start my application', async ({
 
 Given('I am able to submit the supporting documents', async ({ pages, page }) => {
   await pages.basePage.clickContinueButton();
-
   await pages.farImportantInformationPage.submitApplicationWithConfirmation();
   expect(await pages.farSubmissionNotificationsPage.isUploadCompleteDisplayed()).toBe(true);
   expect(await pages.farSubmissionNotificationsPage.isApplicationRefDisplayed()).toBe(true);
-
   expect(await pages.farSubmissionNotificationsPage.isWillReviewYourApplicationDisplayed()).toContain('We will review your application. If more information is required, we shall email the contact address provided with your original application.');
 });
 

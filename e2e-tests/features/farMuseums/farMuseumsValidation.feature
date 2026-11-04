@@ -5,7 +5,7 @@ Feature: FAR - Firearms Museums
     Given I visit the Firearms page
 
   Scenario: Firearms Museum - page error validations- "Apply for a new authority"
-    When I select the validation data for "FARMuseum" pertaining to scenario "Apply for a new authority"
+    When I select the data for "FARMuseum" pertaining to scenario "Apply for a new authority" in context "validation"
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
@@ -34,7 +34,7 @@ Feature: FAR - Firearms Museums
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Enter a contact name" error message displayed for firearms
-    When I enter a contact name and click continue
+    When I enter a museum contact name for scenario "Apply for a new authority" in context "validation" and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Enter a contact email address" error message displayed for firearms
@@ -72,7 +72,7 @@ Feature: FAR - Firearms Museums
     And I see "Select if you have a purchase order" error message displayed for firearms
 
   Scenario: Firearms Museum - page error validations- "Renew an existing order"
-    When I select the validation data for "FARMuseum" pertaining to scenario "Renew existing authority"
+    When I select the data for "FARMuseum" pertaining to scenario "Renew existing authority" in context "validation"
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
@@ -109,7 +109,7 @@ Feature: FAR - Firearms Museums
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Enter a contact name" error message displayed for firearms
-    When I enter a contact name and click continue
+    When I enter a museum contact name for scenario "Renew existing authority" in context "validation" and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Enter a contact email address" error message displayed for firearms
