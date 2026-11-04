@@ -72,18 +72,22 @@ scenario IDs), source page/method and fixture coverage, StepLib method coverage,
 step-expression coverage, and all 18 CSV data variants. These are structural
 checks, not a substitute for browser validation.
 
-Each scenario in `test-data/far-applicant.ts` returns an object with named
-answers, such as `whatYouWantToDo: 'Apply for a new authority'`. The single
-`getFarApplicant(product, description, context)` function switches on product
-and exact description; no positional field/value arrays or internal IDs are
-needed. Unknown descriptions, products, and contexts throw clear errors.
-Museums `validation` context preserves the original renewal scenario's distinct
-answers; all other journeys use the default `journey` context.
+Each product step file owns an exact-description switch returning named answers,
+such as `whatYouWantToDo: 'Apply for a new authority'`. The selectors are
+`selectS5Scenario`, `selectMuseumsScenario`, and `selectShootingClubsScenario`.
+The common data-selection step dispatches by product before journey setup and
+stores the answers and description in scenario-scoped `BasePage` state.
+Questionnaire steps take the same description through `pertaining to
+"<Description>"`, check it matches the selected applicant, and call page objects
+in journey order. Unknown descriptions, products, and contexts throw clear
+errors. Museums `validation` context preserves the original renewal scenario's
+distinct answers; all other journeys use the default `journey` context.
 
-Run `node --test e2e-tests\test-data\far-applicant.test.cjs` on Node 24 to compare
-all 18 variants and both Museums validation selections with the original
-answers in `far-applicant.expected.json`. The tests also reject duplicate
-description cases and verify invalid inputs.
+Run `node --test e2e-tests/steps/far-scenarios.test.cjs` on Node 24 to check all
+18 variants and both Museums validation selections. The suite retains SHA-256
+fingerprints of the original expected answers, including exact string contents,
+while ignoring object-key order. It also checks duplicate description cases,
+invalid inputs, scenario isolation, and questionnaire selection mismatches.
 
 CSV files are not used at runtime. The duplicated shooting-range CSV column is
 retained as `sourceFirstUseAnotherShootingRange` as well as the effective final

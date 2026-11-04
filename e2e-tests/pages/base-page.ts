@@ -1,11 +1,11 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { getFarApplicant } from '../test-data/far-applicant';
 
 export class BasePage {
   readonly page: Page;
   product?: string;
   dataContext = 'journey';
-  applicant?: ReturnType<typeof getFarApplicant>;
+  scenario?: string;
+  applicant?: Record<string, string>;
   applicationRef?: string;
   readonly headerText: Locator;
   readonly continueButton: Locator;
@@ -94,12 +94,10 @@ export class BasePage {
     return value;
   }
 
-  selectApplicant(description: string): void {
-    if (!this.product){
-      throw new Error('Select a FAR product before selecting an applicant');
+  assertScenario(product: string, scenario: string): void {
+    if (this.product !== product || this.scenario !== scenario || !this.applicant) {
+      throw new Error(`FAR questionnaire scenario does not match the selected applicant: ${product}/${JSON.stringify(scenario)}`);
     }
-
-    this.applicant = getFarApplicant(this.product, description, this.dataContext);
   }
 
   async typeInto(locator: Locator, text: string): Promise<void> {

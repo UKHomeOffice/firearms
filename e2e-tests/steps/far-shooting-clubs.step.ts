@@ -2,7 +2,90 @@ import { expect } from '@playwright/test';
 import { Given, When } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-When('I fill out my answers to the Firearms {string} questionnaire', async ({ pages, page }, journey: string) => {
+export function selectShootingClubsScenario(description: string, context = 'journey'): Record<string, string> {
+  if (context !== 'journey') {
+    throw new Error(`Unsupported FAR data context: FARShootingClub/${context}`);
+  }
+  switch (description) {
+    case "Apply for a new authority":
+      return {
+        whatYouWantToDo: "Apply for a new authority",
+        uploadAdditionalExistingDoc: "N/A",
+        uploadAdditionalDoc: "No",
+        clubANewClub: "Yes",
+        sourceFirstUseAnotherShootingRange: "Yes",
+        useAnotherShootingRange: "No",
+        atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
+        anotherGunStorageAddress: "No",
+        purchaseOrder: "Yes",
+      };
+    case "Apply for a new authority - Another Gun Storage address":
+      return {
+        whatYouWantToDo: "Apply for a new authority",
+        uploadAdditionalExistingDoc: "N/A",
+        uploadAdditionalDoc: "No",
+        clubANewClub: "No",
+        sourceFirstUseAnotherShootingRange: "Yes",
+        useAnotherShootingRange: "Yes",
+        atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
+        anotherGunStorageAddress: "Yes",
+        purchaseOrder: "No",
+      };
+    case "Renew existing authority":
+      return {
+        whatYouWantToDo: "Renew an existing authority",
+        uploadAdditionalExistingDoc: "No",
+        uploadAdditionalDoc: "No",
+        clubANewClub: "N/A",
+        sourceFirstUseAnotherShootingRange: "No",
+        useAnotherShootingRange: "N/A",
+        atWhichOfAddressesWillFirearmsBeStored: "Club secretary's contact address",
+        anotherGunStorageAddress: "No",
+        purchaseOrder: "Yes",
+      };
+    case "Renew existing authority - additional support doc - Yes":
+      return {
+        whatYouWantToDo: "Renew an existing authority",
+        uploadAdditionalExistingDoc: "Yes",
+        uploadAdditionalDoc: "Yes",
+        clubANewClub: "N/A",
+        sourceFirstUseAnotherShootingRange: "No",
+        useAnotherShootingRange: "N/A",
+        atWhichOfAddressesWillFirearmsBeStored: "Club secretary's contact address",
+        anotherGunStorageAddress: "No",
+        purchaseOrder: "Yes",
+      };
+    case "Amend existing authority":
+      return {
+        whatYouWantToDo: "Amend an existing authority",
+        uploadAdditionalExistingDoc: "No",
+        uploadAdditionalDoc: "No",
+        clubANewClub: "N/A",
+        sourceFirstUseAnotherShootingRange: "No",
+        useAnotherShootingRange: "N/A",
+        atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
+        anotherGunStorageAddress: "Yes",
+        purchaseOrder: "No",
+      };
+    case "Amend existing authority - additional support doc - Yes":
+      return {
+        whatYouWantToDo: "Amend an existing authority",
+        uploadAdditionalExistingDoc: "Yes",
+        uploadAdditionalDoc: "yes",
+        clubANewClub: "N/A",
+        sourceFirstUseAnotherShootingRange: "No",
+        useAnotherShootingRange: "N/A",
+        atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
+        anotherGunStorageAddress: "No",
+        purchaseOrder: "Yes",
+      };
+    default:
+      throw new Error(`Unknown FAR scenario description: FARShootingClub/${context}/${JSON.stringify(description)}`);
+  }
+}
+
+When('I fill out my answers to the Firearms {string} questionnaire pertaining to {string}', async ({ pages }, journey: string, scenario: string) => {
+  pages.basePage.assertScenario('FARShootingClub', scenario);
   if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
     if (journey === 'New Dealer') {
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);

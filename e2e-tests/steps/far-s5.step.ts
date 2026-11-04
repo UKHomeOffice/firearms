@@ -3,7 +3,132 @@ import { expect } from '@playwright/test';
 import { Given, When } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-When('I fill out my answers to the Firearms S5 {string} questionnaire', async ({ pages, page }, journey: string) => {
+export function selectS5Scenario(description: string, context = 'journey'): Record<string, string> {
+  if (context !== 'journey') {
+    throw new Error(`Unsupported FAR data context: FARS5/${context}`);
+  }
+  switch (description) {
+    case "Apply for a new authority":
+      return {
+        whatYouWantToDo: "Apply for a new authority",
+        uploadAdditionalExistingDoc: "N/A",
+        uploadAdditionalDoc: "No",
+        typeOfOrganisation: "Company",
+        prohibitedItemsBeImported: "Yes",
+        willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
+        anotherAddressToStoreProhibitedItems: "Yes",
+        weaponsOrComponentsSections: "Unspecified sections and quantities, Text input",
+        ammunitionSection: "Unspecified sections and quantities, Text input",
+        individualNamedOnTheAuthority: "One",
+        nameOfFirstAuthorityHolder: "N/A",
+        nameOfAuthorityHolder: "Test",
+        nameOfSecondAuthorityHolder: "N/A",
+        whoToContactAbtApplication: "Test",
+        testContactAddress: "address already provided",
+        purchaseOrder: "Yes",
+      };
+    case "Renew existing authority":
+      return {
+        whatYouWantToDo: "Renew an existing authority",
+        uploadAdditionalExistingDoc: "No",
+        uploadAdditionalDoc: "No",
+        typeOfOrganisation: "Charity",
+        prohibitedItemsBeImported: "No",
+        willProhibitedItemsBeStoredOnBusinessPremises: "No",
+        anotherAddressToStoreProhibitedItems: "N/A",
+        weaponsOrComponentsSections: "Fully automatic or burst-fire weapons - Section 5(1)(a), Text input",
+        ammunitionSection: "Actual missiles (projectiles) for all the above ammunition - Section 5(1A)(g), Text input",
+        individualNamedOnTheAuthority: "One",
+        nameOfFirstAuthorityHolder: "N/A",
+        nameOfAuthorityHolder: "Test",
+        nameOfSecondAuthorityHolder: "N/A",
+        whoToContactAbtApplication: "Test",
+        testContactAddress: "address already provided",
+        purchaseOrder: "No",
+      };
+    case "Renew existing authority - additional Supporting doc - Yes":
+      return {
+        whatYouWantToDo: "Renew an existing authority",
+        uploadAdditionalExistingDoc: "Yes",
+        uploadAdditionalDoc: "Yes",
+        typeOfOrganisation: "Museum",
+        prohibitedItemsBeImported: "Yes",
+        willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
+        anotherAddressToStoreProhibitedItems: "Yes",
+        weaponsOrComponentsSections: "Unspecified sections and quantities, Text input",
+        ammunitionSection: "Unspecified sections and quantities, Text input",
+        individualNamedOnTheAuthority: "One",
+        nameOfFirstAuthorityHolder: "N/A",
+        nameOfAuthorityHolder: "Test",
+        nameOfSecondAuthorityHolder: "N/A",
+        whoToContactAbtApplication: "Someone",
+        testContactAddress: "address already provided",
+        purchaseOrder: "Yes",
+      };
+    case "Amend existing authority":
+      return {
+        whatYouWantToDo: "Amend an existing authority",
+        uploadAdditionalExistingDoc: "No",
+        uploadAdditionalDoc: "No",
+        typeOfOrganisation: "Other",
+        prohibitedItemsBeImported: "Yes",
+        willProhibitedItemsBeStoredOnBusinessPremises: "No",
+        anotherAddressToStoreProhibitedItems: "Yes",
+        weaponsOrComponentsSections: "Launchers or projecting apparatus for use with the rockets or ammunition detailed above - Section 5(1A)(c), Text input",
+        ammunitionSection: "Cartridges designed to explode, noxious ammunition, grenades, bombs or rockets fired from firearms - Section 5(1)(c)\r\nText input-Maximum quantity (leave blank if unspecified)",
+        individualNamedOnTheAuthority: "Two",
+        nameOfFirstAuthorityHolder: "Test1",
+        nameOfAuthorityHolder: "Test1",
+        nameOfSecondAuthorityHolder: "Test2",
+        whoToContactAbtApplication: "Test2",
+        testContactAddress: "different address",
+        purchaseOrder: "Yes",
+      };
+    case "Amend existing authority - additional Supporting doc - Yes":
+      return {
+        whatYouWantToDo: "Amend an existing authority",
+        uploadAdditionalExistingDoc: "Yes",
+        uploadAdditionalDoc: "Yes",
+        typeOfOrganisation: "Shooting club (section 7(3))",
+        prohibitedItemsBeImported: "Yes",
+        willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
+        anotherAddressToStoreProhibitedItems: "Yes",
+        weaponsOrComponentsSections: "Launchers or projecting apparatus for use with the rockets or ammunition detailed above - Section 5(1A)(c), Text input",
+        ammunitionSection: "Cartridges designed to explode, noxious ammunition, grenades, bombs or rockets fired from firearms - Section 5(1)(c)",
+        individualNamedOnTheAuthority: "Two",
+        nameOfFirstAuthorityHolder: "Test1",
+        nameOfAuthorityHolder: "Test1",
+        nameOfSecondAuthorityHolder: "Test2",
+        whoToContactAbtApplication: "Test2",
+        testContactAddress: "different address",
+        purchaseOrder: "Yes",
+      };
+    case "Max character":
+      return {
+        whatYouWantToDo: "Apply for a new authority",
+        uploadAdditionalExistingDoc: "N/A",
+        uploadAdditionalDoc: "No",
+        typeOfOrganisation: "Sole trader",
+        prohibitedItemsBeImported: "No",
+        willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
+        anotherAddressToStoreProhibitedItems: "No",
+        weaponsOrComponentsSections: "Unspecified sections and quantities, Max Characters 15000",
+        ammunitionSection: "Unspecified sections and quantities, Text input - Explain why you can't specify the section and quantities of prohibited items being handled, Max Characters 15000",
+        individualNamedOnTheAuthority: "One",
+        nameOfFirstAuthorityHolder: "N/A",
+        nameOfAuthorityHolder: "Test",
+        nameOfSecondAuthorityHolder: "N/A",
+        whoToContactAbtApplication: "Test",
+        testContactAddress: "address already provided",
+        purchaseOrder: "No",
+      };
+    default:
+      throw new Error(`Unknown FAR scenario description: FARS5/${context}/${JSON.stringify(description)}`);
+  }
+}
+
+When('I fill out my answers to the Firearms S5 {string} questionnaire pertaining to {string}', async ({ pages }, journey: string, scenario: string) => {
+  pages.basePage.assertScenario('FARS5', scenario);
   if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
     if (journey === 'New Dealer') {
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);

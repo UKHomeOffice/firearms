@@ -9,7 +9,7 @@ Feature: FAR - Firearms Supporting Documents Validations
   Scenario: Firearms S5 Supporting Doc Validations - E2E - "Apply for a new authority"
     When I select the data for scenario "Apply for a new authority"
     And I select Firearms "New Dealer" journey to start my application
-    And I fill out my answers to the Firearms S5 "New Dealer" questionnaire
+    And I fill out my answers to the Firearms S5 "New Dealer" questionnaire pertaining to "Apply for a new authority"
     Then I check my answers for Firearms "New Dealer" - "Apply for a new authority"
     And I am able to submit the Firearms questionnaire
     When I navigate and select "Supporting Documents" journey to start my application

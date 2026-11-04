@@ -2,6 +2,23 @@ import { expect } from '@playwright/test';
 import { Given, When, Then } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
+import { selectS5Scenario } from './far-s5.step';
+import { selectMuseumsScenario } from './far-museums.step';
+import { selectShootingClubsScenario } from './far-shooting-clubs.step';
+
+export function selectFarScenario(product: string, description: string, context = 'journey'): Record<string, string> {
+  switch (product) {
+    case 'FARS5': return selectS5Scenario(description, context);
+    case 'FARMuseum': return selectMuseumsScenario(description, context);
+    case 'FARShootingClub': return selectShootingClubsScenario(description, context);
+    default: throw new Error(`Unknown FAR product: ${product}`);
+  }
+}
+
+Given('I visit the Firearms page', async ({ pages, page }) => {
+  await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
+  await pages.farChooseAJourneyHomePage.acceptCookies();
+});
 
 Given('Test data has been created for {string} scenarios', async ({ pages, page }, product: string) => {
   switch (product) {
@@ -22,13 +39,14 @@ Given('Test data has been created for {string} validation scenarios', async ({ p
 });
 
 When('I select the data for scenario {string}', async ({ pages }, description: string) => {
-  pages.basePage.selectApplicant(description);
+  if (!pages.basePage.product) {
+    throw new Error('Select a FAR product before selecting an applicant');
+  }
+  pages.basePage.applicant = selectFarScenario(pages.basePage.product, description, pages.basePage.dataContext);
+  pages.basePage.scenario = description;
 });
 
-Given('I visit the Firearms page', async ({ pages, page }) => {
-  await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
-  await pages.farChooseAJourneyHomePage.acceptCookies();
-});
+
 
 When('I select Firearms {string} journey to start my application', async ({ pages, page }, journey: string) => {
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck(journey);

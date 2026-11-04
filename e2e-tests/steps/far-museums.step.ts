@@ -2,8 +2,104 @@ import { expect } from '@playwright/test';
 import { Given, When } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
+export function selectMuseumsScenario(description: string, context = 'journey'): Record<string, string> {
+  if (context !== 'journey' && context !== 'validation') {
+    throw new Error(`Unsupported FAR data context: FARMuseum/${context}`);
+  }
+  if (context === 'validation') {
+    switch (description) {
+      case "Apply for a new authority":
+        return {
+          whatYouWantToDo: "Apply for a new authority",
+          uploadAdditionalExistingDoc: "Yes",
+          whatIsTheMuseumName: "Museum1",
+          anotherAddressToStoreFirearms: "No",
+          whoShouldWeContact: "MuseumTest",
+          contactSameAsPreviousAddress: "Yes",
+          purchaseOrder: "No",
+        };
+      case "Renew existing authority":
+        return {
+          whatYouWantToDo: "Apply for a new authority",
+          uploadAdditionalExistingDoc: "Yes",
+          whatIsTheMuseumName: "Museum1",
+          anotherAddressToStoreFirearms: "Yes",
+          whoShouldWeContact: "MuseumTester",
+          contactSameAsPreviousAddress: "No",
+          purchaseOrder: "Yes",
+        };
+      default:
+        throw new Error(`Unknown FAR scenario description: FARMuseum/${context}/${JSON.stringify(description)}`);
+    }
+  }
+  switch (description) {
+    case "Apply for a new authority":
+      return {
+        whatYouWantToDo: "Apply for a new authority",
+        uploadAdditionalExistingDoc: "Yes",
+        whatIsTheMuseumName: "Museum1",
+        anotherAddressToStoreFirearms: "No",
+        whoShouldWeContact: "MuseumTest",
+        contactSameAsPreviousAddress: "Yes",
+        purchaseOrder: "No",
+      };
+    case "Apply for a new authority - Another Storage address":
+      return {
+        whatYouWantToDo: "Apply for a new authority",
+        uploadAdditionalExistingDoc: "Yes",
+        whatIsTheMuseumName: "Museum1",
+        anotherAddressToStoreFirearms: "Yes",
+        whoShouldWeContact: "MuseumTester",
+        contactSameAsPreviousAddress: "No",
+        purchaseOrder: "Yes",
+      };
+    case "Renew existing authority":
+      return {
+        whatYouWantToDo: "Renew an existing authority",
+        uploadAdditionalExistingDoc: "No",
+        whatIsTheMuseumName: "Museum1",
+        anotherAddressToStoreFirearms: "No",
+        whoShouldWeContact: "Test",
+        contactSameAsPreviousAddress: "Yes",
+        purchaseOrder: "No",
+      };
+    case "Renew existing authority - additional Supporting doc - Yes":
+      return {
+        whatYouWantToDo: "Renew an existing authority",
+        uploadAdditionalExistingDoc: "Yes",
+        whatIsTheMuseumName: "Museum1",
+        anotherAddressToStoreFirearms: "Yes",
+        whoShouldWeContact: "Test",
+        contactSameAsPreviousAddress: "No",
+        purchaseOrder: "Yes",
+      };
+    case "Amend existing authority":
+      return {
+        whatYouWantToDo: "Amend an existing authority",
+        uploadAdditionalExistingDoc: "No",
+        whatIsTheMuseumName: "Museum1",
+        anotherAddressToStoreFirearms: "No",
+        whoShouldWeContact: "Test",
+        contactSameAsPreviousAddress: "Yes",
+        purchaseOrder: "No",
+      };
+    case "Amend existing authority - additional Supporting doc - Yes":
+      return {
+        whatYouWantToDo: "Amend an existing authority",
+        uploadAdditionalExistingDoc: "Yes",
+        whatIsTheMuseumName: "Museum1",
+        anotherAddressToStoreFirearms: "Yes",
+        whoShouldWeContact: "Test",
+        contactSameAsPreviousAddress: "No",
+        purchaseOrder: "Yes",
+      };
+    default:
+      throw new Error(`Unknown FAR scenario description: FARMuseum/${context}/${JSON.stringify(description)}`);
+  }
+}
 
-When('I fill out my answers to the Firearms Museums questionnaire', async ({ pages, page }) => {
+When('I fill out my answers to the Firearms Museums questionnaire pertaining to {string}', async ({ pages }, scenario: string) => {
+  pages.basePage.assertScenario('FARMuseum', scenario);
   await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(c.MUSEUM_NAME);
   await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorageWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
   await pages.farMuseumAnotherAddressForStoragePage.assertPageTitle();

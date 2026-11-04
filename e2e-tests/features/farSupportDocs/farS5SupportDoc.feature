@@ -8,7 +8,7 @@ Feature: FAR - Firearms New Dealer Supporting Documents
   Scenario Outline: Firearms S5 Supporting Doc - E2E
     When I select the data for scenario "<Description>"
     And I select Firearms "New Dealer" journey to start my application
-    And I fill out my answers to the Firearms S5 "New Dealer" questionnaire
+    And I fill out my answers to the Firearms S5 "New Dealer" questionnaire pertaining to "<Description>"
     Then I check my answers for Firearms "New Dealer" - "<Description>"
     And I am able to submit the Firearms questionnaire
     When I navigate and select "Supporting Documents" journey to start my application
