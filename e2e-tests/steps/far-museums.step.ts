@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { Given, When } from '../fixture/fixtures';
+import { Given, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export function selectMuseumsScenario(description: string, context = 'journey'): Record<string, string> {
@@ -98,7 +98,7 @@ export function selectMuseumsScenario(description: string, context = 'journey'):
   }
 }
 
-When('I fill out my answers to the Firearms Museums questionnaire pertaining to {string}', async ({ pages }, scenario: string) => {
+export async function completeMuseumsQuestionnaire(pages: Pages, scenario: string): Promise<void> {
   pages.basePage.assertScenario('FARMuseum', scenario);
   await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(c.MUSEUM_NAME);
   await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorageWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
@@ -124,7 +124,7 @@ When('I fill out my answers to the Firearms Museums questionnaire pertaining to 
   await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
   if (pages.basePage.isYes(pages.basePage.data('purchaseOrder'))) await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderYes(c.ORDER_NUMBER);
   else await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderNo();
-});
+}
 
 Given('I change the museum name to {string} and museum address number to {string} and continue', async ({ pages, page }, museumName: string, museumAddressNo: string) => {
   await pages.farMuseumCheckYourAnswersPage.clickToChangeMuseumName();

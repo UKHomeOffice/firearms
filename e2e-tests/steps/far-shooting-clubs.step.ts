@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { Given, When } from '../fixture/fixtures';
+import { Given, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export function selectShootingClubsScenario(description: string, context = 'journey'): Record<string, string> {
@@ -84,7 +84,7 @@ export function selectShootingClubsScenario(description: string, context = 'jour
   }
 }
 
-When('I fill out my answers to the Firearms {string} questionnaire pertaining to {string}', async ({ pages }, journey: string, scenario: string) => {
+export async function completeShootingClubsQuestionnaire(pages: Pages, journey: string, scenario: string): Promise<void> {
   pages.basePage.assertScenario('FARShootingClub', scenario);
   if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
     if (journey === 'New Dealer') {
@@ -135,7 +135,7 @@ When('I fill out my answers to the Firearms {string} questionnaire pertaining to
   await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
   if (pages.basePage.isYes(pages.basePage.data('purchaseOrder'))) await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderYes(c.ORDER_NUMBER);
   else await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderNo();
-});
+}
 
 Given('I change the club name to {string} and club address number to {string} and continue', async ({ pages, page }, clubName: string, clubAddress: string) => {
   await pages.farShootClubCheckYourAnswersPage.changeClubDetails();

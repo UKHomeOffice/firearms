@@ -3,8 +3,7 @@ Feature: FAR - Firearms Shooting Clubs
 
   Scenario: Firearms Shooting Clubs - page error validations- "Apply for a new authority"
     Given I visit the Firearms page
-    And Test data has been created for "FARShootingClub" scenarios
-    When I select the data for scenario "Apply for a new authority"
+    When I select the data for "FARShootingClub" pertaining to scenario "Apply for a new authority"
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms

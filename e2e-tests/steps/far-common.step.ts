@@ -1,10 +1,10 @@
 import { expect } from '@playwright/test';
-import { Given, When, Then } from '../fixture/fixtures';
+import { Given, When, Then, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
-import { selectS5Scenario } from './far-s5.step';
-import { selectMuseumsScenario } from './far-museums.step';
-import { selectShootingClubsScenario } from './far-shooting-clubs.step';
+import { selectS5Scenario, completeS5Questionnaire } from './far-s5.step';
+import { selectMuseumsScenario, completeMuseumsQuestionnaire } from './far-museums.step';
+import { selectShootingClubsScenario, completeShootingClubsQuestionnaire } from './far-shooting-clubs.step';
 
 export function selectFarScenario(product: string, description: string, context = 'journey'): Record<string, string> {
   switch (product) {
@@ -20,35 +20,41 @@ Given('I visit the Firearms page', async ({ pages, page }) => {
   await pages.farChooseAJourneyHomePage.acceptCookies();
 });
 
-Given('Test data has been created for {string} scenarios', async ({ pages, page }, product: string) => {
-  switch (product) {
-    case 'FARS5': case 'FARMuseum': case 'FARShootingClub':
-      pages.basePage.product = product;
-      break;
-    default: throw new Error(`Unknown FAR product: ${product}`);
-  }
+
+When('I select the data for {string} pertaining to scenario {string}', async ({ pages }, product: string, scenario: string) => {
+  const applicant = selectFarScenario(product, scenario);
+  pages.basePage.product = product;
   pages.basePage.dataContext = 'journey';
+  pages.basePage.applicant = applicant;
+  pages.basePage.scenario = scenario;
 });
 
-Given('Test data has been created for {string} validation scenarios', async ({ pages }, product: string) => {
+When('I select the validation data for {string} pertaining to scenario {string}', async ({ pages }, product: string, scenario: string) => {
   if (product !== 'FARMuseum') {
     throw new Error(`Unsupported FAR validation data product: ${product}`);
   }
+  const applicant = selectFarScenario(product, scenario, 'validation');
   pages.basePage.product = product;
   pages.basePage.dataContext = 'validation';
+  pages.basePage.applicant = applicant;
+  pages.basePage.scenario = scenario;
 });
 
-When('I select the data for scenario {string}', async ({ pages }, description: string) => {
-  if (!pages.basePage.product) {
-    throw new Error('Select a FAR product before selecting an applicant');
+When('I complete the Firearms {string} questionnaire for product {string} pertaining to scenario {string}', async ({ pages }, journey: string, product: string, scenario: string) => {
+  const applicant = selectFarScenario(product, scenario);
+  const journeys: Record<string, string> = {
+    FARS5: 'New Dealer',
+    FARMuseum: 'Museums',
+    FARShootingClub: 'Shooting Clubs',
+  };
+  if (journeys[product] !== journey) {
+    throw new Error(`FAR journey does not match product: ${journey}/${product}`);
   }
-  pages.basePage.applicant = selectFarScenario(pages.basePage.product, description, pages.basePage.dataContext);
-  pages.basePage.scenario = description;
-});
+  pages.basePage.product = product;
+  pages.basePage.dataContext = 'journey';
+  pages.basePage.applicant = applicant;
+  pages.basePage.scenario = scenario;
 
-
-
-When('I select Firearms {string} journey to start my application', async ({ pages, page }, journey: string) => {
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck(journey);
 
   if (journey.toLowerCase() !== 'supporting documents') {
@@ -100,6 +106,18 @@ When('I select Firearms {string} journey to start my application', async ({ page
       break;
     default:
       throw new Error(`Unknown FAR activity: ${whatToDo}`);
+  }
+
+  switch (product) {
+    case 'FARS5':
+      await completeS5Questionnaire(pages, journey, scenario);
+      break;
+    case 'FARMuseum':
+      await completeMuseumsQuestionnaire(pages, scenario);
+      break;
+    case 'FARShootingClub':
+      await completeShootingClubsQuestionnaire(pages, journey, scenario);
+      break;
   }
 });
 
@@ -178,10 +196,6 @@ Then('I see {string} error message displayed for firearms', async ({ pages, page
 
 Then('I see error message displayed for firearms', async ({ pages, page }, expected: string) => {
   expect(await pages.basePage.getErrorMessageDetailText()).toBe(expected.trim());
-});
-
-Then('I see {string} error link message displayed for firearms', async ({ pages, page }, expected: string) => {
-  expect(await pages.basePage.getLinkByText(expected)).toBe(expected);
 });
 
 Then('I select What to do {string} option and click continue', async ({ pages, page }, option: string) => {

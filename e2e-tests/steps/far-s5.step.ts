@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { expect } from '@playwright/test';
-import { Given, When } from '../fixture/fixtures';
+import { Given, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export function selectS5Scenario(description: string, context = 'journey'): Record<string, string> {
@@ -127,7 +127,7 @@ export function selectS5Scenario(description: string, context = 'journey'): Reco
   }
 }
 
-When('I fill out my answers to the Firearms S5 {string} questionnaire pertaining to {string}', async ({ pages }, journey: string, scenario: string) => {
+export async function completeS5Questionnaire(pages: Pages, journey: string, scenario: string): Promise<void> {
   pages.basePage.assertScenario('FARS5', scenario);
   if (pages.basePage.data('whatYouWantToDo') !== 'Apply for a new authority') {
     if (journey === 'New Dealer') {
@@ -267,7 +267,7 @@ When('I fill out my answers to the Firearms S5 {string} questionnaire pertaining
   await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
   if (pages.basePage.isYes(pages.basePage.data('purchaseOrder'))) await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderYes(c.ORDER_NUMBER);
   else await pages.farDoYouHavePurchaseOrderPage.answerHavePurchaseOrderNo();
-});
+}
 
 Given('I change the company name to {string} and company house number to {string} and continue', async ({ pages, page }, companyName: string, companyHouseNo: string) => {
   await pages.farS5CheckYourAnswersPage.clickToChangeBusinessDetails();

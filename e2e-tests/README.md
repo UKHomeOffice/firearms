@@ -75,13 +75,21 @@ checks, not a substitute for browser validation.
 Each product step file owns an exact-description switch returning named answers,
 such as `whatYouWantToDo: 'Apply for a new authority'`. The selectors are
 `selectS5Scenario`, `selectMuseumsScenario`, and `selectShootingClubsScenario`.
-The common data-selection step dispatches by product before journey setup and
-stores the answers and description in scenario-scoped `BasePage` state.
-Questionnaire steps take the same description through `pertaining to
-"<Description>"`, check it matches the selected applicant, and call page objects
-in journey order. Unknown descriptions, products, and contexts throw clear
-errors. Museums `validation` context preserves the original renewal scenario's
-distinct answers; all other journeys use the default `journey` context.
+Full questionnaire journeys combine product setup, scenario selection, journey
+navigation, and questionnaire completion in one step:
+
+```gherkin
+When I complete the Firearms "Museums" questionnaire for product "FARMuseum" pertaining to scenario "<Description>"
+```
+
+Use `"New Dealer"` / `"FARS5"` for S5 and `"Shooting Clubs"` /
+`"FARShootingClub"` for clubs. The combined step validates the description and
+journey/product pair before navigation, stores the answers and description in
+scenario-scoped `BasePage` state, and reuses the existing ordered page calls.
+Granular setup and questionnaire steps remain available for partial validation
+flows. Unknown descriptions, products, and contexts throw clear errors. Museums
+`validation` context preserves the original renewal scenario's distinct answers;
+full questionnaire journeys use the default `journey` context.
 
 Run `node --test e2e-tests/steps/far-scenarios.test.cjs` on Node 24 to check all
 18 variants and both Museums validation selections. The suite retains SHA-256
