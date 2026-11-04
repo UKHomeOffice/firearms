@@ -1,11 +1,9 @@
 @FarRegression @FAR-S5 @FAR-SDoc @regression2
 Feature: FAR - Firearms Supporting Documents Validations
 
-  Background:
-    Given I visit the Firearms page
-
   @FAR-SDoc-V
   Scenario: Firearms S5 Supporting Doc Validations - E2E - "Apply for a new authority"
+    Given I visit the Firearms page
     When I complete the Firearms "New Dealer" questionnaire for product "FARS5" pertaining to scenario "Apply for a new authority" in context "journey"
     Then I check my answers for Firearms "New Dealer" - "Apply for a new authority"
     And I am able to submit the Firearms questionnaire

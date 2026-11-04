@@ -1,10 +1,9 @@
 @FarRegression
 Feature: FAR - Firearms New Dealer Supporting Documents
 
-  Background:
-    Given I visit the Firearms page
 
   Scenario Outline: Firearms S5 Supporting Doc - E2E
+    Given I visit the Firearms page
     When I complete the Firearms "New Dealer" questionnaire for product "FARS5" pertaining to scenario "<Description>" in context "journey"
     Then I check my answers for Firearms "New Dealer" - "<Description>"
     And I am able to submit the Firearms questionnaire

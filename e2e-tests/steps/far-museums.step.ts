@@ -3,29 +3,10 @@ import { Given, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 
-export function validateMuseumsScenario(scenario: string, context: string): void {
-  if (context !== 'journey' && context !== 'validation') {
-    throw new Error(`Unsupported FAR data context: FARMuseum/${context}`);
-  }
-  switch (scenario) {
-    case 'Apply for a new authority':
-    case 'Renew existing authority':
-      return;
-    case 'Apply for a new authority - Another Storage address':
-    case 'Renew existing authority - additional Supporting doc - Yes':
-    case 'Amend existing authority':
-    case 'Amend existing authority - additional Supporting doc - Yes':
-      if (context === 'journey') return;
-      break;
-  }
-  throw new Error(`Unknown FAR scenario description: FARMuseum/${context}/${JSON.stringify(scenario)}`);
-}
-
 export async function completeMuseumsQuestionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
   if (context !== 'journey') {
     throw new Error(`Unsupported FAR questionnaire context: FARMuseum/${context}`);
   }
-  validateMuseumsScenario(scenario, context);
 
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('Museums');
   await pages.farPrivacyNoticePage.continueWithTitleCheck();
@@ -195,7 +176,7 @@ When('I select Yes to contact address same as previous and click continue', asyn
 });
 
 When('I enter a museum contact name for scenario {string} in context {string} and click continue', async ({ pages }, scenario: string, context: string) => {
-  validateMuseumsScenario(scenario, context);
+  // validateMuseumsScenario(scenario, context);
   if (context === 'validation') {
     switch (scenario) {
       case 'Apply for a new authority':

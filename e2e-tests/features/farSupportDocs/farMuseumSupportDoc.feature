@@ -1,10 +1,9 @@
 @FarRegression
 Feature: FAR - Firearms Museums Supporting Documents
 
-  Background:
-    Given I visit the Firearms page
 
   Scenario Outline: Firearms Museums Supporting Doc - E2E
+    Given I visit the Firearms page
     When I complete the Firearms "Museums" questionnaire for product "FARMuseum" pertaining to scenario "<Description>" in context "journey"
     Then I check my answers for Firearms "Museums" - "<Description>"
     And I am able to submit the Firearms questionnaire

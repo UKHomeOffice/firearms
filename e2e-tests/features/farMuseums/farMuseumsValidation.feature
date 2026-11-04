@@ -5,8 +5,7 @@ Feature: FAR - Firearms Museums
     Given I visit the Firearms page
 
   Scenario: Firearms Museum - page error validations- "Apply for a new authority"
-    When I select the data for "FARMuseum" pertaining to scenario "Apply for a new authority" in context "validation"
-    And I select continue
+    When I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
     When I choose Firearms "Museums" journey to start my application
@@ -71,9 +70,10 @@ Feature: FAR - Firearms Museums
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select if you have a purchase order" error message displayed for firearms
 
+
+
   Scenario: Firearms Museum - page error validations- "Renew an existing order"
-    When I select the data for "FARMuseum" pertaining to scenario "Renew existing authority" in context "validation"
-    And I select continue
+    When I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
     When I choose Firearms "Museums" journey to start my application

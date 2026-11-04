@@ -2,34 +2,12 @@ import { expect } from '@playwright/test';
 import { Given, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-async function startShootingClubsQuestionnaire(pages: Pages): Promise<void> {
+export async function completeShootingClubsQuestionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('Shooting Clubs');
   await pages.farPrivacyNoticePage.continueWithTitleCheck();
   await pages.farWhatDoYouWantToDoPage.assertPageTitle();
-}
-
-export function validateShootingClubsScenario(scenario: string, context: string): void {
-  if (context !== 'journey') {
-    throw new Error(`Unsupported FAR data context: FARShootingClub/${context}`);
-  }
-  switch (scenario) {
-    case 'Apply for a new authority':
-    case 'Apply for a new authority - Another Gun Storage address':
-    case 'Renew existing authority':
-    case 'Renew existing authority - additional support doc - Yes':
-    case 'Amend existing authority':
-    case 'Amend existing authority - additional support doc - Yes':
-      return;
-    default:
-      throw new Error(`Unknown FAR scenario description: FARShootingClub/${context}/${JSON.stringify(scenario)}`);
-  }
-}
-
-export async function completeShootingClubsQuestionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
-  validateShootingClubsScenario(scenario, context);
   switch (scenario) {
     case "Apply for a new authority": {
-      await startShootingClubsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
@@ -60,7 +38,6 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Apply for a new authority - Another Gun Storage address": {
-      await startShootingClubsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
@@ -96,7 +73,6 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Renew existing authority": {
-      await startShootingClubsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -128,7 +104,6 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Renew existing authority - additional support doc - Yes": {
-      await startShootingClubsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -164,7 +139,6 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Amend existing authority": {
-      await startShootingClubsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -198,7 +172,6 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Amend existing authority - additional support doc - Yes": {
-      await startShootingClubsQuestionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();

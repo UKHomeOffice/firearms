@@ -3,35 +3,14 @@ import { expect } from '@playwright/test';
 import { Given, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-async function startS5Questionnaire(pages: Pages): Promise<void> {
+export async function completeS5Questionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('New Dealer');
   await pages.farPrivacyNoticePage.continueWithTitleCheck();
   await pages.farBeforeYouStartPage.clickContinueBtnWithTitleCheck();
   await pages.farWhatDoYouWantToDoPage.assertPageTitle();
-}
 
-export function validateS5Scenario(scenario: string, context: string): void {
-  if (context !== 'journey') {
-    throw new Error(`Unsupported FAR data context: FARS5/${context}`);
-  }
-  switch (scenario) {
-    case 'Apply for a new authority':
-    case 'Renew existing authority':
-    case 'Renew existing authority - additional Supporting doc - Yes':
-    case 'Amend existing authority':
-    case 'Amend existing authority - additional Supporting doc - Yes':
-    case 'Max character':
-      return;
-    default:
-      throw new Error(`Unknown FAR scenario description: FARS5/${context}/${JSON.stringify(scenario)}`);
-  }
-}
-
-export async function completeS5Questionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
-  validateS5Scenario(scenario, context);
   switch (scenario) {
     case "Apply for a new authority": {
-      await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
@@ -72,7 +51,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, co
       break;
     }
     case "Renew existing authority": {
-      await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -110,7 +88,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, co
       break;
     }
     case "Renew existing authority - additional Supporting doc - Yes": {
-      await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -158,7 +135,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, co
       break;
     }
     case "Amend existing authority": {
-      await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -201,7 +177,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, co
       break;
     }
     case "Amend existing authority - additional Supporting doc - Yes": {
-      await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
@@ -254,7 +229,6 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, co
       break;
     }
     case "Max character": {
-      await startS5Questionnaire(pages);
       await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
@@ -366,7 +340,6 @@ When('I enter contact email address and click continue', async ({ pages, page })
 });
 
 When('I select the S5 contact address for scenario {string} in context {string} and click continue', async ({ pages }, scenario: string, context: string) => {
-  validateS5Scenario(scenario, context);
   switch (scenario) {
     case 'Apply for a new authority':
     case 'Renew existing authority':

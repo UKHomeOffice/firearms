@@ -1,10 +1,9 @@
 @FarRegression
 Feature: FAR - Firearms Shooting Clubs Supporting Documents
 
-  Background:
-    Given I visit the Firearms page
 
   Scenario Outline: Firearms Shooting Clubs Supporting Docs - E2E
+    Given I visit the Firearms page
     When I complete the Firearms "Shooting Clubs" questionnaire for product "FARShootingClub" pertaining to scenario "<Description>" in context "journey"
     Then I check my answers for Firearms "Shooting Clubs" - "<Description>"
     And I am able to submit the Firearms questionnaire

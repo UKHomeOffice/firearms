@@ -2,30 +2,14 @@ import { expect } from '@playwright/test';
 import { Given, When, Then, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
-import { completeS5Questionnaire, validateS5Scenario } from './far-s5.step';
-import { completeMuseumsQuestionnaire, validateMuseumsScenario } from './far-museums.step';
-import { completeShootingClubsQuestionnaire, validateShootingClubsScenario } from './far-shooting-clubs.step';
+import { completeS5Questionnaire } from './far-s5.step';
+import { completeMuseumsQuestionnaire } from './far-museums.step';
+import { completeShootingClubsQuestionnaire } from './far-shooting-clubs.step';
 
 
 Given('I visit the Firearms page', async ({ pages, page }) => {
   await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
   await pages.farChooseAJourneyHomePage.acceptCookies();
-});
-
-When('I select the data for {string} pertaining to scenario {string} in context {string}', async ({ }, product: string, scenario: string, context: string) => {
-  switch (product) {
-    case 'FARS5':
-      validateS5Scenario(scenario, context);
-      break;
-    case 'FARMuseum':
-      validateMuseumsScenario(scenario, context);
-      break;
-    case 'FARShootingClub':
-      validateShootingClubsScenario(scenario, context);
-      break;
-    default:
-      throw new Error(`Unknown FAR product: ${product}`);
-  }
 });
 
 When('I complete the Firearms {string} questionnaire for product {string} pertaining to scenario {string} in context {string}', async ({ pages }, journey: string, product: string, scenario: string, context: string) => {
