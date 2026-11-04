@@ -5,7 +5,6 @@ export class BasePage {
   product?: string;
   dataContext = 'journey';
   scenario?: string;
-  applicant?: Record<string, string>;
   applicationRef?: string;
   readonly headerText: Locator;
   readonly continueButton: Locator;
@@ -72,22 +71,12 @@ export class BasePage {
     await this.continueButton.click();
   }
 
-  isYes(value: string): boolean {
-    return value.toLowerCase() === 'yes';
-  }
-
   async getErrorSummaryHeaderText(): Promise<string> {
     return this.page.locator('#error-summary-title').innerText();
   }
 
   async getErrorMessageDetailText(): Promise<string> {
     return (await this.page.locator('.govuk-error-summary__list').innerText()).trim();
-  }
-
-  data(field: string): string {
-    const value = this.applicant?.[field];
-    if (value === undefined) throw new Error(`Missing FAR applicant field: ${field}`);
-    return value;
   }
 
   async typeInto(locator: Locator, text: string): Promise<void> {
@@ -197,22 +186,6 @@ export class BasePage {
 
   async clickUploadFileButton(): Promise<void> {
     await this.uploadFileButton.click();
-  }
-
-  async isTextOnPage(text: string): Promise<boolean> {
-    return (await this.page.locator('body').innerText()).includes(text);
-  }
-
-  async getErrorSummaryTitle(): Promise<string> {
-    return this.thereIsAProblemText.innerText();
-  }
-
-  async getErrorMessageDetail(): Promise<string> {
-    return this.errorSummaryList.innerText();
-  }
-
-  async getPageHeaderText(): Promise<string> {
-    return this.headerText.innerText();
   }
 
   private escapeXPathText(text: string): string {

@@ -15,26 +15,8 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
   if (context === 'validation') {
     switch (scenario) {
       case "Apply for a new authority":
-        pages.basePage.applicant = {
-          whatYouWantToDo: "Apply for a new authority",
-          uploadAdditionalExistingDoc: "Yes",
-          whatIsTheMuseumName: "Museum1",
-          anotherAddressToStoreFirearms: "No",
-          whoShouldWeContact: "MuseumTest",
-          contactSameAsPreviousAddress: "Yes",
-          purchaseOrder: "No",
-        };
         return;
       case "Renew existing authority":
-        pages.basePage.applicant = {
-          whatYouWantToDo: "Apply for a new authority",
-          uploadAdditionalExistingDoc: "Yes",
-          whatIsTheMuseumName: "Museum1",
-          anotherAddressToStoreFirearms: "Yes",
-          whoShouldWeContact: "MuseumTester",
-          contactSameAsPreviousAddress: "No",
-          purchaseOrder: "Yes",
-        };
         return;
       default:
         throw new Error(`Unknown FAR scenario description: FARMuseum/${context}/${JSON.stringify(scenario)}`);
@@ -42,25 +24,15 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
   }
   switch (scenario) {
     case "Apply for a new authority": {
-      const answers = {
-        whatYouWantToDo: "Apply for a new authority",
-        uploadAdditionalExistingDoc: "Yes",
-        whatIsTheMuseumName: "Museum1",
-        anotherAddressToStoreFirearms: "No",
-        whoShouldWeContact: "MuseumTest",
-        contactSameAsPreviousAddress: "Yes",
-        purchaseOrder: "No",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startMuseumsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(c.MUSEUM_NAME);
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorageWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farMuseumAnotherAddressForStoragePage.assertPageTitle();
       expect(await pages.farMuseumAnotherAddressForStoragePage.isStorageAddressAdded()).toBe(true);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
-      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck(answers.whoShouldWeContact);
+      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("MuseumTest");
       await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle();
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
@@ -72,19 +44,9 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Apply for a new authority - Another Storage address": {
-      const answers = {
-        whatYouWantToDo: "Apply for a new authority",
-        uploadAdditionalExistingDoc: "Yes",
-        whatIsTheMuseumName: "Museum1",
-        anotherAddressToStoreFirearms: "Yes",
-        whoShouldWeContact: "MuseumTester",
-        contactSameAsPreviousAddress: "No",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startMuseumsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(c.MUSEUM_NAME);
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorageWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farMuseumAnotherAddressForStoragePage.assertPageTitle();
@@ -92,7 +54,7 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressYes();
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
-      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck(answers.whoShouldWeContact);
+      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("MuseumTester");
       await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle();
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameNo();
@@ -104,19 +66,9 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Renew existing authority": {
-      const answers = {
-        whatYouWantToDo: "Renew an existing authority",
-        uploadAdditionalExistingDoc: "No",
-        whatIsTheMuseumName: "Museum1",
-        anotherAddressToStoreFirearms: "No",
-        whoShouldWeContact: "Test",
-        contactSameAsPreviousAddress: "Yes",
-        purchaseOrder: "No",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startMuseumsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
@@ -125,7 +77,7 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       await pages.farMuseumAnotherAddressForStoragePage.assertPageTitle();
       expect(await pages.farMuseumAnotherAddressForStoragePage.isStorageAddressAdded()).toBe(true);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
-      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck(answers.whoShouldWeContact);
+      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("Test");
       await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle();
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
@@ -137,19 +89,9 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Renew existing authority - additional Supporting doc - Yes": {
-      const answers = {
-        whatYouWantToDo: "Renew an existing authority",
-        uploadAdditionalExistingDoc: "Yes",
-        whatIsTheMuseumName: "Museum1",
-        anotherAddressToStoreFirearms: "Yes",
-        whoShouldWeContact: "Test",
-        contactSameAsPreviousAddress: "No",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startMuseumsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
@@ -162,7 +104,7 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressYes();
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
-      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck(answers.whoShouldWeContact);
+      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("Test");
       await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle();
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameNo();
@@ -174,19 +116,9 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Amend existing authority": {
-      const answers = {
-        whatYouWantToDo: "Amend an existing authority",
-        uploadAdditionalExistingDoc: "No",
-        whatIsTheMuseumName: "Museum1",
-        anotherAddressToStoreFirearms: "No",
-        whoShouldWeContact: "Test",
-        contactSameAsPreviousAddress: "Yes",
-        purchaseOrder: "No",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startMuseumsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
@@ -195,7 +127,7 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       await pages.farMuseumAnotherAddressForStoragePage.assertPageTitle();
       expect(await pages.farMuseumAnotherAddressForStoragePage.isStorageAddressAdded()).toBe(true);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
-      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck(answers.whoShouldWeContact);
+      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("Test");
       await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle();
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
@@ -207,19 +139,9 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       break;
     }
     case "Amend existing authority - additional Supporting doc - Yes": {
-      const answers = {
-        whatYouWantToDo: "Amend an existing authority",
-        uploadAdditionalExistingDoc: "Yes",
-        whatIsTheMuseumName: "Museum1",
-        anotherAddressToStoreFirearms: "Yes",
-        whoShouldWeContact: "Test",
-        contactSameAsPreviousAddress: "No",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startMuseumsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
@@ -232,7 +154,7 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressYes();
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
-      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck(answers.whoShouldWeContact);
+      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("Test");
       await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle();
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameNo();
@@ -276,7 +198,41 @@ When('I select Yes to contact address same as previous and click continue', asyn
 });
 
 When('I enter a contact name and click continue', async ({ pages, page }) => {
-  await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact(pages.basePage.data('whoShouldWeContact'));
+  const { product, dataContext, scenario } = pages.basePage;
+  if (product !== 'FARMuseum') {
+    throw new Error(`Unsupported FAR museum contact product: ${product}`);
+  }
+  if (dataContext === 'validation') {
+    switch (scenario) {
+      case 'Apply for a new authority':
+        await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact('MuseumTest');
+        return;
+      case 'Renew existing authority':
+        await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact('MuseumTester');
+        return;
+      default:
+        throw new Error(`Unknown FAR scenario description: FARMuseum/${dataContext}/${JSON.stringify(scenario)}`);
+    }
+  }
+  if (dataContext !== 'journey') {
+    throw new Error(`Unsupported FAR data context: FARMuseum/${dataContext}`);
+  }
+  switch (scenario) {
+    case 'Apply for a new authority':
+      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact('MuseumTest');
+      break;
+    case 'Apply for a new authority - Another Storage address':
+      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact('MuseumTester');
+      break;
+    case 'Renew existing authority':
+    case 'Renew existing authority - additional Supporting doc - Yes':
+    case 'Amend existing authority':
+    case 'Amend existing authority - additional Supporting doc - Yes':
+      await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContact('Test');
+      break;
+    default:
+      throw new Error(`Unknown FAR scenario description: FARMuseum/${dataContext}/${JSON.stringify(scenario)}`);
+  }
 });
 
 When('I select address and click continue', async ({ pages, page }) => {

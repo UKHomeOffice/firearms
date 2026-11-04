@@ -14,21 +14,9 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
   }
   switch (scenario) {
     case "Apply for a new authority": {
-      const answers = {
-        whatYouWantToDo: "Apply for a new authority",
-        uploadAdditionalExistingDoc: "N/A",
-        uploadAdditionalDoc: "No",
-        clubANewClub: "Yes",
-        sourceFirstUseAnotherShootingRange: "Yes",
-        useAnotherShootingRange: "No",
-        atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
-        anotherGunStorageAddress: "No",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startShootingClubsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
       await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
@@ -58,21 +46,9 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Apply for a new authority - Another Gun Storage address": {
-      const answers = {
-        whatYouWantToDo: "Apply for a new authority",
-        uploadAdditionalExistingDoc: "N/A",
-        uploadAdditionalDoc: "No",
-        clubANewClub: "No",
-        sourceFirstUseAnotherShootingRange: "Yes",
-        useAnotherShootingRange: "Yes",
-        atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
-        anotherGunStorageAddress: "Yes",
-        purchaseOrder: "No",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startShootingClubsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farShootClubUploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
       await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
@@ -107,21 +83,9 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Renew existing authority": {
-      const answers = {
-        whatYouWantToDo: "Renew an existing authority",
-        uploadAdditionalExistingDoc: "No",
-        uploadAdditionalDoc: "No",
-        clubANewClub: "N/A",
-        sourceFirstUseAnotherShootingRange: "No",
-        useAnotherShootingRange: "N/A",
-        atWhichOfAddressesWillFirearmsBeStored: "Club secretary's contact address",
-        anotherGunStorageAddress: "No",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startShootingClubsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
@@ -152,21 +116,9 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Renew existing authority - additional support doc - Yes": {
-      const answers = {
-        whatYouWantToDo: "Renew an existing authority",
-        uploadAdditionalExistingDoc: "Yes",
-        uploadAdditionalDoc: "Yes",
-        clubANewClub: "N/A",
-        sourceFirstUseAnotherShootingRange: "No",
-        useAnotherShootingRange: "N/A",
-        atWhichOfAddressesWillFirearmsBeStored: "Club secretary's contact address",
-        anotherGunStorageAddress: "No",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startShootingClubsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
@@ -201,21 +153,9 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Amend existing authority": {
-      const answers = {
-        whatYouWantToDo: "Amend an existing authority",
-        uploadAdditionalExistingDoc: "No",
-        uploadAdditionalDoc: "No",
-        clubANewClub: "N/A",
-        sourceFirstUseAnotherShootingRange: "No",
-        useAnotherShootingRange: "N/A",
-        atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
-        anotherGunStorageAddress: "Yes",
-        purchaseOrder: "No",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startShootingClubsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
@@ -248,21 +188,9 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
       break;
     }
     case "Amend existing authority - additional support doc - Yes": {
-      const answers = {
-        whatYouWantToDo: "Amend an existing authority",
-        uploadAdditionalExistingDoc: "Yes",
-        uploadAdditionalDoc: "yes",
-        clubANewClub: "N/A",
-        sourceFirstUseAnotherShootingRange: "No",
-        useAnotherShootingRange: "N/A",
-        atWhichOfAddressesWillFirearmsBeStored: "Shooting ranges",
-        anotherGunStorageAddress: "No",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startShootingClubsQuestionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);

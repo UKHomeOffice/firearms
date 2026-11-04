@@ -16,33 +16,14 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
   }
   switch (scenario) {
     case "Apply for a new authority": {
-      const answers = {
-        whatYouWantToDo: "Apply for a new authority",
-        uploadAdditionalExistingDoc: "N/A",
-        uploadAdditionalDoc: "No",
-        typeOfOrganisation: "Company",
-        prohibitedItemsBeImported: "Yes",
-        willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
-        anotherAddressToStoreProhibitedItems: "Yes",
-        weaponsOrComponentsSections: "Unspecified sections and quantities, Text input",
-        ammunitionSection: "Unspecified sections and quantities, Text input",
-        individualNamedOnTheAuthority: "One",
-        nameOfFirstAuthorityHolder: "N/A",
-        nameOfAuthorityHolder: "Test",
-        nameOfSecondAuthorityHolder: "N/A",
-        whoToContactAbtApplication: "Test",
-        testContactAddress: "address already provided",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startS5Questionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
       await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
       await pages.farS5WhatTypeOfOrgIsTheAuthForPage.assertPageTitle();
-      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectCompany(answers.typeOfOrganisation, c.COMPANY_NAME, c.COMPANY_HOUSE_NUMBER);
+      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectCompany("Company", c.COMPANY_NAME, c.COMPANY_HOUSE_NUMBER);
       await pages.farS5WhatToHandleUnderTheAuthPage.answerSelectAllWeaponsWithTitleCheck();
       await pages.farS5HowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItemsWithTitleCheck();
       await pages.farS5WillProhibitedBeImportedPage.assertPageTitle();
@@ -61,15 +42,15 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farS5AmmunitionSectionsPage.assertPageTitle();
       await pages.farS5AmmunitionSectionsPage.answerSelectUnspecifiedSections(undefined);
       await pages.farS5HowManyIndividualsToBeNamedPage.assertPageTitle();
-      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(answers.individualNamedOnTheAuthority);
-      await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerFullNameOfTheAuthority(answers.nameOfAuthorityHolder);
+      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder("One");
+      await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerFullNameOfTheAuthority("Test");
       await pages.farS5WhatAreBirthDayDetailsPage.answerAuthorityBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
       await pages.farS5WhatIsCountryOfNationalityPage.answerAuthorityNationality(c.COUNTRY_UK);
       await pages.farS5WhatIsHolderMainBusinessPage.answerAuthorityMainBusinessAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.assertPageTitle();
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactHolderFirst();
       await pages.farWhatAreContactDetailsPage.answerHoldersContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
-      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck(answers.testContactAddress);
+      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck("address already provided");
       await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
       await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetailsWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
@@ -77,28 +58,9 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Renew existing authority": {
-      const answers = {
-        whatYouWantToDo: "Renew an existing authority",
-        uploadAdditionalExistingDoc: "No",
-        uploadAdditionalDoc: "No",
-        typeOfOrganisation: "Charity",
-        prohibitedItemsBeImported: "No",
-        willProhibitedItemsBeStoredOnBusinessPremises: "No",
-        anotherAddressToStoreProhibitedItems: "N/A",
-        weaponsOrComponentsSections: "Fully automatic or burst-fire weapons - Section 5(1)(a), Text input",
-        ammunitionSection: "Actual missiles (projectiles) for all the above ammunition - Section 5(1A)(g), Text input",
-        individualNamedOnTheAuthority: "One",
-        nameOfFirstAuthorityHolder: "N/A",
-        nameOfAuthorityHolder: "Test",
-        nameOfSecondAuthorityHolder: "N/A",
-        whoToContactAbtApplication: "Test",
-        testContactAddress: "address already provided",
-        purchaseOrder: "No",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startS5Questionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
@@ -106,7 +68,7 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
       await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
       await pages.farS5WhatTypeOfOrgIsTheAuthForPage.assertPageTitle();
-      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectOrgCharity(answers.typeOfOrganisation, c.CHARITY_NAME, c.CHARITY_NUMBER);
+      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectOrgCharity("Charity", c.CHARITY_NAME, c.CHARITY_NUMBER);
       await pages.farS5WhatToHandleUnderTheAuthPage.answerSelectAllWeaponsWithTitleCheck();
       await pages.farS5HowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItemsWithTitleCheck();
       await pages.farS5WillProhibitedBeImportedPage.assertPageTitle();
@@ -119,15 +81,15 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farS5AmmunitionSectionsPage.assertPageTitle();
       await pages.farS5AmmunitionSectionsPage.answerSelectActualMissiles();
       await pages.farS5HowManyIndividualsToBeNamedPage.assertPageTitle();
-      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(answers.individualNamedOnTheAuthority);
-      await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerFullNameOfTheAuthority(answers.nameOfAuthorityHolder);
+      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder("One");
+      await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerFullNameOfTheAuthority("Test");
       await pages.farS5WhatAreBirthDayDetailsPage.answerAuthorityBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
       await pages.farS5WhatIsCountryOfNationalityPage.answerAuthorityNationality(c.COUNTRY_UK);
       await pages.farS5WhatIsHolderMainBusinessPage.answerAuthorityMainBusinessAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.assertPageTitle();
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactHolderFirst();
       await pages.farWhatAreContactDetailsPage.answerHoldersContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
-      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck(answers.testContactAddress);
+      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck("address already provided");
       await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
       await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetailsWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
@@ -135,28 +97,9 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Renew existing authority - additional Supporting doc - Yes": {
-      const answers = {
-        whatYouWantToDo: "Renew an existing authority",
-        uploadAdditionalExistingDoc: "Yes",
-        uploadAdditionalDoc: "Yes",
-        typeOfOrganisation: "Museum",
-        prohibitedItemsBeImported: "Yes",
-        willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
-        anotherAddressToStoreProhibitedItems: "Yes",
-        weaponsOrComponentsSections: "Unspecified sections and quantities, Text input",
-        ammunitionSection: "Unspecified sections and quantities, Text input",
-        individualNamedOnTheAuthority: "One",
-        nameOfFirstAuthorityHolder: "N/A",
-        nameOfAuthorityHolder: "Test",
-        nameOfSecondAuthorityHolder: "N/A",
-        whoToContactAbtApplication: "Someone",
-        testContactAddress: "address already provided",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startS5Questionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Renew an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
@@ -168,7 +111,7 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
       await pages.farS5WhatTypeOfOrgIsTheAuthForPage.assertPageTitle();
-      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectMuseum(answers.typeOfOrganisation, c.MUSEUM_NAME);
+      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectMuseum("Museum", c.MUSEUM_NAME);
       await pages.farS5WhatToHandleUnderTheAuthPage.answerSelectAllWeaponsWithTitleCheck();
       await pages.farS5HowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItemsWithTitleCheck();
       await pages.farS5WillProhibitedBeImportedPage.assertPageTitle();
@@ -187,13 +130,13 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farS5AmmunitionSectionsPage.assertPageTitle();
       await pages.farS5AmmunitionSectionsPage.answerSelectUnspecifiedSections(undefined);
       await pages.farS5HowManyIndividualsToBeNamedPage.assertPageTitle();
-      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(answers.individualNamedOnTheAuthority);
-      await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerFullNameOfTheAuthority(answers.nameOfAuthorityHolder);
+      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder("One");
+      await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerFullNameOfTheAuthority("Test");
       await pages.farS5WhatAreBirthDayDetailsPage.answerAuthorityBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
       await pages.farS5WhatIsCountryOfNationalityPage.answerAuthorityNationality(c.COUNTRY_UK);
       await pages.farS5WhatIsHolderMainBusinessPage.answerAuthorityMainBusinessAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.assertPageTitle();
-      await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactSomeoneElse(answers.whoToContactAbtApplication);
+      await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactSomeoneElse("Someone");
       await pages.farWhatAreContactDetailsPage.answerHoldersContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farS5WhatIsSomeOneElseAddressPage.answerSomeoneElseContactWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
@@ -203,28 +146,9 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Amend existing authority": {
-      const answers = {
-        whatYouWantToDo: "Amend an existing authority",
-        uploadAdditionalExistingDoc: "No",
-        uploadAdditionalDoc: "No",
-        typeOfOrganisation: "Other",
-        prohibitedItemsBeImported: "Yes",
-        willProhibitedItemsBeStoredOnBusinessPremises: "No",
-        anotherAddressToStoreProhibitedItems: "Yes",
-        weaponsOrComponentsSections: "Launchers or projecting apparatus for use with the rockets or ammunition detailed above - Section 5(1A)(c), Text input",
-        ammunitionSection: "Cartridges designed to explode, noxious ammunition, grenades, bombs or rockets fired from firearms - Section 5(1)(c)\r\nText input-Maximum quantity (leave blank if unspecified)",
-        individualNamedOnTheAuthority: "Two",
-        nameOfFirstAuthorityHolder: "Test1",
-        nameOfAuthorityHolder: "Test1",
-        nameOfSecondAuthorityHolder: "Test2",
-        whoToContactAbtApplication: "Test2",
-        testContactAddress: "different address",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startS5Questionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
@@ -232,7 +156,7 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
       await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
       await pages.farS5WhatTypeOfOrgIsTheAuthForPage.assertPageTitle();
-      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectOther(answers.typeOfOrganisation, c.OTHER_ORG_NAME);
+      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectOther("Other", c.OTHER_ORG_NAME);
       await pages.farS5WhatToHandleUnderTheAuthPage.answerSelectAllWeaponsWithTitleCheck();
       await pages.farS5HowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItemsWithTitleCheck();
       await pages.farS5WillProhibitedBeImportedPage.assertPageTitle();
@@ -245,19 +169,19 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farS5AmmunitionSectionsPage.assertPageTitle();
       await pages.farS5AmmunitionSectionsPage.answerSelectCartridges();
       await pages.farS5HowManyIndividualsToBeNamedPage.assertPageTitle();
-      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(answers.individualNamedOnTheAuthority);
-      await pages.farS5FullNameOfFirstAuthorityHolderPage.answerFirstAuthorityHolderWithTitleCheck(answers.nameOfFirstAuthorityHolder);
+      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder("Two");
+      await pages.farS5FullNameOfFirstAuthorityHolderPage.answerFirstAuthorityHolderWithTitleCheck("Test1");
       await pages.farS5WhatAreBirthDayDetailsPage.answerAuthorityBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
       await pages.farS5WhatIsCountryOfNationalityPage.answerAuthorityNationality(c.COUNTRY_UK);
       await pages.farS5WhatIsHolderMainBusinessPage.answerAuthorityMainBusinessAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farS5FullNameOfSecondAuthorityHolderPage.answerSecondAuthorityHolderWithTitleCheck(answers.nameOfSecondAuthorityHolder);
+      await pages.farS5FullNameOfSecondAuthorityHolderPage.answerSecondAuthorityHolderWithTitleCheck("Test2");
       await pages.farS5WhatAreBirthDayDetailsPage.answerAuthorityBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
       await pages.farS5WhatIsCountryOfNationalityPage.answerAuthorityNationality(c.COUNTRY_UK);
       await pages.farS5WhatIsHolderMainBusinessPage.answerAuthorityMainBusinessAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.assertPageTitle();
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactHolderSecond();
       await pages.farWhatAreContactDetailsPage.answerHoldersContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
-      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck(answers.testContactAddress);
+      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck("different address");
       await pages.farS5WhichAddressToContactYouPage.answerSomeoneElseContact(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
       await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetailsWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
@@ -266,28 +190,9 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Amend existing authority - additional Supporting doc - Yes": {
-      const answers = {
-        whatYouWantToDo: "Amend an existing authority",
-        uploadAdditionalExistingDoc: "Yes",
-        uploadAdditionalDoc: "Yes",
-        typeOfOrganisation: "Shooting club (section 7(3))",
-        prohibitedItemsBeImported: "Yes",
-        willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
-        anotherAddressToStoreProhibitedItems: "Yes",
-        weaponsOrComponentsSections: "Launchers or projecting apparatus for use with the rockets or ammunition detailed above - Section 5(1A)(c), Text input",
-        ammunitionSection: "Cartridges designed to explode, noxious ammunition, grenades, bombs or rockets fired from firearms - Section 5(1)(c)",
-        individualNamedOnTheAuthority: "Two",
-        nameOfFirstAuthorityHolder: "Test1",
-        nameOfAuthorityHolder: "Test1",
-        nameOfSecondAuthorityHolder: "Test2",
-        whoToContactAbtApplication: "Test2",
-        testContactAddress: "different address",
-        purchaseOrder: "Yes",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startS5Questionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Amend an existing authority");
       await pages.farUploadExistingAuthDocsPage.uploadExistingAuthorityFile(c.UPLOAD_FILE);
       await pages.farUploadAdditionalExistingDocsPage.assertPageTitle();
       await pages.farUploadAdditionalExistingDocsPage.answerUploadAdditionalDoc(c.RESPONSE_YES);
@@ -299,7 +204,7 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
       await pages.farS5WhatTypeOfOrgIsTheAuthForPage.assertPageTitle();
-      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectShootingClub(answers.typeOfOrganisation, c.SHOOT_CLUB_NAME);
+      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectShootingClub("Shooting club (section 7(3))", c.SHOOT_CLUB_NAME);
       await pages.farS5WhatToHandleUnderTheAuthPage.answerSelectAllWeaponsWithTitleCheck();
       await pages.farS5HowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItemsWithTitleCheck();
       await pages.farS5WillProhibitedBeImportedPage.assertPageTitle();
@@ -318,19 +223,19 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farS5AmmunitionSectionsPage.assertPageTitle();
       await pages.farS5AmmunitionSectionsPage.answerSelectCartridges();
       await pages.farS5HowManyIndividualsToBeNamedPage.assertPageTitle();
-      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(answers.individualNamedOnTheAuthority);
-      await pages.farS5FullNameOfFirstAuthorityHolderPage.answerFirstAuthorityHolderWithTitleCheck(answers.nameOfFirstAuthorityHolder);
+      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder("Two");
+      await pages.farS5FullNameOfFirstAuthorityHolderPage.answerFirstAuthorityHolderWithTitleCheck("Test1");
       await pages.farS5WhatAreBirthDayDetailsPage.answerAuthorityBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
       await pages.farS5WhatIsCountryOfNationalityPage.answerAuthorityNationality(c.COUNTRY_UK);
       await pages.farS5WhatIsHolderMainBusinessPage.answerAuthorityMainBusinessAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farS5FullNameOfSecondAuthorityHolderPage.answerSecondAuthorityHolderWithTitleCheck(answers.nameOfSecondAuthorityHolder);
+      await pages.farS5FullNameOfSecondAuthorityHolderPage.answerSecondAuthorityHolderWithTitleCheck("Test2");
       await pages.farS5WhatAreBirthDayDetailsPage.answerAuthorityBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
       await pages.farS5WhatIsCountryOfNationalityPage.answerAuthorityNationality(c.COUNTRY_UK);
       await pages.farS5WhatIsHolderMainBusinessPage.answerAuthorityMainBusinessAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.assertPageTitle();
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactHolderSecond();
       await pages.farWhatAreContactDetailsPage.answerHoldersContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
-      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck(answers.testContactAddress);
+      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck("different address");
       await pages.farS5WhichAddressToContactYouPage.answerSomeoneElseContact(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
       await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetailsWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
@@ -339,33 +244,14 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       break;
     }
     case "Max character": {
-      const answers = {
-        whatYouWantToDo: "Apply for a new authority",
-        uploadAdditionalExistingDoc: "N/A",
-        uploadAdditionalDoc: "No",
-        typeOfOrganisation: "Sole trader",
-        prohibitedItemsBeImported: "No",
-        willProhibitedItemsBeStoredOnBusinessPremises: "Yes",
-        anotherAddressToStoreProhibitedItems: "No",
-        weaponsOrComponentsSections: "Unspecified sections and quantities, Max Characters 15000",
-        ammunitionSection: "Unspecified sections and quantities, Text input - Explain why you can't specify the section and quantities of prohibited items being handled, Max Characters 15000",
-        individualNamedOnTheAuthority: "One",
-        nameOfFirstAuthorityHolder: "N/A",
-        nameOfAuthorityHolder: "Test",
-        nameOfSecondAuthorityHolder: "N/A",
-        whoToContactAbtApplication: "Test",
-        testContactAddress: "address already provided",
-        purchaseOrder: "No",
-      };
-      pages.basePage.applicant = answers;
       if (dataOnly) return;
       await startS5Questionnaire(pages);
-      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo(answers.whatYouWantToDo);
+      await pages.farWhatDoYouWantToDoPage.answerSelectWhatYouWantToDo("Apply for a new authority");
       await pages.farS5UploadSupportingDocsPage.uploadSupportingFileWithTitleCheck(c.UPLOAD_FILE);
       await pages.farDoYouWantToUploadAdditionalDocsPage.assertPageTitle();
       await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
       await pages.farS5WhatTypeOfOrgIsTheAuthForPage.assertPageTitle();
-      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectSoleTrader(answers.typeOfOrganisation, c.TRADER_NAME);
+      await pages.farS5WhatTypeOfOrgIsTheAuthForPage.answerSelectSoleTrader("Sole trader", c.TRADER_NAME);
       await pages.farS5WhatToHandleUnderTheAuthPage.answerSelectAllWeaponsWithTitleCheck();
       await pages.farS5HowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItemsWithTitleCheck();
       await pages.farS5WillProhibitedBeImportedPage.assertPageTitle();
@@ -382,15 +268,15 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, da
       await pages.farS5AmmunitionSectionsPage.assertPageTitle();
       await pages.farS5AmmunitionSectionsPage.answerSelectUnspecifiedSections(readFileSync(c.MAX_TEXT_FILE, 'utf8'));
       await pages.farS5HowManyIndividualsToBeNamedPage.assertPageTitle();
-      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(answers.individualNamedOnTheAuthority);
-      await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerFullNameOfTheAuthority(answers.nameOfAuthorityHolder);
+      await pages.farS5HowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder("One");
+      await pages.farS5WhatsTheFullNameOfAuthorityHolderPage.answerFullNameOfTheAuthority("Test");
       await pages.farS5WhatAreBirthDayDetailsPage.answerAuthorityBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
       await pages.farS5WhatIsCountryOfNationalityPage.answerAuthorityNationality(c.COUNTRY_UK);
       await pages.farS5WhatIsHolderMainBusinessPage.answerAuthorityMainBusinessAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.assertPageTitle();
       await pages.farS5WhoDoWeContactAbtThisApplicationPage.answerContactHolderFirst();
       await pages.farWhatAreContactDetailsPage.answerHoldersContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
-      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck(answers.testContactAddress);
+      await pages.farS5WhichAddressToContactYouPage.answerSelectAddressWithTitleCheck("address already provided");
       await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
       await pages.farWhatIsTheirInvoiceAddressPage.answerInvoiceDetailsWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farDoYouHavePurchaseOrderPage.assertPageTitle();
@@ -471,5 +357,22 @@ When('I enter contact email address and click continue', async ({ pages, page })
 });
 
 When('I select address to use and click continue', async ({ pages, page }) => {
-  await pages.farS5WhichAddressToContactYouPage.answerSelectAddress(pages.basePage.data('testContactAddress'));
+  const { product, dataContext, scenario } = pages.basePage;
+  if (product !== 'FARS5' || dataContext !== 'journey') {
+    throw new Error(`Unsupported FAR authority contact context: ${product}/${dataContext}`);
+  }
+  switch (scenario) {
+    case 'Apply for a new authority':
+    case 'Renew existing authority':
+    case 'Renew existing authority - additional Supporting doc - Yes':
+    case 'Max character':
+      await pages.farS5WhichAddressToContactYouPage.answerSelectAddress('address already provided');
+      break;
+    case 'Amend existing authority':
+    case 'Amend existing authority - additional Supporting doc - Yes':
+      await pages.farS5WhichAddressToContactYouPage.answerSelectAddress('different address');
+      break;
+    default:
+      throw new Error(`Unknown FAR scenario description: FARS5/${dataContext}/${JSON.stringify(scenario)}`);
+  }
 });

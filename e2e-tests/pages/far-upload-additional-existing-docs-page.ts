@@ -1,7 +1,7 @@
-import { FarUploadDocs } from './far-upload-docs.page';
+import { FarUploadDocs } from './far-upload-docs';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarUploadExistingAuthDocsPage extends FarUploadDocs {
+export class FarUploadAdditionalExistingDocsPage extends FarUploadDocs {
 
   constructor(page: Page) {
     super(page);
@@ -9,7 +9,7 @@ export class FarUploadExistingAuthDocsPage extends FarUploadDocs {
 
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
-    const subTitle = "Upload existing authority documents";
+    const subTitle = "Do you want to upload any additional existing authority documents to support your application?";
     if (title.includes("Apply for museum firearms licence")) {
         return subTitle + " – Apply for museum firearms licence";
     }
@@ -23,13 +23,10 @@ export class FarUploadExistingAuthDocsPage extends FarUploadDocs {
     throw new Error("Unexpected page title: " + title);
   }
 
-  async uploadExistingFile(filePath: string): Promise<void> {
-    await this.uploadFile(filePath);
-  }
-
-  async uploadExistingAuthorityFile(filePath: string): Promise<void> {
-    await this.assertPageTitle();
-    await this.uploadExistingFile(filePath);
+  async answerUploadAdditionalDoc(response: string): Promise<void> {
+    await this.isPreviousDocAdded();
+    await this.getRadioOrCheckBox2(response).click();
+    await this.clickContinueButton();
   }
 
 }

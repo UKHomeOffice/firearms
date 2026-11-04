@@ -58,7 +58,7 @@ When('I complete the Firearms {string} questionnaire for product {string} pertai
 Given('I check my answers for Firearms {string} - {string}', async ({ pages, page }, journey: string, activity: string) => {
   await pages.farCheckYourAnswersPage.assertPageTitle();
   expect(await pages.farCheckYourAnswersPage.isAbleToCheckAnswers()).toBe(true);
-  await checkFarAnswers(pages, pages.basePage, journey, activity);
+  await checkFarAnswers(pages, journey, activity);
 });
 
 Given('I am able to submit the Firearms questionnaire', async ({ pages, page }) => {

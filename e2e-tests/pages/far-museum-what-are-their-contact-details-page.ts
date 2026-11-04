@@ -1,5 +1,5 @@
 import { BasePage } from './base-page';
-import { FarContactDetails } from './far-contact-details.page';
+import { FarContactDetails } from './far-contact-details';
 import type { Locator, Page } from '@playwright/test';
 
 export class FarMuseumWhatAreTheirContactDetailsPage extends BasePage {

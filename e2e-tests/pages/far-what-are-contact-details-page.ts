@@ -1,4 +1,4 @@
-import { FarContactDetails } from './far-contact-details.page';
+import { FarContactDetails } from './far-contact-details';
 import type { Locator, Page } from '@playwright/test';
 
 export class FarWhatAreContactDetailsPage extends FarContactDetails {

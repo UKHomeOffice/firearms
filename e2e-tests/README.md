@@ -72,9 +72,10 @@ scenario IDs), source page/method and fixture coverage, StepLib method coverage,
 step-expression coverage, and all 18 CSV data variants. These are structural
 checks, not a substitute for browser validation.
 
-Each product step file owns an exact-description switch returning named answers,
-such as `whatYouWantToDo: 'Apply for a new authority'`. The selectors are
-`selectS5Scenario`, `selectMuseumsScenario`, and `selectShootingClubsScenario`.
+Each product step file owns an exact-description scenario switch whose cases
+execute the ordered journey. Answers are passed directly into page methods as
+literals or existing constants. There is no shared answer object or answer lookup
+on `BasePage`; only product, context, scenario and the submitted reference persist.
 Full questionnaire journeys combine product setup, scenario selection, journey
 navigation, and questionnaire completion in one step:
 
@@ -84,22 +85,24 @@ When I complete the Firearms "Museums" questionnaire for product "FARMuseum" per
 
 Use `"New Dealer"` / `"FARS5"` for S5 and `"Shooting Clubs"` /
 `"FARShootingClub"` for clubs. The combined step validates the description and
-journey/product pair before navigation, stores the answers and description in
-scenario-scoped `BasePage` state, and reuses the existing ordered page calls.
-Granular setup and questionnaire steps remain available for partial validation
-flows. Unknown descriptions, products, and contexts throw clear errors. Museums
-`validation` context preserves the original renewal scenario's distinct answers;
-full questionnaire journeys use the default `journey` context.
+journey/product pair before navigation and stores only those identifiers.
+The existing data-only bindings validate the exact scenario without navigating.
+Validation steps pass their own explicit scenario values to page methods;
+check-your-answers assertions use explicit scenario expectations rather than
+reading answers from shared state. Unknown descriptions, products, and contexts
+throw clear errors. Museums `validation` context preserves the original renewal
+scenario's distinct contact name; full questionnaires use `journey` context.
+No descriptions are lowercased, trimmed or aliased.
 
 Run `node --test e2e-tests/steps/far-scenarios.test.cjs` on Node 24 to check all
 18 variants and both Museums validation selections. The suite retains SHA-256
-fingerprints of the original expected answers, including exact string contents,
-while ignoring object-key order. It also checks duplicate description cases,
-invalid inputs, scenario isolation, and questionnaire selection mismatches.
+fingerprints captured before removing shared answer state, covering ordered page
+calls, their arguments, and check-your-answers expectations. It also checks
+data-only setup without answer storage or navigation, exact-description rejection,
+journey/product mismatches and validation contacts and address choices.
 
-CSV files are not used at runtime. The duplicated shooting-range CSV column is
-retained as `sourceFirstUseAnotherShootingRange` as well as the effective final
-`useAnotherShootingRange` value.
+CSV files are not used at runtime. The effective shooting-range choices are
+visible directly in the scenario cases, without retaining unused source columns.
 
 The source's page-validation journey helper unconditionally called the S5
 before-you-start page even for museums and clubs. The migrated helper only
