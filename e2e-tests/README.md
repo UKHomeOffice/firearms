@@ -29,8 +29,9 @@ title implementations rather than accepting the base title placeholder.
 ## Prerequisites
 
 - Install dependencies with `yarn install`.
-- Playwright and its test runner are pinned together because the installed
-  Playwright BDD version relies on loader APIs that changed in Playwright 1.60.
+- Playwright and its test runner are pinned to 1.64.1, matching the Drone
+  Playwright image. Playwright BDD is pinned to 9.2.1 for compatible loader APIs.
+  Keep these versions and the lockfile aligned.
 - Install Chromium when missing: `yarn playwright install chromium`.
 - Set `PLAYWRIGHT_BASE_URL` to a running firearms service. Without it, Playwright
   starts `npm start` using `PLAYWRIGHT_PORT` (default 8080). The app and the tests
@@ -40,7 +41,40 @@ title implementations rather than accepting the base title placeholder.
   tests also require working file-vault, PDF conversion, authentication, Notify,
   and casework services. The harness does not fake successful submissions.
 
-## Validation order
+## Drone CI
+
+Pull requests follow the existing branch policy (`master`, `feature/*`, `deps-*`,
+and `deps/*`). After `deploy_to_branch`, Playwright reads the internal host from
+`/root/.dockersock/branch_url.txt`. Reports publish on both successful and failed
+test runs using a GitHub App installation token. Each PR has a prerelease with
+build-specific HTML report ZIP assets and a comment linking each build's report.
+Rerunning a build replaces its asset and updates its comment.
+
+Create the Drone cron `nightly_e2e_playwright` on `master` with the desired nightly
+schedule. It runs against
+`https://firearms-licensing.uat.internal.sas-notprod.homeoffice.gov.uk` and sends a
+result summary to Slack, including setup failures when no totals are available.
+
+Required Drone secrets:
+
+- Config clone App: `HOF_GH_APP_ID`, `HOF_GH_APP_PK`, `HOF_GH_APP_INSTALL_ID`.
+- Report App: `hof_ukho_gh_app_id`, `hof_ukho_gh_app_pk`,
+  `hof_ukho_gh_app_install_id`.
+- Test email: `SAS_HOF_EMAIL`.
+- Nightly notification: `slack_sas_hof_e2e_tests_webhook`.
+
+The clone App must have Contents read access to
+`UKHomeOfficeForms/hof-services-config`. The report App needs Contents write and
+Pull requests write access to `UKHomeOffice/firearms`. Provision these secrets
+for the intended PR/cron/promotion events using the organization's trusted-PR
+policy; do not expose App private keys to untrusted fork builds. Tokens are
+short-lived, handed off in permission-restricted files, and cleaned up after use.
+CI runners need internal service access, npm/image registry access and outbound
+access to GitHub and Slack. No local `.env` file is needed in CI.
+The PR and nightly containers bootstrap Node 24.22.1 to satisfy the repository's
+`>=24.22.1 <25.0.0` engine requirement.
+
+## Validation commands
 
 ```powershell
 yarn test:e2e:types
