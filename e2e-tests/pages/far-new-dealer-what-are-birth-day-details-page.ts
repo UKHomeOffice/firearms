@@ -1,7 +1,7 @@
 import { BasePage } from './base-page';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarS5WhatAreBirthDayDetailsPage extends BasePage {
+export class FarNewDealerWhatAreBirthDayDetailsPage extends BasePage {
   readonly townBirth: Locator;
   readonly countryBirth: Locator;
 

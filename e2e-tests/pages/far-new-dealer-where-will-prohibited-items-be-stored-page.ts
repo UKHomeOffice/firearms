@@ -1,17 +1,10 @@
 import { BasePage } from './base-page';
-import type { Locator, Page } from '@playwright/test';
 
-export class FarS5FullNameOfSecondAuthorityHolderPage extends BasePage {
-  readonly secondHoldersName: Locator;
-
-  constructor(page: Page) {
-    super(page);
-    this.secondHoldersName = page.locator("input#second-authority-holders-name");
-  }
+export class FarNewDealerWhereWillProhibitedItemsBeStoredPage extends BasePage {
 
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
-    const subTitle = "What's the full name of the second authority holder?";
+    const subTitle = "Where will the prohibited items be stored?";
     if (title.includes("Apply for museum firearms licence")) {
         return subTitle + " – Apply for museum firearms licence";
     }
@@ -24,15 +17,13 @@ export class FarS5FullNameOfSecondAuthorityHolderPage extends BasePage {
 
     throw new Error("Unexpected page title: " + title);
   }
-
-  async answerSecondAuthorityHolder(holder: string): Promise<void> {
-    await this.typeInto(this.secondHoldersName, holder);
-    await this.clickContinueButton();
+  async answerProhibitedItemBeStorage(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
+    await this.enterYourAddressNoCountry(addressLine1, addressLine2, townOrCity, postcode);
   }
 
-  async answerSecondAuthorityHolderWithTitleCheck(holder: string): Promise<void> {
+  async answerProhibitedItemBeStorageWithTitleCheck(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.answerSecondAuthorityHolder(holder);
+    await this.answerProhibitedItemBeStorage(addressLine1, addressLine2, townOrCity, postcode);
   }
 
 }

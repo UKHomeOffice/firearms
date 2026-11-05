@@ -1,15 +1,17 @@
-import { FarUploadDocs } from './far-upload-docs';
+import { BasePage } from './base-page';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarS5UploadSupportingDocsPage extends FarUploadDocs {
+export class FarNewDealerWillProhibitedBeImportedPage extends BasePage {
+  readonly importCountry: Locator;
 
   constructor(page: Page) {
     super(page);
+    this.importCountry = page.locator("input#import-country");
   }
 
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
-    const subTitle = "Upload your supporting documents which must include a cover letter to explain the reason you need to possess weapons from the Secretary of State.";
+    const subTitle = "Will any of the prohibited items be imported?";
     if (title.includes("Apply for museum firearms licence")) {
         return subTitle + " – Apply for museum firearms licence";
     }
@@ -23,13 +25,15 @@ export class FarS5UploadSupportingDocsPage extends FarUploadDocs {
     throw new Error("Unexpected page title: " + title);
   }
 
-  async uploadSupportingFile(filePath: string): Promise<void> {
-    await this.uploadFile(filePath);
+  async answerProhibitedItemBeImportedYes(importCountry = 'Import Country'): Promise<void> {
+    await this.getRadioOrCheckBox2("Yes").click();
+    await this.typeInto(this.importCountry, importCountry);
+    await this.clickContinueButton();
   }
 
-  async uploadSupportingFileWithTitleCheck(filePath: string): Promise<void> {
-    await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.uploadSupportingFile(filePath);
+  async answerProhibitedItemBeImportedNo(): Promise<void> {
+    await this.getRadioOrCheckBox2("No").click();
+    await this.clickContinueButton();
   }
 
 }

@@ -1,17 +1,17 @@
 import { BasePage } from './base-page';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarS5WillProhibitedBeImportedPage extends BasePage {
-  readonly importCountry: Locator;
+export class FarNewDealerWhatsTheFullNameOfAuthorityHolderPage extends BasePage {
+  readonly holdersName: Locator;
 
   constructor(page: Page) {
     super(page);
-    this.importCountry = page.locator("input#import-country");
+    this.holdersName = page.locator("input#first-authority-holders-name");
   }
 
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
-    const subTitle = "Will any of the prohibited items be imported?";
+    const subTitle = "What's the full name of the authority holder?";
     if (title.includes("Apply for museum firearms licence")) {
         return subTitle + " – Apply for museum firearms licence";
     }
@@ -21,19 +21,17 @@ export class FarS5WillProhibitedBeImportedPage extends BasePage {
     if (title.includes("Apply for shooting club approval")) {
         return subTitle + " – Apply for shooting club approval";
     }
-
     throw new Error("Unexpected page title: " + title);
   }
 
-  async answerProhibitedItemBeImportedYes(importCountry = 'Import Country'): Promise<void> {
-    await this.getRadioOrCheckBox2("Yes").click();
-    await this.typeInto(this.importCountry, importCountry);
+  async answerEnterNameOfAuthorityHolder(name: string): Promise<void> {
+    await this.typeInto(this.holdersName, name);
     await this.clickContinueButton();
   }
 
-  async answerProhibitedItemBeImportedNo(): Promise<void> {
-    await this.getRadioOrCheckBox2("No").click();
-    await this.clickContinueButton();
+  async answerFullNameOfTheAuthority(name: string): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.answerEnterNameOfAuthorityHolder(name);
   }
 
 }

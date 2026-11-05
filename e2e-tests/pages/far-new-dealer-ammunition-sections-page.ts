@@ -1,7 +1,7 @@
 import { BasePage } from './base-page';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarS5AmmunitionSectionsPage extends BasePage {
+export class FarNewDealerAmmunitionSectionsPage extends BasePage {
   readonly cartridgeQty: Locator;
   readonly armourPiercing: Locator;
   readonly incendiaryMissile: Locator;

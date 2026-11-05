@@ -1,15 +1,17 @@
 import { BasePage } from './base-page';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarS5HowWillProhibitedItemsBeObtainedPage extends BasePage {
+export class FarNewDealerFullNameOfFirstAuthorityHolderPage extends BasePage {
+  readonly firstHoldersName: Locator;
 
   constructor(page: Page) {
     super(page);
+    this.firstHoldersName = page.locator("input#first-authority-holders-name");
   }
 
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
-    const subTitle = "How will the prohibited items be obtained?";
+    const subTitle = "What's the full name of the first authority holder?";
     if (title.includes("Apply for museum firearms licence")) {
         return subTitle + " – Apply for museum firearms licence";
     }
@@ -23,19 +25,14 @@ export class FarS5HowWillProhibitedItemsBeObtainedPage extends BasePage {
     throw new Error("Unexpected page title: " + title);
   }
 
-  async answerSelectAllProhibitedItems(reason = 'Input Text'): Promise<void> {
-    await this.getRadioOrCheckBox2("Buy").click();
-    await this.getRadioOrCheckBox2("temporary possession").click();
-    await this.getRadioOrCheckBox2("Manufacture").click();
-    await this.getRadioOrCheckBox2("The prohibited").click();
-    await this.getRadioOrCheckBox2("Acquire through").click();
-    await this.getTextArea2("prohibited").fill(reason);
+  async answerFirstAuthorityHolder(holder: string): Promise<void> {
+    await this.typeInto(this.firstHoldersName, holder);
     await this.clickContinueButton();
   }
 
-  async answerSelectAllProhibitedItemsWithTitleCheck(reason = 'Input Text'): Promise<void> {
+  async answerFirstAuthorityHolderWithTitleCheck(holder: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.answerSelectAllProhibitedItems(reason);
+    await this.answerFirstAuthorityHolder(holder);
   }
 
 }

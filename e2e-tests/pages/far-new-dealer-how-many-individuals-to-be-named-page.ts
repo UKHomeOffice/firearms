@@ -1,7 +1,7 @@
 import { BasePage } from './base-page';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarS5ProhibitedItemsStoredOnBusinessPremisesPage extends BasePage {
+export class FarNewDealerHowManyIndividualsToBeNamedPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
@@ -9,7 +9,7 @@ export class FarS5ProhibitedItemsStoredOnBusinessPremisesPage extends BasePage {
 
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
-    const subTitle = "Will the prohibited items be stored on the business's premises in the UK?";
+    const subTitle = "How many individuals will be named on the authority?";
     if (title.includes("Apply for museum firearms licence")) {
         return subTitle + " – Apply for museum firearms licence";
     }
@@ -23,16 +23,8 @@ export class FarS5ProhibitedItemsStoredOnBusinessPremisesPage extends BasePage {
     throw new Error("Unexpected page title: " + title);
   }
 
-  async answerItemsStoredOnBusPremisesYes(): Promise<void> {
-    await this.getRadioOrCheckBox2("Yes").click();
-    await this.clickContinueButton();
-  }
-
-  async answerItemsStoredOnBusPremisesNo(
-    reason = 'The Prohibited items will be stored in business premises',
-  ): Promise<void> {
-    await this.getRadioOrCheckBox2("No").click();
-    await this.getTextArea2("prohibited items").fill(reason);
+  async answerHowManyAuthorityHolder(authHolder: string): Promise<void> {
+    await this.getRadioOrCheckBox2(authHolder).click();
     await this.clickContinueButton();
   }
 

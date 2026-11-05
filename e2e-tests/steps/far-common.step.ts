@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { Given, When, Then, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
-import { completeS5Questionnaire } from './far-s5.step';
+import { completeS5Questionnaire } from './far-new-dealer.step';
 import { completeMuseumsQuestionnaire } from './far-museums.step';
 import { completeShootingClubsQuestionnaire } from './far-shooting-clubs.step';
 
@@ -112,7 +112,7 @@ When("I select 'upload file' button for firearms", async ({ pages, page }) => {
 });
 
 When('I upload Firearms evidence file and click continue', async ({ pages, page }) => {
-  await pages.farS5UploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
+  await pages.farNewDealerUploadSupportingDocsPage.uploadSupportingFile(c.UPLOAD_FILE);
   await pages.basePage.clickContinueButton();
 });
 
@@ -135,19 +135,19 @@ When('I enter the email {string} used in original application and click continue
 });
 
 When('I enter the club address and click continue', async ({ pages, page }) => {
-  await pages.farS5WhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farNewDealerWhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
 });
 
 When('I enter exhibition or storage address and click continue', async ({ pages, page }) => {
-  await pages.farS5WhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farNewDealerWhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
 });
 
 When('I enter main business address and click continue', async ({ pages, page }) => {
-  await pages.farS5WhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farNewDealerWhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
 });
 
 When('I enter invoice address and click continue', async ({ pages, page }) => {
-  await pages.farS5WhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.farNewDealerWhatIsHolderMainBusinessPage.answerBusinessDetails(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
 });
 
 When('I enter invoice contact details {string} and click continue', async ({ pages, page }, email: string) => {

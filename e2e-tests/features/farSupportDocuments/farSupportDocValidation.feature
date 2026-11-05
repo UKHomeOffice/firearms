@@ -1,4 +1,4 @@
-@FarRegression @FAR-S5 @FAR-SDoc @regression2
+@FarRegression @FarNewDealer @FarSupportDoc @regression2
 Feature: FAR - Firearms Supporting Documents Validations
 
   @FAR-SDoc-V

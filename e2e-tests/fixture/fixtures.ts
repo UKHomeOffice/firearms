@@ -18,29 +18,29 @@ import { FarMuseumWhatIsTheirContactAddressPage } from '../pages/far-museum-what
 import { FarMuseumWhereWillFirearmsBeStoredPage } from '../pages/far-museum-where-will-firearms-be-stored-page';
 import { FarMuseumWhoShouldWeContactAbtThisApplicationPage } from '../pages/far-museum-who-should-we-contact-abt-this-application-page';
 import { FarPrivacyNoticePage } from '../pages/far-privacy-notice-page';
-import { FarSDocUploadSupportingDocsPage } from '../pages/far-s-doc-upload-supporting-docs-page';
-import { FarS5AmmunitionSectionsPage } from '../pages/far-s5-ammunition-sections-page';
-import { FarS5AnotherAddressForStoragePage } from '../pages/far-s5-another-address-for-storage-page';
-import { FarS5CheckYourAnswersPage } from '../pages/far-s5-check-your-answers-page';
-import { FarS5FullNameOfFirstAuthorityHolderPage } from '../pages/far-s5-full-name-of-first-authority-holder-page';
-import { FarS5FullNameOfSecondAuthorityHolderPage } from '../pages/far-s5-full-name-of-second-authority-holder-page';
-import { FarS5HowManyIndividualsToBeNamedPage } from '../pages/far-s5-how-many-individuals-to-be-named-page';
-import { FarS5HowWillProhibitedItemsBeObtainedPage } from '../pages/far-s5-how-will-prohibited-items-be-obtained-page';
-import { FarS5ProhibitedItemsStoredOnBusinessPremisesPage } from '../pages/far-s5-prohibited-items-stored-on-business-premises-page';
-import { FarS5UploadSupportingDocsPage } from '../pages/far-s5-upload-supporting-docs-page';
-import { FarS5WeaponsAndComponentsSectionPage } from '../pages/far-s5-weapons-and-components-section-page';
-import { FarS5WhatAreBirthDayDetailsPage } from '../pages/far-s5-what-are-birth-day-details-page';
-import { FarS5WhatBusinessActivitiesToCarryOutPage } from '../pages/far-s5-what-business-activities-to-carry-out-page';
-import { FarS5WhatIsCountryOfNationalityPage } from '../pages/far-s5-what-is-country-of-nationality-page';
-import { FarS5WhatIsHolderMainBusinessPage } from '../pages/far-s5-what-is-holder-main-business-page';
-import { FarS5WhatIsSomeOneElseAddressPage } from '../pages/far-s5-what-is-some-one-else-address-page';
-import { FarS5WhatToHandleUnderTheAuthPage } from '../pages/far-s5-what-to-handle-under-the-auth-page';
-import { FarS5WhatTypeOfOrgIsTheAuthForPage } from '../pages/far-s5-what-type-of-org-is-the-auth-for-page';
-import { FarS5WhatsTheFullNameOfAuthorityHolderPage } from '../pages/far-s5-whats-the-full-name-of-authority-holder-page';
-import { FarS5WhereWillProhibitedItemsBeStoredPage } from '../pages/far-s5-where-will-prohibited-items-be-stored-page';
-import { FarS5WhichAddressToContactYouPage } from '../pages/far-s5-which-address-to-contact-you-page';
-import { FarS5WhoDoWeContactAbtThisApplicationPage } from '../pages/far-s5-who-do-we-contact-abt-this-application-page';
-import { FarS5WillProhibitedBeImportedPage } from '../pages/far-s5-will-prohibited-be-imported-page';
+import { FarSupportDocUploadSupportingDocsPage } from '../pages/far-support-doc-upload-supporting-docs-page';
+import { FarNewDealerAmmunitionSectionsPage } from '../pages/far-new-dealer-ammunition-sections-page';
+import { FarNewDealerAnotherAddressForStoragePage } from '../pages/far-new-dealer-another-address-for-storage-page';
+import { FarNewDealerCheckYourAnswersPage } from '../pages/far-new-dealer-check-your-answers-page';
+import { FarNewDealerFullNameOfFirstAuthorityHolderPage } from '../pages/far-new-dealer-full-name-of-first-authority-holder-page';
+import { FarNewDealerFullNameOfSecondAuthorityHolderPage } from '../pages/far-new-dealer-full-name-of-second-authority-holder-page';
+import { FarNewDealerHowManyIndividualsToBeNamedPage } from '../pages/far-new-dealer-how-many-individuals-to-be-named-page';
+import { FarNewDealerHowWillProhibitedItemsBeObtainedPage } from '../pages/far-new-dealer-how-will-prohibited-items-be-obtained-page';
+import { FarNewDealerProhibitedItemsStoredOnBusinessPremisesPage } from '../pages/far-new-dealer-prohibited-items-stored-on-business-premises-page';
+import { FarNewDealerUploadSupportingDocsPage } from '../pages/far-new-dealer-upload-supporting-docs-page';
+import { FarNewDealerWeaponsAndComponentsSectionPage } from '../pages/far-new-dealer-weapons-and-components-section-page';
+import { FarNewDealerWhatAreBirthDayDetailsPage } from '../pages/far-new-dealer-what-are-birth-day-details-page';
+import { FarNewDealerWhatBusinessActivitiesToCarryOutPage } from '../pages/far-new-dealer-what-business-activities-to-carry-out-page';
+import { FarNewDealerWhatIsCountryOfNationalityPage } from '../pages/far-new-dealer-what-is-country-of-nationality-page';
+import { FarNewDealerWhatIsHolderMainBusinessPage } from '../pages/far-new-dealer-what-is-holder-main-business-page';
+import { FarNewDealerWhatIsSomeOneElseAddressPage } from '../pages/far-new-dealer-what-is-some-one-else-address-page';
+import { FarNewDealerWhatToHandleUnderTheAuthPage } from '../pages/far-new-dealer-what-to-handle-under-the-auth-page';
+import { FarNewDealerWhatTypeOfOrgIsTheAuthForPage } from '../pages/far-new-dealer-what-type-of-org-is-the-auth-for-page';
+import { FarNewDealerWhatsTheFullNameOfAuthorityHolderPage } from '../pages/far-new-dealer-whats-the-full-name-of-authority-holder-page';
+import { FarNewDealerWhereWillProhibitedItemsBeStoredPage } from '../pages/far-new-dealer-where-will-prohibited-items-be-stored-page';
+import { FarNewDealerWhichAddressToContactYouPage } from '../pages/far-new-dealer-which-address-to-contact-you-page';
+import { FarNewDealerWhoDoWeContactAbtThisApplicationPage } from '../pages/far-new-dealer-who-do-we-contact-abt-this-application-page';
+import { FarNewDealerWillProhibitedBeImportedPage } from '../pages/far-new-dealer-will-prohibited-be-imported-page';
 import { FarShootClubAnotherAddressGunStoragePage } from '../pages/far-shoot-club-another-address-gun-storage-page';
 import { FarShootClubCheckYourAnswersPage } from '../pages/far-shoot-club-check-your-answers-page';
 import { FarShootClubFirearmsCategoriesToUsePage } from '../pages/far-shoot-club-firearms-categories-to-use-page';
@@ -88,29 +88,29 @@ export type Pages = {
   farMuseumWhereWillFirearmsBeStoredPage: FarMuseumWhereWillFirearmsBeStoredPage;
   farMuseumWhoShouldWeContactAbtThisApplicationPage: FarMuseumWhoShouldWeContactAbtThisApplicationPage;
   farPrivacyNoticePage: FarPrivacyNoticePage;
-  farSDocUploadSupportingDocsPage: FarSDocUploadSupportingDocsPage;
-  farS5AmmunitionSectionsPage: FarS5AmmunitionSectionsPage;
-  farS5AnotherAddressForStoragePage: FarS5AnotherAddressForStoragePage;
-  farS5CheckYourAnswersPage: FarS5CheckYourAnswersPage;
-  farS5FullNameOfFirstAuthorityHolderPage: FarS5FullNameOfFirstAuthorityHolderPage;
-  farS5FullNameOfSecondAuthorityHolderPage: FarS5FullNameOfSecondAuthorityHolderPage;
-  farS5HowManyIndividualsToBeNamedPage: FarS5HowManyIndividualsToBeNamedPage;
-  farS5HowWillProhibitedItemsBeObtainedPage: FarS5HowWillProhibitedItemsBeObtainedPage;
-  farS5ProhibitedItemsStoredOnBusinessPremisesPage: FarS5ProhibitedItemsStoredOnBusinessPremisesPage;
-  farS5UploadSupportingDocsPage: FarS5UploadSupportingDocsPage;
-  farS5WeaponsAndComponentsSectionPage: FarS5WeaponsAndComponentsSectionPage;
-  farS5WhatAreBirthDayDetailsPage: FarS5WhatAreBirthDayDetailsPage;
-  farS5WhatBusinessActivitiesToCarryOutPage: FarS5WhatBusinessActivitiesToCarryOutPage;
-  farS5WhatIsCountryOfNationalityPage: FarS5WhatIsCountryOfNationalityPage;
-  farS5WhatIsHolderMainBusinessPage: FarS5WhatIsHolderMainBusinessPage;
-  farS5WhatIsSomeOneElseAddressPage: FarS5WhatIsSomeOneElseAddressPage;
-  farS5WhatToHandleUnderTheAuthPage: FarS5WhatToHandleUnderTheAuthPage;
-  farS5WhatTypeOfOrgIsTheAuthForPage: FarS5WhatTypeOfOrgIsTheAuthForPage;
-  farS5WhatsTheFullNameOfAuthorityHolderPage: FarS5WhatsTheFullNameOfAuthorityHolderPage;
-  farS5WhereWillProhibitedItemsBeStoredPage: FarS5WhereWillProhibitedItemsBeStoredPage;
-  farS5WhichAddressToContactYouPage: FarS5WhichAddressToContactYouPage;
-  farS5WhoDoWeContactAbtThisApplicationPage: FarS5WhoDoWeContactAbtThisApplicationPage;
-  farS5WillProhibitedBeImportedPage: FarS5WillProhibitedBeImportedPage;
+  farSDocUploadSupportingDocsPage: FarSupportDocUploadSupportingDocsPage;
+  farNewDealerAmmunitionSectionsPage: FarNewDealerAmmunitionSectionsPage;
+  farNewDealerAnotherAddressForStoragePage: FarNewDealerAnotherAddressForStoragePage;
+  farNewDealerCheckYourAnswersPage: FarNewDealerCheckYourAnswersPage;
+  farNewDealerFullNameOfFirstAuthorityHolderPage: FarNewDealerFullNameOfFirstAuthorityHolderPage;
+  farNewDealerFullNameOfSecondAuthorityHolderPage: FarNewDealerFullNameOfSecondAuthorityHolderPage;
+  farNewDealerHowManyIndividualsToBeNamedPage: FarNewDealerHowManyIndividualsToBeNamedPage;
+  farNewDealerHowWillProhibitedItemsBeObtainedPage: FarNewDealerHowWillProhibitedItemsBeObtainedPage;
+  farNewDealerProhibitedItemsStoredOnBusinessPremisesPage: FarNewDealerProhibitedItemsStoredOnBusinessPremisesPage;
+  farNewDealerUploadSupportingDocsPage: FarNewDealerUploadSupportingDocsPage;
+  farNewDealerWeaponsAndComponentsSectionPage: FarNewDealerWeaponsAndComponentsSectionPage;
+  farNewDealerWhatAreBirthDayDetailsPage: FarNewDealerWhatAreBirthDayDetailsPage;
+  farNewDealerWhatBusinessActivitiesToCarryOutPage: FarNewDealerWhatBusinessActivitiesToCarryOutPage;
+  farNewDealerWhatIsCountryOfNationalityPage: FarNewDealerWhatIsCountryOfNationalityPage;
+  farNewDealerWhatIsHolderMainBusinessPage: FarNewDealerWhatIsHolderMainBusinessPage;
+  farNewDealerWhatIsSomeOneElseAddressPage: FarNewDealerWhatIsSomeOneElseAddressPage;
+  farNewDealerWhatToHandleUnderTheAuthPage: FarNewDealerWhatToHandleUnderTheAuthPage;
+  farNewDealerWhatTypeOfOrgIsTheAuthForPage: FarNewDealerWhatTypeOfOrgIsTheAuthForPage;
+  farNewDealerWhatsTheFullNameOfAuthorityHolderPage: FarNewDealerWhatsTheFullNameOfAuthorityHolderPage;
+  farNewDealerWhereWillProhibitedItemsBeStoredPage: FarNewDealerWhereWillProhibitedItemsBeStoredPage;
+  farNewDealerWhichAddressToContactYouPage: FarNewDealerWhichAddressToContactYouPage;
+  farNewDealerWhoDoWeContactAbtThisApplicationPage: FarNewDealerWhoDoWeContactAbtThisApplicationPage;
+  farNewDealerWillProhibitedBeImportedPage: FarNewDealerWillProhibitedBeImportedPage;
   farShootClubAnotherAddressGunStoragePage: FarShootClubAnotherAddressGunStoragePage;
   farShootClubCheckYourAnswersPage: FarShootClubCheckYourAnswersPage;
   farShootClubFirearmsCategoriesToUsePage: FarShootClubFirearmsCategoriesToUsePage;
@@ -161,29 +161,29 @@ export const test = base.extend<{ pages: Pages }>({
       farMuseumWhereWillFirearmsBeStoredPage: new FarMuseumWhereWillFirearmsBeStoredPage(page),
       farMuseumWhoShouldWeContactAbtThisApplicationPage: new FarMuseumWhoShouldWeContactAbtThisApplicationPage(page),
       farPrivacyNoticePage: new FarPrivacyNoticePage(page),
-      farSDocUploadSupportingDocsPage: new FarSDocUploadSupportingDocsPage(page),
-      farS5AmmunitionSectionsPage: new FarS5AmmunitionSectionsPage(page),
-      farS5AnotherAddressForStoragePage: new FarS5AnotherAddressForStoragePage(page),
-      farS5CheckYourAnswersPage: new FarS5CheckYourAnswersPage(page),
-      farS5FullNameOfFirstAuthorityHolderPage: new FarS5FullNameOfFirstAuthorityHolderPage(page),
-      farS5FullNameOfSecondAuthorityHolderPage: new FarS5FullNameOfSecondAuthorityHolderPage(page),
-      farS5HowManyIndividualsToBeNamedPage: new FarS5HowManyIndividualsToBeNamedPage(page),
-      farS5HowWillProhibitedItemsBeObtainedPage: new FarS5HowWillProhibitedItemsBeObtainedPage(page),
-      farS5ProhibitedItemsStoredOnBusinessPremisesPage: new FarS5ProhibitedItemsStoredOnBusinessPremisesPage(page),
-      farS5UploadSupportingDocsPage: new FarS5UploadSupportingDocsPage(page),
-      farS5WeaponsAndComponentsSectionPage: new FarS5WeaponsAndComponentsSectionPage(page),
-      farS5WhatAreBirthDayDetailsPage: new FarS5WhatAreBirthDayDetailsPage(page),
-      farS5WhatBusinessActivitiesToCarryOutPage: new FarS5WhatBusinessActivitiesToCarryOutPage(page),
-      farS5WhatIsCountryOfNationalityPage: new FarS5WhatIsCountryOfNationalityPage(page),
-      farS5WhatIsHolderMainBusinessPage: new FarS5WhatIsHolderMainBusinessPage(page),
-      farS5WhatIsSomeOneElseAddressPage: new FarS5WhatIsSomeOneElseAddressPage(page),
-      farS5WhatToHandleUnderTheAuthPage: new FarS5WhatToHandleUnderTheAuthPage(page),
-      farS5WhatTypeOfOrgIsTheAuthForPage: new FarS5WhatTypeOfOrgIsTheAuthForPage(page),
-      farS5WhatsTheFullNameOfAuthorityHolderPage: new FarS5WhatsTheFullNameOfAuthorityHolderPage(page),
-      farS5WhereWillProhibitedItemsBeStoredPage: new FarS5WhereWillProhibitedItemsBeStoredPage(page),
-      farS5WhichAddressToContactYouPage: new FarS5WhichAddressToContactYouPage(page),
-      farS5WhoDoWeContactAbtThisApplicationPage: new FarS5WhoDoWeContactAbtThisApplicationPage(page),
-      farS5WillProhibitedBeImportedPage: new FarS5WillProhibitedBeImportedPage(page),
+      farSDocUploadSupportingDocsPage: new FarSupportDocUploadSupportingDocsPage(page),
+      farNewDealerAmmunitionSectionsPage: new FarNewDealerAmmunitionSectionsPage(page),
+      farNewDealerAnotherAddressForStoragePage: new FarNewDealerAnotherAddressForStoragePage(page),
+      farNewDealerCheckYourAnswersPage: new FarNewDealerCheckYourAnswersPage(page),
+      farNewDealerFullNameOfFirstAuthorityHolderPage: new FarNewDealerFullNameOfFirstAuthorityHolderPage(page),
+      farNewDealerFullNameOfSecondAuthorityHolderPage: new FarNewDealerFullNameOfSecondAuthorityHolderPage(page),
+      farNewDealerHowManyIndividualsToBeNamedPage: new FarNewDealerHowManyIndividualsToBeNamedPage(page),
+      farNewDealerHowWillProhibitedItemsBeObtainedPage: new FarNewDealerHowWillProhibitedItemsBeObtainedPage(page),
+      farNewDealerProhibitedItemsStoredOnBusinessPremisesPage: new FarNewDealerProhibitedItemsStoredOnBusinessPremisesPage(page),
+      farNewDealerUploadSupportingDocsPage: new FarNewDealerUploadSupportingDocsPage(page),
+      farNewDealerWeaponsAndComponentsSectionPage: new FarNewDealerWeaponsAndComponentsSectionPage(page),
+      farNewDealerWhatAreBirthDayDetailsPage: new FarNewDealerWhatAreBirthDayDetailsPage(page),
+      farNewDealerWhatBusinessActivitiesToCarryOutPage: new FarNewDealerWhatBusinessActivitiesToCarryOutPage(page),
+      farNewDealerWhatIsCountryOfNationalityPage: new FarNewDealerWhatIsCountryOfNationalityPage(page),
+      farNewDealerWhatIsHolderMainBusinessPage: new FarNewDealerWhatIsHolderMainBusinessPage(page),
+      farNewDealerWhatIsSomeOneElseAddressPage: new FarNewDealerWhatIsSomeOneElseAddressPage(page),
+      farNewDealerWhatToHandleUnderTheAuthPage: new FarNewDealerWhatToHandleUnderTheAuthPage(page),
+      farNewDealerWhatTypeOfOrgIsTheAuthForPage: new FarNewDealerWhatTypeOfOrgIsTheAuthForPage(page),
+      farNewDealerWhatsTheFullNameOfAuthorityHolderPage: new FarNewDealerWhatsTheFullNameOfAuthorityHolderPage(page),
+      farNewDealerWhereWillProhibitedItemsBeStoredPage: new FarNewDealerWhereWillProhibitedItemsBeStoredPage(page),
+      farNewDealerWhichAddressToContactYouPage: new FarNewDealerWhichAddressToContactYouPage(page),
+      farNewDealerWhoDoWeContactAbtThisApplicationPage: new FarNewDealerWhoDoWeContactAbtThisApplicationPage(page),
+      farNewDealerWillProhibitedBeImportedPage: new FarNewDealerWillProhibitedBeImportedPage(page),
       farShootClubAnotherAddressGunStoragePage: new FarShootClubAnotherAddressGunStoragePage(page),
       farShootClubCheckYourAnswersPage: new FarShootClubCheckYourAnswersPage(page),
       farShootClubFirearmsCategoriesToUsePage: new FarShootClubFirearmsCategoriesToUsePage(page),

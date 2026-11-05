@@ -1,7 +1,7 @@
 import { BasePage } from './base-page';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarS5HowManyIndividualsToBeNamedPage extends BasePage {
+export class FarNewDealerWhatToHandleUnderTheAuthPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
@@ -9,7 +9,7 @@ export class FarS5HowManyIndividualsToBeNamedPage extends BasePage {
 
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
-    const subTitle = "How many individuals will be named on the authority?";
+    const subTitle = "What will be handled under the authority?";
     if (title.includes("Apply for museum firearms licence")) {
         return subTitle + " – Apply for museum firearms licence";
     }
@@ -23,9 +23,15 @@ export class FarS5HowManyIndividualsToBeNamedPage extends BasePage {
     throw new Error("Unexpected page title: " + title);
   }
 
-  async answerHowManyAuthorityHolder(authHolder: string): Promise<void> {
-    await this.getRadioOrCheckBox2(authHolder).click();
+  async answerSelectAllWeapons(): Promise<void> {
+    await this.getRadioOrCheckBox2("Weapons or components").click();
+    await this.getRadioOrCheckBox2("Ammunition").click();
     await this.clickContinueButton();
+  }
+
+  async answerSelectAllWeaponsWithTitleCheck(): Promise<void> {
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
+    await this.answerSelectAllWeapons();
   }
 
 }

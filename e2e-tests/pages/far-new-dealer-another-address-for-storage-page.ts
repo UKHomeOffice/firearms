@@ -2,7 +2,7 @@ import { BasePage } from './base-page';
 import { expect } from '@playwright/test';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarS5AnotherAddressForStoragePage extends BasePage {
+export class FarNewDealerAnotherAddressForStoragePage extends BasePage {
 
   readonly storageAddresses: Locator;
 

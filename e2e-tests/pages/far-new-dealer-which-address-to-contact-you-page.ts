@@ -1,6 +1,6 @@
 import { BasePage } from './base-page';
 
-export class FarS5WhichAddressToContactYouPage extends BasePage {
+export class FarNewDealerWhichAddressToContactYouPage extends BasePage {
 
   async expectedPageTitle(): Promise<string> {
     return "Which address should we use to contact the authority holder?";

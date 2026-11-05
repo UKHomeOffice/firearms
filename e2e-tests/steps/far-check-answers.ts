@@ -39,8 +39,8 @@ async function checkS5Answers(
   expected['Invoice details'] = invoiceDetails(purchaseOrder);
   for (const [section, values] of Object.entries(expected)) {
     const actual = secondHolder
-      ? await pages.farS5CheckYourAnswersPage.getAmendActualSectionValues(section)
-      : await pages.farS5CheckYourAnswersPage.getActualSectionValues(section);
+      ? await pages.farNewDealerCheckYourAnswersPage.getAmendActualSectionValues(section)
+      : await pages.farNewDealerCheckYourAnswersPage.getActualSectionValues(section);
     expect(actual, section).toEqual(values);
   }
 }
@@ -92,7 +92,7 @@ export async function checkFarAnswers(pages: Pages, journey: string, scenario: s
           await checkS5Answers(pages, 'Test2', true, true);
           return;
         default:
-          throw new Error(`Unknown FAR scenario description: FARS5/journey/${JSON.stringify(scenario)}`);
+          throw new Error(`Unknown FAR scenario description: FARNewDealer/journey/${JSON.stringify(scenario)}`);
       }
     case 'Museums':
       switch (scenario) {

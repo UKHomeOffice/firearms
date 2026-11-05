@@ -32,7 +32,7 @@ export const ConstantsLib = {
   ORDER_NUMBER: '682',
   RESPONSE_YES: 'Yes',
   RESPONSE_NO: 'No',
-  UPLOAD_FILE: path.resolve(__dirname, '..', 'test-data', 'files', 'VPN_Guide_7.36MB.pdf'),
+  UPLOAD_FILE: path.resolve(__dirname, '..', 'test-data', 'Test.pdf'),
   MAX_TEXT_FILE: path.resolve(__dirname, '..', 'test-data', 'largeText.txt'),
 } as const;
 

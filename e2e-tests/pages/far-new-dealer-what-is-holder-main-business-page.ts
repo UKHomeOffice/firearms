@@ -1,6 +1,6 @@
 import { BasePage } from './base-page';
 
-export class FarS5WhatIsHolderMainBusinessPage extends BasePage {
+export class FarNewDealerWhatIsHolderMainBusinessPage extends BasePage {
 
   async expectedPageTitle(): Promise<string> {
     const baseMessage = "What is the %s authority's main business address?";

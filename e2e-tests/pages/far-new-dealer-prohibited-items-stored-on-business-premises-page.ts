@@ -1,7 +1,7 @@
-import { FarUploadDocs } from './far-upload-docs';
+import { BasePage } from './base-page';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarSDocUploadSupportingDocsPage extends FarUploadDocs {
+export class FarNewDealerProhibitedItemsStoredOnBusinessPremisesPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
@@ -9,7 +9,7 @@ export class FarSDocUploadSupportingDocsPage extends FarUploadDocs {
 
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
-    const subTitle = "Upload supporting documents";
+    const subTitle = "Will the prohibited items be stored on the business's premises in the UK?";
     if (title.includes("Apply for museum firearms licence")) {
         return subTitle + " – Apply for museum firearms licence";
     }
@@ -19,15 +19,21 @@ export class FarSDocUploadSupportingDocsPage extends FarUploadDocs {
     if (title.includes("Apply for shooting club approval")) {
         return subTitle + " – Apply for shooting club approval";
     }
-    if (title.includes("Firearms licensing supporting documents")) {
-        return subTitle + " – Firearms licensing supporting documents";
-    }
 
     throw new Error("Unexpected page title: " + title);
   }
 
-  async uploadSupportingDoc(filePath: string): Promise<void> {
-    await this.uploadFile(filePath);
+  async answerItemsStoredOnBusPremisesYes(): Promise<void> {
+    await this.getRadioOrCheckBox2("Yes").click();
+    await this.clickContinueButton();
+  }
+
+  async answerItemsStoredOnBusPremisesNo(
+    reason = 'The Prohibited items will be stored in business premises',
+  ): Promise<void> {
+    await this.getRadioOrCheckBox2("No").click();
+    await this.getTextArea2("prohibited items").fill(reason);
+    await this.clickContinueButton();
   }
 
 }

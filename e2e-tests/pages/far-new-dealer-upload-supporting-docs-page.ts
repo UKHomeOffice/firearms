@@ -1,7 +1,7 @@
-import { BasePage } from './base-page';
+import { FarUploadDocs } from './far-upload-docs';
 import type { Locator, Page } from '@playwright/test';
 
-export class FarS5WhatToHandleUnderTheAuthPage extends BasePage {
+export class FarNewDealerUploadSupportingDocsPage extends FarUploadDocs {
 
   constructor(page: Page) {
     super(page);
@@ -9,7 +9,7 @@ export class FarS5WhatToHandleUnderTheAuthPage extends BasePage {
 
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
-    const subTitle = "What will be handled under the authority?";
+    const subTitle = "Upload your supporting documents which must include a cover letter to explain the reason you need to possess weapons from the Secretary of State.";
     if (title.includes("Apply for museum firearms licence")) {
         return subTitle + " – Apply for museum firearms licence";
     }
@@ -23,15 +23,13 @@ export class FarS5WhatToHandleUnderTheAuthPage extends BasePage {
     throw new Error("Unexpected page title: " + title);
   }
 
-  async answerSelectAllWeapons(): Promise<void> {
-    await this.getRadioOrCheckBox2("Weapons or components").click();
-    await this.getRadioOrCheckBox2("Ammunition").click();
-    await this.clickContinueButton();
+  async uploadSupportingFile(filePath: string): Promise<void> {
+    await this.uploadFile(filePath);
   }
 
-  async answerSelectAllWeaponsWithTitleCheck(): Promise<void> {
+  async uploadSupportingFileWithTitleCheck(filePath: string): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.answerSelectAllWeapons();
+    await this.uploadSupportingFile(filePath);
   }
 
 }
