@@ -17,7 +17,6 @@ environment:
   NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
   NOTIFY_STUB: stub
-  NIGHTLY_E2E_BASE_URL: https://firearms-licensing.uat.internal.sas-notprod.homeoffice.gov.uk
 
 include_default_branch: &include_default_branch
   include:
@@ -606,6 +605,8 @@ steps:
     environment:
       SAS_HOF_EMAIL:
         from_secret: SAS_HOF_EMAIL
+      NIGHTLY_E2E_BASE_URL:
+        from_secret: NIGHTLY_E2E_BASE_URL
     volumes:
       - name: dockersock
         path: /root/.dockersock
@@ -639,6 +640,8 @@ steps:
     environment:
       SLACK_WEBHOOK:
         from_secret: slack_sas_hof_e2e_tests_webhook
+      NIGHTLY_E2E_BASE_URL:
+        from_secret: NIGHTLY_E2E_BASE_URL
     volumes:
       - name: dockersock
         path: /root/.dockersock
