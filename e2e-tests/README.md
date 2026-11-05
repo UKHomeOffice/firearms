@@ -77,21 +77,20 @@ checks, not a substitute for browser validation.
 Each product step file owns an exact-description scenario switch whose cases
 execute the ordered journey. Answers are passed directly into page methods as
 literals or existing constants. There is no shared answer object or answer lookup
-on `BasePage`. Product, context and scenario are step arguments, not stored state.
+on `BasePage`. Journey, context and scenario are step arguments, not stored state.
 Only the submitted application reference persists for supporting-document steps.
 Full questionnaire journeys combine product setup, scenario selection, journey
 navigation, and questionnaire completion in one step:
 
 ```gherkin
-When I complete the Firearms "Museums" questionnaire for product "FARMuseum" pertaining to scenario "<Description>" in context "journey"
+When I choose to complete Firearms questionnaire "journey" for "Museums" pertaining to "<Description>"
 ```
 
-Use `"New Dealer"` / `"FARS5"` for S5 and `"Shooting Clubs"` /
-`"FARShootingClub"` for clubs. The combined step validates the description and
-journey/product pair before navigation. `completeFarQuestionnaire` only dispatches
-full journeys; `validateFarScenario` only validates inputs, without navigation or
-state changes. Each product has a synchronous scenario validator, separate from
-its questionnaire method. There is no data-only flag. Context is a required
+Use `"New Dealer"` for S5 and `"Shooting Clubs"` for clubs. The shared binding
+dispatches by exact journey name; a separate product argument is not needed.
+Unknown journey names are rejected before navigation, and each product's
+questionnaire method validates the context and description. There is no data-only
+flag. Context is a required
 feature argument, forwarded unchanged with no default, trimming or lowercasing.
 Questionnaires accept only `"journey"`; the Museums validation-data binding
 requires `"validation"`. Unsupported or missing contexts fail before navigation.

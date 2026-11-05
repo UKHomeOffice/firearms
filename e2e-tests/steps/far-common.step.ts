@@ -12,27 +12,18 @@ Given('I visit the Firearms page', async ({ pages, page }) => {
   await pages.farChooseAJourneyHomePage.acceptCookies();
 });
 
-When('I complete the Firearms {string} questionnaire for product {string} pertaining to scenario {string} in context {string}', async ({ pages }, journey: string, product: string, scenario: string, context: string) => {
-  switch (product) {
-    case 'FARS5':
-      if (journey !== 'New Dealer') {
-        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
-      }
+When('I choose to complete Firearms questionnaire {string} for {string} pertaining to {string}', async ({ pages }, context: string, journey: string, scenario: string) => {
+  switch (journey) {
+    case 'New Dealer':
       await completeS5Questionnaire(pages, scenario, context);
       break;
-    case 'FARMuseum':
-      if (journey !== 'Museums') {
-        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
-      }
+    case 'Museums':
       await completeMuseumsQuestionnaire(pages, scenario, context);
       break;
-    case 'FARShootingClub':
-      if (journey !== 'Shooting Clubs') {
-        throw new Error(`FAR journey does not match product: ${journey}/${product}`);
-      }
+    case 'Shooting Clubs':
       await completeShootingClubsQuestionnaire(pages, scenario, context);
       break;
-    default: throw new Error(`Unknown FAR product: ${product}`);
+    default: throw new Error(`Unknown FAR questionnaire journey: ${journey}`);
   }
 });
 

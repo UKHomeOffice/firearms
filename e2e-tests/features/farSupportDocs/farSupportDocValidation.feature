@@ -4,7 +4,7 @@ Feature: FAR - Firearms Supporting Documents Validations
   @FAR-SDoc-V
   Scenario: Firearms S5 Supporting Doc Validations - E2E - "Apply for a new authority"
     Given I visit the Firearms page
-    When I complete the Firearms "New Dealer" questionnaire for product "FARS5" pertaining to scenario "Apply for a new authority" in context "journey"
+    When I choose to complete Firearms questionnaire "journey" for "New Dealer" pertaining to "Apply for a new authority"
     Then I check my answers for Firearms "New Dealer" - "Apply for a new authority"
     And I am able to submit the Firearms questionnaire
     When I navigate and select "Supporting Documents" journey to start my application

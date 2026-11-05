@@ -4,7 +4,7 @@ Feature: FAR - Firearms Museums Supporting Documents
 
   Scenario Outline: Firearms Museums Supporting Doc - E2E
     Given I visit the Firearms page
-    When I complete the Firearms "Museums" questionnaire for product "FARMuseum" pertaining to scenario "<Description>" in context "journey"
+    When I choose to complete Firearms questionnaire "journey" for "Museums" pertaining to "<Description>"
     Then I check my answers for Firearms "Museums" - "<Description>"
     And I am able to submit the Firearms questionnaire
     When I navigate and select "Supporting Documents" journey to start my application
