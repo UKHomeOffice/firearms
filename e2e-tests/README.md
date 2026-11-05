@@ -140,7 +140,7 @@ step supplies its own scenario/context, for example:
 
 ```gherkin
 When I enter a museum contact name for scenario "Renew existing authority" in context "validation" and click continue
-When I select the S5 contact address for scenario "Apply for a new authority" in context "journey" and click continue
+When I select the S5 contact address for scenario "Apply for a new authority" and click continue
 ```
 
 Check-your-answers assertions use the journey and scenario already supplied by

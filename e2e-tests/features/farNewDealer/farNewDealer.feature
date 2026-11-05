@@ -8,7 +8,8 @@ Feature: FAR - Firearms New Dealer
   Scenario Outline: Firearms New Dealer - E2E CI Test
     When I choose to complete Firearms questionnaire "journey" for "New Dealer" pertaining to "<Description>"
     Then I check my answers for Firearms "New Dealer" - "<Description>"
-    And I am able to submit the Firearms questionnaire
+    When I choose to submit the Firearms questionnaire
+    Then I am able to submit the Firearms questionnaire
     Examples:
       | Description                                                |
       | Apply for a new authority                                  |
@@ -17,7 +18,8 @@ Feature: FAR - Firearms New Dealer
   Scenario Outline: Firearms New Dealer - E2E
     When I choose to complete Firearms questionnaire "journey" for "New Dealer" pertaining to "<Description>"
     Then I check my answers for Firearms "New Dealer" - "<Description>"
-    And I am able to submit the Firearms questionnaire
+    When I choose to submit the Firearms questionnaire
+    Then I am able to submit the Firearms questionnaire
     Examples:
       | Description                                                |
       | Renew existing authority                                   |
@@ -30,4 +32,5 @@ Feature: FAR - Firearms New Dealer
     Then I check my answers for Firearms "New Dealer" - "Apply for a new authority"
     When I change the company name to "Auto Company Ltd" and company house number to "150" and continue
     Then I check the company details changes "Auto Company Ltd" and "150" are updated on the Check your answers page
-    And I am able to submit the Firearms questionnaire
+    When I choose to submit the Firearms questionnaire
+    Then I am able to submit the Firearms questionnaire

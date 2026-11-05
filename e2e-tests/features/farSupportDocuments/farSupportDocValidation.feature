@@ -6,7 +6,8 @@ Feature: FAR - Firearms Supporting Documents Validations
     Given I visit the Firearms page
     When I choose to complete Firearms questionnaire "journey" for "New Dealer" pertaining to "Apply for a new authority"
     Then I check my answers for Firearms "New Dealer" - "Apply for a new authority"
-    And I am able to submit the Firearms questionnaire
+    When I choose to submit the Firearms questionnaire
+    Then I am able to submit the Firearms questionnaire
     When I navigate and select "Supporting Documents" journey to start my application
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms

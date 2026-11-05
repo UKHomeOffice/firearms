@@ -1,5 +1,5 @@
 import { FarContactDetails } from './far-contact-details';
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 export class FarShootClubSecContactDetailsPage extends FarContactDetails {
   private deputyContactExpected = false;

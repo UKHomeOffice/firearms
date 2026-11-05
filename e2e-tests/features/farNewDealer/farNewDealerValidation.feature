@@ -92,7 +92,7 @@ Feature: FAR - Firearms New Dealer
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
-    When I select the S5 contact address for scenario "Apply for a new authority" in context "journey" and click continue
+    When I select the S5 contact address for scenario "Apply for a new authority" and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see error message displayed for firearms

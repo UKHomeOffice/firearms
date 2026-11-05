@@ -1,10 +1,8 @@
 import { createBdd, test as base } from 'playwright-bdd';
 import { BasePage } from '../pages/base-page';
-import { FarAnotherAddressForStoragePage } from '../pages/far-another-address-for-storage';
 import { FarBeforeYouStartPage } from '../pages/far-before-you-start-page';
 import { FarCheckYourAnswersPage } from '../pages/far-check-your-answers-page';
 import { FarChooseAJourneyHomePage } from '../pages/far-choose-a-journey-home-page';
-import { FarContactDetails } from '../pages/far-contact-details';
 import { FarDoYouHavePurchaseOrderPage } from '../pages/far-do-you-have-purchase-order-page';
 import { FarDoYouWantToUploadAdditionalDocsPage } from '../pages/far-do-you-want-to-upload-additional-docs-page';
 import { FarImportantInformationPage } from '../pages/far-important-information-page';
@@ -61,7 +59,6 @@ import { FarSupportDocAppRefNumberPage } from '../pages/far-support-doc-app-ref-
 import { FarSupportingDocCheckAnswersPage } from '../pages/far-supporting-doc-check-answers-page';
 import { FarSupportingDocEnterEmailInOriginalAppPage } from '../pages/far-supporting-doc-enter-email-in-original-app-page';
 import { FarUploadAdditionalExistingDocsPage } from '../pages/far-upload-additional-existing-docs-page';
-import { FarUploadDocs } from '../pages/far-upload-docs';
 import { FarUploadExistingAuthDocsPage } from '../pages/far-upload-existing-auth-docs-page';
 import { FarWhatAreContactDetailsPage } from '../pages/far-what-are-contact-details-page';
 import { FarWhatDoYouWantToDoPage } from '../pages/far-what-do-you-want-to-do-page';
@@ -70,11 +67,9 @@ import { FarWhoShouldWeContactAbtTheInvoicePage } from '../pages/far-who-should-
 
 export type Pages = {
   basePage: BasePage;
-  farAnotherAddressForStorage: FarAnotherAddressForStoragePage;
   farBeforeYouStartPage: FarBeforeYouStartPage;
   farCheckYourAnswersPage: FarCheckYourAnswersPage;
   farChooseAJourneyHomePage: FarChooseAJourneyHomePage;
-  farContactDetails: FarContactDetails;
   farDoYouHavePurchaseOrderPage: FarDoYouHavePurchaseOrderPage;
   farDoYouWantToUploadAdditionalDocsPage: FarDoYouWantToUploadAdditionalDocsPage;
   farImportantInformationPage: FarImportantInformationPage;
@@ -131,7 +126,6 @@ export type Pages = {
   farSupportingDocCheckAnswersPage: FarSupportingDocCheckAnswersPage;
   farSupportingDocEnterEmailInOriginalAppPage: FarSupportingDocEnterEmailInOriginalAppPage;
   farUploadAdditionalExistingDocsPage: FarUploadAdditionalExistingDocsPage;
-  farUploadDocs: FarUploadDocs;
   farUploadExistingAuthDocsPage: FarUploadExistingAuthDocsPage;
   farWhatAreContactDetailsPage: FarWhatAreContactDetailsPage;
   farWhatDoYouWantToDoPage: FarWhatDoYouWantToDoPage;
@@ -143,11 +137,9 @@ export const test = base.extend<{ pages: Pages }>({
   pages: async ({ page }, use) => {
     const pageObjects = {
       basePage: new BasePage(page),
-      farAnotherAddressForStorage: new FarAnotherAddressForStoragePage(page),
       farBeforeYouStartPage: new FarBeforeYouStartPage(page),
       farCheckYourAnswersPage: new FarCheckYourAnswersPage(page),
       farChooseAJourneyHomePage: new FarChooseAJourneyHomePage(page),
-      farContactDetails: new FarContactDetails(page),
       farDoYouHavePurchaseOrderPage: new FarDoYouHavePurchaseOrderPage(page),
       farDoYouWantToUploadAdditionalDocsPage: new FarDoYouWantToUploadAdditionalDocsPage(page),
       farImportantInformationPage: new FarImportantInformationPage(page),
@@ -204,7 +196,6 @@ export const test = base.extend<{ pages: Pages }>({
       farSupportingDocCheckAnswersPage: new FarSupportingDocCheckAnswersPage(page),
       farSupportingDocEnterEmailInOriginalAppPage: new FarSupportingDocEnterEmailInOriginalAppPage(page),
       farUploadAdditionalExistingDocsPage: new FarUploadAdditionalExistingDocsPage(page),
-      farUploadDocs: new FarUploadDocs(page),
       farUploadExistingAuthDocsPage: new FarUploadExistingAuthDocsPage(page),
       farWhatAreContactDetailsPage: new FarWhatAreContactDetailsPage(page),
       farWhatDoYouWantToDoPage: new FarWhatDoYouWantToDoPage(page),

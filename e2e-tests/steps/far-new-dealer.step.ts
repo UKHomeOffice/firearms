@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { expect } from '@playwright/test';
-import { Given, When, type Pages } from '../fixture/fixtures';
+import { Given, Then, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-export async function completeS5Questionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
+export async function completeNewDealerQuestionnaire(pages: Pages, scenario: string): Promise<void> {
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('New Dealer');
   await pages.farPrivacyNoticePage.continueWithTitleCheck();
   await pages.farBeforeYouStartPage.clickContinueBtnWithTitleCheck();
@@ -271,75 +271,68 @@ export async function completeS5Questionnaire(pages: Pages, scenario: string, co
   }
 }
 
-Given('I change the company name to {string} and company house number to {string} and continue', async ({ pages, page }, companyName: string, companyHouseNo: string) => {
+When('I change the company name to {string} and company house number to {string} and continue', async ({ pages }, companyName: string, companyHouseNo: string) => {
   await pages.farNewDealerCheckYourAnswersPage.clickToChangeBusinessDetails();
   await pages.farNewDealerWhatTypeOfOrgIsTheAuthForPage.answerSelectCompanyWithTitleCheck('Company', companyName, companyHouseNo);
 });
 
-Given('I check the company details changes {string} and {string} are updated on the Check your answers page', async ({ pages, page }, name: string, number: string) => {
-  await pages.farNewDealerCheckYourAnswersPage.assertPageTitle(pages.farNewDealerCheckYourAnswersPage.page, await pages.farNewDealerCheckYourAnswersPage.expectedPageTitle());
-  const details = await pages.farNewDealerCheckYourAnswersPage.getUpdatedBusinessDetails();
-  expect(details['Company name']).toBe(name);
-  expect(details['Companies House number']).toBe(number);
-});
-
-When('I select the organisation type {string} and click continue', async ({ pages, page }, type: string) => {
+When('I select the organisation type {string} and click continue', async ({ pages }, type: string) => {
   await pages.farNewDealerWhatTypeOfOrgIsTheAuthForPage.answerSelectCompany(type, c.COMPANY_NAME, c.COMPANY_HOUSE_NUMBER);
 });
 
-When('I answer how many individual will be named {string} and click continue', async ({ pages, page }, holder: string) => {
+When('I answer how many individual will be named {string} and click continue', async ({ pages }, holder: string) => {
   await pages.farNewDealerHowManyIndividualsToBeNamedPage.answerHowManyAuthorityHolder(holder);
 });
 
-When('I select what will be handled under the authority and click continue', async ({ pages, page }) => {
+When('I select what will be handled under the authority and click continue', async ({ pages }) => {
   await pages.farNewDealerWhatToHandleUnderTheAuthPage.answerSelectAllWeapons();
 });
 
-When('I select how the prohibited items will be obtained and click continue', async ({ pages, page }) => {
+When('I select how the prohibited items will be obtained and click continue', async ({ pages }) => {
   await pages.farNewDealerHowWillProhibitedItemsBeObtainedPage.answerSelectAllProhibitedItems();
 });
 
-When('I select import prohibited items and click continue', async ({ pages, page }) => {
+When('I select import prohibited items and click continue', async ({ pages }) => {
   await pages.farNewDealerWillProhibitedBeImportedPage.answerProhibitedItemBeImportedNo();
 });
 
-When('I answer will prohibited items be stored in business premises and click continue', async ({ pages, page }) => {
+When('I answer will prohibited items be stored in business premises and click continue', async ({ pages }) => {
   await pages.farNewDealerProhibitedItemsStoredOnBusinessPremisesPage.answerItemsStoredOnBusPremisesNo();
 });
 
-When('I select what business activities to be carried out and click continue', async ({ pages, page }) => {
+When('I select what business activities to be carried out and click continue', async ({ pages }) => {
   await pages.farNewDealerWhatBusinessActivitiesToCarryOutPage.answerSelectBusinessActivities();
 });
 
-When('I select weapons sections and click continue', async ({ pages, page }) => {
+When('I select weapons sections and click continue', async ({ pages }) => {
   await pages.farNewDealerAmmunitionSectionsPage.answerSelectUnspecifiedSections();
 });
 
-When('I select ammunition sections and click continue', async ({ pages, page }) => {
+When('I select ammunition sections and click continue', async ({ pages }) => {
   await pages.farNewDealerAmmunitionSectionsPage.answerSelectUnspecifiedSections();
 });
 
-When('I enter full name of authority holder and click continue', async ({ pages, page }) => {
+When('I enter full name of authority holder and click continue', async ({ pages }) => {
   await pages.farNewDealerWhatsTheFullNameOfAuthorityHolderPage.answerEnterNameOfAuthorityHolder(c.FULL_NAME);
 });
 
-When('I enter birth details and click continue', async ({ pages, page }) => {
+When('I enter birth details and click continue', async ({ pages }) => {
   await pages.farNewDealerWhatAreBirthDayDetailsPage.answerDateOfBirthDetails(c.DOB_11_11_1988, c.TOWN_OR_CITY, c.COUNTRY_OF_BIRTH);
 });
 
-When('I enter country of nationality and click continue', async ({ pages, page }) => {
+When('I enter country of nationality and click continue', async ({ pages }) => {
   await pages.farNewDealerWhatIsCountryOfNationalityPage.answerEnterCountryOfNationality(c.COUNTRY_UK);
 });
 
-When('I select who to contact and click continue', async ({ pages, page }) => {
+When('I select who to contact and click continue', async ({ pages }) => {
   await pages.farNewDealerWhoDoWeContactAbtThisApplicationPage.answerContactHolderFirst();
 });
 
-When('I enter contact email address and click continue', async ({ pages, page }) => {
+When('I enter contact email address and click continue', async ({ pages }) => {
   await pages.farWhatAreContactDetailsPage.answerHoldersContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
 });
 
-When('I select the S5 contact address for scenario {string} in context {string} and click continue', async ({ pages }, scenario: string, context: string) => {
+When('I select the S5 contact address for scenario {string} and click continue', async ({ pages }, scenario: string) => {
   switch (scenario) {
     case 'Apply for a new authority':
     case 'Renew existing authority':
@@ -354,4 +347,11 @@ When('I select the S5 contact address for scenario {string} in context {string} 
     default:
       throw new Error(`Unknown FAR scenario description: FARNewDealer/journey/${JSON.stringify(scenario)}`);
   }
+});
+
+Then('I check the company details changes {string} and {string} are updated on the Check your answers page', async ({ pages }, name: string, number: string) => {
+  await pages.farNewDealerCheckYourAnswersPage.assertPageTitle(pages.farNewDealerCheckYourAnswersPage.page, await pages.farNewDealerCheckYourAnswersPage.expectedPageTitle());
+  const details = await pages.farNewDealerCheckYourAnswersPage.getUpdatedBusinessDetails();
+  expect(details['Company name']).toBe(name);
+  expect(details['Companies House number']).toBe(number);
 });

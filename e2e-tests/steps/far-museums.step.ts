@@ -1,7 +1,6 @@
 import { expect } from '@playwright/test';
-import { Given, When, type Pages } from '../fixture/fixtures';
+import { Then, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
-
 
 export async function completeMuseumsQuestionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
   if (context !== 'journey') {
@@ -148,35 +147,19 @@ export async function completeMuseumsQuestionnaire(pages: Pages, scenario: strin
   }
 }
 
-Given('I change the museum name to {string} and museum address number to {string} and continue', async ({ pages, page }, museumName: string, museumAddressNo: string) => {
-  await pages.farMuseumCheckYourAnswersPage.clickToChangeMuseumName();
-  await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(museumName);
-  await pages.farMuseumCheckYourAnswersPage.changeMuseumAddressNum();
-  await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(museumAddressNo, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-  await pages.basePage.clickContinueButton();
-});
-
-Given('I check the museum details changes {string} and {string} are updated on the Check your answers page', async ({ pages, page }, name: string, address: string) => {
-  await pages.farMuseumCheckYourAnswersPage.assertPageTitle(pages.farMuseumCheckYourAnswersPage.page, await pages.farMuseumCheckYourAnswersPage.expectedPageTitle());
-  const details = await pages.farMuseumCheckYourAnswersPage.getUpdatedMuseumDetailsChanges();
-  expect(details.Name).toBe(name);
-  expect(details.Address.split(',')[0]).toBe(address);
-});
-
-When('I enter museum name and click continue', async ({ pages, page }) => {
+When('I enter museum name and click continue', async ({ pages }) => {
   await pages.farMuseumTheMuseumNamePage.answerEnterMuseumName(c.MUSEUM_NAME);
 });
 
-When('I select No to another address to store or exhibit firearms and click continue', async ({ pages, page }) => {
+When('I select No to another address to store or exhibit firearms and click continue', async ({ pages }) => {
   await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
 });
 
-When('I select Yes to contact address same as previous and click continue', async ({ pages, page }) => {
+When('I select Yes to contact address same as previous and click continue', async ({ pages }) => {
   await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
 });
 
 When('I enter a museum contact name for scenario {string} in context {string} and click continue', async ({ pages }, scenario: string, context: string) => {
-  // validateMuseumsScenario(scenario, context);
   if (context === 'validation') {
     switch (scenario) {
       case 'Apply for a new authority':
@@ -207,6 +190,21 @@ When('I enter a museum contact name for scenario {string} in context {string} an
   }
 });
 
-When('I select address and click continue', async ({ pages, page }) => {
+When('I select address and click continue', async ({ pages }) => {
   await pages.farMuseumSelectTheContactAddressPage.answerSelectContactAddress();
+});
+
+Then('I change the museum name to {string} and museum address number to {string} and continue', async ({ pages }, museumName: string, museumAddressNo: string) => {
+  await pages.farMuseumCheckYourAnswersPage.clickToChangeMuseumName();
+  await pages.farMuseumTheMuseumNamePage.answerEnterMuseumNameWithTitleCheck(museumName);
+  await pages.farMuseumCheckYourAnswersPage.changeMuseumAddressNum();
+  await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(museumAddressNo, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+  await pages.basePage.clickContinueButton();
+});
+
+Then('I check the museum details changes {string} and {string} are updated on the Check your answers page', async ({ pages }, name: string, address: string) => {
+  await pages.farMuseumCheckYourAnswersPage.assertPageTitle(pages.farMuseumCheckYourAnswersPage.page, await pages.farMuseumCheckYourAnswersPage.expectedPageTitle());
+  const details = await pages.farMuseumCheckYourAnswersPage.getUpdatedMuseumDetailsChanges();
+  expect(details.Name).toBe(name);
+  expect(details.Address.split(',')[0]).toBe(address);
 });

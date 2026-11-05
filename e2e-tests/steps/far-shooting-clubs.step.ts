@@ -1,8 +1,8 @@
 import { expect } from '@playwright/test';
-import { Given, When, type Pages } from '../fixture/fixtures';
+import { Given, Then, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-export async function completeShootingClubsQuestionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
+export async function completeShootingClubsQuestionnaire(pages: Pages, scenario: string): Promise<void> {
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('Shooting Clubs');
   await pages.farPrivacyNoticePage.continueWithTitleCheck();
   await pages.farWhatDoYouWantToDoPage.assertPageTitle(pages.farWhatDoYouWantToDoPage.page, await pages.farWhatDoYouWantToDoPage.expectedPageTitle());
@@ -211,63 +211,63 @@ export async function completeShootingClubsQuestionnaire(pages: Pages, scenario:
   }
 }
 
-Given('I change the club name to {string} and club address number to {string} and continue', async ({ pages, page }, clubName: string, clubAddress: string) => {
+When('I change the club name to {string} and club address number to {string} and continue', async ({ pages }, clubName: string, clubAddress: string) => {
   await pages.farShootClubCheckYourAnswersPage.changeClubDetails();
   await pages.farShootClubWhatIsTheNamePage.answerEnterClubNameWithTitleCheck(clubName);
   await pages.farShootClubCheckYourAnswersPage.changeClubAddressNumb();
   await pages.farShootClubWhatIsClubAddressPage.answerEnterClubAddressWithTitleCheck(clubAddress, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
 });
 
-Given('I check the club details changes {string} and {string} are updated on the Check your answers page', async ({ pages, page }, name: string, address: string) => {
-  const details = await pages.farShootClubCheckYourAnswersPage.getUpdatedSClubDetails();
-  expect(details['Club name']).toBe(name);
-  expect(details.Address.split(',')[0]).toBe(address);
-});
-
-When('I enter the club name and click continue', async ({ pages, page }) => {
+When('I enter the club name and click continue', async ({ pages }) => {
   await pages.farShootClubWhatIsTheNamePage.answerEnterClubName(c.BUSINESS_OR_COMPANY_NAME);
 });
 
-When('I select No for a new club and click continue', async ({ pages, page }) => {
+When('I select No for a new club and click continue', async ({ pages }) => {
   await pages.farShootClubIsTheClubNewPage.answerClubIsNewNo();
 });
 
-When('I enter the name of the club secretary and click continue', async ({ pages, page }) => {
+When('I enter the name of the club secretary and click continue', async ({ pages }) => {
   await pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecName(c.CLUB_SEC_NAME);
 });
 
-When('I enter the club secretary address and click continue', async ({ pages, page }) => {
+When('I enter the club secretary address and click continue', async ({ pages }) => {
   await pages.farShootClubSecContactAddressPage.answerClubSecContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
 });
 
-When('I enter the club email and click continue', async ({ pages, page }) => {
+When('I enter the club email and click continue', async ({ pages }) => {
   await pages.farShootClubSecContactDetailsPage.answerClubSecContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
 });
 
-When('I enter the second person name and click continue', async ({ pages, page }) => {
+When('I enter the second person name and click continue', async ({ pages }) => {
   await pages.farShootClubWhoToContactInAbsencePage.answerEnterClubName(c.CLUB_SEC_DEPUTY_NAME);
 });
 
-When('I enter the second person contact address and click continue', async ({ pages, page }) => {
+When('I enter the second person contact address and click continue', async ({ pages }) => {
   await pages.farShootClubSecContactAddressPage.answerClubSecContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
 });
 
-When('I enter the second person email and click continue', async ({ pages, page }) => {
+When('I enter the second person email and click continue', async ({ pages }) => {
   await pages.farWhatAreContactDetailsPage.answerHoldersContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
 });
 
-When('I enter the club shooting ranges address and click continue', async ({ pages, page }) => {
+When('I enter the club shooting ranges address and click continue', async ({ pages }) => {
   await pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
 });
 
-When('I select firearms category to use and click continue', async ({ pages, page }) => {
+When('I select firearms category to use and click continue', async ({ pages }) => {
   await pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRange();
 });
 
-When('I select No to use another shooting range and click continue', async ({ pages, page }) => {
+When('I select No to use another shooting range and click continue', async ({ pages }) => {
   await pages.farShootClubUseAnotherShootingRangePage.answerUseAnotherShootingRangeNo();
 });
 
-When('I select No to use another address for gun storage and click continue', async ({ pages, page }) => {
+When('I select No to use another address for gun storage and click continue', async ({ pages }) => {
   await pages.farShootClubAnotherAddressGunStoragePage.answerUseAnotherAddressNo();
+});
+
+Then('I check the club details changes {string} and {string} are updated on the Check your answers page', async ({ pages }, name: string, address: string) => {
+  const details = await pages.farShootClubCheckYourAnswersPage.getUpdatedSClubDetails();
+  expect(details['Club name']).toBe(name);
+  expect(details.Address.split(',')[0]).toBe(address);
 });

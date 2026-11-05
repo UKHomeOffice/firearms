@@ -1,5 +1,5 @@
 import { FarAnotherAddressForStoragePage } from './far-another-address-for-storage';
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 export class FarMuseumAnotherAddressForStoragePage extends FarAnotherAddressForStoragePage {
 

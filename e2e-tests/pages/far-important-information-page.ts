@@ -15,28 +15,24 @@ export class FarImportantInformationPage extends BasePage {
     const title = await this.page.title();
     const subTitle = "Important information";
     if (title.includes("Apply for museum firearms licence")) {
-        return subTitle + " – Apply for museum firearms licence";
+      return subTitle + " – Apply for museum firearms licence";
     }
     if (title.includes("Prohibited weapons and ammunition licensing")) {
-        return subTitle + " – Prohibited weapons and ammunition licensing";
+      return subTitle + " – Prohibited weapons and ammunition licensing";
     }
     if (title.includes("Apply for shooting club approval")) {
-        return subTitle + " – Apply for shooting club approval";
+      return subTitle + " – Apply for shooting club approval";
     }
     if (title.includes("Firearms licensing supporting documents")) {
-        return subTitle + " – Firearms licensing supporting documents";
+      return subTitle + " – Firearms licensing supporting documents";
     }
 
     throw new Error("Unexpected page title: " + title);
   }
 
-  async answerSubmitApplication(): Promise<void> {
-    await this.submitApplication.click();
-  }
-
   async submitApplicationWithConfirmation(): Promise<void> {
     await this.assertPageTitle(this.page, await this.expectedPageTitle());
-    await this.answerSubmitApplication();
+    await this.submitApplication.click();
   }
 
 }

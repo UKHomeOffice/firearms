@@ -25,7 +25,6 @@ export class BasePage {
   readonly addressLine1TextField: Locator;
   readonly addressLine2TextField: Locator;
   readonly townOrCityTextField: Locator;
-  readonly countryTextField: Locator;
   readonly postCodeField: Locator;
 
   constructor(page: Page) {
@@ -52,7 +51,6 @@ export class BasePage {
     this.addressLine1TextField = page.locator("input[id$=-address-line-1] , input[id$='building']");
     this.addressLine2TextField = page.locator("input[id$=-address-line-2] , input[id$='street']");
     this.townOrCityTextField = page.locator("input[id$=-town-or-city] , input[id$='townOrCity']");
-    this.countryTextField = page.locator("input[id$=-county] , input[id$='countyOrState']");
     this.postCodeField = page.locator("input[id$='postcode'] , input[id$='postcodeOrZIPCode']");
   }
 
@@ -74,20 +72,6 @@ export class BasePage {
 
   async typeInto(locator: Locator, text: string): Promise<void> {
     await locator.fill(text);
-  }
-
-  async enterYourAddress(
-    addressLine1: string,
-    addressLine2: string,
-    townOrCity: string,
-    country: string,
-    postcode: string,
-  ): Promise<void> {
-    await this.typeInto(this.addressLine1TextField, addressLine1);
-    await this.typeInto(this.addressLine2TextField, addressLine2);
-    await this.typeInto(this.townOrCityTextField, townOrCity);
-    await this.typeInto(this.countryTextField, country);
-    await this.typeInto(this.postCodeField, postcode);
   }
 
   async enterYourAddressNoCountry(

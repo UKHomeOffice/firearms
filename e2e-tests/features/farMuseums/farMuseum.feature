@@ -8,7 +8,8 @@ Feature: FAR - Firearms Museums
   Scenario Outline: Firearms Museums authority - E2E CI Test
     When I choose to complete Firearms questionnaire "journey" for "Museums" pertaining to "<Description>"
     Then I check my answers for Firearms "Museums" - "<Description>"
-    And I am able to submit the Firearms questionnaire
+    When I choose to submit the Firearms questionnaire
+    Then I am able to submit the Firearms questionnaire
     Examples:
       | Description                                         |
       | Apply for a new authority                           |
@@ -17,7 +18,8 @@ Feature: FAR - Firearms Museums
   Scenario Outline: Firearms Museums - E2E
     When I choose to complete Firearms questionnaire "journey" for "Museums" pertaining to "<Description>"
     Then I check my answers for Firearms "Museums" - "<Description>"
-    And I am able to submit the Firearms questionnaire
+    When I choose to submit the Firearms questionnaire
+    Then I am able to submit the Firearms questionnaire
     Examples:
       | Description                                                |
       | Renew existing authority                                   |
@@ -30,4 +32,5 @@ Feature: FAR - Firearms Museums
     Then I check my answers for Firearms "Museums" - "Apply for a new authority"
     When I change the museum name to "London Museum" and museum address number to "250" and continue
     Then I check the museum details changes "London Museum" and "250" are updated on the Check your answers page
-    And I am able to submit the Firearms questionnaire
+    When I choose to submit the Firearms questionnaire
+    Then I am able to submit the Firearms questionnaire

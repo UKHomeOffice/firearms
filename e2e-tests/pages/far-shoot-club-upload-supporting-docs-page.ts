@@ -1,5 +1,5 @@
 import { FarUploadDocs } from './far-upload-docs';
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 export class FarShootClubUploadSupportingDocsPage extends FarUploadDocs {
 

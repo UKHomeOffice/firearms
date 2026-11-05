@@ -1,4 +1,3 @@
-import { Pages } from '../fixture/fixtures';
 import { BasePage } from './base-page';
 import type { Locator, Page } from '@playwright/test';
 
