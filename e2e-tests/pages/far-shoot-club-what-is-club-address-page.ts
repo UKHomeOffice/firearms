@@ -10,7 +10,7 @@ export class FarShootClubWhatIsClubAddressPage extends BasePage {
   }
 
   async answerEnterClubAddressWithTitleCheck(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerEnterClubAddress(addressLine1, addressLine2, townOrCity, postcode);
   }
 

@@ -19,7 +19,7 @@ export class FarShootClubWhatIsTheClubSecNamePage extends BasePage {
   }
 
   async answerEnterClubSecNameWithTitleCheck(name: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerEnterClubSecName(name);
   }
 

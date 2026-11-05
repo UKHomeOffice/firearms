@@ -21,7 +21,7 @@ export class FarMuseumSelectTheContactAddressPage extends BasePage {
   }
 
   async answerSelectContactAddressWithTitleCheck(): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerSelectContactAddress();
   }
 

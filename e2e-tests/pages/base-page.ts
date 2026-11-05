@@ -56,12 +56,8 @@ export class BasePage {
     this.postCodeField = page.locator("input[id$='postcode'] , input[id$='postcodeOrZIPCode']");
   }
 
-  async expectedPageTitle(): Promise<string> {
-    throw new Error(`${this.constructor.name} must implement expectedPageTitle before asserting its title`);
-  }
-
-  async assertPageTitle(): Promise<void> {
-    await expect(this.page).toHaveTitle(`${await this.expectedPageTitle()} – GOV.UK`);
+  async assertPageTitle(page: Page, title: string): Promise<void> {
+    await expect(page).toHaveTitle(title + ' – GOV.UK');
   }
 
   async clickContinueButton(): Promise<void> {

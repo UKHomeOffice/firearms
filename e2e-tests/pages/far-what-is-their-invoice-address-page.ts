@@ -22,7 +22,7 @@ export class FarWhatIsTheirInvoiceAddressPage extends BasePage {
   }
 
   async answerInvoiceDetailsWithTitleCheck(addressLine1: string, addressLine2: string, town: string, postcode: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerInvoiceDetails(addressLine1, addressLine2, town, postcode);
   }
 

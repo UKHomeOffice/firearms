@@ -35,7 +35,7 @@ export class FarImportantInformationPage extends BasePage {
   }
 
   async submitApplicationWithConfirmation(): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerSubmitApplication();
   }
 

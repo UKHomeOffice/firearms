@@ -34,7 +34,7 @@ export class FarS5HowWillProhibitedItemsBeObtainedPage extends BasePage {
   }
 
   async answerSelectAllProhibitedItemsWithTitleCheck(reason = 'Input Text'): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerSelectAllProhibitedItems(reason);
   }
 

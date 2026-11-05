@@ -104,7 +104,7 @@ export class FarShootClubCheckYourAnswersPage extends BasePage {
   }
 
   async getUpdatedSClubDetails() {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     return this.getUpdatedClubDetails();
   }
 

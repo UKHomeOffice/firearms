@@ -23,7 +23,7 @@ export class FarBeforeYouStartPage extends BasePage {
   }
 
   async clickContinueBtnWithTitleCheck(): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.clickContinueButton();
   }
 }

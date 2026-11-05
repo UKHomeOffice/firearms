@@ -30,7 +30,7 @@ export class FarS5WhatsTheFullNameOfAuthorityHolderPage extends BasePage {
   }
 
   async answerFullNameOfTheAuthority(name: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerEnterNameOfAuthorityHolder(name);
   }
 

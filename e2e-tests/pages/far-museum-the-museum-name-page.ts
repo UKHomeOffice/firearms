@@ -19,7 +19,7 @@ export class FarMuseumTheMuseumNamePage extends BasePage {
   }
 
   async answerEnterMuseumNameWithTitleCheck(name: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerEnterMuseumName(name);
   }
 

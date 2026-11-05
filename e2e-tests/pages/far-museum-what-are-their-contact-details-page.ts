@@ -19,7 +19,7 @@ export class FarMuseumWhatAreTheirContactDetailsPage extends BasePage {
   }
 
   async answerTheirContactDetailsWithTitleCheck(email: string, phoneNo: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerTheirContactDetails(email, phoneNo);
   }
 

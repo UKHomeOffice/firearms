@@ -23,7 +23,7 @@ export class FarWhatAreContactDetailsPage extends FarContactDetails {
   }
 
   async answerHoldersContactDetailsWithTitleCheck(email: string, phoneNo: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerHoldersContactDetails(email, phoneNo);
   }
 

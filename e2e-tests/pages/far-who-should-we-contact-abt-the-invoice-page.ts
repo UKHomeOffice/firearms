@@ -37,7 +37,7 @@ export class FarWhoShouldWeContactAbtTheInvoicePage extends BasePage {
   }
 
   async answerContactDetailsWithTitleCheck(email: string, contactName: string, phoneNo: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerContactDetails(email, contactName, phoneNo);
   }
 

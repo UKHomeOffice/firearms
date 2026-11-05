@@ -14,6 +14,11 @@ to the existing answer method. Keep the original answer methods for steps that
 do not check the title, including validation scenarios. Standalone title checks
 before branching or checking page content remain in the step bindings.
 
+`assertPageTitle(page, title)` takes the Playwright page and the expected title
+without the ` – GOV.UK` suffix, which the helper appends. Callers pass their
+page object's `expectedPageTitle()` result explicitly. The privacy notice
+continuation retains its existing check for the supported journey titles.
+
 Concrete pages implement `expectedPageTitle`, including all four submission
 confirmation journeys. The source's three shared components (`FarContactDetails`,
 `FarUploadDocs`, and `FarAnotherAddressForStorage`) inherit their title contract

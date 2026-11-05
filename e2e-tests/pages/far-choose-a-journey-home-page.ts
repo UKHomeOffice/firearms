@@ -30,7 +30,7 @@ export class FarChooseAJourneyHomePage extends BasePage {
     await this.acceptCookiesLocator.click();
   }
   async chooseJourneyWithTitleCheck(journey: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.chooseJourney(journey);
   }
 

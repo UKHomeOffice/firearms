@@ -26,7 +26,7 @@ export class FarS5WhatAreBirthDayDetailsPage extends BasePage {
   }
 
   async answerAuthorityBirthDetails(dob: string, townOfBirth: string, countryOfBirth: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerDateOfBirthDetails(dob, townOfBirth, countryOfBirth);
   }
 

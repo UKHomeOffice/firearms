@@ -15,7 +15,7 @@ export class FarS5WhichAddressToContactYouPage extends BasePage {
   }
 
   async answerSelectAddressWithTitleCheck(address: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerSelectAddress(address);
   }
 

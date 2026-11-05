@@ -26,7 +26,7 @@ export class FarShootClubFirearmsStorageAddressesPage extends BasePage {
   }
 
   async answerSelectStorageAddressWithTitleCheck(): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerSelectStorageAddress();
   }
 

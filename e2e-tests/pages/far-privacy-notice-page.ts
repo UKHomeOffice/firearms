@@ -22,14 +22,10 @@ export class FarPrivacyNoticePage extends BasePage {
     }
   }
 
-  async assertPageTitle(): Promise<void> {
+  async continueWithTitleCheck(): Promise<void> {
     await expect(this.page).toHaveTitle(
       /^(?:Privacy Notice – Apply for museum firearms licence – GOV\.UK|Privacy Notice – Prohibited weapons and ammunition licensing – GOV\.UK|Privacy Notice – Apply for shooting club approval – GOV\.UK)$/,
     );
-  }
-
-  async continueWithTitleCheck(): Promise<void> {
-    await this.assertPageTitle();
     await this.clickContinueButton();
   }
 

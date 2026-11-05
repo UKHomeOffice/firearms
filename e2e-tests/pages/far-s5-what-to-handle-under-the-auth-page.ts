@@ -30,7 +30,7 @@ export class FarS5WhatToHandleUnderTheAuthPage extends BasePage {
   }
 
   async answerSelectAllWeaponsWithTitleCheck(): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerSelectAllWeapons();
   }
 

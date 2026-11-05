@@ -15,13 +15,13 @@ export class FarShootClubSecContactDetailsPage extends FarContactDetails {
 
   async answerClubSecretaryContactDetails(email: string, phoneNo: string): Promise<void> {
     this.deputyContactExpected = false;
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerClubSecContactDetails(email, phoneNo);
   }
 
   async answerDeputyContactDetails(email: string, phoneNo: string): Promise<void> {
     this.deputyContactExpected = true;
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerClubSecContactDetails(email, phoneNo);
   }
 

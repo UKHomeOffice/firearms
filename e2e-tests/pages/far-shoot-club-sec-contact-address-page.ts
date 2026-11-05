@@ -10,13 +10,13 @@ export class FarShootClubSecContactAddressPage extends BasePage {
 
   async answerClubSecretaryContactAddress(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
     this.deputyContactExpected = false;
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerClubSecContactAddress(addressLine1, addressLine2, townOrCity, postcode);
   }
 
   async answerDeputyContactAddress(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
     this.deputyContactExpected = true;
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerClubSecContactAddress(addressLine1, addressLine2, townOrCity, postcode);
   }
 

@@ -16,7 +16,7 @@ export class FarShootClubUploadSupportingDocsPage extends FarUploadDocs {
   }
 
   async uploadSupportingFileWithTitleCheck(filePath: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.uploadSupportingFile(filePath);
   }
 

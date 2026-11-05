@@ -34,7 +34,7 @@ export class FarSupportingDocEnterEmailInOriginalAppPage extends BasePage {
   }
 
   async answerEnterEmailInOriginalApplicationWithTitleCheck(email: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerEnterEmailInOriginalApplication(email);
   }
 

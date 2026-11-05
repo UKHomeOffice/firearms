@@ -10,7 +10,7 @@ export class FarMuseumWhereWillFirearmsBeStoredPage extends BasePage {
   }
 
   async answerFirearmsStorageWithTitleCheck(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerFirearmsStorage(addressLine1, addressLine2, townOrCity, postcode);
   }
 

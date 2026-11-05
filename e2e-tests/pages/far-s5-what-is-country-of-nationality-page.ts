@@ -26,7 +26,7 @@ export class FarS5WhatIsCountryOfNationalityPage extends BasePage {
   }
 
   async answerAuthorityNationality(countryOfNationality: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerEnterCountryOfNationality(countryOfNationality);
   }
 

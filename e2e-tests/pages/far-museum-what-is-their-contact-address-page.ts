@@ -10,7 +10,7 @@ export class FarMuseumWhatIsTheirContactAddressPage extends BasePage {
   }
 
   async answerContactAddressWithTitleCheck(addressLine1: string, addressLine2: string, townOrCity: string, postcode: string): Promise<void> {
-    await this.assertPageTitle();
+    await this.assertPageTitle(this.page, await this.expectedPageTitle());
     await this.answerContactAddress(addressLine1, addressLine2, townOrCity, postcode);
   }
 

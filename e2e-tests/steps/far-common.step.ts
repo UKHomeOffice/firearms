@@ -28,7 +28,7 @@ When('I choose to complete Firearms questionnaire {string} for {string} pertaini
 });
 
 Given('I check my answers for Firearms {string} - {string}', async ({ pages, page }, journey: string, activity: string) => {
-  await pages.farCheckYourAnswersPage.assertPageTitle();
+  await pages.farCheckYourAnswersPage.assertPageTitle(pages.farCheckYourAnswersPage.page, await pages.farCheckYourAnswersPage.expectedPageTitle());
   expect(await pages.farCheckYourAnswersPage.isAbleToCheckAnswers()).toBe(true);
   await checkFarAnswers(pages, journey, activity);
 });
@@ -45,7 +45,7 @@ Given('I am able to submit the Firearms questionnaire', async ({ pages, page }) 
 });
 
 When('I fill out my answers to Supporting doc questionnaire', async ({ pages, page }) => {
-  await pages.farSupportDocAppRefNumberPage.assertPageTitle();
+  await pages.farSupportDocAppRefNumberPage.assertPageTitle(pages.farSupportDocAppRefNumberPage.page, await pages.farSupportDocAppRefNumberPage.expectedPageTitle());
   if (!pages.basePage.applicationRef) throw new Error('No reference from a submitted application is available');
   await pages.farSupportDocAppRefNumberPage.answerEnterAppRefNumber(pages.basePage.applicationRef);
   await pages.farSupportingDocEnterEmailInOriginalAppPage.answerEnterEmailInOriginalApplicationWithTitleCheck(c.SAS_HOF_EMAIL);
