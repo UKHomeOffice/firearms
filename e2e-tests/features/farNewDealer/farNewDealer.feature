@@ -1,11 +1,11 @@
 @FarRegression
-Feature: FAR - Firearms New Dealer
+Feature: FAR - Firearms New Dealer 
 
   Background:
     Given I visit the Firearms page
 
   @FarRegressionCI
-  Scenario Outline: Firearms S5 - E2E CI Test
+  Scenario Outline: Firearms New Dealer - E2E CI Test
     When I choose to complete Firearms questionnaire "journey" for "New Dealer" pertaining to "<Description>"
     Then I check my answers for Firearms "New Dealer" - "<Description>"
     And I am able to submit the Firearms questionnaire
@@ -14,7 +14,7 @@ Feature: FAR - Firearms New Dealer
       | Apply for a new authority                                  |
       | Renew existing authority - additional Supporting doc - Yes |
 
-  Scenario Outline: Firearms S5 - E2E
+  Scenario Outline: Firearms New Dealer - E2E
     When I choose to complete Firearms questionnaire "journey" for "New Dealer" pertaining to "<Description>"
     Then I check my answers for Firearms "New Dealer" - "<Description>"
     And I am able to submit the Firearms questionnaire
@@ -25,7 +25,7 @@ Feature: FAR - Firearms New Dealer
       | Amend existing authority - additional Supporting doc - Yes |
       # | Max character                                              |
 
-  Scenario: Firearms S5 - Change answers in the Check your answers page
+  Scenario: Firearms New Dealer - Change answers in the Check your answers page
     When I choose to complete Firearms questionnaire "journey" for "New Dealer" pertaining to "Apply for a new authority"
     Then I check my answers for Firearms "New Dealer" - "Apply for a new authority"
     When I change the company name to "Auto Company Ltd" and company house number to "150" and continue

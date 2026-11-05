@@ -1,5 +1,4 @@
 @FarRegression
-
 Feature: FAR - Firearms Museums
 
   Background:
