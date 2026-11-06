@@ -2,9 +2,9 @@ import { expect } from '@playwright/test';
 import { Then, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-export async function completeMuseumsQuestionnaire(pages: Pages, scenario: string, context: string): Promise<void> {
+export async function completeMuseumsApplicationForm(pages: Pages, scenario: string, context: string): Promise<void> {
   if (context !== 'journey') {
-    throw new Error(`Unsupported FAR questionnaire context: FARMuseum/${context}`);
+    throw new Error(`Unsupported FAR application form context: FARMuseum/${context}`);
   }
 
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('Museums');

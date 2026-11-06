@@ -4,14 +4,15 @@ Feature: FAR - Firearms Shooting Clubs Supporting Documents
 
   Scenario Outline: Firearms Shooting Clubs Supporting Docs - E2E
     Given I visit the Firearms page
-    When I choose to complete Firearms questionnaire "journey" for "Shooting Clubs" pertaining to "<Description>"
-    Then I check my answers for Firearms "Shooting Clubs" - "<Description>"
-    When I choose to submit the Firearms questionnaire
-    Then I am able to submit the Firearms questionnaire
+    When I choose to complete Firearms application form "journey" for "Shooting Clubs" pertaining to "<Description>"
+    Then I am navigated to "Check your answers" page
+    And I check my answers for Firearms "Shooting Clubs" - "<Description>"
+    When I choose to submit the Firearms application form
+    Then Firearms application is successfully submitted
     When I navigate and select "Supporting Documents" journey to start my application
-    And I fill out my answers to Supporting doc questionnaire
+    And I fill out my answers to Supporting doc application form
     Then I check the application details on Check your answers page
-    When I choose to submit the Firearms questionnaire
+    When I choose to submit the Firearms application form
     Then I am able to submit the supporting documents
     Examples:
       | Description               |

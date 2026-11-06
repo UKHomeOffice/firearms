@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { Given, Then, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-export async function completeShootingClubsQuestionnaire(pages: Pages, scenario: string): Promise<void> {
+export async function completeShootingClubsApplicationForm(pages: Pages, scenario: string): Promise<void> {
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('Shooting Clubs');
   await pages.farPrivacyNoticePage.continueWithTitleCheck();
   await pages.farWhatDoYouWantToDoPage.assertPageTitle(pages.farWhatDoYouWantToDoPage.page, await pages.farWhatDoYouWantToDoPage.expectedPageTitle());

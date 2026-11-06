@@ -103,7 +103,7 @@ Feature: FAR - Firearms Shooting Clubs
     When I enter invoice contact email "invalid@email.c" and click continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Enter an email in the correct format, like name@example.com" error message displayed for firearms
-    When I enter invoice contact details "sas-hof-test@digital.homeoffice.gov.uk" and click continue
+    When I enter invoice contact details "hof-test@test.com" and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see error message displayed for firearms

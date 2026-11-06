@@ -2,13 +2,18 @@ import { expect } from '@playwright/test';
 import { Given, When, Then } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 import { checkFarAnswers } from './far-check-answers';
-import { completeNewDealerQuestionnaire } from './far-new-dealer.step';
-import { completeMuseumsQuestionnaire } from './far-museums.step';
-import { completeShootingClubsQuestionnaire } from './far-shooting-clubs.step';
+import { completeNewDealerApplicationForm } from './far-new-dealer.step';
+import { completeMuseumsApplicationForm } from './far-museums.step';
+import { completeShootingClubsApplicationForm } from './far-shooting-clubs.step';
 
 Given('I visit the Firearms page', async ({ pages }) => {
   await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
   await pages.farChooseAJourneyHomePage.acceptCookies();
+});
+
+Then('I am navigated to {string} page', async ({ pages }, expectedPageHeaderText: string) => {
+  const actualPageHeaderTextLocator = pages.farCheckYourAnswersPage.headerText;
+  await expect(actualPageHeaderTextLocator).toHaveText(expectedPageHeaderText);
 });
 
 Then('I check my answers for Firearms {string} - {string}', async ({ pages }, journey: string, activity: string) => {
@@ -17,7 +22,7 @@ Then('I check my answers for Firearms {string} - {string}', async ({ pages }, jo
   await checkFarAnswers(pages, journey, activity);
 });
 
-Then('I am able to submit the Firearms questionnaire', async ({ pages }) => {
+Then('Firearms application is successfully submitted', async ({ pages }) => {
   pages.basePage.applicationRef = await pages.farSubmissionNotificationsPage.getApplicationRef();
 
   expect(await pages.farSubmissionNotificationsPage.isApplicationCompleteDisplayed()).toBe(true);
@@ -65,7 +70,10 @@ When('I enter the email {string} not used in original application and click cont
 });
 
 When('I enter the email {string} used in original application and click continue', async ({ pages }, email: string) => {
-  await pages.farSupportingDocEnterEmailInOriginalAppPage.answerEnterEmailInOriginalApplication(email);
+  if(email !== 'SAS_HOF_EMAIL') {
+    throw new Error('SAS_HOF_EMAIL should be replaced with actual email from constants');
+  } 
+  await pages.farSupportingDocEnterEmailInOriginalAppPage.answerEnterEmailInOriginalApplication(c.SAS_HOF_EMAIL);
 });
 
 When('I enter the club address and click continue', async ({ pages }) => {
@@ -92,27 +100,27 @@ When('I enter invoice contact email {string} and click continue', async ({ pages
   await pages.farWhoShouldWeContactAbtTheInvoicePage.answerContactDetails(email, c.CONTACT_NAME, c.CONTACT_TELEPHONE);
 });
 
-When('I choose to complete Firearms questionnaire {string} for {string} pertaining to {string}', async ({ pages }, context: string, journeyName: string, scenario: string) => {
+When('I choose to complete Firearms application form {string} for {string} pertaining to {string}', async ({ pages }, context: string, journeyName: string, scenario: string) => {
   switch (journeyName) {
     case 'New Dealer':
-      await completeNewDealerQuestionnaire(pages, scenario);
+      await completeNewDealerApplicationForm(pages, scenario);
       break;
     case 'Museums':
-      await completeMuseumsQuestionnaire(pages, scenario, context);
+      await completeMuseumsApplicationForm(pages, scenario, context);
       break;
     case 'Shooting Clubs':
-      await completeShootingClubsQuestionnaire(pages, scenario);
+      await completeShootingClubsApplicationForm(pages, scenario);
       break;
-    default: throw new Error(`Unknown FAR questionnaire journey: ${journeyName}`);
+    default: throw new Error(`Unknown FAR application form journey: ${journeyName}`);
   }
 });
 
-When('I choose to submit the Firearms questionnaire', async ({ pages}) => {
+When('I choose to submit the Firearms application form', async ({ pages }) => {
   await pages.basePage.clickContinueButton();
   await pages.farImportantInformationPage.submitApplicationWithConfirmation();
 });
 
-When('I fill out my answers to Supporting doc questionnaire', async ({ pages }) => {
+When('I fill out my answers to Supporting doc application form', async ({ pages }) => {
   await pages.farSupportDocAppRefNumberPage.assertPageTitle(pages.farSupportDocAppRefNumberPage.page, await pages.farSupportDocAppRefNumberPage.expectedPageTitle());
   if (!pages.basePage.applicationRef) throw new Error('No reference from a submitted application is available');
   await pages.farSupportDocAppRefNumberPage.answerEnterAppRefNumber(pages.basePage.applicationRef);

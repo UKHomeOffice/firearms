@@ -1,7 +1,7 @@
 @FarRegression
 Feature: FAR - Firearms New Dealer
 
-  Scenario: Firearms S5 - page error validations- "Apply for a new authority"
+  Scenario: Firearms New Dealer - page error validations- "Apply for a new authority"
     Given I visit the Firearms page
     When I select continue
     Then I see "There is a problem" error header message displayed for firearms
@@ -92,7 +92,7 @@ Feature: FAR - Firearms New Dealer
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Select an option" error message displayed for firearms
-    When I select the S5 contact address for scenario "Apply for a new authority" and click continue
+    When I select the New Dealer contact address for scenario "Apply for a new authority" and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see error message displayed for firearms
@@ -103,7 +103,7 @@ Feature: FAR - Firearms New Dealer
     When I enter invoice contact email "invalid@email.c" and click continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see "Enter an email in the correct format, like name@example.com" error message displayed for firearms
-    When I enter invoice contact details "sas-hof-test@digital.homeoffice.gov.uk" and click continue
+    When I enter invoice contact details "hof-test@test.com" and click continue
     And I select continue
     Then I see "There is a problem" error header message displayed for firearms
     And I see error message displayed for firearms

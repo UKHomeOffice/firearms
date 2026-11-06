@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 import { Given, Then, When, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-export async function completeNewDealerQuestionnaire(pages: Pages, scenario: string): Promise<void> {
+export async function completeNewDealerApplicationForm(pages: Pages, scenario: string): Promise<void> {
   await pages.farChooseAJourneyHomePage.chooseJourneyWithTitleCheck('New Dealer');
   await pages.farPrivacyNoticePage.continueWithTitleCheck();
   await pages.farBeforeYouStartPage.clickContinueBtnWithTitleCheck();
@@ -332,7 +332,7 @@ When('I enter contact email address and click continue', async ({ pages }) => {
   await pages.farWhatAreContactDetailsPage.answerHoldersContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
 });
 
-When('I select the S5 contact address for scenario {string} and click continue', async ({ pages }, scenario: string) => {
+When('I select the New Dealer contact address for scenario {string} and click continue', async ({ pages }, scenario: string) => {
   switch (scenario) {
     case 'Apply for a new authority':
     case 'Renew existing authority':
