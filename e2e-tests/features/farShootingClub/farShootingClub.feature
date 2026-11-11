@@ -1,10 +1,10 @@
 @FarRegression
+@FarRegressionCI
 Feature: FAR - Firearms Shooting Clubs
 
   Background:
     Given I visit the Firearms page
 
-  @FarRegressionCI
   Scenario Outline: Firearms Shooting Clubs authority - E2E CI Test
     When I choose to complete Firearms application form "journey" for "Shooting Clubs" pertaining to "<Description>"
     Then I am navigated to "Check your answers" page

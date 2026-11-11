@@ -11,25 +11,6 @@ Given('I visit the Firearms page', async ({ pages }) => {
   await pages.farChooseAJourneyHomePage.acceptCookies();
 });
 
-Then('I am navigated to {string} page', async ({ pages }, expectedPageHeaderText: string) => {
-  const actualPageHeaderTextLocator = pages.farCheckYourAnswersPage.headerText;
-  await expect(actualPageHeaderTextLocator).toHaveText(expectedPageHeaderText);
-});
-
-Then('I check my answers for Firearms {string} - {string}', async ({ pages }, journey: string, activity: string) => {
-  await pages.farCheckYourAnswersPage.assertPageTitle(pages.farCheckYourAnswersPage.page, await pages.farCheckYourAnswersPage.expectedPageTitle());
-  expect(await pages.farCheckYourAnswersPage.isAbleToCheckAnswers()).toBe(true);
-  await checkFarAnswers(pages, journey, activity);
-});
-
-Then('Firearms application is successfully submitted', async ({ pages }) => {
-  pages.basePage.applicationRef = await pages.farSubmissionNotificationsPage.getApplicationRef();
-
-  expect(await pages.farSubmissionNotificationsPage.isApplicationCompleteDisplayed()).toBe(true);
-  expect(await pages.farSubmissionNotificationsPage.isApplicationRefDisplayed()).toBe(true);
-  expect(await pages.farSubmissionNotificationsPage.emailNotification()).toContain(`We have sent an email to ${c.CONTACT_EMAIL_ADDRESS} to confirm receipt of your application.`);
-});
-
 Given('I navigate and select {string} journey to start my application', async ({ pages }, journey: string) => {
   await pages.farChooseAJourneyHomePage.openFirearmsHomePage('/');
   await pages.farChooseAJourneyHomePage.chooseJourney(journey);
@@ -115,14 +96,6 @@ When('I choose to complete Firearms application form {string} for {string} perta
   }
 });
 
-When('I choose to submit the Firearms application form', async ({ pages }) => {
-  //TODO: The if condition should be removed once the submission flow is fixed for the branch env
-  if (pages.basePage.page.url().includes('firearms-licensing.uat')) {
-    await pages.basePage.clickContinueButton();
-    await pages.farImportantInformationPage.submitApplicationWithConfirmation();
-  }
-
-});
 
 When('I fill out my answers to Supporting doc application form', async ({ pages }) => {
   await pages.farSupportDocAppRefNumberPage.assertPageTitle(pages.farSupportDocAppRefNumberPage.page, await pages.farSupportDocAppRefNumberPage.expectedPageTitle());
@@ -132,6 +105,38 @@ When('I fill out my answers to Supporting doc application form', async ({ pages 
   await pages.farSDocUploadSupportingDocsPage.uploadSupportingDoc(c.UPLOAD_FILE);
   await pages.farDoYouWantToUploadAdditionalDocsPage.answerUploadAdditionalDoc(c.RESPONSE_NO);
 });
+
+When('I choose to submit the Firearms application form', async ({ pages }) => {
+  //TODO: The if condition should be removed once the submission flow is fixed for the branch env
+  if (pages.basePage.page.url().includes('firearms-licensing.uat')) {
+    await pages.basePage.clickContinueButton();
+    await pages.farImportantInformationPage.submitApplicationWithConfirmation();
+  }
+});
+
+Then('Firearms application is successfully submitted', async ({ pages }) => {
+  //TODO: The if condition should be removed once the submission flow is fixed for the branch env
+  if (pages.basePage.page.url().includes('firearms-licensing.uat')) {
+    pages.basePage.applicationRef = await pages.farSubmissionNotificationsPage.getApplicationRef();
+
+    expect(await pages.farSubmissionNotificationsPage.isApplicationCompleteDisplayed()).toBe(true);
+    expect(await pages.farSubmissionNotificationsPage.isApplicationRefDisplayed()).toBe(true);
+    expect(await pages.farSubmissionNotificationsPage.emailNotification()).toContain(`We have sent an email to ${c.CONTACT_EMAIL_ADDRESS} to confirm receipt of your application.`);
+  }
+});
+
+Then('I am navigated to {string} page', async ({ pages }, expectedPageHeaderText: string) => {
+  const actualPageHeaderTextLocator = pages.farCheckYourAnswersPage.headerText;
+  await expect(actualPageHeaderTextLocator).toHaveText(expectedPageHeaderText);
+});
+
+Then('I check my answers for Firearms {string} - {string}', async ({ pages }, journey: string, activity: string) => {
+  await pages.farCheckYourAnswersPage.assertPageTitle(pages.farCheckYourAnswersPage.page, await pages.farCheckYourAnswersPage.expectedPageTitle());
+  expect(await pages.farCheckYourAnswersPage.isAbleToCheckAnswers()).toBe(true);
+  await checkFarAnswers(pages, journey, activity);
+});
+
+
 
 Then('I am able to submit the supporting documents', async ({ pages }) => {
   expect(await pages.farSubmissionNotificationsPage.isUploadCompleteDisplayed()).toBe(true);

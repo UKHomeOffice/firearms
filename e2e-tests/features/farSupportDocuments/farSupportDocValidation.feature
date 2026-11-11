@@ -1,7 +1,6 @@
-@FarRegression @FarNewDealer @FarSupportDoc @regression2
+@FarRegression
 Feature: FAR - Firearms Supporting Documents Validations
 
-  @FAR-SDoc-V
   Scenario: Firearms New Dealer Supporting Doc Validations - E2E - "Apply for a new authority"
     Given I visit the Firearms page
     When I choose to complete Firearms application form "journey" for "New Dealer" pertaining to "Apply for a new authority"

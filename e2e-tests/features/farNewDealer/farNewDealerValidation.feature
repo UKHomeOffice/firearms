@@ -1,4 +1,5 @@
 @FarRegression
+@FarRegressionCI
 Feature: FAR - Firearms New Dealer
 
   Scenario: Firearms New Dealer - page error validations- "Apply for a new authority"

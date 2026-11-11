@@ -46,16 +46,22 @@ case "$http_code" in
 esac
 release_id=$(jq -er '.id | select(type == "number")' "$response_file")
 
-# Replace only this build's asset, preserving reports from other builds.
+asset_ids=()
 page=1
 while :; do
   assets=$(github_api "$api/releases/$release_id/assets?per_page=100&page=$page")
-  for asset_id in $(printf '%s' "$assets" | jq -r --arg name "$archive" '.[] | select(.name == $name) | .id'); do
-    github_api -X DELETE "$api/releases/assets/$asset_id" > /dev/null
-  done
+  matching_ids=$(printf '%s' "$assets" | jq -r --arg name "$archive" '.[] | select(.name == $name) | .id')
+  while IFS= read -r asset_id; do
+    [ -n "$asset_id" ] && asset_ids+=("$asset_id")
+  done <<< "$matching_ids"
   count=$(printf '%s' "$assets" | jq -er 'length')
   [ "$count" -eq 100 ] || break
   page=$((page + 1))
+done
+
+# Delete after pagination so removing an asset cannot shift later pages.
+for asset_id in "${asset_ids[@]}"; do
+  github_api -X DELETE "$api/releases/assets/$asset_id" > /dev/null
 done
 
 asset=$(github_api -X POST \

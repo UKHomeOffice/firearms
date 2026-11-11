@@ -1,10 +1,11 @@
 @FarRegression
+@FarRegressionCI
 Feature: FAR - Firearms Museums
 
   Background:
     Given I visit the Firearms page
 
-  @FarRegressionCI
+
   Scenario Outline: Firearms Museums authority - E2E CI Test
     When I choose to complete Firearms application form "journey" for "Museums" pertaining to "<Description>"
     Then I am navigated to "Check your answers" page

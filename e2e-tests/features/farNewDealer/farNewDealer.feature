@@ -1,10 +1,10 @@
 @FarRegression
+@FarRegressionCI
 Feature: FAR - Firearms New Dealer 
 
   Background:
     Given I visit the Firearms page
 
-  @FarRegressionCI
   Scenario Outline: Firearms New Dealer - E2E CI Test
     When I choose to complete Firearms application form "journey" for "New Dealer" pertaining to "<Description>"
     Then I am navigated to "Check your answers" page

@@ -1,4 +1,5 @@
 @FarRegression
+@FarRegressionCI
 Feature: FAR - Firearms Shooting Clubs
 
   Scenario: Firearms Shooting Clubs - page error validations- "Apply for a new authority"

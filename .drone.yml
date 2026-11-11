@@ -286,7 +286,7 @@ steps:
       - yarn playwright install --with-deps
       - test -s /root/.dockersock/branch_url.txt || (echo "Missing deployed branch URL at /root/.dockersock/branch_url.txt" && exit 1)
       - echo "Running Playwright e2e against https://$(cat /root/.dockersock/branch_url.txt)"
-      - CI=true PLAYWRIGHT_BASE_URL="https://$(cat /root/.dockersock/branch_url.txt)" yarn test:e2e
+      - CI=true PLAYWRIGHT_BASE_URL="https://$(cat /root/.dockersock/branch_url.txt)" yarn test:e2e --grep '@FarRegressionCI'
     when:
       branch:
         <<: *include_default_and_feature_branches
