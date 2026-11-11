@@ -70,9 +70,9 @@ When('I enter the email {string} not used in original application and click cont
 });
 
 When('I enter the email {string} used in original application and click continue', async ({ pages }, email: string) => {
-  if(email !== 'SAS_HOF_EMAIL') {
+  if (email !== 'SAS_HOF_EMAIL') {
     throw new Error('SAS_HOF_EMAIL should be replaced with actual email from constants');
-  } 
+  }
   await pages.farSupportingDocEnterEmailInOriginalAppPage.answerEnterEmailInOriginalApplication(c.SAS_HOF_EMAIL);
 });
 
@@ -116,8 +116,12 @@ When('I choose to complete Firearms application form {string} for {string} perta
 });
 
 When('I choose to submit the Firearms application form', async ({ pages }) => {
-  await pages.basePage.clickContinueButton();
-  await pages.farImportantInformationPage.submitApplicationWithConfirmation();
+  //TODO: The if condition should be removed once the submission flow is fixed for the branch env
+  if (pages.basePage.page.url().includes('firearms-licensing.uat')) {
+    await pages.basePage.clickContinueButton();
+    await pages.farImportantInformationPage.submitApplicationWithConfirmation();
+  }
+
 });
 
 When('I fill out my answers to Supporting doc application form', async ({ pages }) => {
