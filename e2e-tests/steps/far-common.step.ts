@@ -107,22 +107,25 @@ When('I fill out my answers to Supporting doc application form', async ({ pages 
 });
 
 When('I choose to submit the Firearms application form', async ({ pages }) => {
-  //TODO: The if condition should be removed once the submission flow is fixed for the branch env
-  if (pages.basePage.page.url().includes('firearms-licensing.uat')) {
-    await pages.basePage.clickContinueButton();
-    await pages.farImportantInformationPage.submitApplicationWithConfirmation();
+  // Submission flow is only available in UAT and high environments because iCasework is not configured in branch environments.
+  if (pages.basePage.page.url().includes('firearms-branch')) {
+    return;
   }
+  await pages.basePage.clickContinueButton();
+  await pages.farImportantInformationPage.submitApplicationWithConfirmation();
 });
 
 Then('Firearms application is successfully submitted', async ({ pages }) => {
-  //TODO: The if condition should be removed once the submission flow is fixed for the branch env
-  if (pages.basePage.page.url().includes('firearms-licensing.uat')) {
-    pages.basePage.applicationRef = await pages.farSubmissionNotificationsPage.getApplicationRef();
-
-    expect(await pages.farSubmissionNotificationsPage.isApplicationCompleteDisplayed()).toBe(true);
-    expect(await pages.farSubmissionNotificationsPage.isApplicationRefDisplayed()).toBe(true);
-    expect(await pages.farSubmissionNotificationsPage.emailNotification()).toContain(`We have sent an email to ${c.CONTACT_EMAIL_ADDRESS} to confirm receipt of your application.`);
+  // Submission flow is only available in UAT and high environments because iCasework is not configured in branch environments.
+  if (pages.basePage.page.url().includes('firearms-branch')) {
+    return;
   }
+  pages.basePage.applicationRef = await pages.farSubmissionNotificationsPage.getApplicationRef();
+
+  expect(await pages.farSubmissionNotificationsPage.isApplicationCompleteDisplayed()).toBe(true);
+  expect(await pages.farSubmissionNotificationsPage.isApplicationRefDisplayed()).toBe(true);
+  expect(await pages.farSubmissionNotificationsPage.emailNotification()).toContain(`We have sent an email to ${c.CONTACT_EMAIL_ADDRESS} to confirm receipt of your application.`);
+
 });
 
 Then('I am navigated to {string} page', async ({ pages }, expectedPageHeaderText: string) => {
