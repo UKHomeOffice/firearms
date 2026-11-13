@@ -53,6 +53,11 @@ Then visit: [http://localhost:8080/](http://localhost:8080/) and add the pathnam
 
 ## Testing
 
+### Playwright BDD tests
+
+See [the FAR migration and validation guide](e2e-tests/README.md). Run
+`yarn test:e2e:isolated` to validate scenarios one at a time before a full run.
+
 ### Acceptance Tests
 First, make sure the `env`variable in the config.js file is equal to `'ci'`.
 With the server running in development mode run (`yarn run start:acceptance`) to start the acceptance tests:

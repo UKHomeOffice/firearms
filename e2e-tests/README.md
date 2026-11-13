@@ -1,0 +1,175 @@
+# Firearms Playwright BDD tests
+
+The FAR features originate from `hof-e2e-auto-tests/Function/src/main/resources/features/ui/far`.
+Museum contact and S5 contact-address validation steps now explicitly supply
+scenario/context inputs instead of relying on values stored by previous steps.
+The page objects and aggregate `pages` fixture follow the LMR test structure.
+Every FAR source page is registered in `fixture/fixtures.ts`. BDD bindings are
+split into common, S5, museum and shooting-club files; each product owns its
+questionnaire journey.
+
+When a step checks a page title immediately before answering that page, use a
+page-owned `WithTitleCheck` method that awaits `assertPageTitle` and then delegates
+to the existing answer method. Keep the original answer methods for steps that
+do not check the title, including validation scenarios. Standalone title checks
+before branching or checking page content remain in the step bindings.
+
+`assertPageTitle(page, title)` takes the Playwright page and the expected title
+without the ` – GOV.UK` suffix, which the helper appends. Callers pass their
+page object's `expectedPageTitle()` result explicitly. The privacy notice
+continuation retains its existing check for the supported journey titles.
+
+Concrete pages implement `expectedPageTitle`, including all four submission
+confirmation journeys. The source's three shared components (`FarContactDetails`,
+`FarUploadDocs`, and `FarAnotherAddressForStorage`) inherit their title contract
+from `BasePage`; their concrete journey subclasses supply the actual titles.
+The source parity audit checks locator fields, method coverage, and concrete
+title implementations rather than accepting the base title placeholder.
+
+## Prerequisites
+
+- Install dependencies with `yarn install`.
+- Playwright and its test runner are pinned to 1.64.1, matching the Drone
+  Playwright image. Playwright BDD is pinned to 9.2.1 for compatible loader APIs.
+  Keep these versions and the lockfile aligned.
+- Install Chromium when missing: `yarn playwright install chromium`.
+- Set `PLAYWRIGHT_BASE_URL` to a running firearms service. Without it, Playwright
+  starts `npm start` using `PLAYWRIGHT_PORT` (default 8080). The app and the tests
+  must use the same port.
+- A local application requires Redis, built assets, and the existing service
+  configuration described in the repository README. Submission/supporting-document
+  tests also require working file-vault, PDF conversion, authentication, Notify,
+  and casework services. The harness does not fake successful submissions.
+
+## Drone CI
+
+Pull requests follow the existing branch policy (`master`, `feature/*`, `deps-*`,
+and `deps/*`). After `deploy_to_branch`, Playwright reads the internal host from
+`/root/.dockersock/branch_url.txt`. Reports publish on both successful and failed
+test runs using a GitHub App installation token. Each PR has a prerelease with
+build-specific HTML report ZIP assets and a comment linking each build's report.
+Rerunning a build replaces its asset and updates its comment.
+
+Create the Drone cron `nightly_e2e_playwright` on `master` with the desired nightly
+schedule. It runs against
+`https://firearms-licensing.uat.internal.sas-notprod.homeoffice.gov.uk` and sends a
+result summary to Slack, including setup failures when no totals are available.
+
+Required Drone secrets:
+
+- Config clone App: `HOF_GH_APP_ID`, `HOF_GH_APP_PK`, `HOF_GH_APP_INSTALL_ID`.
+- Report App: `hof_ukho_gh_app_id`, `hof_ukho_gh_app_pk`,
+  `hof_ukho_gh_app_install_id`.
+- Test email: `SAS_HOF_EMAIL`.
+- Nightly notification: `slack_sas_hof_e2e_tests_webhook`.
+
+The clone App must have Contents read access to
+`UKHomeOfficeForms/hof-services-config`. The report App needs Contents write and
+Pull requests write access to `UKHomeOffice/firearms`. Provision these secrets
+for the intended PR/cron/promotion events using the organization's trusted-PR
+policy; do not expose App private keys to untrusted fork builds. Tokens are
+short-lived, handed off in permission-restricted files, and cleaned up after use.
+CI runners need internal service access, npm/image registry access and outbound
+access to GitHub and Slack. No local `.env` file is needed in CI.
+The PR and nightly containers bootstrap Node 24.22.1 to satisfy the repository's
+`>=24.22.1 <25.0.0` engine requirement.
+
+## Validation commands
+
+```powershell
+yarn test:e2e:types
+yarn test:e2e:parity
+yarn test:e2e:generate
+yarn playwright test --list --project=chromium
+yarn test:e2e:isolated
+```
+
+`test:e2e:isolated` discovers expanded scenarios, executes each generated
+file/line selector separately with one worker and no retries, records diagnostics
+in `test-results/scenario-validation.json`, and runs the full suite **only when
+every isolated scenario has passed**. Set `FAR_VALIDATION_REPORT` to save this
+report outside the per-run Playwright output directory.
+
+To investigate one scenario, use the generated file/line from `--list`:
+
+```powershell
+yarn playwright test "farS5.feature.spec.js:12" --project=chromium --workers=1 --retries=0
+```
+
+After isolated validation passes, `yarn test:e2e` runs the full suite directly.
+Screenshots and videos are always recorded. Reports, generated specs and
+recordings are ignored by Git.
+
+## Source parity
+
+The audit accepts an optional source repository and JSON report destination:
+
+```powershell
+node e2e-tests\utility-helper\audit-source-parity.cjs C:\path\to\hof-e2e-auto-tests C:\reports\far-parity.json
+```
+
+It checks exact feature contents (including tags, titles, Examples, comments and
+scenario IDs), source page/method and fixture coverage, StepLib method coverage,
+step-expression coverage, and all 18 CSV data variants. These are structural
+checks, not a substitute for browser validation.
+
+Each product step file owns an exact-description scenario switch whose cases
+execute the ordered journey. Answers are passed directly into page methods as
+literals or existing constants. There is no shared answer object or answer lookup
+on `BasePage`. Journey, context and scenario are step arguments, not stored state.
+Only the submitted application reference persists for supporting-document steps.
+Full questionnaire journeys combine product setup, scenario selection, journey
+navigation, and questionnaire completion in one step:
+
+```gherkin
+When I choose to complete Firearms questionnaire "journey" for "Museums" pertaining to "<Description>"
+```
+
+Use `"New Dealer"` for S5 and `"Shooting Clubs"` for clubs. The shared binding
+dispatches by exact journey name; a separate product argument is not needed.
+Unknown journey names are rejected before navigation, and each product's
+questionnaire method validates the context and description. There is no data-only
+flag. Context is a required
+feature argument, forwarded unchanged with no default, trimming or lowercasing.
+Questionnaires accept only `"journey"`; the Museums validation-data binding
+requires `"validation"`. Unsupported or missing contexts fail before navigation.
+
+The existing data-selection bindings now only validate the supplied product and
+description; they do not supply implicit defaults to later steps. Each validation
+step supplies its own scenario/context, for example:
+
+```gherkin
+When I enter a museum contact name for scenario "Renew existing authority" in context "validation" and click continue
+When I select the S5 contact address for scenario "Apply for a new authority" and click continue
+```
+
+Check-your-answers assertions use the journey and scenario already supplied by
+their feature step. They validate those inputs but do not compare them against a
+stored earlier selection. Unknown descriptions, products, and contexts throw
+clear errors. Museums `validation` context preserves the original renewal
+scenario's distinct contact name; full questionnaires use `journey` context.
+No descriptions are lowercased, trimmed or aliased.
+
+Run `node --test e2e-tests/steps/far-scenarios.test.cjs` on Node 24 to check all
+18 variants and both Museums validation selections. The suite retains SHA-256
+fingerprints captured before this refactor for ordered page calls, arguments and
+check-your-answers expectations. Its BasePage stub rejects every state access,
+ensuring the journeys and assertions use step inputs rather than implicit state.
+It also checks validation without navigation, exact-description rejection,
+journey/product mismatches and explicit validation contact/address inputs.
+
+CSV files are not used at runtime. The effective shooting-range choices are
+visible directly in the scenario cases, without retaining unused source columns.
+
+The source's page-validation journey helper unconditionally called the S5
+before-you-start page even for museums and clubs. The migrated helper only
+visits that page for S5, preserving each journey's actual route boundary.
+Other source discrepancies are left visible to validation rather than changing
+features or weakening assertions.
+
+Test values and upload paths are centralized in `utility-helper/constants-lib.ts`.
+Set `SAS_HOF_EMAIL` in the test environment for the application contact email.
+This explicit environment override is the agreed deviation from the source
+constant; feature-file email values remain unchanged for strict feature parity.
+The source VPN guide PDF and max-length text are stored under `test-data`;
+page objects accept data through method arguments rather than importing fixtures.

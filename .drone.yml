@@ -38,7 +38,7 @@ trigger:
 
 node_image: &node_image
   pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/hof-nodejs:24.22.2_3-alpine@sha256:ebf742568d6fa9505e5b8740dbb6bf7f4d38ea3a22fc2a940ee57cfa3a95a41e
+  image: &node_image_name quay.io/ukhomeofficedigital/hof-nodejs:24.22.2_3-alpine@sha256:ebf742568d6fa9505e5b8740dbb6bf7f4d38ea3a22fc2a940ee57cfa3a95a41e
 
 
 linting: &linting
@@ -59,21 +59,71 @@ sonar_scanner: &sonar_scanner
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
+github_app_token_step: &github_app_token_step
+  <<: *node_image
+  volumes:
+    - name: dockersock
+      path: /root/.dockersock
+  commands:
+    - apk add --no-cache bash curl jq openssl
+    - bash bin/generate_github_app_token.sh
+
+github_app_token_secrets_ukho: &github_app_token_secrets_ukho
+  GITHUB_APP_ID:
+    from_secret: hof_ukho_gh_app_id
+  GITHUB_APP_PRIVATE_KEY:
+    from_secret: hof_ukho_gh_app_pk
+  GITHUB_APP_INSTALLATION_ID:
+    from_secret: hof_ukho_gh_app_install_id
+
+github_app_token_secrets_hof: &github_app_token_secrets_hof
+  GITHUB_APP_ID:
+    from_secret: HOF_GH_APP_ID
+  GITHUB_APP_PRIVATE_KEY:
+    from_secret: HOF_GH_APP_PK
+  GITHUB_APP_INSTALLATION_ID:
+    from_secret: HOF_GH_APP_INSTALL_ID
+
+clone_repos_step: &clone_repos_step
+  image: alpine/git
+  volumes:
+    - name: dockersock
+      path: /root/.dockersock
+  commands:
+    - |
+      set -eu
+      test -s "$${CLONE_TOKEN_FILE}" || { echo "Missing GitHub App clone token file"; exit 1; }
+      trap 'rm -f "$${CLONE_TOKEN_FILE}"' EXIT
+      GITHUB_TOKEN="$(cat "$${CLONE_TOKEN_FILE}")"
+      git clone "https://x-access-token:$${GITHUB_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git"
+      git -C hof-services-config remote set-url origin https://github.com/UKHomeOfficeForms/hof-services-config.git
+      unset GITHUB_TOKEN
+      if [ "$${CLONE_REPOS_PRUNE:-false}" = "true" ]; then
+        find hof-services-config/* | grep -v "$${HOF_CONFIG}" | grep -v 'infrastructure' | xargs rm -rf
+      fi
+
 steps:
-  - name: clone_repos
-    image: alpine/git
+  - name: generate_github_app_token_for_clone
+    <<: *github_app_token_step
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
+      <<: *github_app_token_secrets_hof
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone.txt
     when:
       branch:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
+
+  - name: clone_repos
+    <<: *clone_repos_step
+    environment:
+      CLONE_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone.txt
+      CLONE_REPOS_PRUNE: "true"
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+    depends_on:
+      - generate_github_app_token_for_clone
 
   # Trivy Security Scannner for scanning OS related vulnerabilities in Base image of Dockerfile
   - name: scan_base_image_os
@@ -84,7 +134,7 @@ steps:
         cpu: 1000
         memory: 1024Mi
     environment:
-      IMAGE_NAME: quay.io/ukhomeofficedigital/hof-nodejs:24.22.2_3-alpine@sha256:ebf742568d6fa9505e5b8740dbb6bf7f4d38ea3a22fc2a940ee57cfa3a95a41e
+      IMAGE_NAME: *node_image_name
       SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree --format table
       SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443
       FAIL_ON_DETECTION: true
@@ -180,7 +230,7 @@ steps:
         cpu: 1000
         memory: 1024Mi
     environment:
-      IMAGE_NAME: sas/firearms-licensing:${DRONE_COMMIT_SHA}
+      IMAGE_NAME: "sas/firearms-licensing:${DRONE_COMMIT_SHA}"
       SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree --format table
       FAIL_ON_DETECTION: true
       IGNORE_UNFIXED: false
@@ -205,6 +255,9 @@ steps:
       KUBE_TOKEN:
         from_secret: kube_token_sas_dev
       REDIS_PERSISTENCE_ENABLED: "false"
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
     commands:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
@@ -214,6 +267,68 @@ steps:
     depends_on:
       - clone_repos
       - build_image_and_push_to_ecr
+
+  - name: e2e_tests
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.64.1-noble
+    environment:
+      SAS_HOF_EMAIL:
+        from_secret: SAS_HOF_EMAIL
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - npm install -g n
+      - n 24.22.2
+      - hash -r
+      - node --version
+      - yarn install --frozen-lockfile
+      - yarn playwright install --with-deps
+      - test -s /root/.dockersock/branch_url.txt || (echo "Missing deployed branch URL at /root/.dockersock/branch_url.txt" && exit 1)
+      - echo "Running Playwright e2e against https://$(cat /root/.dockersock/branch_url.txt)"
+      - CI=true PLAYWRIGHT_BASE_URL="https://$(cat /root/.dockersock/branch_url.txt)" yarn test:e2e:branchSmokeTest
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+    depends_on:
+      - deploy_to_branch
+
+  - name: generate_github_app_token
+    <<: *github_app_token_step
+    environment:
+      <<: *github_app_token_secrets_ukho
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token.txt
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+      status: [success, failure]
+    depends_on:
+      - e2e_tests
+
+  - name: publish_e2e_report_to_pr
+    <<: *node_image
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - apk add --no-cache bash curl jq zip
+      - |
+        set -eu
+        token_file=/root/.dockersock/github_app_token.txt
+        trap 'rm -f "$${token_file}"' EXIT
+        test -s "$${token_file}" || { echo "Missing GitHub App report token file"; exit 1; }
+        export GITHUB_APP_TOKEN="$(cat "$${token_file}")"
+        export DRONE_REPO="$${DRONE_REPO:-$GIT_REPO}"
+        bash bin/publish_e2e_test_report.sh
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: pull_request
+      status: [success, failure]
+    depends_on:
+      - generate_github_app_token
 
   # Deploy to Master UAT environment
   - name: deploy_to_uat
@@ -313,20 +428,26 @@ steps:
       target: PROD
       event: promote
 
-  - name: clone_repos_prod
-    image: alpine/git
+  - name: generate_github_app_token_for_clone_prod
+    <<: *github_app_token_step
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      <<: *github_app_token_secrets_hof
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_prod.txt
     when:
       target: PROD
       event: promote
     depends_on:
       - sanity_check_build_prod
+
+  - name: clone_repos_prod
+    <<: *clone_repos_step
+    environment:
+      CLONE_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_prod.txt
+    when:
+      target: PROD
+      event: promote
+    depends_on:
+      - generate_github_app_token_for_clone_prod
 
     # Deploy to Production environment
   - name: deploy_to_prod
@@ -363,19 +484,25 @@ steps:
       event: cron
 
   # CRON job steps that runs security scans using Snyk & Trivy
-  - name: cron_clone_repos
-    image: alpine/git
+  - name: generate_github_app_token_for_clone_cron
+    <<: *github_app_token_step
     environment:
-      DRONE_GIT_USERNAME:
-        from_secret: drone_git_username
-      DRONE_GIT_TOKEN:
-        from_secret: drone_git_token
-    commands:
-      - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
-      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
+      <<: *github_app_token_secrets_hof
+      OUTPUT_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_cron.txt
     when:
       cron: security_scans
       event: cron
+
+  - name: cron_clone_repos
+    <<: *clone_repos_step
+    environment:
+      CLONE_TOKEN_FILE: /root/.dockersock/github_app_token_for_clone_cron.txt
+      CLONE_REPOS_PRUNE: "true"
+    when:
+      cron: security_scans
+      event: cron
+    depends_on:
+      - generate_github_app_token_for_clone_cron
 
   - name: cron_build_image_for_trivy
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -394,7 +521,7 @@ steps:
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     pull: always
     environment:
-        IMAGE_NAME: quay.io/ukhomeofficedigital/hof-nodejs:24.22.2_3-alpine@sha256:ebf742568d6fa9505e5b8740dbb6bf7f4d38ea3a22fc2a940ee57cfa3a95a41e
+        IMAGE_NAME: *node_image_name
         SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree --format table
         FAIL_ON_DETECTION: true
         IGNORE_UNFIXED: false
@@ -409,7 +536,7 @@ steps:
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     pull: always
     environment:
-      IMAGE_NAME: sas/firearms-licensing:${DRONE_COMMIT_SHA}
+      IMAGE_NAME: "sas/firearms-licensing:${DRONE_COMMIT_SHA}"
       SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree --format table
       FAIL_ON_DETECTION: true
       IGNORE_UNFIXED: false
@@ -471,6 +598,79 @@ steps:
     depends_on:
       - cron_trivy_scan_image_os
       - cron_trivy_scan_node_packages
+
+  - name: cron_nightly_e2e_tests
+    pull: if-not-exists
+    image: mcr.microsoft.com/playwright:v1.64.1-noble
+    environment:
+      SAS_HOF_EMAIL:
+        from_secret: SAS_HOF_EMAIL
+      NIGHTLY_E2E_BASE_URL:
+        from_secret: NIGHTLY_E2E_BASE_URL
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - npm install -g n
+      - n 24.22.2
+      - hash -r
+      - node --version
+      - yarn install --frozen-lockfile
+      - yarn playwright install --with-deps
+      - |
+        bash -c '
+          set -eu
+          : "$${NIGHTLY_E2E_BASE_URL:?Missing NIGHTLY_E2E_BASE_URL}"
+          output=/root/.dockersock/nightly-playwright-output.txt
+          summary=/root/.dockersock/nightly-playwright-summary.txt
+          set +e
+          CI=true PLAYWRIGHT_BASE_URL="$${NIGHTLY_E2E_BASE_URL}" yarn test:e2e > "$${output}" 2>&1
+          test_status=$?
+          set -e
+          tail -n 60 "$${output}"
+          node bin/summarise_playwright_report.js "$${output}" "$${summary}"
+          exit "$${test_status}"
+        '
+    when:
+      cron: nightly_e2e_playwright
+      event: cron
+
+  - name: cron_notify_slack_nightly_e2e
+    <<: *node_image
+    environment:
+      SLACK_WEBHOOK:
+        from_secret: slack_sas_hof_e2e_tests_webhook
+      NIGHTLY_E2E_BASE_URL:
+        from_secret: NIGHTLY_E2E_BASE_URL
+    volumes:
+      - name: dockersock
+        path: /root/.dockersock
+    commands:
+      - apk add --no-cache curl jq
+      - |
+        set -eu
+        : "$${SLACK_WEBHOOK:?Missing Slack webhook secret}"
+        summary=/root/.dockersock/nightly-playwright-summary.txt
+        if [ ! -s "$${summary}" ]; then
+          echo "Nightly summary missing: test setup or execution failed."
+          printf 'Playwright Nightly Summary\nSummary unavailable: test setup or execution failed.\n' > "$${summary}"
+        fi
+        payload=$(jq -n \
+          --arg repo "$${DRONE_REPO}" \
+          --arg status "$${DRONE_BUILD_STATUS}" \
+          --arg branch "$${DRONE_BRANCH}" \
+          --arg url "$${NIGHTLY_E2E_BASE_URL}" \
+          --arg link "$${DRONE_BUILD_LINK}" \
+          --rawfile summary "$${summary}" \
+          '{text: ("Nightly Playwright: " + $repo + "\nStatus: " + $status + "\nBranch: " + $branch + "\nEnvironment: " + $url + "\nBuild: " + $link + "\n" + $summary)}')
+        response=$(curl --fail-with-body -sS -H 'Content-Type: application/json' --data "$${payload}" "$${SLACK_WEBHOOK}")
+        test "$${response}" = "ok" || { echo "Slack rejected nightly notification: $${response}"; exit 1; }
+    when:
+      cron: nightly_e2e_playwright
+      event: cron
+      status: [success, failure]
+    depends_on:
+      - cron_nightly_e2e_tests
 
 services:
   - name: docker

@@ -6,3 +6,7 @@ LICENSE
 README.md
 CONTRIBUTING.md
 coverage
+.features-gen/
+playwright-report
+test-results
+bin/
