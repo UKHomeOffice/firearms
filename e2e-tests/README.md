@@ -11,7 +11,7 @@ a local service. This guide describes running it against UAT.
   - `farNewDealer/` for new-dealer applications and validation.
   - `farShootingClub/` for shooting-club applications and validation.
   - `farSupportDocuments/` for supporting-document journeys and validation.
-- `steps/` maps feature steps to test actions. `far-common.step.ts` contains
+- `steps/` maps feature steps to test actions. `firearms-common.step.ts` contains
   shared steps; the other step files cover museums, new dealers, shooting clubs,
   and check-your-answers behaviour.
 - `pages/` contains page objects for the application journeys.

@@ -55,7 +55,7 @@ Then visit: [http://localhost:8080/](http://localhost:8080/) and add the pathnam
 
 ### Playwright BDD tests
 
-See [the FAR migration and validation guide](e2e-tests/README.md). Run
+See [the Firearms migration and validation guide](e2e-tests/README.md). Run
 `yarn test:e2e:isolated` to validate scenarios one at a time before a full run.
 
 ### Acceptance Tests
