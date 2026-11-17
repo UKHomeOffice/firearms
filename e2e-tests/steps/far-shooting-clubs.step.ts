@@ -18,10 +18,10 @@ export async function completeShootingClubsApplicationForm(pages: Pages, scenari
       await pages.farShootClubWhatIsClubAddressPage.answerEnterClubAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecNameWithTitleCheck(c.CLUB_SEC_NAME);
       await pages.farShootClubSecContactAddressPage.answerClubSecretaryContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubWhoToContactInAbsencePage.answerEnterClubNameWithTitleCheck(c.CLUB_SEC_DEPUTY_NAME);
       await pages.farShootClubSecContactAddressPage.answerDeputyContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRangeWithTitleCheck();
       expect(await pages.farShootClubUseAnotherShootingRangePage.isFirearmsCategoriesAdded()).toBe(true);
@@ -48,10 +48,10 @@ export async function completeShootingClubsApplicationForm(pages: Pages, scenari
       await pages.farShootClubWhatIsClubAddressPage.answerEnterClubAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecNameWithTitleCheck(c.CLUB_SEC_NAME);
       await pages.farShootClubSecContactAddressPage.answerClubSecretaryContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubWhoToContactInAbsencePage.answerEnterClubNameWithTitleCheck(c.CLUB_SEC_DEPUTY_NAME);
       await pages.farShootClubSecContactAddressPage.answerDeputyContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRangeWithTitleCheck();
       expect(await pages.farShootClubUseAnotherShootingRangePage.isFirearmsCategoriesAdded()).toBe(true);
@@ -84,10 +84,10 @@ export async function completeShootingClubsApplicationForm(pages: Pages, scenari
       await pages.farShootClubWhatIsClubAddressPage.answerEnterClubAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecNameWithTitleCheck(c.CLUB_SEC_NAME);
       await pages.farShootClubSecContactAddressPage.answerClubSecretaryContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubWhoToContactInAbsencePage.answerEnterClubNameWithTitleCheck(c.CLUB_SEC_DEPUTY_NAME);
       await pages.farShootClubSecContactAddressPage.answerDeputyContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRangeWithTitleCheck();
       expect(await pages.farShootClubUseAnotherShootingRangePage.isFirearmsCategoriesAdded()).toBe(true);
@@ -119,10 +119,10 @@ export async function completeShootingClubsApplicationForm(pages: Pages, scenari
       await pages.farShootClubWhatIsClubAddressPage.answerEnterClubAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecNameWithTitleCheck(c.CLUB_SEC_NAME);
       await pages.farShootClubSecContactAddressPage.answerClubSecretaryContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubWhoToContactInAbsencePage.answerEnterClubNameWithTitleCheck(c.CLUB_SEC_DEPUTY_NAME);
       await pages.farShootClubSecContactAddressPage.answerDeputyContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRangeWithTitleCheck();
       expect(await pages.farShootClubUseAnotherShootingRangePage.isFirearmsCategoriesAdded()).toBe(true);
@@ -150,10 +150,10 @@ export async function completeShootingClubsApplicationForm(pages: Pages, scenari
       await pages.farShootClubWhatIsClubAddressPage.answerEnterClubAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecNameWithTitleCheck(c.CLUB_SEC_NAME);
       await pages.farShootClubSecContactAddressPage.answerClubSecretaryContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubWhoToContactInAbsencePage.answerEnterClubNameWithTitleCheck(c.CLUB_SEC_DEPUTY_NAME);
       await pages.farShootClubSecContactAddressPage.answerDeputyContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRangeWithTitleCheck();
       expect(await pages.farShootClubUseAnotherShootingRangePage.isFirearmsCategoriesAdded()).toBe(true);
@@ -187,10 +187,10 @@ export async function completeShootingClubsApplicationForm(pages: Pages, scenari
       await pages.farShootClubWhatIsClubAddressPage.answerEnterClubAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubWhatIsTheClubSecNamePage.answerEnterClubSecNameWithTitleCheck(c.CLUB_SEC_NAME);
       await pages.farShootClubSecContactAddressPage.answerClubSecretaryContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerClubSecretaryContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubWhoToContactInAbsencePage.answerEnterClubNameWithTitleCheck(c.CLUB_SEC_DEPUTY_NAME);
       await pages.farShootClubSecContactAddressPage.answerDeputyContactAddress(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farShootClubSecContactDetailsPage.answerDeputyContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farShootClubShootingRangesToUsePage.answerShootingRangesAddressWithTitleCheck(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.farShootClubFirearmsCategoriesToUsePage.answerSelectFirearmsCategoriesRangeWithTitleCheck();
       expect(await pages.farShootClubUseAnotherShootingRangePage.isFirearmsCategoriesAdded()).toBe(true);
@@ -235,7 +235,7 @@ When('I enter the club secretary address and click continue', async ({ pages }) 
 });
 
 When('I enter the club email and click continue', async ({ pages }) => {
-  await pages.farShootClubSecContactDetailsPage.answerClubSecContactDetails(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+  await pages.farShootClubSecContactDetailsPage.answerClubSecContactDetails(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
 });
 
 When('I enter the second person name and click continue', async ({ pages }) => {

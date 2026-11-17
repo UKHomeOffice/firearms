@@ -20,7 +20,7 @@ export async function completeMuseumsApplicationForm(pages: Pages, scenario: str
       expect(await pages.farMuseumAnotherAddressForStoragePage.isStorageAddressAdded()).toBe(true);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
       await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("MuseumTest");
-      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle(pages.farMuseumContactAddressSameAsPreviousPage.page, await pages.farMuseumContactAddressSameAsPreviousPage.expectedPageTitle());
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
       await pages.farMuseumSelectTheContactAddressPage.answerSelectContactAddressWithTitleCheck();
@@ -40,7 +40,7 @@ export async function completeMuseumsApplicationForm(pages: Pages, scenario: str
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
       await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("MuseumTester");
-      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle(pages.farMuseumContactAddressSameAsPreviousPage.page, await pages.farMuseumContactAddressSameAsPreviousPage.expectedPageTitle());
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameNo();
       await pages.farMuseumWhatIsTheirContactAddressPage.answerContactAddressWithTitleCheck(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
@@ -61,7 +61,7 @@ export async function completeMuseumsApplicationForm(pages: Pages, scenario: str
       expect(await pages.farMuseumAnotherAddressForStoragePage.isStorageAddressAdded()).toBe(true);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
       await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("Test");
-      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle(pages.farMuseumContactAddressSameAsPreviousPage.page, await pages.farMuseumContactAddressSameAsPreviousPage.expectedPageTitle());
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
       await pages.farMuseumSelectTheContactAddressPage.answerSelectContactAddressWithTitleCheck();
@@ -86,7 +86,7 @@ export async function completeMuseumsApplicationForm(pages: Pages, scenario: str
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
       await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("Test");
-      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle(pages.farMuseumContactAddressSameAsPreviousPage.page, await pages.farMuseumContactAddressSameAsPreviousPage.expectedPageTitle());
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameNo();
       await pages.farMuseumWhatIsTheirContactAddressPage.answerContactAddressWithTitleCheck(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
@@ -107,7 +107,7 @@ export async function completeMuseumsApplicationForm(pages: Pages, scenario: str
       expect(await pages.farMuseumAnotherAddressForStoragePage.isStorageAddressAdded()).toBe(true);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
       await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("Test");
-      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle(pages.farMuseumContactAddressSameAsPreviousPage.page, await pages.farMuseumContactAddressSameAsPreviousPage.expectedPageTitle());
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameYes();
       await pages.farMuseumSelectTheContactAddressPage.answerSelectContactAddressWithTitleCheck();
@@ -132,7 +132,7 @@ export async function completeMuseumsApplicationForm(pages: Pages, scenario: str
       await pages.farMuseumWhereWillFirearmsBeStoredPage.answerFirearmsStorage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
       await pages.farMuseumAnotherAddressForStoragePage.answerFirearmsInAnotherAddressNo();
       await pages.farMuseumWhoShouldWeContactAbtThisApplicationPage.answerWhoToContactWithTitleCheck("Test");
-      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.TELEPHONE);
+      await pages.farMuseumWhatAreTheirContactDetailsPage.answerTheirContactDetailsWithTitleCheck(c.CONTACT_EMAIL_ADDRESS, c.CONTACT_TELEPHONE);
       await pages.farMuseumContactAddressSameAsPreviousPage.assertPageTitle(pages.farMuseumContactAddressSameAsPreviousPage.page, await pages.farMuseumContactAddressSameAsPreviousPage.expectedPageTitle());
       await pages.farMuseumContactAddressSameAsPreviousPage.answerContactAddressTheSameNo();
       await pages.farMuseumWhatIsTheirContactAddressPage.answerContactAddressWithTitleCheck(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
