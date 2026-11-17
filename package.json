@@ -14,7 +14,7 @@
   "license": "./LICENSE",
   "scripts": {
     "test:e2e": "bddgen && playwright test",
-    "test:e2e:branchSmokeTest": "bddgen && playwright test --grep @FarRegressionCI",
+    "test:e2e:branchSmokeTest": "bddgen && playwright test --grep @FirearmsRegressionCI",
     "test:e2e:generate": "bddgen",
     "test:e2e:types": "tsc --noEmit",
     "test:e2e:parity": "node e2e-tests/utility-helper/audit-source-parity.cjs",
